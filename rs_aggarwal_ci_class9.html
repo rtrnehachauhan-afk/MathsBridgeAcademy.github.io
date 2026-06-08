@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RS Aggarwal — Compound Interest Class 9</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0eeff;color:#1a1a2e;min-height:100vh}
+.wrap{max-width:900px;margin:0 auto;padding:20px 16px 60px}
+
+.hero{background:#1a1a3e;border-radius:14px;padding:22px 28px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.hero-left .unit{font-size:11px;font-weight:600;color:#AFA9EC;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.hero-left .title{font-size:24px;font-weight:700;color:#fff}
+.hero-left .sub{font-size:12px;color:#CECBF6;margin-top:3px}
+.hero-stats{display:flex;gap:8px;flex-wrap:wrap}
+.hstat{background:rgba(255,255,255,.1);border-radius:10px;padding:9px 16px;text-align:center}
+.hstat .n{font-size:20px;font-weight:700;color:#fff}
+.hstat .l{font-size:10px;color:#AFA9EC;margin-top:2px}
+
+/* TABS */
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tab-btn{flex:1;min-width:120px;padding:10px 8px;font-size:13px;font-weight:700;border:none;cursor:pointer;border-radius:10px;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:5px}
+.tab-btn.t-2a{background:#E1F5EE;color:#0F6E56}
+.tab-btn.t-2a.active{background:#085041;color:#fff}
+.tab-btn.t-2b{background:#EEEDFE;color:#534AB7}
+.tab-btn.t-2b.active{background:#3C3489;color:#fff}
+.tab-btn.t-mcq{background:#FAEEDA;color:#854F0B}
+.tab-btn.t-mcq.active{background:#633806;color:#fff}
+.tab-btn.t-2c{background:#FCEBEB;color:#791F1F}
+.tab-btn.t-2c.active{background:#A32D2D;color:#fff}
+
+/* FILTERS */
+.filter-row{display:flex;align-items:center;gap:6px;padding:8px 0 12px;flex-wrap:wrap}
+.filter-row span{font-size:12px;color:#666;font-weight:600}
+.fb{padding:5px 13px;font-size:12px;font-weight:700;border-radius:20px;border:2px solid #ddd;cursor:pointer;transition:all .15s;background:#fff;color:#999}
+.fb.fa.on{border-color:#7F77DD;background:#EEEDFE;color:#3C3489}
+.fb.fe.on{border-color:#1D9E75;background:#E1F5EE;color:#085041}
+.fb.fm.on{border-color:#BA7517;background:#FAEEDA;color:#633806}
+.fb.fh.on{border-color:#E24B4A;background:#FCEBEB;color:#791F1F}
+
+/* JUMP */
+.jump-row{display:flex;gap:4px;flex-wrap:wrap;padding-bottom:10px;border-bottom:2px solid #e0ddf7;margin-bottom:12px}
+.jb{width:28px;height:28px;font-size:11px;font-weight:700;border-radius:7px;border:none;cursor:pointer;transition:opacity .15s;display:flex;align-items:center;justify-content:center}
+.jb.je{background:#9FE1CB;color:#04342C}
+.jb.jm{background:#FAC775;color:#412402}
+.jb.jh{background:#F09595;color:#501313}
+.jb:hover{opacity:.6}
+
+/* QUESTION CARD */
+.qcard{border-radius:12px;margin-bottom:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.09)}
+.qcard .stripe{height:5px}
+.qcard.easy .stripe{background:linear-gradient(90deg,#1D9E75,#5DCAA5)}
+.qcard.medium .stripe{background:linear-gradient(90deg,#BA7517,#EF9F27)}
+.qcard.hard .stripe{background:linear-gradient(90deg,#C0392B,#E74C3C)}
+
+.q-head{background:#1a1a3e;padding:12px 18px;display:flex;align-items:flex-start;gap:12px}
+.qnum-b{width:30px;height:30px;border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.easy .qnum-b{background:#9FE1CB;color:#04342C}
+.medium .qnum-b{background:#FAC775;color:#412402}
+.hard .qnum-b{background:#F09595;color:#501313}
+.qtxt{font-size:14px;font-weight:600;color:#fff;line-height:1.6;flex:1}
+.qbadge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0;margin-top:3px}
+.easy .qbadge{background:#9FE1CB;color:#04342C}
+.medium .qbadge{background:#FAC775;color:#412402}
+.hard .qbadge{background:#F09595;color:#501313}
+
+.qfooter{background:#252550;padding:7px 18px;display:flex;align-items:center;gap:8px}
+.src-pill{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+.pill-2a{background:#E1F5EE;color:#085041}
+.pill-2b{background:#EEEDFE;color:#3C3489}
+.pill-mcq{background:#FAEEDA;color:#633806}
+.pill-2c{background:#FCEBEB;color:#791F1F}
+.sol-btn{margin-left:auto;font-size:12px;font-weight:700;padding:5px 14px;border-radius:8px;border:2px solid #7F77DD;background:transparent;cursor:pointer;color:#AFA9EC;transition:all .15s}
+.sol-btn:hover{background:#3C3489;color:#fff;border-color:#3C3489}
+
+/* SOLUTION */
+.sol-body{display:none;background:#fff}
+.sol-body.open{display:block}
+
+.given-block{background:#e8e6ff;padding:10px 18px;border-bottom:1px solid #d0ccf0}
+.given-label{font-size:11px;font-weight:800;color:#3C3489;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.given-line{font-size:13px;color:#1a1a3e;line-height:1.8}
+
+.year-block{padding:12px 18px 14px;border-bottom:1px solid #f0eef8}
+.year-block:last-child{border-bottom:none}
+.year-label{display:inline-block;background:#1a1a3e;color:#fff;font-size:11px;font-weight:800;padding:3px 12px;border-radius:5px;margin-bottom:10px;letter-spacing:.04em}
+
+.sol-row{display:flex;align-items:center;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.sol-var{font-size:14px;font-weight:700;color:#1a1a3e;min-width:14px}
+.sol-eq{font-size:13px;color:#555;margin:0 2px}
+.sol-eq2{font-size:14px;color:#555;margin:0 4px}
+.sol-val{font-size:15px;font-weight:800;color:#c8860a}
+.sol-plain{font-size:13px;color:#333;line-height:1.7}
+
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px}
+.frac .num{font-size:12px;color:#1a1a3e;border-bottom:1.5px solid #555;padding:0 4px 1px;text-align:center}
+.frac .den{font-size:12px;color:#1a1a3e;padding:1px 4px 0;text-align:center}
+
+.bal-row{display:flex;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap}
+.bal-lbl{font-size:13px;font-weight:600;color:#1a1a3e;min-width:60px}
+
+.final-ans{background:#1a1a3e;padding:11px 18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.final-ans span{font-size:14px;font-weight:700;color:#fff}
+.fa-val{color:#f0b429;font-size:15px}
+
+/* MCQ SPECIFIC */
+.mcq-options{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:12px 18px;background:#fff;border-bottom:1px solid #f0eef8}
+.mcq-opt{padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:2px solid #e0ddf7;background:#fafafa;color:#333;transition:all .15s;text-align:left}
+.mcq-opt:hover{border-color:#7F77DD;background:#EEEDFE;color:#3C3489}
+.mcq-opt.correct{border-color:#1D9E75;background:#E1F5EE;color:#085041}
+.mcq-opt.wrong{border-color:#E24B4A;background:#FCEBEB;color:#791F1F}
+.mcq-result{display:none;padding:8px 18px 12px;background:#fff}
+.mcq-result.show{display:block}
+.mcq-result .res-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.mcq-result.correct-res .res-label{color:#085041}
+.mcq-result.wrong-res .res-label{color:#791F1F}
+.mcq-result .res-txt{font-size:13px;color:#333;line-height:1.7}
+.mcq-show-sol{margin-left:auto;font-size:12px;font-weight:700;padding:5px 12px;border-radius:8px;border:2px solid #FAEEDA;background:transparent;cursor:pointer;color:#c8860a;transition:all .15s}
+.mcq-show-sol:hover{background:#FAEEDA;color:#633806}
+
+.count-chip{font-size:11px;background:#e8e6ff;color:#534AB7;padding:3px 10px;border-radius:20px;margin-left:auto;font-weight:600}
+.empty-msg{text-align:center;padding:2rem;color:#999;font-size:13px}
+.done-zone{text-align:center;padding:22px 0 8px}
+.done-title{font-size:17px;font-weight:700;color:#3C3489;margin-bottom:5px}
+.done-sub{font-size:13px;color:#666}
+.nav-row{display:flex;gap:8px;justify-content:center;margin-top:12px}
+.nav-2b{padding:10px 22px;font-size:13px;font-weight:700;border-radius:10px;border:none;cursor:pointer;background:#3C3489;color:#fff}
+.nav-mcq{padding:10px 22px;font-size:13px;font-weight:700;border-radius:10px;border:none;cursor:pointer;background:#633806;color:#fff}
+.nav-2c{padding:10px 22px;font-size:13px;font-weight:700;border-radius:10px;border:none;cursor:pointer;background:#A32D2D;color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="unit">Chapter 2 · Compound Interest · ICSE Class 9</div>
+    <div class="title">RS Aggarwal — Foundation Maths</div>
+    <div class="sub">Goyal Brothers Prakashan &nbsp;·&nbsp; Exercise 2A &nbsp;·&nbsp; Exercise 2B &nbsp;·&nbsp; Exercise 2C &nbsp;·&nbsp; MCQs</div>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat"><div class="n">14</div><div class="l">Ex. 2A</div></div>
+    <div class="hstat"><div class="n">20</div><div class="l">Ex. 2B</div></div>
+    <div class="hstat"><div class="n">15</div><div class="l">Ex. 2C</div></div>
+    <div class="hstat"><div class="n">20</div><div class="l">MCQs</div></div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn t-2a active" id="btn-2a" onclick="switchTab('2a')">&#128218; Exercise 2A</button>
+  <button class="tab-btn t-2b" id="btn-2b" onclick="switchTab('2b')">&#128221; Exercise 2B</button>
+  <button class="tab-btn t-2c" id="btn-2c" onclick="switchTab('2c')">&#127807; Exercise 2C</button>
+  <button class="tab-btn t-mcq" id="btn-mcq" onclick="switchTab('mcq')">&#127381; MCQs</button>
+</div>
+
+<div id="panel-2a"></div>
+<div id="panel-2b" style="display:none"></div>
+<div id="panel-2c" style="display:none"></div>
+<div id="panel-mcq" style="display:none"></div>
+
+</div>
+<script>
+function frac(n,d){return `<span class="frac"><span class="num">${n}</span><span class="den">${d}</span></span>`}
+
+const D={
+'2a':[
+{d:'easy',q:'Calculate the amount and the compound interest on ₹25,000 for 2 years at 8% p.a., compounded annually.',
+ given:['P = ₹25,000 &nbsp;&nbsp; R = 8% p.a. &nbsp;&nbsp; n = 2 years'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`A = 25,000 × ${frac('108','100')} × ${frac('108','100')}`},
+    {t:'note',text:`= 25,000 × ${frac('27','25')} × ${frac('27','25')}`},
+    {t:'note',text:'= 40 × 27 × 27 = <span class="sol-val">₹29,160</span>'},
+  ]},
+ ],
+ final:'A = <span class="fa-val">₹29,160</span> &nbsp;|&nbsp; C.I. = 29,160 − 25,000 = <span class="fa-val">₹4,160</span>'},
+
+{d:'medium',q:'Rohit borrows ₹62,500 from Arun at 10% p.a. SI for 2 years. He lends the same to Kunal at 10% p.a. CI for 2 years. Find Rohit\'s profit.',
+ given:['P = ₹62,500 &nbsp;&nbsp; R = 10% &nbsp;&nbsp; T = 2 years'],
+ years:[
+  {label:'SI paid by Rohit to Arun',rows:[
+    {t:'note',text:`S.I. = ${frac('62,500 × 10 × 2','100')} = <span class="sol-val">₹12,500</span>`},
+  ]},
+  {label:'CI received by Rohit from Kunal',rows:[
+    {t:'note',text:`A = 62,500 × ${frac('110','100')} × ${frac('110','100')}`},
+    {t:'note',text:`= 62,500 × ${frac('11','10')} × ${frac('11','10')} = 625 × 121 = <span class="sol-val">₹75,625</span>`},
+    {t:'note',text:'C.I. = 75,625 − 62,500 = <span class="sol-val">₹13,125</span>'},
+  ]},
+ ],
+ final:'Profit = 13,125 − 12,500 = <span class="fa-val">₹625</span>'},
+
+{d:'medium',q:'A man invests ₹10,000 for 3 years. At end of 1 year it amounts to ₹11,200. Find: (i) rate % p.a. (ii) interest accrued in 2nd year (iii) amount at end of 3rd year.',
+ given:['P = ₹10,000 &nbsp;&nbsp; A after Y1 = ₹11,200'],
+ years:[
+  {label:'(i) Finding Rate',rows:[
+    {t:'note',text:`S.I. for Y1 = A − P = 11,200 − 10,000 = ₹1,200`},
+    {t:'note',text:`S.I. = ${frac('P × R × T','100')} &nbsp;→&nbsp; 1,200 = ${frac('10,000 × R × 1','100')}`},
+    {t:'note',text:`R = ${frac('1,200 × 100','10,000')} = <span class="sol-val">12%</span>`},
+  ]},
+  {label:'(ii) Interest accrued in 2nd year (P = ₹11,200)',rows:[
+    {t:'I',expr:`${frac('11,200 × 12 × 1','100')}`,val:'₹1,344'},
+    {t:'A',expr:'11,200 + 1,344',val:'₹12,544'},
+  ]},
+  {label:'(iii) Amount at end of 3rd year (P = ₹12,544)',rows:[
+    {t:'I',expr:`${frac('12,544 × 12 × 1','100')}`,val:'₹1,505.28'},
+    {t:'A',expr:'12,544 + 1,505.28',val:'₹14,049.28'},
+  ]},
+ ],
+ final:'R = <span class="fa-val">12%</span> &nbsp;|&nbsp; Y2 interest = <span class="fa-val">₹1,344</span> &nbsp;|&nbsp; A₃ = <span class="fa-val">₹14,049.28</span>'},
+
+{d:'hard',q:'Sudhakar borrows ₹22,500 at 10% p.a. compounded annually. Repays ₹11,250 at end of Y1 and ₹12,550 at end of Y2. Find loan outstanding at end of Y3.',
+ given:['P = ₹22,500 &nbsp;&nbsp; R = 10% p.a.','Repays ₹11,250 (end Y1) &nbsp;|&nbsp; ₹12,550 (end Y2)'],
+ years:[
+  {label:'1st Year',rows:[
+    {t:'I',expr:`${frac('22,500 × 10 × 1','100')}`,val:'₹2,250'},
+    {t:'A',expr:'22,500 + 2,250',val:'₹24,750'},
+    {t:'bal',expr:'24,750 − 11,250',val:'₹13,500'},
+  ]},
+  {label:'2nd Year',rows:[
+    {t:'I',expr:`${frac('13,500 × 10 × 1','100')}`,val:'₹1,350'},
+    {t:'A',expr:'13,500 + 1,350',val:'₹14,850'},
+    {t:'bal',expr:'14,850 − 12,550',val:'₹2,300'},
+  ]},
+  {label:'3rd Year',rows:[
+    {t:'I',expr:`${frac('2,300 × 10 × 1','100')}`,val:'₹230'},
+    {t:'A',expr:'2,300 + 230',val:'₹2,530'},
+  ]},
+ ],
+ final:'Loan outstanding at end of 3rd year = <span class="fa-val">₹2,530</span>'},
+
+{d:'hard',q:'A man borrows ₹15,000 at 12% p.a. compounded annually. He repays ₹4,400 at end of each year. Find amount outstanding at beginning of 3rd year.',
+ given:['P = ₹15,000 &nbsp;&nbsp; R = 12% &nbsp;&nbsp; Repays ₹4,400 at end of each year'],
+ years:[
+  {label:'1st Year',rows:[
+    {t:'I',expr:`${frac('15,000 × 12 × 1','100')}`,val:'₹1,800'},
+    {t:'A',expr:'15,000 + 1,800',val:'₹16,800'},
+    {t:'bal',expr:'16,800 − 4,400',val:'₹12,400'},
+  ]},
+  {label:'2nd Year',rows:[
+    {t:'I',expr:`${frac('12,400 × 12 × 1','100')}`,val:'₹1,488'},
+    {t:'A',expr:'12,400 + 1,488',val:'₹13,888'},
+    {t:'bal',expr:'13,888 − 4,400',val:'₹9,488'},
+  ]},
+ ],
+ final:'Outstanding at beginning of 3rd year = <span class="fa-val">₹9,488</span>'},
+
+{d:'hard',q:'Mr. Ravi borrows ₹16,000 for 2 years at 10% (Y1) and 12% (Y2). Repays ₹5,600 at end of Y1. Find amount outstanding at end of Y2.',
+ given:['P = ₹16,000 &nbsp;&nbsp; R₁ = 10%, R₂ = 12% &nbsp;&nbsp; Repays ₹5,600 at end of Y1'],
+ years:[
+  {label:'1st Year',rows:[
+    {t:'I',expr:`${frac('16,000 × 10 × 1','100')}`,val:'₹1,600'},
+    {t:'A',expr:'16,000 + 1,600',val:'₹17,600'},
+    {t:'bal',expr:'17,600 − 5,600',val:'₹12,000'},
+  ]},
+  {label:'2nd Year',rows:[
+    {t:'I',expr:`${frac('12,000 × 12 × 1','100')}`,val:'₹1,440'},
+    {t:'A',expr:'12,000 + 1,440',val:'₹13,440'},
+  ]},
+ ],
+ final:'Amount outstanding at end of Y2 = <span class="fa-val">₹13,440</span>'},
+
+{d:'medium',q:'Calculate the amount of ₹30,000 at the end of 2 years 4 months, compounded annually at 10% p.a.',
+ given:['P = ₹30,000 &nbsp;&nbsp; R = 10% &nbsp;&nbsp; T = 2 years 4 months','For 2 full years → use CI. For remaining 4 months → use SI on new amount.'],
+ years:[
+  {label:'1st Year',rows:[
+    {t:'I',expr:`${frac('30,000 × 10 × 1','100')}`,val:'₹3,000'},
+    {t:'A',expr:'30,000 + 3,000',val:'₹33,000'},
+  ]},
+  {label:'2nd Year',rows:[
+    {t:'I',expr:`${frac('33,000 × 10 × 1','100')}`,val:'₹3,300'},
+    {t:'A',expr:'33,000 + 3,300',val:'₹36,300'},
+  ]},
+  {label:'4 Months — S.I. on ₹36,300',rows:[
+    {t:'I',expr:`${frac('36,300 × 10 × 4','100 × 12')}`,val:'₹1,210'},
+    {t:'A',expr:'36,300 + 1,210',val:'₹37,510'},
+  ]},
+ ],
+ final:'A = <span class="fa-val">₹37,510</span>'},
+
+{d:'medium',q:'Calculate the amount of ₹31,250 at end of 2½ years, compounded annually at 8% p.a.',
+ given:['P = ₹31,250 &nbsp;&nbsp; R = 8% &nbsp;&nbsp; T = 2½ years','For 2 full years → use CI. For remaining ½ year → use SI on new amount.'],
+ years:[
+  {label:'1st Year',rows:[
+    {t:'I',expr:`${frac('31,250 × 8 × 1','100')}`,val:'₹2,500'},
+    {t:'A',expr:'31,250 + 2,500',val:'₹33,750'},
+  ]},
+  {label:'2nd Year',rows:[
+    {t:'I',expr:`${frac('33,750 × 8 × 1','100')}`,val:'₹2,700'},
+    {t:'A',expr:'33,750 + 2,700',val:'₹36,450'},
+  ]},
+  {label:'½ Year — S.I. on ₹36,450',rows:[
+    {t:'I',expr:`${frac('36,450 × 8 × 1','100 × 2')}`,val:'₹1,458'},
+    {t:'A',expr:'36,450 + 1,458',val:'₹37,908'},
+  ]},
+ ],
+ final:'A = <span class="fa-val">₹37,908</span>'},
+
+{d:'easy',q:'Calculate Amount and CI on ₹15,000 for 2 years at 8% and 9% for successive years.',
+ given:['P = ₹15,000 &nbsp;&nbsp; r₁ = 8%, r₂ = 9%'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`A = 15,000 × ${frac('108','100')} × ${frac('109','100')}`},
+    {t:'note',text:`= 15,000 × ${frac('27','25')} × ${frac('109','100')}`},
+    {t:'note',text:`= ${frac('15,000 × 27 × 109','25 × 100')} = ${frac('6 × 27 × 109','1')} = <span class="sol-val">₹17,658</span>`},
+  ]},
+ ],
+ final:'A = <span class="fa-val">₹17,658</span> &nbsp;|&nbsp; C.I. = 17,658 − 15,000 = <span class="fa-val">₹2,658</span>'},
+
+{d:'easy',q:'Calculate Amount and CI on ₹25,000 for 3 years at 8%, 9% and 10% for successive years.',
+ given:['P = ₹25,000 &nbsp;&nbsp; r₁ = 8%, r₂ = 9%, r₃ = 10%'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`A = 25,000 × ${frac('108','100')} × ${frac('109','100')} × ${frac('110','100')}`},
+    {t:'note',text:`= 25,000 × ${frac('27','25')} × ${frac('109','100')} × ${frac('11','10')}`},
+    {t:'note',text:`= ${frac('25,000 × 27 × 109 × 11','25 × 100 × 10')} = ${frac('1,000 × 27 × 109 × 11','25 × 100')} = <span class="sol-val">₹32,373</span>`},
+  ]},
+ ],
+ final:'A = <span class="fa-val">₹32,373</span> &nbsp;|&nbsp; C.I. = 32,373 − 25,000 = <span class="fa-val">₹7,373</span>'},
+
+{d:'hard',q:'Peter invested ₹2,40,000 for 2 years at 10% p.a. If 20% of interest at end of each year is deducted as income tax, find amount received at end of 2 years.',
+ given:['P = ₹2,40,000 &nbsp;&nbsp; R = 10% &nbsp;&nbsp; Tax = 20% of interest each year'],
+ years:[
+  {label:'1st Year',rows:[
+    {t:'I',expr:`${frac('2,40,000 × 10 × 1','100')}`,val:'₹24,000'},
+    {t:'note',text:`Tax deducted = ${frac('24,000 × 20','100')} = ₹4,800`},
+    {t:'note',text:'Net interest credited = 24,000 − 4,800 = ₹19,200'},
+    {t:'A',expr:'2,40,000 + 19,200',val:'₹2,59,200'},
+  ]},
+  {label:'2nd Year',rows:[
+    {t:'I',expr:`${frac('2,59,200 × 10 × 1','100')}`,val:'₹25,920'},
+    {t:'note',text:`Tax deducted = ${frac('25,920 × 20','100')} = ₹5,184`},
+    {t:'note',text:'Net interest credited = 25,920 − 5,184 = ₹20,736'},
+    {t:'A',expr:'2,59,200 + 20,736',val:'₹2,79,936'},
+  ]},
+ ],
+ final:'Amount received at end of 2 years = <span class="fa-val">₹2,79,936</span>'},
+
+{d:'medium',q:'Find Amount and CI on ₹10,000 for 1 year at 12% p.a. compounded half-yearly.',
+ given:['P = ₹10,000 &nbsp;&nbsp; R = 12% p.a. &nbsp;&nbsp; T = 1 year','Compounded half-yearly: rate per half-year = 6%, n = 2 half-years'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`A = 10,000 × ${frac('106','100')} × ${frac('106','100')}`},
+    {t:'note',text:`= 10,000 × ${frac('53','50')} × ${frac('53','50')}`},
+    {t:'note',text:`= ${frac('10,000 × 53 × 53','50 × 50')} = 4 × 53 × 53 = 4 × 2809 = <span class="sol-val">₹11,236</span>`},
+  ]},
+ ],
+ final:'A = <span class="fa-val">₹11,236</span> &nbsp;|&nbsp; C.I. = 11,236 − 10,000 = <span class="fa-val">₹1,236</span>'},
+
+{d:'medium',q:'Find Amount and CI on ₹64,000 for 1½ years at 15% p.a. compounded half-yearly.',
+ given:['P = ₹64,000 &nbsp;&nbsp; R = 15% p.a. &nbsp;&nbsp; T = 1½ years','Compounded half-yearly: rate per half-year = 7.5% = 15/200 = 3/40, n = 3'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`A = 64,000 × ${frac('43','40')} × ${frac('43','40')} × ${frac('43','40')}`},
+    {t:'note',text:`= ${frac('64,000 × 43 × 43 × 43','40 × 40 × 40')} = ${frac('64,000 × 79,507','64,000')} = <span class="sol-val">₹79,507</span>`},
+  ]},
+ ],
+ final:'A = <span class="fa-val">₹79,507</span> &nbsp;|&nbsp; C.I. = 79,507 − 64,000 = <span class="fa-val">₹15,507</span>'},
+
+{d:'hard',q:'S.I. on a sum for 2 years at 10% p.a. is ₹1,700. Find: (i) the sum (ii) CI on this sum for 1 year payable half-yearly at same rate.',
+ given:['S.I. = ₹1,700 &nbsp;&nbsp; R = 10% p.a. &nbsp;&nbsp; T = 2 years'],
+ years:[
+  {label:'(i) Finding the Sum',rows:[
+    {t:'note',text:`S.I. = ${frac('P × R × T','100')} &nbsp;→&nbsp; 1,700 = ${frac('P × 10 × 2','100')}`},
+    {t:'note',text:`P = ${frac('1,700 × 100','10 × 2')} = ${frac('1,700 × 100','20')}`},
+    {t:'Av',val:'P = ₹8,500'},
+  ]},
+  {label:'(ii) CI for 1 year half-yearly on ₹8,500 (rate = 5% per half-year, n = 2)',rows:[
+    {t:'note',text:`A = 8,500 × ${frac('105','100')} × ${frac('105','100')} = 8,500 × ${frac('21','20')} × ${frac('21','20')}`},
+    {t:'note',text:`= ${frac('8,500 × 441','400')} = ${frac('85 × 441','4')} = ${frac('37,485','4')} = <span class="sol-val">₹9,371.25</span>`},
+    {t:'note',text:'C.I. = 9,371.25 − 8,500 = <span class="sol-val">₹871.25</span>'},
+  ]},
+ ],
+ final:'P = <span class="fa-val">₹8,500</span> &nbsp;|&nbsp; C.I. (half-yearly) = <span class="fa-val">₹871.25</span>'},
+],
+
+'2b':[
+{d:'easy',q:'Calculate Amount and CI on ₹10,000 for 2 years at 8% p.a. compounded annually.',
+ given:['P = ₹10,000 &nbsp;&nbsp; R = 8% &nbsp;&nbsp; n = 2 years'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`A = 10,000 × ${frac('108','100')} × ${frac('108','100')} = 10,000 × ${frac('27','25')} × ${frac('27','25')}`},
+    {t:'note',text:`= ${frac('10,000 × 729','625')} = 16 × 729 = <span class="sol-val">₹11,664</span>`},
+  ]},
+ ],
+ final:'A = <span class="fa-val">₹11,664</span> &nbsp;|&nbsp; C.I. = 11,664 − 10,000 = <span class="fa-val">₹1,664</span>'},
+
+{d:'easy',q:'Calculate Amount and CI on ₹64,000 for 3 years at 7½% p.a. compounded annually.',
+ given:['P = ₹64,000 &nbsp;&nbsp; R = 7½% &nbsp;&nbsp; n = 3 years'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`A = 64,000 × ${frac('107.5','100')} × ${frac('107.5','100')} × ${frac('107.5','100')} = 64,000 × ${frac('43','40')} × ${frac('43','40')} × ${frac('43','40')}`},
+    {t:'note',text:`= ${frac('64,000 × 43 × 43 × 43','40 × 40 × 40')} = ${frac('64,000 × 79,507','64,000')} = <span class="sol-val">₹79,507</span>`},
+  ]},
+ ],
+ final:'A = <span class="fa-val">₹79,507</span> &nbsp;|&nbsp; C.I. = 79,507 − 64,000 = <span class="fa-val">₹15,507</span>'},
+
+{d:'easy',q:'How much will ₹12,000 amount to in 2 years at CI, rates being 10% and 11% for successive years?',
+ given:['P = ₹12,000 &nbsp;&nbsp; r₁ = 10%, r₂ = 11%'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`A = 12,000 × ${frac('110','100')} × ${frac('111','100')}`},
+    {t:'note',text:`= 12,000 × ${frac('11','10')} × ${frac('111','100')}`},
+    {t:'note',text:`= ${frac('12,000 × 11 × 111','10 × 100')} = ${frac('12 × 11 × 111','1')} = <span class="sol-val">₹14,652</span>`},
+  ]},
+ ],
+ final:'A = <span class="fa-val">₹14,652</span>'},
+
+{d:'easy',q:'Calculate Amount and CI on ₹25,000 for 3 years at 8%, 9% and 10% for successive years.',
+ given:['P = ₹25,000 &nbsp;&nbsp; r₁ = 8%, r₂ = 9%, r₃ = 10%'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`A = 25,000 × ${frac('108','100')} × ${frac('109','100')} × ${frac('110','100')}`},
+    {t:'note',text:`= 25,000 × ${frac('27','25')} × ${frac('109','100')} × ${frac('11','10')}`},
+    {t:'note',text:`= ${frac('25,000 × 27 × 109 × 11','25 × 100 × 10')} = <span class="sol-val">₹32,373</span>`},
+  ]},
+ ],
+ final:'A = <span class="fa-val">₹32,373</span> &nbsp;|&nbsp; C.I. = 32,373 − 25,000 = <span class="fa-val">₹7,373</span>'},
+
+{d:'medium',q:'Find Amount and CI on ₹7,500 for 2 years 8 months at 10% p.a. compounded annually.',
+ given:['P = ₹7,500 &nbsp;&nbsp; R = 10% &nbsp;&nbsp; T = 2 years 8 months','For 2 full years → CI. For 8 months → S.I. on new amount.'],
+ years:[
+  {label:'1st Year',rows:[
+    {t:'I',expr:`${frac('7,500 × 10 × 1','100')}`,val:'₹750'},
+    {t:'A',expr:'7,500 + 750',val:'₹8,250'},
+  ]},
+  {label:'2nd Year',rows:[
+    {t:'I',expr:`${frac('8,250 × 10 × 1','100')}`,val:'₹825'},
+    {t:'A',expr:'8,250 + 825',val:'₹9,075'},
+  ]},
+  {label:'8 Months — S.I. on ₹9,075',rows:[
+    {t:'I',expr:`${frac('9,075 × 10 × 8','100 × 12')}`,val:'₹605'},
+    {t:'A',expr:'9,075 + 605',val:'₹9,680'},
+  ]},
+ ],
+ final:'A = <span class="fa-val">₹9,680</span> &nbsp;|&nbsp; C.I. = 9,680 − 7,500 = <span class="fa-val">₹2,180</span>'},
+
+{d:'medium',q:'S.I. on a sum for 3 years at 8% p.a. is ₹7,500. Find the CI on the same sum for the same period at same rate.',
+ given:['S.I. = ₹7,500 &nbsp;&nbsp; R = 8% &nbsp;&nbsp; T = 3 years'],
+ years:[
+  {label:'Finding Principal',rows:[
+    {t:'note',text:`S.I. = ${frac('P × R × T','100')} &nbsp;→&nbsp; 7,500 = ${frac('P × 8 × 3','100')}`},
+    {t:'note',text:`P = ${frac('7,500 × 100','8 × 3')} = ${frac('7,500 × 100','24')}`},
+    {t:'Av',val:'P = ₹31,250'},
+  ]},
+  {label:'CI on ₹31,250 for 3 years at 8%',rows:[
+    {t:'note',text:`A = 31,250 × ${frac('108','100')} × ${frac('108','100')} × ${frac('108','100')} = 31,250 × ${frac('27','25')} × ${frac('27','25')} × ${frac('27','25')}`},
+    {t:'note',text:`= ${frac('31,250 × 19,683','15,625')} = 2 × 19,683 = <span class="sol-val">₹39,366</span>`},
+  ]},
+ ],
+ final:'C.I. = 39,366 − 31,250 = <span class="fa-val">₹8,116</span>'},
+
+{d:'medium',q:'Calculate Amount and CI on ₹16,000 for 1 year at 15% p.a. compounded half-yearly.',
+ given:['P = ₹16,000 &nbsp;&nbsp; R = 15% p.a. &nbsp;&nbsp; T = 1 year','Compounded half-yearly: rate = 7.5% = 3/40 per half-year, n = 2'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`A = 16,000 × ${frac('43','40')} × ${frac('43','40')}`},
+    {t:'note',text:`= ${frac('16,000 × 43 × 43','40 × 40')} = 10 × 43 × 43 = 10 × 1849 = <span class="sol-val">₹18,490</span>`},
+  ]},
+ ],
+ final:'A = <span class="fa-val">₹18,490</span> &nbsp;|&nbsp; C.I. = 18,490 − 16,000 = <span class="fa-val">₹2,490</span>'},
+
+{d:'medium',q:'Find Amount and CI on ₹1,25,000 for 1½ years at 12% p.a. compounded half-yearly.',
+ given:['P = ₹1,25,000 &nbsp;&nbsp; R = 12% p.a. &nbsp;&nbsp; T = 1½ years','Compounded half-yearly: rate = 6% = 6/100 = 3/50 per half-year, n = 3'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`A = 1,25,000 × ${frac('106','100')} × ${frac('106','100')} × ${frac('106','100')} = 1,25,000 × ${frac('53','50')} × ${frac('53','50')} × ${frac('53','50')}`},
+    {t:'note',text:`= ${frac('1,25,000 × 53 × 53 × 53','50 × 50 × 50')} = ${frac('1,25,000 × 1,48,877','1,25,000')} = <span class="sol-val">₹1,48,877</span>`},
+  ]},
+ ],
+ final:'A = <span class="fa-val">₹1,48,877</span> &nbsp;|&nbsp; C.I. = 1,48,877 − 1,25,000 = <span class="fa-val">₹23,877</span>'},
+
+{d:'hard',q:'₹12,500 deposited for 1½ years compounded half-yearly amounts to ₹13,000 at end of first half-year. Find: (i) rate of interest p.a. (ii) final amount correct to nearest rupee.',
+ given:['P = ₹12,500 &nbsp;&nbsp; A after 1st half-year = ₹13,000 &nbsp;&nbsp; T = 1½ years'],
+ years:[
+  {label:'(i) Finding Rate per half-year',rows:[
+    {t:'note',text:'S.I. for 1st half-year = A − P = 13,000 − 12,500 = ₹500'},
+    {t:'note',text:`S.I. = ${frac('P × R × T','100')} &nbsp;→&nbsp; 500 = ${frac('12,500 × R × 1','100')}`},
+    {t:'note',text:`R = ${frac('500 × 100','12,500')} = ${frac('500','125')} = 4% per half-year`},
+    {t:'note',text:'∴ Rate of interest p.a. = 4 × 2 = <span class="sol-val">8% p.a.</span>'},
+  ]},
+  {label:'(ii) Final Amount — N = 1½ yr = 3 half-years, R = 4% per half-year, P = ₹12,500',rows:[
+    {t:'note',text:`A = 12,500 × ${frac('104','100')} × ${frac('104','100')} × ${frac('104','100')} = 12,500 × ${frac('26','25')} × ${frac('26','25')} × ${frac('26','25')}`},
+    {t:'note',text:`= ${frac('12,500 × 26 × 26 × 26','25 × 25 × 25')} = ${frac('12,500 × 17,576','15,625')}`},
+    {t:'note',text:`= ${frac('4 × 17,576','5')} = ${frac('70,304','5')} = <span class="sol-val">₹14,060.80 ≈ ₹14,061</span>`},
+  ]},
+ ],
+ final:'Rate = <span class="fa-val">8% p.a.</span> &nbsp;|&nbsp; Final Amount = <span class="fa-val">₹14,061</span>'},
+
+{d:'hard',q:'S.I. on a sum at 12% p.a. for 1 year is ₹900. Find: (i) the sum (ii) CI on this sum for 1 year payable half-yearly at same rate.',
+ given:['S.I. = ₹900 &nbsp;&nbsp; R = 12% &nbsp;&nbsp; T = 1 year'],
+ years:[
+  {label:'(i) Finding the Sum',rows:[
+    {t:'note',text:`S.I. = ${frac('P × R × T','100')} &nbsp;→&nbsp; 900 = ${frac('P × 12 × 1','100')}`},
+    {t:'note',text:`P = ${frac('900 × 100','12')} = ${frac('900 × 25','3')}`},
+    {t:'Av',val:'P = ₹7,500'},
+  ]},
+  {label:'(ii) CI for 1 year half-yearly on ₹7,500 (rate = 6% per half-year, n = 2)',rows:[
+    {t:'note',text:`A = 7,500 × ${frac('106','100')} × ${frac('106','100')} = 7,500 × ${frac('53','50')} × ${frac('53','50')}`},
+    {t:'note',text:`= ${frac('7,500 × 2,809','2,500')} = 3 × 2,809 = <span class="sol-val">₹8,427</span>`},
+    {t:'note',text:'C.I. = 8,427 − 7,500 = <span class="sol-val">₹927</span>'},
+  ]},
+ ],
+ final:'P = <span class="fa-val">₹7,500</span> &nbsp;|&nbsp; C.I. = <span class="fa-val">₹927</span>'},
+
+{d:'medium',q:'What sum will amount to ₹18,150 in 2 years at 10% p.a. CI compounded annually?',
+ given:['A = ₹18,150 &nbsp;&nbsp; R = 10% &nbsp;&nbsp; n = 2 years &nbsp;&nbsp; Find: P'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`A = P × ${frac('110','100')} × ${frac('110','100')} = P × ${frac('11','10')} × ${frac('11','10')} = P × ${frac('121','100')}`},
+    {t:'note',text:`18,150 = P × ${frac('121','100')}`},
+    {t:'note',text:`P = 18,150 × ${frac('100','121')} = 150 × 100 = <span class="sol-val">₹15,000</span>`},
+  ]},
+ ],
+ final:'Principal = <span class="fa-val">₹15,000</span>'},
+
+{d:'medium',q:'What sum will amount to ₹93,170 in 3 years at 10% p.a. CI compounded annually?',
+ given:['A = ₹93,170 &nbsp;&nbsp; R = 10% &nbsp;&nbsp; n = 3 years &nbsp;&nbsp; Find: P'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`A = P × ${frac('11','10')} × ${frac('11','10')} × ${frac('11','10')} = P × ${frac('1,331','1,000')}`},
+    {t:'note',text:`93,170 = P × ${frac('1,331','1,000')}`},
+    {t:'note',text:`P = 93,170 × ${frac('1,000','1,331')} = 70 × 1,000 = <span class="sol-val">₹70,000</span>`},
+  ]},
+ ],
+ final:'Principal = <span class="fa-val">₹70,000</span>'},
+
+{d:'medium',q:'On what sum will the CI for 2 years at 8% p.a. be ₹7,488?',
+ given:['C.I. = ₹7,488 &nbsp;&nbsp; R = 8% &nbsp;&nbsp; n = 2 years &nbsp;&nbsp; Find: P'],
+ years:[
+  {label:'Let P = ₹100. Find CI on ₹100 for 2 years at 8%.',rows:[
+    {t:'I',expr:`${frac('100 × 8 × 1','100')}`,val:'₹8'},
+    {t:'A',expr:'100 + 8',val:'₹108'},
+    {t:'I',expr:`${frac('108 × 8 × 1','100')}`,val:'₹8.64'},
+    {t:'note',text:'C.I. on ₹100 = 8 + 8.64 = ₹16.64'},
+  ]},
+  {label:'Unitary Method',rows:[
+    {t:'note',text:'When C.I. = ₹16.64, Sum = ₹100'},
+    {t:'note',text:`When C.I. = ₹7,488, Sum = 7,488 × ${frac('100','16.64')}`},
+    {t:'note',text:`= 7,488 × ${frac('10000','1664')} = ${frac('7,488 × 10,000','1,664')} = <span class="sol-val">₹45,000</span>`},
+  ]},
+ ],
+ final:'Sum = <span class="fa-val">₹45,000</span>'},
+
+{d:'medium',q:'Difference between SI and CI on a sum for 2 years at 12% p.a. is ₹216. Find the sum.',
+ given:['C.I. − S.I. = ₹216 &nbsp;&nbsp; R = 12% &nbsp;&nbsp; T = 2 years'],
+ years:[
+  {label:'Let P = ₹100. Find SI and CI on ₹100 for 2 years at 12%.',rows:[
+    {t:'note',text:`S.I. = ${frac('100 × 12 × 2','100')} = ₹24`},
+    {t:'I',expr:`${frac('100 × 12 × 1','100')}`,val:'₹12'},
+    {t:'A',expr:'100 + 12',val:'₹112'},
+    {t:'I',expr:`${frac('112 × 12 × 1','100')}`,val:'₹13.44'},
+    {t:'note',text:'C.I. on ₹100 = 12 + 13.44 = ₹25.44'},
+    {t:'note',text:'Difference on ₹100 = 25.44 − 24 = ₹1.44'},
+  ]},
+  {label:'Unitary Method',rows:[
+    {t:'note',text:'When difference = ₹1.44, Sum = ₹100'},
+    {t:'note',text:`When difference = ₹216, Sum = 216 × ${frac('100','1.44')} = 216 × ${frac('10,000','144')} = ${frac('216 × 10,000','144')} = <span class="sol-val">₹15,000</span>`},
+  ]},
+ ],
+ final:'Sum = <span class="fa-val">₹15,000</span>'},
+
+{d:'hard',q:'Difference between SI and CI on a sum for 3 years at 10% p.a. is ₹558. Find the sum.',
+ given:['C.I. − S.I. = ₹558 &nbsp;&nbsp; R = 10% &nbsp;&nbsp; T = 3 years'],
+ years:[
+  {label:'Let P = ₹100. Find SI and CI on ₹100 for 3 years at 10%.',rows:[
+    {t:'note',text:`S.I. = ${frac('100 × 10 × 3','100')} = ₹30`},
+    {t:'I',expr:`${frac('100 × 10 × 1','100')}`,val:'₹10'},
+    {t:'A',expr:'100 + 10',val:'₹110'},
+    {t:'I',expr:`${frac('110 × 10 × 1','100')}`,val:'₹11'},
+    {t:'A',expr:'110 + 11',val:'₹121'},
+    {t:'I',expr:`${frac('121 × 10 × 1','100')}`,val:'₹12.10'},
+    {t:'note',text:'C.I. on ₹100 = 10 + 11 + 12.10 = ₹33.10'},
+    {t:'note',text:'Difference on ₹100 = 33.10 − 30 = ₹3.10'},
+  ]},
+  {label:'Unitary Method',rows:[
+    {t:'note',text:'When difference = ₹3.10, Sum = ₹100'},
+    {t:'note',text:`When difference = ₹558, Sum = 558 × ${frac('100','3.10')} = 558 × ${frac('1,000','31')} = ${frac('5,58,000','31')} = <span class="sol-val">₹18,000</span>`},
+  ]},
+ ],
+ final:'Sum = <span class="fa-val">₹18,000</span>'},
+
+{d:'hard',q:'Difference between CI (compounded half-yearly) and SI for 1 year at 10% p.a. is ₹360. Find the sum.',
+ given:['C.I. (half-yearly) − S.I. = ₹360 &nbsp;&nbsp; R = 10% p.a. &nbsp;&nbsp; T = 1 year'],
+ years:[
+  {label:'Let P = ₹100. Rate half-yearly = 5%, n = 2 half-years.',rows:[
+    {t:'note',text:`S.I. = ${frac('100 × 10 × 1','100')} = ₹10`},
+    {t:'I',expr:`${frac('100 × 5 × 1','100')}`,val:'₹5'},
+    {t:'A',expr:'100 + 5',val:'₹105'},
+    {t:'I',expr:`${frac('105 × 5 × 1','100')}`,val:'₹5.25'},
+    {t:'note',text:'C.I. (half-yearly) on ₹100 = 5 + 5.25 = ₹10.25'},
+    {t:'note',text:'Difference on ₹100 = 10.25 − 10 = ₹0.25'},
+  ]},
+  {label:'Unitary Method',rows:[
+    {t:'note',text:'When difference = ₹0.25, Sum = ₹100'},
+    {t:'note',text:`When difference = ₹360, Sum = 360 × ${frac('100','0.25')} = 360 × 400 = <span class="sol-val">₹1,44,000</span>`},
+  ]},
+ ],
+ final:'Sum = <span class="fa-val">₹1,44,000</span>'},
+
+{d:'medium',q:'At what rate % p.a. CI will ₹6,250 amount to ₹7,290 in 2 years?',
+ given:['P = ₹6,250 &nbsp;&nbsp; A = ₹7,290 &nbsp;&nbsp; n = 2 years &nbsp;&nbsp; Find: R'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`${frac('A','P')} = (1 + ${frac('R','100')})² &nbsp;→&nbsp; ${frac('7,290','6,250')} = (1 + ${frac('R','100')})²`},
+    {t:'note',text:`${frac('729','625')} = (1 + ${frac('R','100')})²`},
+    {t:'note',text:`${frac('27 × 27','25 × 25')} = (1 + ${frac('R','100')})² &nbsp;→&nbsp; ${frac('27','25')} = 1 + ${frac('R','100')}`},
+    {t:'note',text:`${frac('R','100')} = ${frac('27','25')} − 1 = ${frac('27 − 25','25')} = ${frac('2','25')}`},
+    {t:'Av',val:'R = 8% p.a.'},
+  ]},
+ ],
+ final:'Rate = <span class="fa-val">8% p.a.</span>'},
+
+{d:'medium',q:'At what rate % p.a. will ₹3,000 amount to ₹3,993 in 3 years, compounded annually?',
+ given:['P = ₹3,000 &nbsp;&nbsp; A = ₹3,993 &nbsp;&nbsp; n = 3 years &nbsp;&nbsp; Find: R'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`${frac('A','P')} = (1 + ${frac('R','100')})³ &nbsp;→&nbsp; ${frac('3,993','3,000')} = (1 + ${frac('R','100')})³`},
+    {t:'note',text:`${frac('1,331','1,000')} = (1 + ${frac('R','100')})³`},
+    {t:'note',text:`${frac('11 × 11 × 11','10 × 10 × 10')} = (1 + ${frac('R','100')})³ &nbsp;→&nbsp; ${frac('11','10')} = 1 + ${frac('R','100')}`},
+    {t:'note',text:`${frac('R','100')} = ${frac('11','10')} − 1 = ${frac('1','10')}`},
+    {t:'Av',val:'R = 10% p.a.'},
+  ]},
+ ],
+ final:'Rate = <span class="fa-val">10% p.a.</span>'},
+
+{d:'medium',q:'In what time will ₹5,120 amount to ₹7,290 at 12½% p.a. CI compounded annually?',
+ given:['P = ₹5,120 &nbsp;&nbsp; A = ₹7,290 &nbsp;&nbsp; R = 12½% &nbsp;&nbsp; Find: n'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`${frac('A','P')} = (1 + ${frac('R','100')})ⁿ &nbsp;→&nbsp; ${frac('7,290','5,120')} = (1 + ${frac('25/2','100')})ⁿ = (${frac('9','8')})ⁿ`},
+    {t:'note',text:`Try n = 1: ${frac('9','8')} = 1.125`},
+    {t:'note',text:`Try n = 2: ${frac('9','8')} × ${frac('9','8')} = ${frac('81','64')} = 1.265...`},
+    {t:'note',text:`Try n = 3: ${frac('9','8')} × ${frac('9','8')} × ${frac('9','8')} = ${frac('729','512')}`},
+    {t:'note',text:`Check: ${frac('7,290','5,120')} = ${frac('729','512')} ✓`},
+    {t:'Av',val:'n = 3 years'},
+  ]},
+ ],
+ final:'Time = <span class="fa-val">3 years</span>'},
+
+{d:'medium',q:'A sum amounts to ₹7,260 in 2 years and ₹7,986 in 3 years compounded annually. Find the rate.',
+ given:['A₂ = ₹7,260 &nbsp;&nbsp; A₃ = ₹7,986 &nbsp;&nbsp; Find: R'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:'The amount grows by the same factor each year.'},
+    {t:'note',text:`A₃ = A₂ × (1 + ${frac('R','100')}) &nbsp;→&nbsp; 7,986 = 7,260 × (1 + ${frac('R','100')})`},
+    {t:'note',text:`(1 + ${frac('R','100')}) = ${frac('7,986','7,260')} = ${frac('798.6','726')} = ${frac('11','10')}`},
+    {t:'note',text:`${frac('R','100')} = ${frac('11','10')} − 1 = ${frac('1','10')}`},
+    {t:'Av',val:'R = 10% p.a.'},
+  ]},
+ ],
+ final:'Rate = <span class="fa-val">10% p.a.</span>'},
+],
+
+'2c':[
+{d:'easy',q:'A town has 15,625 inhabitants. If the population increases at 4% p.a., find the population at end of 3 years.',
+ given:['P = 15,625 &nbsp;&nbsp; R = 4% p.a. &nbsp;&nbsp; n = 3 years'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`Population = 15,625 × ${frac('104','100')} × ${frac('104','100')} × ${frac('104','100')} = 15,625 × ${frac('26','25')} × ${frac('26','25')} × ${frac('26','25')}`},
+    {t:'note',text:`= ${frac('15,625 × 26 × 26 × 26','25 × 25 × 25')} = ${frac('15,625 × 17,576','15,625')} = <span class="sol-val">17,576</span>`},
+  ]},
+ ],
+ final:'Population after 3 years = <span class="fa-val">17,576</span>'},
+
+{d:'easy',q:'Population of a town is 36,300 and increasing at 10% p.a. Find: (i) population after 2 years (ii) population 2 years ago.',
+ given:['Present population = 36,300 &nbsp;&nbsp; R = 10% p.a.'],
+ years:[
+  {label:'(i) Population after 2 years',rows:[
+    {t:'note',text:`= 36,300 × ${frac('110','100')} × ${frac('110','100')} = 36,300 × ${frac('11','10')} × ${frac('11','10')}`},
+    {t:'note',text:`= ${frac('36,300 × 121','100')} = 363 × 121 = <span class="sol-val">43,923</span>`},
+  ]},
+  {label:'(ii) Population 2 years ago',rows:[
+    {t:'note',text:`Present = Past × (${frac('11','10')})² &nbsp;→&nbsp; Past = 36,300 × ${frac('10','11')} × ${frac('10','11')}`},
+    {t:'note',text:`= ${frac('36,300 × 100','121')} = 300 × 100 = <span class="sol-val">30,000</span>`},
+  ]},
+ ],
+ final:'After 2 years = <span class="fa-val">43,923</span> &nbsp;|&nbsp; 2 years ago = <span class="fa-val">30,000</span>'},
+
+{d:'easy',q:'Present population of a town is 1,76,400. Rate of growth = 5% p.a. Find: (i) population 2 years hence (ii) population one year ago.',
+ given:['P = 1,76,400 &nbsp;&nbsp; R = 5% p.a.'],
+ years:[
+  {label:'(i) Population after 2 years',rows:[
+    {t:'note',text:`= 1,76,400 × ${frac('105','100')} × ${frac('105','100')} = 1,76,400 × ${frac('21','20')} × ${frac('21','20')}`},
+    {t:'note',text:`= ${frac('1,76,400 × 441','400')} = 441 × 441 = <span class="sol-val">1,94,481</span>`},
+  ]},
+  {label:'(ii) Population 1 year ago',rows:[
+    {t:'note',text:`Present = Past × ${frac('21','20')} &nbsp;→&nbsp; Past = 1,76,400 × ${frac('20','21')}`},
+    {t:'note',text:`= ${frac('1,76,400 × 20','21')} = 8,400 × 20 = <span class="sol-val">1,68,000</span>`},
+  ]},
+ ],
+ final:'After 2 years = <span class="fa-val">1,94,481</span> &nbsp;|&nbsp; 1 year ago = <span class="fa-val">1,68,000</span>'},
+
+{d:'medium',q:'Three years ago, population of a city was 50,000. Annual increases were 5%, 8% and 10% in successive years. Find the present population.',
+ given:['P (3 years ago) = 50,000 &nbsp;&nbsp; r₁=5%, r₂=8%, r₃=10%'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`Present = 50,000 × ${frac('105','100')} × ${frac('108','100')} × ${frac('110','100')}`},
+    {t:'note',text:`= 50,000 × ${frac('21','20')} × ${frac('27','25')} × ${frac('11','10')}`},
+    {t:'note',text:`= ${frac('50,000 × 21 × 27 × 11','20 × 25 × 10')} = ${frac('50,000 × 6,237','5,000')} = 10 × 6,237 = <span class="sol-val">62,370</span>`},
+  ]},
+ ],
+ final:'Present population = <span class="fa-val">62,370</span>'},
+
+{d:'medium',q:'A farmer has 12.5% increase in wheat output every year. This year he produced 2,916 quintals. What was his production 2 years ago?',
+ given:['Present output = 2,916 quintals &nbsp;&nbsp; R = 12.5% increase p.a. &nbsp;&nbsp; Find: output 2 years ago'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`Present = Past × ${frac('112.5','100')} × ${frac('112.5','100')} = Past × ${frac('9','8')} × ${frac('9','8')} = Past × ${frac('81','64')}`},
+    {t:'note',text:`2,916 = Past × ${frac('81','64')}`},
+    {t:'note',text:`Past = 2,916 × ${frac('64','81')} = 36 × 64 = <span class="sol-val">2,304 quintals</span>`},
+  ]},
+ ],
+ final:'Production 2 years ago = <span class="fa-val">2,304 quintals</span>'},
+
+{d:'medium',q:'Population of a town is 64,000. Annual birth rate = 11.7%, annual death rate = 4.2%. Find population after 3 years.',
+ given:['P = 64,000 &nbsp;&nbsp; Birth rate = 11.7%, Death rate = 4.2%','Net growth rate = 11.7 − 4.2 = 7.5% p.a.'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`Population = 64,000 × ${frac('107.5','100')} × ${frac('107.5','100')} × ${frac('107.5','100')} = 64,000 × ${frac('43','40')} × ${frac('43','40')} × ${frac('43','40')}`},
+    {t:'note',text:`= ${frac('64,000 × 43 × 43 × 43','40 × 40 × 40')} = ${frac('64,000 × 79,507','64,000')} = <span class="sol-val">79,507</span>`},
+  ]},
+ ],
+ final:'Population after 3 years = <span class="fa-val">79,507</span>'},
+
+{d:'medium',q:'A mango tree was planted 2 years ago. Growth rate = 20% p.a. Present height = 162 cm. Find height when planted.',
+ given:['Present height = 162 cm &nbsp;&nbsp; R = 20% p.a. &nbsp;&nbsp; n = 2 years &nbsp;&nbsp; Find: original height'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`Present = Original × ${frac('120','100')} × ${frac('120','100')} = Original × ${frac('6','5')} × ${frac('6','5')} = Original × ${frac('36','25')}`},
+    {t:'note',text:`162 = Original × ${frac('36','25')}`},
+    {t:'note',text:`Original = 162 × ${frac('25','36')} = ${frac('162 × 25','36')} = ${frac('4,050','36')} = <span class="sol-val">112.5 cm</span>`},
+  ]},
+ ],
+ final:'Height when planted = <span class="fa-val">112.5 cm</span>'},
+
+{d:'medium',q:'Two years ago, population of a village was 4,000. It increased by 6% in 1st year but decreased by 5% in 2nd year. Find present population.',
+ given:['P (2 years ago) = 4,000 &nbsp;&nbsp; R₁ = +6%, R₂ = −5%'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`Present = 4,000 × ${frac('106','100')} × ${frac('95','100')}`},
+    {t:'note',text:`= 4,000 × ${frac('53','50')} × ${frac('19','20')}`},
+    {t:'note',text:`= ${frac('4,000 × 53 × 19','50 × 20')} = ${frac('4,000 × 1,007','1,000')} = 4 × 1,007 = <span class="sol-val">4,028</span>`},
+  ]},
+ ],
+ final:'Present population = <span class="fa-val">4,028</span>'},
+
+{d:'hard',q:'Count of bacteria = 1,31,25,000. Grows 10% in 1st hour, decreases 8% in 2nd hour, increases 12% in 3rd hour. Find count after 3 hours.',
+ given:['P = 1,31,25,000 &nbsp;&nbsp; R₁ = +10%, R₂ = −8%, R₃ = +12%'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`Count = 1,31,25,000 × ${frac('110','100')} × ${frac('92','100')} × ${frac('112','100')}`},
+    {t:'note',text:`= 1,31,25,000 × ${frac('11','10')} × ${frac('23','25')} × ${frac('28','25')}`},
+    {t:'note',text:`= ${frac('1,31,25,000 × 11 × 23 × 28','10 × 25 × 25')} = ${frac('1,31,25,000 × 7,084','6,250')} = <span class="sol-val">1,48,76,400</span>`},
+  ]},
+ ],
+ final:'Count after 3 hours = <span class="fa-val">1,48,76,400</span>'},
+
+{d:'medium',q:'Production of scooters was 40,000 per year and rose to 57,600 in 2 years. Find the rate of growth per annum.',
+ given:['P = 40,000 &nbsp;&nbsp; A = 57,600 &nbsp;&nbsp; n = 2 years &nbsp;&nbsp; Find: R'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`${frac('A','P')} = (1 + R/100)² &nbsp;→&nbsp; ${frac('57,600','40,000')} = (1 + R/100)²`},
+    {t:'note',text:`${frac('576','400')} = (1 + R/100)² &nbsp;→&nbsp; ${frac('144','100')} = (1 + R/100)²`},
+    {t:'note',text:`${frac('12 × 12','10 × 10')} = (1 + R/100)² &nbsp;→&nbsp; ${frac('12','10')} = 1 + R/100`},
+    {t:'note',text:`R/100 = ${frac('12','10')} − 1 = ${frac('2','10')}`},
+    {t:'Av',val:'R = 20% p.a.'},
+  ]},
+ ],
+ final:'Rate of growth = <span class="fa-val">20% p.a.</span>'},
+
+{d:'hard',q:'Amit started a shop investing ₹5,00,000. Y1: loss 5%. Y2: profit 10%. Y3: profit 12%. Calculate his net profit for entire 3 years.',
+ given:['P = ₹5,00,000 &nbsp;&nbsp; Y1 = −5%, Y2 = +10%, Y3 = +12%'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`Value = 5,00,000 × ${frac('95','100')} × ${frac('110','100')} × ${frac('112','100')}`},
+    {t:'note',text:`= 5,00,000 × ${frac('19','20')} × ${frac('11','10')} × ${frac('28','25')}`},
+    {t:'note',text:`= ${frac('5,00,000 × 19 × 11 × 28','20 × 10 × 25')} = ${frac('5,00,000 × 5,852','5,000')} = 100 × 5,852 = <span class="sol-val">₹5,85,200</span>`},
+  ]},
+ ],
+ final:'Net profit = 5,85,200 − 5,00,000 = <span class="fa-val">₹85,200</span>'},
+
+{d:'medium',q:'Value of a machine depreciates 10% annually. Present value = ₹64,800. Find: (i) value after 2 years (ii) value 2 years ago.',
+ given:['Present value = ₹64,800 &nbsp;&nbsp; R = 10% depreciation p.a.'],
+ years:[
+  {label:'(i) Value after 2 years',rows:[
+    {t:'note',text:`V = 64,800 × ${frac('90','100')} × ${frac('90','100')} = 64,800 × ${frac('9','10')} × ${frac('9','10')}`},
+    {t:'note',text:`= ${frac('64,800 × 81','100')} = 648 × 81 = <span class="sol-val">₹52,488</span>`},
+  ]},
+  {label:'(ii) Value 2 years ago',rows:[
+    {t:'note',text:`Present = Past × (${frac('9','10')})² &nbsp;→&nbsp; Past = 64,800 × ${frac('10','9')} × ${frac('10','9')}`},
+    {t:'note',text:`= ${frac('64,800 × 100','81')} = 800 × 100 = <span class="sol-val">₹80,000</span>`},
+  ]},
+ ],
+ final:'After 2 years = <span class="fa-val">₹52,488</span> &nbsp;|&nbsp; 2 years ago = <span class="fa-val">₹80,000</span>'},
+
+{d:'medium',q:'A refrigerator was purchased 1 year ago for ₹20,000. Depreciates at 15% p.a. Find: (i) present value (ii) value after 1 more year.',
+ given:['Purchase price = ₹20,000 &nbsp;&nbsp; R = 15% depreciation p.a. &nbsp;&nbsp; Purchased 1 year ago'],
+ years:[
+  {label:'(i) Present value (after 1 year)',rows:[
+    {t:'I',expr:`${frac('20,000 × 15 × 1','100')}`,val:'₹3,000'},
+    {t:'note',text:'Present value = 20,000 − 3,000 = <span class="sol-val">₹17,000</span>'},
+  ]},
+  {label:'(ii) Value after 1 more year',rows:[
+    {t:'I',expr:`${frac('17,000 × 15 × 1','100')}`,val:'₹2,550'},
+    {t:'note',text:'Value = 17,000 − 2,550 = <span class="sol-val">₹14,450</span>'},
+  ]},
+ ],
+ final:'Present value = <span class="fa-val">₹17,000</span> &nbsp;|&nbsp; After 1 more year = <span class="fa-val">₹14,450</span>'},
+
+{d:'hard',q:'A machine depreciates 8% p.a. Value at end of 2015 = ₹57,500. Find: (i) value at end of 2014 (ii) value at end of 2016.',
+ given:['V (end 2015) = ₹57,500 &nbsp;&nbsp; R = 8% depreciation p.a.'],
+ years:[
+  {label:'(i) Value at end of 2014 — working backwards',rows:[
+    {t:'note',text:`V₂₀₁₅ = V₂₀₁₄ × ${frac('92','100')} = V₂₀₁₄ × ${frac('23','25')}`},
+    {t:'note',text:`57,500 = V₂₀₁₄ × ${frac('23','25')}`},
+    {t:'note',text:`V₂₀₁₄ = 57,500 × ${frac('25','23')} = 2,500 × 25 = <span class="sol-val">₹62,500</span>`},
+  ]},
+  {label:'(ii) Value at end of 2016',rows:[
+    {t:'I',expr:`${frac('57,500 × 8 × 1','100')}`,val:'₹4,600'},
+    {t:'note',text:'V₂₀₁₆ = 57,500 − 4,600 = <span class="sol-val">₹52,900</span>'},
+  ]},
+ ],
+ final:'End 2014 = <span class="fa-val">₹62,500</span> &nbsp;|&nbsp; End 2016 = <span class="fa-val">₹52,900</span>'},
+
+{d:'hard',q:'A machine depreciates at 16⅔% p.a. It was purchased 3 years ago. Present value = ₹62,500. Find its purchase price.',
+ given:['Present value = ₹62,500 &nbsp;&nbsp; R = 16⅔% = 50/3% &nbsp;&nbsp; n = 3 years','1 − R/100 = 1 − 50/300 = 1 − 1/6 = 5/6'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`Present = Purchase × (${frac('5','6')})³ = Purchase × ${frac('125','216')}`},
+    {t:'note',text:`62,500 = Purchase × ${frac('125','216')}`},
+    {t:'note',text:`Purchase = 62,500 × ${frac('216','125')} = 500 × 216 = <span class="sol-val">₹1,08,000</span>`},
+  ]},
+ ],
+ final:'Purchase price = <span class="fa-val">₹1,08,000</span>'},
+],
+
+mcq:[
+{d:'easy',q:'The compound interest on ₹3,750 for 2 years at 8% p.a. compounded annually is:',opts:['₹604','₹614','₹624','₹642'],ans:2,
+ given:['P = ₹3,750 &nbsp;&nbsp; R = 8% &nbsp;&nbsp; n = 2 years'],
+ years:[
+  {label:'Working',rows:[
+    {t:'I',expr:`${frac('3,750 × 8 × 1','100')}`,val:'₹300'},
+    {t:'A',expr:'3,750 + 300',val:'₹4,050'},
+    {t:'I',expr:`${frac('4,050 × 8 × 1','100')}`,val:'₹324'},
+    {t:'A',expr:'4,050 + 324',val:'₹4,374'},
+    {t:'note',text:'C.I. = 4,374 − 3,750 = <span class="sol-val">₹624</span>'},
+  ]},
+ ],
+ final:'Answer: (c) <span class="fa-val">₹624</span>'},
+
+{d:'easy',q:'A man invests ₹46,875 at 4% p.a. CI for 3 years. The interest for the first year will be:',opts:['₹1,785','₹1,587','₹1,875','₹1,758'],ans:2,
+ given:['P = ₹46,875 &nbsp;&nbsp; R = 4%'],
+ years:[
+  {label:'Working',rows:[
+    {t:'I',expr:`${frac('46,875 × 4 × 1','100')}`,val:'₹1,875'},
+  ]},
+ ],
+ final:'Answer: (c) <span class="fa-val">₹1,875</span>'},
+
+{d:'easy',q:'₹10,000 deposited in bank for 3 years at 9% p.a. CI. Amount after 3 years is:',opts:['₹12,950.29','₹12,905.29','₹12,059.29','₹12,095.29'],ans:0,
+ given:['P = ₹10,000 &nbsp;&nbsp; R = 9% &nbsp;&nbsp; n = 3 years'],
+ years:[
+  {label:'Working',rows:[
+    {t:'I',expr:`${frac('10,000 × 9 × 1','100')}`,val:'₹900'},
+    {t:'A',expr:'10,000 + 900',val:'₹10,900'},
+    {t:'I',expr:`${frac('10,900 × 9 × 1','100')}`,val:'₹981'},
+    {t:'A',expr:'10,900 + 981',val:'₹11,881'},
+    {t:'I',expr:`${frac('11,881 × 9 × 1','100')}`,val:'₹1,069.29'},
+    {t:'A',expr:'11,881 + 1,069.29',val:'₹12,950.29'},
+  ]},
+ ],
+ final:'Answer: (a) <span class="fa-val">₹12,950.29</span>'},
+
+{d:'medium',q:'₹16,000 deposited for 3 years at 8% (Y1), 12% (Y2). End amount = ₹21,384. Rate for 3rd year is:',opts:['7%','10%','11%','12%'],ans:1,
+ given:['P = ₹16,000 &nbsp;&nbsp; R₁=8%, R₂=12% &nbsp;&nbsp; Final A = ₹21,384 &nbsp;&nbsp; Find: R₃'],
+ years:[
+  {label:'1st Year',rows:[
+    {t:'I',expr:`${frac('16,000 × 8 × 1','100')}`,val:'₹1,280'},
+    {t:'A',expr:'16,000 + 1,280',val:'₹17,280'},
+  ]},
+  {label:'2nd Year',rows:[
+    {t:'I',expr:`${frac('17,280 × 12 × 1','100')}`,val:'₹2,073.60'},
+    {t:'A',expr:'17,280 + 2,073.60',val:'₹19,353.60'},
+  ]},
+  {label:'Finding R₃',rows:[
+    {t:'note',text:`19,353.60 × (1 + R₃/100) = 21,384`},
+    {t:'note',text:`(1 + R₃/100) = ${frac('21,384','19,353.60')} = 1.10`},
+    {t:'Av',val:'R₃ = 10%'},
+  ]},
+ ],
+ final:'Answer: (b) <span class="fa-val">10%</span>'},
+
+{d:'hard',q:'Man borrows ₹5,000 at 12% CI payable every 6 months. Pays back ₹1,800 each 6 months. Third payment at end of 18 months is:',opts:['₹2,024.60','₹2,204.60','₹2,240.60','₹2,402.60'],ans:0,
+ given:['P = ₹5,000 &nbsp;&nbsp; R = 12% p.a. = 6% per half-year &nbsp;&nbsp; Repays ₹1,800 every 6 months'],
+ years:[
+  {label:'1st Half-Year',rows:[
+    {t:'I',expr:`${frac('5,000 × 6 × 1','100')}`,val:'₹300'},
+    {t:'A',expr:'5,000 + 300',val:'₹5,300'},
+    {t:'bal',expr:'5,300 − 1,800',val:'₹3,500'},
+  ]},
+  {label:'2nd Half-Year',rows:[
+    {t:'I',expr:`${frac('3,500 × 6 × 1','100')}`,val:'₹210'},
+    {t:'A',expr:'3,500 + 210',val:'₹3,710'},
+    {t:'bal',expr:'3,710 − 1,800',val:'₹1,910'},
+  ]},
+  {label:'3rd Half-Year',rows:[
+    {t:'I',expr:`${frac('1,910 × 6 × 1','100')}`,val:'₹114.60'},
+    {t:'A',expr:'1,910 + 114.60',val:'₹2,024.60'},
+  ]},
+ ],
+ final:'Answer: (a) <span class="fa-val">₹2,024.60</span>'},
+
+{d:'easy',q:'CI for the second year on ₹8,000 invested for 3 years at 10% p.a. is:',opts:['₹780','₹880','₹980','₹1,080'],ans:1,
+ given:['P = ₹8,000 &nbsp;&nbsp; R = 10%'],
+ years:[
+  {label:'1st Year (finding new principal)',rows:[
+    {t:'I',expr:`${frac('8,000 × 10 × 1','100')}`,val:'₹800'},
+    {t:'A',expr:'8,000 + 800',val:'₹8,800'},
+  ]},
+  {label:'2nd Year Interest',rows:[
+    {t:'I',expr:`${frac('8,800 × 10 × 1','100')}`,val:'₹880'},
+  ]},
+ ],
+ final:'Answer: (b) <span class="fa-val">₹880</span>'},
+
+{d:'easy',q:'Person took loan of ₹6,000. Rates: 10% (Y1), 12% (Y2). Amount to pay after 2 years:',opts:['₹7,329','₹7,932','₹7,292','₹7,392'],ans:3,
+ given:['P = ₹6,000 &nbsp;&nbsp; R₁=10%, R₂=12%'],
+ years:[
+  {label:'1st Year',rows:[
+    {t:'I',expr:`${frac('6,000 × 10 × 1','100')}`,val:'₹600'},
+    {t:'A',expr:'6,000 + 600',val:'₹6,600'},
+  ]},
+  {label:'2nd Year',rows:[
+    {t:'I',expr:`${frac('6,600 × 12 × 1','100')}`,val:'₹792'},
+    {t:'A',expr:'6,600 + 792',val:'₹7,392'},
+  ]},
+ ],
+ final:'Answer: (d) <span class="fa-val">₹7,392</span>'},
+
+{d:'easy',q:'Nikita invests ₹6,000 for 2 years. At end of Y1 it amounts to ₹6,720. Rate of interest p.a. is:',opts:['8%','10%','12%','14%'],ans:2,
+ given:['P = ₹6,000 &nbsp;&nbsp; A after Y1 = ₹6,720'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:'Interest for Y1 = 6,720 − 6,000 = ₹720'},
+    {t:'note',text:`R = ${frac('720 × 100','6,000 × 1')} = 12%`},
+  ]},
+ ],
+ final:'Answer: (c) <span class="fa-val">12%</span>'},
+
+{d:'easy',q:'CI on ₹8,640 for 3 years at 8% p.a. is:',opts:['₹2,345','₹3,245','₹3,425','₹3,452'],ans:0,
+ given:['P = ₹8,640 &nbsp;&nbsp; R = 8% &nbsp;&nbsp; n = 3 years'],
+ years:[
+  {label:'1st Year',rows:[
+    {t:'I',expr:`${frac('8,640 × 8 × 1','100')}`,val:'₹691.20'},
+    {t:'A',expr:'8,640 + 691.20',val:'₹9,331.20'},
+  ]},
+  {label:'2nd Year',rows:[
+    {t:'I',expr:`${frac('9,331.20 × 8 × 1','100')}`,val:'₹746.50'},
+    {t:'A',expr:'9,331.20 + 746.50',val:'₹10,077.70'},
+  ]},
+  {label:'3rd Year',rows:[
+    {t:'I',expr:`${frac('10,077.70 × 8 × 1','100')}`,val:'₹806.20'},
+    {t:'A',expr:'10,077.70 + 806.20',val:'₹10,883.90'},
+    {t:'note',text:'C.I. = 10,883.90 − 8,640 ≈ <span class="sol-val">₹2,345</span>'},
+  ]},
+ ],
+ final:'Answer: (a) <span class="fa-val">₹2,345</span>'},
+
+{d:'medium',q:'CI when P = ₹7,400, R = 5% p.a., T = 1 year, compounded half-yearly is:',opts:['₹373.63','₹374.63','₹373.36','₹373'],ans:1,
+ given:['P = ₹7,400 &nbsp;&nbsp; R = 5% p.a. &nbsp;&nbsp; T = 1 year','Half-yearly → Rate = 2.5%, Periods = 2'],
+ years:[
+  {label:'1st Half-Year',rows:[
+    {t:'I',expr:`${frac('7,400 × 2.5 × 1','100')}`,val:'₹185'},
+    {t:'A',expr:'7,400 + 185',val:'₹7,585'},
+  ]},
+  {label:'2nd Half-Year',rows:[
+    {t:'I',expr:`${frac('7,585 × 2.5 × 1','100')}`,val:'₹189.63'},
+    {t:'A',expr:'7,585 + 189.63',val:'₹7,774.63'},
+    {t:'note',text:'C.I. = 7,774.63 − 7,400 = <span class="sol-val">₹374.63</span>'},
+  ]},
+ ],
+ final:'Answer: (b) <span class="fa-val">₹374.63</span>'},
+
+{d:'medium',q:'SI on a sum for 2 years at 4% p.a. is ₹340. CI on this sum for 1 year payable half-yearly at same rate is:',opts:['₹170.70','₹107.70','₹171.70','₹270.70'],ans:2,
+ given:['SI = ₹340 &nbsp;&nbsp; R = 4% &nbsp;&nbsp; T = 2 years for SI; 1 year for CI (half-yearly)'],
+ years:[
+  {label:'Finding Principal',rows:[
+    {t:'note',text:`P = ${frac('340 × 100','4 × 2')} = <span class="sol-val">₹4,250</span>`},
+  ]},
+  {label:'CI for 1 year half-yearly (Rate = 2%, Periods = 2)',rows:[
+    {t:'I',expr:`${frac('4,250 × 2 × 1','100')}`,val:'₹85'},
+    {t:'A',expr:'4,250 + 85',val:'₹4,335'},
+    {t:'I',expr:`${frac('4,335 × 2 × 1','100')}`,val:'₹86.70'},
+    {t:'A',expr:'4,335 + 86.70',val:'₹4,421.70'},
+    {t:'note',text:'C.I. = 4,421.70 − 4,250 = <span class="sol-val">₹171.70</span>'},
+  ]},
+ ],
+ final:'Answer: (c) <span class="fa-val">₹171.70</span>'},
+
+{d:'medium',q:'CI on a sum at 5% p.a. for 2 years is ₹246. SI on same sum for 3 years at 6% p.a. will be:',opts:['₹432','₹430.50','₹432.75','₹431.75'],ans:0,
+ given:['CI = ₹246 &nbsp;&nbsp; R = 5% &nbsp;&nbsp; n = 2 years for CI; then find SI at 6% for 3 years'],
+ years:[
+  {label:'Finding Principal from CI',rows:[
+    {t:'note',text:`CI = P[(1.05)² − 1] = P × 0.1025 = 246`},
+    {t:'note',text:`P = ${frac('246','0.1025')} = <span class="sol-val">₹2,400</span>`},
+  ]},
+  {label:'SI on ₹2,400 at 6% for 3 years',rows:[
+    {t:'note',text:`SI = ${frac('2,400 × 6 × 3','100')} = <span class="sol-val">₹432</span>`},
+  ]},
+ ],
+ final:'Answer: (a) <span class="fa-val">₹432</span>'},
+
+{d:'medium',q:'Ramesh wants ₹6,050 from bank after 2 years at 10% CI. Amount to deposit now:',opts:['₹5,500','₹5,000','₹5,600','₹5,800'],ans:1,
+ given:['A = ₹6,050 &nbsp;&nbsp; R = 10% &nbsp;&nbsp; n = 2 years &nbsp;&nbsp; Find: P'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`6,050 = P × ${frac('110','100')} × ${frac('110','100')} = P × 1.21`},
+    {t:'note',text:`P = ${frac('6,050','1.21')} = <span class="sol-val">₹5,000</span>`},
+  ]},
+ ],
+ final:'Answer: (b) <span class="fa-val">₹5,000</span>'},
+
+{d:'medium',q:'Difference between CI and SI on a sum for 2 years at 5% p.a. is ₹12. The sum is:',opts:['₹4,500','₹4,600','₹4,800','₹5,000'],ans:2,
+ given:['CI − SI = ₹12 &nbsp;&nbsp; R = 5% &nbsp;&nbsp; n = 2 years'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`CI − SI (2 years) = P × ${frac('R','100')} × ${frac('R','100')} = P × 0.0025`},
+    {t:'note',text:`0.0025P = 12 &nbsp;→&nbsp; P = ${frac('12','0.0025')} = <span class="sol-val">₹4,800</span>`},
+  ]},
+ ],
+ final:'Answer: (c) <span class="fa-val">₹4,800</span>'},
+
+{d:'medium',q:'At what rate of CI p.a. will ₹20,000 amount to ₹26,620 in 3 years?',opts:['4%','6%','8%','10%'],ans:3,
+ given:['P = ₹20,000 &nbsp;&nbsp; A = ₹26,620 &nbsp;&nbsp; n = 3 years &nbsp;&nbsp; Find: R'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`${frac('26,620','20,000')} = (1 + R/100)³ &nbsp;→&nbsp; 1.331 = (1 + R/100)³`},
+    {t:'note',text:'∛1.331 = 1.1 &nbsp;→&nbsp; R = 10%'},
+  ]},
+ ],
+ final:'Answer: (d) <span class="fa-val">10%</span>'},
+
+{d:'medium',q:'In what time will ₹5,000 amount to ₹5,832 at 8% CI p.a.?',opts:['2 years','4 years','6 years','8 years'],ans:0,
+ given:['P = ₹5,000 &nbsp;&nbsp; A = ₹5,832 &nbsp;&nbsp; R = 8% &nbsp;&nbsp; Find: n'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`${frac('5,832','5,000')} = (1.08)ⁿ &nbsp;→&nbsp; 1.1664 = (1.08)ⁿ`},
+    {t:'note',text:'1.08 × 1.08 = 1.1664 &nbsp;→&nbsp; n = 2'},
+  ]},
+ ],
+ final:'Answer: (a) <span class="fa-val">2 years</span>'},
+
+{d:'easy',q:'A machine worth ₹8,000 depreciates at 10% p.a. Its value after 3 years will be:',opts:['₹5,382','₹5,832','₹5,238','₹5,638'],ans:1,
+ given:['P = ₹8,000 &nbsp;&nbsp; R = 10% depreciation p.a. &nbsp;&nbsp; n = 3 years'],
+ years:[
+  {label:'After 1st Year',rows:[
+    {t:'note',text:`Depreciation = ${frac('8,000 × 10','100')} = ₹800`},
+    {t:'note',text:'Value = 8,000 − 800 = ₹7,200'},
+  ]},
+  {label:'After 2nd Year',rows:[
+    {t:'note',text:`Depreciation = ${frac('7,200 × 10','100')} = ₹720`},
+    {t:'note',text:'Value = 7,200 − 720 = ₹6,480'},
+  ]},
+  {label:'After 3rd Year',rows:[
+    {t:'note',text:`Depreciation = ${frac('6,480 × 10','100')} = ₹648`},
+    {t:'note',text:'Value = 6,480 − 648 = ₹5,832'},
+  ]},
+ ],
+ final:'Answer: (b) <span class="fa-val">₹5,832</span>'},
+
+{d:'easy',q:'Present population of town = 2,00,000. Increases by 10% in Y1 and 15% in Y2. Population after 2 years:',opts:['2,53,000','2,35,000','2,03,500','3,52,000'],ans:0,
+ given:['P₀ = 2,00,000 &nbsp;&nbsp; R₁ = 10%, R₂ = 15%'],
+ years:[
+  {label:'After 1st Year',rows:[
+    {t:'note',text:`Increase = ${frac('2,00,000 × 10','100')} = 20,000`},
+    {t:'note',text:'Population = 2,00,000 + 20,000 = 2,20,000'},
+  ]},
+  {label:'After 2nd Year',rows:[
+    {t:'note',text:`Increase = ${frac('2,20,000 × 15','100')} = 33,000`},
+    {t:'note',text:'Population = 2,20,000 + 33,000 = 2,53,000'},
+  ]},
+ ],
+ final:'Answer: (a) <span class="fa-val">2,53,000</span>'},
+
+{d:'medium',q:'Machine purchased for ₹10,000, sold for ₹7,744. Depreciation rate 12% p.a. How many years was it used?',opts:['2','4','6','8'],ans:0,
+ given:['P = ₹10,000 &nbsp;&nbsp; V = ₹7,744 &nbsp;&nbsp; R = 12% depreciation &nbsp;&nbsp; Find: n'],
+ years:[
+  {label:'After 1st Year',rows:[
+    {t:'note',text:`Depreciation = ${frac('10,000 × 12','100')} = ₹1,200`},
+    {t:'note',text:'Value = 10,000 − 1,200 = ₹8,800'},
+  ]},
+  {label:'After 2nd Year',rows:[
+    {t:'note',text:`Depreciation = ${frac('8,800 × 12','100')} = ₹1,056`},
+    {t:'note',text:'Value = 8,800 − 1,056 = ₹7,744 ✓'},
+  ]},
+ ],
+ final:'Answer: (a) <span class="fa-val">2 years</span>'},
+
+{d:'medium',q:'Values of machine in 2006 and 2008 are ₹25,000 and ₹19,360. Annual rate of depreciation is:',opts:['8%','10%','12%','14%'],ans:2,
+ given:['V₂₀₀₆ = ₹25,000 &nbsp;&nbsp; V₂₀₀₈ = ₹19,360 &nbsp;&nbsp; n = 2 years &nbsp;&nbsp; Find: R'],
+ years:[
+  {label:'Working',rows:[
+    {t:'note',text:`${frac('19,360','25,000')} = (1 − R/100)² &nbsp;→&nbsp; ${frac('1,936','2,500')} = (1 − R/100)²`},
+    {t:'note',text:`${frac('44 × 44','50 × 50')} = (1 − R/100)² &nbsp;→&nbsp; ${frac('44','50')} = 1 − R/100`},
+    {t:'note',text:`R/100 = 1 − ${frac('44','50')} = ${frac('6','50')} = ${frac('12','100')}`},
+    {t:'Av',val:'R = 12%'},
+  ]},
+ ],
+ final:'Answer: (c) <span class="fa-val">12%</span>'},
+]};
+
+
+let curTab='2a';
+const filters={'2a':'all','2b':'all','2c':'all',mcq:'all'};
+
+function pillClass(t){return t==='2a'?'pill-2a':t==='2b'?'pill-2b':t==='2c'?'pill-2c':'pill-mcq'}
+function pillLabel(t){return t==='2a'?'Ex. 2A':t==='2b'?'Ex. 2B':t==='2c'?'Ex. 2C':'MCQ'}
+
+function buildSolHTML(q){
+  let h='';
+  h+=`<div class="given-block"><div class="given-label">Given</div>`;
+  q.given.forEach(g=>{ h+=`<div class="given-line">${g}</div>`; });
+  h+=`</div>`;
+  q.years.forEach(yr=>{
+    h+=`<div class="year-block"><span class="year-label">${yr.label}</span>`;
+    yr.rows.forEach(row=>{
+      if(row.t==='I') h+=`<div class="sol-row"><span class="sol-var">I</span><span class="sol-eq">=</span>${row.expr}<span class="sol-eq2">=</span><span class="sol-val">${row.val}</span></div>`;
+      else if(row.t==='A') h+=`<div class="sol-row"><span class="sol-var">A</span><span class="sol-eq">=</span><span class="sol-plain">${row.expr}</span><span class="sol-eq2">=</span><span class="sol-val">${row.val}</span></div>`;
+      else if(row.t==='bal') h+=`<div class="bal-row"><span class="bal-lbl">Balance</span><span class="sol-eq">=</span><span class="sol-plain">${row.expr}</span><span class="sol-eq2">=</span><span class="sol-val">${row.val}</span></div>`;
+      else if(row.t==='Av') h+=`<div class="sol-row"><span class="sol-var">&#8756;</span><span class="sol-val" style="font-size:15px">${row.val}</span></div>`;
+      else if(row.t==='note') h+=`<div class="sol-row"><span class="sol-plain">${row.text}</span></div>`;
+    });
+    h+=`</div>`;
+  });
+  h+=`<div class="final-ans"><span>${q.final}</span></div>`;
+  return h;
+}
+
+function buildMCQCard(q, i, tab){
+  const sid=`sol_${tab}_${i}`;
+  const optLetters=['(a)','(b)','(c)','(d)'];
+  let h=`<div class="qcard ${q.d}" id="qc_${tab}_${i+1}">
+    <div class="stripe"></div>
+    <div class="q-head">
+      <div class="qnum-b">Q${i+1}</div>
+      <div class="qtxt">${q.q}</div>
+      <span class="qbadge">${q.d.charAt(0).toUpperCase()+q.d.slice(1)}</span>
+    </div>
+    <div class="mcq-options">`;
+  q.opts.forEach((opt,oi)=>{
+    h+=`<button class="mcq-opt" id="opt_${tab}_${i}_${oi}" onclick="checkMCQ('${tab}',${i},${oi})">${optLetters[oi]} ${opt}</button>`;
+  });
+  h+=`</div>
+    <div class="mcq-result" id="res_${tab}_${i}"></div>
+    <div class="qfooter">
+      <span class="src-pill ${pillClass(tab)}">${pillLabel(tab)} Q${i+1}</span>
+      <button class="mcq-show-sol" onclick="togSol('${sid}',this)">Show Solution</button>
+    </div>
+    <div class="sol-body" id="${sid}">${buildSolHTML(q)}</div>
+  </div>`;
+  return h;
+}
+
+function checkMCQ(tab, qi, oi){
+  const q=D[tab][qi];
+  const opts=document.querySelectorAll(`[id^="opt_${tab}_${qi}_"]`);
+  const resEl=document.getElementById(`res_${tab}_${qi}`);
+  opts.forEach((o,idx)=>{
+    o.classList.remove('correct','wrong');
+    if(idx===q.ans) o.classList.add('correct');
+    else if(idx===oi && oi!==q.ans) o.classList.add('wrong');
+    o.disabled=true;
+  });
+  const correct=oi===q.ans;
+  resEl.className=`mcq-result show ${correct?'correct-res':'wrong-res'}`;
+  resEl.innerHTML=correct
+    ?`<div class="res-label">&#10003; Correct!</div>`
+    :`<div class="res-label">&#10007; Incorrect — Correct answer is (${['a','b','c','d'][q.ans]})</div>`;
+}
+
+function buildPanel(tab){
+  const f=filters[tab];
+  const all=D[tab];
+  const items=f==='all'?all:all.filter(q=>q.d===f);
+  const panel=document.getElementById('panel-'+tab);
+
+  const ec=all.filter(q=>q.d==='easy').length;
+  const mc=all.filter(q=>q.d==='medium').length;
+  const hc=all.filter(q=>q.d==='hard').length;
+
+  let h=`<div class="filter-row">
+    <span>Difficulty:</span>
+    <button class="fb fa ${f==='all'?'on':''}" onclick="setF('${tab}','all',this)">All (${all.length})</button>
+    <button class="fb fe ${f==='easy'?'on':''}" onclick="setF('${tab}','easy',this)">Easy (${ec})</button>
+    <button class="fb fm ${f==='medium'?'on':''}" onclick="setF('${tab}','medium',this)">Medium (${mc})</button>
+    <button class="fb fh ${f==='hard'?'on':''}" onclick="setF('${tab}','hard',this)">Hard (${hc})</button>
+    <span class="count-chip">${items.length} showing</span>
+  </div>
+  <div class="jump-row">`;
+  items.forEach((_,i)=>{
+    const jc=_.d==='easy'?'je':_.d==='medium'?'jm':'jh';
+    h+=`<button class="jb ${jc}" onclick="scrollQ('${tab}',${i+1})">${i+1}</button>`;
+  });
+  h+=`</div>`;
+
+  if(!items.length){h+=`<div class="empty-msg">No questions for this filter.</div>`;panel.innerHTML=h;return;}
+
+  if(tab==='mcq'){
+    items.forEach((q,i)=>{ h+=buildMCQCard(q,D[tab].indexOf(q),tab); });
+  } else {
+    items.forEach((q,i)=>{
+      const qi=D[tab].indexOf(q);
+      const sid=`sol_${tab}_${qi}`;
+      h+=`<div class="qcard ${q.d}" id="qc_${tab}_${i+1}">
+        <div class="stripe"></div>
+        <div class="q-head">
+          <div class="qnum-b">Q${i+1}</div>
+          <div class="qtxt">${q.q}</div>
+          <span class="qbadge">${q.d.charAt(0).toUpperCase()+q.d.slice(1)}</span>
+        </div>
+        <div class="qfooter">
+          <span class="src-pill ${pillClass(tab)}">${pillLabel(tab)} Q${i+1}</span>
+          <button class="sol-btn" onclick="togSol('${sid}',this)">Show Solution</button>
+        </div>
+        <div class="sol-body" id="${sid}">${buildSolHTML(q)}</div>
+      </div>`;
+    });
+  }
+
+  const nxt={'2a':'2b','2b':'2c','2c':'mcq',mcq:null};
+  const lbl={'2a':'Exercise 2B &rarr;','2b':'Exercise 2C &rarr;','2c':'MCQs &rarr;'};
+  const nc={'2a':'nav-2b','2b':'nav-2c','2c':'nav-mcq'};
+  const dt={'2a':'Exercise 2A complete!','2b':'Exercise 2B complete!','2c':'Exercise 2C complete!',mcq:'All done!'};
+  const msg={'2a':'Move on to Exercise 2B','2b':'Move on to Exercise 2C','2c':'Try the MCQs next','mcq':'You have covered the full RS Aggarwal Chapter 2'};
+
+  h+=`<div class="done-zone"><div class="done-title">&#10003; ${dt[tab]}</div><div class="done-sub">${msg[tab]}</div>`;
+  if(nxt[tab]) h+=`<div class="nav-row"><button class="${nc[tab]}" onclick="switchTab('${nxt[tab]}')">${lbl[tab]}</button></div>`;
+  h+=`</div>`;
+  panel.innerHTML=h;
+}
+
+function togSol(id,btn){
+  const el=document.getElementById(id);
+  const open=el.classList.toggle('open');
+  btn.textContent=open?'Hide Solution':'Show Solution';
+}
+function scrollQ(tab,n){
+  const el=document.getElementById(`qc_${tab}_${n}`);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function setF(tab,f){filters[tab]=f;buildPanel(tab);}
+
+function switchTab(t){
+  curTab=t;
+  ['2a','2b','2c','mcq'].forEach(s=>{
+    document.getElementById('panel-'+s).style.display=s===t?'block':'none';
+    const b=document.getElementById('btn-'+s);
+    b.className=`tab-btn t-${s}${s===t?' active':''}`;
+  });
+  buildPanel(t);
+}
+
+buildPanel('2a');
+</script>
+</body>
+</html>
