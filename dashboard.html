@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — MathsBridge Academy</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#F5F0E8;color:#1a1a1a;min-height:100vh}
+.bg-pattern{position:fixed;inset:0;z-index:0;background-image:radial-gradient(circle,rgba(45,90,61,.05) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:24px 16px 60px}
+.topbar{background:#2D5A3D;border-radius:14px;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px;flex-wrap:wrap}
+.tb-left{display:flex;align-items:center;gap:12px}
+.tb-logo{height:38px;width:auto}
+.tb-name{font-size:15px;font-weight:800;color:#fff}
+.tb-tag{font-size:11px;color:rgba(255,255,255,.6);margin-top:1px}
+.tb-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.badge{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px}
+.badge-icse{background:#E1F5EE;color:#085041}
+.badge-cbse{background:#FFF3CD;color:#7B4F00}
+.badge-cls{background:rgba(201,168,76,.25);color:#C9A84C;border:1px solid rgba(201,168,76,.4)}
+.logout-btn{font-size:12px;font-weight:700;padding:6px 14px;border-radius:8px;border:2px solid rgba(255,255,255,.3);background:transparent;color:rgba(255,255,255,.8);cursor:pointer;transition:all .15s}
+.logout-btn:hover{border-color:#fff;color:#fff}
+.welcome{background:#fff;border-radius:14px;padding:20px 24px;margin-bottom:20px;border-left:5px solid #C9A84C;box-shadow:0 2px 12px rgba(45,90,61,.08)}
+.welcome-name{font-size:20px;font-weight:800;color:#2D5A3D}
+.welcome-sub{font-size:13px;color:#888;margin-top:3px}
+.sec-head{font-size:11px;font-weight:800;color:#2D5A3D;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sec-head::after{content:'';flex:1;height:1px;background:rgba(45,90,61,.15)}
+.chapter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:28px}
+.ch-card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid rgba(45,90,61,.1);transition:transform .15s,box-shadow .15s;text-decoration:none;display:block}
+.ch-card.open:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(45,90,61,.15);cursor:pointer}
+.ch-card.locked{opacity:.65;cursor:default}
+.ch-stripe{height:5px}
+.s-ci{background:linear-gradient(90deg,#2D5A3D,#4A9464)}
+.s-fact{background:linear-gradient(90deg,#C9A84C,#E8C96A)}
+.s-trig{background:linear-gradient(90deg,#7B3F00,#C4712A)}
+.s-coord{background:linear-gradient(90deg,#1a3a5c,#2E6DA4)}
+.s-quad{background:linear-gradient(90deg,#5C1A5C,#A04DA0)}
+.s-alg{background:linear-gradient(90deg,#1a5c4a,#2EA07A)}
+.s-mat{background:linear-gradient(90deg,#3d1a00,#8B4513)}
+.s-lock{background:linear-gradient(90deg,#ccc,#ddd)}
+.ch-body{padding:16px 18px}
+.ch-num{font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+.ch-name{font-size:14px;font-weight:700;color:#1a1a1a;line-height:1.4;margin-bottom:10px}
+.ch-footer{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.ch-pill{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;background:#F5F0E8;color:#2D5A3D}
+.ch-status-ok{font-size:11px;color:#2D5A3D;font-weight:700;margin-left:auto}
+.ch-status-lock{font-size:11px;color:#bbb;margin-left:auto}
+.empty-note{text-align:center;padding:30px;color:#aaa;font-size:13px;background:#fff;border-radius:12px;border:1px dashed rgba(45,90,61,.2)}
+</style>
+</head>
+<body>
+<div class="bg-pattern"></div>
+<div class="wrap">
+  <div class="topbar">
+    <div class="tb-left">
+      <img src="main_logo.png" class="tb-logo" alt="MBA">
+      <div>
+        <div class="tb-name">MathsBridge Academy</div>
+        <div class="tb-tag">Mentored by Neha Ma'am</div>
+      </div>
+    </div>
+    <div class="tb-right">
+      <span class="badge" id="badge-board"></span>
+      <span class="badge badge-cls" id="badge-cls"></span>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+  <div class="welcome">
+    <div class="welcome-name" id="welcome-name">Welcome!</div>
+    <div class="welcome-sub" id="welcome-sub"></div>
+  </div>
+  <div class="sec-head">Your Chapters</div>
+  <div class="chapter-grid" id="chapter-grid"><div class="empty-note">Loading chapters...</div></div>
+</div>
+
+<script>
+// ALL chapters defined here. filename = board_class_chN.html convention.
+// Dashboard AUTO-DETECTS if file exists. You NEVER edit this file again.
+// Just upload cbse_10_ch2.html → Polynomials card goes live automatically.
+const CHAPTERS = {
+  ICSE: {
+    VIII: [
+      {num:"Ch 1",name:"Rational Numbers",             stripe:"s-alg",  file:"icse_8_ch1.html"},
+      {num:"Ch 2",name:"Squares & Square Roots",       stripe:"s-ci",   file:"icse_8_ch2.html"},
+      {num:"Ch 3",name:"Cubes & Cube Roots",           stripe:"s-fact", file:"icse_8_ch3.html"},
+      {num:"Ch 4",name:"Exponents & Powers",           stripe:"s-alg",  file:"icse_8_ch4.html"},
+      {num:"Ch 5",name:"Algebraic Expressions",        stripe:"s-fact", file:"icse_8_ch5.html"},
+      {num:"Ch 6",name:"Factorisation",                stripe:"s-quad", file:"icse_8_ch6.html"},
+      {num:"Ch 7",name:"Linear Equations",             stripe:"s-ci",   file:"icse_8_ch7.html"},
+      {num:"Ch 8",name:"Percentage & Applications",    stripe:"s-alg",  file:"icse_8_ch8.html"},
+      {num:"Ch 9",name:"Simple & Compound Interest",   stripe:"s-ci",   file:"icse_8_ch9.html"},
+      {num:"Ch 10",name:"Direct & Inverse Variation",  stripe:"s-fact", file:"icse_8_ch10.html"},
+      {num:"Ch 11",name:"Time & Work",                 stripe:"s-alg",  file:"icse_8_ch11.html"},
+      {num:"Ch 12",name:"Quadrilaterals",              stripe:"s-coord",file:"icse_8_ch12.html"},
+      {num:"Ch 14",name:"Area & Perimeter",            stripe:"s-trig", file:"icse_8_ch14.html"},
+      {num:"Ch 15",name:"Volume & Surface Area",       stripe:"s-mat",  file:"icse_8_ch15.html"},
+      {num:"Ch 16",name:"Data Handling",               stripe:"s-alg",  file:"icse_8_ch16.html"},
+    ],
+    IX: [
+      {num:"Ch 1",name:"Pure Arithmetic",              stripe:"s-alg",  file:"icse_9_ch1.html"},
+      {num:"Ch 2",name:"Compound Interest",            stripe:"s-ci",   file:"icse_9_ch2.html"},
+      {num:"Ch 3",name:"Expansions",                   stripe:"s-fact", file:"icse_9_ch3.html"},
+      {num:"Ch 4",name:"Factorisation",                stripe:"s-quad", file:"icse_9_ch4.html"},
+      {num:"Ch 5",name:"Simultaneous Equations",       stripe:"s-ci",   file:"icse_9_ch5.html"},
+      {num:"Ch 6",name:"Indices / Exponents",          stripe:"s-alg",  file:"icse_9_ch6.html"},
+      {num:"Ch 7",name:"Logarithms",                   stripe:"s-fact", file:"icse_9_ch7.html"},
+      {num:"Ch 8",name:"Triangles",                    stripe:"s-trig", file:"icse_9_ch8.html"},
+      {num:"Ch 9",name:"Mid-point Theorem",            stripe:"s-coord",file:"icse_9_ch9.html"},
+      {num:"Ch 10",name:"Pythagoras Theorem",          stripe:"s-alg",  file:"icse_9_ch10.html"},
+      {num:"Ch 11",name:"Rectilinear Figures",         stripe:"s-coord",file:"icse_9_ch11.html"},
+      {num:"Ch 14",name:"Circle",                      stripe:"s-trig", file:"icse_9_ch14.html"},
+      {num:"Ch 15",name:"Statistics",                  stripe:"s-alg",  file:"icse_9_ch15.html"},
+      {num:"Ch 16",name:"Mensuration",                 stripe:"s-mat",  file:"icse_9_ch16.html"},
+      {num:"Ch 17",name:"Trigonometry",                stripe:"s-trig", file:"icse_9_ch17.html"},
+      {num:"Ch 18",name:"Coordinate Geometry",         stripe:"s-coord",file:"icse_9_ch18.html"},
+    ],
+    X: [
+      {num:"Ch 1",name:"GST",                          stripe:"s-alg",  file:"icse_10_ch1.html"},
+      {num:"Ch 2",name:"Banking",                      stripe:"s-ci",   file:"icse_10_ch2.html"},
+      {num:"Ch 3",name:"Shares & Dividends",           stripe:"s-fact", file:"icse_10_ch3.html"},
+      {num:"Ch 4",name:"Linear Inequations",           stripe:"s-alg",  file:"icse_10_ch4.html"},
+      {num:"Ch 5",name:"Quadratic Equations",          stripe:"s-quad", file:"icse_10_ch5.html"},
+      {num:"Ch 6",name:"Arithmetic Progression",       stripe:"s-ci",   file:"icse_10_ch6.html"},
+      {num:"Ch 7",name:"Ratio & Proportion",           stripe:"s-fact", file:"icse_10_ch7.html"},
+      {num:"Ch 8",name:"Matrices",                     stripe:"s-mat",  file:"icse_10_ch8.html"},
+      {num:"Ch 9",name:"Arithmetic & Geometric Prog",  stripe:"s-ci",   file:"icse_10_ch9.html"},
+      {num:"Ch 10",name:"Reflection",                  stripe:"s-coord",file:"icse_10_ch10.html"},
+      {num:"Ch 11",name:"Section & Midpoint Formula",  stripe:"s-coord",file:"icse_10_ch11.html"},
+      {num:"Ch 12",name:"Equation of a Line",          stripe:"s-coord",file:"icse_10_ch12.html"},
+      {num:"Ch 13",name:"Similarity",                  stripe:"s-trig", file:"icse_10_ch13.html"},
+      {num:"Ch 15",name:"Circles",                     stripe:"s-trig", file:"icse_10_ch15.html"},
+      {num:"Ch 17",name:"Mensuration",                 stripe:"s-mat",  file:"icse_10_ch17.html"},
+      {num:"Ch 18",name:"Trigonometry",                stripe:"s-trig", file:"icse_10_ch18.html"},
+      {num:"Ch 19",name:"Statistics",                  stripe:"s-alg",  file:"icse_10_ch19.html"},
+      {num:"Ch 20",name:"Probability",                 stripe:"s-fact", file:"icse_10_ch20.html"},
+    ],
+  },
+  CBSE: {
+    VIII: [
+      {num:"Ch 1",name:"Rational Numbers",             stripe:"s-alg",  file:"cbse_8_ch1.html"},
+      {num:"Ch 2",name:"Linear Equations",             stripe:"s-ci",   file:"cbse_8_ch2.html"},
+      {num:"Ch 3",name:"Understanding Quadrilaterals", stripe:"s-coord",file:"cbse_8_ch3.html"},
+      {num:"Ch 6",name:"Squares & Square Roots",       stripe:"s-fact", file:"cbse_8_ch6.html"},
+      {num:"Ch 7",name:"Cubes & Cube Roots",           stripe:"s-alg",  file:"cbse_8_ch7.html"},
+      {num:"Ch 9",name:"Algebraic Expressions",        stripe:"s-quad", file:"cbse_8_ch9.html"},
+      {num:"Ch 14",name:"Factorisation",               stripe:"s-fact", file:"cbse_8_ch14.html"},
+    ],
+    IX: [
+      {num:"Ch 1",name:"Number Systems",               stripe:"s-alg",  file:"cbse_9_ch1.html"},
+      {num:"Ch 2",name:"Polynomials",                  stripe:"s-fact", file:"cbse_9_ch2.html"},
+      {num:"Ch 3",name:"Coordinate Geometry",          stripe:"s-coord",file:"cbse_9_ch3.html"},
+      {num:"Ch 4",name:"Linear Equations",             stripe:"s-ci",   file:"cbse_9_ch4.html"},
+      {num:"Ch 6",name:"Lines & Angles",               stripe:"s-trig", file:"cbse_9_ch6.html"},
+      {num:"Ch 7",name:"Triangles",                    stripe:"s-trig", file:"cbse_9_ch7.html"},
+      {num:"Ch 12",name:"Herons Formula",              stripe:"s-mat",  file:"cbse_9_ch12.html"},
+      {num:"Ch 13",name:"Surface Areas & Volumes",     stripe:"s-mat",  file:"cbse_9_ch13.html"},
+      {num:"Ch 14",name:"Statistics",                  stripe:"s-alg",  file:"cbse_9_ch14.html"},
+    ],
+    X: [
+      {num:"Ch 1",name:"Real Numbers",                 stripe:"s-alg",  file:"cbse_10_ch1.html"},
+      {num:"Ch 2",name:"Polynomials",                  stripe:"s-fact", file:"cbse_10_ch2.html"},
+      {num:"Ch 3",name:"Pair of Linear Equations",     stripe:"s-ci",   file:"cbse_10_ch3.html"},
+      {num:"Ch 4",name:"Quadratic Equations",          stripe:"s-quad", file:"cbse_10_ch4.html"},
+      {num:"Ch 5",name:"Arithmetic Progressions",      stripe:"s-ci",   file:"cbse_10_ch5.html"},
+      {num:"Ch 6",name:"Triangles",                    stripe:"s-trig", file:"cbse_10_ch6.html"},
+      {num:"Ch 7",name:"Coordinate Geometry",          stripe:"s-coord",file:"cbse_10_ch7.html"},
+      {num:"Ch 8",name:"Introduction to Trigonometry", stripe:"s-trig", file:"cbse_10_ch8.html"},
+      {num:"Ch 9",name:"Applications of Trigonometry", stripe:"s-trig", file:"cbse_10_ch9.html"},
+      {num:"Ch 10",name:"Circles",                     stripe:"s-trig", file:"cbse_10_ch10.html"},
+      {num:"Ch 11",name:"Areas Related to Circles",    stripe:"s-mat",  file:"cbse_10_ch11.html"},
+      {num:"Ch 12",name:"Surface Areas & Volumes",     stripe:"s-mat",  file:"cbse_10_ch12.html"},
+      {num:"Ch 13",name:"Statistics",                  stripe:"s-alg",  file:"cbse_10_ch13.html"},
+      {num:"Ch 14",name:"Probability",                 stripe:"s-fact", file:"cbse_10_ch14.html"},
+    ],
+  },
+};
+
+const raw=sessionStorage.getItem('mba_user');
+if(!raw){window.location.href='index.html';}
+const user=JSON.parse(raw);
+
+document.getElementById('welcome-name').textContent='Welcome, '+user.name+'!';
+document.getElementById('welcome-sub').textContent=user.board+' · Class '+user.cls+' · MathsBridge Academy';
+const bb=document.getElementById('badge-board');
+bb.textContent=user.board;
+bb.className='badge '+(user.board==='ICSE'?'badge-icse':'badge-cbse');
+document.getElementById('badge-cls').textContent='Class '+user.cls;
+
+const chapters=(CHAPTERS[user.board]||{})[user.cls]||[];
+const grid=document.getElementById('chapter-grid');
+grid.innerHTML='';
+
+if(!chapters.length){
+  grid.innerHTML='<div class="empty-note">No content available yet. Check back soon!</div>';
+} else {
+  Promise.all(chapters.map(ch=>
+    fetch(ch.file,{method:'HEAD'}).then(r=>r.ok).catch(()=>false)
+  )).then(exists=>{
+    chapters.forEach((ch,i)=>{
+      const ok=exists[i];
+      const el=document.createElement(ok?'a':'div');
+      el.className='ch-card '+(ok?'open':'locked');
+      if(ok) el.href=ch.file;
+      el.innerHTML=`
+        <div class="ch-stripe ${ok?ch.stripe:'s-lock'}"></div>
+        <div class="ch-body">
+          <div class="ch-num">${ch.num}</div>
+          <div class="ch-name">${ch.name}</div>
+          <div class="ch-footer">
+            <span class="ch-pill">${user.board}</span>
+            <span class="ch-pill">Class ${user.cls}</span>
+            ${ok?'<span class="ch-status-ok">✓ Open</span>':'<span class="ch-status-lock">🔒 Coming soon</span>'}
+          </div>
+        </div>`;
+      grid.appendChild(el);
+    });
+  });
+}
+
+function logout(){
+  sessionStorage.removeItem('mba_user');
+  window.location.href='index.html';
+}
+</script>
+</body>
+</html>
