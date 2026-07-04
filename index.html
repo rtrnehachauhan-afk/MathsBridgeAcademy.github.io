@@ -102,7 +102,7 @@ function login(){
   const s=STUDENTS[u];
   if(s && s.pwd===p){
     err.classList.remove('show');
-    sessionStorage.setItem('mba_user',JSON.stringify({username:u,name:s.name,board:s.board,cls:s.cls}));
+    sessionStorage.setItem('mba_user',JSON.stringify({username:u,name:s.name,board:s.board,cls:s.cls,admin:s.admin||false}));
     window.location.href=s.admin?'admin_dashboard.html':'dashboard.html';
   } else {
     err.classList.add('show');
