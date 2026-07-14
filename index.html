@@ -102,8 +102,8 @@ function login(){
   const s=STUDENTS[u];
   if(s && s.pwd===p){
     err.classList.remove('show');
-    sessionStorage.setItem('mba_user',JSON.stringify({username:u,name:s.name,board:s.board,cls:s.cls}));
-    window.location.href='dashboard.html';
+    sessionStorage.setItem('mba_user',JSON.stringify({username:u,name:s.name,board:s.board,cls:s.cls,admin:!!s.admin}));
+window.location.href = s.admin ? 'admin_dashboard.html' : 'dashboard.html';
   } else {
     err.classList.add('show');
     document.getElementById('pwd').value='';
