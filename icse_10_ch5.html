@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quadratic Equations — ICSE Class 10 | Maths Bridge Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F0E8;--bg2:#EDE8DC;--bg3:#E4DDD0;
+  --green:#2D5A3D;--green2:#3D7A55;--green3:#1A3D28;
+  --gold:#C9A84C;--gold2:#E8C56A;--gold3:#A07830;
+  --slate:#1A3050;--blue:#2563A8;--cbblue:#0D2B4E;
+  --purple:#7B5EA7;
+  --amber:#7A5C00;--amberbg:#FFF8DC;
+  --text:#000;--text2:#1a1a1a;--text3:#555;
+  --white:#fff;--card:#FFFDF8;--border:#D4C9B0;
+  --fbg:#EEF5F0;--hbg:#FFF8E6;
+}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--bg);color:var(--text);font-size:20px;line-height:1.75}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px 80px}
+
+/* ---------- overflow safety (locked, per spec) ---------- */
+.k, .formula-text, .qtxt, .sol-body, .given-row{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:3px 0}
+
+/* HEADER */
+.site-header{background:var(--green3);border-bottom:3px solid var(--gold)}
+.header-inner{display:flex;align-items:center;gap:16px;padding:12px 24px;max-width:960px;margin:0 auto}
+.logo-mark{width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--green3);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;font-size:16px;flex-shrink:0}
+.ht-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--white);line-height:1.1}
+.ht-tag{font-size:11px;color:var(--gold2);letter-spacing:.05em;margin-top:2px}
+.hr-right{margin-left:auto;text-align:right}
+.hr-board{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.hr-ch{font-family:'Playfair Display',serif;font-size:15px;color:var(--white);font-weight:700}
+
+/* HERO */
+.hero{background:var(--green);padding:22px 28px;border-radius:0 0 14px 14px;margin-bottom:22px;position:relative;overflow:hidden}
+.hero::after{content:'x²';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:110px;color:rgba(255,255,255,.05);pointer-events:none;font-family:'Crimson Pro',serif}
+.h-lbl{font-size:10px;font-weight:700;color:var(--gold2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.h-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:800;color:var(--white);line-height:1.1;margin-bottom:5px}
+.h-sub{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:16px}
+.h-pills{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.h-pill{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);color:var(--white);font-size:11px;font-weight:600;padding:3px 12px;border-radius:20px;font-family:'JetBrains Mono',monospace}
+.h-stats{display:flex;gap:8px;flex-wrap:wrap}
+.h-stat{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);border-radius:9px;padding:9px 16px;text-align:center}
+.h-stat .n{font-size:22px;font-weight:700;color:var(--white);font-family:'Playfair Display',serif}
+.h-stat .l{font-size:10px;color:var(--gold2);font-weight:600;letter-spacing:.03em}
+
+/* TABS */
+.tabs{display:flex;gap:5px;flex-wrap:wrap;background:var(--bg2);padding:7px;border-radius:11px;border:1px solid var(--border);margin-bottom:20px}
+.tab-btn{flex:1;min-width:100px;padding:9px 8px;font-size:15px;font-weight:700;border:2px solid transparent;cursor:pointer;border-radius:8px;transition:all .16s;font-family:'Crimson Pro',serif;background:transparent;color:var(--text3)}
+.tab-btn:not(.active):hover{background:var(--bg3);color:var(--text)}
+.tb-concepts.active{background:var(--green);color:var(--white);border-color:var(--green)}
+.tb-solving.active{background:var(--purple);color:var(--white);border-color:var(--purple)}
+.tb-words.active{background:var(--slate);color:var(--white);border-color:var(--slate)}
+.tb-pyq.active{background:var(--purple);color:var(--white);border-color:var(--purple)}
+.subtab{font-size:13px;min-width:auto;padding:8px 10px}
+.subtab.active{background:var(--slate);color:var(--white);border-color:var(--slate)}
+
+/* DIFFICULTY FILTER */
+.diff-filter{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.df-btn{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:6px 15px;border-radius:20px;border:2px solid var(--border);background:var(--card);color:var(--text3);cursor:pointer;transition:all .15s;letter-spacing:.02em}
+.df-btn:hover{border-color:var(--green2)}
+.df-btn.active[data-f="all"]{background:var(--green3);border-color:var(--green3);color:var(--white)}
+.df-btn.active[data-f="e"]{background:#DFF5E3;border-color:#1A5C2A;color:#1A5C2A}
+.df-btn.active[data-f="m"]{background:#FFF3CC;border-color:#7A5500;color:#7A5500}
+.df-btn.active[data-f="h"]{background:#FFE5E5;border-color:#8B1A1A;color:#8B1A1A}
+.df-count{font-size:12px;color:var(--text3);align-self:center;margin-left:2px;font-family:'JetBrains Mono',monospace}
+
+/* SECTION HEAD */
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.sec-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0;font-family:'JetBrains Mono',monospace;color:var(--white)}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--green)}
+.sec-badge{margin-left:auto;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+
+/* FORMULA / HIGHLIGHT / THEOREM BOXES (Concepts tab) */
+.fbox{background:var(--fbg);border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:13px 16px;margin:10px 0;position:relative}
+.fbox::before{content:'FORMULA';position:absolute;top:7px;right:11px;font-size:9px;font-weight:700;color:var(--green2);letter-spacing:.1em;font-family:'JetBrains Mono',monospace;opacity:.5}
+.fbox .fl{font-size:10px;font-weight:700;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.fbox .fm{font-size:19px;font-weight:600;color:var(--green3);line-height:1.9}
+.fbox .fn{font-size:15px;color:var(--text2);margin-top:5px;line-height:1.6}
+.hbox{background:var(--hbg);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:11px 15px;margin:10px 0}
+.hbox .hl{font-size:10px;font-weight:700;color:var(--gold3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.hbox .ht{font-size:16px;color:var(--text2);line-height:1.7}
+.tbox{background:var(--card);border:2px solid var(--green);border-radius:10px;padding:15px 18px;margin:12px 0}
+.mba-note{font-size:13px;font-weight:700;color:#8B1A1A;background:#FFF3F0;border-left:3px solid #C94040;padding:5px 11px;border-radius:0 6px 6px 0;margin:6px 0 10px}
+.mba-note b{color:#6B1414}
+.tbox .tl{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--white);background:var(--green);padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:9px;letter-spacing:.04em}
+.tbox .tb{font-size:16px;color:var(--text2);line-height:1.8}
+
+/* CONCEPT CARD */
+.cc{background:var(--card);border:1px solid var(--border);border-radius:11px;margin-bottom:13px;overflow:hidden;box-shadow:0 2px 7px rgba(45,90,61,.07)}
+.cc-head{background:var(--green3);padding:11px 16px;display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none}
+.cc-head .ci{font-size:16px}
+.cc-head .ct{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--white);flex:1}
+.cc-head .ca{color:var(--gold2);font-size:13px;transition:transform .2s}
+.cc-head.open .ca{transform:rotate(180deg)}
+.cc-body{display:none;padding:16px 18px;border-top:2px solid var(--border)}
+.cc-body.open{display:block}
+.cc-body p{font-size:16px;color:var(--text2);line-height:1.8;margin-bottom:9px}
+.cc-body svg{width:100%;height:auto;display:block;margin:10px auto}
+.ctbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.ctbl th{background:var(--green3);color:var(--white);padding:9px 13px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700}
+.ctbl td{padding:9px 13px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+.ctbl tr:nth-child(even) td{background:var(--bg2)}
+
+/* QUESTION CARD */
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:11px;margin-bottom:13px;overflow:hidden;box-shadow:0 2px 7px rgba(45,90,61,.07)}
+.q-stripe{height:4px}
+.qcard.q-1m .q-stripe{background:linear-gradient(90deg,var(--green),var(--green2))}
+.qcard.q-2m .q-stripe{background:linear-gradient(90deg,var(--purple),#A07BD4)}
+.qcard.q-3m .q-stripe{background:linear-gradient(90deg,var(--gold3),var(--gold))}
+.qcard.q-la .q-stripe{background:linear-gradient(90deg,var(--slate),var(--blue))}
+
+.q-head{background:var(--green3);padding:12px 16px;display:flex;flex-direction:column;gap:8px}
+.qcard.q-2m .q-head{background:var(--purple)}
+.qcard.q-la .q-head{background:var(--slate)}
+.q-head-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.qnb{min-width:32px;height:32px;border-radius:7px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;padding:0 6px;background:rgba(255,255,255,.2);color:var(--white)}
+.qtxt{font-size:19px;font-weight:600;color:var(--white);line-height:1.6;width:100%;font-family:'Crimson Pro',serif}
+.qmp{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;font-family:'JetBrains Mono',monospace;background:rgba(255,255,255,.2);color:var(--white)}
+.star{font-size:14px;flex-shrink:0}
+.diff{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap;flex-shrink:0}
+.diff-e{background:#DFF5E3;color:#1A5C2A}
+.diff-m{background:#FFF3CC;color:#7A5500}
+.diff-h{background:#FFE5E5;color:#8B1A1A}
+
+/* MCQ OPTIONS */
+.mcq-opts{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:13px 16px;background:#FAFAF5;border-bottom:1px solid var(--border)}
+.mopt{padding:10px 14px;border-radius:8px;font-size:18px;cursor:pointer;border:2px solid var(--border);background:var(--card);color:var(--text);transition:all .15s;text-align:left;font-family:'Crimson Pro',serif;font-weight:600}
+.mopt:hover:not(.locked){border-color:var(--green2);background:var(--fbg)}
+.mopt.correct{border-color:var(--green);background:#EEF5F0;color:var(--green3)}
+.mopt.wrong{border-color:var(--amber);background:var(--amberbg);color:var(--amber)}
+.mcq-res{display:none;padding:9px 16px 12px;background:#FAFAF5}
+.mcq-res.show{display:block}
+.mcq-res .ml{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.mcq-res.ok .ml{color:var(--green)}.mcq-res.wr .ml{color:var(--amber)}
+.mcq-res .mt{font-size:15px;color:var(--text2);line-height:1.7}
+
+/* FOOTER */
+.q-foot{background:rgba(45,90,61,.06);padding:7px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border)}
+.qsrc{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.src-worksheet{background:#EEF5F0;color:var(--green3)}
+.src-pyq{background:#F0EBF8;color:var(--purple)}
+.pyq-pills{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.pyq-lbl{font-size:9px;font-weight:700;color:var(--text3);font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+.pyq-yr{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;font-family:'JetBrains Mono',monospace;background:#F0EBF8;color:var(--purple);border:1px solid #C4B0E8}
+.sol-btn{margin-left:auto;font-size:11px;font-weight:700;padding:4px 13px;border-radius:7px;border:2px solid var(--green);background:transparent;cursor:pointer;color:var(--green);transition:all .15s;font-family:'JetBrains Mono',monospace}
+.sol-btn:hover{background:var(--green);color:var(--white)}
+.rep-btn{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid #E0C9C9;background:#FBF3F3;color:#9A2B2B;cursor:pointer;transition:all .15s;white-space:nowrap}
+.rep-btn:hover{background:#F3E3E3;border-color:#C99}
+.rep-btn.sent{background:#EEF5F0;border-color:var(--green);color:var(--green)}
+.rep-modal{display:none;position:fixed;inset:0;background:rgba(26,61,40,.55);z-index:999;align-items:center;justify-content:center;padding:18px}
+.rep-modal.show{display:flex}
+.rep-card{background:var(--card);border:2px solid var(--green);border-radius:14px;max-width:440px;width:100%;padding:20px;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.rep-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--green);margin-bottom:8px}
+.rep-ctx{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3);background:var(--bg2);border-radius:7px;padding:7px 10px;margin-bottom:12px}
+.rep-ta{width:100%;min-height:90px;font-family:'Crimson Pro',serif;font-size:17px;border:1.5px solid var(--border);border-radius:9px;padding:10px 12px;resize:vertical}
+.rep-ta:focus{outline:none;border-color:var(--gold)}
+.rep-status{font-size:13px;color:var(--green);min-height:18px;margin:10px 0 4px;font-weight:600}
+.rep-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+.rep-cancel{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 16px;border-radius:8px;border:1.5px solid var(--border);background:#fff;color:var(--text3);cursor:pointer}
+.rep-send{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 18px;border-radius:8px;border:none;background:var(--green);color:#fff;cursor:pointer;font-weight:700}
+.rep-send:hover{background:var(--green3)}
+
+/* MB TIP (hard questions only) */
+.mbtip{background:#FFF8E6;border:2px dashed var(--gold3);border-radius:10px;padding:11px 15px;margin:10px 16px}
+.mbtip-lbl{font-size:10px;font-weight:700;color:var(--gold3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.mbtip-text{font-size:15px;color:var(--text2);line-height:1.65}
+
+/* SOLUTION BODY */
+.sol-body{display:none;border-top:2px solid var(--border)}
+.sol-body.open{display:block}
+.given-blk{background:var(--fbg);padding:10px 16px;border-bottom:1px solid #C8DCCC}
+.given-lbl{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.given-row{font-size:17px;color:var(--text2);line-height:1.7;margin-bottom:3px}
+/* SIMPLIFICATION TABLE (word-problem given-data organiser) */
+.simp-tbl-wrap{margin:8px 0 4px}
+.simp-tbl{width:100%;border-collapse:collapse;font-size:15px;background:var(--white);border:1px solid #C8DCCC;border-radius:6px;overflow:hidden}
+.simp-tbl th{background:var(--green);color:var(--white);padding:6px 11px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.03em}
+.simp-tbl td{padding:6px 11px;border-bottom:1px solid var(--border);color:var(--text2)}
+.simp-tbl tr:last-child td{border-bottom:none}
+.simp-tbl tr:nth-child(even) td{background:var(--bg2)}
+.formula-blk{background:var(--hbg);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:10px 16px;margin:10px 16px;border-bottom:1px solid #E8D8A0;position:relative}
+.formula-lbl{font-size:9px;font-weight:700;color:var(--gold3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;font-family:'JetBrains Mono',monospace}
+.formula-text{font-size:16px;font-weight:600;color:var(--green3);line-height:1.7}
+.ysec{padding:14px 16px;border-bottom:1px solid var(--border)}
+.ysec:last-of-type{border-bottom:none}
+.y-lbl{display:inline-block;background:var(--green3);color:var(--white);font-size:10px;font-weight:700;padding:2px 10px;border-radius:4px;margin-bottom:12px;letter-spacing:.04em;font-family:'JetBrains Mono',monospace}
+.k{font-size:17px;color:var(--green3);background:var(--fbg);border-left:3px solid var(--green);padding:6px 12px;border-radius:0 6px 6px 0;margin:4px 0 5px;display:block}
+.p{font-size:17px;color:var(--text2);line-height:1.7;margin-bottom:6px}
+.p b{color:var(--green3)}
+.gr{font-size:14px;color:var(--text3);font-style:italic;margin-left:4px;display:block;margin-bottom:4px}
+.final-ans{background:var(--green3);padding:11px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fa-lbl{font-size:11px;font-weight:700;color:var(--gold2);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
+.fav{font-size:18px;font-weight:700;color:var(--white);font-family:'Crimson Pro',serif}
+
+.panel{animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+footer{text-align:center;padding:26px;color:var(--text3);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="header-inner">
+    <div class="logo-mark">MBA</div>
+    <div><div class="ht-name">Maths Bridge Academy</div><div class="ht-tag">Nurturing Young Minds Through Maths Mastery</div></div>
+    <div class="hr-right"><div class="hr-board">ICSE · Class 10</div><div class="hr-ch">Quadratic Equations</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+<div class="hero">
+  <div class="h-lbl">ICSE Class 10 Mathematics</div>
+  <div class="h-title">Quadratic Equations</div>
+  <div class="h-sub">Standard Form · Factorisation &amp; Formula · Nature of Roots · Word Problems</div>
+  <div class="h-pills">
+    <span class="h-pill">Classwork Q1–Q18</span>
+    <span class="h-pill">Word Problems Q1–Q34</span>
+    <span class="h-pill">Board PYQs 2018–2025</span>
+  </div>
+  <div class="h-stats">
+    <div class="h-stat"><div class="n">58</div><div class="l">SOLVING CARDS</div></div>
+    <div class="h-stat"><div class="n">34</div><div class="l">WORD PROBLEMS</div></div>
+    <div class="h-stat"><div class="n">18</div><div class="l">BOARD PYQs</div></div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn tb-concepts active" id="btn-concepts" onclick="sw('concepts')">Concepts</button>
+  <button class="tab-btn tb-solving" id="btn-solving" onclick="sw('solving')">Solving Equations</button>
+  <button class="tab-btn tb-words" id="btn-words" onclick="sw('words')">Word Problems</button>
+  <button class="tab-btn tb-pyq" id="btn-pyq" onclick="sw('pyq')">Board PYQs</button>
+</div>
+
+<div id="panel-concepts" class="panel">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--green)">C</div><div class="sec-title">Key Concepts</div><span class="sec-badge" style="background:#EEF5F0;color:var(--green3);border:1px solid #A8C8B0">Theory &amp; Formulae</span></div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">📄</span><span class="ct">1. Standard Form of a Quadratic Equation</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="fbox"><div class="fl">Standard Form</div><div class="fm">\( ax^2+bx+c=0,\ \ a\neq 0 \)</div><div class="fn">a, b, c are real numbers; a is the coefficient of \(x^2\), b of x, and c is the constant term.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> If the highest power of x after full expansion is not 2, the equation is NOT quadratic (could be linear or higher degree).</div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🧮</span><span class="ct">2. Solving Methods</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="fbox"><div class="fl">Factorisation (splitting the middle term)</div><div class="fm">\( ax^2+bx+c=0 \)</div><div class="fn">Split b into two parts whose product is \(a\times c\) and whose sum is b, then factor by grouping.</div></div>
+      <div class="fbox"><div class="fl">Quadratic Formula</div><div class="fm">\( x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a} \)</div><div class="fn">Works for every quadratic equation, even when factorisation is not obvious.</div></div>
+      <div class="hbox"><div class="hl">Which method to use</div><div class="ht">Try factorisation first — it is quicker when the roots are rational. If the numbers don't split cleanly, or the question says "using the quadratic formula" / "correct to 2 decimal places", go straight to the formula.</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🔎</span><span class="ct">3. Nature of Roots (Discriminant)</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="fbox"><div class="fl">Discriminant</div><div class="fm">\( D=b^2-4ac \)</div></div>
+      <table class="ctbl">
+        <tr><th>Value of D</th><th>Nature of Roots</th></tr>
+        <tr><td>\( D>0 \), a perfect square</td><td>Real, unequal and rational</td></tr>
+        <tr><td>\( D>0 \), not a perfect square</td><td>Real, unequal and irrational</td></tr>
+        <tr><td>\( D=0 \)</td><td>Real and equal</td></tr>
+        <tr><td>\( D<0 \)</td><td>No real roots (imaginary)</td></tr>
+      </table>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> "Equal roots" always means D = 0 — set up that equation whenever a question asks for an unknown that makes the roots equal.</div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🔗</span><span class="ct">4. Framing an Equation from Given Roots</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="fbox"><div class="fl">From two roots \(\alpha,\beta\)</div><div class="fm">\( (x-\alpha)(x-\beta)=0 \)</div><div class="fn">Expand and simplify to standard form. If the roots are fractions, clear denominators at the end.</div></div>
+      <div class="fbox"><div class="fl">Verifying a root</div><div class="fm">\( \text{Substitute } x=\text{given value into LHS; if LHS}=\text{RHS, it is a root} \)</div></div>
+      <div class="fbox"><div class="fl">Finding an unknown coefficient from a given root</div><div class="fm">\( \text{Substitute the given root into the equation and solve for the unknown} \)</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">📝</span><span class="ct">5. Word Problems — Setting Up the Equation</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">THE PATTERN</span><div class="tb">Assign a variable (usually x) to the unknown quantity asked for, express every other quantity in the problem in terms of x, translate the given condition into an equation, solve it, and reject any root that does not fit the physical situation (e.g. negative length, negative age, negative number of people).</div></div>
+      <div class="hbox"><div class="hl">Organise before you equate</div><div class="ht">Whenever a problem gives several related quantities (ratios, speeds, ages, costs), list them in a simplification table first — it prevents mixing up which expression belongs to which unknown before the equation is framed.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> Always check both roots against the real-world condition (e.g. "natural number", "positive speed") before writing the final answer — reject the root that doesn't fit.</div>
+    </div>
+  </div>
+</div>
+
+<div id="panel-solving" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--purple)">A</div><div class="sec-title">Solving Quadratic Equations</div><span class="sec-badge" style="background:#F0EBF8;color:var(--purple);border:1px solid #C4B0E8">Section A style · Classwork Q1–Q18</span></div>
+  <div class="diff-filter" id="filter-solving-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('solving-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('solving-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('solving-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('solving-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-solving-qs"></span>
+  </div>
+  <div id="solving-qs"></div>
+</div>
+
+<div id="panel-words" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--slate)">B</div><div class="sec-title">Word Problems</div><span class="sec-badge" style="background:#E8EEF5;color:var(--slate);border:1px solid #A0B4C8">34 Questions · by Type</span></div>
+
+  <div class="tabs" style="margin-bottom:16px">
+    <button class="tab-btn subtab active" id="wsub-btn-numbers" onclick="swWord('numbers')">Numbers</button>
+    <button class="tab-btn subtab" id="wsub-btn-digits" onclick="swWord('digits')">Digit Problems</button>
+    <button class="tab-btn subtab" id="wsub-btn-fractions" onclick="swWord('fractions')">Fractions</button>
+    <button class="tab-btn subtab" id="wsub-btn-geometry" onclick="swWord('geometry')">Geometry &amp; Mensuration</button>
+    <button class="tab-btn subtab" id="wsub-btn-ages" onclick="swWord('ages')">Ages</button>
+    <button class="tab-btn subtab" id="wsub-btn-speed" onclick="swWord('speed')">Speed, Distance &amp; Time</button>
+    <button class="tab-btn subtab" id="wsub-btn-cost" onclick="swWord('cost')">Cost &amp; Quantity</button>
+  </div>
+
+  <div id="wordsub-numbers" class="wordsub">
+    <div class="diff-filter" id="filter-words-numbers-qs">
+      <button class="df-btn active" data-f="all" onclick="filterDiff('words-numbers-qs','all',this)">All</button>
+      <button class="df-btn" data-f="e" onclick="filterDiff('words-numbers-qs','e',this)">Easy</button>
+      <button class="df-btn" data-f="m" onclick="filterDiff('words-numbers-qs','m',this)">Medium</button>
+      <button class="df-btn" data-f="h" onclick="filterDiff('words-numbers-qs','h',this)">Hard</button>
+      <span class="df-count" id="count-words-numbers-qs"></span>
+    </div>
+    <div id="words-numbers-qs"></div>
+  </div>
+
+  <div id="wordsub-digits" class="wordsub" style="display:none">
+    <div class="diff-filter" id="filter-words-digits-qs">
+      <button class="df-btn active" data-f="all" onclick="filterDiff('words-digits-qs','all',this)">All</button>
+      <button class="df-btn" data-f="e" onclick="filterDiff('words-digits-qs','e',this)">Easy</button>
+      <button class="df-btn" data-f="m" onclick="filterDiff('words-digits-qs','m',this)">Medium</button>
+      <button class="df-btn" data-f="h" onclick="filterDiff('words-digits-qs','h',this)">Hard</button>
+      <span class="df-count" id="count-words-digits-qs"></span>
+    </div>
+    <div id="words-digits-qs"></div>
+  </div>
+
+  <div id="wordsub-fractions" class="wordsub" style="display:none">
+    <div class="diff-filter" id="filter-words-fractions-qs">
+      <button class="df-btn active" data-f="all" onclick="filterDiff('words-fractions-qs','all',this)">All</button>
+      <button class="df-btn" data-f="e" onclick="filterDiff('words-fractions-qs','e',this)">Easy</button>
+      <button class="df-btn" data-f="m" onclick="filterDiff('words-fractions-qs','m',this)">Medium</button>
+      <button class="df-btn" data-f="h" onclick="filterDiff('words-fractions-qs','h',this)">Hard</button>
+      <span class="df-count" id="count-words-fractions-qs"></span>
+    </div>
+    <div id="words-fractions-qs"></div>
+  </div>
+
+  <div id="wordsub-geometry" class="wordsub" style="display:none">
+    <div class="diff-filter" id="filter-words-geometry-qs">
+      <button class="df-btn active" data-f="all" onclick="filterDiff('words-geometry-qs','all',this)">All</button>
+      <button class="df-btn" data-f="e" onclick="filterDiff('words-geometry-qs','e',this)">Easy</button>
+      <button class="df-btn" data-f="m" onclick="filterDiff('words-geometry-qs','m',this)">Medium</button>
+      <button class="df-btn" data-f="h" onclick="filterDiff('words-geometry-qs','h',this)">Hard</button>
+      <span class="df-count" id="count-words-geometry-qs"></span>
+    </div>
+    <div id="words-geometry-qs"></div>
+  </div>
+
+  <div id="wordsub-ages" class="wordsub" style="display:none">
+    <div class="diff-filter" id="filter-words-ages-qs">
+      <button class="df-btn active" data-f="all" onclick="filterDiff('words-ages-qs','all',this)">All</button>
+      <button class="df-btn" data-f="e" onclick="filterDiff('words-ages-qs','e',this)">Easy</button>
+      <button class="df-btn" data-f="m" onclick="filterDiff('words-ages-qs','m',this)">Medium</button>
+      <button class="df-btn" data-f="h" onclick="filterDiff('words-ages-qs','h',this)">Hard</button>
+      <span class="df-count" id="count-words-ages-qs"></span>
+    </div>
+    <div id="words-ages-qs"></div>
+  </div>
+
+  <div id="wordsub-speed" class="wordsub" style="display:none">
+    <div class="diff-filter" id="filter-words-speed-qs">
+      <button class="df-btn active" data-f="all" onclick="filterDiff('words-speed-qs','all',this)">All</button>
+      <button class="df-btn" data-f="e" onclick="filterDiff('words-speed-qs','e',this)">Easy</button>
+      <button class="df-btn" data-f="m" onclick="filterDiff('words-speed-qs','m',this)">Medium</button>
+      <button class="df-btn" data-f="h" onclick="filterDiff('words-speed-qs','h',this)">Hard</button>
+      <span class="df-count" id="count-words-speed-qs"></span>
+    </div>
+    <div id="words-speed-qs"></div>
+  </div>
+
+  <div id="wordsub-cost" class="wordsub" style="display:none">
+    <div class="diff-filter" id="filter-words-cost-qs">
+      <button class="df-btn active" data-f="all" onclick="filterDiff('words-cost-qs','all',this)">All</button>
+      <button class="df-btn" data-f="e" onclick="filterDiff('words-cost-qs','e',this)">Easy</button>
+      <button class="df-btn" data-f="m" onclick="filterDiff('words-cost-qs','m',this)">Medium</button>
+      <button class="df-btn" data-f="h" onclick="filterDiff('words-cost-qs','h',this)">Hard</button>
+      <span class="df-count" id="count-words-cost-qs"></span>
+    </div>
+    <div id="words-cost-qs"></div>
+  </div>
+</div>
+
+<div id="panel-pyq" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--purple)">P</div><div class="sec-title">Board PYQs (2018–2025)</div><span class="sec-badge" style="background:#F0EBF8;color:var(--purple);border:1px solid #C4B0E8">MCQs + Short/Long Answer</span></div>
+  <div class="diff-filter" id="filter-pyq-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('pyq-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('pyq-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('pyq-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('pyq-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-pyq-qs"></span>
+  </div>
+  <div id="pyq-qs"></div>
+</div>
+
+</div>
+
+<footer>Maths Bridge Academy · ICSE Class 10 · Quadratic Equations &nbsp;|&nbsp; Found an error? Use the Report button on that card.</footer>
+
+<div class="rep-modal" id="rep-modal">
+  <div class="rep-card">
+    <div class="rep-title">Report an error</div>
+    <div class="rep-ctx" id="rep-ctx"></div>
+    <textarea class="rep-ta" id="rep-msg" placeholder="What looks wrong? (e.g. Step 3 arithmetic, final answer, wrong option marked...)"></textarea>
+    <div class="rep-status" id="rep-status"></div>
+    <div class="rep-actions">
+      <button class="rep-cancel" onclick="repClose()">Cancel</button>
+      <button class="rep-send" onclick="repSend()">Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== ERROR REPORT CONFIG ===== */
+const REPORT_META = { board:'ICSE', grade:'10', chapter:'Quadratic Equations' };
+const REPORT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx3vGZZjTHbAnKtOwSz6TaWtpYtnudCzxKMtm3Eo9bB4Ey6Xlor6LunLFEmyIQQy5e6/exec';
+/* ================================ */
+var _repCtx = {};
+function reportError(card, btn){
+  var parts = String(card).split(' ');
+  _repCtx = { tab: parts[0]||'', qno: parts[1]||card, btn: btn };
+  document.getElementById('rep-ctx').textContent =
+    REPORT_META.board+' · Grade '+REPORT_META.grade+' · '+REPORT_META.chapter+' · '+_repCtx.tab+' · '+_repCtx.qno;
+  document.getElementById('rep-msg').value='';
+  document.getElementById('rep-status').textContent='';
+  document.getElementById('rep-modal').classList.add('show');
+  document.getElementById('rep-msg').focus();
+}
+function repClose(){ document.getElementById('rep-modal').classList.remove('show'); }
+function repSend(){
+  var msg = document.getElementById('rep-msg').value.trim();
+  var status = document.getElementById('rep-status');
+  if(!msg){ status.style.color='#9A2B2B'; status.textContent='Please type what is wrong.'; return; }
+  status.style.color='var(--green)'; status.textContent='Sending...';
+  var qs = 'board='+encodeURIComponent(REPORT_META.board)
+         +'&grade='+encodeURIComponent(REPORT_META.grade)
+         +'&chapter='+encodeURIComponent(REPORT_META.chapter)
+         +'&tab='+encodeURIComponent(_repCtx.tab)
+         +'&qno='+encodeURIComponent(_repCtx.qno)
+         +'&error='+encodeURIComponent(msg);
+  function done(){
+    status.style.color='var(--green)'; status.textContent='\u2713 Thank you! Reported.';
+    if(_repCtx.btn){ _repCtx.btn.classList.add('sent'); _repCtx.btn.textContent='\u2713 Reported'; }
+    setTimeout(repClose, 1200);
+  }
+  fetch(REPORT_ENDPOINT+'?'+qs, { method:'GET', mode:'no-cors' }).then(done).catch(done);
+}
+function reportBtn(card, alone){
+  var ml = alone ? 'style="margin-left:auto"' : '';
+  return '<button class="rep-btn" '+ml+' onclick="reportError(\''+card+'\', this)" title="Found a mistake? Report it">\u26a0 Report error</button>';
+}
+function updateCount(cid){
+  var el = document.getElementById('count-'+cid);
+  if(!el) return;
+  var all = document.querySelectorAll('#'+cid+' .qcard');
+  var visible = document.querySelectorAll('#'+cid+' .qcard:not([style*="display: none"])');
+  el.textContent = 'Showing '+visible.length+' of '+all.length;
+}
+function filterDiff(cid, level, btn){
+  var bar = document.getElementById('filter-'+cid);
+  bar.querySelectorAll('.df-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var cards = document.querySelectorAll('#'+cid+' .qcard');
+  cards.forEach(function(card){
+    card.style.display = (level==='all' || card.getAttribute('data-diff')===level) ? '' : 'none';
+  });
+  updateCount(cid);
+}
+function toggleCC(h){ h.classList.toggle('open'); h.nextElementSibling.classList.toggle('open'); }
+function sw(id){
+  ['concepts','solving','words','pyq'].forEach(function(t){
+    document.getElementById('panel-'+t).style.display = t===id ? 'block' : 'none';
+    var b = document.getElementById('btn-'+t);
+    b.classList.remove('active');
+    if(t===id) b.classList.add('active');
+  });
+  renderMathIn(document.getElementById('panel-'+id));
+}
+var WORD_CATS = ['numbers','digits','fractions','geometry','ages','speed','cost'];
+function swWord(cat){
+  WORD_CATS.forEach(function(c){
+    document.getElementById('wordsub-'+c).style.display = c===cat ? 'block' : 'none';
+    var b = document.getElementById('wsub-btn-'+c);
+    b.classList.remove('active');
+    if(c===cat) b.classList.add('active');
+  });
+  renderMathIn(document.getElementById('wordsub-'+cat));
+}
+function pyqPills(yrs){
+  if(!yrs || !yrs.length) return '';
+  var pills = yrs.map(function(y){ return '<span class="pyq-yr">'+y+'</span>'; }).join('');
+  return '<span class="pyq-lbl">PYQ:</span><div class="pyq-pills">'+pills+'</div>';
+}
+function togSol(btn){
+  var b = btn.closest('.qcard').querySelector('.sol-body');
+  var open = b.classList.toggle('open');
+  btn.textContent = open ? 'Hide Solution' : 'Show Solution';
+  if(open) renderMathIn(b);
+}
+function chk(btn,id,chosen,correct){
+  var all = btn.closest('.mcq-opts').querySelectorAll('.mopt');
+  all.forEach(function(b){ b.classList.add('locked'); });
+  all.forEach(function(b,i){
+    if(i===correct) b.classList.add('correct');
+    else if(i===chosen) b.classList.add('wrong');
+  });
+  var res = document.getElementById('mr-'+id);
+  res.classList.add('show');
+  if(chosen===correct){
+    res.classList.add('ok');
+    res.querySelector('.ml').textContent = '\u2713 Correct!';
+    res.querySelector('.mt').innerHTML = 'Correct: '+all[correct].textContent.trim();
+  } else {
+    res.classList.add('wr');
+    res.querySelector('.ml').textContent = '\u2717 Incorrect';
+    res.querySelector('.mt').innerHTML = 'Correct answer: '+all[correct].textContent.trim();
+  }
+}
+function buildRow(r){
+  if(!r) return '';
+  if(r.t==='p') return '<div class="p">'+r.text+'</div>';
+  if(r.t==='gr') return '<div class="gr">'+r.text+'</div>';
+  if(r.t==='k') return '<div class="k">\\[ '+r.text+' \\]</div>';
+  if(r.t==='div') return '<hr style="border:none;border-top:1px dashed var(--border);margin:6px 0">';
+  return '';
+}
+function buildSections(sections){
+  return (sections||[]).map(function(sec){
+    var rows = sec.rows.map(buildRow).join('');
+    return '<div class="ysec"><div class="y-lbl">'+sec.label+'</div>'+rows+'</div>';
+  }).join('');
+}
+function buildGiven(given){
+  if(!given || !given.length) return '';
+  var rows = given.map(function(g){ return '<div class="given-row">'+g+'</div>'; }).join('');
+  return '<div class="given-blk"><div class="given-lbl">Given</div>'+rows+'</div>';
+}
+/* SIMPLIFICATION TABLE — used in word problems to organise given quantities before framing the equation */
+function buildSimpTable(tbl){
+  if(!tbl || !tbl.rows || !tbl.rows.length) return '';
+  var head = '<tr>'+tbl.headers.map(function(h){ return '<th>'+h+'</th>'; }).join('')+'</tr>';
+  var body = tbl.rows.map(function(r){ return '<tr>'+r.map(function(c){ return '<td>'+c+'</td>'; }).join('')+'</tr>'; }).join('');
+  return '<div class="simp-tbl-wrap"><table class="simp-tbl">'+head+body+'</table></div>';
+}
+function buildMbTip(tip){
+  if(!tip) return '';
+  return '<div class="mbtip"><div class="mbtip-lbl">\ud83d\udca1 MB Tip</div><div class="mbtip-text">'+tip+'</div></div>';
+}
+function buildFormula(formula){
+  if(!formula) return '';
+  return '<div class="formula-blk"><div class="formula-lbl">Formula</div><div class="formula-text">\\[ '+formula+' \\]</div></div>';
+}
+function buildMbaNotes(notes){
+  if(!notes) return '';
+  var arr = Array.isArray(notes) ? notes : [notes];
+  return arr.map(function(n){ return '<div class="mba-note">\u26a0\ufe0f <b>MBA Note:</b> '+n+'</div>'; }).join('');
+}
+function renderMathIn(container){
+  if(window.renderMathInElement && container){
+    renderMathInElement(container, {
+      delimiters:[{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],
+      throwOnError:false
+    });
+  }
+}
+function render(cid, data){
+  var c = document.getElementById(cid);
+  data.forEach(function(q, i){
+    var diff = q.diff || 'm';
+    var div = document.createElement('div');
+    div.className = 'qcard ' + q.m;
+    div.setAttribute('data-diff', diff);
+    var star = q.star ? '<span class="star" title="Board-frequent pattern">\u2b50</span>' : '';
+    var srcHtml = '<span class="qsrc src-'+q.sc+'">'+q.src+'</span>';
+    var qid = cid+'-'+i;
+    var cardLbl = cid.replace('-qs','').toUpperCase()+' Q'+(i+1);
+    var diffLbl = {'e':'Easy','m':'Medium','h':'Hard'}[diff];
+
+    if(q.type === 'mcq'){
+      var mopts = q.opts.map(function(o,oi){
+        return '<button class="mopt" onclick="chk(this,\''+qid+'\','+oi+','+q.ans+')">'+o+'</button>';
+      }).join('');
+      var mcqSolBtn = q.sol ? '<button class="sol-btn" onclick="togSol(this)">Show Solution</button>' : '';
+      var mcqSolBody = q.sol ? '<div class="sol-body">'+buildSections(q.sol)+'<div class="final-ans"><span class="fa-lbl">Answer</span><span class="fav">'+q.opts[q.ans]+'</span></div></div>' : '';
+      div.innerHTML =
+        '<div class="q-stripe"></div>'+
+        '<div class="q-head"><div class="q-head-top"><div class="qnb">Q'+(i+1)+'</div><span class="qmp">'+q.marks+'</span>'+star+'<span class="diff diff-'+diff+'">'+diffLbl+'</span></div><div class="qtxt">'+q.q+'</div></div>'+
+        buildMbaNotes(q.mbanote)+
+        '<div class="mcq-opts">'+mopts+'</div>'+
+        '<div class="mcq-res" id="mr-'+qid+'"><div class="ml"></div><div class="mt"></div></div>'+
+        '<div class="q-foot">'+srcHtml+mcqSolBtn+reportBtn(cardLbl,!q.sol)+'</div>'+
+        mcqSolBody;
+    } else {
+      div.innerHTML =
+        '<div class="q-stripe"></div>'+
+        '<div class="q-head"><div class="q-head-top"><div class="qnb">Q'+(i+1)+'</div><span class="qmp">'+q.marks+'</span>'+star+'<span class="diff diff-'+diff+'">'+diffLbl+'</span></div><div class="qtxt">'+q.q+'</div></div>'+
+        buildMbaNotes(q.mbanote)+
+        '<div class="q-foot">'+srcHtml+'<button class="sol-btn" onclick="togSol(this)">Show Solution</button>'+reportBtn(cardLbl,false)+'</div>'+
+        '<div class="sol-body">'+buildGiven(q.given)+buildSimpTable(q.table)+buildMbTip(q.mbtip)+buildFormula(q.formula)+buildSections(q.sections)+'<div class="final-ans"><span class="fa-lbl">Answer</span><span class="fav">'+q.ans+'</span></div></div>';
+    }
+    c.appendChild(div);
+  });
+}
+function S(strings, ...vals){ return String.raw(strings, ...vals); }
+
+/* =========================================================================
+   SOLVING QUADRATIC EQUATIONS — Classwork Q1–Q18 (Section A style)
+   All answers recomputed and verified with sympy before entry.
+   ========================================================================= */
+const solvingData = [
+{ m:'q-1m', diff:'e', marks:'1 Mark', src:'Classwork Q1(i)', sc:'worksheet', star:false,
+  q:'Is \\((3x-1)^2=5(x+8)\\) a quadratic equation?',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`(3x-1)^2=5(x+8)`},
+    {t:'k', text:S`9x^2-6x+1=5x+40`},
+    {t:'k', text:S`\therefore 9x^2-11x-39=0`},
+    {t:'p', text:'Highest power of x is 2 — <b>Quadratic (Yes)</b>'}
+  ]}],
+  ans:'Yes'
+},
+{ m:'q-1m', diff:'e', marks:'1 Mark', src:'Classwork Q1(ii)', sc:'worksheet', star:false,
+  q:'Is \\(5x^2-8x=-3(7-2x)\\) a quadratic equation?',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`5x^2-8x=-3(7-2x)`},
+    {t:'k', text:S`5x^2-8x=-21+6x`},
+    {t:'k', text:S`\therefore 5x^2-14x+21=0`},
+    {t:'p', text:'Highest power of x is 2 — <b>Quadratic (Yes)</b>'}
+  ]}],
+  ans:'Yes'
+},
+{ m:'q-1m', diff:'e', marks:'1 Mark', src:'Classwork Q1(iii)', sc:'worksheet', star:false,
+  q:'Is \\((x-4)(3x+1)=(3x-1)(x+2)\\) a quadratic equation?',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`(x-4)(3x+1)=(3x-1)(x+2)`},
+    {t:'k', text:S`3x^2-11x-4=3x^2+5x-2`},
+    {t:'k', text:S`\therefore -16x-2=0`},
+    {t:'p', text:'The \\(x^2\\) terms cancel — reduces to linear — <b>Not Quadratic (No)</b>'}
+  ]}],
+  ans:'No'
+},
+{ m:'q-1m', diff:'e', marks:'1 Mark', src:'Classwork Q1(iv)', sc:'worksheet', star:false,
+  q:'Is \\(7x^3-2x^2+10=(2x-5)^2\\) a quadratic equation?',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`7x^3-2x^2+10=(2x-5)^2`},
+    {t:'k', text:S`7x^3-2x^2+10=4x^2-20x+25`},
+    {t:'k', text:S`\therefore 7x^3-6x^2+20x-15=0`},
+    {t:'p', text:'Highest power of x is 3 — <b>Not Quadratic (No)</b>'}
+  ]}],
+  ans:'No'
+},
+{ m:'q-1m', diff:'e', marks:'1 Mark', src:'Classwork Q1(v)', sc:'worksheet', star:false,
+  q:'Is \\((x-1)^2+(x+2)^2+3(x+1)=0\\) a quadratic equation?',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`(x-1)^2+(x+2)^2+3(x+1)=0`},
+    {t:'k', text:S`x^2-2x+1+x^2+4x+4+3x+3=0`},
+    {t:'k', text:S`\therefore 2x^2+5x+8=0`},
+    {t:'p', text:'Highest power of x is 2 — <b>Quadratic (Yes)</b>'}
+  ]}],
+  ans:'Yes'
+},
+{ m:'q-1m', diff:'e', marks:'1 Mark', src:'Classwork Q2(i)', sc:'worksheet', star:false,
+  q:'Is \\(x=5\\) a solution of \\(x^2-2x-15=0\\)?',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Substitute \\(x=5\\) into L.H.S.'},
+    {t:'k', text:S`5^2-2(5)-15`},
+    {t:'k', text:S`=25-10-15`},
+    {t:'k', text:S`\therefore =0=\text{R.H.S.}`},
+    {t:'p', text:'<b>Yes, x = 5 is a solution.</b>'}
+  ]}],
+  ans:'Yes'
+},
+{ m:'q-1m', diff:'e', marks:'1 Mark', src:'Classwork Q2(ii)', sc:'worksheet', star:false,
+  q:'Is \\(x=-3\\) a solution of \\(2x^2-7x+9=0\\)?',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Substitute \\(x=-3\\) into L.H.S.'},
+    {t:'k', text:S`2(-3)^2-7(-3)+9`},
+    {t:'k', text:S`=18+21+9`},
+    {t:'k', text:S`\therefore =48\neq 0`},
+    {t:'p', text:'<b>No, x = -3 is not a solution.</b>'}
+  ]}],
+  ans:'No'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q3(i)', sc:'worksheet', star:false,
+  q:'If \\(x=1\\tfrac{1}{2}\\) is a solution of \\(2x^2+px-6=0\\), find p.',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Substitute \\(x=\\dfrac{3}{2}\\) into the equation'},
+    {t:'k', text:S`2\left(\dfrac{3}{2}\right)^2+p\left(\dfrac{3}{2}\right)-6=0`},
+    {t:'k', text:S`\dfrac{9}{2}+\dfrac{3p}{2}-6=0`},
+    {t:'k', text:S`3p+9-12=0`},
+    {t:'k', text:S`3p=3`},
+    {t:'k', text:S`\therefore p=1`}
+  ]}],
+  ans:'p = 1'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q3(ii)', sc:'worksheet', star:false,
+  q:'If \\(x=\\tfrac{2}{3}\\) is a solution of \\(3x^2+mx+2=0\\), find m.',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Substitute \\(x=\\dfrac{2}{3}\\) into the equation'},
+    {t:'k', text:S`3\left(\dfrac{2}{3}\right)^2+m\left(\dfrac{2}{3}\right)+2=0`},
+    {t:'k', text:S`\dfrac{4}{3}+\dfrac{2m}{3}+2=0`},
+    {t:'k', text:S`4+2m+6=0`},
+    {t:'k', text:S`2m=-10`},
+    {t:'k', text:S`\therefore m=-5`}
+  ]}],
+  ans:'m = -5'
+},
+{ m:'q-3m', diff:'m', marks:'3 Marks', src:'Classwork Q4(i)', sc:'worksheet', star:false,
+  q:'If \\(\\tfrac{2}{3}\\) and \\(-\\tfrac{1}{2}\\) are solutions of \\(6x^2+ax-b=0\\), find a and b.',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Substitute both roots into the equation to get two equations in a, b'},
+    {t:'k', text:S`x=\dfrac{2}{3}:\ \ 6\left(\dfrac{2}{3}\right)^2+a\left(\dfrac{2}{3}\right)-b=0 \Rightarrow \dfrac{8}{3}+\dfrac{2a}{3}-b=0`},
+    {t:'k', text:S`x=-\dfrac{1}{2}:\ \ 6\left(\dfrac{1}{4}\right)-\dfrac{a}{2}-b=0 \Rightarrow \dfrac{3}{2}-\dfrac{a}{2}-b=0`},
+    {t:'p', text:'Solving the two equations simultaneously'},
+    {t:'k', text:S`\therefore a=-1,\ \ b=2`}
+  ]}],
+  ans:'a = -1, b = 2'
+},
+{ m:'q-3m', diff:'m', marks:'3 Marks', src:'Classwork Q4(ii)', sc:'worksheet', star:false,
+  q:'If \\(\\tfrac{2}{3}\\) and 1 are solutions of \\(mx^2+nx+6=0\\), find m and n.',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`x=\dfrac{2}{3}:\ \ m\left(\dfrac{4}{9}\right)+n\left(\dfrac{2}{3}\right)+6=0`},
+    {t:'k', text:S`x=1:\ \ m+n+6=0`},
+    {t:'p', text:'Solving the two equations simultaneously'},
+    {t:'k', text:S`\therefore m=9,\ \ n=-15`}
+  ]}],
+  ans:'m = 9, n = -15'
+},
+{ m:'q-2m', diff:'e', marks:'2 Marks', src:'Classwork Q5(i)', sc:'worksheet', star:false,
+  q:'Solve \\(x^2=5x\\).',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`x^2-5x=0`},{t:'k', text:S`x(x-5)=0`},{t:'k', text:S`\therefore x=0 \text{ or } x=5`}]}],
+  ans:'0, 5'
+},
+{ m:'q-2m', diff:'e', marks:'2 Marks', src:'Classwork Q5(ii)', sc:'worksheet', star:false,
+  q:'Solve \\(x^2=16\\).',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`x^2-16=0`},{t:'k', text:S`(x-4)(x+4)=0`},{t:'k', text:S`\therefore x=4 \text{ or } x=-4`}]}],
+  ans:'±4'
+},
+{ m:'q-2m', diff:'e', marks:'2 Marks', src:'Classwork Q5(iii)', sc:'worksheet', star:false,
+  q:'Solve \\(4x^2=25\\).',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`4x^2-25=0`},{t:'k', text:S`(2x-5)(2x+5)=0`},{t:'k', text:S`\therefore x=\dfrac{5}{2} \text{ or } x=-\dfrac{5}{2}`}]}],
+  ans:'±5/2'
+},
+{ m:'q-2m', diff:'e', marks:'2 Marks', src:'Classwork Q5(iv)', sc:'worksheet', star:false,
+  q:'Solve \\((2x-3)^2=49\\).',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`(2x-3)^2=49`},{t:'k', text:S`2x-3=\pm 7`},{t:'k', text:S`\therefore x=5 \text{ or } x=-2`}]}],
+  ans:'5, -2'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q5(v)', sc:'worksheet', star:false,
+  q:'Solve \\(x^2-10x-24=0\\).',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`x^2-12x+2x-24=0`},{t:'k', text:S`x(x-12)+2(x-12)=0`},{t:'k', text:S`\therefore x=12 \text{ or } x=-2`}]}],
+  ans:'12, -2'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q5(vi)', sc:'worksheet', star:false,
+  q:'Solve \\(2x^2-7x=39\\).',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`2x^2-7x-39=0`},{t:'k', text:S`2x^2-13x+6x-39=0`},{t:'k', text:S`x(2x-13)+3(2x-13)=0`},{t:'k', text:S`\therefore x=\dfrac{13}{2} \text{ or } x=-3`}]}],
+  ans:'13/2, -3'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q5(vii)', sc:'worksheet', star:false,
+  q:'Solve \\(3x^2-8x-80=0\\).',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`3x^2-20x+12x-80=0`},{t:'k', text:S`x(3x-20)+4(3x-20)=0`},{t:'k', text:S`\therefore x=\dfrac{20}{3} \text{ or } x=-4`}]}],
+  ans:'20/3, -4'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q5(viii)', sc:'worksheet', star:false,
+  q:'Solve \\(3x^2-14x+15=0\\).',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`3x^2-9x-5x+15=0`},{t:'k', text:S`3x(x-3)-5(x-3)=0`},{t:'k', text:S`\therefore x=3 \text{ or } x=\dfrac{5}{3}`}]}],
+  ans:'3, 5/3'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q5(ix)', sc:'worksheet', star:false,
+  q:'Solve \\(7x^2-9x-90=0\\).',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`7x^2-30x+21x-90=0`},{t:'k', text:S`x(7x-30)+3(7x-30)=0`},{t:'k', text:S`\therefore x=\dfrac{30}{7} \text{ or } x=-3`}]}],
+  ans:'30/7, -3'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q5(x)', sc:'worksheet', star:false,
+  q:'Solve \\((x+1)(2x+8)=(x+7)(x+3)\\).',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`2x^2+10x+8=x^2+10x+21`},{t:'k', text:S`\therefore x^2=13`},{t:'k', text:S`\therefore x=\sqrt{13} \text{ or } x=-\sqrt{13}`}]}],
+  ans:'±√13'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q5(xi)', sc:'worksheet', star:false,
+  q:'Solve \\(9x^2-25=12\\).',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`9x^2=37`},{t:'k', text:S`\therefore x=\pm\dfrac{\sqrt{37}}{3}`}]}],
+  ans:'±√37/3'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q5(xii)', sc:'worksheet', star:false,
+  q:'Solve \\(3x+52=(x+4)^2\\).',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`3x+52=x^2+8x+16`},{t:'k', text:S`\therefore x^2+5x-36=0`},{t:'k', text:S`(x+9)(x-4)=0`},{t:'k', text:S`\therefore x=-9 \text{ or } x=4`}]}],
+  ans:'-9, 4'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q5(xiii)', sc:'worksheet', star:false,
+  q:'Solve \\(\\dfrac{x}{7}=\\dfrac{2}{25-6x}\\).',
+  given:['Clear denominators first, then solve the resulting quadratic.'],
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`x(25-6x)=14`},{t:'k', text:S`25x-6x^2-14=0`},{t:'k', text:S`6x^2-25x+14=0`},{t:'k', text:S`(3x-14)(2x-1)=0`},{t:'k', text:S`\therefore x=\dfrac{7}{2} \text{ or } x=\dfrac{2}{3}`}]}],
+  ans:'7/2, 2/3'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q5(xiv)', sc:'worksheet', star:false,
+  q:'Solve \\(\\dfrac{3x-2}{2x-3}=\\dfrac{3x-8}{x+4}\\).',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`(3x-2)(x+4)=(3x-8)(2x-3)`},{t:'k', text:S`3x^2+10x-8=6x^2-25x+24`},{t:'k', text:S`\therefore 3x^2-35x+32=0`},{t:'k', text:S`(x-1)(3x-32)=0`},{t:'k', text:S`\therefore x=1 \text{ or } x=\dfrac{32}{3}`}]}],
+  ans:'1, 32/3'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q5(xv)', sc:'worksheet', star:false,
+  q:'Solve \\(\\dfrac{3}{x-1}+\\dfrac{2x}{x+1}=2\\tfrac{3}{5}\\).',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`\dfrac{3}{x-1}+\dfrac{2x}{x+1}=\dfrac{13}{5}`},{t:'k', text:S`\dfrac{3(x+1)+2x(x-1)}{(x-1)(x+1)}=\dfrac{13}{5}`},{t:'k', text:S`5(2x^2+x+3)=13(x^2-1)`},{t:'k', text:S`\therefore 3x^2-5x-28=0`},{t:'k', text:S`(x-4)(3x+7)=0`},{t:'k', text:S`\therefore x=4 \text{ or } x=-\dfrac{7}{3}`}]}],
+  ans:'4, -7/3'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q5(xvi)', sc:'worksheet', star:false,
+  q:'Solve \\(\\dfrac{x-3}{x-2}-\\dfrac{x-2}{x}=\\dfrac{1}{15}\\).',
+  sections:[{label:'WORKING', rows:[{t:'p', text:'Combine fractions and cross-multiply'},{t:'k', text:S`15\left[x(x-3)-(x-2)^2\right]=x(x-2)`},{t:'k', text:S`15(-2x+4)=x^2-2x`},{t:'k', text:S`\therefore x^2+13x-60=0`},{t:'k', text:S`(x-5)(x-12)=0`},{t:'k', text:S`\therefore x=5 \text{ or } x=12`}]}],
+  ans:'5, 12'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q5(xvii)', sc:'worksheet', star:false,
+  q:'Solve \\(\\dfrac{5}{x-2}-\\dfrac{3}{x+6}=\\dfrac{4}{x}\\).',
+  sections:[{label:'WORKING', rows:[{t:'p', text:'Combine fractions and cross-multiply'},{t:'k', text:S`x\left[5(x+6)-3(x-2)\right]=4(x-2)(x+6)`},{t:'k', text:S`x(2x+36)=4(x^2+4x-12)`},{t:'k', text:S`2x^2+36x=4x^2+16x-48`},{t:'k', text:S`\therefore 2x^2-20x-48=0`},{t:'k', text:S`x^2-10x-24=0`},{t:'k', text:S`(x-12)(x+2)=0`},{t:'k', text:S`\therefore x=12 \text{ or } x=-2`}]}],
+  ans:'12, -2'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q5(xviii)', sc:'worksheet', star:false,
+  q:'Solve \\(\\dfrac{x}{x-5}+\\dfrac{x-5}{x}=2\\tfrac{1}{6}\\).',
+  sections:[{label:'WORKING', rows:[{t:'p', text:'Let \\(\\dfrac{x}{x-5}=a\\), so \\(\\dfrac{x-5}{x}=\\dfrac{1}{a}\\)'},{t:'k', text:S`a+\dfrac{1}{a}=\dfrac{13}{6}`},{t:'k', text:S`6a^2-13a+6=0`},{t:'k', text:S`(2a-3)(3a-2)=0`},{t:'k', text:S`\therefore a=\dfrac{3}{2} \text{ or } a=\dfrac{2}{3}`},{t:'p', text:'Back-substitute each value of a into \\(a=\\dfrac{x}{x-5}\\)'},{t:'k', text:S`\therefore x=15 \text{ or } x=-10`}]}],
+  ans:'15, -10'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q5(xix)', sc:'worksheet', star:false,
+  q:'Solve \\(\\dfrac{x}{3}+6\\cdot\\dfrac{3}{x}=5\\).',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`\dfrac{x}{3}+\dfrac{18}{x}=5`},{t:'k', text:S`x^2+54=15x`},{t:'k', text:S`x^2-15x+54=0`},{t:'k', text:S`(x-6)(x-9)=0`},{t:'k', text:S`\therefore x=6 \text{ or } x=9`}]}],
+  ans:'6, 9'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q5(xx)', sc:'worksheet', star:false,
+  q:'Solve \\(\\dfrac{3x+1}{x+1}+\\dfrac{x+1}{3x+1}=\\dfrac{5}{2}\\).',
+  sections:[{label:'WORKING', rows:[{t:'p', text:'Let \\(\\dfrac{3x+1}{x+1}=a\\)'},{t:'k', text:S`a+\dfrac{1}{a}=\dfrac{5}{2}`},{t:'k', text:S`2a^2-5a+2=0`},{t:'k', text:S`(a-2)(2a-1)=0`},{t:'k', text:S`\therefore a=2 \text{ or } a=\dfrac{1}{2}`},{t:'p', text:'Back-substitute into \\(a=\\dfrac{3x+1}{x+1}\\)'},{t:'k', text:S`\therefore x=1 \text{ or } x=-\dfrac{1}{5}`}]}],
+  ans:'1, -1/5'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q5(xxi)', sc:'worksheet', star:false,
+  q:'Solve \\((a+1)^2+3(a+1)=10\\).',
+  given:['This is "reducible to quadratic" — let the bracket \\((a+1)\\) be a new variable y.'],
+  sections:[{label:'WORKING', rows:[{t:'p', text:'Let \\(a+1=y\\)'},{t:'k', text:S`y^2+3y-10=0`},{t:'k', text:S`(y+5)(y-2)=0`},{t:'k', text:S`\therefore y=-5 \text{ or } y=2`},{t:'p', text:'Back-substitute \\(y=a+1\\)'},{t:'k', text:S`\therefore a=-6 \text{ or } a=1`}]}],
+  ans:'-6, 1'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q5(xxii)', sc:'worksheet', star:false,
+  q:'Solve \\(7(a+3)^2-9(a+3)=10\\).',
+  sections:[{label:'WORKING', rows:[{t:'p', text:'Let \\(a+3=y\\)'},{t:'k', text:S`7y^2-9y-10=0`},{t:'k', text:S`7y^2-14y+5y-10=0`},{t:'k', text:S`7y(y-2)+5(y-2)=0`},{t:'k', text:S`(y-2)(7y+5)=0`},{t:'k', text:S`\therefore y=2 \text{ or } y=-\dfrac{5}{7}`},{t:'p', text:'Back-substitute \\(y=a+3\\)'},{t:'k', text:S`\therefore a=-1 \text{ or } a=-\dfrac{26}{7}`}]}],
+  ans:'-1, -26/7'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q5(xxiii)', sc:'worksheet', star:false,
+  q:'Solve \\((x^2+3x)^2-2(x^2+3x)-8=0\\).',
+  sections:[{label:'WORKING', rows:[{t:'p', text:'Let \\(x^2+3x=y\\)'},{t:'k', text:S`y^2-2y-8=0`},{t:'k', text:S`(y-4)(y+2)=0`},{t:'k', text:S`\therefore y=4 \text{ or } y=-2`},{t:'p', text:'For \\(y=4\\): \\(x^2+3x-4=0 \\Rightarrow (x+4)(x-1)=0 \\Rightarrow x=-4,1\\)'},{t:'p', text:'For \\(y=-2\\): \\(x^2+3x+2=0 \\Rightarrow (x+2)(x+1)=0 \\Rightarrow x=-2,-1\\)'},{t:'k', text:S`\therefore x=-4,\ 1,\ -2,\ -1`}]}],
+  ans:'-4, 1, -2, -1'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q5(xxiv)', sc:'worksheet', star:false,
+  q:'Solve \\((x^2+2x)^2-11(x^2+2x)+24=0\\).',
+  sections:[{label:'WORKING', rows:[{t:'p', text:'Let \\(x^2+2x=y\\)'},{t:'k', text:S`y^2-11y+24=0`},{t:'k', text:S`(y-3)(y-8)=0`},{t:'k', text:S`\therefore y=3 \text{ or } y=8`},{t:'p', text:'For \\(y=3\\): \\(x^2+2x-3=0 \\Rightarrow (x+3)(x-1)=0 \\Rightarrow x=-3,1\\)'},{t:'p', text:'For \\(y=8\\): \\(x^2+2x-8=0 \\Rightarrow (x+4)(x-2)=0 \\Rightarrow x=-4,2\\)'},{t:'k', text:S`\therefore x=-3,\ 1,\ -4,\ 2`}]}],
+  ans:'-3, 1, -4, 2'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q5(xxv)', sc:'worksheet', star:false,
+  q:'Solve \\(\\sqrt2x^2+3x-9\\sqrt2=0\\).',
+  given:['Involves surds — factorise by splitting the middle term, keeping the surd attached to the correct factor.'],
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`\sqrt2x^2+6x-3x-9\sqrt2=0`},{t:'k', text:S`\sqrt2x(x+3\sqrt2)-3(x+3\sqrt2)=0`},{t:'k', text:S`(x+3\sqrt2)(\sqrt2x-3)=0`},{t:'k', text:S`\therefore x=-3\sqrt2 \text{ or } x=\dfrac{3}{\sqrt2}`}]}],
+  ans:'-3√2, 3/√2'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q5(xxvi)', sc:'worksheet', star:false,
+  q:'Solve \\(3\\sqrt2x^2-5x-\\sqrt2=0\\).',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Split the middle term: numbers \\(-6\\) and \\(+1\\) multiply to \\(3\\sqrt2\\times(-\\sqrt2)=-6\\) and add to \\(-5\\)'},
+    {t:'k', text:S`3\sqrt2x^2-6x+x-\sqrt2=0`},
+    {t:'k', text:S`3\sqrt2x(x-\sqrt2)+1(x-\sqrt2)=0`},
+    {t:'k', text:S`(x-\sqrt2)(3\sqrt2x+1)=0`},
+    {t:'k', text:S`\therefore x=\sqrt2 \text{ or } x=-\dfrac{1}{3\sqrt2}`}
+  ]}],
+  ans:'√2, -1/(3√2)'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q5(xxvii)', sc:'worksheet', star:false,
+  q:'Solve \\(3x^2-2\\sqrt6x+2=0\\).',
+  sections:[{label:'WORKING', rows:[{t:'p', text:'Note \\(3x^2-2\\sqrt6x+2=(\\sqrt3x-\\sqrt2)^2\\)'},{t:'k', text:S`(\sqrt3x-\sqrt2)^2=0`},{t:'k', text:S`\sqrt3x-\sqrt2=0`},{t:'k', text:S`\therefore x=\dfrac{\sqrt2}{\sqrt3}=\dfrac{\sqrt6}{3} \text{ (equal roots)}`}]}],
+  ans:'√6/3 (equal roots)'
+},
+{ m:'q-3m', diff:'m', marks:'3 Marks', src:'Classwork Q6', sc:'worksheet', star:true,
+  q:'If one root of the quadratic equation \\(mx^2-9x-10=0\\) is 2, find the value of m and also find the other root.',
+  given:['Equation: \\(mx^2-9x-10=0\\)', 'One root: \\(x=2\\)'],
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Substitute \\(x=2\\) into the equation'},
+    {t:'k', text:S`m(2)^2-9(2)-10=0`},
+    {t:'k', text:S`4m-28=0`},
+    {t:'k', text:S`\therefore m=7`},
+    {t:'p', text:'The equation becomes \\(7x^2-9x-10=0\\). Split the middle term'},
+    {t:'k', text:S`7x^2-14x+5x-10=0`},
+    {t:'k', text:S`7x(x-2)+5(x-2)=0`},
+    {t:'k', text:S`(x-2)(7x+5)=0`},
+    {t:'k', text:S`\therefore x=2 \text{ or } x=-\dfrac{5}{7}`}
+  ]}],
+  ans:'m = 7, other root = -5/7'
+},
+{ m:'q-2m', diff:'e', marks:'2 Marks', src:'Classwork Q7', sc:'worksheet', star:false,
+  q:'Without solving the quadratic equation \\(6x^2-x-2=0\\), find whether \\(x=\\dfrac{2}{3}\\) is a solution of this equation or not.',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Substitute \\(x=\\dfrac{2}{3}\\) into L.H.S.'},
+    {t:'k', text:S`6\left(\dfrac{2}{3}\right)^2-\dfrac{2}{3}-2`},
+    {t:'k', text:S`=6\times\dfrac{4}{9}-\dfrac{2}{3}-2`},
+    {t:'k', text:S`=\dfrac{8}{3}-\dfrac{2}{3}-2`},
+    {t:'k', text:S`=2-2`},
+    {t:'k', text:S`\therefore =0=\text{R.H.S.}`}
+  ]}],
+  ans:'Yes, x = 2/3 is a solution'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q8', sc:'worksheet', star:false,
+  q:'Frame a quadratic equation whose roots are \\(-\\dfrac{2}{3}\\) and 5.',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`x=-\dfrac{2}{3} \text{ or } x=5`},
+    {t:'k', text:S`3x+2=0 \text{ or } x-5=0`},
+    {t:'k', text:S`(3x+2)(x-5)=0`},
+    {t:'k', text:S`3x^2-15x+2x-10=0`},
+    {t:'k', text:S`\therefore 3x^2-13x-10=0`}
+  ]}],
+  ans:'3x² - 13x - 10 = 0'
+},
+{ m:'q-2m', diff:'e', marks:'2 Marks', src:'Classwork Q9', sc:'worksheet', star:false,
+  q:'Frame a quadratic equation whose roots are -2 and 3.',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`x=-2 \text{ or } x=3`},
+    {t:'k', text:S`(x+2)(x-3)=0`},
+    {t:'k', text:S`\therefore x^2-x-6=0`}
+  ]}],
+  ans:'x² - x - 6 = 0'
+},
+{ m:'q-3m', diff:'m', marks:'3 Marks', src:'Classwork Q10', sc:'worksheet', star:false,
+  q:'Find the value of x, if \\(a+7=0\\); \\(b+10=0\\) and \\(12x^2=ax-b\\).',
+  given:['\\(a+7=0 \\Rightarrow a=-7\\)', '\\(b+10=0 \\Rightarrow b=-10\\)'],
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`12x^2=(-7)x-(-10)`},
+    {t:'k', text:S`12x^2=-7x+10`},
+    {t:'k', text:S`\therefore 12x^2+7x-10=0`},
+    {t:'k', text:S`12x^2+15x-8x-10=0`},
+    {t:'k', text:S`3x(4x+5)-2(4x+5)=0`},
+    {t:'k', text:S`(4x+5)(3x-2)=0`},
+    {t:'k', text:S`\therefore x=-\dfrac{5}{4} \text{ or } x=\dfrac{2}{3}`}
+  ]}],
+  ans:'x = -5/4 or x = 2/3'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q11(i)', sc:'worksheet', star:true,
+  q:'Solve \\(9x^2+7x-2=0\\) using the Quadratic Formula.',
+  formula:'x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Here \\(a=9,\\ b=7,\\ c=-2\\)'},
+    {t:'k', text:S`x=\dfrac{-7\pm\sqrt{49+72}}{18}=\dfrac{-7\pm\sqrt{121}}{18}=\dfrac{-7\pm 11}{18}`},
+    {t:'k', text:S`\therefore x=\dfrac{2}{9} \text{ or } x=-1`}
+  ]}],
+  ans:'2/9, -1'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q11(ii)', sc:'worksheet', star:true,
+  q:'Solve \\(25x^2+30x+7=0\\) using the Quadratic Formula.',
+  formula:'x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Here \\(a=25,\\ b=30,\\ c=7\\)'},
+    {t:'k', text:S`x=\dfrac{-30\pm\sqrt{900-700}}{50}=\dfrac{-30\pm\sqrt{200}}{50}=\dfrac{-3\pm\sqrt2}{5}`},
+    {t:'k', text:S`\therefore x=\dfrac{-3+\sqrt2}{5} \text{ or } x=\dfrac{-3-\sqrt2}{5}`}
+  ]}],
+  ans:'(-3±√2)/5'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q12(i)', sc:'worksheet', star:false,
+  q:'Solve \\(3x^2-32x+12=0\\), correct to 2 decimal places.',
+  formula:'x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'\\(a=3,\\ b=-32,\\ c=12\\)'},
+    {t:'k', text:S`x=\dfrac{32\pm\sqrt{1024-144}}{6}=\dfrac{32\pm\sqrt{880}}{6}`},
+    {t:'k', text:S`x=\dfrac{32\pm 29.66}{6}`},
+    {t:'k', text:S`\therefore x=10.28 \text{ or } x=0.39`}
+  ]}],
+  ans:'10.28, 0.39'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q12(ii)', sc:'worksheet', star:false,
+  q:'Solve \\(x^2+7x=7\\), correct to 2 decimal places.',
+  formula:'x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Rewrite as \\(x^2+7x-7=0\\); \\(a=1,\\ b=7,\\ c=-7\\)'},
+    {t:'k', text:S`x=\dfrac{-7\pm\sqrt{49+28}}{2}=\dfrac{-7\pm\sqrt{77}}{2}`},
+    {t:'k', text:S`x=\dfrac{-7\pm 8.775}{2}`},
+    {t:'k', text:S`\therefore x=0.89 \text{ or } x=-7.89`}
+  ]}],
+  ans:'0.89, -7.89'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q13(i)', sc:'worksheet', star:false,
+  q:'Solve \\(x^2-4x-8=0\\), correct to 3 significant figures.',
+  formula:'x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`x=\dfrac{4\pm\sqrt{16+32}}{2}=\dfrac{4\pm\sqrt{48}}{2}=2\pm2\sqrt3`},
+    {t:'k', text:S`x=2\pm 3.464`},
+    {t:'k', text:S`\therefore x=5.46 \text{ or } x=-1.46`}
+  ]}],
+  ans:'5.46, -1.46'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q13(ii)', sc:'worksheet', star:false,
+  q:'Solve \\(x^2-5x-10=0\\), correct to 3 significant figures.',
+  formula:'x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`x=\dfrac{5\pm\sqrt{25+40}}{2}=\dfrac{5\pm\sqrt{65}}{2}`},
+    {t:'k', text:S`x=\dfrac{5\pm 8.062}{2}`},
+    {t:'k', text:S`\therefore x=6.53 \text{ or } x=-1.53`}
+  ]}],
+  ans:'6.53, -1.53'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q14(i)', sc:'worksheet', star:true,
+  q:'Find the nature of the roots of \\(x^2-30x+225=0\\).',
+  formula:'D=b^2-4ac',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`D=(-30)^2-4(1)(225)=900-900=0`},{t:'p', text:'\\(D=0\\) — <b>Real and Equal</b> roots'}]}],
+  ans:'Real and Equal'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q14(ii)', sc:'worksheet', star:false,
+  q:'Find the nature of the roots of \\(3x^2-x-14=0\\).',
+  formula:'D=b^2-4ac',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`D=(-1)^2-4(3)(-14)=1+168=169`},{t:'p', text:'\\(D=169=13^2>0\\), a perfect square — <b>Real, Unequal, Rational</b>'}]}],
+  ans:'Real, Unequal, Rational'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q14(iii)', sc:'worksheet', star:false,
+  q:'Find the nature of the roots of \\(3x^2-9x+5=0\\).',
+  formula:'D=b^2-4ac',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`D=(-9)^2-4(3)(5)=81-60=21`},{t:'p', text:'\\(D=21>0\\), not a perfect square — <b>Real, Unequal, Irrational</b>'}]}],
+  ans:'Real, Unequal, Irrational'
+},
+{ m:'q-2m', diff:'m', marks:'2 Marks', src:'Classwork Q14(iv)', sc:'worksheet', star:false,
+  q:'Find the nature of the roots of \\(2x^2-3x+9=0\\).',
+  formula:'D=b^2-4ac',
+  sections:[{label:'WORKING', rows:[{t:'k', text:S`D=(-3)^2-4(2)(9)=9-72=-63`},{t:'p', text:'\\(D=-63<0\\) — <b>No Real Roots (Imaginary)</b>'}]}],
+  ans:'No Real Roots (Imaginary)'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q15(i)', sc:'worksheet', star:true,
+  q:'Without solving, find the value of p for which \\((p+6)x^2+(p+3)x+1=0\\) has equal roots.',
+  formula:'D=b^2-4ac=0 \\text{ for equal roots}',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Here \\(a=p+6,\\ b=p+3,\\ c=1\\). Set \\(D=0\\)'},
+    {t:'k', text:S`(p+3)^2-4(p+6)(1)=0`},
+    {t:'k', text:S`p^2+6p+9-4p-24=0`},
+    {t:'k', text:S`\therefore p^2+2p-15=0`},
+    {t:'k', text:S`(p+5)(p-3)=0`},
+    {t:'k', text:S`\therefore p=-5 \text{ or } p=3`}
+  ]}],
+  ans:'p = -5 or 3'
+},
+{ m:'q-3m', diff:'h', marks:'3 Marks', src:'Classwork Q15(ii)', sc:'worksheet', star:false,
+  q:'Without solving, find the value of p for which \\(x^2+(p+3)x+(3p+1)=0\\) has equal roots.',
+  formula:'D=b^2-4ac=0 \\text{ for equal roots}',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Here \\(a=1,\\ b=p+3,\\ c=3p+1\\). Set \\(D=0\\)'},
+    {t:'k', text:S`(p+3)^2-4(1)(3p+1)=0`},
+    {t:'k', text:S`p^2+6p+9-12p-4=0`},
+    {t:'k', text:S`\therefore p^2-6p+5=0`},
+    {t:'k', text:S`(p-1)(p-5)=0`},
+    {t:'k', text:S`\therefore p=1 \text{ or } p=5`}
+  ]}],
+  ans:'p = 1 or 5'
+},
+{ m:'q-2m', diff:'m', marks:'3 Marks', src:'Classwork Q16', sc:'worksheet', star:false,
+  q:'Without solving \\(x^2-kx+9=0\\), find k for real roots.',
+  formula:'D=b^2-4ac\\geq 0 \\text{ for real roots}',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`(-k)^2-4(1)(9)\geq 0`},
+    {t:'k', text:S`k^2-36\geq 0`},
+    {t:'k', text:S`(k-6)(k+6)\geq 0`},
+    {t:'k', text:S`\therefore k\geq 6 \text{ or } k\leq -6`}
+  ]}],
+  ans:'k ≥ 6 or k ≤ -6'
+},
+{ m:'q-3m', diff:'m', marks:'3 Marks', src:'Classwork Q17', sc:'worksheet', star:false,
+  q:'If \\(x=2\\) is one root of \\((k-3)x^2-kx-8=0\\), find k and the other root.',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Substitute \\(x=2\\)'},
+    {t:'k', text:S`(k-3)(4)-2k-8=0`},
+    {t:'k', text:S`4k-12-2k-8=0`},
+    {t:'k', text:S`\therefore k=10`},
+    {t:'p', text:'The equation becomes \\(7x^2-10x-8=0\\)'},
+    {t:'k', text:S`7x^2-14x+4x-8=0`},
+    {t:'k', text:S`7x(x-2)+4(x-2)=0`},
+    {t:'k', text:S`(x-2)(7x+4)=0`},
+    {t:'k', text:S`\therefore x=2 \text{ or } x=-\dfrac{4}{7}`}
+  ]}],
+  ans:'k = 10, other root = -4/7'
+},
+{ m:'q-3m', diff:'m', marks:'3 Marks', src:'Classwork Q18', sc:'worksheet', star:false,
+  q:'If \\(x=4\\) is one root of \\((k+2)x^2-(5k+2)x-4=0\\), find k and the other root.',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Substitute \\(x=4\\)'},
+    {t:'k', text:S`(k+2)(16)-(5k+2)(4)-4=0`},
+    {t:'k', text:S`16k+32-20k-8-4=0`},
+    {t:'k', text:S`-4k+20=0`},
+    {t:'k', text:S`\therefore k=5`},
+    {t:'p', text:'The equation becomes \\(7x^2-27x-4=0\\)'},
+    {t:'k', text:S`7x^2-28x+x-4=0`},
+    {t:'k', text:S`7x(x-4)+1(x-4)=0`},
+    {t:'k', text:S`(x-4)(7x+1)=0`},
+    {t:'k', text:S`\therefore x=4 \text{ or } x=-\dfrac{1}{7}`}
+  ]}],
+  ans:'k = 5, other root = -1/7'
+}
+];
+
+/* =========================================================================
+   WORD PROBLEMS — Q1–Q34 (Section B style)
+   All answers recomputed and verified with sympy before entry.
+   ========================================================================= */
+const wordsNumbers = [
+{ m:'q-3m', diff:'e', marks:'3 Marks', src:'Word Problems Q1', sc:'worksheet', star:true,
+  q:'The sum of two natural numbers is 14 and the sum of their reciprocals is \\(\\dfrac{7}{24}\\). Find the numbers.',
+  given:['Let one number \\(=x\\)', 'Other number \\(=(14-x)\\)'],
+  table:{headers:['Quantity','Expression'],rows:[['First number','x'],['Second number','14 − x'],['Sum of reciprocals','7/24 (given)']]},
+  formula:'\\dfrac{1}{x}+\\dfrac{1}{14-x}=\\dfrac{7}{24}',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`\dfrac{(14-x)+x}{x(14-x)}=\dfrac{7}{24}`},
+    {t:'k', text:S`\dfrac{14}{14x-x^2}=\dfrac{7}{24}`},
+    {t:'k', text:S`336=7(14x-x^2)`},
+    {t:'k', text:S`48=14x-x^2`},
+    {t:'k', text:S`\therefore x^2-14x+48=0`},
+    {t:'k', text:S`(x-6)(x-8)=0`},
+    {t:'k', text:S`\therefore x=6 \text{ or } x=8`}
+  ]}],
+  ans:'The required natural numbers are 6 and 8'
+},
+{ m:'q-2m', diff:'e', marks:'3 Marks', src:'Word Problems Q2', sc:'worksheet', star:false,
+  q:'Find two natural numbers which differ by 3 and the sum of whose squares is 117.',
+  given:['Let smaller number \\(=x\\)', 'Larger number \\(=(x+3)\\)'],
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`x^2+(x+3)^2=117`},
+    {t:'k', text:S`x^2+x^2+6x+9=117`},
+    {t:'k', text:S`\therefore 2x^2+6x-108=0`},
+    {t:'k', text:S`x^2+3x-54=0`},
+    {t:'k', text:S`(x+9)(x-6)=0`},
+    {t:'p', text:'\\(x=-9\\) rejected (not a natural number)'},
+    {t:'k', text:S`\therefore x=6`}
+  ]}],
+  ans:'The two natural numbers are 6 and 9'
+},
+{ m:'q-2m', diff:'e', marks:'3 Marks', src:'Word Problems Q3', sc:'worksheet', star:false,
+  q:'The sum of the squares of two consecutive natural numbers is 41. Find the numbers.',
+  given:['Let smaller number \\(=x\\)', 'Next consecutive number \\(=(x+1)\\)'],
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`x^2+(x+1)^2=41`},
+    {t:'k', text:S`2x^2+2x+1=41`},
+    {t:'k', text:S`\therefore x^2+x-20=0`},
+    {t:'k', text:S`(x+5)(x-4)=0`},
+    {t:'p', text:'\\(x=-5\\) rejected (not a natural number)'},
+    {t:'k', text:S`\therefore x=4`}
+  ]}],
+  ans:'The two consecutive natural numbers are 4 and 5'
+},
+{ m:'q-2m', diff:'e', marks:'3 Marks', src:'Word Problems Q4', sc:'worksheet', star:false,
+  q:'Five times a certain whole number is equal to three less than twice the square of the number. Find the number.',
+  given:['Let the whole number \\(=x\\)'],
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`5x=2x^2-3`},
+    {t:'k', text:S`\therefore 2x^2-5x-3=0`},
+    {t:'k', text:S`2x^2-6x+x-3=0`},
+    {t:'k', text:S`2x(x-3)+1(x-3)=0`},
+    {t:'k', text:S`(x-3)(2x+1)=0`},
+    {t:'p', text:'\\(x=-\\dfrac{1}{2}\\) rejected (not a whole number)'},
+    {t:'k', text:S`\therefore x=3`}
+  ]}],
+  ans:'The whole number is 3'
+},
+{ m:'q-3m', diff:'m', marks:'3 Marks', src:'Word Problems Q5', sc:'worksheet', star:false,
+  q:'The sum of the squares of three consecutive odd numbers is 2531. Find the numbers.',
+  given:['Let the three consecutive odd numbers be \\(x,\\ x+2,\\ x+4\\)'],
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`x^2+(x+2)^2+(x+4)^2=2531`},
+    {t:'k', text:S`3x^2+12x+20=2531`},
+    {t:'k', text:S`\therefore 3x^2+12x-2511=0`},
+    {t:'k', text:S`x^2+4x-837=0`},
+    {t:'k', text:S`(x-27)(x+31)=0`},
+    {t:'p', text:'\\(x=-31\\) rejected (leads to non-matching odd sequence for this context)'},
+    {t:'k', text:S`\therefore x=27`}
+  ]}],
+  ans:'The 3 consecutive odd numbers are 27, 29 and 31'
+},
+{ m:'q-3m', diff:'m', marks:'3 Marks', src:'Word Problems Q6', sc:'worksheet', star:true,
+  q:'Three positive numbers are in the ratio \\(\\dfrac{1}{2}:\\dfrac{1}{3}:\\dfrac{1}{4}\\). Find the numbers, if the sum of their squares is 244.',
+  given:['Ratio \\(\\dfrac{1}{2}:\\dfrac{1}{3}:\\dfrac{1}{4}\\) simplifies (LCM = 12) to \\(6:4:3\\)'],
+  table:{headers:['Given ratio term','Simplified (× 12)','Number (× k)'],rows:[['1/2','6','6k'],['1/3','4','4k'],['1/4','3','3k']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Let the numbers be \\(6k,\\ 4k,\\ 3k\\)'},
+    {t:'k', text:S`(6k)^2+(4k)^2+(3k)^2=244`},
+    {t:'k', text:S`36k^2+16k^2+9k^2=244`},
+    {t:'k', text:S`61k^2=244`},
+    {t:'k', text:S`k^2=4`},
+    {t:'k', text:S`\therefore k=2 \text{ (rejecting } k=-2 \text{ as numbers are positive)}`}
+  ]}],
+  ans:'The three positive numbers are 6, 8 and 12'
+}
+];
+
+const wordsDigits = [
+{ m:'q-3m', diff:'m', marks:'4 Marks', src:'Word Problems Q7', sc:'worksheet', star:true,
+  q:"In a two-digit number, the unit's digit exceeds its ten's digit by 1, and the product of the given number and its ten's digit is 280. Find the number.",
+  given:["Let ten's digit \\(=t\\)", "Unit's digit \\(=(t+1)\\)"],
+  table:{headers:['Place','Digit'],rows:[["Ten's digit","t"],["Unit's digit","t + 1"],['Number','10t + (t+1) = 11t + 1']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`(11t+1)\times t=280`},
+    {t:'k', text:S`11t^2+t-280=0`},
+    {t:'k', text:S`11t^2+56t-55t-280=0`},
+    {t:'k', text:S`t(11t+56)-5(11t+56)=0`},
+    {t:'k', text:S`(11t+56)(t-5)=0`},
+    {t:'p', text:'\\(t=-\\dfrac{56}{11}\\) rejected (not a valid digit)'},
+    {t:'k', text:S`\therefore t=5`}
+  ]}],
+  ans:'The number = 56'
+},
+{ m:'q-3m', diff:'m', marks:'4 Marks', src:'Word Problems Q8', sc:'worksheet', star:true,
+  q:'A two-digit positive number is such that the product of its digits is 8. If 18 is added to the number, the digits interchange their places. Find the number.',
+  given:["Let ten's digit \\(=a\\), unit's digit \\(=b\\)", '\\(ab=8\\)'],
+  table:{headers:['Condition','Equation'],rows:[['Product of digits','ab = 8'],['Number','10a + b'],['After adding 18','10a + b + 18 = 10b + a']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'From the interchange condition'},
+    {t:'k', text:S`10a+b+18=10b+a`},
+    {t:'k', text:S`9a-9b=-18`},
+    {t:'k', text:S`\therefore b=a+2`},
+    {t:'p', text:'Substitute into \\(ab=8\\)'},
+    {t:'k', text:S`a(a+2)=8`},
+    {t:'k', text:S`a^2+2a-8=0`},
+    {t:'k', text:S`(a+4)(a-2)=0`},
+    {t:'p', text:'\\(a=-4\\) rejected (not a valid digit)'},
+    {t:'k', text:S`\therefore a=2,\ b=4`}
+  ]}],
+  ans:'The number = 24'
+},
+{ m:'q-3m', diff:'m', marks:'4 Marks', src:'Word Problems Q9', sc:'worksheet', star:true,
+  q:'A two-digit number contains the smaller of the two digits in the unit place. The product of the digits is 40 and the difference between the digits is 3. Find the number.',
+  given:['Let the larger digit (tens place) \\(=x\\)', 'Smaller digit (units place) \\(=(x-3)\\)'],
+  table:{headers:['Place','Digit'],rows:[["Ten's digit (larger)",'x'],["Unit's digit (smaller)",'x − 3'],['Product of digits','x(x−3) = 40']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`x(x-3)=40`},
+    {t:'k', text:S`x^2-3x-40=0`},
+    {t:'k', text:S`(x-8)(x+5)=0`},
+    {t:'p', text:'\\(x=-5\\) rejected (not a valid digit)'},
+    {t:'k', text:S`\therefore x=8,\ \text{unit's digit}=5`}
+  ]}],
+  ans:'The number = 85'
+}
+];
+
+const wordsFractions = [
+{ m:'q-la', diff:'h', marks:'5 Marks', src:'Word Problems Q10', sc:'worksheet', star:true,
+  q:'The sum of the numerator and denominator of a certain fraction is 10. If 1 is subtracted from both the numerator and denominator, the fraction is decreased by \\(\\dfrac{2}{21}\\). Find the fraction.',
+  given:['Let numerator \\(=n\\)', 'Denominator \\(=(10-n)\\)'],
+  table:{headers:['Quantity','Expression'],rows:[['Numerator','n'],['Denominator','10 − n'],['New numerator','n − 1'],['New denominator','9 − n']]},
+  formula:'\\dfrac{n}{10-n}-\\dfrac{n-1}{9-n}=\\dfrac{2}{21}',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`\dfrac{n(9-n)-(n-1)(10-n)}{(10-n)(9-n)}=\dfrac{2}{21}`},
+    {t:'p', text:'Simplify the numerator: \\(n(9-n)-(n-1)(10-n)\\)'},
+    {t:'k', text:S`=9n-n^2-(10n-n^2-10+n)=9n-11n+10=10-2n`},
+    {t:'k', text:S`\therefore \dfrac{10-2n}{(10-n)(9-n)}=\dfrac{2}{21}`},
+    {t:'k', text:S`21(10-2n)=2(10-n)(9-n)`},
+    {t:'k', text:S`210-42n=2(90-19n+n^2)`},
+    {t:'k', text:S`210-42n=180-38n+2n^2`},
+    {t:'k', text:S`\therefore 2n^2+4n-30=0`},
+    {t:'k', text:S`n^2+2n-15=0`},
+    {t:'k', text:S`(n+5)(n-3)=0`},
+    {t:'p', text:'\\(n=-5\\) rejected (not a valid numerator here)'},
+    {t:'k', text:S`\therefore n=3,\ \text{denominator}=7`}
+  ]}],
+  ans:'The fraction = 3/7'
+},
+{ m:'q-3m', diff:'m', marks:'4 Marks', src:'Word Problems Q11', sc:'worksheet', star:false,
+  q:'The numerator of a fraction is 2 less than its denominator. If 3 is added to each of the numerator and the denominator, the fraction increases by \\(\\dfrac{1}{18}\\). Find the fraction.',
+  given:['Let denominator \\(=d\\)', 'Numerator \\(=(d-2)\\)'],
+  table:{headers:['Quantity','Expression'],rows:[['Denominator','d'],['Numerator','d − 2'],['New numerator','d + 1'],['New denominator','d + 3']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`\dfrac{d+1}{d+3}-\dfrac{d-2}{d}=\dfrac{1}{18}`},
+    {t:'k', text:S`\dfrac{d(d+1)-(d-2)(d+3)}{d(d+3)}=\dfrac{1}{18}`},
+    {t:'k', text:S`\dfrac{(d^2+d)-(d^2+d-6)}{d(d+3)}=\dfrac{1}{18}`},
+    {t:'k', text:S`\dfrac{6}{d(d+3)}=\dfrac{1}{18}`},
+    {t:'k', text:S`d^2+3d-108=0`},
+    {t:'k', text:S`(d-9)(d+12)=0`},
+    {t:'p', text:'\\(d=-12\\) rejected (not a valid denominator)'},
+    {t:'k', text:S`\therefore d=9,\ \text{numerator}=7`}
+  ]}],
+  ans:'The fraction = 7/9'
+}
+];
+
+const wordsGeometry = [
+{ m:'q-3m', diff:'m', marks:'3 Marks', src:'Word Problems Q12', sc:'worksheet', star:true,
+  q:'The hypotenuse of a right triangle is 20 m. If the difference between the lengths of the other sides is 4 m, find the other sides.',
+  given:['Let one side \\(=p\\)', 'Other side \\(=(p+4)\\)', 'Hypotenuse \\(=20\\)'],
+  formula:'\\text{(Pythagoras)}\\ p^2+(p+4)^2=20^2',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`p^2+(p+4)^2=400`},
+    {t:'k', text:S`2p^2+8p+16=400`},
+    {t:'k', text:S`p^2+4p-192=0`},
+    {t:'k', text:S`(p-12)(p+16)=0`},
+    {t:'p', text:'\\(p=-16\\) rejected (not a valid length)'},
+    {t:'k', text:S`\therefore p=12,\ p+4=16`}
+  ]}],
+  ans:'The other sides are 12 m and 16 m'
+},
+{ m:'q-3m', diff:'e', marks:'3 Marks', src:'Word Problems Q13', sc:'worksheet', star:true,
+  q:'Two squares have sides x cm and (x + 5) cm. The sum of their areas is 697 sq. cm. (i) Express this as an algebraic equation in x. (ii) Solve this equation to find the sides of the squares.',
+  given:['Side of first square \\(=x\\) cm', 'Side of second square \\(=(x+5)\\) cm'],
+  sections:[
+    {label:'(i) EQUATION', rows:[
+      {t:'k', text:S`x^2+(x+5)^2=697`}
+    ]},
+    {label:'(ii) SOLVING', rows:[
+      {t:'k', text:S`2x^2+10x+25=697`},
+      {t:'k', text:S`x^2+5x-336=0`},
+      {t:'k', text:S`(x-16)(x+21)=0`},
+      {t:'p', text:'\\(x=-21\\) rejected (not a valid side length)'},
+      {t:'k', text:S`\therefore x=16,\ x+5=21`}
+    ]}
+  ],
+  ans:'(i) x² + (x+5)² = 697 (ii) The sides are 16 cm and 21 cm'
+},
+{ m:'q-3m', diff:'m', marks:'4 Marks', src:'Word Problems Q14', sc:'worksheet', star:false,
+  q:'The lengths of the parallel sides of a trapezium are (x + 8) and (2x + 3) cm, and the distance between them is (x + 4) cm. If its area is 590 cm², find the value of x.',
+  given:['Parallel sides: \\((x+8)\\) cm and \\((2x+3)\\) cm', 'Height (distance between them): \\((x+4)\\) cm'],
+  formula:'\\text{Area of trapezium}=\\dfrac{1}{2}\\times(\\text{sum of parallel sides})\\times \\text{height}',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`\dfrac{1}{2}\left[(x+8)+(2x+3)\right](x+4)=590`},
+    {t:'k', text:S`(3x+11)(x+4)=1180`},
+    {t:'k', text:S`3x^2+23x+44=1180`},
+    {t:'k', text:S`\therefore 3x^2+23x-1136=0`},
+    {t:'k', text:S`3x^2-48x+71x-1136=0`},
+    {t:'k', text:S`3x(x-16)+71(x-16)=0`},
+    {t:'k', text:S`(x-16)(3x+71)=0`},
+    {t:'p', text:'\\(x=-\\dfrac{71}{3}\\) rejected (not a valid length)'},
+    {t:'k', text:S`\therefore x=16`}
+  ]}],
+  ans:'x = 16'
+},
+{ m:'q-3m', diff:'m', marks:'4 Marks', src:'Word Problems Q15', sc:'worksheet', star:true,
+  q:'The length of a rectangle exceeds the breadth by 5 m. If the length was decreased by 4 m and the breadth was doubled, then the area would be increased by 40 m². Find the length.',
+  given:['Let breadth \\(=b\\) m', 'Length \\(=(b+5)\\) m'],
+  table:{headers:['Rectangle','Length','Breadth'],rows:[['Original','b + 5','b'],['New','b + 1 (i.e. length − 4)','2b']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Original area \\(=(b+5)b\\); New area \\(=(b+1)(2b)\\)'},
+    {t:'k', text:S`(b+1)(2b)=(b+5)b+40`},
+    {t:'k', text:S`2b^2+2b=b^2+5b+40`},
+    {t:'k', text:S`\therefore b^2-3b-40=0`},
+    {t:'k', text:S`(b-8)(b+5)=0`},
+    {t:'p', text:'\\(b=-5\\) rejected (not a valid breadth)'},
+    {t:'k', text:S`\therefore b=8,\ \text{length}=b+5=13`}
+  ]}],
+  ans:'Length = 13 m'
+},
+{ m:'q-la', diff:'h', marks:'5 Marks', src:'Word Problems Q16', sc:'worksheet', star:true,
+  q:'The perimeter of a rectangular plot of land is 114 metres and its area is 810 m². (i) Take the length of the plot as x m, use the perimeter 114 m to write the breadth in terms of x. (ii) Use the values of length, breadth and area to write an equation in x. (iii) Solve the equation to find the length and breadth of the plot.',
+  given:['Let length \\(=x\\) m', 'Perimeter \\(=114\\) m', 'Area \\(=810\\) m²'],
+  sections:[
+    {label:'(i) BREADTH IN TERMS OF x', rows:[
+      {t:'k', text:S`2(x+b)=114`},
+      {t:'k', text:S`x+b=57`},
+      {t:'k', text:S`\therefore b=57-x`}
+    ]},
+    {label:'(ii) EQUATION', rows:[
+      {t:'k', text:S`x(57-x)=810`}
+    ]},
+    {label:'(iii) SOLVING', rows:[
+      {t:'k', text:S`57x-x^2=810`},
+      {t:'k', text:S`x^2-57x+810=0`},
+      {t:'k', text:S`(x-27)(x-30)=0`},
+      {t:'k', text:S`\therefore x=27 \text{ or } x=30`},
+      {t:'p', text:'Taking the length as the larger value, \\(x=30\\), so breadth \\(=57-30=27\\)'}
+    ]}
+  ],
+  ans:'(i) b = 57 − x (ii) x(57 − x) = 810 (iii) Length = 30 m, Breadth = 27 m'
+},
+{ m:'q-3m', diff:'m', marks:'4 Marks', src:'Word Problems Q17', sc:'worksheet', star:false,
+  q:'The length of a rectangular garden is twice the length of a square garden and its breadth is 2 m less than that of the square. The area of the rectangular garden is 21 m² more than that of the square. Find the dimensions of the rectangle.',
+  given:['Let side of square \\(=s\\) m'],
+  table:{headers:['Garden','Length','Breadth'],rows:[['Square','s','s'],['Rectangle','2s','s − 2']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`2s(s-2)=s^2+21`},
+    {t:'k', text:S`2s^2-4s=s^2+21`},
+    {t:'k', text:S`\therefore s^2-4s-21=0`},
+    {t:'k', text:S`(s-7)(s+3)=0`},
+    {t:'p', text:'\\(s=-3\\) rejected (not a valid side)'},
+    {t:'k', text:S`\therefore s=7,\ \text{rectangle length}=14,\ \text{breadth}=5`}
+  ]}],
+  ans:'Length = 14 m, Breadth = 5 m'
+},
+{ m:'q-3m', diff:'m', marks:'4 Marks', src:'Word Problems Q18', sc:'worksheet', star:false,
+  q:'A wire of length 72 cm is bent to form a right-angled triangle of hypotenuse 30 cm. Find the lengths of the other two sides.',
+  given:['Perimeter (wire length) \\(=72\\) cm', 'Hypotenuse \\(=30\\) cm', 'Sum of other two sides \\(=72-30=42\\) cm'],
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Let one side \\(=q\\), so the other side \\(=(42-q)\\)'},
+    {t:'k', text:S`q^2+(42-q)^2=30^2`},
+    {t:'k', text:S`q^2+1764-84q+q^2=900`},
+    {t:'k', text:S`2q^2-84q+864=0`},
+    {t:'k', text:S`q^2-42q+432=0`},
+    {t:'k', text:S`(q-18)(q-24)=0`},
+    {t:'k', text:S`\therefore q=18 \text{ or } q=24`}
+  ]}],
+  ans:'The two sides are 18 cm and 24 cm'
+}
+];
+
+const wordsAges = [
+{ m:'q-la', diff:'m', marks:'4 Marks', src:'Word Problems Q19', sc:'worksheet', star:true,
+  q:"The sum of ages of a mother and her daughter is 40 years. Five years ago, the mother's age was the square of her daughter's age. Find their present ages. Taking x years as the daughter's present age, frame an equation in x and solve for x.",
+  given:['Daughter\'s present age \\(=x\\)', 'Mother\'s present age \\(=(40-x)\\)'],
+  table:{headers:['Person','Present age','Age 5 years ago'],rows:[['Daughter','x','x − 5'],['Mother','40 − x','35 − x']]},
+  sections:[
+    {label:'EQUATION', rows:[{t:'k', text:S`35-x=(x-5)^2`}]},
+    {label:'SOLVING', rows:[
+      {t:'k', text:S`35-x=x^2-10x+25`},
+      {t:'k', text:S`\therefore x^2-9x-10=0`},
+      {t:'k', text:S`(x-10)(x+1)=0`},
+      {t:'p', text:'\\(x=-1\\) rejected (not a valid age)'},
+      {t:'k', text:S`\therefore x=10,\ \text{mother's age}=30`}
+    ]}
+  ],
+  ans:"Daughter's age = 10 years, Mother's age = 30 years"
+},
+{ m:'q-3m', diff:'m', marks:'4 Marks', src:'Word Problems Q20', sc:'worksheet', star:true,
+  q:"The age of a grandmother is the square of her granddaughter's age. Four years ago, she was 15 times the child's age. Find their present ages.",
+  given:['Let granddaughter\'s present age \\(=x\\)', 'Grandmother\'s present age \\(=x^2\\)'],
+  table:{headers:['Person','Present age','Age 4 years ago'],rows:[['Granddaughter','x','x − 4'],['Grandmother','x²','x² − 4']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`x^2-4=15(x-4)`},
+    {t:'k', text:S`x^2-4=15x-60`},
+    {t:'k', text:S`\therefore x^2-15x+56=0`},
+    {t:'k', text:S`(x-7)(x-8)=0`},
+    {t:'k', text:S`\therefore x=7 \text{ or } x=8`},
+    {t:'p', text:'Both are valid natural-age solutions'}
+  ]}],
+  ans:"Granddaughter's age and Grandmother's age are 7 yrs & 49 yrs, OR 8 yrs & 64 yrs"
+},
+{ m:'q-la', diff:'h', marks:'5 Marks', src:'Word Problems Q21', sc:'worksheet', star:true,
+  q:"Five years ago, a woman's age was the square of her son's age. Four years hence, her age will be thrice that of her son's age. Find (i) the age of the son five years ago, (ii) the present age of the woman.",
+  given:['Let son\'s age 5 years ago \\(=s\\)', 'Woman\'s age 5 years ago \\(=s^2\\)'],
+  table:{headers:['Person','5 yrs ago','4 yrs hence'],rows:[['Son','s','s + 9'],['Woman','s²','s² + 9']]},
+  sections:[
+    {label:'(i) EQUATION & SOLVING', rows:[
+      {t:'k', text:S`s^2+9=3(s+9)`},
+      {t:'k', text:S`s^2+9=3s+27`},
+      {t:'k', text:S`\therefore s^2-3s-18=0`},
+      {t:'k', text:S`(s-6)(s+3)=0`},
+      {t:'p', text:'\\(s=-3\\) rejected (not a valid age)'},
+      {t:'k', text:S`\therefore s=6`}
+    ]},
+    {label:'(ii) WOMAN\'S PRESENT AGE', rows:[
+      {t:'p', text:'Woman\'s age 5 years ago \\(=s^2=36\\)'},
+      {t:'k', text:S`\text{Present age}=36+5=41`}
+    ]}
+  ],
+  ans:"(i) Son's age 5 years ago = 6 years (ii) Woman's present age = 41 years"
+},
+{ m:'q-2m', diff:'m', marks:'3 Marks', src:'Word Problems Q22', sc:'worksheet', star:false,
+  q:'The ages of two sisters are 11 years and 14 years. In how many years time will the product of their ages be 304?',
+  given:['Let the required number of years \\(=n\\)'],
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`(11+n)(14+n)=304`},
+    {t:'k', text:S`154+25n+n^2=304`},
+    {t:'k', text:S`\therefore n^2+25n-150=0`},
+    {t:'k', text:S`(n-5)(n+30)=0`},
+    {t:'p', text:'\\(n=-30\\) rejected (not a valid future time)'},
+    {t:'k', text:S`\therefore n=5`}
+  ]}],
+  ans:'5 years'
+}
+];
+
+const wordsSpeed = [
+{ m:'q-la', diff:'h', marks:'5 Marks', src:'Word Problems Q23', sc:'worksheet', star:true,
+  q:'A boat goes 12 km downstream and returns upstream to the same spot after \\(4\\tfrac{1}{2}\\) hours. The speed of the current is 2 km/hr. Find the speed of the boat in still water.',
+  given:['Let speed of boat in still water \\(=b\\) km/hr', 'Speed of current \\(=2\\) km/hr'],
+  table:{headers:['Journey','Speed','Distance','Time'],rows:[['Downstream','b + 2','12 km','12/(b+2)'],['Upstream','b − 2','12 km','12/(b−2)']]},
+  formula:'\\text{Time}=\\dfrac{\\text{Distance}}{\\text{Speed}}',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`\dfrac{12}{b+2}+\dfrac{12}{b-2}=\dfrac{9}{2}`},
+    {t:'k', text:S`12\left[\dfrac{(b-2)+(b+2)}{(b+2)(b-2)}\right]=\dfrac{9}{2}`},
+    {t:'k', text:S`\dfrac{24b}{b^2-4}=\dfrac{9}{2}`},
+    {t:'k', text:S`48b=9b^2-36`},
+    {t:'k', text:S`\therefore 9b^2-48b-36=0`},
+    {t:'k', text:S`3b^2-16b-12=0`},
+    {t:'k', text:S`(3b+2)(b-6)=0`},
+    {t:'p', text:'\\(b=-\\dfrac{2}{3}\\) rejected (not a valid speed)'},
+    {t:'k', text:S`\therefore b=6`}
+  ]}],
+  ans:'Speed of the boat in still water = 6 km/hr'
+},
+{ m:'q-la', diff:'m', marks:'5 Marks', src:'Word Problems Q24', sc:'worksheet', star:true,
+  q:'Pratik takes 8 hours to travel 36 km downstream and return to the same spot. The speed of the boat in still water is 12 km/hr. Find the speed of the water current.',
+  given:['Speed of boat in still water \\(=12\\) km/hr', 'Let speed of current \\(=c\\) km/hr'],
+  table:{headers:['Journey','Speed','Distance','Time'],rows:[['Downstream','12 + c','36 km','36/(12+c)'],['Upstream','12 − c','36 km','36/(12−c)']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`\dfrac{36}{12+c}+\dfrac{36}{12-c}=8`},
+    {t:'k', text:S`36\left[\dfrac{(12-c)+(12+c)}{144-c^2}\right]=8`},
+    {t:'k', text:S`\dfrac{36\times 24}{144-c^2}=8`},
+    {t:'k', text:S`864=8(144-c^2)`},
+    {t:'k', text:S`108=144-c^2`},
+    {t:'k', text:S`\therefore c^2=36`},
+    {t:'p', text:'\\(c=-6\\) rejected (not a valid speed)'},
+    {t:'k', text:S`\therefore c=6`}
+  ]}],
+  ans:'Speed of water current = 6 km/hr'
+},
+{ m:'q-la', diff:'h', marks:'5 Marks', src:'Word Problems Q25', sc:'worksheet', star:true,
+  q:'In winter, a train travels a distance of 264 km at a certain speed. In summer, it travels 8 km/hr faster than in winter and takes 22 minutes less than in winter. Find its speed in winter.',
+  given:['Let winter speed \\(=x\\) km/hr', 'Summer speed \\(=(x+8)\\) km/hr', 'Time saved \\(=22\\) min \\(=\\dfrac{11}{30}\\) hr'],
+  table:{headers:['Season','Speed','Distance','Time'],rows:[['Winter','x','264 km','264/x'],['Summer','x + 8','264 km','264/(x+8)']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`\dfrac{264}{x}-\dfrac{264}{x+8}=\dfrac{11}{30}`},
+    {t:'k', text:S`264\left[\dfrac{(x+8)-x}{x(x+8)}\right]=\dfrac{11}{30}`},
+    {t:'k', text:S`\dfrac{264\times 8}{x^2+8x}=\dfrac{11}{30}`},
+    {t:'k', text:S`2112\times 30=11(x^2+8x)`},
+    {t:'k', text:S`\therefore x^2+8x-5760=0`},
+    {t:'k', text:S`(x-72)(x+80)=0`},
+    {t:'p', text:'\\(x=-80\\) rejected (not a valid speed)'},
+    {t:'k', text:S`\therefore x=72`}
+  ]}],
+  ans:'Speed in winter = 72 km/hr'
+},
+{ m:'q-la', diff:'h', marks:'5 Marks', src:'Word Problems Q26', sc:'worksheet', star:true,
+  q:"The distance by road between two places A and B is 240 km and by rail is 200 km. The speed of a train is 10 km/hr more than a car's speed, and thus it takes 2 hours less than the car to travel from A to B. Find the speed of the train.",
+  given:['Let car speed \\(=x\\) km/hr', 'Train speed \\(=(x+10)\\) km/hr'],
+  table:{headers:['Vehicle','Speed','Distance','Time'],rows:[['Car (by road)','x','240 km','240/x'],['Train (by rail)','x + 10','200 km','200/(x+10)']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`\dfrac{240}{x}-\dfrac{200}{x+10}=2`},
+    {t:'k', text:S`240(x+10)-200x=2x(x+10)`},
+    {t:'k', text:S`240x+2400-200x=2x^2+20x`},
+    {t:'k', text:S`40x+2400=2x^2+20x`},
+    {t:'k', text:S`\therefore 2x^2-20x-2400=0`},
+    {t:'k', text:S`x^2-10x-1200=0`},
+    {t:'k', text:S`(x-40)(x+30)=0`},
+    {t:'p', text:'\\(x=-30\\) rejected (not a valid speed)'},
+    {t:'k', text:S`\therefore x=40,\ \text{train speed}=50`}
+  ]}],
+  ans:'Speed of the train = 50 km/hr'
+},
+{ m:'q-la', diff:'h', marks:'5 Marks', src:'Word Problems Q27', sc:'worksheet', star:true,
+  q:'A plane flies a distance of 1600 km at a certain speed. On the return journey, due to bad weather, the speed was reduced by 40 km/hr, and it took 1 hour 20 minutes more than the onward journey. Find the speed of the onward journey.',
+  given:['Let onward speed \\(=x\\) km/hr', 'Return speed \\(=(x-40)\\) km/hr', 'Extra time \\(=1\\) hr 20 min \\(=\\dfrac{4}{3}\\) hr'],
+  table:{headers:['Journey','Speed','Distance','Time'],rows:[['Onward','x','1600 km','1600/x'],['Return','x − 40','1600 km','1600/(x−40)']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`\dfrac{1600}{x-40}-\dfrac{1600}{x}=\dfrac{4}{3}`},
+    {t:'k', text:S`1600\left[\dfrac{x-(x-40)}{x(x-40)}\right]=\dfrac{4}{3}`},
+    {t:'k', text:S`\dfrac{1600\times 40}{x^2-40x}=\dfrac{4}{3}`},
+    {t:'k', text:S`64000\times 3=4(x^2-40x)`},
+    {t:'k', text:S`\therefore x^2-40x-48000=0`},
+    {t:'k', text:S`(x-240)(x+200)=0`},
+    {t:'p', text:'\\(x=-200\\) rejected (not a valid speed)'},
+    {t:'k', text:S`\therefore x=240`}
+  ]}],
+  ans:'Speed of the onward journey = 240 km/hr'
+}
+];
+
+const wordsCost = [
+{ m:'q-la', diff:'h', marks:'5 Marks', src:'Word Problems Q28', sc:'worksheet', star:true,
+  q:'In an auditorium, the number of rows was equal to the number of seats in each row. When the number of rows was doubled and the number of seats in each row was reduced by 12, the total number of seats increased by 1300. How many rows were there? How many seats were there?',
+  given:['Let original number of rows \\(=x\\) (also equal to seats per row)'],
+  table:{headers:['','Rows','Seats per row','Total seats'],rows:[['Original','x','x','x²'],['New','2x','x − 12','2x(x−12)']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`2x(x-12)=x^2+1300`},
+    {t:'k', text:S`2x^2-24x=x^2+1300`},
+    {t:'k', text:S`\therefore x^2-24x-1300=0`},
+    {t:'k', text:S`(x-50)(x+26)=0`},
+    {t:'p', text:'\\(x=-26\\) rejected (not a valid count)'},
+    {t:'k', text:S`\therefore x=50`}
+  ]}],
+  ans:'Number of rows = 50, Total original seats = 2500'
+},
+{ m:'q-3m', diff:'m', marks:'4 Marks', src:'Word Problems Q29', sc:'worksheet', star:false,
+  q:'6400 notebooks were distributed among some children. Had there been 80 children less, each would have received 4 more books. Taking the number of books received by each child as x, frame an equation in x and solve for it.',
+  given:['Let books received per child \\(=x\\)', 'Number of children \\(=\\dfrac{6400}{x}\\)'],
+  table:{headers:['','Books per child','Number of children'],rows:[['Original','x','6400/x'],['New','x + 4','6400/(x+4)']]},
+  sections:[
+    {label:'EQUATION', rows:[{t:'k', text:S`\dfrac{6400}{x}-\dfrac{6400}{x+4}=80`}]},
+    {label:'SOLVING', rows:[
+      {t:'k', text:S`6400\left[\dfrac{(x+4)-x}{x(x+4)}\right]=80`},
+      {t:'k', text:S`\dfrac{6400\times 4}{x^2+4x}=80`},
+      {t:'k', text:S`25600=80x^2+320x`},
+      {t:'k', text:S`\therefore x^2+4x-320=0`},
+      {t:'k', text:S`(x-16)(x+20)=0`},
+      {t:'p', text:'\\(x=-20\\) rejected (not a valid count)'},
+      {t:'k', text:S`\therefore x=16`}
+    ]}
+  ],
+  ans:'Number of books each child would get originally = 16'
+},
+{ m:'q-la', diff:'h', marks:'5 Marks', src:'Word Problems Q30', sc:'worksheet', star:true,
+  q:'Some students planned a picnic. The budget for the food was ₹480. As eight of them failed to join the party, the cost of the food for each member increased by ₹10. Find how many students went for the picnic.',
+  given:['Let original number of students \\(=x\\)'],
+  table:{headers:['','Students','Cost per head'],rows:[['Planned','x','480/x'],['Actual','x − 8','480/(x−8)']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`\dfrac{480}{x-8}-\dfrac{480}{x}=10`},
+    {t:'k', text:S`480\left[\dfrac{x-(x-8)}{x(x-8)}\right]=10`},
+    {t:'k', text:S`\dfrac{480\times 8}{x^2-8x}=10`},
+    {t:'k', text:S`3840=10x^2-80x`},
+    {t:'k', text:S`\therefore x^2-8x-384=0`},
+    {t:'k', text:S`(x-24)(x+16)=0`},
+    {t:'p', text:'\\(x=-16\\) rejected (not a valid count)'},
+    {t:'k', text:S`\therefore x=24,\ \text{students who actually went}=24-8=16`}
+  ]}],
+  ans:'Number of students who went for the picnic = 16'
+},
+{ m:'q-la', diff:'h', marks:'5 Marks', src:'Word Problems Q31', sc:'worksheet', star:true,
+  q:'A shopkeeper buys a certain number of books for ₹960. If the cost per book was ₹8 less, the number of books that could be bought for ₹960 would be 4 more. Taking the original cost of each book to be ₹x, write an equation in x and solve it.',
+  given:['Let original cost per book \\(=x\\)', 'Original number of books \\(=\\dfrac{960}{x}\\)'],
+  table:{headers:['','Cost per book','Number of books'],rows:[['Original','x','960/x'],['New','x − 8','960/(x−8)']]},
+  sections:[
+    {label:'EQUATION', rows:[{t:'k', text:S`\dfrac{960}{x-8}-\dfrac{960}{x}=4`}]},
+    {label:'SOLVING', rows:[
+      {t:'k', text:S`960\left[\dfrac{x-(x-8)}{x(x-8)}\right]=4`},
+      {t:'k', text:S`\dfrac{960\times 8}{x^2-8x}=4`},
+      {t:'k', text:S`7680=4x^2-32x`},
+      {t:'k', text:S`\therefore x^2-8x-1920=0`},
+      {t:'k', text:S`(x-48)(x+40)=0`},
+      {t:'p', text:'\\(x=-40\\) rejected (not a valid cost)'},
+      {t:'k', text:S`\therefore x=48`}
+    ]}
+  ],
+  ans:'The original cost of each book = ₹48'
+},
+{ m:'q-la', diff:'h', marks:'5 Marks', src:'Word Problems Q32', sc:'worksheet', star:true,
+  q:'A piece of cloth costs ₹200. If the piece was 5 m longer and each metre of cloth costs ₹2 less, the cost of the piece would have remained unchanged. How long is the piece and what is the original rate per metre?',
+  given:['Let length of cloth \\(=x\\) m', 'Original rate \\(=\\dfrac{200}{x}\\) per m'],
+  table:{headers:['','Length','Rate per metre'],rows:[['Original','x','200/x'],['New','x + 5','200/x − 2']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`\left(\dfrac{200}{x}-2\right)(x+5)=200`},
+    {t:'k', text:S`200+\dfrac{1000}{x}-2x-10=200`},
+    {t:'k', text:S`\dfrac{1000}{x}-2x-10=0`},
+    {t:'k', text:S`1000-2x^2-10x=0`},
+    {t:'k', text:S`x^2+5x-500=0`},
+    {t:'k', text:S`(x-20)(x+25)=0`},
+    {t:'p', text:'\\(x=-25\\) rejected (not a valid length)'},
+    {t:'k', text:S`\therefore x=20,\ \text{rate}=\dfrac{200}{20}=10`}
+  ]}],
+  ans:'Length = 20 m, Original rate = ₹10/m'
+},
+{ m:'q-la', diff:'h', marks:'5 Marks', src:'Word Problems Q33', sc:'worksheet', star:true,
+  q:'For a total cost of ₹42,000, x mobile phones were bought. But when the price of each went up by ₹200, for the same amount now, 5 fewer mobiles could be bought. Frame an equation in x and solve it. Also find the new price of the mobile.',
+  given:['Let original number of phones \\(=x\\)', 'Original price per phone \\(=\\dfrac{42000}{x}\\)'],
+  table:{headers:['','Price per phone','Number of phones'],rows:[['Original','42000/x','x'],['New','42000/x + 200','x − 5']]},
+  sections:[
+    {label:'EQUATION', rows:[{t:'k', text:S`\left(\dfrac{42000}{x}+200\right)(x-5)=42000`}]},
+    {label:'SOLVING', rows:[
+      {t:'k', text:S`42000-\dfrac{210000}{x}+200x-1000=42000`},
+      {t:'k', text:S`200x-\dfrac{210000}{x}-1000=0`},
+      {t:'k', text:S`200x^2-1000x-210000=0`},
+      {t:'k', text:S`x^2-5x-1050=0`},
+      {t:'k', text:S`(x-35)(x+30)=0`},
+      {t:'p', text:'\\(x=-30\\) rejected (not a valid count)'},
+      {t:'k', text:S`\therefore x=35`}
+    ]},
+    {label:'NEW PRICE', rows:[
+      {t:'p', text:'Original price \\(=\\dfrac{42000}{35}=1200\\)'},
+      {t:'k', text:S`\text{New price}=1200+200=1400`}
+    ]}
+  ],
+  ans:'x = 35 phones originally; New price of the mobile = ₹1400'
+},
+{ m:'q-3m', diff:'m', marks:'4 Marks', src:'Word Problems Q34', sc:'worksheet', star:true,
+  q:'By selling an article for ₹24, a trader loses as much percent as the cost price of the article. Calculate the cost price.',
+  given:['Let cost price = ₹\\(C\\)', 'Selling price = ₹24', 'Loss % \\(=C\\) (given, numerically equal to cost price)'],
+  formula:'\\text{Loss}=C-24=\\dfrac{C}{100}\\times C',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`C-24=\dfrac{C^2}{100}`},
+    {t:'k', text:S`100C-2400=C^2`},
+    {t:'k', text:S`\therefore C^2-100C+2400=0`},
+    {t:'k', text:S`(C-60)(C-40)=0`},
+    {t:'k', text:S`\therefore C=60 \text{ or } C=40`},
+    {t:'p', text:'Both values give a valid loss situation (loss% = 60% or 40%, and SP < CP in both cases)'}
+  ]}],
+  ans:'The cost price of the article = ₹60 or ₹40'
+}
+];
+
+/* =========================================================================
+   BOARD PYQs (2018–2025) — Quadratic Equations
+   All answers recomputed and verified with sympy before entry.
+   ========================================================================= */
+const pyqData = [
+{ m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2025 Q1(i)', sc:'pyq', star:true,
+  type:'mcq',
+  q:'The given quadratic equation \\(3x^2+7x+2=0\\) has:',
+  opts:['two equal real roots','two distinct real roots','more than two real roots','no real roots'], ans:1,
+  sol:[{label:'WORKING', rows:[
+    {t:'p', text:'\\(a=3,\\ b=7,\\ c=2\\)'},
+    {t:'k', text:S`D=b^2-4ac=49-24=25`},
+    {t:'p', text:'\\(D=25=5^2>0\\), a perfect square — roots are real and unequal (rational)'}
+  ]}]
+},
+{ m:'q-3m', diff:'m', marks:'4 Marks', src:'ICSE 2025 Q2(i)', sc:'pyq', star:true,
+  q:'Solve \\(2x^2-5x-4=0\\). Give your answer correct to three significant figures.',
+  formula:'x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'\\(a=2,\\ b=-5,\\ c=-4\\)'},
+    {t:'k', text:S`x=\dfrac{5\pm\sqrt{25+32}}{4}=\dfrac{5\pm\sqrt{57}}{4}`},
+    {t:'k', text:S`x=\dfrac{5\pm 7.550}{4}`},
+    {t:'k', text:S`\therefore x=3.14 \text{ or } x=-0.637`}
+  ]}],
+  ans:'x = 3.14 or -0.637'
+},
+{ m:'q-la', diff:'h', marks:'4 Marks', src:'ICSE 2025 Q8(iii)', sc:'pyq', star:true,
+  q:'Mr. and Mrs. Das were travelling by car from Delhi to Kasauli (approx. 350 km). Due to heavy rain the average speed was reduced by 20 km/h and the time of journey increased by 2 hours. Find (a) the original speed of the car, (b) with the reduced speed, the number of hours they took to reach their destination.',
+  given:['Let original speed \\(=x\\) km/h', 'Reduced speed \\(=(x-20)\\) km/h', 'Distance \\(=350\\) km'],
+  table:{headers:['','Speed','Distance','Time'],rows:[['Original','x','350 km','350/x'],['Reduced','x − 20','350 km','350/(x−20)']]},
+  sections:[{label:'(a) WORKING', rows:[
+    {t:'k', text:S`\dfrac{350}{x-20}-\dfrac{350}{x}=2`},
+    {t:'k', text:S`350\left[\dfrac{x-(x-20)}{x(x-20)}\right]=2`},
+    {t:'k', text:S`\dfrac{350\times 20}{x^2-20x}=2`},
+    {t:'k', text:S`7000=2x^2-40x`},
+    {t:'k', text:S`\therefore x^2-20x-3500=0`},
+    {t:'k', text:S`(x-70)(x+50)=0`},
+    {t:'p', text:'\\(x=-50\\) rejected (not a valid speed)'},
+    {t:'k', text:S`\therefore x=70`}
+  ]},
+  {label:'(b) TIME AT REDUCED SPEED', rows:[
+    {t:'p', text:'Reduced speed \\(=70-20=50\\) km/h'},
+    {t:'k', text:S`\text{Time}=\dfrac{350}{50}=7 \text{ hours}`}
+  ]}],
+  ans:'(a) Original speed = 70 km/h (b) Time at reduced speed = 7 hours'
+},
+{ m:'q-1m', diff:'m', marks:'1 Mark · MCQ', src:'ICSE 2024 Q1(iii)', sc:'pyq', star:true,
+  type:'mcq',
+  q:'The roots of the quadratic equation \\(px^2-qx+r=0\\) are real and equal if:',
+  opts:['p² = 4qr','q² = 4pr','−q² = 4pr','p² > 4qr'], ans:1,
+  sol:[{label:'WORKING', rows:[
+    {t:'p', text:'Here \\(a=p,\\ b=-q,\\ c=r\\). For equal roots, \\(D=0\\)'},
+    {t:'k', text:S`(-q)^2-4(p)(r)=0`},
+    {t:'k', text:S`\therefore q^2=4pr`}
+  ]}]
+},
+{ m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2024 Q6(i)', sc:'pyq', star:true,
+  q:'Solve \\(2x^2-10x+5=0\\) and give your answer correct up to three significant figures.',
+  formula:'x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'\\(a=2,\\ b=-10,\\ c=5\\)'},
+    {t:'k', text:S`x=\dfrac{10\pm\sqrt{100-40}}{4}=\dfrac{10\pm\sqrt{60}}{4}`},
+    {t:'k', text:S`x=\dfrac{10\pm 7.746}{4}`},
+    {t:'k', text:S`\therefore x=4.44 \text{ or } x=0.564`}
+  ]}],
+  ans:'x = 4.44 or 0.564'
+},
+{ m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2023 Q1(v)', sc:'pyq', star:false,
+  type:'mcq',
+  q:'If 3 is a root of the quadratic equation \\(x^2-px+3=0\\) then p is equal to:',
+  opts:['4','3','5','2'], ans:0,
+  sol:[{label:'WORKING', rows:[
+    {t:'p', text:'Substitute \\(x=3\\)'},
+    {t:'k', text:S`9-3p+3=0`},
+    {t:'k', text:S`\therefore p=4`}
+  ]}]
+},
+{ m:'q-3m', diff:'m', marks:'4 Marks', src:'ICSE 2023 Q3(i)', sc:'pyq', star:true,
+  q:'Solve \\(x^2+4x-8=0\\). Give your answer correct to one decimal place.',
+  formula:'x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`x=\dfrac{-4\pm\sqrt{16+32}}{2}=\dfrac{-4\pm\sqrt{48}}{2}=-2\pm2\sqrt3`},
+    {t:'k', text:S`x=-2\pm 3.464`},
+    {t:'k', text:S`\therefore x=1.5 \text{ or } x=-5.5`}
+  ]}],
+  ans:'x = 1.5 or -5.5'
+},
+{ m:'q-la', diff:'h', marks:'3 Marks', src:'ICSE 2023 Q7(ii)', sc:'pyq', star:true,
+  q:'A man covers a distance of 100 km travelling with a uniform speed of x km/hr; had the speed been 5 km/hr more, it would have taken 1 hour less. Find x, the original speed.',
+  given:['Let original speed \\(=x\\) km/h', 'New speed \\(=(x+5)\\) km/h', 'Distance \\(=100\\) km'],
+  table:{headers:['','Speed','Distance','Time'],rows:[['Original','x','100 km','100/x'],['New','x + 5','100 km','100/(x+5)']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`\dfrac{100}{x}-\dfrac{100}{x+5}=1`},
+    {t:'k', text:S`100\left[\dfrac{(x+5)-x}{x(x+5)}\right]=1`},
+    {t:'k', text:S`\dfrac{500}{x^2+5x}=1`},
+    {t:'k', text:S`\therefore x^2+5x-500=0`},
+    {t:'k', text:S`(x-20)(x+25)=0`},
+    {t:'p', text:'\\(x=-25\\) rejected (not a valid speed)'},
+    {t:'k', text:S`\therefore x=20`}
+  ]}],
+  ans:'x = 20 km/hr'
+},
+{ m:'q-la', diff:'h', marks:'4 Marks', src:'ICSE 2022 Q24(i)-(iv)', sc:'pyq', star:false,
+  q:'Two cars X and Y use 1 litre of diesel to travel x km and (x+3) km respectively; both covered 72 km. (i) Litres used by car X (ii) Litres used by car Y (iii) Frame the equation if car X used 4 litres more diesel than car Y (iv) Find the amount of diesel used by car X.',
+  given:['Car X: 1 litre per x km, so litres used for 72 km \\(=\\dfrac{72}{x}\\)', 'Car Y: 1 litre per \\((x+3)\\) km, so litres used for 72 km \\(=\\dfrac{72}{x+3}\\)'],
+  sections:[
+    {label:'(i) & (ii)', rows:[
+      {t:'p', text:'Litres used by car X \\(=\\dfrac{72}{x}\\); Litres used by car Y \\(=\\dfrac{72}{x+3}\\)'}
+    ]},
+    {label:'(iii) EQUATION', rows:[
+      {t:'k', text:S`\dfrac{72}{x}-\dfrac{72}{x+3}=4`}
+    ]},
+    {label:'(iv) SOLVING', rows:[
+      {t:'k', text:S`72\left[\dfrac{(x+3)-x}{x(x+3)}\right]=4`},
+      {t:'k', text:S`\dfrac{216}{x^2+3x}=4`},
+      {t:'k', text:S`\therefore x^2+3x-54=0`},
+      {t:'k', text:S`(x-6)(x+9)=0`},
+      {t:'p', text:'\\(x=-9\\) rejected (not a valid speed/rate)'},
+      {t:'k', text:S`\therefore x=6`},
+      {t:'p', text:'Diesel used by car X \\(=\\dfrac{72}{6}=12\\) litres'}
+    ]}
+  ],
+  ans:'(i) 72/x (ii) 72/(x+3) (iii) 72/x − 72/(x+3) = 4 (iv) Car X used 12 litres'
+},
+{ m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2022 Sem1 Q6', sc:'pyq', star:false,
+  type:'mcq',
+  q:'Which of the following quadratic equations has 2 and 3 as its roots?',
+  opts:['x²−5x+6=0','x²+5x+6=0','x²−5x−6=0','x²+5x−6=0'], ans:0,
+  sol:[{label:'WORKING', rows:[
+    {t:'k', text:S`(x-2)(x-3)=0`},
+    {t:'k', text:S`\therefore x^2-5x+6=0`}
+  ]}]
+},
+{ m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2022 Sem1 Q16', sc:'pyq', star:false,
+  type:'mcq',
+  q:'One of the roots of the quadratic equation \\(x^2-8x+5=0\\) is 7.3166. The root correct to 4 significant figures is:',
+  opts:['7.3166','7.317','7.316','7.32'], ans:1,
+  sol:[{label:'WORKING', rows:[
+    {t:'p', text:'Rounding 7.3166 to 4 significant figures: the 5th figure (6) rounds the 4th figure up from 6 to 7'},
+    {t:'k', text:S`7.3166 \approx 7.317`}
+  ]}]
+},
+{ m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2020 Q1(a)', sc:'pyq', star:true,
+  q:'Solve \\(x^2-7x+3=0\\). Give your answer correct to two decimal places.',
+  formula:'x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`x=\dfrac{7\pm\sqrt{49-12}}{2}=\dfrac{7\pm\sqrt{37}}{2}`},
+    {t:'k', text:S`x=\dfrac{7\pm 6.083}{2}`},
+    {t:'k', text:S`\therefore x=6.54 \text{ or } x=0.46`}
+  ]}],
+  ans:'x = 6.54 or 0.46'
+},
+{ m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2020 Q10(b)', sc:'pyq', star:false,
+  q:'The difference of two natural numbers is 7 and their product is 450. Find the numbers.',
+  given:['Let smaller number \\(=n\\)', 'Larger number \\(=(n+7)\\)'],
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`n(n+7)=450`},
+    {t:'k', text:S`n^2+7n-450=0`},
+    {t:'k', text:S`(n-18)(n+25)=0`},
+    {t:'p', text:'\\(n=-25\\) rejected (not a natural number)'},
+    {t:'k', text:S`\therefore n=18`}
+  ]}],
+  ans:'The two numbers are 18 and 25'
+},
+{ m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2019 Q4(b)', sc:'pyq', star:true,
+  q:'Solve for x: \\(x^2-4x-8=0\\). Give your answer correct to three significant figures.',
+  formula:'x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}',
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`x=\dfrac{4\pm\sqrt{16+32}}{2}=\dfrac{4\pm\sqrt{48}}{2}=2\pm2\sqrt3`},
+    {t:'k', text:S`x=2\pm 3.464`},
+    {t:'k', text:S`\therefore x=5.46 \text{ or } x=-1.46`}
+  ]}],
+  ans:'x = 5.46 or -1.46'
+},
+{ m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2019 Q11(b)', sc:'pyq', star:false,
+  q:'The product of two consecutive natural numbers which are multiples of 3 is equal to 810. Find the two numbers.',
+  given:['Let the numbers be \\(3m\\) and \\(3m+3\\) (consecutive multiples of 3)'],
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`3m(3m+3)=810`},
+    {t:'k', text:S`9m^2+9m-810=0`},
+    {t:'k', text:S`m^2+m-90=0`},
+    {t:'k', text:S`(m-9)(m+10)=0`},
+    {t:'p', text:'\\(m=-10\\) rejected (not a valid multiple)'},
+    {t:'k', text:S`\therefore m=9,\ \text{numbers}=27,\ 30`}
+  ]}],
+  ans:'The two numbers are 27 and 30'
+},
+{ m:'q-3m', diff:'m', marks:'4 Marks', src:'ICSE 2018 Q4(c)', sc:'pyq', star:true,
+  q:'Solve \\(x^2+7x=7\\) and give your answer correct to two decimal places.',
+  formula:'x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Rewrite as \\(x^2+7x-7=0\\)'},
+    {t:'k', text:S`x=\dfrac{-7\pm\sqrt{49+28}}{2}=\dfrac{-7\pm\sqrt{77}}{2}`},
+    {t:'k', text:S`x=\dfrac{-7\pm 8.775}{2}`},
+    {t:'k', text:S`\therefore x=0.89 \text{ or } x=-7.89`}
+  ]}],
+  ans:'x = 0.89 or -7.89'
+},
+{ m:'q-la', diff:'h', marks:'3 Marks', src:'ICSE 2018 Q7(a)', sc:'pyq', star:true,
+  q:'Find the value of k for which the following equation has equal roots: \\(x^2+4kx+(k^2-k+2)=0\\)',
+  formula:'D=b^2-4ac=0 \\text{ for equal roots}',
+  sections:[{label:'WORKING', rows:[
+    {t:'p', text:'Here \\(a=1,\\ b=4k,\\ c=k^2-k+2\\). Set \\(D=0\\)'},
+    {t:'k', text:S`(4k)^2-4(1)(k^2-k+2)=0`},
+    {t:'k', text:S`16k^2-4k^2+4k-8=0`},
+    {t:'k', text:S`\therefore 12k^2+4k-8=0`},
+    {t:'k', text:S`3k^2+k-2=0`},
+    {t:'k', text:S`(3k-2)(k+1)=0`},
+    {t:'k', text:S`\therefore k=\dfrac{2}{3} \text{ or } k=-1`}
+  ]}],
+  ans:'k = -1 or 2/3'
+},
+{ m:'q-la', diff:'h', marks:'3 Marks', src:'ICSE 2018 Q8(a)', sc:'pyq', star:true,
+  q:'₹7500 were divided equally among a certain number of children. Had there been 20 less children, each would have received ₹100 more. Find the original number of children.',
+  given:['Let original number of children \\(=x\\)'],
+  table:{headers:['','Children','Amount per child'],rows:[['Original','x','7500/x'],['New','x − 20','7500/(x−20)']]},
+  sections:[{label:'WORKING', rows:[
+    {t:'k', text:S`\dfrac{7500}{x-20}-\dfrac{7500}{x}=100`},
+    {t:'k', text:S`7500\left[\dfrac{x-(x-20)}{x(x-20)}\right]=100`},
+    {t:'k', text:S`\dfrac{7500\times 20}{x^2-20x}=100`},
+    {t:'k', text:S`150000=100x^2-2000x`},
+    {t:'k', text:S`\therefore x^2-20x-1500=0`},
+    {t:'k', text:S`(x-50)(x+30)=0`},
+    {t:'p', text:'\\(x=-30\\) rejected (not a valid count)'},
+    {t:'k', text:S`\therefore x=50`}
+  ]}],
+  ans:'Original number of children = 50'
+}
+];
+
+
+render('solving-qs', solvingData);
+render('words-numbers-qs', wordsNumbers);
+render('words-digits-qs', wordsDigits);
+render('words-fractions-qs', wordsFractions);
+render('words-geometry-qs', wordsGeometry);
+render('words-ages-qs', wordsAges);
+render('words-speed-qs', wordsSpeed);
+render('words-cost-qs', wordsCost);
+render('pyq-qs', pyqData);
+updateCount('solving-qs');
+updateCount('words-numbers-qs');
+updateCount('words-digits-qs');
+updateCount('words-fractions-qs');
+updateCount('words-geometry-qs');
+updateCount('words-ages-qs');
+updateCount('words-speed-qs');
+updateCount('words-cost-qs');
+updateCount('pyq-qs');
+
+/*DATA_GOES_HERE*/
+
+document.addEventListener('DOMContentLoaded', function(){
+  renderMathIn(document.getElementById('panel-concepts'));
+  renderMathIn(document.getElementById('panel-solving'));
+  renderMathIn(document.getElementById('panel-words'));
+  renderMathIn(document.getElementById('panel-pyq'));
+});
+</script>
+</body>
+</html>

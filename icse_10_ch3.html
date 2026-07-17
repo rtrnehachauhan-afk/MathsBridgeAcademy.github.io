@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shares and Dividend — ICSE Class 10 | Maths Bridge Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F0E8;--bg2:#EDE8DC;--bg3:#E4DDD0;
+  --green:#2D5A3D;--green2:#3D7A55;--green3:#1A3D28;
+  --gold:#C9A84C;--gold2:#E8C56A;--gold3:#A07830;
+  --slate:#1A3050;--blue:#2563A8;--cbblue:#0D2B4E;
+  --purple:#7B5EA7;
+  --amber:#7A5C00;--amberbg:#FFF8DC;
+  --text:#000;--text2:#1a1a1a;--text3:#555;
+  --white:#fff;--card:#FFFDF8;--border:#D4C9B0;
+  --fbg:#EEF5F0;--hbg:#FFF8E6;
+}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--bg);color:var(--text);font-size:20px;line-height:1.75}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px 80px}
+
+/* ---------- overflow safety (locked, per spec) ---------- */
+.k, .formula-text, .qtxt, .sol-body, .given-row{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:3px 0}
+
+/* HEADER */
+.site-header{background:var(--green3);border-bottom:3px solid var(--gold)}
+.header-inner{display:flex;align-items:center;gap:16px;padding:12px 24px;max-width:960px;margin:0 auto}
+.logo-mark{width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--green3);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;font-size:16px;flex-shrink:0}
+.ht-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--white);line-height:1.1}
+.ht-tag{font-size:11px;color:var(--gold2);letter-spacing:.05em;margin-top:2px}
+.hr-right{margin-left:auto;text-align:right}
+.hr-board{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.hr-ch{font-family:'Playfair Display',serif;font-size:15px;color:var(--white);font-weight:700}
+
+/* HERO */
+.hero{background:var(--green);padding:22px 28px;border-radius:0 0 14px 14px;margin-bottom:22px;position:relative;overflow:hidden}
+.hero::after{content:'₹';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:110px;color:rgba(255,255,255,.05);pointer-events:none;font-family:'Crimson Pro',serif}
+.h-lbl{font-size:10px;font-weight:700;color:var(--gold2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.h-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:800;color:var(--white);line-height:1.1;margin-bottom:5px}
+.h-sub{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:16px}
+.h-pills{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.h-pill{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);color:var(--white);font-size:11px;font-weight:600;padding:3px 12px;border-radius:20px;font-family:'JetBrains Mono',monospace}
+.h-stats{display:flex;gap:8px;flex-wrap:wrap}
+.h-stat{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);border-radius:9px;padding:9px 16px;text-align:center}
+.h-stat .n{font-size:22px;font-weight:700;color:var(--white);font-family:'Playfair Display',serif}
+.h-stat .l{font-size:10px;color:var(--gold2);font-weight:600;letter-spacing:.03em}
+
+/* TABS */
+.tabs{display:flex;gap:5px;flex-wrap:wrap;background:var(--bg2);padding:7px;border-radius:11px;border:1px solid var(--border);margin-bottom:20px}
+.tab-btn{flex:1;min-width:100px;padding:9px 8px;font-size:15px;font-weight:700;border:2px solid transparent;cursor:pointer;border-radius:8px;transition:all .16s;font-family:'Crimson Pro',serif;background:transparent;color:var(--text3)}
+.tab-btn:not(.active):hover{background:var(--bg3);color:var(--text)}
+.tb-concepts.active{background:var(--green);color:var(--white);border-color:var(--green)}
+.tb-board.active{background:var(--purple);color:var(--white);border-color:var(--purple)}
+.tb-practice.active{background:var(--slate);color:var(--white);border-color:var(--slate)}
+
+/* DIFFICULTY FILTER */
+.diff-filter{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.df-btn{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:6px 15px;border-radius:20px;border:2px solid var(--border);background:var(--card);color:var(--text3);cursor:pointer;transition:all .15s;letter-spacing:.02em}
+.df-btn:hover{border-color:var(--green2)}
+.df-btn.active[data-f="all"]{background:var(--green3);border-color:var(--green3);color:var(--white)}
+.df-btn.active[data-f="e"]{background:#DFF5E3;border-color:#1A5C2A;color:#1A5C2A}
+.df-btn.active[data-f="m"]{background:#FFF3CC;border-color:#7A5500;color:#7A5500}
+.df-btn.active[data-f="h"]{background:#FFE5E5;border-color:#8B1A1A;color:#8B1A1A}
+.df-count{font-size:12px;color:var(--text3);align-self:center;margin-left:2px;font-family:'JetBrains Mono',monospace}
+
+/* SECTION HEAD */
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.sec-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0;font-family:'JetBrains Mono',monospace;color:var(--white)}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--green)}
+.sec-badge{margin-left:auto;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+
+/* FORMULA / HIGHLIGHT / THEOREM BOXES (used in Concepts tab) */
+.fbox{background:var(--fbg);border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:13px 16px;margin:10px 0;position:relative}
+.fbox::before{content:'FORMULA';position:absolute;top:7px;right:11px;font-size:9px;font-weight:700;color:var(--green2);letter-spacing:.1em;font-family:'JetBrains Mono',monospace;opacity:.5}
+.fbox .fl{font-size:10px;font-weight:700;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.fbox .fm{font-size:19px;font-weight:600;color:var(--green3);line-height:1.9}
+.fbox .fn{font-size:15px;color:var(--text2);margin-top:5px;line-height:1.6}
+.hbox{background:var(--hbg);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:11px 15px;margin:10px 0}
+.hbox .hl{font-size:10px;font-weight:700;color:var(--gold3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.hbox .ht{font-size:16px;color:var(--text2);line-height:1.7}
+.tbox{background:var(--card);border:2px solid var(--green);border-radius:10px;padding:15px 18px;margin:12px 0}
+.mba-note{font-size:13px;font-weight:700;color:#8B1A1A;background:#FFF3F0;border-left:3px solid #C94040;padding:5px 11px;border-radius:0 6px 6px 0;margin:6px 0 10px}
+.mba-note b{color:#6B1414}
+.tbox .tl{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--white);background:var(--green);padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:9px;letter-spacing:.04em}
+.tbox .tb{font-size:16px;color:var(--text2);line-height:1.8}
+
+/* CONCEPT CARD */
+.cc{background:var(--card);border:1px solid var(--border);border-radius:11px;margin-bottom:13px;overflow:hidden;box-shadow:0 2px 7px rgba(45,90,61,.07)}
+.cc-head{background:var(--green3);padding:11px 16px;display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none}
+.cc-head .ci{font-size:16px}
+.cc-head .ct{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--white);flex:1}
+.cc-head .ca{color:var(--gold2);font-size:13px;transition:transform .2s}
+.cc-head.open .ca{transform:rotate(180deg)}
+.cc-body{display:none;padding:16px 18px;border-top:2px solid var(--border)}
+.cc-body.open{display:block}
+.cc-body p{font-size:16px;color:var(--text2);line-height:1.8;margin-bottom:9px}
+.cc-body svg{width:100%;height:auto;display:block;margin:10px auto}
+.ctbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.ctbl th{background:var(--green3);color:var(--white);padding:9px 13px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700}
+.ctbl td{padding:9px 13px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+.ctbl tr:nth-child(even) td{background:var(--bg2)}
+
+/* QUESTION CARD */
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:11px;margin-bottom:13px;overflow:hidden;box-shadow:0 2px 7px rgba(45,90,61,.07)}
+.q-stripe{height:4px}
+.qcard.q-1m .q-stripe{background:linear-gradient(90deg,var(--green),var(--green2))}
+.qcard.q-2m .q-stripe{background:linear-gradient(90deg,var(--purple),#A07BD4)}
+.qcard.q-3m .q-stripe{background:linear-gradient(90deg,var(--gold3),var(--gold))}
+.qcard.q-la .q-stripe{background:linear-gradient(90deg,var(--slate),var(--blue))}
+
+.q-head{background:var(--green3);padding:12px 16px;display:flex;flex-direction:column;gap:8px}
+.qcard.q-2m .q-head{background:var(--purple)}
+.qcard.q-la .q-head{background:var(--slate)}
+.q-head-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.qnb{min-width:32px;height:32px;border-radius:7px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;padding:0 6px;background:rgba(255,255,255,.2);color:var(--white)}
+.qtxt{font-size:19px;font-weight:600;color:var(--white);line-height:1.6;width:100%;font-family:'Crimson Pro',serif}
+.qmp{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;font-family:'JetBrains Mono',monospace;background:rgba(255,255,255,.2);color:var(--white)}
+.star{font-size:14px;flex-shrink:0}
+.diff{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap;flex-shrink:0}
+.diff-e{background:#DFF5E3;color:#1A5C2A}
+.diff-m{background:#FFF3CC;color:#7A5500}
+.diff-h{background:#FFE5E5;color:#8B1A1A}
+
+/* CHAIN BREADCRUMB (custom — portfolio-change / sell-and-reinvest questions) */
+.chain-badge{font-family:'JetBrains Mono',monospace;font-size:12px;background:rgba(255,255,255,.14);color:var(--white);padding:7px 16px;border-top:1px solid rgba(255,255,255,.15)}
+
+/* MCQ OPTIONS */
+.mcq-opts{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:13px 16px;background:#FAFAF5;border-bottom:1px solid var(--border)}
+.mopt{padding:10px 14px;border-radius:8px;font-size:18px;cursor:pointer;border:2px solid var(--border);background:var(--card);color:var(--text);transition:all .15s;text-align:left;font-family:'Crimson Pro',serif;font-weight:600}
+.mopt:hover:not(.locked){border-color:var(--green2);background:var(--fbg)}
+.mopt.correct{border-color:var(--green);background:#EEF5F0;color:var(--green3)}
+.mopt.wrong{border-color:var(--amber);background:var(--amberbg);color:var(--amber)}
+.mcq-res{display:none;padding:9px 16px 12px;background:#FAFAF5}
+.mcq-res.show{display:block}
+.mcq-res .ml{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.mcq-res.ok .ml{color:var(--green)}.mcq-res.wr .ml{color:var(--amber)}
+.mcq-res .mt{font-size:15px;color:var(--text2);line-height:1.7}
+
+/* FOOTER */
+.q-foot{background:rgba(45,90,61,.06);padding:7px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border)}
+.qsrc{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.src-worksheet{background:#EEF5F0;color:var(--green3)}
+.src-pyq{background:#F0EBF8;color:var(--purple)}
+.pyq-pills{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.pyq-lbl{font-size:9px;font-weight:700;color:var(--text3);font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+.pyq-yr{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;font-family:'JetBrains Mono',monospace;background:#F0EBF8;color:var(--purple);border:1px solid #C4B0E8}
+.sol-btn{margin-left:auto;font-size:11px;font-weight:700;padding:4px 13px;border-radius:7px;border:2px solid var(--green);background:transparent;cursor:pointer;color:var(--green);transition:all .15s;font-family:'JetBrains Mono',monospace}
+.sol-btn:hover{background:var(--green);color:var(--white)}
+.rep-btn{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid #E0C9C9;background:#FBF3F3;color:#9A2B2B;cursor:pointer;transition:all .15s;white-space:nowrap}
+.rep-btn:hover{background:#F3E3E3;border-color:#C99}
+.rep-btn.sent{background:#EEF5F0;border-color:var(--green);color:var(--green)}
+.rep-modal{display:none;position:fixed;inset:0;background:rgba(26,61,40,.55);z-index:999;align-items:center;justify-content:center;padding:18px}
+.rep-modal.show{display:flex}
+.rep-card{background:var(--card);border:2px solid var(--green);border-radius:14px;max-width:440px;width:100%;padding:20px;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.rep-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--green);margin-bottom:8px}
+.rep-ctx{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3);background:var(--bg2);border-radius:7px;padding:7px 10px;margin-bottom:12px}
+.rep-ta{width:100%;min-height:90px;font-family:'Crimson Pro',serif;font-size:17px;border:1.5px solid var(--border);border-radius:9px;padding:10px 12px;resize:vertical}
+.rep-ta:focus{outline:none;border-color:var(--gold)}
+.rep-status{font-size:13px;color:var(--green);min-height:18px;margin:10px 0 4px;font-weight:600}
+.rep-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+.rep-cancel{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 16px;border-radius:8px;border:1.5px solid var(--border);background:#fff;color:var(--text3);cursor:pointer}
+.rep-send{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 18px;border-radius:8px;border:none;background:var(--green);color:#fff;cursor:pointer;font-weight:700}
+.rep-send:hover{background:var(--green3)}
+
+/* MB TIP (hard questions only) */
+.mbtip{background:#FFF8E6;border:2px dashed var(--gold3);border-radius:10px;padding:11px 15px;margin:10px 16px}
+.mbtip-lbl{font-size:10px;font-weight:700;color:var(--gold3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.mbtip-text{font-size:15px;color:var(--text2);line-height:1.65}
+
+/* SOLUTION BODY */
+.sol-body{display:none;border-top:2px solid var(--border)}
+.sol-body.open{display:block}
+.given-blk{background:var(--fbg);padding:10px 16px;border-bottom:1px solid #C8DCCC}
+.given-lbl{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.given-row{font-size:17px;color:var(--text2);line-height:1.7;margin-bottom:3px}
+.formula-blk{background:var(--hbg);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:10px 16px;margin:10px 16px;border-bottom:1px solid #E8D8A0;position:relative}
+.formula-lbl{font-size:9px;font-weight:700;color:var(--gold3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;font-family:'JetBrains Mono',monospace}
+.formula-text{font-size:16px;font-weight:600;color:var(--green3);line-height:1.7}
+.ysec{padding:14px 16px;border-bottom:1px solid var(--border)}
+.ysec:last-of-type{border-bottom:none}
+.y-lbl{display:inline-block;background:var(--green3);color:var(--white);font-size:10px;font-weight:700;padding:2px 10px;border-radius:4px;margin-bottom:12px;letter-spacing:.04em;font-family:'JetBrains Mono',monospace}
+.k{font-size:17px;color:var(--green3);background:var(--fbg);border-left:3px solid var(--green);padding:6px 12px;border-radius:0 6px 6px 0;margin:4px 0 5px;display:block}
+.p{font-size:17px;color:var(--text2);line-height:1.7;margin-bottom:6px}
+.p b{color:var(--green3)}
+.gr{font-size:14px;color:var(--text3);font-style:italic;margin-left:4px;display:block;margin-bottom:4px}
+.final-ans{background:var(--green3);padding:11px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fa-lbl{font-size:11px;font-weight:700;color:var(--gold2);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
+.fav{font-size:18px;font-weight:700;color:var(--white);font-family:'Crimson Pro',serif}
+
+.panel{animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+footer{text-align:center;padding:26px;color:var(--text3);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="header-inner">
+    <div class="logo-mark">MBA</div>
+    <div><div class="ht-name">Maths Bridge Academy</div><div class="ht-tag">Nurturing Young Minds Through Maths Mastery</div></div>
+    <div class="hr-right"><div class="hr-board">ICSE · Class 10</div><div class="hr-ch">Shares and Dividend</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+<div class="hero">
+  <div class="h-lbl">ICSE Class 10 Mathematics</div>
+  <div class="h-title">Shares and Dividend</div>
+  <div class="h-sub">Face Value · Market Value · Dividend &amp; Return · Portfolio-change chains · Board PYQs 2019–2025</div>
+  <div class="h-pills">
+    <span class="h-pill">Worksheet Q1–Q24</span>
+    <span class="h-pill">Board PYQs 2019–2025</span>
+    <span class="h-pill">⭐ = Board-frequent pattern</span>
+  </div>
+  <div class="h-stats">
+    <div class="h-stat"><div class="n">4</div><div class="l">Concepts</div></div>
+    <div class="h-stat"><div class="n">30</div><div class="l">Questions</div></div>
+    <div class="h-stat"><div class="n">6</div><div class="l">Board PYQs</div></div>
+    <div class="h-stat"><div class="n">2019–25</div><div class="l">PYQ Years</div></div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn tb-concepts active" id="btn-concepts" onclick="sw('concepts')">📘 Concepts</button>
+  <button class="tab-btn tb-board" id="btn-board" onclick="sw('board')">✎ Board PYQs</button>
+  <button class="tab-btn tb-practice" id="btn-practice" onclick="sw('practice')">✓ Practice Worksheet</button>
+</div>
+
+<div id="panel-concepts" class="panel">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--green)">₹</div><div class="sec-title">All Concepts &amp; Formulae</div></div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">📄</span><span class="ct">1. Basic Terms</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">FACE VALUE (F.V.) / NOMINAL VALUE</span><div class="tb">The printed value of one share, fixed by the company when the share is issued (commonly ₹10, ₹25, ₹50, ₹100). Dividend is always calculated on the Face Value, never on the Market Value.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> Dividend is on F.V., never on M.V.</div>
+      <div class="tbox"><span class="tl">MARKET VALUE (M.V.)</span><div class="tb">The price at which a share is actually bought or sold in the market. This can be equal to, above, or below the Face Value.</div></div>
+      <table class="ctbl">
+        <tr><th>Condition</th><th>Relation</th></tr>
+        <tr><td>At Par</td><td>M.V. = F.V.</td></tr>
+        <tr><td>Above Par (Premium)</td><td>M.V. = F.V. + Premium</td></tr>
+        <tr><td>Below Par (Discount)</td><td>M.V. = F.V. − Discount</td></tr>
+      </table>
+      <div class="tbox"><span class="tl">CHECKLIST — WHEN A DISCOUNT % IS GIVEN</span><div class="tb">Two steps, always in this order: (a) find the Discount in ₹ first — Discount = Rate of Discount × F.V. ÷ 100. (b) then find M.V. = F.V. − Discount. Don't skip straight to guessing M.V.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> Discount % → find ₹ discount first, then M.V.</div>
+      <div class="hbox"><div class="hl">Reading a share quote</div><div class="ht">"₹100 shares at ₹120" means F.V. = ₹100, M.V. = ₹120 — bought at a premium of ₹20. "₹50 shares at a discount of ₹6" means F.V. = ₹50, M.V. = ₹44.</div></div>
+      <div class="tbox"><span class="tl">DECODING THE WORDING — WHICH VALUE IS WHICH</span><div class="tb">Board questions often hide F.V. and M.V. inside ordinary sentences instead of labelling them. Use these keyword rules to tell them apart at a glance:</div></div>
+      <table class="ctbl">
+        <tr><th>Keyword before a value</th><th>It means</th></tr>
+        <tr><td>"on", "in", "of" (e.g. "dividend <b>on</b> ₹100 shares")</td><td>That value is the <b>F.V.</b></td></tr>
+        <tr><td>"at" (e.g. shares "<b>at</b> ₹120")</td><td>That value is the <b>M.V.</b></td></tr>
+        <tr><td>"paid" (e.g. "the price <b>paid</b>")</td><td>Means <b>M.V.</b></td></tr>
+        <tr><td>"rate/%" immediately followed by "investment"</td><td>That is the <b>% Return</b>, not the dividend rate</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">📄</span><span class="ct">1a. Profit on Sale of Shares</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="mba-note">⚠️ <b>MBA Note:</b> "at" = M.V., "on/in/of" = F.V.</div>
+      <div class="fbox"><div class="fl">Profit (when shares are sold)</div><div class="fm">\( \text{Profit} = \text{Sale Proceeds} - \text{Investment} \)</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> Profit ≠ Dividend — don't mix the two</div>
+      <div class="hbox"><div class="hl">Not the same as Dividend</div><div class="ht">Dividend is the yearly income a share earns while you hold it. Profit is the one-time gain (or loss) made only if and when you later sell the share for more (or less) than you paid for it. A question can ask for both in the same problem — keep them separate.</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🧮</span><span class="ct">2. Key Formulae</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="fbox"><div class="fl">Investment</div><div class="fm">\( \text{Investment} = \text{No. of shares}\times \text{M.V. of 1 share} \)</div></div>
+      <div class="fbox"><div class="fl">Number of shares</div><div class="fm">\( \text{No. of shares} = \dfrac{\text{Total Amount Invested}}{\text{M.V. of 1 share}} \)</div></div>
+      <div class="fbox"><div class="fl">Number of shares — alternate route (when Investment isn't given directly)</div><div class="fm">\( \text{No. of shares} = \dfrac{\text{Total Dividend Received}}{\text{Dividend on 1 share}} \)</div><div class="fn">Useful whenever the question gives you the total dividend earned instead of the amount invested.</div></div>
+      <div class="fbox"><div class="fl">Dividend (Annual Income)</div><div class="fm">\( \text{Dividend} = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.} \)</div></div>
+      <div class="fbox"><div class="fl">Rate of Return (Income %)</div><div class="fm">\( \text{Rate of Return} = \dfrac{\text{Dividend}}{\text{Investment}}\times 100 \)</div></div>
+      <div class="fbox"><div class="fl">The Shortcut Formula (very frequently used)</div><div class="fm">\( \text{Rate of Dividend}\times \text{F.V.} = \text{Rate of Return}\times \text{M.V.} \)</div><div class="fn">Both sides equal the dividend earned by ONE share, just written two different ways — so they must be equal. This shortcut lets you jump straight from one unknown (rate, F.V., return, or M.V.) to another without going through the full investment.</div></div>
+      <div class="hbox"><div class="hl">Which formula to reach for</div><div class="ht">If the question gives Total Investment, start with "No. of shares". If it gives only rates/percentages and one price, the shortcut formula is faster. If it gives the Dividend amount directly, divide by (Rate × F.V./100) to get No. of shares first.</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🔁</span><span class="ct">3. Selling &amp; Reinvesting (Portfolio-change Chains)</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">THE PATTERN</span><div class="tb">A person already owns shares in Company A. They sell all of them at a given Selling Price (S.P.), and the entire sale proceeds become the new Total Investment for Company B. The two companies are solved one after another using the same formulae — never mix the two companies' numbers together.</div></div>
+      <div class="fbox"><div class="fl">Sale Proceeds</div><div class="fm">\( \text{Sale Proceeds} = \text{No. of shares held}\times \text{S.P. of 1 share} \)</div><div class="fn">This Sale Proceeds becomes the new "Total Amount Invested" for the second company.</div></div>
+      <div class="fbox"><div class="fl">Change in Income</div><div class="fm">\( \text{Change in Income} = \text{Greater Dividend} - \text{Smaller Dividend} \)</div><div class="fn">Work out both dividends first, then subtract the smaller from the larger — don't assume the new dividend is always bigger. If the new dividend turns out smaller, the "change" is a decrease, and the question is usually asking by how much income fell.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> Change in Income = Greater − Smaller (not always New − Old)</div>
+      <div class="hbox"><div class="hl">Keep the two companies visually separate</div><div class="ht">Every chain question below is worked as "Company A" fully, then "Company B" fully, then combined only in the final step (change in income, or % change on the original investment).</div></div>
+      <div class="tbox"><span class="tl">CHECKLIST — "INVESTED THE PROCEEDS"</span><div class="tb">Whenever a question says a person sold shares and <b>invested the proceeds</b> elsewhere, you always need two numbers before anything else: (a) the Sale Proceeds, and (b) the New Investment in Company B, where New Investment = Sale Proceeds.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> "Invested proceeds" → New Investment = Sale Proceeds (unless it says "including dividend")</div>
+      <div class="tbox"><span class="tl">SPECIAL CASE — "INVESTED THE PROCEEDS <i>INCLUDING DIVIDEND</i>"</span><div class="tb">If the wording adds "including dividend", the year's dividend from Company A is added to the sale proceeds before reinvesting:</div></div>
+      <div class="fbox"><div class="fl">New Investment (proceeds + dividend case)</div><div class="fm">\( \text{New Investment} = \text{Sale Proceeds} + \text{Dividend} \)</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="panel-board" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--purple)">B</div><div class="sec-title">Board PYQs (2019–2025)</div><span class="sec-badge" style="background:#F0EBF8;color:var(--purple);border:1px solid #C4B0E8">MCQs + Short Answer</span></div>
+  <div class="diff-filter" id="filter-board-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('board-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('board-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('board-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('board-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-board-qs"></span>
+  </div>
+  <div id="board-qs"></div>
+</div>
+
+<div id="panel-practice" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--slate)">P</div><div class="sec-title">Practice Worksheet (Q1–Q24)</div><span class="sec-badge" style="background:#E8EEF5;color:var(--slate);border:1px solid #A0B4C8">Full Worked Solutions</span></div>
+  <div class="diff-filter" id="filter-practice-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('practice-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('practice-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('practice-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('practice-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-practice-qs"></span>
+  </div>
+  <div id="practice-qs"></div>
+</div>
+
+</div>
+
+<footer>Maths Bridge Academy · ICSE Class 10 · Shares and Dividend &nbsp;|&nbsp; Found an error? Use the Report button on that card.</footer>
+
+<div class="rep-modal" id="rep-modal">
+  <div class="rep-card">
+    <div class="rep-title">Report an error</div>
+    <div class="rep-ctx" id="rep-ctx"></div>
+    <textarea class="rep-ta" id="rep-msg" placeholder="What looks wrong? (e.g. Step 3 arithmetic, final answer, wrong option marked...)"></textarea>
+    <div class="rep-status" id="rep-status"></div>
+    <div class="rep-actions">
+      <button class="rep-cancel" onclick="repClose()">Cancel</button>
+      <button class="rep-send" onclick="repSend()">Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== ERROR REPORT CONFIG ===== */
+const REPORT_META = { board:'ICSE', grade:'10', chapter:'Shares and Dividend' };
+const REPORT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx3vGZZjTHbAnKtOwSz6TaWtpYtnudCzxKMtm3Eo9bB4Ey6Xlor6LunLFEmyIQQy5e6/exec';
+/* ================================ */
+var _repCtx = {};
+function reportError(card, btn){
+  var parts = String(card).split(' ');
+  _repCtx = { tab: parts[0]||'', qno: parts[1]||card, btn: btn };
+  document.getElementById('rep-ctx').textContent =
+    REPORT_META.board+' · Grade '+REPORT_META.grade+' · '+REPORT_META.chapter+' · '+_repCtx.tab+' · '+_repCtx.qno;
+  document.getElementById('rep-msg').value='';
+  document.getElementById('rep-status').textContent='';
+  document.getElementById('rep-modal').classList.add('show');
+  document.getElementById('rep-msg').focus();
+}
+function repClose(){ document.getElementById('rep-modal').classList.remove('show'); }
+function repSend(){
+  var msg = document.getElementById('rep-msg').value.trim();
+  var status = document.getElementById('rep-status');
+  if(!msg){ status.style.color='#9A2B2B'; status.textContent='Please type what is wrong.'; return; }
+  status.style.color='var(--green)'; status.textContent='Sending...';
+  var qs = 'board='+encodeURIComponent(REPORT_META.board)
+         +'&grade='+encodeURIComponent(REPORT_META.grade)
+         +'&chapter='+encodeURIComponent(REPORT_META.chapter)
+         +'&tab='+encodeURIComponent(_repCtx.tab)
+         +'&qno='+encodeURIComponent(_repCtx.qno)
+         +'&error='+encodeURIComponent(msg);
+  function done(){
+    status.style.color='var(--green)'; status.textContent='\u2713 Thank you! Reported.';
+    if(_repCtx.btn){ _repCtx.btn.classList.add('sent'); _repCtx.btn.textContent='\u2713 Reported'; }
+    setTimeout(repClose, 1200);
+  }
+  fetch(REPORT_ENDPOINT+'?'+qs, { method:'GET', mode:'no-cors' }).then(done).catch(done);
+}
+function reportBtn(card, alone){
+  var ml = alone ? 'style="margin-left:auto"' : '';
+  return '<button class="rep-btn" '+ml+' onclick="reportError(\''+card+'\', this)" title="Found a mistake? Report it">\u26a0 Report error</button>';
+}
+function updateCount(cid){
+  var el = document.getElementById('count-'+cid);
+  if(!el) return;
+  var all = document.querySelectorAll('#'+cid+' .qcard');
+  var visible = document.querySelectorAll('#'+cid+' .qcard:not([style*="display: none"])');
+  el.textContent = 'Showing '+visible.length+' of '+all.length;
+}
+function filterDiff(cid, level, btn){
+  var bar = document.getElementById('filter-'+cid);
+  bar.querySelectorAll('.df-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var cards = document.querySelectorAll('#'+cid+' .qcard');
+  cards.forEach(function(card){
+    card.style.display = (level==='all' || card.getAttribute('data-diff')===level) ? '' : 'none';
+  });
+  updateCount(cid);
+}
+function toggleCC(h){ h.classList.toggle('open'); h.nextElementSibling.classList.toggle('open'); }
+function sw(id){
+  ['concepts','board','practice'].forEach(function(t){
+    document.getElementById('panel-'+t).style.display = t===id ? 'block' : 'none';
+    var b = document.getElementById('btn-'+t);
+    b.classList.remove('active');
+    if(t===id) b.classList.add('active');
+  });
+  renderMathIn(document.getElementById('panel-'+id));
+}
+function pyqPills(yrs){
+  if(!yrs || !yrs.length) return '';
+  var pills = yrs.map(function(y){ return '<span class="pyq-yr">'+y+'</span>'; }).join('');
+  return '<span class="pyq-lbl">PYQ:</span><div class="pyq-pills">'+pills+'</div>';
+}
+function togSol(btn){
+  var b = btn.closest('.qcard').querySelector('.sol-body');
+  var open = b.classList.toggle('open');
+  btn.textContent = open ? 'Hide Solution' : 'Show Solution';
+  if(open) renderMathIn(b);
+}
+function chk(btn,id,chosen,correct){
+  var all = btn.closest('.mcq-opts').querySelectorAll('.mopt');
+  all.forEach(function(b){ b.classList.add('locked'); });
+  all.forEach(function(b,i){
+    if(i===correct) b.classList.add('correct');
+    else if(i===chosen) b.classList.add('wrong');
+  });
+  var res = document.getElementById('mr-'+id);
+  res.classList.add('show');
+  if(chosen===correct){
+    res.classList.add('ok');
+    res.querySelector('.ml').textContent = '\u2713 Correct!';
+    res.querySelector('.mt').innerHTML = 'Correct: '+all[correct].textContent.trim();
+  } else {
+    res.classList.add('wr');
+    res.querySelector('.ml').textContent = '\u2717 Incorrect';
+    res.querySelector('.mt').innerHTML = 'Correct answer: '+all[correct].textContent.trim();
+  }
+}
+function buildRow(r){
+  if(!r) return '';
+  if(r.t==='p') return '<div class="p">'+r.text+'</div>';
+  if(r.t==='gr') return '<div class="gr">'+r.text+'</div>';
+  if(r.t==='k') return '<div class="k">\\[ '+r.text+' \\]</div>';
+  if(r.t==='div') return '<hr style="border:none;border-top:1px dashed var(--border);margin:6px 0">';
+  return '';
+}
+function buildSections(sections){
+  return (sections||[]).map(function(sec){
+    var rows = sec.rows.map(buildRow).join('');
+    return '<div class="ysec"><div class="y-lbl">'+sec.label+'</div>'+rows+'</div>';
+  }).join('');
+}
+function buildGiven(given){
+  if(!given || !given.length) return '';
+  var rows = given.map(function(g){ return '<div class="given-row">'+g+'</div>'; }).join('');
+  return '<div class="given-blk"><div class="given-lbl">Given</div>'+rows+'</div>';
+}
+function buildMbTip(tip){
+  if(!tip) return '';
+  return '<div class="mbtip"><div class="mbtip-lbl">\ud83d\udca1 MB Tip</div><div class="mbtip-text">'+tip+'</div></div>';
+}
+function buildFormula(formula){
+  if(!formula) return '';
+  return '<div class="formula-blk"><div class="formula-lbl">Formula</div><div class="formula-text">\\[ '+formula+' \\]</div></div>';
+}
+function chainHtml(chain){
+  if(!chain) return '';
+  return '<div class="chain-badge">'+chain+'</div>';
+}
+function buildMbaNotes(notes){
+  if(!notes) return '';
+  var arr = Array.isArray(notes) ? notes : [notes];
+  return arr.map(function(n){ return '<div class="mba-note">\u26a0\ufe0f <b>MBA Note:</b> '+n+'</div>'; }).join('');
+}
+function renderMathIn(container){
+  if(window.renderMathInElement && container){
+    renderMathInElement(container, {
+      delimiters:[{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],
+      throwOnError:false
+    });
+  }
+}
+function render(cid, data){
+  var c = document.getElementById(cid);
+  data.forEach(function(q, i){
+    var diff = q.diff || 'm';
+    var div = document.createElement('div');
+    div.className = 'qcard ' + q.m;
+    div.setAttribute('data-diff', diff);
+    var star = q.star ? '<span class="star" title="Board-frequent pattern">\u2b50</span>' : '';
+    var srcHtml = '<span class="qsrc src-'+q.sc+'">'+q.src+'</span>';
+    var pyqHtml = pyqPills(q.pyq);
+    var qid = cid+'-'+i;
+    var cardLbl = cid.replace('-qs','').toUpperCase()+' Q'+(i+1);
+    var diffLbl = {'e':'Easy','m':'Medium','h':'Hard'}[diff];
+
+    if(q.type === 'mcq'){
+      var mopts = q.opts.map(function(o,oi){
+        return '<button class="mopt" onclick="chk(this,\''+qid+'\','+oi+','+q.ans+')">'+o+'</button>';
+      }).join('');
+      var mcqSolBtn = q.sol ? '<button class="sol-btn" onclick="togSol(this)">Show Solution</button>' : '';
+      var mcqSolBody = q.sol ? '<div class="sol-body">'+buildSections(q.sol)+'<div class="final-ans"><span class="fa-lbl">Answer</span><span class="fav">'+q.opts[q.ans]+'</span></div></div>' : '';
+      div.innerHTML =
+        '<div class="q-stripe"></div>'+
+        '<div class="q-head"><div class="q-head-top"><div class="qnb">Q'+(i+1)+'</div><span class="qmp">'+q.marks+'</span>'+star+'<span class="diff diff-'+diff+'">'+diffLbl+'</span></div><div class="qtxt">'+q.q+'</div></div>'+
+        chainHtml(q.chain)+
+        buildMbaNotes(q.mbanote)+
+        '<div class="mcq-opts">'+mopts+'</div>'+
+        '<div class="mcq-res" id="mr-'+qid+'"><div class="ml"></div><div class="mt"></div></div>'+
+        '<div class="q-foot">'+srcHtml+pyqHtml+mcqSolBtn+reportBtn(cardLbl,!q.sol)+'</div>'+
+        mcqSolBody;
+    } else {
+      div.innerHTML =
+        '<div class="q-stripe"></div>'+
+        '<div class="q-head"><div class="q-head-top"><div class="qnb">Q'+(i+1)+'</div><span class="qmp">'+q.marks+'</span>'+star+'<span class="diff diff-'+diff+'">'+diffLbl+'</span></div><div class="qtxt">'+q.q+'</div></div>'+
+        chainHtml(q.chain)+
+        buildMbaNotes(q.mbanote)+
+        '<div class="q-foot">'+srcHtml+pyqHtml+'<button class="sol-btn" onclick="togSol(this)">Show Solution</button>'+reportBtn(cardLbl,false)+'</div>'+
+        '<div class="sol-body">'+buildGiven(q.given)+buildMbTip(q.mbtip)+buildFormula(q.formula)+buildSections(q.sections)+'<div class="final-ans"><span class="fa-lbl">Answer</span><span class="fav">'+q.ans+'</span></div></div>';
+    }
+    c.appendChild(div);
+  });
+}
+
+function S(strings, ...vals){ return String.raw(strings, ...vals); } // proper String.raw wrapper — DO NOT re-wrap in {raw:strings}
+
+/* =========================================================================
+   BOARD PYQ DATA (6 verified questions, 2019-2025)
+   ========================================================================= */
+const boardData = [
+  {
+    m:'q-1m', diff:'m', marks:'1 Mark · MCQ', src:'ICSE 2025 Q1(viii)', sc:'pyq', star:true, pyq:['2025'],
+    type:'mcq',
+    q:'A man invested in a company paying 12% dividend on its share. If the percentage return on his investment is 10%, then the shares are:',
+    opts:['at par','below par','above par','cannot be determined'], ans:2,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — the shortcut linking Rate of Dividend, F.V., Rate of Return and M.V.</b>'},
+      {t:'k', text:S`\text{Rate of Dividend}\times \text{F.V.} = \text{Rate of Return}\times \text{M.V.}`},
+      {t:'p', text:'<b>Substitute the given values (assume F.V. = ₹100, the standard assumption when F.V. is not stated)</b>'},
+      {t:'k', text:S`12\times 100 = 10\times \text{M.V.}`},
+      {t:'k', text:S`1200 = 10\times \text{M.V.}`},
+      {t:'k', text:S`\text{M.V.} = \dfrac{1200}{10} = 120`},
+      {t:'p', text:'<b>Compare M.V. to F.V.</b>'},
+      {t:'k', text:S`\text{M.V.} (120) > \text{F.V.} (100)`},
+      {t:'gr', text:'(when a return of only 10% is earned on a share paying 12% dividend, the share must have been bought for MORE than its face value — that premium is exactly what pulls the return down below the dividend rate)'}
+    ]}]
+  },
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2024 Q1(ix)', sc:'pyq', star:true, pyq:['2024'],
+    mbanote:'Discount % → find ₹ discount first, then M.V.',
+    type:'mcq',
+    q:'The sum invested to purchase 15 shares of a company of nominal value ₹75 available at a discount of 20% is:',
+    opts:['₹60','₹90','₹1350','₹900'], ans:3,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Step 1 — Market Value at a discount</b>'},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{Discount} = \text{Rate of Discount}\times \text{F.V.}`},
+      {t:'k', text:S`\text{M.V.} = \text{F.V.} - \text{Discount}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Discount} = 20\%\times 75 = \dfrac{20}{100}\times 75 = 15`},
+      {t:'k', text:S`\text{M.V.} = 75-15 = 60`},
+      {t:'p', text:'<b>Step 2 — Sum invested for 15 shares</b>'},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{Investment} = \text{No. of shares}\times \text{M.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Investment} = 15\times 60 = 900`}
+    ]}]
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2023 Q8(i)', sc:'pyq', star:true, pyq:['2023'],
+    q:'A man bought ₹200 shares of a company at 25% premium. If he received a return of 5% on his investment. Find: (a) the market value (b) the dividend percent declared (c) the number of shares purchased, if annual dividend is ₹1000.',
+    given:['F.V. = ₹200, Premium = 25% on F.V., Rate of Return = 5%, Annual dividend = ₹1000'],
+    sections:[
+      {label:'(a) MARKET VALUE', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Premium (amount)} = \text{Rate of Premium}\times \text{F.V.}`},
+        {t:'k', text:S`\text{M.V.} = \text{F.V.} + \text{Premium}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Premium} = 25\%\times 200 = \dfrac{25}{100}\times 200 = 50`},
+        {t:'k', text:S`\text{M.V.} = 200+50 = 250`}
+      ]},
+      {label:'(b) DIVIDEND PERCENT DECLARED', rows:[
+        {t:'p', text:'<b>Formula — the shortcut</b>'},
+        {t:'k', text:S`\text{Rate of Dividend}\times \text{F.V.} = \text{Rate of Return}\times \text{M.V.}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`d\times 200 = 5\times 250`},
+        {t:'k', text:S`d\times 200 = 1250`},
+        {t:'k', text:S`d = \dfrac{1250}{200} = 6.25`}
+      ]},
+      {label:'(c) NUMBER OF SHARES PURCHASED', rows:[
+        {t:'p', text:'<b>Formula — dividend earned by one share</b>'},
+        {t:'k', text:S`\text{Dividend per share} = \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+        {t:'p', text:'<b>Substitute (using the rate just found)</b>'},
+        {t:'k', text:S`\text{Dividend per share} = \dfrac{6.25}{100}\times 200 = 12.5`},
+        {t:'p', text:'<b>Formula — number of shares from total dividend</b>'},
+        {t:'k', text:S`\text{No. of shares} = \dfrac{\text{Total Annual Dividend}}{\text{Dividend per share}}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{No. of shares} = \dfrac{1000}{12.5} = 80`}
+      ]}
+    ],
+    ans:'(a) M.V. = ₹250  (b) Dividend rate = 6.25%  (c) Number of shares = 80'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2020 Q5(a)', sc:'pyq', star:false, pyq:['2020'],
+    q:'A company with 500 shares of nominal value ₹120 declares an annual dividend of 15%. Calculate: (i) the total amount of dividend paid by the company. (ii) annual income of Mr. Sharma who holds 80 shares of the company. If the return percent of Mr. Sharma from his shares is 10%, find the market value of each share.',
+    given:['Total shares issued = 500, F.V. = ₹120, Rate of Dividend = 15%, Mr. Sharma holds 80 shares, his Rate of Return = 10%'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>(i) Total dividend paid on all 500 shares</b>'},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{Dividend} = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend per share} = \dfrac{15}{100}\times 120 = 18`},
+      {t:'k', text:S`\text{Total Dividend} = 500\times 18 = 9000`},
+      {t:'p', text:'<b>(ii) Mr. Sharma\'s annual income (80 shares, same dividend per share)</b>'},
+      {t:'k', text:S`\text{Income} = 80\times 18 = 1440`},
+      {t:'p', text:'<b>Market value — Formula (the shortcut)</b>'},
+      {t:'k', text:S`\text{Rate of Dividend}\times \text{F.V.} = \text{Rate of Return}\times \text{M.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`15\times 120 = 10\times \text{M.V.}`},
+      {t:'k', text:S`1800 = 10\times \text{M.V.}`},
+      {t:'k', text:S`\text{M.V.} = \dfrac{1800}{10} = 180`}
+    ]}],
+    ans:'(i) Total dividend = ₹9000  (ii) Mr. Sharma\'s income = ₹1440, Market value = ₹180'
+  },
+  {
+    m:'q-3m', diff:'e', marks:'3 Marks', src:'ICSE 2019 Q1(b)', sc:'pyq', star:false, pyq:['2019'],
+    mbanote:'Discount % → find ₹ discount first, then M.V.',
+    q:'A man invests ₹4500 in shares of a company which is paying 7.5% dividend. If ₹100 shares are available at a discount of 10%. Find: (i) Number of shares he purchases. (ii) His annual income.',
+    given:['Total Investment = ₹4500, F.V. = ₹100, Discount = 10%, Rate of Dividend = 7.5%'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Step 1 — Market Value</b>'},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{Discount} = \text{Rate of Discount}\times \text{F.V.}`},
+      {t:'k', text:S`\text{M.V.} = \text{F.V.} - \text{Discount}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Discount} = 10\%\times 100 = \dfrac{10}{100}\times 100 = 10`},
+      {t:'k', text:S`\text{M.V.} = 100-10 = 90`},
+      {t:'p', text:'<b>(i) Number of shares — Formula</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{\text{Total Investment}}{\text{M.V. of 1 share}}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{4500}{90} = 50`},
+      {t:'p', text:'<b>(ii) Annual income — Formula</b>'},
+      {t:'k', text:S`\text{Dividend} = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Income} = 50\times \dfrac{7.5}{100}\times 100 = 50\times 7.5 = 375`}
+    ]}],
+    ans:'(i) Number of shares = 50  (ii) Annual income = ₹375'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'ICSE 2019 Q9(c)', sc:'pyq', star:true, pyq:['2019'],
+    mbanote:['Change in Income = Greater − Smaller (not always New − Old)','"Invested proceeds" → New Investment = Sale Proceeds (unless it says "including dividend")'],
+    chain:'10% ₹100 shares at ₹170 → sold at ₹200 → reinvested in 12% ₹100 shares at ₹125',
+    q:'Sachin invests ₹8500 in 10%, ₹100 shares at ₹170. He sells the shares when the price of each share rises by ₹30. He invests the proceeds in 12%, ₹100 shares at ₹125. Find: (i) the sale proceeds. (ii) the number of ₹125 shares he buys. (iii) the change in his annual income.',
+    given:['Company A: F.V. = ₹100, M.V. = ₹170, Rate = 10%, Investment = ₹8500','New S.P. = 170+30 = ₹200','Company B: F.V. = ₹100, M.V. = ₹125, Rate = 12%'],
+    mbtip:'This is a 3-stage chain: buy → sell at a <b>new</b> price → reinvest. The easiest mistake is selling at the old ₹170 instead of the new ₹200 (₹170 + the ₹30 rise). Always update the price before computing sale proceeds.',
+    sections:[{label:'COMPANY A', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{\text{Total Investment}}{\text{M.V. of 1 share}}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{8500}{170} = 50`},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{Dividend} = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend}_A = 50\times \dfrac{10}{100}\times 100 = 500`}
+    ]},
+    {label:'SALE OF COMPANY A SHARES', rows:[
+      {t:'p', text:'<b>(i) Sale proceeds — Formula</b>'},
+      {t:'k', text:S`\text{Sale Proceeds} = \text{No. of shares}\times \text{S.P. of 1 share}`},
+      {t:'p', text:'<b>Substitute (at the new price of ₹200)</b>'},
+      {t:'k', text:S`\text{Sale Proceeds} = 50\times 200 = 10000`}
+    ]},
+    {label:'COMPANY B', rows:[
+      {t:'p', text:'<b>(ii) Number of shares bought — Formula (sale proceeds becomes the new investment)</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{\text{Total Investment}}{\text{M.V. of 1 share}}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{10000}{125} = 80`},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{Dividend} = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend}_B = 80\times \dfrac{12}{100}\times 100 = 960`}
+    ]},
+    {label:'(iii) CHANGE IN INCOME', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{Change in Income} = \text{Dividend}_{new} - \text{Dividend}_{old}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Change} = 960-500 = 460`}
+    ]}],
+    ans:'(i) Sale proceeds = ₹10,000  (ii) Number of ₹125 shares = 80  (iii) Income increases by ₹460'
+  }
+];
+
+/* =========================================================================
+   PRACTICE WORKSHEET DATA (Q1–Q24)
+   ========================================================================= */
+const practiceData = [
+  {
+    m:'q-1m', diff:'e', marks:'3 Marks', src:'Worksheet Q1', sc:'worksheet', star:false,
+    q:'Find the Market Value (M.V.) of: (i) 280 shares of ₹100 each at a premium of ₹16. (ii) 160 shares of ₹25 each at a discount of ₹6.',
+    given:['(i) F.V. = ₹100, No. of shares = 280, Premium = ₹16','(ii) F.V. = ₹25, No. of shares = 160, Discount = ₹6'],
+    sections:[
+      {label:'(i)', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{M.V. of 1 share} = \text{F.V.} + \text{Premium}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{M.V. of 1 share} = 100+16 = 116`},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Total M.V.} = \text{No. of shares}\times \text{M.V. of 1 share}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Total M.V.} = 280\times 116 = 32480`}
+      ]},
+      {label:'(ii)', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{M.V. of 1 share} = \text{F.V.} - \text{Discount}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{M.V. of 1 share} = 25-6 = 19`},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Total M.V.} = \text{No. of shares}\times \text{M.V. of 1 share}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Total M.V.} = 160\times 19 = 3040`}
+      ]}
+    ],
+    ans:'(i) ₹32,480  (ii) ₹3,040'
+  },
+  {
+    m:'q-3m', diff:'e', marks:'3 Marks', src:'Worksheet Q2', sc:'worksheet', star:true,
+    q:'Salman buys 50 shares of face value ₹100 available at ₹132. (i) What is his investment? (ii) If the dividend is 7.5%, what will be his annual income? (iii) If he wants to increase his annual income by ₹150, how many extra shares should he buy?',
+    given:['F.V. = ₹100, No. of shares = 50, M.V. = ₹132, Rate of Dividend = 7.5%'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>(i) Investment — Formula</b>'},
+      {t:'k', text:S`\text{Investment} = \text{No. of shares}\times \text{M.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Investment} = 50\times 132 = 6600`},
+      {t:'p', text:'<b>(ii) Annual income — Formula</b>'},
+      {t:'k', text:S`\text{Dividend} = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Income} = 50\times \dfrac{7.5}{100}\times 100 = 375`},
+      {t:'p', text:'<b>(iii) Extra shares for ₹150 more income</b>'},
+      {t:'p', text:'<b>Formula — income earned by ONE share</b>'},
+      {t:'k', text:S`\text{Dividend per share} = \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend per share} = \dfrac{7.5}{100}\times 100 = 7.5`},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{Extra shares} = \dfrac{\text{Extra income needed}}{\text{Dividend per share}}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Extra shares} = \dfrac{150}{7.5} = 20`}
+    ]}],
+    ans:'(i) Investment = ₹6,600  (ii) Annual income = ₹375  (iii) 20 extra shares'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q3', sc:'worksheet', star:true,
+    q:'A man invests ₹9600 on ₹100 shares at ₹80. If the company pays him 18% dividend, find: (i) The number of shares he buys. (ii) His total annual dividend. (iii) His percentage return on the shares.',
+    given:['Investment = ₹9600, F.V. = ₹100, M.V. = ₹80, Rate of Dividend = 18%'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>(i) Number of shares — Formula</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{\text{Total Investment}}{\text{M.V. of 1 share}}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{9600}{80} = 120`},
+      {t:'p', text:'<b>(ii) Total annual dividend — Formula</b>'},
+      {t:'k', text:S`\text{Dividend} = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend} = 120\times \dfrac{18}{100}\times 100 = 120\times 18 = 2160`},
+      {t:'p', text:'<b>(iii) Percentage return — Formula</b>'},
+      {t:'k', text:S`\text{Rate of Return} = \dfrac{\text{Dividend}}{\text{Investment}}\times 100`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Return \%} = \dfrac{2160}{9600}\times 100 = 22.5`}
+    ]}],
+    ans:'(i) 120 shares  (ii) Annual dividend = ₹2,160  (iii) Return = 22.5%'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q4', sc:'worksheet', star:false,
+    q:'A man invested a sum of money in ₹100 shares, paying 10% dividend and quoted at 20% premium. If his annual dividend is ₹540, calculate: (i) His total investment. (ii) The rate of return on his investment.',
+    given:['F.V. = ₹100, Rate of Dividend = 10%, Premium = 20%, Annual dividend = ₹540'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Step 1 — Market Value — Formula</b>'},
+      {t:'k', text:S`\text{M.V.} = \text{F.V.} + \text{Rate of Premium}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`20\%\times 100 = 20`},
+      {t:'k', text:S`\text{M.V.} = 100+20 = 120`},
+      {t:'p', text:'<b>Step 2 — Number of shares (from the dividend) — Formula</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{\text{Total Dividend}}{\text{Dividend per share}}`},
+      {t:'p', text:'<b>Substitute (dividend per share first)</b>'},
+      {t:'k', text:S`\text{Dividend per share} = \dfrac{10}{100}\times 100 = 10`},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{540}{10} = 54`},
+      {t:'p', text:'<b>(i) Total investment — Formula</b>'},
+      {t:'k', text:S`\text{Investment} = \text{No. of shares}\times \text{M.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Investment} = 54\times 120 = 6480`},
+      {t:'p', text:'<b>(ii) Rate of return — Formula</b>'},
+      {t:'k', text:S`\text{Rate of Return} = \dfrac{\text{Dividend}}{\text{Investment}}\times 100`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Return \%} = \dfrac{540}{6480}\times 100 = \dfrac{25}{3} = 8.33`}
+    ]}],
+    ans:'(i) Total investment = ₹6,480  (ii) Rate of return ≈ 8.33% (25/3 %)'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q5', sc:'worksheet', star:true,
+    q:'By purchasing ₹50 shares of a company for ₹75 each, Sonal gets 8% p.a. on her investment. (i) What rate percent p.a. is the company paying? (ii) What is the annual dividend, if she buys 350 shares?',
+    given:['F.V. = ₹50, M.V. = ₹75, Rate of Return = 8%'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>(i) Rate of Dividend — Formula (the shortcut)</b>'},
+      {t:'k', text:S`\text{Rate of Dividend}\times \text{F.V.} = \text{Rate of Return}\times \text{M.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`d\times 50 = 8\times 75`},
+      {t:'k', text:S`d\times 50 = 600`},
+      {t:'k', text:S`d = \dfrac{600}{50} = 12`},
+      {t:'p', text:'<b>(ii) Annual dividend for 350 shares — Formula</b>'},
+      {t:'k', text:S`\text{Dividend} = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend} = 350\times \dfrac{12}{100}\times 50 = 350\times 6 = 2100`}
+    ]}],
+    ans:'(i) Company pays 12% dividend  (ii) Annual dividend = ₹2,100'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q6', sc:'worksheet', star:false,
+    q:'Calculate the amount invested if 500, ₹10 shares are bought at a premium of 25% from a company. If the dividend declared is 8%, find: (i) The annual income. (ii) The percentage return on the investment.',
+    given:['F.V. = ₹10, No. of shares = 500, Premium = 25% of F.V., Rate of Dividend = 8%'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Step 1 — Market Value — Formula</b>'},
+      {t:'k', text:S`\text{M.V.} = \text{F.V.} + \text{Rate of Premium}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`25\%\times 10 = \dfrac{25}{100}\times 10 = 2.5`},
+      {t:'k', text:S`\text{M.V.} = 10+2.5 = 12.5`},
+      {t:'p', text:'<b>Amount invested — Formula</b>'},
+      {t:'k', text:S`\text{Investment} = \text{No. of shares}\times \text{M.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Investment} = 500\times 12.5 = 6250`},
+      {t:'p', text:'<b>(i) Annual income — Formula</b>'},
+      {t:'k', text:S`\text{Dividend} = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Income} = 500\times \dfrac{8}{100}\times 10 = 500\times 0.8 = 400`},
+      {t:'p', text:'<b>(ii) Percentage return — Formula</b>'},
+      {t:'k', text:S`\text{Rate of Return} = \dfrac{\text{Dividend}}{\text{Investment}}\times 100`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Return \%} = \dfrac{400}{6250}\times 100 = 6.4`}
+    ]}],
+    ans:'Amount invested = ₹6,250  (i) Annual income = ₹400  (ii) Return = 6.4%'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q7', sc:'worksheet', star:true,
+    mbanote:'Discount % → find ₹ discount first, then M.V.',
+    q:'A man buys 500, ₹20 shares at a discount of 20% and receives a return of 10% on his money. Calculate: (i) Amount invested. (ii) Rate of dividend paid by the company.',
+    given:['F.V. = ₹20, No. of shares = 500, Discount = 20% of F.V., Rate of Return = 10%'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Step 1 — Market Value — Formula</b>'},
+      {t:'k', text:S`\text{M.V.} = \text{F.V.} - \text{Rate of Discount}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`20\%\times 20 = \dfrac{20}{100}\times 20 = 4`},
+      {t:'k', text:S`\text{M.V.} = 20-4 = 16`},
+      {t:'p', text:'<b>(i) Amount invested — Formula</b>'},
+      {t:'k', text:S`\text{Investment} = \text{No. of shares}\times \text{M.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Investment} = 500\times 16 = 8000`},
+      {t:'p', text:'<b>(ii) Rate of dividend — Formula (the shortcut)</b>'},
+      {t:'k', text:S`\text{Rate of Dividend}\times \text{F.V.} = \text{Rate of Return}\times \text{M.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`d\times 20 = 10\times 16`},
+      {t:'k', text:S`d\times 20 = 160`},
+      {t:'k', text:S`d = \dfrac{160}{20} = 8`}
+    ]}],
+    ans:'(i) Amount invested = ₹8,000  (ii) Rate of dividend = 8%'
+  },
+  {
+    m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q8', sc:'worksheet', star:false,
+    q:'Anupama invests ₹3240 in buying ₹50 shares of a company giving a dividend of 12%. At the end of the year, she receives ₹288 as dividend. At what price did she buy the shares?',
+    given:['Investment = ₹3240, F.V. = ₹50, Rate of Dividend = 12%, Annual dividend received = ₹288'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Step 1 — Number of shares (from the dividend) — Formula</b>'},
+      {t:'k', text:S`\text{Dividend per share} = \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend per share} = \dfrac{12}{100}\times 50 = 6`},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{\text{Total Dividend}}{\text{Dividend per share}}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{288}{6} = 48`},
+      {t:'p', text:'<b>Step 2 — Price (M.V.) per share — Formula</b>'},
+      {t:'k', text:S`\text{M.V.} = \dfrac{\text{Total Investment}}{\text{No. of shares}}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{M.V.} = \dfrac{3240}{48} = 67.5`}
+    ]}],
+    ans:'Price per share (M.V.) = ₹67.50'
+  },
+  {
+    m:'q-2m', diff:'e', marks:'3 Marks', src:'Worksheet Q9', sc:'worksheet', star:false,
+    q:'Find the dividend percent declared by the company if ₹100 share is quoted at ₹104 and an investment of ₹3120 fetches an annual dividend of ₹240.',
+    given:['F.V. = ₹100, M.V. = ₹104, Investment = ₹3120, Annual dividend = ₹240'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Step 1 — Number of shares — Formula</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{\text{Total Investment}}{\text{M.V. of 1 share}}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{3120}{104} = 30`},
+      {t:'p', text:'<b>Step 2 — Dividend percent — Formula</b>'},
+      {t:'k', text:S`\text{Dividend} = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`240 = 30\times \dfrac{d}{100}\times 100`},
+      {t:'k', text:S`240 = 30d`},
+      {t:'k', text:S`d = \dfrac{240}{30} = 8`}
+    ]}],
+    ans:'Dividend percent declared = 8%'
+  },
+  {
+    m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q10', sc:'worksheet', star:false,
+    q:'How much should Roopa invest in 12% ₹100 shares selling at a premium of ₹10 to get an income of ₹600 from the shares?',
+    given:['F.V. = ₹100, Premium = ₹10, Rate of Dividend = 12%, Desired income = ₹600'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Step 1 — Market Value — Formula</b>'},
+      {t:'k', text:S`\text{M.V.} = \text{F.V.} + \text{Premium}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{M.V.} = 100+10 = 110`},
+      {t:'p', text:'<b>Step 2 — Number of shares needed for ₹600 income — Formula</b>'},
+      {t:'k', text:S`\text{Dividend per share} = \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend per share} = \dfrac{12}{100}\times 100 = 12`},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{\text{Desired Income}}{\text{Dividend per share}}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{600}{12} = 50`},
+      {t:'p', text:'<b>Step 3 — Investment required — Formula</b>'},
+      {t:'k', text:S`\text{Investment} = \text{No. of shares}\times \text{M.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Investment} = 50\times 110 = 5500`}
+    ]}],
+    ans:'Roopa should invest ₹5,500'
+  },
+  {
+    m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q11', sc:'worksheet', star:false,
+    q:'Anand buys ₹20 shares of a company which pays 9% dividend at such a price that he gets a return of 12% on his investment. At what price did he buy the share?',
+    given:['F.V. = ₹20, Rate of Dividend = 9%, Rate of Return = 12%'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula (the shortcut)</b>'},
+      {t:'k', text:S`\text{Rate of Dividend}\times \text{F.V.} = \text{Rate of Return}\times \text{M.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`9\times 20 = 12\times \text{M.V.}`},
+      {t:'k', text:S`180 = 12\times \text{M.V.}`},
+      {t:'k', text:S`\text{M.V.} = \dfrac{180}{12} = 15`}
+    ]}],
+    ans:'Price per share (M.V.) = ₹15'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q12', sc:'worksheet', star:true,
+    q:'Arvind invested ₹12000 in shares. He invested ₹7800 in 9% ₹50 shares at ₹60 and the remaining in 10% ₹25 shares. If the total income is ₹1085, find the price at which he bought the ₹25 shares.',
+    given:['Total investment = ₹12000, Company A: F.V. = ₹50, M.V. = ₹60, Rate = 9%, Investment = ₹7800','Company B: F.V. = ₹25, Rate = 10%, Investment = 12000−7800 = ₹4200, Total income = ₹1085'],
+    mbtip:'The unknown here is Company B\'s M.V. — don\'t try to guess it. Find Company A\'s dividend fully first, subtract from the total ₹1085 to isolate Company B\'s dividend, then solve for the unknown M.V. (called M) from that equation.',
+    sections:[
+      {label:'COMPANY A', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{No. of shares} = \dfrac{\text{Total Investment}}{\text{M.V. of 1 share}}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{No. of shares} = \dfrac{7800}{60} = 130`},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Dividend} = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Dividend}_A = 130\times \dfrac{9}{100}\times 50 = 130\times 4.5 = 585`}
+      ]},
+      {label:'COMPANY B', rows:[
+        {t:'p', text:'<b>Income from Company B</b>'},
+        {t:'k', text:S`\text{Dividend}_B = 1085-585 = 500`},
+        {t:'p', text:'<b>Let the M.V. of a ₹25 share be \\(M\\). Formula</b>'},
+        {t:'k', text:S`\text{No. of shares} = \dfrac{\text{Total Investment}}{\text{M.V.}}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{No. of shares} = \dfrac{4200}{M}`},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Dividend}_B = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`500 = \dfrac{4200}{M}\times \dfrac{10}{100}\times 25`},
+        {t:'k', text:S`500 = \dfrac{4200}{M}\times 2.5`},
+        {t:'k', text:S`500 = \dfrac{10500}{M}`},
+        {t:'k', text:S`M = \dfrac{10500}{500} = 21`}
+      ]}
+    ],
+    ans:'Price at which the ₹25 shares were bought = ₹21'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q13', sc:'worksheet', star:true,
+    q:'Kalyani invests ₹9000 partly in 5% ₹100 shares sold at ₹80 and the remaining in 6% ₹50 shares at ₹70. If the total annual dividend is ₹480, find the amount invested in each.',
+    given:['Total investment = ₹9000, Company A: F.V. = ₹100, M.V. = ₹80, Rate = 5%','Company B: F.V. = ₹50, M.V. = ₹70, Rate = 6%, Total dividend = ₹480'],
+    mbtip:'Setting up ONE equation in a single unknown (x) is the whole trick — don\'t try to solve for two separate unknowns. Once you have fractions on both sides, clear them by multiplying every term by the LCM before solving, or the algebra gets messy fast.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Let ₹\\(x\\) be invested in Company A, so ₹\\((9000-x)\\) in Company B</b>'},
+      {t:'p', text:'<b>Formula — Dividend from Company A</b>'},
+      {t:'k', text:S`\text{No. of shares}_A = \dfrac{x}{80}`},
+      {t:'k', text:S`\text{Dividend}_A = \text{No. of shares}_A\times \dfrac{\text{Rate}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend}_A = \dfrac{x}{80}\times \dfrac{5}{100}\times 100 = \dfrac{5x}{80} = \dfrac{x}{16}`},
+      {t:'p', text:'<b>Formula — Dividend from Company B</b>'},
+      {t:'k', text:S`\text{No. of shares}_B = \dfrac{9000-x}{70}`},
+      {t:'k', text:S`\text{Dividend}_B = \text{No. of shares}_B\times \dfrac{\text{Rate}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend}_B = \dfrac{9000-x}{70}\times \dfrac{6}{100}\times 50 = \dfrac{3(9000-x)}{70}`},
+      {t:'p', text:'<b>Set the total equal to ₹480 and solve</b>'},
+      {t:'k', text:S`\dfrac{x}{16} + \dfrac{3(9000-x)}{70} = 480`},
+      {t:'gr', text:'(LCM of 16 and 70 is 560; multiply every term by 560)'},
+      {t:'k', text:S`35x + 24(9000-x) = 268800`},
+      {t:'k', text:S`35x + 216000 - 24x = 268800`},
+      {t:'k', text:S`11x = 52800`},
+      {t:'k', text:S`x = 4800`},
+      {t:'k', text:S`9000-x = 4200`}
+    ]}],
+    ans:'First company = ₹4,800, Second company = ₹4,200'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'4 Marks', src:'Worksheet Q14', sc:'worksheet', star:true,
+    mbanote:'Profit ≠ Dividend — don\'t mix the two',
+    q:'Shyam invested ₹3132 in ₹100 shares at a premium of ₹16 giving 8% dividend. (i) Find his annual dividend. (ii) If he sold the shares at ₹140 each, find his gain percent.',
+    given:['Investment = ₹3132, F.V. = ₹100, Premium = ₹16, Rate of Dividend = 8%, S.P. = ₹140'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Step 1 — Market Value and number of shares — Formula</b>'},
+      {t:'k', text:S`\text{M.V.} = \text{F.V.} + \text{Premium}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{M.V.} = 100+16 = 116`},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{\text{Total Investment}}{\text{M.V. of 1 share}}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{No. of shares} = \dfrac{3132}{116} = 27`},
+      {t:'p', text:'<b>(i) Annual dividend — Formula</b>'},
+      {t:'k', text:S`\text{Dividend} = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend} = 27\times \dfrac{8}{100}\times 100 = 27\times 8 = 216`},
+      {t:'p', text:'<b>(ii) Gain on selling at ₹140 each — Formula</b>'},
+      {t:'k', text:S`\text{Sale Proceeds} = \text{No. of shares}\times \text{S.P.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Sale Proceeds} = 27\times 140 = 3780`},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{Gain \%} = \dfrac{\text{Sale Proceeds} - \text{Investment}}{\text{Investment}}\times 100`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Gain} = 3780-3132 = 648`},
+      {t:'k', text:S`\text{Gain \%} = \dfrac{648}{3132}\times 100 \approx 20.69`}
+    ]}],
+    ans:'(i) Annual dividend = ₹216  (ii) Gain ≈ 20.69% (≈20.7%)'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q15', sc:'worksheet', star:false,
+    mbanote:'Discount % → find ₹ discount first, then M.V.',
+    q:'Parineeta buys 500 ₹20 shares at a discount of 20% and receives a return of 10% on her money. (i) Amount invested (ii) Rate of dividend (iii) Annual dividend',
+    given:['F.V. = ₹20, No. of shares = 500, Discount = 20% of F.V., Rate of Return = 10%'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Step 1 — Market Value — Formula</b>'},
+      {t:'k', text:S`\text{M.V.} = \text{F.V.} - \text{Rate of Discount}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`20\%\times 20 = 4`},
+      {t:'k', text:S`\text{M.V.} = 20-4 = 16`},
+      {t:'p', text:'<b>(i) Amount invested — Formula</b>'},
+      {t:'k', text:S`\text{Investment} = \text{No. of shares}\times \text{M.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Investment} = 500\times 16 = 8000`},
+      {t:'p', text:'<b>(ii) Rate of dividend — Formula (the shortcut)</b>'},
+      {t:'k', text:S`\text{Rate of Dividend}\times \text{F.V.} = \text{Rate of Return}\times \text{M.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`d\times 20 = 10\times 16`},
+      {t:'k', text:S`d = \dfrac{160}{20} = 8`},
+      {t:'p', text:'<b>(iii) Annual dividend — Formula</b>'},
+      {t:'k', text:S`\text{Dividend} = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend} = 500\times \dfrac{8}{100}\times 20 = 500\times 1.6 = 800`}
+    ]}],
+    ans:'(i) ₹8,000  (ii) 8%  (iii) ₹800'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q16', sc:'worksheet', star:true,
+    mbanote:['Change in Income = Greater − Smaller (not always New − Old)','"Invested proceeds" → New Investment = Sale Proceeds (unless it says "including dividend")'],
+    chain:'8% ₹25 shares at ₹40 → sold at ₹42 → reinvested in 9% ₹10 shares at ₹12',
+    q:'Arjun invests ₹10,000 in ₹25 shares standing at ₹40. After one year, he receives 8% dividend and sells the shares at ₹42 each. He invests the sale proceeds in ₹10 shares quoted at ₹12 giving 9% dividend. (i) Find the change in income. (ii) % increase in return on original investment.',
+    given:['Company A: F.V. = ₹25, M.V. = ₹40, Investment = ₹10,000, Rate = 8%, S.P. = ₹42','Company B: F.V. = ₹10, M.V. = ₹12, Rate = 9%'],
+    mbtip:'The final % increase is measured against the ORIGINAL investment (₹10,000) — not against the new Company B investment (₹10,500). Dividing by the wrong denominator here is the single most common mistake.',
+    sections:[
+      {label:'COMPANY A', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{No. of shares} = \dfrac{\text{Total Investment}}{\text{M.V. of 1 share}}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{No. of shares} = \dfrac{10000}{40} = 250`},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Dividend} = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Dividend}_A = 250\times \dfrac{8}{100}\times 25 = 500`}
+      ]},
+      {label:'SALE AND REINVESTMENT', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Sale Proceeds} = \text{No. of shares}\times \text{S.P.}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Sale Proceeds} = 250\times 42 = 10500`},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{No. of shares}_B = \dfrac{\text{Sale Proceeds}}{\text{M.V. of 1 share}}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{No. of shares}_B = \dfrac{10500}{12} = 875`},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Dividend}_B = \text{No. of shares}_B\times \dfrac{\text{Rate}}{100}\times \text{F.V.}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Dividend}_B = 875\times \dfrac{9}{100}\times 10 = 875\times 0.9 = 787.5`}
+      ]},
+      {label:'(i) & (ii) CHANGE IN INCOME', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Change in Income} = \text{Dividend}_{new} - \text{Dividend}_{old}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Change} = 787.5-500 = 287.5`},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\%\text{ increase on original investment} = \dfrac{\text{Change in Income}}{\text{Original Investment}}\times 100`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\%\text{ increase} = \dfrac{287.5}{10000}\times 100 = 2.875`}
+      ]}
+    ],
+    ans:'(i) Income increases by ₹287.50  (ii) % increase on original investment = 2.875%'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q17', sc:'worksheet', star:true,
+    q:'Shriya invested her savings in companies A and B: 40% in ₹100 shares at a premium of ₹20 giving 10% dividend, and 60% in ₹10 shares at a discount of 10% giving 8% dividend. (i) If she bought 40 shares of company A, how many shares of company B did she buy? (ii) Find her annual dividend from each company.',
+    given:['Company A: F.V. = ₹100, Premium = ₹20, Rate = 10%, 40% of total, No. of shares bought = 40','Company B: F.V. = ₹10, Discount = 10% of F.V., Rate = 8%, 60% of total'],
+    mbtip:'You\'re given the NUMBER of shares for Company A, not its investment as a %. Find Company A\'s Investment first from the shares, then use "40% of Total = that Investment" to backtrack the Total savings — only then can you find Company B\'s 60% share.',
+    sections:[
+      {label:'COMPANY A', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{M.V.}_A = \text{F.V.} + \text{Premium}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{M.V.}_A = 100+20 = 120`},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Investment}_A = \text{No. of shares}\times \text{M.V.}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Investment}_A = 40\times 120 = 4800`},
+        {t:'p', text:'<b>This is 40% of the total savings — Formula</b>'},
+        {t:'k', text:S`\text{Investment}_A = 40\%\times \text{Total}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`4800 = \dfrac{40}{100}\times \text{Total}`},
+        {t:'k', text:S`\text{Total} = \dfrac{4800\times 100}{40} = 12000`},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Dividend}_A = \text{No. of shares}\times \dfrac{\text{Rate}}{100}\times \text{F.V.}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Dividend}_A = 40\times \dfrac{10}{100}\times 100 = 400`}
+      ]},
+      {label:'COMPANY B', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{M.V.}_B = \text{F.V.} - \text{Discount}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{M.V.}_B = 10-1 = 9`},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Investment}_B = 60\%\times \text{Total}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Investment}_B = \dfrac{60}{100}\times 12000 = 7200`},
+        {t:'p', text:'<b>(i) Number of shares — Formula</b>'},
+        {t:'k', text:S`\text{No. of shares}_B = \dfrac{\text{Investment}_B}{\text{M.V.}_B}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{No. of shares}_B = \dfrac{7200}{9} = 800`},
+        {t:'p', text:'<b>(ii) Annual dividend — Formula</b>'},
+        {t:'k', text:S`\text{Dividend}_B = \text{No. of shares}\times \dfrac{\text{Rate}}{100}\times \text{F.V.}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Dividend}_B = 800\times \dfrac{8}{100}\times 10 = 800\times 0.8 = 640`}
+      ]}
+    ],
+    ans:'(i) 800 shares of Company B  (ii) Dividend: Company A = ₹400, Company B = ₹640'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q18', sc:'worksheet', star:true,
+    mbanote:['Change in Income = Greater − Smaller (not always New − Old)','"Invested proceeds" → New Investment = Sale Proceeds (unless it says "including dividend")'],
+    chain:'14% ₹25 shares (sold at ₹40) → reinvested in 8% ₹100 shares at ₹80',
+    q:'Amit owns 1500, ₹25 shares of a company which declares a dividend of 14%. He sells the shares at ₹40 each and invests the proceeds in 8%, ₹100 shares at ₹80. What is the change in his annual dividend income?',
+    given:['Company A: F.V. = ₹25, No. of shares = 1500, Rate = 14%, S.P. = ₹40','Company B: F.V. = ₹100, M.V. = ₹80, Rate = 8%'],
+    mbtip:'Simpler than it looks — a straight two-stage chain with no percentage step at the end. Just find both dividends fully, then subtract. No unknowns, no equations to solve.',
+    sections:[
+      {label:'COMPANY A', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Dividend} = \text{No. of shares}\times \dfrac{\text{Rate of Dividend}}{100}\times \text{F.V.}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Dividend}_A = 1500\times \dfrac{14}{100}\times 25 = 1500\times 3.5 = 5250`}
+      ]},
+      {label:'SALE AND REINVESTMENT', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Sale Proceeds} = \text{No. of shares}\times \text{S.P.}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Sale Proceeds} = 1500\times 40 = 60000`},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{No. of shares}_B = \dfrac{\text{Sale Proceeds}}{\text{M.V.}}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{No. of shares}_B = \dfrac{60000}{80} = 750`},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Dividend}_B = \text{No. of shares}\times \dfrac{\text{Rate}}{100}\times \text{F.V.}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Dividend}_B = 750\times \dfrac{8}{100}\times 100 = 750\times 8 = 6000`}
+      ]},
+      {label:'CHANGE IN INCOME', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Change in Income} = \text{Dividend}_{new} - \text{Dividend}_{old}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Change} = 6000-5250 = 750`}
+      ]}
+    ],
+    ans:'Annual dividend income increases by ₹750'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q19', sc:'worksheet', star:false,
+    q:'A person invests ₹28,000 in 7% ₹100 shares at ₹80 and another ₹8,200 in 18% ₹25 shares at ₹41. Compare the returns from the two investments.',
+    given:['Company A: F.V. = ₹100, M.V. = ₹80, Rate = 7%, Investment = ₹28,000','Company B: F.V. = ₹25, M.V. = ₹41, Rate = 18%, Investment = ₹8,200'],
+    mbtip:'This question has a known mismatch between our recomputed answer and the worksheet\'s own printed answer key — see the flag in the Answer box below. Use it to practice the Return% formula correctly rather than memorising the misprinted final figure.',
+    sections:[
+      {label:'COMPANY A — RETURN %', rows:[
+        {t:'p', text:'<b>Formula (the shortcut, rearranged for Rate of Return)</b>'},
+        {t:'k', text:S`\text{Rate of Return} = \dfrac{\text{Rate of Dividend}\times \text{F.V.}}{\text{M.V.}}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Return \%}_A = \dfrac{7\times 100}{80} = \dfrac{700}{80} = 8.75`}
+      ]},
+      {label:'COMPANY B — RETURN %', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Rate of Return} = \dfrac{\text{Rate of Dividend}\times \text{F.V.}}{\text{M.V.}}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Return \%}_B = \dfrac{18\times 25}{41} = \dfrac{450}{41} \approx 10.98`}
+      ]},
+      {label:'COMPARISON', rows:[
+        {t:'k', text:S`\text{Difference} \approx 10.98-8.75 = 2.23`},
+        {t:'gr', text:'(Company B gives the higher percentage return)'}
+      ]}
+    ],
+    ans:'Return: Company A ≈ 8.75%, Company B ≈ 10.98% — Company B\'s return is higher by ≈2.23%. ⚠️ A note on this one: the source worksheet\'s own answer key states "increase in return = ₹200, % increase = 2.5%", which does not match recomputing with M.V. = ₹41 as printed in the question. If M.V. were ₹40 instead of ₹41, the % difference works out to exactly 2.5% — so ₹41 may be an OCR/typo error in the original worksheet for what should be ₹40. Please verify against the original source before using this in a test.'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q20', sc:'worksheet', star:true,
+    mbanote:['Discount % → find ₹ discount first, then M.V.','Change in Income = Greater − Smaller (not always New − Old)'],
+    chain:'10% ₹100 shares (sold at 25% discount) → reinvested in 16% ₹100 shares at ₹80',
+    q:'A man sold some ₹100 shares paying 10% dividend at a discount of 25% and invested the proceeds in ₹100 shares paying 16% dividend quoted at ₹80, and thus increased his income by ₹2000. Find the number of shares sold by him.',
+    given:['Company A: F.V. = ₹100, Rate = 10%, S.P. = 100−25 = ₹75','Company B: F.V. = ₹100, M.V. = ₹80, Rate = 16%, Increase in income = ₹2000'],
+    mbtip:'Both companies\' dividends are expressed in terms of the SAME unknown x — keep them symbolic (10x and 15x) and don\'t try to compute numeric values until after you\'ve subtracted and solved for x at the very end.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Let the number of shares sold be \\(x\\). Formula</b>'},
+      {t:'k', text:S`\text{Dividend}_A = \text{No. of shares}\times \dfrac{\text{Rate}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend}_A = x\times \dfrac{10}{100}\times 100 = 10x`},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{Sale Proceeds} = \text{No. of shares}\times \text{S.P.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Sale Proceeds} = x\times 75 = 75x`},
+      {t:'p', text:'<b>Reinvestment in Company B — Formula</b>'},
+      {t:'k', text:S`\text{No. of shares}_B = \dfrac{\text{Sale Proceeds}}{\text{M.V.}}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{No. of shares}_B = \dfrac{75x}{80} = \dfrac{15x}{16}`},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{Dividend}_B = \text{No. of shares}_B\times \dfrac{\text{Rate}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend}_B = \dfrac{15x}{16}\times \dfrac{16}{100}\times 100 = \dfrac{15x}{16}\times 16 = 15x`},
+      {t:'p', text:'<b>Set the increase equal to ₹2000 — Formula</b>'},
+      {t:'k', text:S`\text{Change in Income} = \text{Dividend}_B - \text{Dividend}_A`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`15x-10x = 2000`},
+      {t:'k', text:S`5x = 2000`},
+      {t:'k', text:S`x = 400`}
+    ]}],
+    ans:'Number of shares sold = 400'
+  },
+  {
+    m:'q-2m', diff:'e', marks:'3 Marks', src:'Worksheet Q21', sc:'worksheet', star:false,
+    q:'A company declares 8% dividend on ₹100 shares. Atul buys such shares and gets 10% return on his investment. At what price does he buy each share?',
+    given:['F.V. = ₹100, Rate of Dividend = 8%, Rate of Return = 10%'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula (the shortcut)</b>'},
+      {t:'k', text:S`\text{Rate of Dividend}\times \text{F.V.} = \text{Rate of Return}\times \text{M.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`8\times 100 = 10\times \text{M.V.}`},
+      {t:'k', text:S`800 = 10\times \text{M.V.}`},
+      {t:'k', text:S`\text{M.V.} = \dfrac{800}{10} = 80`}
+    ]}],
+    ans:'Price per share (M.V.) = ₹80'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q22', sc:'worksheet', star:true,
+    q:'Two brothers A and B invest ₹16,000 each in buying shares of two companies. A buys 12% hundred rupee shares at ₹80 and B buys ten-rupee shares at par. If they both receive equal dividend at the end of the year, find the rate percent of the dividend received by B.',
+    given:['Brother A: F.V. = ₹100, M.V. = ₹80, Rate = 12%, Investment = ₹16,000','Brother B: F.V. = ₹10, M.V. = ₹10 (at par), Investment = ₹16,000, Dividend_A = Dividend_B'],
+    mbtip:'Brother A\'s numbers are fully known — compute his dividend completely first. Only Brother B\'s rate is unknown, so setting Brother B\'s dividend equal to Brother A\'s gives one simple, one-step equation.',
+    sections:[
+      {label:'BROTHER A', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{No. of shares} = \dfrac{\text{Total Investment}}{\text{M.V.}}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{No. of shares}_A = \dfrac{16000}{80} = 200`},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Dividend}_A = \text{No. of shares}\times \dfrac{\text{Rate}}{100}\times \text{F.V.}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Dividend}_A = 200\times \dfrac{12}{100}\times 100 = 200\times 12 = 2400`}
+      ]},
+      {label:'BROTHER B', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{No. of shares} = \dfrac{\text{Total Investment}}{\text{M.V.}}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{No. of shares}_B = \dfrac{16000}{10} = 1600`},
+        {t:'p', text:'<b>Let the rate of dividend for B be \\(d\\)%. Formula</b>'},
+        {t:'k', text:S`\text{Dividend}_B = \text{No. of shares}\times \dfrac{d}{100}\times \text{F.V.}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Dividend}_B = 1600\times \dfrac{d}{100}\times 10 = 160d`}
+      ]},
+      {label:'EQUATE THE TWO DIVIDENDS', rows:[
+        {t:'k', text:S`160d = 2400`},
+        {t:'k', text:S`d = \dfrac{2400}{160} = 15`}
+      ]}
+    ],
+    ans:'Rate of dividend received by B = 15%'
+  },
+  {
+    m:'q-la', diff:'h', marks:'5 Marks', src:'Worksheet Q23', sc:'worksheet', star:true,
+    mbanote:'Discount % → find ₹ discount first, then M.V.',
+    q:'Divide ₹35,400 into two parts such that if one part is invested in 9%, ₹100 shares at 4% discount, and the other in 12%, ₹50 shares at 8% premium, the annual incomes from both investments are equal. Find the amount invested in each part.',
+    given:['Company A: F.V. = ₹100, Discount = 4% of F.V., Rate = 9%, Part = ₹x','Company B: F.V. = ₹50, Premium = 8% of F.V., Rate = 12%, Part = ₹(35400 − x)'],
+    mbtip:'The hardest part is purely the algebra: after expressing both dividends in terms of x, cross-multiply and expand carefully. A sign error while expanding 32(35400 − x) is the single most common slip in this question.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Step 1 — Market values — Formula</b>'},
+      {t:'k', text:S`\text{M.V.}_A = \text{F.V.} - \text{Rate of Discount}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`4\%\times 100 = 4`},
+      {t:'k', text:S`\text{M.V.}_A = 100-4 = 96`},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{M.V.}_B = \text{F.V.} + \text{Rate of Premium}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`8\%\times 50 = 4`},
+      {t:'k', text:S`\text{M.V.}_B = 50+4 = 54`},
+      {t:'p', text:'<b>Step 2 — Dividend from Part A (₹\\(x\\) invested) — Formula</b>'},
+      {t:'k', text:S`\text{No. of shares}_A = \dfrac{x}{96}`},
+      {t:'k', text:S`\text{Dividend}_A = \text{No. of shares}\times \dfrac{\text{Rate}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend}_A = \dfrac{x}{96}\times \dfrac{9}{100}\times 100 = \dfrac{9x}{96} = \dfrac{3x}{32}`},
+      {t:'p', text:'<b>Step 3 — Dividend from Part B (₹\\((35400-x)\\) invested) — Formula</b>'},
+      {t:'k', text:S`\text{No. of shares}_B = \dfrac{35400-x}{54}`},
+      {t:'k', text:S`\text{Dividend}_B = \text{No. of shares}\times \dfrac{\text{Rate}}{100}\times \text{F.V.}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\text{Dividend}_B = \dfrac{35400-x}{54}\times \dfrac{12}{100}\times 50 = \dfrac{6(35400-x)}{54} = \dfrac{35400-x}{9}`},
+      {t:'p', text:'<b>Step 4 — Equate the two dividends and solve</b>'},
+      {t:'k', text:S`\dfrac{3x}{32} = \dfrac{35400-x}{9}`},
+      {t:'gr', text:'(cross-multiply)'},
+      {t:'k', text:S`27x = 32(35400-x)`},
+      {t:'k', text:S`27x = 1132800-32x`},
+      {t:'k', text:S`59x = 1132800`},
+      {t:'k', text:S`x = 19200`},
+      {t:'k', text:S`35400-x = 16200`}
+    ]}],
+    ans:'Part 1 (9% shares) = ₹19,200,  Part 2 (12% shares) = ₹16,200'
+  },
+  {
+    m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q24', sc:'worksheet', star:false,
+    q:'Compare the returns from the following: Company 1 — F.V. ₹100, M.V. ₹80, Dividend 9%. Company 2 — F.V. ₹50, M.V. ₹60, Dividend 9%.',
+    given:['Company 1: F.V. = ₹100, M.V. = ₹80, Rate = 9%','Company 2: F.V. = ₹50, M.V. = ₹60, Rate = 9%'],
+    sections:[
+      {label:'COMPANY 1 — RETURN %', rows:[
+        {t:'p', text:'<b>Formula (the shortcut, rearranged for Rate of Return)</b>'},
+        {t:'k', text:S`\text{Rate of Return} = \dfrac{\text{Rate of Dividend}\times \text{F.V.}}{\text{M.V.}}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Return \%}_1 = \dfrac{9\times 100}{80} = \dfrac{900}{80} = 11.25`}
+      ]},
+      {label:'COMPANY 2 — RETURN %', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Rate of Return} = \dfrac{\text{Rate of Dividend}\times \text{F.V.}}{\text{M.V.}}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Return \%}_2 = \dfrac{9\times 50}{60} = \dfrac{450}{60} = 7.5`}
+      ]},
+      {label:'COMPARISON', rows:[
+        {t:'k', text:S`\text{Return \%}_1 (11.25) > \text{Return \%}_2 (7.5)`}
+      ]}
+    ],
+    ans:'Company 1 gives the better return (11.25% vs 7.5%). ⚠️ Note: the source worksheet\'s own answer key says "Company 2 is better" — recomputing directly from the numbers as given (both pay the same 9% dividend, but Company 1\'s shares are cheaper relative to face value) shows Company 1 is actually the better return. Please double-check the original worksheet — this looks like an error in that answer key.'
+  }
+];
+
+render('board-qs', boardData);
+render('practice-qs', practiceData);
+updateCount('board-qs');
+updateCount('practice-qs');
+renderMathIn(document.getElementById('panel-concepts'));
+</script>
+</body>
+</html>
