@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linear Inequations — ICSE Class 10 | Maths Bridge Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F0E8;--bg2:#EDE8DC;--bg3:#E4DDD0;
+  --green:#2D5A3D;--green2:#3D7A55;--green3:#1A3D28;
+  --gold:#C9A84C;--gold2:#E8C56A;--gold3:#A07830;
+  --slate:#1A3050;--blue:#2563A8;--cbblue:#0D2B4E;
+  --purple:#7B5EA7;
+  --amber:#7A5C00;--amberbg:#FFF8DC;
+  --text:#000;--text2:#1a1a1a;--text3:#555;
+  --white:#fff;--card:#FFFDF8;--border:#D4C9B0;
+  --fbg:#EEF5F0;--hbg:#FFF8E6;
+}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--bg);color:var(--text);font-size:20px;line-height:1.75}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px 80px}
+
+/* overflow safety */
+.k, .formula-text, .qtxt, .sol-body, .given-row{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:3px 0}
+
+/* HEADER */
+.site-header{background:var(--green3);border-bottom:3px solid var(--gold)}
+.header-inner{display:flex;align-items:center;gap:16px;padding:12px 24px;max-width:960px;margin:0 auto}
+.logo-mark{width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--green3);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;font-size:16px;flex-shrink:0}
+.ht-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--white);line-height:1.1}
+.ht-tag{font-size:11px;color:var(--gold2);letter-spacing:.05em;margin-top:2px}
+.hr-right{margin-left:auto;text-align:right}
+.hr-board{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.hr-ch{font-family:'Playfair Display',serif;font-size:15px;color:var(--white);font-weight:700}
+
+/* HERO */
+.hero{background:var(--green);padding:22px 28px;border-radius:0 0 14px 14px;margin-bottom:22px;position:relative;overflow:hidden}
+.hero::after{content:'≤';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:130px;color:rgba(255,255,255,.06);pointer-events:none;font-family:'Crimson Pro',serif}
+.h-lbl{font-size:10px;font-weight:700;color:var(--gold2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.h-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:800;color:var(--white);line-height:1.1;margin-bottom:5px}
+.h-sub{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:16px}
+.h-pills{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.h-pill{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);color:var(--white);font-size:11px;font-weight:600;padding:3px 12px;border-radius:20px;font-family:'JetBrains Mono',monospace}
+.h-stats{display:flex;gap:8px;flex-wrap:wrap}
+.h-stat{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);border-radius:9px;padding:9px 16px;text-align:center}
+.h-stat .n{font-size:22px;font-weight:700;color:var(--white);font-family:'Playfair Display',serif}
+.h-stat .l{font-size:10px;color:var(--gold2);font-weight:600;letter-spacing:.03em}
+
+/* TABS */
+.tabs{display:flex;gap:5px;flex-wrap:wrap;background:var(--bg2);padding:7px;border-radius:11px;border:1px solid var(--border);margin-bottom:20px}
+.tab-btn{flex:1;min-width:90px;padding:9px 8px;font-size:15px;font-weight:700;border:2px solid transparent;cursor:pointer;border-radius:8px;transition:all .16s;font-family:'Crimson Pro',serif;background:transparent;color:var(--text3)}
+.tab-btn:not(.active):hover{background:var(--bg3);color:var(--text)}
+.tb-concepts.active{background:var(--green);color:var(--white);border-color:var(--green)}
+.tb-q1.active{background:var(--slate);color:var(--white);border-color:var(--slate)}
+.tb-q2.active{background:var(--purple);color:var(--white);border-color:var(--purple)}
+.tb-q3.active{background:var(--gold3);color:var(--white);border-color:var(--gold3)}
+
+/* DIFFICULTY FILTER */
+.diff-filter{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.df-btn{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:6px 15px;border-radius:20px;border:2px solid var(--border);background:var(--card);color:var(--text3);cursor:pointer;transition:all .15s;letter-spacing:.02em}
+.df-btn:hover{border-color:var(--green2)}
+.df-btn.active[data-f="all"]{background:var(--green3);border-color:var(--green3);color:var(--white)}
+.df-btn.active[data-f="e"]{background:#DFF5E3;border-color:#1A5C2A;color:#1A5C2A}
+.df-btn.active[data-f="m"]{background:#FFF3CC;border-color:#7A5500;color:#7A5500}
+.df-btn.active[data-f="h"]{background:#FFE5E5;border-color:#8B1A1A;color:#8B1A1A}
+.df-count{font-size:12px;color:var(--text3);align-self:center;margin-left:2px;font-family:'JetBrains Mono',monospace}
+
+/* SECTION HEAD */
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.sec-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0;font-family:'JetBrains Mono',monospace;color:var(--white)}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--green)}
+.sec-badge{margin-left:auto;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+
+.fbox{background:var(--fbg);border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:13px 16px;margin:10px 0;position:relative}
+.fbox::before{content:'FORMULA';position:absolute;top:7px;right:11px;font-size:9px;font-weight:700;color:var(--green2);letter-spacing:.1em;font-family:'JetBrains Mono',monospace;opacity:.5}
+.fbox .fl{font-size:10px;font-weight:700;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.fbox .fm{font-size:19px;font-weight:600;color:var(--green3);line-height:1.9}
+.fbox .fn{font-size:15px;color:var(--text2);margin-top:5px;line-height:1.6}
+.hbox{background:var(--hbg);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:11px 15px;margin:10px 0}
+.hbox .hl{font-size:10px;font-weight:700;color:var(--gold3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.hbox .ht{font-size:16px;color:var(--text2);line-height:1.7}
+.tbox{background:var(--card);border:2px solid var(--green);border-radius:10px;padding:15px 18px;margin:12px 0}
+.mba-note{font-size:13px;font-weight:700;color:#8B1A1A;background:#FFF3F0;border-left:3px solid #C94040;padding:5px 11px;border-radius:0 6px 6px 0;margin:6px 0 10px}
+.mba-note b{color:#6B1414}
+.src-note{font-size:13px;font-weight:700;color:var(--amber);background:var(--amberbg);border-left:3px solid var(--gold3);padding:5px 11px;border-radius:0 6px 6px 0;margin:6px 16px 10px}
+.src-note b{color:var(--gold3)}
+.tbox .tl{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--white);background:var(--green);padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:9px;letter-spacing:.04em}
+.tbox .tb{font-size:16px;color:var(--text2);line-height:1.8}
+
+/* CONCEPT CARD */
+.cc{background:var(--card);border:1px solid var(--border);border-radius:11px;margin-bottom:13px;overflow:hidden;box-shadow:0 2px 7px rgba(45,90,61,.07)}
+.cc-head{background:var(--green3);padding:11px 16px;display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none}
+.cc-head .ci{font-size:16px}
+.cc-head .ct{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--white);flex:1}
+.cc-head .ca{color:var(--gold2);font-size:13px;transition:transform .2s}
+.cc-head.open .ca{transform:rotate(180deg)}
+.cc-body{display:none;padding:16px 18px;border-top:2px solid var(--border)}
+.cc-body.open{display:block}
+.cc-body p{font-size:16px;color:var(--text2);line-height:1.8;margin-bottom:9px}
+
+/* QUESTION CARD */
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:11px;margin-bottom:13px;overflow:hidden;box-shadow:0 2px 7px rgba(45,90,61,.07)}
+.q-stripe{height:4px}
+.qcard.q-1m .q-stripe{background:linear-gradient(90deg,var(--green),var(--green2))}
+.qcard.q-2m .q-stripe{background:linear-gradient(90deg,var(--purple),#A07BD4)}
+.qcard.q-3m .q-stripe{background:linear-gradient(90deg,var(--gold3),var(--gold))}
+.qcard.q-la .q-stripe{background:linear-gradient(90deg,var(--slate),var(--blue))}
+
+.q-head{background:var(--green3);padding:12px 16px;display:flex;flex-direction:column;gap:8px}
+.qcard.q-2m .q-head{background:var(--purple)}
+.qcard.q-3m .q-head{background:var(--gold3)}
+.qcard.q-la .q-head{background:var(--slate)}
+.q-head-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.qnb{min-width:32px;height:32px;border-radius:7px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;padding:0 6px;background:rgba(255,255,255,.2);color:var(--white)}
+.qtxt{font-size:19px;font-weight:600;color:var(--white);line-height:1.6;width:100%;font-family:'Crimson Pro',serif}
+.qmp{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;font-family:'JetBrains Mono',monospace;background:rgba(255,255,255,.2);color:var(--white)}
+.star{font-size:14px;flex-shrink:0}
+.diff{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap;flex-shrink:0}
+.diff-e{background:#DFF5E3;color:#1A5C2A}
+.diff-m{background:#FFF3CC;color:#7A5500}
+.diff-h{background:#FFE5E5;color:#8B1A1A}
+
+/* FOOTER (card) */
+.q-foot{background:rgba(45,90,61,.06);padding:7px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border)}
+.qsrc{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.src-worksheet{background:#EEF5F0;color:var(--green3)}
+.sol-btn{margin-left:auto;font-size:11px;font-weight:700;padding:4px 13px;border-radius:7px;border:2px solid var(--green);background:transparent;cursor:pointer;color:var(--green);transition:all .15s;font-family:'JetBrains Mono',monospace}
+.sol-btn:hover{background:var(--green);color:var(--white)}
+.rep-btn{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid #E0C9C9;background:#FBF3F3;color:#9A2B2B;cursor:pointer;transition:all .15s;white-space:nowrap}
+.rep-btn:hover{background:#F3E3E3;border-color:#C99}
+.rep-btn.sent{background:#EEF5F0;border-color:var(--green);color:var(--green)}
+.rep-modal{display:none;position:fixed;inset:0;background:rgba(26,61,40,.55);z-index:999;align-items:center;justify-content:center;padding:18px}
+.rep-modal.show{display:flex}
+.rep-card{background:var(--card);border:2px solid var(--green);border-radius:14px;max-width:440px;width:100%;padding:20px;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.rep-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--green);margin-bottom:8px}
+.rep-ctx{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3);background:var(--bg2);border-radius:7px;padding:7px 10px;margin-bottom:12px}
+.rep-ta{width:100%;min-height:90px;font-family:'Crimson Pro',serif;font-size:17px;border:1.5px solid var(--border);border-radius:9px;padding:10px 12px;resize:vertical}
+.rep-ta:focus{outline:none;border-color:var(--gold)}
+.rep-status{font-size:13px;color:var(--green);min-height:18px;margin:10px 0 4px;font-weight:600}
+.rep-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+.rep-cancel{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 16px;border-radius:8px;border:1.5px solid var(--border);background:#fff;color:var(--text3);cursor:pointer}
+.rep-send{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 18px;border-radius:8px;border:none;background:var(--green);color:#fff;cursor:pointer;font-weight:700}
+.rep-send:hover{background:var(--green3)}
+
+.mbtip{background:#FFF8E6;border:2px dashed var(--gold3);border-radius:10px;padding:11px 15px;margin:10px 16px}
+.mbtip-lbl{font-size:10px;font-weight:700;color:var(--gold3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.mbtip-text{font-size:15px;color:var(--text2);line-height:1.65}
+
+/* SOLUTION BODY */
+.sol-body{display:none;border-top:2px solid var(--border)}
+.sol-body.open{display:block}
+.given-blk{background:var(--fbg);padding:10px 16px;border-bottom:1px solid #C8DCCC}
+.given-lbl{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.given-row{font-size:17px;color:var(--text2);line-height:1.7;margin-bottom:3px}
+.ysec{padding:14px 16px;border-bottom:1px solid var(--border)}
+.ysec:last-of-type{border-bottom:none}
+.y-lbl{display:inline-block;background:var(--green3);color:var(--white);font-size:10px;font-weight:700;padding:2px 10px;border-radius:4px;margin-bottom:12px;letter-spacing:.04em;font-family:'JetBrains Mono',monospace}
+.k{font-size:17px;color:var(--green3);background:var(--fbg);border-left:3px solid var(--green);padding:6px 12px;border-radius:0 6px 6px 0;margin:4px 0 5px;display:block}
+.p{font-size:17px;color:var(--text2);line-height:1.7;margin-bottom:6px}
+.p b{color:var(--green3)}
+.gr{font-size:14px;color:var(--text3);font-style:italic;margin-left:4px;display:block;margin-bottom:4px}
+.final-ans{background:var(--green3);padding:11px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fa-lbl{font-size:11px;font-weight:700;color:var(--gold2);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
+.fav{font-size:18px;font-weight:700;color:var(--white);font-family:'Crimson Pro',serif}
+
+/* NUMBER LINE */
+.nline-wrap{background:var(--card);padding:12px 14px 6px;border-bottom:1px solid var(--border)}
+.nline-lbl{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px;font-family:'JetBrains Mono',monospace}
+.nline-svg{width:100%;height:auto;display:block}
+
+.panel{animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+footer{text-align:center;padding:26px;color:var(--text3);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="header-inner">
+    <div class="logo-mark">MBA</div>
+    <div><div class="ht-name">Maths Bridge Academy</div><div class="ht-tag">Nurturing Young Minds Through Maths Mastery</div></div>
+    <div class="hr-right"><div class="hr-board">ICSE · Class 10</div><div class="hr-ch">Linear Inequations</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+<div class="hero">
+  <div class="h-lbl">ICSE Class 10 Mathematics</div>
+  <div class="h-title">Linear Inequations</div>
+  <div class="h-sub">Solving, graphing on the number line, and set operations on solution sets</div>
+  <div class="h-pills">
+    <span class="h-pill">Worksheet Q1–Q3</span>
+    <span class="h-pill">37 Questions total</span>
+    <span class="h-pill">⭐ = frequently-tested pattern</span>
+  </div>
+  <div class="h-stats">
+    <div class="h-stat"><div class="n">4</div><div class="l">Concepts</div></div>
+    <div class="h-stat"><div class="n">17</div><div class="l">Q1 · Solve</div></div>
+    <div class="h-stat"><div class="n">4</div><div class="l">Q2 · Graph</div></div>
+    <div class="h-stat"><div class="n">16</div><div class="l">Q3 · Solve+Graph</div></div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn tb-concepts active" id="btn-concepts" onclick="sw('concepts')">📘 Concepts</button>
+  <button class="tab-btn tb-q1" id="btn-q1" onclick="sw('q1')">✎ Q1 · Solve</button>
+  <button class="tab-btn tb-q2" id="btn-q2" onclick="sw('q2')">📈 Q2 · Graph</button>
+  <button class="tab-btn tb-q3" id="btn-q3" onclick="sw('q3')">✓ Q3 · Both</button>
+</div>
+
+<div id="panel-concepts" class="panel">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--green)">≤</div><div class="sec-title">All Concepts &amp; Rules</div></div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">📄</span><span class="ct">1. Domains — N, W, I, R</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">REPLACEMENT SETS</span><div class="tb">An inequation is only solved once you know which numbers x is allowed to be. N = natural numbers (1, 2, 3, …), W = whole numbers (0, 1, 2, …), I = integers (…, −2, −1, 0, 1, 2, …), R = real numbers (every point on the number line).</div></div>
+      <div class="hbox"><div class="hl">Why the domain matters</div><div class="ht">The algebra gives a range like x ≤ 6. If x ∈ N, the solution set is the list {1, 2, 3, 4, 5, 6}. If x ∈ R, the solution set stays the whole interval and is written in set-builder form: {x : x ≤ 6, x ∈ R}.</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🔁</span><span class="ct">2. The One Rule That Changes Everything</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="mba-note">⚠️ <b>MBA Note:</b> Multiplying or dividing BOTH sides by a negative number flips the inequality sign</div>
+      <div class="tbox"><span class="tl">EXAMPLE</span><div class="tb">−2x ≥ −12 → divide both sides by −2, and flip ≥ to ≤ → x ≤ 6. Adding or subtracting the same number from both sides never flips the sign — only multiplying/dividing by a negative does.</div></div>
+      <div class="hbox"><div class="hl">Safer alternative</div><div class="ht">If a negative coefficient is making you nervous, move all the x-terms to the side where they end up positive instead of dividing by a negative — you'll never need to flip the sign that way.</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🧮</span><span class="ct">3. Compound (Double) Inequations</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">A ≤ EXPRESSION ≤ B</span><div class="tb">Split into two separate inequations sharing the middle expression, solve each one on its own, then combine the two results onto one range.</div></div>
+      <div class="hbox"><div class="hl">Example split</div><div class="ht">x + 5 ≤ 2x + 3 ≤ 12 − x becomes (i) x + 5 ≤ 2x + 3 and (ii) 2x + 3 ≤ 12 − x. Solve each, then intersect the two ranges.</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">📊</span><span class="ct">4. Graphing on the Number Line</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">OPEN CIRCLE ○</span><div class="tb">Used for strict inequalities (&lt; or &gt;) — the boundary value itself is NOT part of the solution set.</div></div>
+      <div class="tbox"><span class="tl">CLOSED CIRCLE ●</span><div class="tb">Used for non-strict inequalities (≤ or ≥) — the boundary value IS included in the solution set.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> An unbounded side (no upper or lower limit) is shown as an arrow running off the edge of the line, not a circle</div>
+      <div class="tbox"><span class="tl">SET OPERATIONS (A∩B, A′, A−B)</span><div class="tb">Draw each set's own number line first if it helps. A∩B keeps only what both share. A′ is everything outside A. A−B keeps what's in A but removes anything also in B.</div></div>
+    </div>
+  </div>
+
+</div>
+
+<div id="panel-q1" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--slate)">1</div><div class="sec-title">Q1 · Solve the Inequations</div><span class="sec-badge" style="background:#E8EEF5;color:var(--slate);border:1px solid #A0B4C8">17 Questions</span></div>
+  <div class="diff-filter" id="filter-q1-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('q1-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('q1-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('q1-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('q1-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-q1-qs"></span>
+  </div>
+  <div id="q1-qs"></div>
+</div>
+
+<div id="panel-q2" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--purple)">2</div><div class="sec-title">Q2 · Graph the Solution Set</div><span class="sec-badge" style="background:#F0EBF8;color:var(--purple);border:1px solid #C4B0E8">4 Questions</span></div>
+  <div id="q2-qs"></div>
+</div>
+
+<div id="panel-q3" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--gold3)">3</div><div class="sec-title">Q3 · Solve &amp; Represent on the Number Line</div><span class="sec-badge" style="background:#FFF3E0;color:var(--gold3);border:1px solid #E8C56A">16 Questions</span></div>
+  <div class="diff-filter" id="filter-q3-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('q3-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('q3-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('q3-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('q3-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-q3-qs"></span>
+  </div>
+  <div id="q3-qs"></div>
+</div>
+
+</div>
+
+<footer>Maths Bridge Academy · ICSE Class 10 · Linear Inequations &nbsp;|&nbsp; Found an error? Use the Report button on that card.</footer>
+
+<div class="rep-modal" id="rep-modal">
+  <div class="rep-card">
+    <div class="rep-title">Report an error</div>
+    <div class="rep-ctx" id="rep-ctx"></div>
+    <textarea class="rep-ta" id="rep-msg" placeholder="What looks wrong? (e.g. Step 3 arithmetic, final answer, wrong option marked...)"></textarea>
+    <div class="rep-status" id="rep-status"></div>
+    <div class="rep-actions">
+      <button class="rep-cancel" onclick="repClose()">Cancel</button>
+      <button class="rep-send" onclick="repSend()">Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== ERROR REPORT CONFIG ===== */
+const REPORT_META = { board:'ICSE', grade:'10', chapter:'Linear Inequations' };
+const REPORT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx3vGZZjTHbAnKtOwSz6TaWtpYtnudCzxKMtm3Eo9bB4Ey6Xlor6LunLFEmyIQQy5e6/exec';
+/* ================================ */
+var _repCtx = {};
+function reportError(card, btn){
+  var parts = String(card).split(' ');
+  _repCtx = { tab: parts[0]||'', qno: parts[1]||card, btn: btn };
+  document.getElementById('rep-ctx').textContent =
+    REPORT_META.board+' · Grade '+REPORT_META.grade+' · '+REPORT_META.chapter+' · '+_repCtx.tab+' · '+_repCtx.qno;
+  document.getElementById('rep-msg').value='';
+  document.getElementById('rep-status').textContent='';
+  document.getElementById('rep-modal').classList.add('show');
+  document.getElementById('rep-msg').focus();
+}
+function repClose(){ document.getElementById('rep-modal').classList.remove('show'); }
+function repSend(){
+  var msg = document.getElementById('rep-msg').value.trim();
+  var status = document.getElementById('rep-status');
+  if(!msg){ status.style.color='#9A2B2B'; status.textContent='Please type what is wrong.'; return; }
+  status.style.color='var(--green)'; status.textContent='Sending...';
+  var qs = 'board='+encodeURIComponent(REPORT_META.board)
+         +'&grade='+encodeURIComponent(REPORT_META.grade)
+         +'&chapter='+encodeURIComponent(REPORT_META.chapter)
+         +'&tab='+encodeURIComponent(_repCtx.tab)
+         +'&qno='+encodeURIComponent(_repCtx.qno)
+         +'&error='+encodeURIComponent(msg);
+  function done(){
+    status.style.color='var(--green)'; status.textContent='\u2713 Thank you! Reported.';
+    if(_repCtx.btn){ _repCtx.btn.classList.add('sent'); _repCtx.btn.textContent='\u2713 Reported'; }
+    setTimeout(repClose, 1200);
+  }
+  fetch(REPORT_ENDPOINT+'?'+qs, { method:'GET', mode:'no-cors' }).then(done).catch(done);
+}
+function reportBtn(card, alone){
+  var ml = alone ? 'style="margin-left:auto"' : '';
+  return '<button class="rep-btn" '+ml+' onclick="reportError(\''+card+'\', this)" title="Found a mistake? Report it">\u26a0 Report error</button>';
+}
+function updateCount(cid){
+  var el = document.getElementById('count-'+cid);
+  if(!el) return;
+  var all = document.querySelectorAll('#'+cid+' .qcard');
+  var visible = document.querySelectorAll('#'+cid+' .qcard:not([style*="display: none"])');
+  el.textContent = 'Showing '+visible.length+' of '+all.length;
+}
+function filterDiff(cid, level, btn){
+  var bar = document.getElementById('filter-'+cid);
+  bar.querySelectorAll('.df-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var cards = document.querySelectorAll('#'+cid+' .qcard');
+  cards.forEach(function(card){
+    card.style.display = (level==='all' || card.getAttribute('data-diff')===level) ? '' : 'none';
+  });
+  updateCount(cid);
+}
+function toggleCC(h){ h.classList.toggle('open'); h.nextElementSibling.classList.toggle('open'); }
+function sw(id){
+  ['concepts','q1','q2','q3'].forEach(function(t){
+    document.getElementById('panel-'+t).style.display = t===id ? 'block' : 'none';
+    var b = document.getElementById('btn-'+t);
+    b.classList.remove('active');
+    if(t===id) b.classList.add('active');
+  });
+  renderMathIn(document.getElementById('panel-'+id));
+}
+function togSol(btn){
+  var b = btn.closest('.qcard').querySelector('.sol-body');
+  var open = b.classList.toggle('open');
+  btn.textContent = open ? 'Hide Solution' : 'Show Solution';
+  if(open) renderMathIn(b);
+}
+function buildRow(r){
+  if(!r) return '';
+  if(r.t==='p') return '<div class="p">'+r.text+'</div>';
+  if(r.t==='gr') return '<div class="gr">'+r.text+'</div>';
+  if(r.t==='k') return '<div class="k">\\[ '+r.text+' \\]</div>';
+  if(r.t==='div') return '<hr style="border:none;border-top:1px dashed var(--border);margin:6px 0">';
+  return '';
+}
+function buildSections(sections){
+  return (sections||[]).map(function(sec){
+    var rows = sec.rows.map(buildRow).join('');
+    var nl = sec.nline ? buildNline(sec.nline) : '';
+    return '<div class="ysec"><div class="y-lbl">'+sec.label+'</div>'+rows+nl+'</div>';
+  }).join('');
+}
+function buildGiven(given){
+  if(!given || !given.length) return '';
+  var rows = given.map(function(g){ return '<div class="given-row">'+g+'</div>'; }).join('');
+  return '<div class="given-blk"><div class="given-lbl">Given</div>'+rows+'</div>';
+}
+function buildMbTip(tip){
+  if(!tip) return '';
+  return '<div class="mbtip"><div class="mbtip-lbl">\ud83d\udca1 MB Tip</div><div class="mbtip-text">'+tip+'</div></div>';
+}
+function buildSrcNote(note){
+  if(!note) return '';
+  return '<div class="src-note">\u2691 <b>Source Note:</b> '+note+'</div>';
+}
+
+/* ===================== NUMBER LINE SVG GENERATOR =====================
+   cfg = {
+     vmin, vmax          : integer view range for the ticks (inclusive)
+     lo, loType           : lower bound value + 'open'|'closed'  (omit lo for -infinity)
+     hi, hiType           : upper bound value + 'open'|'closed'  (omit hi for +infinity)
+     labelLo, labelHi     : optional string overrides for the circle label (e.g. "-1.5")
+   }
+   Draws a horizontal axis with integer tick marks vmin..vmax, arrowheads both ends,
+   a bold highlighted segment/ray between lo and hi, and open/closed circles at
+   finite endpoints. Unbounded ends are drawn as a bold ray running off the axis edge.
+======================================================================= */
+function buildNline(cfg){
+  var vmin = cfg.vmin, vmax = cfg.vmax;
+  var W = 640, H = 92, marginX = 34, axisY = 54;
+  var usableW = W - 2*marginX;
+  var span = vmax - vmin;
+  function X(v){ return marginX + (v - vmin) / span * usableW; }
+
+  var svg = '';
+  svg += '<line x1="'+(marginX-14)+'" y1="'+axisY+'" x2="'+(W-marginX+14)+'" y2="'+axisY+'" stroke="#1A3D28" stroke-width="2.5"/>';
+  // arrowheads
+  svg += '<polygon points="'+(marginX-14)+','+axisY+' '+(marginX-2)+','+(axisY-6)+' '+(marginX-2)+','+(axisY+6)+'" fill="#1A3D28"/>';
+  svg += '<polygon points="'+(W-marginX+14)+','+axisY+' '+(W-marginX+2)+','+(axisY-6)+' '+(W-marginX+2)+','+(axisY+6)+'" fill="#1A3D28"/>';
+
+  // ticks + labels
+  for(var v=vmin; v<=vmax; v++){
+    var x = X(v);
+    svg += '<line x1="'+x+'" y1="'+(axisY-6)+'" x2="'+x+'" y2="'+(axisY+6)+'" stroke="#1A3D28" stroke-width="2"/>';
+    svg += '<text x="'+x+'" y="'+(axisY+28)+'" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" fill="#1A3D28">'+v+'</text>';
+  }
+
+  // highlighted segment/ray
+  var xLo = (cfg.lo!==undefined) ? X(cfg.lo) : (marginX-14);
+  var xHi = (cfg.hi!==undefined) ? X(cfg.hi) : (W-marginX+14);
+  svg += '<line x1="'+xLo+'" y1="'+axisY+'" x2="'+xHi+'" y2="'+axisY+'" stroke="#C9A84C" stroke-width="6" stroke-linecap="round"/>';
+
+  // endpoint circles
+  if(cfg.lo!==undefined){
+    var filled = cfg.loType==='closed';
+    svg += '<circle cx="'+xLo+'" cy="'+axisY+'" r="7" fill="'+(filled?'#2D5A3D':'#FFFDF8')+'" stroke="#2D5A3D" stroke-width="3"/>';
+    if(cfg.labelLo!==undefined){
+      svg += '<text x="'+xLo+'" y="'+(axisY-16)+'" text-anchor="middle" font-family="Crimson Pro, serif" font-weight="700" font-size="15" fill="#2D5A3D">'+cfg.labelLo+'</text>';
+    }
+  }
+  if(cfg.hi!==undefined){
+    var filledH = cfg.hiType==='closed';
+    svg += '<circle cx="'+xHi+'" cy="'+axisY+'" r="7" fill="'+(filledH?'#2D5A3D':'#FFFDF8')+'" stroke="#2D5A3D" stroke-width="3"/>';
+    if(cfg.labelHi!==undefined){
+      svg += '<text x="'+xHi+'" y="'+(axisY-16)+'" text-anchor="middle" font-family="Crimson Pro, serif" font-weight="700" font-size="15" fill="#2D5A3D">'+cfg.labelHi+'</text>';
+    }
+  }
+
+  var full = '<svg class="nline-svg" viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">'+svg+'</svg>';
+  return '<div class="nline-wrap"><div class="nline-lbl">Number line</div>'+full+'</div>';
+}
+
+function render(cid, data){
+  var c = document.getElementById(cid);
+  data.forEach(function(q, i){
+    var diff = q.diff || 'm';
+    var div = document.createElement('div');
+    div.className = 'qcard ' + q.m;
+    div.setAttribute('data-diff', diff);
+    var star = q.star ? '<span class="star" title="Frequently-tested pattern">\u2b50</span>' : '';
+    var srcHtml = '<span class="qsrc src-worksheet">'+q.src+'</span>';
+    var cardLbl = cid.replace('-qs','').toUpperCase()+' Q'+(i+1);
+    var diffLbl = {'e':'Easy','m':'Medium','h':'Hard'}[diff];
+    var topNline = q.nline ? buildNline(q.nline) : '';
+
+    div.innerHTML =
+      '<div class="q-stripe"></div>'+
+      '<div class="q-head"><div class="q-head-top"><div class="qnb">Q'+(i+1)+'</div><span class="qmp">'+q.marks+'</span>'+star+'<span class="diff diff-'+diff+'">'+diffLbl+'</span></div><div class="qtxt">'+q.q+'</div></div>'+
+      buildMbTip(q.mbtip)+
+      topNline+
+      '<div class="q-foot">'+srcHtml+(q.sections||q.given?'<button class="sol-btn" onclick="togSol(this)">Show Solution</button>':'')+reportBtn(cardLbl,!(q.sections||q.given))+'</div>'+
+      ((q.sections||q.given) ? '<div class="sol-body">'+buildGiven(q.given)+buildSections(q.sections)+buildSrcNote(q.srcnote)+'<div class="final-ans"><span class="fa-lbl">Answer</span><span class="fav">'+q.ans+'</span></div></div>' : '');
+    c.appendChild(div);
+  });
+}
+
+function S(strings, ...vals){ return String.raw(strings, ...vals); }
+
+/* =========================================================================
+   Q1 DATA — 17 items, solve only (no graph required)
+   All answers independently recomputed with a solver; source-key mismatches flagged.
+   ========================================================================= */
+const q1Data = [
+  { m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q1.1', star:false,
+    q:'Solve: 3x + 4 < 16, x ∈ N',
+    given:['x ∈ N (Natural numbers)'],
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`3x + 4 < 16`},
+      {t:'k', text:S`3x < 12`},
+      {t:'k', text:S`x < 4`}
+    ]}],
+    ans:'x < 4, x ∈ N → S.S. = {1, 2, 3}' },
+  { m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q1.2', star:false,
+    q:'Solve: 5x + 3 ≤ 2x + 18, x ∈ N',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`5x + 3 \le 2x + 18`},
+      {t:'k', text:S`3x \le 15`},
+      {t:'k', text:S`x \le 5`}
+    ]}],
+    ans:'x ≤ 5, x ∈ N → S.S. = {1, 2, 3, 4, 5}' },
+  { m:'q-2m', diff:'m', marks:'2 Marks', src:'Worksheet Q1.3', star:true,
+    q:'Solve: −2x ≥ −12, x ∈ N',
+    mbtip:'Dividing both sides by a negative number flips the inequality sign — that is the whole trap in this question.',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`-2x \ge -12`},
+      {t:'p', text:'<b>Divide by −2 (flip the sign)</b>'},
+      {t:'k', text:S`x \le 6`}
+    ]}],
+    ans:'x ≤ 6, x ∈ N → S.S. = {1, 2, 3, 4, 5, 6}',
+    srcnote:'The worksheet\'s printed answer key states x ≤ 5, but dividing −2x ≥ −12 by −2 (flipping the sign) gives x ≤ 6 — this is likely a typo in the source, which is why this question is flagged in the original PDF. Recomputed independently above.' },
+  { m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q1.4', star:false,
+    q:'Solve: 3x − 1 > 8, x ∈ W',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`3x - 1 > 8`},
+      {t:'k', text:S`3x > 9`},
+      {t:'k', text:S`x > 3`}
+    ]}],
+    ans:'x > 3, x ∈ W → S.S. = {4, 5, 6, …}' },
+  { m:'q-2m', diff:'m', marks:'2 Marks', src:'Worksheet Q1.5', star:false,
+    q:'Solve: 7 − 3x ≥ \\(-\\tfrac{1}{2}\\), x ∈ W',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`7 - 3x \ge -\dfrac{1}{2}`},
+      {t:'k', text:S`-3x \ge -\dfrac{1}{2} - 7`},
+      {t:'k', text:S`-3x \ge -\dfrac{15}{2}`},
+      {t:'p', text:'<b>Divide by −3 (flip the sign)</b>'},
+      {t:'k', text:S`x \le \dfrac{5}{2}`}
+    ]}],
+    ans:'x ≤ 2.5, x ∈ W → S.S. = {0, 1, 2}' },
+  { m:'q-2m', diff:'m', marks:'2 Marks', src:'Worksheet Q1.6', star:false,
+    q:'Solve: 2(x − 1) ≤ 9 − x, x ∈ W',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`2(x-1) \le 9 - x`},
+      {t:'k', text:S`2x - 2 \le 9 - x`},
+      {t:'k', text:S`3x \le 11`},
+      {t:'k', text:S`x \le \dfrac{11}{3}`}
+    ]}],
+    ans:'x ≤ \\(3\\tfrac{2}{3}\\), x ∈ W → S.S. = {0, 1, 2, 3}' },
+  { m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q1.7', star:false,
+    q:'Solve: 18 ≤ 4x − 2, x ∈ I',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`18 \le 4x - 2`},
+      {t:'k', text:S`20 \le 4x`},
+      {t:'k', text:S`5 \le x`}
+    ]}],
+    ans:'x ≥ 5, x ∈ I → S.S. = {5, 6, 7, …}' },
+  { m:'q-2m', diff:'m', marks:'2 Marks', src:'Worksheet Q1.8', star:false,
+    q:'Solve: \\(\\dfrac{4x}{3}\\) − 2 ≤ \\(\\dfrac{x}{3}\\) − 1, x ∈ I',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`\dfrac{4x}{3} - 2 \le \dfrac{x}{3} - 1`},
+      {t:'p', text:'<b>Multiply throughout by 3</b>'},
+      {t:'k', text:S`4x - 6 \le x - 3`},
+      {t:'k', text:S`3x \le 3`},
+      {t:'k', text:S`x \le 1`}
+    ]}],
+    ans:'x ≤ 1, x ∈ I → S.S. = {…, −1, 0, 1}' },
+  { m:'q-2m', diff:'m', marks:'2 Marks', src:'Worksheet Q1.9', star:false,
+    q:'Solve: 5 − 2x < \\(5\\tfrac{1}{2}\\) − \\(\\dfrac{5x}{3}\\), x ∈ I',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`5 - 2x < \dfrac{11}{2} - \dfrac{5x}{3}`},
+      {t:'p', text:'<b>Multiply throughout by 6</b>'},
+      {t:'k', text:S`30 - 12x < 33 - 10x`},
+      {t:'k', text:S`-2x < 3`},
+      {t:'p', text:'<b>Divide by −2 (flip the sign)</b>'},
+      {t:'k', text:S`x > -\dfrac{3}{2}`}
+    ]}],
+    ans:'x > −1.5, x ∈ I → S.S. = {−1, 0, 1, 2, …}' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q1.10', star:false,
+    q:'Solve: x − 2(3x − 1) > 2(x − 2) − x, x ∈ R',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`x - 2(3x-1) > 2(x-2) - x`},
+      {t:'k', text:S`x - 6x + 2 > 2x - 4 - x`},
+      {t:'k', text:S`-5x + 2 > x - 4`},
+      {t:'k', text:S`-6x > -6`},
+      {t:'p', text:'<b>Divide by −6 (flip the sign)</b>'},
+      {t:'k', text:S`x < 1`}
+    ]}],
+    ans:'x < 1, x ∈ R → S.S. = {x ∈ R : x < 1}' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q1.11', star:false,
+    q:'Solve: 11 + \\(1\\tfrac{5}{6}\\)x ≤ 4 + 3x, x ∈ R',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`11 + \dfrac{11}{6}x \le 4 + 3x`},
+      {t:'p', text:'<b>Multiply throughout by 6</b>'},
+      {t:'k', text:S`66 + 11x \le 24 + 18x`},
+      {t:'k', text:S`42 \le 7x`},
+      {t:'k', text:S`6 \le x`}
+    ]}],
+    ans:'x ≥ 6, x ∈ R → S.S. = {x : x ≥ 6, x ∈ R}' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q1.12', star:false,
+    q:'Solve: 12 + \\(1\\tfrac{5}{6}\\)x ≤ 5 + 3x, x ∈ R',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`12 + \dfrac{11}{6}x \le 5 + 3x`},
+      {t:'p', text:'<b>Multiply throughout by 6</b>'},
+      {t:'k', text:S`72 + 11x \le 30 + 18x`},
+      {t:'k', text:S`42 \le 7x`},
+      {t:'k', text:S`6 \le x`}
+    ]}],
+    ans:'x ≥ 6, x ∈ R → S.S. = {x : x ≥ 6, x ∈ R}' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q1.13', star:false,
+    q:'Solve: 5 + \\(\\dfrac{x}{4}\\) > \\(\\dfrac{x}{5}\\) + 9, x ∈ R',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`5 + \dfrac{x}{4} > \dfrac{x}{5} + 9`},
+      {t:'p', text:'<b>Multiply throughout by 20 (LCM of 4, 5)</b>'},
+      {t:'k', text:S`100 + 5x > 4x + 180`},
+      {t:'k', text:S`x > 80`}
+    ]}],
+    ans:'x > 80, x ∈ R → S.S. = {x : x > 80, x ∈ R}' },
+  { m:'q-la', diff:'m', marks:'3 Marks', src:'Worksheet Q1.14', star:true,
+    q:'Solve: x + 5 ≤ 2x + 3 ≤ 12 − x, x ∈ N',
+    mbtip:'Split a chain inequality like this into two separate inequations that share the middle expression, solve each, then combine.',
+    sections:[
+      {label:'PART (i): x + 5 ≤ 2x + 3', rows:[
+        {t:'k', text:S`x + 5 \le 2x + 3`},
+        {t:'k', text:S`2 \le x`}
+      ]},
+      {label:'PART (ii): 2x + 3 ≤ 12 − x', rows:[
+        {t:'k', text:S`2x + 3 \le 12 - x`},
+        {t:'k', text:S`3x \le 9`},
+        {t:'k', text:S`x \le 3`}
+      ]}
+    ],
+    ans:'2 ≤ x ≤ 3, x ∈ N → S.S. = {2, 3}' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q1.15', star:false,
+    q:'Solve: −1 ≤ 3 + 4x < 23, x ∈ W',
+    sections:[
+      {label:'PART (i): −1 ≤ 3 + 4x', rows:[
+        {t:'k', text:S`-1 \le 3 + 4x`},
+        {t:'k', text:S`-4 \le 4x`},
+        {t:'k', text:S`-1 \le x`}
+      ]},
+      {label:'PART (ii): 3 + 4x < 23', rows:[
+        {t:'k', text:S`3 + 4x < 23`},
+        {t:'k', text:S`4x < 20`},
+        {t:'k', text:S`x < 5`}
+      ]}
+    ],
+    ans:'−1 ≤ x < 5, x ∈ W → S.S. = {0, 1, 2, 3, 4}' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q1.16', star:false,
+    q:'Solve: −5 ≤ 2x − 3 < x + 2, x ∈ I',
+    sections:[
+      {label:'PART (i): −5 ≤ 2x − 3', rows:[
+        {t:'k', text:S`-5 \le 2x - 3`},
+        {t:'k', text:S`-2 \le 2x`},
+        {t:'k', text:S`-1 \le x`}
+      ]},
+      {label:'PART (ii): 2x − 3 < x + 2', rows:[
+        {t:'k', text:S`2x - 3 < x + 2`},
+        {t:'k', text:S`x < 5`}
+      ]}
+    ],
+    ans:'−1 ≤ x < 5, x ∈ I → S.S. = {−1, 0, 1, 2, 3, 4}' },
+  { m:'q-la', diff:'h', marks:'3 Marks', src:'Worksheet Q1.17', star:false,
+    q:'Solve: 4x − 19 < \\(\\dfrac{3x}{5}\\) − 2 ≤ x − \\(\\dfrac{2}{5}\\), x ∈ R',
+    sections:[
+      {label:'PART (i): 4x − 19 < \\(\\dfrac{3x}{5}\\) − 2', rows:[
+        {t:'k', text:S`4x - 19 < \dfrac{3x}{5} - 2`},
+        {t:'p', text:'<b>Multiply throughout by 5</b>'},
+        {t:'k', text:S`20x - 95 < 3x - 10`},
+        {t:'k', text:S`17x < 85`},
+        {t:'k', text:S`x < 5`}
+      ]},
+      {label:'PART (ii): \\(\\dfrac{3x}{5}\\) − 2 ≤ x − \\(\\dfrac{2}{5}\\)', rows:[
+        {t:'k', text:S`\dfrac{3x}{5} - 2 \le x - \dfrac{2}{5}`},
+        {t:'p', text:'<b>Multiply throughout by 5</b>'},
+        {t:'k', text:S`3x - 10 \le 5x - 2`},
+        {t:'k', text:S`-8 \le 2x`},
+        {t:'k', text:S`-4 \le x`}
+      ]}
+    ],
+    ans:'−4 ≤ x < 5, x ∈ R → S.S. = {x : −4 ≤ x < 5, x ∈ R}' }
+];
+
+/* =========================================================================
+   Q2 DATA — 4 items, graph only, x ∈ R (unbounded ends shown as arrows)
+   ========================================================================= */
+const q2Data = [
+  { m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q2.1', star:false,
+    q:'Graph the solution set of: 2x − 1 < 5',
+    given:['2x − 1 < 5  →  2x < 6  →  x < 3'],
+    nline:{ vmin:-3, vmax:4, hi:3, hiType:'open' },
+    ans:'x < 3 — open circle at 3, ray extending left' },
+  { m:'q-2m', diff:'e', marks:'2 Marks', src:'Worksheet Q2.2', star:false,
+    q:'Graph the solution set of: 3x + 1 ≥ −5',
+    given:['3x + 1 ≥ −5  →  3x ≥ −6  →  x ≥ −2'],
+    nline:{ vmin:-3, vmax:5, lo:-2, loType:'closed' },
+    ans:'x ≥ −2 — closed circle at −2, ray extending right' },
+  { m:'q-3m', diff:'m', marks:'2 Marks', src:'Worksheet Q2.3', star:false,
+    q:'Graph the solution set of: 2(2x − 3) ≤ 6',
+    given:['2(2x − 3) ≤ 6  →  4x − 6 ≤ 6  →  4x ≤ 12  →  x ≤ 3'],
+    nline:{ vmin:-3, vmax:4, hi:3, hiType:'closed' },
+    ans:'x ≤ 3 — closed circle at 3, ray extending left' },
+  { m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q2.4', star:true,
+    q:'Graph the solution set of: −4 < x < 4',
+    nline:{ vmin:-4, vmax:4, lo:-4, loType:'open', hi:4, hiType:'open' },
+    ans:'−4 < x < 4 — open circles at both −4 and 4, segment between' }
+];
+
+/* =========================================================================
+   Q3 DATA — 16 items, solve + graph.
+   All answers independently recomputed; two source-key mismatches flagged
+   (Q3.6 and Q3.11) — see source notes on those cards.
+   ========================================================================= */
+const q3Data = [
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q3.1', star:false,
+    q:'Solve and graph: −5 < x − 2 ≤ 7 − 2x, x ∈ N',
+    sections:[
+      {label:'PART (i): −5 < x − 2', rows:[
+        {t:'k', text:S`-5 < x - 2`}, {t:'k', text:S`-3 < x`}
+      ]},
+      {label:'PART (ii): x − 2 ≤ 7 − 2x', rows:[
+        {t:'k', text:S`x - 2 \le 7 - 2x`}, {t:'k', text:S`3x \le 9`}, {t:'k', text:S`x \le 3`}
+      ], nline:{ vmin:-4, vmax:4, lo:-3, loType:'open', hi:3, hiType:'closed' }}
+    ],
+    ans:'−3 < x ≤ 3, x ∈ N → S.S. = {1, 2, 3}' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q3.2', star:false,
+    q:'Solve and graph: −2 ≤ \\(\\tfrac{2}{3}\\) − \\(\\dfrac{x}{2}\\) ≤ \\(1\\tfrac{1}{6}\\), x ∈ N',
+    sections:[
+      {label:'PART (i): −2 ≤ \\(\\tfrac{2}{3}\\) − \\(\\dfrac{x}{2}\\)', rows:[
+        {t:'k', text:S`-2 \le \dfrac{2}{3} - \dfrac{x}{2}`}, {t:'k', text:S`\dfrac{x}{2} \le \dfrac{2}{3}+2 = \dfrac{8}{3}`}, {t:'k', text:S`x \le \dfrac{16}{3}`}
+      ]},
+      {label:'PART (ii): \\(\\tfrac{2}{3}\\) − \\(\\dfrac{x}{2}\\) ≤ \\(1\\tfrac{1}{6}\\)', rows:[
+        {t:'k', text:S`\dfrac{2}{3} - \dfrac{x}{2} \le \dfrac{7}{6}`}, {t:'k', text:S`-\dfrac{x}{2} \le \dfrac{7}{6}-\dfrac{2}{3} = \dfrac{1}{2}`}, {t:'p', text:'<b>Multiply by −2 (flip the sign)</b>'}, {t:'k', text:S`x \ge -1`}
+      ], nline:{ vmin:-2, vmax:6, lo:-1, loType:'closed', hi:16/3, hiType:'closed', labelHi:'5⅓' }}
+    ],
+    ans:'−1 ≤ x ≤ \\(5\\tfrac{1}{3}\\), x ∈ N → S.S. = {1, 2, 3, 4, 5}' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q3.3', star:false,
+    q:'Solve and graph: −2 ≤ \\(\\tfrac{1}{2}\\) − \\(\\dfrac{2x}{3}\\) ≤ \\(1\\tfrac{5}{6}\\), x ∈ N',
+    sections:[
+      {label:'PART (i): −2 ≤ \\(\\tfrac{1}{2}\\) − \\(\\dfrac{2x}{3}\\)', rows:[
+        {t:'k', text:S`-2 \le \dfrac{1}{2} - \dfrac{2x}{3}`}, {t:'k', text:S`\dfrac{2x}{3} \le \dfrac{5}{2}`}, {t:'k', text:S`x \le \dfrac{15}{4}`}
+      ]},
+      {label:'PART (ii): \\(\\tfrac{1}{2}\\) − \\(\\dfrac{2x}{3}\\) ≤ \\(1\\tfrac{5}{6}\\)', rows:[
+        {t:'k', text:S`\dfrac{1}{2} - \dfrac{2x}{3} \le \dfrac{11}{6}`}, {t:'k', text:S`-\dfrac{2x}{3} \le \dfrac{4}{3}`}, {t:'p', text:'<b>Multiply by −3/2 (flip the sign)</b>'}, {t:'k', text:S`x \ge -2`}
+      ], nline:{ vmin:-3, vmax:4, lo:-2, loType:'closed', hi:15/4, hiType:'closed', labelHi:'3¾' }}
+    ],
+    ans:'−2 ≤ x ≤ \\(3\\tfrac{3}{4}\\), x ∈ N → S.S. = {1, 2, 3}' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q3.4', star:false,
+    q:'Solve and graph: −8 ≤ x − 7 ≤ 2(2 − x), x ∈ W',
+    sections:[
+      {label:'PART (i): −8 ≤ x − 7', rows:[
+        {t:'k', text:S`-8 \le x - 7`}, {t:'k', text:S`-1 \le x`}
+      ]},
+      {label:'PART (ii): x − 7 ≤ 2(2 − x)', rows:[
+        {t:'k', text:S`x - 7 \le 4 - 2x`}, {t:'k', text:S`3x \le 11`}, {t:'k', text:S`x \le \dfrac{11}{3}`}
+      ], nline:{ vmin:-2, vmax:5, lo:-1, loType:'closed', hi:11/3, hiType:'closed', labelHi:'3⅔' }}
+    ],
+    ans:'−1 ≤ x ≤ \\(3\\tfrac{2}{3}\\), x ∈ W → S.S. = {0, 1, 2, 3}' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q3.5', star:false,
+    q:'Solve and graph: \\(-1\\tfrac{2}{3}\\) ≤ x + \\(\\tfrac{1}{3}\\) < \\(4\\tfrac{1}{3}\\), x ∈ W',
+    sections:[
+      {label:'PART (i): \\(-1\\tfrac{2}{3}\\) ≤ x + \\(\\tfrac{1}{3}\\)', rows:[
+        {t:'k', text:S`-\dfrac{5}{3} \le x + \dfrac{1}{3}`}, {t:'k', text:S`-2 \le x`}
+      ]},
+      {label:'PART (ii): x + \\(\\tfrac{1}{3}\\) < \\(4\\tfrac{1}{3}\\)', rows:[
+        {t:'k', text:S`x + \dfrac{1}{3} < \dfrac{13}{3}`}, {t:'k', text:S`x < 4`}
+      ], nline:{ vmin:-3, vmax:5, lo:-2, loType:'closed', hi:4, hiType:'open' }}
+    ],
+    ans:'−2 ≤ x < 4, x ∈ W → S.S. = {0, 1, 2, 3}' },
+  { m:'q-2m', diff:'h', marks:'3 Marks', src:'Worksheet Q3.6', star:true,
+    q:'Solve and graph: 12 ≥ 2 − 5y ≥ 2(y − 2) − y, y ∈ I',
+    mbtip:'Watch the direction of each inequality carefully in a chain like this — it is easy to flip a sign by mistake when rearranging.',
+    sections:[
+      {label:'PART (i): 12 ≥ 2 − 5y', rows:[
+        {t:'k', text:S`12 \ge 2 - 5y`}, {t:'k', text:S`10 \ge -5y`}, {t:'p', text:'<b>Divide by −5 (flip the sign)</b>'}, {t:'k', text:S`-2 \le y`}
+      ]},
+      {label:'PART (ii): 2 − 5y ≥ 2(y − 2) − y', rows:[
+        {t:'k', text:S`2 - 5y \ge 2y - 4 - y`}, {t:'k', text:S`2 - 5y \ge y - 4`}, {t:'k', text:S`6 \ge 6y`}, {t:'k', text:S`y \le 1`}
+      ], nline:{ vmin:-3, vmax:2, lo:-2, loType:'closed', hi:1, hiType:'closed' }}
+    ],
+    ans:'−2 ≤ y ≤ 1, y ∈ I → S.S. = {−2, −1, 0, 1}',
+    srcnote:'The worksheet\'s printed answer key gives −2 ≤ y < 1 (excluding y = 1), but both original inequalities use ≥ (non-strict), so y = 1 satisfies the compound inequality exactly (checked by direct substitution: 2 − 5(1) = −3 and 2(1−2) − 1 = −3, and −3 ≥ −3 holds). The correct set includes y = 1.' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q3.7', star:false,
+    q:'Solve and graph: x − 3 ≤ \\(\\dfrac{8x}{3}\\) + 2 ≤ 2x + \\(\\dfrac{14}{3}\\), x ∈ I',
+    sections:[
+      {label:'PART (i): x − 3 ≤ \\(\\dfrac{8x}{3}\\) + 2', rows:[
+        {t:'k', text:S`x - 3 \le \dfrac{8x}{3} + 2`}, {t:'p', text:'<b>Multiply throughout by 3</b>'}, {t:'k', text:S`3x - 9 \le 8x + 6`}, {t:'k', text:S`-15 \le 5x`}, {t:'k', text:S`-3 \le x`}
+      ]},
+      {label:'PART (ii): \\(\\dfrac{8x}{3}\\) + 2 ≤ 2x + \\(\\dfrac{14}{3}\\)', rows:[
+        {t:'k', text:S`\dfrac{8x}{3} + 2 \le 2x + \dfrac{14}{3}`}, {t:'p', text:'<b>Multiply throughout by 3</b>'}, {t:'k', text:S`8x + 6 \le 6x + 14`}, {t:'k', text:S`2x \le 8`}, {t:'k', text:S`x \le 4`}
+      ], nline:{ vmin:-4, vmax:5, lo:-3, loType:'closed', hi:4, hiType:'closed' }}
+    ],
+    ans:'−3 ≤ x ≤ 4, x ∈ I → S.S. = {−3, −2, −1, 0, 1, 2, 3, 4}' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q3.8', star:false,
+    q:'Solve and graph: 4x − 3 ≤ 2x + 7 < 6x − 1, x ∈ I',
+    sections:[
+      {label:'PART (i): 4x − 3 ≤ 2x + 7', rows:[
+        {t:'k', text:S`4x - 3 \le 2x + 7`}, {t:'k', text:S`2x \le 10`}, {t:'k', text:S`x \le 5`}
+      ]},
+      {label:'PART (ii): 2x + 7 < 6x − 1', rows:[
+        {t:'k', text:S`2x + 7 < 6x - 1`}, {t:'k', text:S`8 < 4x`}, {t:'k', text:S`2 < x`}
+      ], nline:{ vmin:1, vmax:6, lo:2, loType:'open', hi:5, hiType:'closed' }}
+    ],
+    ans:'2 < x ≤ 5, x ∈ I → S.S. = {3, 4, 5}' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q3.9', star:false,
+    q:'Solve and graph: 2x − 3 < x + 2 ≤ 3x + 5, x ∈ R',
+    sections:[
+      {label:'PART (i): 2x − 3 < x + 2', rows:[
+        {t:'k', text:S`2x - 3 < x + 2`}, {t:'k', text:S`x < 5`}
+      ]},
+      {label:'PART (ii): x + 2 ≤ 3x + 5', rows:[
+        {t:'k', text:S`x + 2 \le 3x + 5`}, {t:'k', text:S`-3 \le 2x`}, {t:'k', text:S`-\dfrac{3}{2} \le x`}
+      ], nline:{ vmin:-3, vmax:6, lo:-1.5, loType:'closed', hi:5, hiType:'open', labelLo:'−1½' }}
+    ],
+    ans:'\\(-1\\tfrac{1}{2}\\) ≤ x < 5, x ∈ R → S.S. = {x : \\(-1\\tfrac{1}{2}\\) ≤ x < 5, x ∈ R}' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q3.10', star:false,
+    q:'Solve and graph: x − 2 ≤ 3(x − 2) + 5 < 8 − x, x ∈ R',
+    sections:[
+      {label:'PART (i): x − 2 ≤ 3(x − 2) + 5', rows:[
+        {t:'k', text:S`x - 2 \le 3x - 6 + 5`}, {t:'k', text:S`x - 2 \le 3x - 1`}, {t:'k', text:S`-1 \le 2x`}, {t:'k', text:S`-\dfrac{1}{2} \le x`}
+      ]},
+      {label:'PART (ii): 3(x − 2) + 5 < 8 − x', rows:[
+        {t:'k', text:S`3x - 1 < 8 - x`}, {t:'k', text:S`4x < 9`}, {t:'k', text:S`x < \dfrac{9}{4}`}
+      ], nline:{ vmin:-2, vmax:4, lo:-0.5, loType:'closed', hi:2.25, hiType:'open', labelLo:'−½', labelHi:'2¼' }}
+    ],
+    ans:'\\(-\\tfrac{1}{2}\\) ≤ x < \\(2\\tfrac{1}{4}\\), x ∈ R → S.S. = {x : \\(-\\tfrac{1}{2}\\) ≤ x < \\(2\\tfrac{1}{4}\\), x ∈ R}' },
+  { m:'q-2m', diff:'h', marks:'3 Marks', src:'Worksheet Q3.11', star:true,
+    q:'Solve and graph: 3x + \\(\\dfrac{14}{3}\\) − \\(\\dfrac{4x}{3}\\) ≥ 2 ≥ 2x − 4, x ∈ R',
+    mbtip:'Combine the x-terms on the left first (3x − \\(\\dfrac{4x}{3}\\) = \\(\\dfrac{5x}{3}\\)) before clearing the fraction — it keeps the working much shorter.',
+    sections:[
+      {label:'PART (i): 3x + \\(\\dfrac{14}{3}\\) − \\(\\dfrac{4x}{3}\\) ≥ 2', rows:[
+        {t:'k', text:S`3x + \dfrac{14}{3} - \dfrac{4x}{3} \ge 2`},
+        {t:'p', text:'<b>Combine x-terms: 3x − 4x/3 = 5x/3</b>'},
+        {t:'k', text:S`\dfrac{5x}{3} + \dfrac{14}{3} \ge 2`},
+        {t:'p', text:'<b>Multiply throughout by 3</b>'},
+        {t:'k', text:S`5x + 14 \ge 6`}, {t:'k', text:S`5x \ge -8`}, {t:'k', text:S`x \ge -\dfrac{8}{5}`}
+      ]},
+      {label:'PART (ii): 2 ≥ 2x − 4', rows:[
+        {t:'k', text:S`2 \ge 2x - 4`}, {t:'k', text:S`6 \ge 2x`}, {t:'k', text:S`3 \ge x`}
+      ], nline:{ vmin:-3, vmax:4, lo:-1.6, loType:'closed', hi:3, hiType:'closed', labelLo:'−1⅗' }}
+    ],
+    ans:'\\(-1\\tfrac{3}{5}\\) ≤ x ≤ 3, x ∈ R → S.S. = {x : \\(-1\\tfrac{3}{5}\\) ≤ x ≤ 3, x ∈ R}',
+    srcnote:'The worksheet\'s printed answer key gives −4 < x ≤ 3, but combining and clearing the fractions in 3x + 14/3 − 4x/3 ≥ 2 gives x ≥ −8/5 (= −1.6), not x > −4. This has been recomputed independently and confirmed by solver above — please re-check the original source if a different lower bound was intended.' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q3.12', star:false,
+    q:'Solve and graph: −2 < \\(\\tfrac{1}{2}\\) − \\(\\dfrac{3x+1}{4}\\) ≤ \\(3\\tfrac{5}{8}\\), x ∈ R',
+    sections:[
+      {label:'PART (i): −2 < \\(\\tfrac{1}{2}\\) − \\(\\dfrac{3x+1}{4}\\)', rows:[
+        {t:'k', text:S`-2 < \dfrac{1}{2} - \dfrac{3x+1}{4}`}, {t:'p', text:'<b>Multiply throughout by 4</b>'}, {t:'k', text:S`-8 < 2 - (3x+1)`}, {t:'k', text:S`-8 < 1 - 3x`}, {t:'k', text:S`-9 < -3x`}, {t:'p', text:'<b>Divide by −3 (flip the sign)</b>'}, {t:'k', text:S`3 > x`}
+      ]},
+      {label:'PART (ii): \\(\\tfrac{1}{2}\\) − \\(\\dfrac{3x+1}{4}\\) ≤ \\(3\\tfrac{5}{8}\\)', rows:[
+        {t:'k', text:S`\dfrac{1}{2} - \dfrac{3x+1}{4} \le \dfrac{29}{8}`}, {t:'p', text:'<b>Multiply throughout by 8</b>'}, {t:'k', text:S`4 - 2(3x+1) \le 29`}, {t:'k', text:S`2 - 6x \le 29`}, {t:'k', text:S`-27 \le 6x`}, {t:'k', text:S`-\dfrac{9}{2} \le x`}
+      ], nline:{ vmin:-5, vmax:4, lo:-4.5, loType:'closed', hi:3, hiType:'open', labelLo:'−4½' }}
+    ],
+    ans:'\\(-4\\tfrac{1}{2}\\) ≤ x < 3, x ∈ R → S.S. = {x : \\(-4\\tfrac{1}{2}\\) ≤ x < 3, x ∈ R}' },
+  { m:'q-la', diff:'h', marks:'2+2+2 Marks', src:'Worksheet Q3.13', star:true,
+    q:'Given A = {x : −1 < x ≤ 5, x ∈ R} and B = {x : −4 ≤ x < 3, x ∈ R}. Represent on different number lines: (i) A ∩ B, (ii) A′ ∩ B, (iii) A − B',
+    mbtip:'Sketch A and B on their own number lines first if it helps — A∩B keeps only the overlap, A′ is everything outside A, and A−B keeps A but removes any part shared with B.',
+    given:['A = {x : −1 < x ≤ 5, x ∈ R}', 'B = {x : −4 ≤ x < 3, x ∈ R}'],
+    sections:[
+      {label:'(i) A ∩ B', rows:[
+        {t:'p', text:'Keep only the overlap between A and B.'},
+        {t:'k', text:S`A \cap B = \{x : -1 < x < 3,\ x \in R\}`}
+      ], nline:{ vmin:-5, vmax:6, lo:-1, loType:'open', hi:3, hiType:'open' }},
+      {label:'(ii) A′ ∩ B', rows:[
+        {t:'p', text:'A′ is everything outside A, i.e. x ≤ −1 or x > 5. Intersect this with B.'},
+        {t:'k', text:S`A' \cap B = \{x : -4 \le x \le -1,\ x \in R\}`}
+      ], nline:{ vmin:-5, vmax:6, lo:-4, loType:'closed', hi:-1, hiType:'closed' }},
+      {label:'(iii) A − B', rows:[
+        {t:'p', text:'Keep what is in A but remove anything also in B.'},
+        {t:'k', text:S`A - B = \{x : 3 \le x \le 5,\ x \in R\}`}
+      ], nline:{ vmin:-5, vmax:6, lo:3, loType:'closed', hi:5, hiType:'closed' }}
+    ],
+    ans:'A∩B = (−1, 3);  A′∩B = [−4, −1];  A−B = [3, 5]' },
+  { m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q3.14', star:false,
+    q:'Solve and graph the solution set of: 3x + 6 ≥ 9 and −5x > −15, x ∈ R',
+    mbtip:'"And" means both conditions must hold together — take the intersection of the two ranges.',
+    sections:[
+      {label:'CONDITION (i): 3x + 6 ≥ 9', rows:[
+        {t:'k', text:S`3x + 6 \ge 9`}, {t:'k', text:S`3x \ge 3`}, {t:'k', text:S`x \ge 1`}
+      ]},
+      {label:'CONDITION (ii): −5x > −15', rows:[
+        {t:'k', text:S`-5x > -15`}, {t:'p', text:'<b>Divide by −5 (flip the sign)</b>'}, {t:'k', text:S`x < 3`}
+      ]},
+      {label:'COMBINE (AND = intersection)', rows:[
+        {t:'k', text:S`1 \le x < 3`}
+      ], nline:{ vmin:-1, vmax:5, lo:1, loType:'closed', hi:3, hiType:'open' }}
+    ],
+    ans:'1 ≤ x < 3, x ∈ R → S.S. = {x : 1 ≤ x < 3, x ∈ R}' },
+  { m:'q-la', diff:'h', marks:'3 Marks', src:'Worksheet Q3.15', star:true,
+    q:'Solve and graph the solution set of: −2 < 2x − 6 or −2x + 5 ≥ 13, x ∈ R',
+    mbtip:'"Or" means either condition alone is enough — take the union of the two ranges, not the overlap.',
+    sections:[
+      {label:'CONDITION (i): −2 < 2x − 6', rows:[
+        {t:'k', text:S`-2 < 2x - 6`}, {t:'k', text:S`4 < 2x`}, {t:'k', text:S`2 < x`}
+      ]},
+      {label:'CONDITION (ii): −2x + 5 ≥ 13', rows:[
+        {t:'k', text:S`-2x + 5 \ge 13`}, {t:'k', text:S`-2x \ge 8`}, {t:'p', text:'<b>Divide by −2 (flip the sign)</b>'}, {t:'k', text:S`x \le -4`}
+      ]},
+      {label:'COMBINE (OR = union)', rows:[
+        {t:'p', text:'Either x > 2 or x ≤ −4 satisfies the compound statement — these two rays do not overlap, so the solution set is drawn as two separate pieces on the same line.'}
+      ], nline:{ vmin:-6, vmax:5, hi:-4, hiType:'closed' }}
+    ],
+    ans:'x > 2 or x ≤ −4, x ∈ R (two separate unbounded rays — see note on graphing an "or" solution below)' },
+  { m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q3.16', star:true,
+    q:'Given P = {x : 5 < 2x − 1 ≤ 11, x ∈ R} and Q = {x : −1 ≤ 3 + 4x < 23, x ∈ I}. Represent P and Q on two different number lines. Write down the elements of P ∩ Q.',
+    given:['P = {x : 5 < 2x − 1 ≤ 11, x ∈ R}', 'Q = {x : −1 ≤ 3 + 4x < 23, x ∈ I}'],
+    sections:[
+      {label:'SOLVE FOR P', rows:[
+        {t:'p', text:'<b>Part (i): 5 < 2x − 1</b>'}, {t:'k', text:S`5 < 2x - 1`}, {t:'k', text:S`3 < x`},
+        {t:'p', text:'<b>Part (ii): 2x − 1 ≤ 11</b>'}, {t:'k', text:S`2x - 1 \le 11`}, {t:'k', text:S`x \le 6`}
+      ], nline:{ vmin:2, vmax:7, lo:3, loType:'open', hi:6, hiType:'closed' }},
+      {label:'SOLVE FOR Q', rows:[
+        {t:'p', text:'<b>Part (i): −1 ≤ 3 + 4x</b>'}, {t:'k', text:S`-1 \le 3 + 4x`}, {t:'k', text:S`-1 \le x`},
+        {t:'p', text:'<b>Part (ii): 3 + 4x < 23</b>'}, {t:'k', text:S`3 + 4x < 23`}, {t:'k', text:S`x < 5`}
+      ], nline:{ vmin:-2, vmax:6, lo:-1, loType:'closed', hi:5, hiType:'open' }},
+      {label:'P ∩ Q', rows:[
+        {t:'p', text:'P = {x : 3 < x ≤ 6, x ∈ R}. Q = {x : −1 ≤ x < 5, x ∈ I} = {−1, 0, 1, 2, 3, 4}.'},
+        {t:'p', text:'Keep only integers from Q that also satisfy 3 < x ≤ 6.'}
+      ]}
+    ],
+    ans:'P: 3 < x ≤ 6, x ∈ R;  Q: −1 ≤ x < 5, x ∈ I → {−1,0,1,2,3,4};  P ∩ Q = {4}' }
+];
+
+render('q1-qs', q1Data);
+render('q2-qs', q2Data);
+render('q3-qs', q3Data);
+updateCount('q1-qs');
+updateCount('q3-qs');
+renderMathIn(document.getElementById('panel-concepts'));
+
+function renderMathIn(container){
+  if(window.renderMathInElement && container){
+    renderMathInElement(container, {
+      delimiters:[{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],
+      throwOnError:false
+    });
+  }
+}
+</script>
+</body>
+</html>
