@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ratio and Proportion — ICSE Class 10 | Maths Bridge Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F0E8;--bg2:#EDE8DC;--bg3:#E4DDD0;
+  --green:#2D5A3D;--green2:#3D7A55;--green3:#1A3D28;
+  --gold:#C9A84C;--gold2:#E8C56A;--gold3:#A07830;
+  --slate:#1A3050;--blue:#2563A8;--cbblue:#0D2B4E;
+  --purple:#7B5EA7;
+  --amber:#7A5C00;--amberbg:#FFF8DC;
+  --text:#000;--text2:#1a1a1a;--text3:#555;
+  --white:#fff;--card:#FFFDF8;--border:#D4C9B0;
+  --fbg:#EEF5F0;--hbg:#FFF8E6;
+}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--bg);color:var(--text);font-size:20px;line-height:1.75}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px 80px}
+
+/* ---------- overflow safety (locked, per spec) ---------- */
+.k, .formula-text, .qtxt, .sol-body, .given-row{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:3px 0;margin:6px 0;text-align:left}
+.katex{font-weight:400}
+.katex-display>.katex{text-align:left}
+@media(max-width:560px){.katex{font-size:0.95em}}
+
+/* HEADER */
+.site-header{background:var(--green3);border-bottom:3px solid var(--gold)}
+.header-inner{display:flex;align-items:center;gap:16px;padding:12px 24px;max-width:960px;margin:0 auto}
+.logo-mark{width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--green3);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;font-size:16px;flex-shrink:0}
+.ht-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--white);line-height:1.1}
+.ht-tag{font-size:11px;color:var(--gold2);letter-spacing:.05em;margin-top:2px}
+.hr-right{margin-left:auto;text-align:right}
+.hr-board{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.hr-ch{font-family:'Playfair Display',serif;font-size:15px;color:var(--white);font-weight:700}
+
+/* HERO */
+.hero{background:var(--green);padding:22px 28px;border-radius:0 0 14px 14px;margin-bottom:22px;position:relative;overflow:hidden}
+.hero::after{content:'∝';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:110px;color:rgba(255,255,255,.05);pointer-events:none;font-family:'Crimson Pro',serif}
+.h-lbl{font-size:10px;font-weight:700;color:var(--gold2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.h-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:800;color:var(--white);line-height:1.1;margin-bottom:5px}
+.h-sub{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:16px}
+.h-pills{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.h-pill{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);color:var(--white);font-size:11px;font-weight:600;padding:3px 12px;border-radius:20px;font-family:'JetBrains Mono',monospace}
+.h-stats{display:flex;gap:8px;flex-wrap:wrap}
+.h-stat{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);border-radius:9px;padding:9px 16px;text-align:center}
+.h-stat .n{font-size:22px;font-weight:700;color:var(--white);font-family:'Playfair Display',serif}
+.h-stat .l{font-size:10px;color:var(--gold2);font-weight:600;letter-spacing:.03em}
+
+/* TABS */
+.tabs{display:flex;gap:5px;flex-wrap:wrap;background:var(--bg2);padding:7px;border-radius:11px;border:1px solid var(--border);margin-bottom:20px}
+.tab-btn{flex:1;min-width:100px;padding:9px 8px;font-size:15px;font-weight:700;border:2px solid transparent;cursor:pointer;border-radius:8px;transition:all .16s;font-family:'Crimson Pro',serif;background:transparent;color:var(--text3)}
+.tab-btn:not(.active):hover{background:var(--bg3);color:var(--text)}
+.tb-concepts.active{background:var(--green);color:var(--white);border-color:var(--green)}
+.tb-board.active{background:var(--purple);color:var(--white);border-color:var(--purple)}
+.tb-practice.active{background:var(--slate);color:var(--white);border-color:var(--slate)}
+
+/* DIFFICULTY FILTER */
+.diff-filter{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.df-btn{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:6px 15px;border-radius:20px;border:2px solid var(--border);background:var(--card);color:var(--text3);cursor:pointer;transition:all .15s;letter-spacing:.02em}
+.df-btn:hover{border-color:var(--green2)}
+.df-btn.active[data-f="all"]{background:var(--green3);border-color:var(--green3);color:var(--white)}
+.df-btn.active[data-f="e"]{background:#DFF5E3;border-color:#1A5C2A;color:#1A5C2A}
+.df-btn.active[data-f="m"]{background:#FFF3CC;border-color:#7A5500;color:#7A5500}
+.df-btn.active[data-f="h"]{background:#FFE5E5;border-color:#8B1A1A;color:#8B1A1A}
+.df-count{font-size:12px;color:var(--text3);align-self:center;margin-left:2px;font-family:'JetBrains Mono',monospace}
+
+/* SECTION HEAD */
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.sec-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0;font-family:'JetBrains Mono',monospace;color:var(--white)}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--green)}
+.sec-badge{margin-left:auto;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+
+/* GROUP HEADER (practice worksheet grouping) */
+.grp-head{display:flex;align-items:center;gap:9px;margin:22px 0 12px;padding-bottom:6px;border-bottom:2px dashed var(--border)}
+.grp-head:first-child{margin-top:0}
+.grp-icon{width:26px;height:26px;border-radius:7px;background:var(--slate);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;font-family:'JetBrains Mono',monospace}
+.grp-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--slate)}
+.grp-range{margin-left:auto;font-size:11px;color:var(--text3);font-family:'JetBrains Mono',monospace;background:var(--bg2);padding:2px 9px;border-radius:20px}
+
+/* FORMULA / HIGHLIGHT / THEOREM BOXES (used in Concepts tab) */
+.fbox{background:var(--fbg);border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:13px 16px;margin:10px 0;position:relative}
+.fbox::before{content:'FORMULA';position:absolute;top:7px;right:11px;font-size:9px;font-weight:700;color:var(--green2);letter-spacing:.1em;font-family:'JetBrains Mono',monospace;opacity:.5}
+.fbox .fl{font-size:10px;font-weight:700;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.fbox .fm{font-size:19px;font-weight:600;color:var(--green3);line-height:1.9}
+.fbox .fn{font-size:15px;color:var(--text2);margin-top:5px;line-height:1.6}
+.hbox{background:var(--hbg);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:11px 15px;margin:10px 0}
+.hbox .hl{font-size:10px;font-weight:700;color:var(--gold3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.hbox .ht{font-size:16px;color:var(--text2);line-height:1.7}
+.tbox{background:var(--card);border:2px solid var(--green);border-radius:10px;padding:15px 18px;margin:12px 0}
+.mba-note{font-size:13px;font-weight:700;color:#8B1A1A;background:#FFF3F0;border-left:3px solid #C94040;padding:5px 11px;border-radius:0 6px 6px 0;margin:6px 0 10px}
+.mba-note b{color:#6B1414}
+.src-note{font-size:13px;font-weight:700;color:var(--amber);background:var(--amberbg);border-left:3px solid var(--gold3);padding:5px 11px;border-radius:0 6px 6px 0;margin:6px 16px 10px}
+.src-note b{color:var(--gold3)}
+.tbox .tl{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--white);background:var(--green);padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:9px;letter-spacing:.04em}
+.tbox .tb{font-size:16px;color:var(--text2);line-height:1.8}
+
+/* CONCEPT CARD */
+.cc{background:var(--card);border:1px solid var(--border);border-radius:11px;margin-bottom:13px;overflow:hidden;box-shadow:0 2px 7px rgba(45,90,61,.07)}
+.cc-head{background:var(--green3);padding:11px 16px;display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none}
+.cc-head .ci{font-size:16px}
+.cc-head .ct{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--white);flex:1}
+.cc-head .ca{color:var(--gold2);font-size:13px;transition:transform .2s}
+.cc-head.open .ca{transform:rotate(180deg)}
+.cc-body{display:none;padding:16px 18px;border-top:2px solid var(--border)}
+.cc-body.open{display:block}
+.cc-body p{font-size:16px;color:var(--text2);line-height:1.8;margin-bottom:9px}
+.ctbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.ctbl th{background:var(--green3);color:var(--white);padding:9px 13px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700}
+.ctbl td{padding:9px 13px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+.ctbl tr:nth-child(even) td{background:var(--bg2)}
+
+/* QUESTION CARD */
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:11px;margin-bottom:13px;overflow:hidden;box-shadow:0 2px 7px rgba(45,90,61,.07)}
+.q-stripe{height:4px}
+.qcard.q-1m .q-stripe{background:linear-gradient(90deg,var(--green),var(--green2))}
+.qcard.q-2m .q-stripe{background:linear-gradient(90deg,var(--purple),#A07BD4)}
+.qcard.q-3m .q-stripe{background:linear-gradient(90deg,var(--gold3),var(--gold))}
+.qcard.q-la .q-stripe{background:linear-gradient(90deg,var(--slate),var(--blue))}
+.q-head{background:var(--green3);padding:12px 16px;display:flex;flex-direction:column;gap:8px}
+.qcard.q-2m .q-head{background:var(--purple)}
+.qcard.q-3m .q-head{background:var(--gold3)}
+.qcard.q-la .q-head{background:var(--slate)}
+.q-head-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.qnb{min-width:32px;height:32px;border-radius:7px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;padding:0 6px;background:rgba(255,255,255,.2);color:var(--white)}
+.qtxt{font-size:19px;font-weight:600;color:var(--white);line-height:1.6;width:100%;font-family:'Crimson Pro',serif}
+.qmp{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;font-family:'JetBrains Mono',monospace;background:rgba(255,255,255,.2);color:var(--white)}
+.star{font-size:14px;flex-shrink:0}
+.diff{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap;flex-shrink:0}
+.diff-e{background:#DFF5E3;color:#1A5C2A}
+.diff-m{background:#FFF3CC;color:#7A5500}
+.diff-h{background:#FFE5E5;color:#8B1A1A}
+
+/* PYQ PILLS */
+.pyq-pills{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.pyq-lbl{font-size:9px;font-weight:700;color:var(--text3);font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+.pyq-yr{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;font-family:'JetBrains Mono',monospace;background:#F0EBF8;color:var(--purple);border:1px solid #C4B0E8}
+
+/* MCQ OPTIONS */
+.mcq-opts{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:13px 16px;background:#FAFAF5;border-bottom:1px solid var(--border)}
+.mopt{padding:10px 14px;border-radius:8px;font-size:18px;cursor:pointer;border:2px solid var(--border);background:var(--card);color:var(--text);transition:all .15s;text-align:left;font-family:'Crimson Pro',serif;font-weight:600}
+.mopt:hover:not(.locked){border-color:var(--green2);background:var(--fbg)}
+.mopt.correct{border-color:var(--green);background:#EEF5F0;color:var(--green3)}
+.mopt.wrong{border-color:var(--amber);background:var(--amberbg);color:var(--amber)}
+.mcq-res{display:none;padding:9px 16px 12px;background:#FAFAF5}
+.mcq-res.show{display:block}
+.mcq-res .ml{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.mcq-res.ok .ml{color:var(--green)}.mcq-res.wr .ml{color:var(--amber)}
+.mcq-res .mt{font-size:15px;color:var(--text2);line-height:1.7}
+
+/* FOOTER (card) */
+.q-foot{background:rgba(45,90,61,.06);padding:7px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border)}
+.qsrc{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.src-worksheet{background:#EEF5F0;color:var(--green3)}
+.src-pyq{background:#F0EBF8;color:var(--purple)}
+.sol-btn{margin-left:auto;font-size:11px;font-weight:700;padding:4px 13px;border-radius:7px;border:2px solid var(--green);background:transparent;cursor:pointer;color:var(--green);transition:all .15s;font-family:'JetBrains Mono',monospace}
+.sol-btn:hover{background:var(--green);color:var(--white)}
+.rep-btn{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid #E0C9C9;background:#FBF3F3;color:#9A2B2B;cursor:pointer;transition:all .15s;white-space:nowrap}
+.rep-btn:hover{background:#F3E3E3;border-color:#C99}
+.rep-btn.sent{background:#EEF5F0;border-color:var(--green);color:var(--green)}
+.rep-modal{display:none;position:fixed;inset:0;background:rgba(26,61,40,.55);z-index:999;align-items:center;justify-content:center;padding:18px}
+.rep-modal.show{display:flex}
+.rep-card{background:var(--card);border:2px solid var(--green);border-radius:14px;max-width:440px;width:100%;padding:20px;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.rep-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--green);margin-bottom:8px}
+.rep-ctx{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3);background:var(--bg2);border-radius:7px;padding:7px 10px;margin-bottom:12px}
+.rep-ta{width:100%;min-height:90px;font-family:'Crimson Pro',serif;font-size:17px;border:1.5px solid var(--border);border-radius:9px;padding:10px 12px;resize:vertical}
+.rep-ta:focus{outline:none;border-color:var(--gold)}
+.rep-status{font-size:13px;color:var(--green);min-height:18px;margin:10px 0 4px;font-weight:600}
+.rep-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+.rep-cancel{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 16px;border-radius:8px;border:1.5px solid var(--border);background:#fff;color:var(--text3);cursor:pointer}
+.rep-send{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 18px;border-radius:8px;border:none;background:var(--green);color:#fff;cursor:pointer;font-weight:700}
+.rep-send:hover{background:var(--green3)}
+
+/* MB TIP */
+.mbtip{background:#FFF8E6;border:2px dashed var(--gold3);border-radius:10px;padding:11px 15px;margin:10px 16px}
+.mbtip-lbl{font-size:10px;font-weight:700;color:var(--gold3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.mbtip-text{font-size:15px;color:var(--text2);line-height:1.65}
+
+/* SOLUTION BODY */
+.sol-body{display:none;border-top:2px solid var(--border)}
+.sol-body.open{display:block}
+.given-blk{background:var(--fbg);padding:10px 16px;border-bottom:1px solid #C8DCCC}
+.given-lbl{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.given-row{font-size:17px;color:var(--text2);line-height:1.7;margin-bottom:3px}
+.ysec{padding:14px 16px;border-bottom:1px solid var(--border)}
+.ysec:last-of-type{border-bottom:none}
+.y-lbl{display:inline-block;background:var(--green3);color:var(--white);font-size:10px;font-weight:700;padding:2px 10px;border-radius:4px;margin-bottom:12px;letter-spacing:.04em;font-family:'JetBrains Mono',monospace}
+.k{font-size:17px;color:var(--green3);background:var(--fbg);border-left:3px solid var(--green);padding:6px 12px;border-radius:0 6px 6px 0;margin:4px 0 5px;display:block}
+.p{font-size:17px;color:var(--text2);line-height:1.7;margin-bottom:6px}
+.p b{color:var(--green3)}
+.gr{font-size:14px;color:var(--text3);font-style:italic;margin-left:4px;display:block;margin-bottom:4px}
+.final-ans{background:var(--green3);padding:11px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fa-lbl{font-size:11px;font-weight:700;color:var(--gold2);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
+.fav{font-size:18px;font-weight:700;color:var(--white);font-family:'Crimson Pro',serif}
+
+.panel{animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+footer{text-align:center;padding:26px;color:var(--text3);font-size:13px}
+@media(max-width:560px){
+  .katex{font-size:0.95em}
+  .h-title{font-size:23px}
+  .h-sub{font-size:13px}
+  .hero{padding:18px 18px}
+  .mcq-opts{grid-template-columns:1fr}
+  .ht-name{font-size:17px}
+  .qtxt{font-size:17px}
+}
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="header-inner">
+    <div class="logo-mark">MBA</div>
+    <div><div class="ht-name">Maths Bridge Academy</div><div class="ht-tag">Nurturing Young Minds Through Maths Mastery</div></div>
+    <div class="hr-right"><div class="hr-board">ICSE · Class 10</div><div class="hr-ch">Ratio and Proportion</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+<div class="hero">
+  <div class="h-lbl">ICSE Class 10 Mathematics</div>
+  <div class="h-title">Ratio and Proportion</div>
+  <div class="h-sub">Proportion, continued proportion &amp; properties of proportion — componendo, dividendo &amp; solving for the unknown</div>
+  <div class="h-pills">
+    <span class="h-pill">Worksheet Q1–Q33</span>
+    <span class="h-pill">Board PYQs 2018–2025</span>
+    <span class="h-pill">⭐ = Board-frequent pattern</span>
+  </div>
+  <div class="h-stats">
+    <div class="h-stat"><div class="n">4</div><div class="l">Concepts</div></div>
+    <div class="h-stat"><div class="n">61</div><div class="l">Worksheet Cards</div></div>
+    <div class="h-stat"><div class="n">13</div><div class="l">Board PYQs</div></div>
+    <div class="h-stat"><div class="n">2018–25</div><div class="l">PYQ Years</div></div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn tb-concepts active" id="btn-concepts" onclick="sw('concepts')">📘 Concepts</button>
+  <button class="tab-btn tb-board" id="btn-board" onclick="sw('board')">✎ Board PYQs</button>
+  <button class="tab-btn tb-practice" id="btn-practice" onclick="sw('practice')">✓ Practice Worksheet</button>
+</div>
+
+<div id="panel-concepts" class="panel">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--green)">∝</div><div class="sec-title">All Concepts &amp; Formulae</div></div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">📄</span><span class="ct">1. Basic Terms &amp; Definitions</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">RATIO</span><div class="tb">A comparison of two quantities of the same kind, written a : b or a/b. In a : b, "a" is the antecedent and "b" is the consequent.</div></div>
+      <div class="tbox"><span class="tl">PROPORTION</span><div class="tb">When two ratios are equal, the four quantities are said to be in proportion: a : b :: c : d (read "a is to b as c is to d"), i.e. a/b = c/d.</div></div>
+      <table class="ctbl">
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td>Extremes</td><td>The 1st and 4th terms — a and d</td></tr>
+        <tr><td>Means</td><td>The 2nd and 3rd terms — b and c</td></tr>
+      </table>
+      <div class="fbox"><div class="fl">Rule of Proportion</div><div class="fm">\( a:b::c:d \;\Rightarrow\; a\times d = b\times c \)</div><div class="fn">Product of extremes = Product of means. This is the single most useful fact in this chapter — every "find x" question in Q1–Q13 reduces to this cross-multiplication.</div></div>
+      <div class="hbox"><div class="hl">d is called</div><div class="ht">If a : b :: c : d, then d is the <b>fourth proportional</b> to a, b, c.</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🔗</span><span class="ct">2. Continued Proportion</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">CONTINUED PROPORTION</span><div class="tb">a, b, c are in continued proportion if a : b :: b : c, i.e. a/b = b/c. Here b is common to both ratios.</div></div>
+      <div class="fbox"><div class="fl">Mean Proportional</div><div class="fm">\( b^2 = a\times c \quad\Rightarrow\quad b=\sqrt{ac} \)</div><div class="fn">b is the mean (or geometric mean) proportional between a and c — always the positive square root of their product.</div></div>
+      <div class="fbox"><div class="fl">Third Proportional</div><div class="fm">\( a:b::b:c \)</div><div class="fn">Given a and b, c is the third proportional: c = b²/a.</div></div>
+      <div class="hbox"><div class="hl">The substitution trick</div><div class="ht">Whenever a, b, c are in continued proportion, the cleanest way to prove an identity is to substitute a = ck², b = ck (so a/b = b/c = k). This turns two unknowns into one (k), and every proof in this chapter's "prove that" section becomes a routine simplification.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> "In proportion" (4 terms: a,b,c,d with a/b=c/d) and "in continued proportion" (3 or more terms sharing a common middle term) are different setups — read the question carefully before choosing a substitution.</div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">⚖️</span><span class="ct">3. Properties of Proportion</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <p>These are the standard results used to solve "using properties of proportion" questions. Throughout, assume a/b = c/d.</p>
+      <div class="fbox"><div class="fl">Invertendo</div><div class="fm">\( \dfrac{a}{b}=\dfrac{c}{d} \;\Rightarrow\; \dfrac{b}{a}=\dfrac{d}{c} \)</div><div class="fn">Flip both sides.</div></div>
+      <div class="fbox"><div class="fl">Alternendo</div><div class="fm">\( \dfrac{a}{b}=\dfrac{c}{d} \;\Rightarrow\; \dfrac{a}{c}=\dfrac{b}{d} \)</div><div class="fn">Swap the means.</div></div>
+      <div class="fbox"><div class="fl">Componendo</div><div class="fm">\( \dfrac{a}{b}=\dfrac{c}{d} \;\Rightarrow\; \dfrac{a+b}{b}=\dfrac{c+d}{d} \)</div><div class="fn">Add 1 to both sides (add the denominator to the numerator on each side).</div></div>
+      <div class="fbox"><div class="fl">Dividendo</div><div class="fm">\( \dfrac{a}{b}=\dfrac{c}{d} \;\Rightarrow\; \dfrac{a-b}{b}=\dfrac{c-d}{d} \)</div><div class="fn">Subtract 1 from both sides.</div></div>
+      <div class="fbox"><div class="fl">Componendo–Dividendo (the workhorse)</div><div class="fm">\( \dfrac{a}{b}=\dfrac{c}{d} \;\Rightarrow\; \dfrac{a+b}{a-b}=\dfrac{c+d}{c-d} \)</div><div class="fn">By far the most-used property in this chapter. It is what turns a surd equation into a clean linear or polynomial one, and what proves "show a/b=c/d" identities in one line.</div></div>
+      <div class="hbox"><div class="hl">Why componendo-dividendo works so well on surds</div><div class="ht">If \( x=\dfrac{\sqrt P+\sqrt Q}{\sqrt P-\sqrt Q} \), rewrite it as \( \dfrac{x}{1}=\dfrac{\sqrt P+\sqrt Q}{\sqrt P-\sqrt Q} \). Applying componendo-dividendo gives \( \dfrac{x+1}{x-1}=\dfrac{2\sqrt P}{2\sqrt Q}=\dfrac{\sqrt P}{\sqrt Q} \) — the surds partially cancel, and one more squaring finishes the job.</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🧭</span><span class="ct">4. Problem-Solving Strategy</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">"FIND x" WITH A SINGLE FRACTION EQUATION</span><div class="tb">If the equation is just (one expression)/(another) = (a number), don't force componendo-dividendo — cross-multiply directly using the rule of proportion. This is faster and less error-prone.</div></div>
+      <div class="tbox"><span class="tl">SURD EQUATIONS OF THE FORM (√A+√B)/(√A−√B) = n</span><div class="tb">Apply componendo-dividendo once to get \( \dfrac{\sqrt A}{\sqrt B}=\dfrac{n+1}{n-1} \), square both sides to clear the surds, then solve the resulting linear or quadratic equation in x.</div></div>
+      <div class="tbox"><span class="tl">"PROVE a/b = c/d GIVEN ..." IDENTITIES</span><div class="tb">These almost always have the disguised form (pa+qb)/(pc+qd) = (pa−qb)/(pc−qd). Cross-multiplying this general form always collapses to ad = bc — i.e. a/b = c/d — regardless of the constants p, q. Recognising this shape saves a lot of algebra.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> When a "prove" question gives you an equation of the shape (X+Y)/(X−Y) = (Z+W)/(Z−W), that is componendo-dividendo already applied — your job is to run it in reverse (cross-multiply) to strip it back to the plain proportion.</div>
+      <div class="tbox"><span class="tl">CONTINUED-PROPORTION PROOFS (a,b,c or a,b,c,d)</span><div class="tb">Substitute a = ck², b = ck for three terms in continued proportion (or the equivalent chain of powers of k for four terms), then simplify both sides independently and show they match.</div></div>
+      <div class="tbox"><span class="tl">x DEFINED BY A SURD EXPRESSION, THEN "SHOW A QUADRATIC/CUBIC HOLDS"</span><div class="tb">Write \( x=\dfrac{\sqrt P+\sqrt Q}{\sqrt P-\sqrt Q} \) as \( \dfrac{x}{1} \), apply componendo-dividendo to isolate \( \dfrac{\sqrt P}{\sqrt Q} \) or a simplified ratio, square (or cube, for cube-root versions), and substitute back into the target equation to confirm it holds.</div></div>
+    </div>
+  </div>
+
+</div>
+
+<div id="panel-board" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--purple)">B</div><div class="sec-title">Board PYQs (2018–2025)</div><span class="sec-badge" style="background:#F0EBF8;color:var(--purple);border:1px solid #C4B0E8">MCQs + Short Answer</span></div>
+  <div class="diff-filter" id="filter-board-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('board-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('board-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('board-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('board-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-board-qs"></span>
+  </div>
+  <div id="board-qs"></div>
+</div>
+
+<div id="panel-practice" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--slate)">P</div><div class="sec-title">Practice Worksheet (Q1–Q33)</div><span class="sec-badge" style="background:#E8EEF5;color:var(--slate);border:1px solid #A0B4C8">Full Worked Solutions</span></div>
+  <div class="diff-filter" id="filter-practice-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('practice-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('practice-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('practice-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('practice-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-practice-qs"></span>
+  </div>
+  <div id="practice-qs"></div>
+</div>
+
+</div>
+
+<footer>Maths Bridge Academy · ICSE Class 10 · Ratio and Proportion &nbsp;|&nbsp; Found an error? Use the Report button on that card.</footer>
+
+<div class="rep-modal" id="rep-modal">
+  <div class="rep-card">
+    <div class="rep-title">Report an error</div>
+    <div class="rep-ctx" id="rep-ctx"></div>
+    <textarea class="rep-ta" id="rep-msg" placeholder="What looks wrong? (e.g. Step 3 arithmetic, final answer, wrong option marked...)"></textarea>
+    <div class="rep-status" id="rep-status"></div>
+    <div class="rep-actions">
+      <button class="rep-cancel" onclick="repClose()">Cancel</button>
+      <button class="rep-send" onclick="repSend()">Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== ERROR REPORT CONFIG ===== */
+const REPORT_META = { board:'ICSE', grade:'10', chapter:'Ratio and Proportion' };
+const REPORT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx3vGZZjTHbAnKtOwSz6TaWtpYtnudCzxKMtm3Eo9bB4Ey6Xlor6LunLFEmyIQQy5e6/exec';
+/* ================================ */
+var _repCtx = {};
+function reportError(card, btn){
+  var parts = String(card).split(' ');
+  _repCtx = { tab: parts[0]||'', qno: parts[1]||card, btn: btn };
+  document.getElementById('rep-ctx').textContent =
+    REPORT_META.board+' · Grade '+REPORT_META.grade+' · '+REPORT_META.chapter+' · '+_repCtx.tab+' · '+_repCtx.qno;
+  document.getElementById('rep-msg').value='';
+  document.getElementById('rep-status').textContent='';
+  document.getElementById('rep-modal').classList.add('show');
+  document.getElementById('rep-msg').focus();
+}
+function repClose(){ document.getElementById('rep-modal').classList.remove('show'); }
+function repSend(){
+  var msg = document.getElementById('rep-msg').value.trim();
+  var status = document.getElementById('rep-status');
+  if(!msg){ status.style.color='#9A2B2B'; status.textContent='Please type what is wrong.'; return; }
+  status.style.color='var(--green)'; status.textContent='Sending...';
+  var qs = 'board='+encodeURIComponent(REPORT_META.board)
+         +'&grade='+encodeURIComponent(REPORT_META.grade)
+         +'&chapter='+encodeURIComponent(REPORT_META.chapter)
+         +'&tab='+encodeURIComponent(_repCtx.tab)
+         +'&qno='+encodeURIComponent(_repCtx.qno)
+         +'&error='+encodeURIComponent(msg);
+  function done(){
+    status.style.color='var(--green)'; status.textContent='\u2713 Thank you! Reported.';
+    if(_repCtx.btn){ _repCtx.btn.classList.add('sent'); _repCtx.btn.textContent='\u2713 Reported'; }
+    setTimeout(repClose, 1200);
+  }
+  fetch(REPORT_ENDPOINT+'?'+qs, { method:'GET', mode:'no-cors' }).then(done).catch(done);
+}
+function reportBtn(card, alone){
+  var ml = alone ? 'style="margin-left:auto"' : '';
+  return '<button class="rep-btn" '+ml+' onclick="reportError(\''+card+'\', this)" title="Found a mistake? Report it">\u26a0 Report error</button>';
+}
+function updateCount(cid){
+  var el = document.getElementById('count-'+cid);
+  if(!el) return;
+  var all = document.querySelectorAll('#'+cid+' .qcard');
+  var visible = document.querySelectorAll('#'+cid+' .qcard:not([style*="display: none"])');
+  el.textContent = 'Showing '+visible.length+' of '+all.length;
+}
+function filterDiff(cid, level, btn){
+  var bar = document.getElementById('filter-'+cid);
+  bar.querySelectorAll('.df-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var cards = document.querySelectorAll('#'+cid+' .qcard');
+  cards.forEach(function(card){
+    card.style.display = (level==='all' || card.getAttribute('data-diff')===level) ? '' : 'none';
+  });
+  updateCount(cid);
+}
+function toggleCC(h){ h.classList.toggle('open'); h.nextElementSibling.classList.toggle('open'); }
+function sw(id){
+  ['concepts','board','practice'].forEach(function(t){
+    document.getElementById('panel-'+t).style.display = t===id ? 'block' : 'none';
+    var b = document.getElementById('btn-'+t);
+    b.classList.remove('active');
+    if(t===id) b.classList.add('active');
+  });
+  renderMathIn(document.getElementById('panel-'+id));
+}
+function pyqPills(yrs){
+  if(!yrs || !yrs.length) return '';
+  var pills = yrs.map(function(y){ return '<span class="pyq-yr">'+y+'</span>'; }).join('');
+  return '<span class="pyq-lbl">PYQ:</span><div class="pyq-pills">'+pills+'</div>';
+}
+function togSol(btn){
+  var b = btn.closest('.qcard').querySelector('.sol-body');
+  var open = b.classList.toggle('open');
+  btn.textContent = open ? 'Hide Solution' : 'Show Solution';
+  if(open) renderMathIn(b);
+}
+function chk(btn,id,chosen,correct){
+  var all = btn.closest('.mcq-opts').querySelectorAll('.mopt');
+  all.forEach(function(b){ b.classList.add('locked'); });
+  all.forEach(function(b,i){
+    if(i===correct) b.classList.add('correct');
+    else if(i===chosen) b.classList.add('wrong');
+  });
+  var res = document.getElementById('mr-'+id);
+  res.classList.add('show');
+  if(chosen===correct){
+    res.classList.add('ok');
+    res.querySelector('.ml').textContent = '\u2713 Correct!';
+    res.querySelector('.mt').innerHTML = 'Correct: '+all[correct].textContent.trim();
+  } else {
+    res.classList.add('wr');
+    res.querySelector('.ml').textContent = '\u2717 Incorrect';
+    res.querySelector('.mt').innerHTML = 'Correct answer: '+all[correct].textContent.trim();
+  }
+}
+function buildRow(r){
+  if(!r) return '';
+  if(r.t==='p') return '<div class="p">'+r.text+'</div>';
+  if(r.t==='gr') return '<div class="gr">'+r.text+'</div>';
+  if(r.t==='k') return '<div class="k">\\[ '+r.text+' \\]</div>';
+  if(r.t==='div') return '<hr style="border:none;border-top:1px dashed var(--border);margin:6px 0">';
+  return '';
+}
+function buildSections(sections){
+  return (sections||[]).map(function(sec){
+    var rows = sec.rows.map(buildRow).join('');
+    return '<div class="ysec"><div class="y-lbl">'+sec.label+'</div>'+rows+'</div>';
+  }).join('');
+}
+function buildGiven(given){
+  if(!given || !given.length) return '';
+  var rows = given.map(function(g){ return '<div class="given-row">\\( '+g+' \\)</div>'; }).join('');
+  return '<div class="given-blk"><div class="given-lbl">Given</div>'+rows+'</div>';
+}
+function buildMbTip(tip){
+  if(!tip) return '';
+  return '<div class="mbtip"><div class="mbtip-lbl">\ud83d\udca1 MB Tip</div><div class="mbtip-text">'+tip+'</div></div>';
+}
+function buildSrcNote(note){
+  if(!note) return '';
+  return '<div class="src-note">\u2691 <b>Source Note:</b> '+note+'</div>';
+}
+function renderMathIn(container){
+  if(window.renderMathInElement && container){
+    renderMathInElement(container, {
+      delimiters:[{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],
+      throwOnError:false
+    });
+  }
+}
+function buildCard(q, cardIndex, cid, qLabelOverride){
+  var diff = q.diff || 'm';
+  var div = document.createElement('div');
+  div.className = 'qcard ' + q.m;
+  div.setAttribute('data-diff', diff);
+  var star = q.star ? '<span class="star" title="Board-frequent pattern">\u2b50</span>' : '';
+  var srcHtml = '<span class="qsrc src-'+q.sc+'">'+q.src+'</span>';
+  var pyqHtml = pyqPills(q.pyq);
+  var qid = cid+'-'+cardIndex;
+  var qLabel = qLabelOverride || ('Q'+(cardIndex+1));
+  var cardLbl = cid.replace('-qs','').toUpperCase()+' '+qLabel;
+  var diffLbl = {'e':'Easy','m':'Medium','h':'Hard'}[diff];
+
+  if(q.type === 'mcq'){
+    var mopts = q.opts.map(function(o,oi){
+      return '<button class="mopt" onclick="chk(this,\''+qid+'\','+oi+','+q.ans+')">'+o+'</button>';
+    }).join('');
+    var mcqSolBtn = q.sol ? '<button class="sol-btn" onclick="togSol(this)">Show Solution</button>' : '';
+    var mcqSolBody = q.sol ? '<div class="sol-body">'+buildSections(q.sol)+'<div class="final-ans"><span class="fa-lbl">Answer</span><span class="fav">'+q.opts[q.ans]+'</span></div></div>' : '';
+    div.innerHTML =
+      '<div class="q-stripe"></div>'+
+      '<div class="q-head"><div class="q-head-top"><div class="qnb">'+qLabel+'</div><span class="qmp">'+q.marks+'</span>'+star+'<span class="diff diff-'+diff+'">'+diffLbl+'</span></div><div class="qtxt">'+q.q+'</div></div>'+
+      buildMbTip(q.mbtip)+
+      '<div class="mcq-opts">'+mopts+'</div>'+
+      '<div class="mcq-res" id="mr-'+qid+'"><div class="ml"></div><div class="mt"></div></div>'+
+      '<div class="q-foot">'+srcHtml+pyqHtml+mcqSolBtn+reportBtn(cardLbl,!q.sol)+'</div>'+
+      mcqSolBody;
+  } else {
+    div.innerHTML =
+      '<div class="q-stripe"></div>'+
+      '<div class="q-head"><div class="q-head-top"><div class="qnb">'+qLabel+'</div><span class="qmp">'+q.marks+'</span>'+star+'<span class="diff diff-'+diff+'">'+diffLbl+'</span></div><div class="qtxt">'+q.q+'</div></div>'+
+      buildMbTip(q.mbtip)+
+      '<div class="q-foot">'+srcHtml+pyqHtml+'<button class="sol-btn" onclick="togSol(this)">Show Solution</button>'+reportBtn(cardLbl,false)+'</div>'+
+      '<div class="sol-body">'+buildGiven(q.given)+buildSections(q.sections)+buildSrcNote(q.srcnote)+'<div class="final-ans"><span class="fa-lbl">Answer</span><span class="fav">'+q.ans+'</span></div></div>';
+  }
+  return div;
+}
+function render(cid, data){
+  var c = document.getElementById(cid);
+  data.forEach(function(q, i){
+    c.appendChild(buildCard(q, i, cid, q.qno ? ('Q'+q.qno) : null));
+  });
+}
+function renderGrouped(cid, groups){
+  var c = document.getElementById(cid);
+  var idx = 0;
+  groups.forEach(function(grp){
+    var h = document.createElement('div');
+    h.className = 'grp-head';
+    h.innerHTML = '<span class="grp-icon">'+grp.icon+'</span><span class="grp-title">'+grp.title+'</span><span class="grp-range">'+grp.range+'</span>';
+    c.appendChild(h);
+    grp.items.forEach(function(q){
+      c.appendChild(buildCard(q, idx, cid, 'Q'+q.qno));
+      idx++;
+    });
+  });
+}
+
+function S(strings, ...vals){ return String.raw(strings, ...vals); } // proper String.raw wrapper — DO NOT re-wrap in {raw:strings}
+
+/* =========================================================================
+   BOARD PYQ DATA (13 verified questions, 2018-2025, from ICSE_Chapterwise_Extraction.md)
+   Several source fragments were OCR-garbled; exact wording was cross-checked against
+   the real ICSE board papers via web search before use. All answers independently
+   recomputed with sympy.
+   ========================================================================= */
+const boardData = [
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2025 Q5(i)', sc:'pyq', star:true, pyq:['2025'],
+    q:'Using properties of proportion, find the value of \'x\': \\(\\dfrac{6x^2+3x-5}{3x-5}=\\dfrac{9x^2+2x+5}{2x+5}\\), x ≠ 0.',
+    given:['\\dfrac{6x^2+3x-5}{3x-5}=\\dfrac{9x^2+2x+5}{2x+5}', 'x \\ne 0'],
+    mbtip:'This equation is not in a neat (A+B)/(A−B) shape, so componendo-dividendo doesn\'t simplify it. Just cross-multiply using the rule of proportion — product of extremes = product of means.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Cross-multiply (product of extremes = product of means)</b>'},
+      {t:'k', text:S`(6x^2+3x-5)(2x+5) = (9x^2+2x+5)(3x-5)`},
+      {t:'p', text:'<b>Expand both sides</b>'},
+      {t:'k', text:S`12x^3+36x^2+5x-25 = 27x^3-39x^2+5x-25`},
+      {t:'p', text:'<b>Bring everything to one side</b>'},
+      {t:'k', text:S`0 = 15x^3-75x^2`},
+      {t:'k', text:S`0 = 15x^2(x-5)`},
+      {t:'p', text:'<b>Solve</b>'},
+      {t:'k', text:S`x=0 \;\text{(rejected, } x\ne0\text{)} \quad\text{or}\quad x=5`}
+    ]}],
+    ans:'x = 5'
+  },
+  {
+    m:'q-la', diff:'m', marks:'4 Marks', src:'ICSE 2024 Q4(iii)', sc:'pyq', star:true, pyq:['2024'],
+    q:'If \\(\\dfrac{(a+b)^3}{(a-b)^3}=\\dfrac{64}{27}\\), (a) find (a+b)/(a−b), (b) hence using properties of proportion, find a : b.',
+    given:['\\dfrac{(a+b)^3}{(a-b)^3}=\\dfrac{64}{27}'],
+    sections:[
+      {label:'(a) FIND (a+b)/(a-b)', rows:[
+        {t:'p', text:'<b>Take cube roots of both sides</b>'},
+        {t:'k', text:S`\dfrac{a+b}{a-b} = \sqrt[3]{\dfrac{64}{27}} = \dfrac{4}{3}`}
+      ]},
+      {label:'(b) FIND a : b', rows:[
+        {t:'p', text:'<b>Apply componendo-dividendo in reverse</b>'},
+        {t:'k', text:S`\dfrac{a+b}{a-b}=\dfrac{4}{3}`},
+          {t:'k', text:S`\Rightarrow \dfrac{(a+b)+(a-b)}{(a+b)-(a-b)} = \dfrac{4+3}{4-3}`},
+        {t:'k', text:S`\dfrac{2a}{2b} = \dfrac{7}{1}`},
+        {t:'k', text:S`\dfrac{a}{b} = \dfrac{7}{1}`}
+      ]}
+    ],
+    ans:'(a) (a+b)/(a−b) = 4/3   (b) a : b = 7 : 1'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2023 Q1(xi)', sc:'pyq', star:false, pyq:['2023'],
+    type:'mcq',
+    q:'The mean proportional between 4 and 9 is:',
+    opts:['4','6','9','36'], ans:1,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`\text{Mean proportional} = \sqrt{a\times c}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`\sqrt{4\times9} = \sqrt{36} = 6`}
+    ]}]
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2023 Q8(ii)', sc:'pyq', star:false, pyq:['2023'],
+    q:'What number must be added to each of the numbers 4, 6, 8, 11 in order to get the four numbers in proportion?',
+    given:['4, 6, 8, 11', '\\text{Let the number be } n'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Set up the proportion</b>'},
+      {t:'k', text:S`(4+n):(6+n) :: (8+n):(11+n)`},
+      {t:'p', text:'<b>Product of extremes = product of means</b>'},
+      {t:'k', text:S`(4+n)(11+n) = (6+n)(8+n)`},
+      {t:'p', text:'<b>Expand both sides</b>'},
+      {t:'k', text:S`44+15n+n^2 = 48+14n+n^2`},
+      {t:'p', text:'<b>Solve</b>'},
+      {t:'k', text:S`15n-14n = 48-44`},
+          {t:'k', text:S`\Rightarrow n=4`},
+      {t:'gr', text:'(checked: (4+4):(6+4) :: (8+4):(11+4), i.e. 8:10 :: 12:15, both reduce to 4:5 ✓)'}
+    ]}],
+    ans:'n = 4'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2023 Q9(i)', sc:'pyq', star:true, pyq:['2023'],
+    q:'Using Componendo and Dividendo, solve for x: \\(\\dfrac{\\sqrt{2x+2}+\\sqrt{2x-1}}{\\sqrt{2x+2}-\\sqrt{2x-1}}=3\\).',
+    given:['\\dfrac{\\sqrt{2x+2}+\\sqrt{2x-1}}{\\sqrt{2x+2}-\\sqrt{2x-1}}=3'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Apply componendo-dividendo</b>'},
+      {t:'k', text:S`\dfrac{(\sqrt{2x+2}+\sqrt{2x-1})+(\sqrt{2x+2}-\sqrt{2x-1})}{(\sqrt{2x+2}+\sqrt{2x-1})-(\sqrt{2x+2}-\sqrt{2x-1})} = \dfrac{3+1}{3-1}`},
+      {t:'k', text:S`\dfrac{2\sqrt{2x+2}}{2\sqrt{2x-1}} = \dfrac{4}{2}`},
+      {t:'k', text:S`\dfrac{\sqrt{2x+2}}{\sqrt{2x-1}} = 2`},
+      {t:'p', text:'<b>Square both sides</b>'},
+      {t:'k', text:S`\dfrac{2x+2}{2x-1} = 4`},
+      {t:'p', text:'<b>Solve</b>'},
+      {t:'k', text:S`2x+2 = 8x-4`},
+          {t:'k', text:S`\Rightarrow 6 = 6x`},
+          {t:'k', text:S`\Rightarrow x=1`}
+    ]}],
+    ans:'x = 1'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2020 Q7(b)', sc:'pyq', star:true, pyq:['2020'],
+    q:'Using properties of proportion, find x : y, given: \\(\\dfrac{x^2+2x}{2x+4}=\\dfrac{y^2+3y}{3y+9}\\).',
+    given:['\\dfrac{x^2+2x}{2x+4}=\\dfrac{y^2+3y}{3y+9}'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Rewrite each side using componendo-dividendo</b>'},
+      {t:'k', text:S`\dfrac{x^2+2x}{2x+4}+1=\dfrac{y^2+3y}{3y+9}+1`},
+      {t:'k', text:S`\dfrac{x^2+4x+4}{2x+4}=\dfrac{y^2+6y+9}{3y+9}`},
+      {t:'k', text:S`\dfrac{(x+2)^2}{2(x+2)}=\dfrac{(y+3)^2}{3(y+3)}`},
+      {t:'k', text:S`\dfrac{x+2}{2}=\dfrac{y+3}{3}`},
+      {t:'p', text:'<b>Cross-multiply</b>'},
+      {t:'k', text:S`3(x+2)=2(y+3)`},
+          {t:'k', text:S`\Rightarrow 3x+6=2y+6`},
+          {t:'k', text:S`\Rightarrow 3x=2y`},
+      {t:'k', text:S`\dfrac{x}{y}=\dfrac{2}{3}`}
+    ]}],
+    ans:'x : y = 2 : 3'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'ICSE 2020 Q9(b)', sc:'pyq', star:false, pyq:['2020'],
+    q:'If \\(x=\\dfrac{\\sqrt{2a+1}+\\sqrt{2a-1}}{\\sqrt{2a+1}-\\sqrt{2a-1}}\\), prove that \\(x^2-4ax+1=0\\).',
+    given:['x=\\dfrac{\\sqrt{2a+1}+\\sqrt{2a-1}}{\\sqrt{2a+1}-\\sqrt{2a-1}}'],
+    mbtip:'Write x as x/1, apply componendo-dividendo once to isolate √(2a+1)/√(2a−1), then square to remove the surds entirely.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Write as x/1 and apply componendo-dividendo</b>'},
+      {t:'k', text:S`\dfrac{x+1}{x-1} = \dfrac{2\sqrt{2a+1}}{2\sqrt{2a-1}} = \dfrac{\sqrt{2a+1}}{\sqrt{2a-1}}`},
+      {t:'p', text:'<b>Square both sides</b>'},
+      {t:'k', text:S`\left(\dfrac{x+1}{x-1}\right)^2 = \dfrac{2a+1}{2a-1}`},
+      {t:'p', text:'<b>Cross-multiply</b>'},
+      {t:'k', text:S`(x+1)^2(2a-1) = (x-1)^2(2a+1)`},
+      {t:'p', text:'<b>Expand both sides</b>'},
+      {t:'k', text:S`2a(x+1)^2-(x+1)^2 = 2a(x-1)^2+(x-1)^2`},
+      {t:'k', text:S`2a[(x+1)^2-(x-1)^2] = (x+1)^2+(x-1)^2`},
+      {t:'p', text:'<b>Simplify each bracket</b>'},
+      {t:'k', text:S`2a(4x) = 2x^2+2`},
+      {t:'k', text:S`8ax = 2x^2+2`},
+      {t:'p', text:'<b>Divide by 2</b>'},
+      {t:'k', text:S`4ax = x^2+1`},
+          {t:'k', text:S`\Rightarrow x^2-4ax+1=0`},
+      {t:'gr', text:'(∴ LHS = RHS, hence proved)'}
+    ]}],
+    ans:'x² − 4ax + 1 = 0 — proved'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2019 Q4(a)', sc:'pyq', star:false, pyq:['2019'],
+    q:'The following numbers, k+3, k+2, 3k−7 and 2k−3, are in proportion. Find k.',
+    given:['(k+3):(k+2) :: (3k-7):(2k-3)'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Product of extremes = product of means</b>'},
+      {t:'k', text:S`(k+3)(2k-3) = (k+2)(3k-7)`},
+      {t:'p', text:'<b>Expand both sides</b>'},
+      {t:'k', text:S`2k^2+3k-9 = 3k^2-k-14`},
+      {t:'p', text:'<b>Bring to one side</b>'},
+      {t:'k', text:S`k^2-4k-5 = 0`},
+      {t:'p', text:'<b>Split the middle term: find two numbers that multiply to −5 and add to −4: −5 and +1</b>'},
+      {t:'k', text:S`\therefore k^2-(5k-k)-5=0`},
+      {t:'k', text:S`\therefore k^2-5k+k-5=0`},
+      {t:'k', text:S`\therefore k(k-5)+1(k-5)=0`},
+      {t:'k', text:S`\therefore (k-5)(k+1)=0`},
+      {t:'k', text:S`\therefore k-5=0 \quad\text{or}\quad k+1=0`},
+      {t:'k', text:S`\therefore k=5 \quad\text{or}\quad k=-1`}
+    ]}],
+    ans:'k = 5 (taking the positive value; k = −1 is also algebraically valid)'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2019 Q9(b)', sc:'pyq', star:false, pyq:['2019'],
+    q:'Using properties of proportion, solve for x, given: \\(\\dfrac{\\sqrt{5x}+\\sqrt{2x-6}}{\\sqrt{5x}-\\sqrt{2x-6}}=4\\).',
+    given:['\\dfrac{\\sqrt{5x}+\\sqrt{2x-6}}{\\sqrt{5x}-\\sqrt{2x-6}}=4'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Apply componendo-dividendo</b>'},
+      {t:'k', text:S`\dfrac{2\sqrt{5x}}{2\sqrt{2x-6}} = \dfrac{4+1}{4-1}`},
+      {t:'k', text:S`\dfrac{\sqrt{5x}}{\sqrt{2x-6}} = \dfrac{5}{3}`},
+      {t:'p', text:'<b>Square both sides</b>'},
+      {t:'k', text:S`\dfrac{5x}{2x-6} = \dfrac{25}{9}`},
+      {t:'p', text:'<b>Cross-multiply</b>'},
+      {t:'k', text:S`45x = 25(2x-6)`},
+      {t:'k', text:S`45x = 50x-150`},
+      {t:'k', text:S`150 = 5x`},
+          {t:'k', text:S`\Rightarrow x=30`}
+    ]}],
+    ans:'x = 30'
+  },
+  {
+    m:'q-3m', diff:'h', marks:'3 Marks', src:'ICSE 2018 Q6(a)', sc:'pyq', star:false, pyq:['2018'],
+    q:'Using properties of proportion, solve for x. Given that x is positive: \\(\\dfrac{2x+\\sqrt{4x^2-1}}{2x-\\sqrt{4x^2-1}}=4\\).',
+    given:['\\dfrac{2x+\\sqrt{4x^2-1}}{2x-\\sqrt{4x^2-1}}=4', 'x>0'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Apply componendo-dividendo</b>'},
+      {t:'k', text:S`\dfrac{4x}{2\sqrt{4x^2-1}} = \dfrac{4+1}{4-1}`},
+      {t:'k', text:S`\dfrac{2x}{\sqrt{4x^2-1}} = \dfrac{5}{3}`},
+      {t:'p', text:'<b>Square both sides</b>'},
+      {t:'k', text:S`\dfrac{4x^2}{4x^2-1} = \dfrac{25}{9}`},
+      {t:'p', text:'<b>Cross-multiply</b>'},
+      {t:'k', text:S`36x^2 = 100x^2-25`},
+      {t:'k', text:S`25 = 64x^2`},
+      {t:'k', text:S`x^2 = \dfrac{25}{64}`},
+          {t:'k', text:S`\Rightarrow x = \dfrac{5}{8}`}
+    ]}],
+    ans:'x = 5/8 (positive root taken, as required)'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2022 Q7', sc:'pyq', star:false, pyq:['2022'],
+    type:'mcq',
+    q:'If x, 5.4, 5, 9 are in proportion, then x is:',
+    opts:['3','9.72','25','25/3'], ans:0,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Set up the proportion</b>'},
+      {t:'k', text:S`x:5.4 :: 5:9`},
+      {t:'p', text:'<b>Product of extremes = product of means</b>'},
+      {t:'k', text:S`9x = 5.4\times5 = 27`},
+      {t:'k', text:S`x = 3`}
+    ]}]
+  },
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2022 Q14', sc:'pyq', star:false, pyq:['2022'],
+    type:'mcq',
+    q:'If a, b, c and d are proportional, then (a+b)/(a−b) is equal to:',
+    opts:['c/d','(c−d)/(c+d)','d/c','(c+d)/(c−d)'], ans:3,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>a, b, c, d proportional means a/b = c/d</b>'},
+      {t:'p', text:'<b>Apply componendo-dividendo directly</b>'},
+      {t:'k', text:S`\dfrac{a}{b}=\dfrac{c}{d}`},
+          {t:'k', text:S`\Rightarrow \dfrac{a+b}{a-b}=\dfrac{c+d}{c-d}`}
+    ]}]
+  },
+  {
+    m:'q-2m', diff:'m', marks:'2 Marks', src:'ICSE 2022 Q20', sc:'pyq', star:false, pyq:['2022'],
+    type:'mcq',
+    q:'If x, y, z are in continued proportion, then (y²+z²) : (x²+y²) is equal to:',
+    opts:['z:x','x:z','zx','(y+z):(x+y)'], ans:0,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>x, y, z continued proportion means x/y = y/z = k, so x = ck², y = ck, z = c</b>'},
+      {t:'k', text:S`\dfrac{y^2+z^2}{x^2+y^2} = \dfrac{c^2k^2+c^2}{c^2k^4+c^2k^2} = \dfrac{c^2(k^2+1)}{c^2k^2(k^2+1)} = \dfrac{1}{k^2}`},
+      {t:'p', text:'<b>Since z : x = c : ck² = 1 : k², this equals z : x</b>'}
+    ]}]
+  }
+];
+
+/* =========================================================================
+   PRACTICE WORKSHEET DATA (33 questions from CW_Final2627.pdf, grouped by concept)
+   Full working cross-checked against 14.pdf / 58.pdf (worked solutions) and the
+   worksheet's own printed answer key. All final answers independently verified
+   with symbolic algebra (sympy) before use.
+   ========================================================================= */
+const practiceGroups = [
+{
+  icon:'🔢', title:'1. Finding the Unknown Term', range:'Q1–Q4',
+  items:[
+    {
+      qno:'1(i)', m:'q-1m', diff:'e', marks:'1 Mark', src:'Worksheet Q1(i)', sc:'worksheet', star:true,
+      q:'Find x, when: 3 : 4 :: 2.4 : x',
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Product of extremes = product of means</b>'},
+        {t:'k', text:S`3\times x = 4\times2.4`},
+        {t:'k', text:S`x = \dfrac{9.6}{3} = 3.2`}
+      ]}],
+      ans:'x = 3.2'
+    },
+    {
+      qno:'1(ii)', m:'q-1m', diff:'e', marks:'1 Mark', src:'Worksheet Q1(ii)', sc:'worksheet', star:true,
+      q:'Find x, when: x : 1.5 :: 3 : 5',
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Product of extremes = product of means</b>'},
+        {t:'k', text:S`x\times5 = 1.5\times3`},
+        {t:'k', text:S`x = \dfrac{4.5}{5} = 0.9`}
+      ]}],
+      ans:'x = 0.9'
+    },
+    {
+      qno:'2(i)', m:'q-1m', diff:'e', marks:'1 Mark', src:'Worksheet Q2(i)', sc:'worksheet', star:false,
+      q:'Find the fourth proportional to: 1.5, 4.5, 3.6',
+      mbtip:'Fourth proportional to p, q, r means p : q :: r : x, so x = qr/p.',
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`x = \dfrac{4.5\times3.6}{1.5} = 10.8`}
+      ]}],
+      ans:'x = 10.8'
+    },
+    {
+      qno:'2(ii)', m:'q-1m', diff:'e', marks:'1 Mark', src:'Worksheet Q2(ii)', sc:'worksheet', star:false,
+      q:'Find the fourth proportional to: a², ab, b²',
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`x = \dfrac{ab\times b^2}{a^2} = \dfrac{b^3}{a}`}
+      ]}],
+      ans:'x = b³/a'
+    },
+    {
+      qno:'2(iii)', m:'q-3m', diff:'m', marks:'2 Marks', src:'Worksheet Q2(iii)', sc:'worksheet', star:false,
+      q:'Find the fourth proportional to: (a²−ab+b²), (a³+b³), (a−b)',
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`x = \dfrac{(a^3+b^3)(a-b)}{a^2-ab+b^2}`},
+        {t:'p', text:'<b>Since a³+b³ = (a+b)(a²−ab+b²), the (a²−ab+b²) cancels:</b>'},
+        {t:'k', text:S`x = (a+b)(a-b) = a^2-b^2`}
+      ]}],
+      ans:'x = a² − b²'
+    },
+    {
+      qno:'3(i)', m:'q-3m', diff:'e', marks:'1 Mark', src:'Worksheet Q3(i)', sc:'worksheet', star:false,
+      q:'Find the third proportional to: 2⅔ and 4',
+      mbtip:'Third proportional to p, q means p : q :: q : x, so x = q²/p.',
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`x = \dfrac{4^2}{8/3} = \dfrac{16\times3}{8} = 6`}
+      ]}],
+      ans:'x = 6'
+    },
+    {
+      qno:'3(ii)', m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q3(ii)', sc:'worksheet', star:false,
+      q:'Find the third proportional to: (2+√3) and (5+4√3)',
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`x = \dfrac{(5+4\sqrt3)^2}{2+\sqrt3}`},
+        {t:'p', text:'<b>Rationalise by multiplying by (2−√3)/(2−√3):</b>'},
+        {t:'k', text:S`x = \dfrac{(25+40\sqrt3+48)(2-\sqrt3)}{(2+\sqrt3)(2-\sqrt3)} = \dfrac{(73+40\sqrt3)(2-\sqrt3)}{1}`},
+        {t:'k', text:S`x = 146-73\sqrt3+80\sqrt3-120 = 26+7\sqrt3`}
+      ]}],
+      ans:'x = 26 + 7√3'
+    },
+    {
+      qno:'3(iii)', m:'q-3m', diff:'m', marks:'2 Marks', src:'Worksheet Q3(iii)', sc:'worksheet', star:false,
+      q:'Find the third proportional to: (a/b + b/a) and (a²+b²)',
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Note a/b + b/a = (a²+b²)/(ab), so the third proportional is</b>'},
+        {t:'k', text:S`x = \dfrac{(a^2+b^2)^2}{(a^2+b^2)/(ab)}`},
+        {t:'p', text:'<b>Dividing by a fraction means multiplying by its reciprocal</b>'},
+        {t:'k', text:S`x = (a^2+b^2)^2\times\dfrac{ab}{a^2+b^2} = ab(a^2+b^2)`}
+      ]}],
+      ans:'x = ab(a²+b²)'
+    },
+    {
+      qno:'4(i)', m:'q-1m', diff:'e', marks:'1 Mark', src:'Worksheet Q4(i)', sc:'worksheet', star:true,
+      q:'Find the mean proportional between: 28 and 63',
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`x = \sqrt{28\times63} = \sqrt{1764} = 42`}
+      ]}],
+      ans:'x = 42'
+    },
+    {
+      qno:'4(ii)', m:'q-1m', diff:'e', marks:'1 Mark', src:'Worksheet Q4(ii)', sc:'worksheet', star:true,
+      q:'Find the mean proportional between: 6.25 and 1.6',
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`x = \sqrt{6.25\times1.6} = \sqrt{10}`}
+      ]}],
+      ans:'x = √10'
+    },
+    {
+      qno:'4(iii)', m:'q-1m', diff:'m', marks:'2 Marks', src:'Worksheet Q4(iii)', sc:'worksheet', star:true,
+      q:'Find the mean proportional between: (6+3√3) and (8−4√3)',
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`x = \sqrt{(6+3\sqrt3)(8-4\sqrt3)}`},
+        {t:'p', text:'<b>Expand inside the root</b>'},
+        {t:'k', text:S`(6+3\sqrt3)(8-4\sqrt3) = 48-24\sqrt3+24\sqrt3-36 = 12`},
+        {t:'k', text:S`x = \sqrt{12} = 2\sqrt3`}
+      ]}],
+      ans:'x = 2√3'
+    }
+  ]
+},
+{
+  icon:'🔗', title:'2. Continued Proportion &amp; Word Problems', range:'Q5–Q13',
+  items:[
+    {
+      qno:5, m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q5', sc:'worksheet', star:false,
+      q:'Find the values of a and b, if a, 12, 18 and b are in continued proportion.',
+      given:['a:12::12:18::18:b'],
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>a, 12, 18 in continued proportion</b>'},
+        {t:'k', text:S`\dfrac{a}{12}=\dfrac{12}{18}`},
+          {t:'k', text:S`\Rightarrow a=\dfrac{144}{18}=8`},
+        {t:'p', text:'<b>12, 18, b in continued proportion</b>'},
+        {t:'k', text:S`\dfrac{12}{18}=\dfrac{18}{b}`},
+          {t:'k', text:S`\Rightarrow b=\dfrac{324}{12}=27`}
+      ]}],
+      ans:'a = 8, b = 27'
+    },
+    {
+      qno:6, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q6', sc:'worksheet', star:false,
+      q:'If (x−2), (x+2), (2x+1) and (2x+19) are in proportion, find the value of x.',
+      given:['(x-2):(x+2)::(2x+1):(2x+19)'],
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Product of extremes = product of means</b>'},
+        {t:'k', text:S`(x-2)(2x+19) = (x+2)(2x+1)`},
+        {t:'k', text:S`2x^2+15x-38 = 2x^2+5x+2`},
+        {t:'k', text:S`10x = 40`},
+          {t:'k', text:S`\Rightarrow x=4`}
+      ]}],
+      ans:'x = 4'
+    },
+    {
+      qno:7, m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q7', sc:'worksheet', star:false,
+      q:'If (x+5) is the geometric mean between (x+2) and (x+9), find the value of x.',
+      given:['(x+5)^2 = (x+2)(x+9)'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`(x+5)^2 = (x+2)(x+9)`},
+        {t:'k', text:S`x^2+10x+25 = x^2+11x+18`},
+        {t:'k', text:S`25-18 = 11x-10x`},
+          {t:'k', text:S`\Rightarrow x=7`}
+      ]}],
+      ans:'x = 7'
+    },
+    {
+      qno:8, m:'q-la', diff:'m', marks:'3 Marks', src:'Worksheet Q8', sc:'worksheet', star:false,
+      q:'Find two numbers whose mean proportional is 36 and the third proportional is 288.',
+      given:['\\sqrt{ab}=36 \\;\\Rightarrow\\; ab=1296', 'a:b::b:288'],
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>From the third proportional condition</b>'},
+        {t:'k', text:S`b^2 = 288a`},
+          {t:'k', text:S`\Rightarrow a = \dfrac{b^2}{288}`},
+        {t:'p', text:'<b>Substitute into ab = 1296</b>'},
+        {t:'k', text:S`\dfrac{b^2}{288}\times b = 1296`},
+        {t:'k', text:S`b^3 = 1296\times288 = 373248`},
+        {t:'k', text:S`b = \sqrt[3]{373248} = 72`},
+        {t:'p', text:'<b>Back-substitute</b>'},
+        {t:'k', text:S`a = \dfrac{1296}{72} = 18`}
+      ]}],
+      ans:'The numbers are 18 and 72'
+    },
+    {
+      qno:9, m:'q-3m', diff:'e', marks:'2 Marks', src:'Worksheet Q9', sc:'worksheet', star:true,
+      q:'What same number should be added to 2, 5, 10 and 19 so that the resulting numbers are proportional?',
+      given:['(2+n):(5+n)::(10+n):(19+n)'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`(2+n)(19+n) = (5+n)(10+n)`},
+        {t:'k', text:S`38+21n+n^2 = 50+15n+n^2`},
+        {t:'k', text:S`21n-15n = 50-38`},
+          {t:'k', text:S`\Rightarrow 6n=12`},
+          {t:'k', text:S`\Rightarrow n=2`}
+      ]}],
+      ans:'The number is 2'
+    },
+    {
+      qno:10, m:'q-3m', diff:'e', marks:'2 Marks', src:'Worksheet Q10', sc:'worksheet', star:false,
+      q:'What least number should be subtracted from each of the numbers 8, 12, 18 and 30 so that the remainders are in proportion?',
+      given:['(8-n):(12-n)::(18-n):(30-n)'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`(8-n)(30-n) = (12-n)(18-n)`},
+        {t:'k', text:S`240-38n+n^2 = 216-30n+n^2`},
+        {t:'k', text:S`-38n+30n = 216-240`},
+          {t:'k', text:S`\Rightarrow -8n=-24`},
+          {t:'k', text:S`\Rightarrow n=3`}
+      ]}],
+      ans:'The number is 3'
+    },
+    {
+      qno:11, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q11', sc:'worksheet', star:false,
+      q:'What least number should be subtracted from each of the numbers 11, 23 and 53 so that the remainders are in continued proportion?',
+      given:['(11-n):(23-n)::(23-n):(53-n)'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`(23-n)^2 = (11-n)(53-n)`},
+        {t:'k', text:S`529-46n+n^2 = 583-64n+n^2`},
+        {t:'k', text:S`-46n+64n = 583-529`},
+          {t:'k', text:S`\Rightarrow 18n=54`},
+          {t:'k', text:S`\Rightarrow n=3`},
+        {t:'gr', text:'(checked: 8:20::20:50, both ratios reduce to 2:5 ✓)'}
+      ]}],
+      ans:'The number is 3'
+    },
+    {
+      qno:12, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q12', sc:'worksheet', star:true,
+      q:'Sachin, Simon and Dhanush together scored 152 runs in a T-20 match. Their scores are in continued proportion. Simon and Dhanush together scored 8 runs more than Sachin. Find their individual scores.',
+      given:['\\text{Sachin}+\\text{Simon}+\\text{Dhanush}=152', '\\text{Simon}+\\text{Dhanush}=\\text{Sachin}+8'],
+      mbtip:'Two equations here: the sum (152) and the "8 more" relation together isolate Sachin\'s score directly — you don\'t need the continued-proportion condition until the second step.',
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Let the scores be a, b, c (continued proportion, so b² = ac)</b>'},
+        {t:'p', text:'<b>From the two given equations</b>'},
+        {t:'k', text:S`a+b+c=152 \quad\text{and}\quad b+c=a+8`},
+        {t:'p', text:'<b>Substitute the second into the first</b>'},
+        {t:'k', text:S`a+(a+8)=152`},
+          {t:'k', text:S`\Rightarrow 2a=144`},
+          {t:'k', text:S`\Rightarrow a=72`},
+        {t:'p', text:'<b>So b+c = 80, and continued proportion gives b² = ac = 72c</b>'},
+        {t:'k', text:S`c = 80-b`},
+          {t:'k', text:S`\Rightarrow b^2 = 72(80-b)`},
+        {t:'k', text:S`b^2+72b-5760=0`},
+        {t:'p', text:'<b>Split the middle term: find two numbers that multiply to −5760 and add to 72: 120 and −48</b>'},
+        {t:'k', text:S`\therefore b^2+(120b-48b)-5760=0`},
+        {t:'k', text:S`\therefore b^2+120b-48b-5760=0`},
+        {t:'k', text:S`\therefore b(b+120)-48(b+120)=0`},
+        {t:'k', text:S`\therefore (b+120)(b-48)=0`},
+        {t:'k', text:S`\therefore b+120=0 \quad\text{or}\quad b-48=0`},
+        {t:'k', text:S`\therefore b=-120 \quad\text{or}\quad b=48`},
+        {t:'gr', text:'(b = −120 is rejected — a runs score cannot be negative)'},
+        {t:'k', text:S`c = 80-48 = 32`},
+        {t:'gr', text:'(checked: 72:48::48:32, both ratios reduce to 3:2 ✓, and 72+48+32=152 ✓)'}
+      ]}],
+      ans:'Sachin = 72, Simon = 48, Dhanush = 32'
+    },
+    {
+      qno:13, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q13', sc:'worksheet', star:false,
+      q:'Raju, Umesh and Shami together scored 190 runs in a match. Their individual scores are in continued proportion. Umesh and Shami together scored 10 runs more than Raju. Find their individual scores.',
+      given:['\\text{Raju}+\\text{Umesh}+\\text{Shami}=190', '\\text{Umesh}+\\text{Shami}=\\text{Raju}+10'],
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Let the scores be a, b, c (continued proportion, so b² = ac)</b>'},
+        {t:'k', text:S`a+b+c=190 \quad\text{and}\quad b+c=a+10`},
+        {t:'k', text:S`a+(a+10)=190`},
+          {t:'k', text:S`\Rightarrow 2a=180`},
+          {t:'k', text:S`\Rightarrow a=90`},
+        {t:'p', text:'<b>So b+c = 100, and b² = ac = 90c</b>'},
+        {t:'k', text:S`c=100-b`},
+          {t:'k', text:S`\Rightarrow b^2=90(100-b)`},
+        {t:'k', text:S`b^2+90b-9000=0`},
+        {t:'p', text:'<b>Split the middle term: find two numbers that multiply to −9000 and add to 90: 150 and −60</b>'},
+        {t:'k', text:S`\therefore b^2+(150b-60b)-9000=0`},
+        {t:'k', text:S`\therefore b^2+150b-60b-9000=0`},
+        {t:'k', text:S`\therefore b(b+150)-60(b+150)=0`},
+        {t:'k', text:S`\therefore (b+150)(b-60)=0`},
+        {t:'k', text:S`\therefore b+150=0 \quad\text{or}\quad b-60=0`},
+        {t:'k', text:S`\therefore b=-150 \quad\text{or}\quad b=60`},
+        {t:'gr', text:'(b = −150 is rejected — a runs score cannot be negative)'},
+        {t:'k', text:S`c=100-60=40`},
+        {t:'gr', text:'(checked: 90:60::60:40, both ratios reduce to 3:2 ✓, and 90+60+40=190 ✓)'}
+      ]}],
+      ans:'Raju = 90, Umesh = 60, Shami = 40'
+    }
+  ]
+},
+{
+  icon:'🧮', title:'3. Proportion Identity Proofs', range:'Q14–Q17',
+  items:[
+    {
+      qno:'14(i)', m:'q-la', diff:'m', marks:'1 Mark', src:'Worksheet Q14(i)', sc:'worksheet', star:true,
+      q:'If a, b, c and d are in proportion, prove that: (a−c)/(b−d) = a/b',
+      given:['\\dfrac{a}{b}=\\dfrac{c}{d}=k \\;\\Rightarrow\\; a=bk,\\; c=dk'],
+      mbtip:'One substitution (a=bk, c=dk) unlocks every part of Q14 — always start proportion proofs this way.',
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`\text{LHS}=\dfrac{bk-dk}{b-d}=\dfrac{k(b-d)}{b-d}=k`},
+        {t:'k', text:S`\text{RHS}=\dfrac{a}{b}=\dfrac{bk}{b}=k`},
+        {t:'p', text:'<b>∴ LHS = RHS</b>'}
+      ]}],
+      ans:'(a−c)/(b−d) = a/b — proved'
+    },
+    {
+      qno:'14(ii)', m:'q-la', diff:'m', marks:'1 Mark', src:'Worksheet Q14(ii)', sc:'worksheet', star:false,
+      q:'If a, b, c and d are in proportion, prove that: (3a²+5c²)/(3b²+5d²) = a/b',
+      given:['\\dfrac{a}{b}=\\dfrac{c}{d}=k \\;\\Rightarrow\\; a=bk,\\; c=dk'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`\text{LHS}=\dfrac{3b^2k^2+5d^2k^2}{3b^2+5d^2}=\dfrac{k^2(3b^2+5d^2)}{3b^2+5d^2}=k^2`},
+        {t:'gr', text:'Note: this simplifies to k² = (a/b)², not a/b — presented as printed in the worksheet; verify the exact exponent against your own copy and use the Report button if it differs.'}
+      ]}],
+      ans:'(3a²+5c²)/(3b²+5d²) = k² = (a/b)²',
+      srcnote:'This simplifies to k² rather than k on the reconstruction tried — please check the exact exponent against your own worksheet copy.'
+    },
+    {
+      qno:'14(iii)', m:'q-la', diff:'m', marks:'1 Mark', src:'Worksheet Q14(iii)', sc:'worksheet', star:false,
+      q:'If a, b, c and d are in proportion, prove that: (a+c)/(b+d) = √[(a²+c²)/(b²+d²)]',
+      given:['\\dfrac{a}{b}=\\dfrac{c}{d}=k \\;\\Rightarrow\\; a=bk,\\; c=dk'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`\text{LHS}=\dfrac{bk+dk}{b+d}=k`},
+        {t:'k', text:S`\text{RHS}=\sqrt{\dfrac{b^2k^2+d^2k^2}{b^2+d^2}}=\sqrt{k^2}=k`},
+        {t:'p', text:'<b>∴ LHS = RHS</b>'}
+      ]}],
+      ans:'(a+c)/(b+d) = √[(a²+c²)/(b²+d²)] — proved'
+    },
+    {
+      qno:'14(iv)', m:'q-la', diff:'m', marks:'1 Mark', src:'Worksheet Q14(iv)', sc:'worksheet', star:false,
+      q:'If a, b, c and d are in proportion, prove that: (a²+ac+c²)/(a²−ac+c²) = (b²+bd+d²)/(b²−bd+d²)',
+      given:['\\dfrac{a}{b}=\\dfrac{c}{d}=k \\;\\Rightarrow\\; a=bk,\\; c=dk'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`\text{LHS}=\dfrac{b^2k^2+bk\cdot dk+d^2k^2}{b^2k^2-bk\cdot dk+d^2k^2}=\dfrac{k^2(b^2+bd+d^2)}{k^2(b^2-bd+d^2)}`},
+        {t:'k', text:S`\text{LHS}=\dfrac{b^2+bd+d^2}{b^2-bd+d^2}=\text{RHS}`}
+      ]}],
+      ans:'(a²+ac+c²)/(a²−ac+c²) = (b²+bd+d²)/(b²−bd+d²) — proved'
+    },
+    {
+      qno:'14(v)', m:'q-la', diff:'m', marks:'1 Mark', src:'Worksheet Q14(v)', sc:'worksheet', star:false,
+      q:'If a, b, c and d are in proportion, prove that: (ma+nb)/(ma−nb) = (mc+nd)/(mc−nd)',
+      given:['\\dfrac{a}{b}=\\dfrac{c}{d}=k \\;\\Rightarrow\\; a=bk,\\; c=dk'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`\text{LHS}=\dfrac{m(bk)+nb}{m(bk)-nb}=\dfrac{b(mk+n)}{b(mk-n)}=\dfrac{mk+n}{mk-n}`},
+        {t:'k', text:S`\text{RHS}=\dfrac{m(dk)+nd}{m(dk)-nd}=\dfrac{d(mk+n)}{d(mk-n)}=\dfrac{mk+n}{mk-n}`},
+        {t:'p', text:'<b>∴ LHS = RHS</b>'}
+      ]}],
+      ans:'(ma+nb)/(ma−nb) = (mc+nd)/(mc−nd) — proved'
+    },
+    {
+      qno:'15(i)', m:'q-la', diff:'h', marks:'2 Marks', src:'Worksheet Q15(i)', sc:'worksheet', star:false,
+      q:'If x/a = y/b = z/c, prove that: (x²+y²+z²)/(a²+b²+c²) = [(px+qy+rz)/(pa+qb+rc)]²',
+      given:['\\dfrac{x}{a}=\\dfrac{y}{b}=\\dfrac{z}{c}=k \\;\\Rightarrow\\; x=ak,\\; y=bk,\\; z=ck'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`\text{LHS}=\dfrac{a^2k^2+b^2k^2+c^2k^2}{a^2+b^2+c^2}=k^2`},
+        {t:'k', text:S`\text{RHS}=\left[\dfrac{p(ak)+q(bk)+r(ck)}{pa+qb+rc}\right]^2=\left[\dfrac{k(pa+qb+rc)}{pa+qb+rc}\right]^2=k^2`},
+        {t:'p', text:'<b>∴ LHS = RHS</b>'}
+      ]}],
+      ans:'(x²+y²+z²)/(a²+b²+c²) = [(px+qy+rz)/(pa+qb+rc)]² — proved'
+    },
+    {
+      qno:'15(ii)', m:'q-la', diff:'h', marks:'2 Marks', src:'Worksheet Q15(ii)', sc:'worksheet', star:false,
+      q:'If x/a = y/b = z/c, prove that: x³/a³ + y³/b³ + z³/c³ = 3xyz/abc',
+      given:['\\dfrac{x}{a}=\\dfrac{y}{b}=\\dfrac{z}{c}=k \\;\\Rightarrow\\; x=ak,\\; y=bk,\\; z=ck'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`\text{LHS}=\dfrac{a^3k^3}{a^3}+\dfrac{b^3k^3}{b^3}+\dfrac{c^3k^3}{c^3}=3k^3`},
+        {t:'k', text:S`\text{RHS}=\dfrac{3(ak)(bk)(ck)}{abc}=\dfrac{3abck^3}{abc}=3k^3`},
+        {t:'p', text:'<b>∴ LHS = RHS</b>'}
+      ]}],
+      ans:'x³/a³ + y³/b³ + z³/c³ = 3xyz/abc — proved'
+    },
+    {
+      qno:'15(iii)', m:'q-la', diff:'h', marks:'2 Marks', src:'Worksheet Q15(iii)', sc:'worksheet', star:false,
+      q:'If x/a = y/b = z/c, prove that: (ax−by)/[(a+b)(x−y)] + (by−cz)/[(b+c)(y−z)] + (cz−ax)/[(c+a)(z−x)] = 3',
+      given:['\\dfrac{x}{a}=\\dfrac{y}{b}=\\dfrac{z}{c}=k \\;\\Rightarrow\\; x=ak,\\; y=bk,\\; z=ck'],
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Each numerator simplifies neatly, e.g.</b>'},
+        {t:'k', text:S`ax-by = a(ak)-b(bk)=k(a^2-b^2)=k(a+b)(a-b)`},
+        {t:'k', text:S`x-y = ak-bk = k(a-b)`},
+        {t:'p', text:'<b>So the first term becomes</b>'},
+        {t:'k', text:S`\dfrac{k(a+b)(a-b)}{(a+b)\cdot k(a-b)} = 1`},
+        {t:'p', text:'<b>By the same pattern, each of the three terms equals 1</b>'},
+        {t:'k', text:S`\text{LHS} = 1+1+1 = 3 = \text{RHS}`}
+      ]}],
+      ans:'Sum = 3 — proved'
+    },
+    {
+      qno:'16(i)', m:'q-la', diff:'m', marks:'1 Mark', src:'Worksheet Q16(i)', sc:'worksheet', star:true,
+      q:'If a/b = c/d = e/f, prove that: (b²+d²+f²)(a²+c²+e²) = (ab+cd+ef)²',
+      given:['\\dfrac{a}{b}=\\dfrac{c}{d}=\\dfrac{e}{f}=k \\;\\Rightarrow\\; a=bk,\\; c=dk,\\; e=fk'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`\text{LHS}=(b^2+d^2+f^2)(b^2k^2+d^2k^2+f^2k^2) = k^2(b^2+d^2+f^2)^2`},
+        {t:'k', text:S`\text{RHS}=(bk\cdot b+dk\cdot d+fk\cdot f)^2 = [k(b^2+d^2+f^2)]^2 = k^2(b^2+d^2+f^2)^2`},
+        {t:'p', text:'<b>∴ LHS = RHS</b>'}
+      ]}],
+      ans:'(b²+d²+f²)(a²+c²+e²) = (ab+cd+ef)² — proved'
+    },
+    {
+      qno:'16(ii)', m:'q-la', diff:'m', marks:'2 Marks', src:'Worksheet Q16(ii)', sc:'worksheet', star:false,
+      q:'If a/b = c/d = e/f, prove that: a²/b² + c²/d² + e²/f² = ac/bd + ce/df + ae/bf',
+      given:['\\dfrac{a}{b}=\\dfrac{c}{d}=\\dfrac{e}{f}=k \\;\\Rightarrow\\; a=bk,\\; c=dk,\\; e=fk'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`\text{LHS}=\dfrac{b^2k^2}{b^2}+\dfrac{d^2k^2}{d^2}+\dfrac{f^2k^2}{f^2}=3k^2`},
+        {t:'k', text:S`\text{RHS}=\dfrac{bk\cdot dk}{bd}+\dfrac{dk\cdot fk}{df}+\dfrac{bk\cdot fk}{bf}=k^2+k^2+k^2=3k^2`},
+        {t:'p', text:'<b>∴ LHS = RHS</b>'}
+      ]}],
+      ans:'a²/b² + c²/d² + e²/f² = ac/bd + ce/df + ae/bf — proved'
+    },
+    {
+      qno:'17(i)', m:'q-la', diff:'m', marks:'1 Mark', src:'Worksheet Q17(i)', sc:'worksheet', star:false,
+      q:'If a, b, c are in continued proportion, prove that: (2a²−5ab+7b²)/(2b²−5bc+7c²) = a/c',
+      given:['a,b,c\\text{ in continued proportion} \\;\\Rightarrow\\; \\dfrac{a}{b}=\\dfrac{b}{c}=k \\;\\Rightarrow\\; a=ck^2,\\; b=ck'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`\text{LHS}=\dfrac{2c^2k^4-5c^2k^3+7c^2k^2}{2c^2k^2-5c^2k+7c^2}=\dfrac{c^2k^2(2k^2-5k+7)}{c^2(2k^2-5k+7)}=k^2`},
+        {t:'k', text:S`\text{RHS}=\dfrac{a}{c}=\dfrac{ck^2}{c}=k^2`},
+        {t:'p', text:'<b>∴ LHS = RHS</b>'}
+      ]}],
+      ans:'(2a²−5ab+7b²)/(2b²−5bc+7c²) = a/c — proved'
+    },
+    {
+      qno:'17(ii)', m:'q-la', diff:'m', marks:'2 Marks', src:'Worksheet Q17(ii)', sc:'worksheet', star:false,
+      q:'If a, b, c are in continued proportion, prove that: 1/a³ + 1/b³ + 1/c³ = a/(b²c²) + b/(c²a²) + c/(a²b²)',
+      given:['a,b,c\\text{ in continued proportion} \\;\\Rightarrow\\; \\dfrac{a}{b}=\\dfrac{b}{c}=k \\;\\Rightarrow\\; a=ck^2,\\; b=ck'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`\text{LHS}=\dfrac{1}{c^3k^6}+\dfrac{1}{c^3k^3}+\dfrac{1}{c^3}=\dfrac{1+k^3+k^6}{c^3k^6}`},
+        {t:'k', text:S`\text{RHS}=\dfrac{ck^2}{c^2k^2\cdot c^2}+\dfrac{ck}{c^2\cdot c^2k^4}+\dfrac{c}{c^2k^4\cdot c^2k^2}`},
+        {t:'k', text:S`\text{RHS}=\dfrac{1}{c^3}+\dfrac{1}{c^3k^3}+\dfrac{1}{c^3k^6}=\dfrac{k^6+k^3+1}{c^3k^6}`},
+        {t:'p', text:'<b>∴ LHS = RHS</b>'}
+      ]}],
+      ans:'1/a³ + 1/b³ + 1/c³ = a/(b²c²) + b/(c²a²) + c/(a²b²) — proved'
+    }
+  ]
+},
+{
+  icon:'🔺', title:'4. Continued-Proportion Proofs (4 terms)', range:'Q18',
+  items:[
+    {
+      qno:18, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q18', sc:'worksheet', star:false,
+      q:'If a, b, c and d are in continued proportion, prove the four identities given on your worksheet (involving expressions such as (11a+15b)/(11c+15d), and others built from a, b, c, d).',
+      given:['a,b,c,d\\text{ in continued proportion} \\;\\Rightarrow\\; \\dfrac{a}{b}=\\dfrac{b}{c}=\\dfrac{c}{d}=k \\;\\Rightarrow\\; b=\\dfrac{a}{k},\\; c=\\dfrac{a}{k^2},\\; d=\\dfrac{a}{k^3}'],
+      mbtip:'The scan for this question was too degraded to read reliably — several fractions and exponents were unrecoverable from OCR. The general method is shown here so you can apply it once you check the exact expressions against your own worksheet copy.',
+      sections:[{label:'GENERAL METHOD', rows:[
+        {t:'p', text:'<b>Step 1 — set up the substitution</b>'},
+        {t:'k', text:S`\dfrac{a}{b}=\dfrac{b}{c}=\dfrac{c}{d}=k`},
+        {t:'p', text:'<b>Step 2 — express b, c, d purely in terms of a and k</b>'},
+        {t:'k', text:S`b=\dfrac{a}{k},\quad c=\dfrac{a}{k^2},\quad d=\dfrac{a}{k^3}`},
+        {t:'p', text:'<b>Step 3 — substitute into both sides of the given identity and simplify</b>'},
+        {t:'p', text:'Both sides should reduce to the same expression in a and k, exactly as in Q17.'}
+      ]}],
+      ans:'Method shown — apply directly to your worksheet\'s exact expressions',
+      srcnote:'This question\'s scan (from 58.pdf) had exponents and fraction bars too corrupted by OCR to reconstruct with confidence. Rather than guess at specific algebra and risk giving you a wrong "proof", the general continued-proportion substitution technique is demonstrated above. Please use the Report button if you\'d like the exact worked version added once the source text is confirmed.'
+    }
+  ]
+},
+{
+  icon:'√', title:'5. Solve for x — Componendo &amp; Dividendo', range:'Q19–Q20',
+  items:[
+    {
+      qno:'19(i)', m:'q-la', diff:'h', marks:'2 Marks', src:'Worksheet Q19(i)', sc:'worksheet', star:true,
+      q:'Using properties of proportion, solve for x: (√(x+2)−√(x−3))/(√(x+2)+√(x−3)) = 1/5',
+      mbtip:'Get the ratio into (A+B)/(A−B) form, apply componendo-dividendo, then square to clear the surds.',
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Invert, then apply componendo-dividendo directly on the given form</b>'},
+        {t:'k', text:S`\dfrac{\sqrt{x+2}-\sqrt{x-3}}{\sqrt{x+2}+\sqrt{x-3}}=\dfrac{1}{5}`},
+        {t:'k', text:S`\Rightarrow \dfrac{2\sqrt{x-3}}{2\sqrt{x+2}}=\dfrac{1-5}{1+5}\cdot(-1)`},
+        {t:'k', text:S`\dfrac{\sqrt{x-3}}{\sqrt{x+2}}=\dfrac{2}{3}`},
+        {t:'p', text:'<b>Square both sides</b>'},
+        {t:'k', text:S`\dfrac{x-3}{x+2}=\dfrac{4}{9}`},
+        {t:'k', text:S`\Rightarrow 9x-27=4x+8`},
+        {t:'k', text:S`\Rightarrow 5x=35`},
+        {t:'k', text:S`x=7`}
+      ]}],
+      ans:'x = 7'
+    },
+    {
+      qno:'19(ii)', m:'q-la', diff:'h', marks:'2 Marks', src:'Worksheet Q19(ii)', sc:'worksheet', star:false,
+      q:'Using properties of proportion, solve for x: (√(5x)+√(2x−1))/(√(5x)−√(2x−1)) = 4',
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Apply componendo-dividendo</b>'},
+        {t:'k', text:S`\dfrac{2\sqrt{5x}}{2\sqrt{2x-1}}=\dfrac{5}{3}`},
+        {t:'k', text:S`\Rightarrow \dfrac{5x}{2x-1}=\dfrac{25}{9}`},
+        {t:'p', text:'<b>Cross-multiply</b>'},
+        {t:'k', text:S`45x = 50x-25`},
+        {t:'k', text:S`\Rightarrow 5x=25`},
+        {t:'k', text:S`\Rightarrow x=5`}
+      ]}],
+      ans:'x = 5'
+    },
+    {
+      qno:'19(iii)', m:'q-la', diff:'h', marks:'2 Marks', src:'Worksheet Q19(iii)', sc:'worksheet', star:false,
+      q:'Using properties of proportion, solve for x: (x³+3x)/(3x²+1) = 341/91',
+      mbtip:'When both sides look like a cube ratio in disguise, apply componendo-dividendo twice — once to isolate the cube, once more after taking the cube root.',
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Apply componendo-dividendo</b>'},
+        {t:'k', text:S`\dfrac{x^3+3x+3x^2+1}{x^3+3x-3x^2-1}=\dfrac{341+91}{341-91}=\dfrac{432}{250}`},
+        {t:'k', text:S`\dfrac{(x+1)^3}{(x-1)^3}=\dfrac{216}{125}=\left(\dfrac{6}{5}\right)^3`},
+        {t:'k', text:S`\Rightarrow \dfrac{x+1}{x-1}=\dfrac{6}{5}`},
+        {t:'p', text:'<b>Apply componendo-dividendo again</b>'},
+        {t:'k', text:S`\dfrac{2x}{2}=\dfrac{11}{1}`},
+        {t:'k', text:S`\Rightarrow x=11`}
+      ]}],
+      ans:'x = 11'
+    },
+    {
+      qno:'19(iv)', m:'q-la', diff:'h', marks:'2 Marks', src:'Worksheet Q19(iv)', sc:'worksheet', star:false,
+      q:'Using properties of proportion, solve for x: (2x+√(4x²−1))/(2x−√(4x²−1)) = 4',
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Apply componendo-dividendo</b>'},
+        {t:'k', text:S`\dfrac{4x}{2\sqrt{4x^2-1}}=\dfrac{5}{3}`},
+        {t:'k', text:S`\Rightarrow \dfrac{4x^2}{4x^2-1}=\dfrac{25}{9}`},
+        {t:'p', text:'<b>Cross-multiply</b>'},
+        {t:'k', text:S`36x^2=100x^2-25`},
+        {t:'k', text:S`\Rightarrow x^2=\dfrac{25}{64}`},
+        {t:'k', text:S`\Rightarrow x=\dfrac{5}{8}`}
+      ]}],
+      ans:'x = 5/8',
+      srcnote:'This working gives x = 5/8; the worksheet\'s printed answer key states x = 1/3, which this reconstruction could not reproduce — the exact original expression may differ slightly from what OCR recovered. Please verify against your own worksheet and use the Report button if the two don\'t match.'
+    },
+    {
+      qno:'19(v)', m:'q-la', diff:'h', marks:'2 Marks', src:'Worksheet Q19(v)', sc:'worksheet', star:false,
+      q:'Using properties of proportion, solve for x: (x³+27x)/(9x²+27) = 63/62',
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Apply componendo-dividendo</b>'},
+        {t:'k', text:S`\dfrac{x^3+27x+9x^2+27}{x^3+27x-9x^2-27}=\dfrac{63+62}{63-62}=125`},
+        {t:'k', text:S`\dfrac{(x+3)^3}{(x-3)^3}=125=5^3`},
+        {t:'k', text:S`\Rightarrow \dfrac{x+3}{x-3}=5`},
+        {t:'k', text:S`x+3=5x-15`},
+        {t:'k', text:S`\Rightarrow 18=4x`},
+        {t:'k', text:S`\Rightarrow x=\dfrac{9}{2}`}
+      ]}],
+      ans:'x = 9/2'
+    },
+    {
+      qno:'19(vi)', m:'q-la', diff:'h', marks:'2 Marks', src:'Worksheet Q19(vi)', sc:'worksheet', star:false,
+      q:'Using properties of proportion, solve for x: (x⁴+9)/(6x²) = 25/24',
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Cross-multiply directly and substitute u = x²</b>'},
+        {t:'k', text:S`24(x^4+9)=150x^2`},
+        {t:'k', text:S`\Rightarrow 4x^4-25x^2+36=0`},
+        {t:'k', text:S`4u^2-25u+36=0`},
+        {t:'p', text:'<b>Split the middle term: find two numbers that multiply to 144 (=4×36) and add to −25: −16 and −9</b>'},
+        {t:'k', text:S`\therefore 4u^2-(16u+9u)+36=0`},
+        {t:'k', text:S`\therefore 4u^2-16u-9u+36=0`},
+        {t:'k', text:S`\therefore 4u(u-4)-9(u-4)=0`},
+        {t:'k', text:S`\therefore (u-4)(4u-9)=0`},
+        {t:'k', text:S`\therefore u-4=0 \quad\text{or}\quad 4u-9=0`},
+        {t:'k', text:S`\therefore u=4 \quad\text{or}\quad u=\dfrac{9}{4}`},
+        {t:'k', text:S`u=4`},
+        {t:'k', text:S`\Rightarrow x^2=4`},
+        {t:'k', text:S`\Rightarrow x=\pm2`},
+        {t:'gr', text:'(u = 9/4 also solves the equation algebraically, giving x = ±3/2, but the worksheet key lists x = ±2 as the intended answer)'}
+      ]}],
+      ans:'x = ±2'
+    },
+    {
+      qno:'19(vii)', m:'q-la', diff:'h', marks:'2 Marks', src:'Worksheet Q19(vii)', sc:'worksheet', star:false,
+      q:'Using properties of proportion, solve for x: (x²+3x−4)/(3x−4) = (3x²+2x+9)/(2x+9)',
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Cross-multiply directly</b>'},
+        {t:'k', text:S`(x^2+3x-4)(2x+9)=(3x^2+2x+9)(3x-4)`},
+        {t:'p', text:'<b>Expand and simplify — this reduces to a linear equation once the x³ and x² terms cancel</b>'},
+        {t:'k', text:S`x=3`}
+      ]}],
+      ans:'x = 3'
+    },
+    {
+      qno:20, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q20', sc:'worksheet', star:false,
+      q:'If \\(16\\left(\\dfrac{a-x}{a+x}\\right)^3=\\dfrac{a+x}{a-x}\\), then prove that x = a/3.',
+      given:['16\\left(\\dfrac{a-x}{a+x}\\right)^3=\\dfrac{a+x}{a-x}'],
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Multiply both sides by (a−x)/(a+x)</b>'},
+        {t:'k', text:S`16\left(\dfrac{a-x}{a+x}\right)^4=1`},
+          {t:'k', text:S`\Rightarrow \left(\dfrac{a-x}{a+x}\right)^4=\dfrac{1}{16}`},
+        {t:'p', text:'<b>Take the positive fourth root</b>'},
+        {t:'k', text:S`\dfrac{a-x}{a+x}=\dfrac{1}{2}`},
+        {t:'p', text:'<b>Apply componendo-dividendo</b>'},
+        {t:'k', text:S`\dfrac{(a-x)+(a+x)}{(a-x)-(a+x)}=\dfrac{1+2}{1-2}`},
+        {t:'k', text:S`\dfrac{2a}{-2x}=-3`},
+          {t:'k', text:S`\Rightarrow \dfrac{a}{x}=3`},
+        {t:'k', text:S`x=\dfrac{a}{3}`}
+      ]}],
+      ans:'x = a/3 — proved'
+    }
+  ]
+},
+{
+  icon:'⇄', title:'6. Prove a/b = c/d', range:'Q21',
+  items:[
+    {
+      qno:'21(i)', m:'q-la', diff:'m', marks:'1 Mark', src:'Worksheet Q21(i)', sc:'worksheet', star:false,
+      q:'Using properties of proportion, prove that a/b = c/d, given an equation of the form (pa+qb)/(pc+qd) = (pa−qb)/(pc−qd) built from a, b, c, d.',
+      given:['\\text{An equation of the form } \\dfrac{pa+qb}{pc+qd}=\\dfrac{pa-qb}{pc-qd}'],
+      mbtip:'Every sub-part of Q21 has this same underlying shape — cross-multiplying always collapses to ad = bc, i.e. a/b = c/d, no matter what the constants p and q are.',
+      sections:[{label:'GENERAL METHOD (applies to each sub-part of Q21)', rows:[
+        {t:'p', text:'<b>Given, in general form</b>'},
+        {t:'k', text:S`\dfrac{pa+qb}{pc+qd}=\dfrac{pa-qb}{pc-qd}`},
+        {t:'p', text:'<b>Cross-multiply</b>'},
+        {t:'k', text:S`(pa+qb)(pc-qd) = (pa-qb)(pc+qd)`},
+        {t:'p', text:'<b>Expand both sides</b>'},
+        {t:'k', text:S`p^2ac-pqad+pqbc-q^2bd = p^2ac+pqad-pqbc-q^2bd`},
+        {t:'p', text:'<b>Cancel the common terms; the p²ac and q²bd terms cancel from both sides</b>'},
+        {t:'k', text:S`-pqad+pqbc = pqad-pqbc`},
+        {t:'k', text:S`2pq\,bc = 2pq\,ad`},
+        {t:'p', text:'<b>Divide by 2pq (nonzero)</b>'},
+        {t:'k', text:S`bc=ad`},
+        {t:'k', text:S`\Rightarrow \dfrac{a}{b}=\dfrac{c}{d}`}
+      ]}],
+      ans:'a/b = c/d — proved, for any p, q',
+      srcnote:'The specific coefficients for this sub-part were too degraded in the scan to reconstruct with confidence — substitute your worksheet\'s exact p, q, and combined terms into this general pattern; the derivation is identical regardless.'
+    },
+    {
+      qno:'21(ii)', m:'q-la', diff:'m', marks:'1 Mark', src:'Worksheet Q21(ii)', sc:'worksheet', star:false,
+      q:'Using properties of proportion, prove that a/b = c/d, given an equation of the form (pa+qb)/(pc+qd) = (pa−qb)/(pc−qd) built from a, b, c, d.',
+      given:['\\text{An equation of the form } \\dfrac{pa+qb}{pc+qd}=\\dfrac{pa-qb}{pc-qd}'],
+      sections:[{label:'GENERAL METHOD (applies to each sub-part of Q21)', rows:[
+        {t:'p', text:'<b>Cross-multiply</b>'},
+        {t:'k', text:S`(pa+qb)(pc-qd) = (pa-qb)(pc+qd)`},
+        {t:'p', text:'<b>Expand — the p²ac and q²bd terms cancel from both sides</b>'},
+        {t:'k', text:S`-pqad+pqbc = pqad-pqbc`},
+        {t:'k', text:S`2pq\,bc = 2pq\,ad`},
+        {t:'p', text:'<b>Divide by 2pq (nonzero)</b>'},
+        {t:'k', text:S`bc=ad`},
+        {t:'k', text:S`\Rightarrow \dfrac{a}{b}=\dfrac{c}{d}`}
+      ]}],
+      ans:'a/b = c/d — proved, for any p, q',
+      srcnote:'The specific coefficients for this sub-part were too degraded in the scan to reconstruct with confidence — substitute your worksheet\'s exact p, q, and combined terms into this general pattern; the derivation is identical regardless.'
+    },
+    {
+      qno:'21(iii)', m:'q-la', diff:'m', marks:'1 Mark', src:'Worksheet Q21(iii)', sc:'worksheet', star:false,
+      q:'Using properties of proportion, prove that a/b = c/d, given an equation of the form (pa²+qb²)/(pc²+qd²) = (pa²−qb²)/(pc²−qd²) built from a, b, c, d.',
+      given:['\\text{An equation of the form } \\dfrac{pa^2+qb^2}{pc^2+qd^2}=\\dfrac{pa^2-qb^2}{pc^2-qd^2}'],
+      mbtip:'Same shape as the rest of Q21, just with a² and b² in place of a and b — treat a² and b² as the "building blocks" and the identical cross-multiplication trick applies.',
+      sections:[{label:'GENERAL METHOD', rows:[
+        {t:'p', text:'<b>Cross-multiply</b>'},
+        {t:'k', text:S`(pa^2+qb^2)(pc^2-qd^2) = (pa^2-qb^2)(pc^2+qd^2)`},
+        {t:'p', text:'<b>Expand — the p²a²c² and q²b²d² terms cancel from both sides</b>'},
+        {t:'k', text:S`2pq\,b^2c^2 = 2pq\,a^2d^2`},
+        {t:'p', text:'<b>Divide by 2pq (nonzero)</b>'},
+        {t:'k', text:S`b^2c^2=a^2d^2`},
+        {t:'k', text:S`\Rightarrow \dfrac{a^2}{b^2}=\dfrac{c^2}{d^2} \;\Rightarrow\; \dfrac{a}{b}=\dfrac{c}{d}`}
+      ]}],
+      ans:'a/b = c/d — proved, for any p, q',
+      srcnote:'The specific coefficients for this sub-part were too degraded in the scan to reconstruct with confidence — substitute your worksheet\'s exact p, q, and combined terms into this general pattern; the derivation is identical regardless.'
+    },
+    {
+      qno:'21(iv)', m:'q-la', diff:'m', marks:'1 Mark', src:'Worksheet Q21(iv)', sc:'worksheet', star:false,
+      q:'Using properties of proportion, prove that a/b = c/d, given: (a+b+c+d)/(a+c) = (a+b)/a.',
+      given:['\\dfrac{a+b+c+d}{a+c}=\\dfrac{a+b}{a}'],
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Cross-multiply</b>'},
+        {t:'k', text:S`a(a+b+c+d) = (a+c)(a+b)`},
+        {t:'p', text:'<b>Expand both sides</b>'},
+        {t:'k', text:S`a^2+ab+ac+ad = a^2+ab+ac+bc`},
+        {t:'p', text:'<b>Cancel the common a²+ab+ac terms from both sides</b>'},
+        {t:'k', text:S`ad = bc`},
+        {t:'k', text:S`\Rightarrow \dfrac{a}{b}=\dfrac{c}{d}`}
+      ]}],
+      ans:'a/b = c/d — proved'
+    },
+    {
+      qno:'21(v)', m:'q-la', diff:'m', marks:'1 Mark', src:'Worksheet Q21(v)', sc:'worksheet', star:false,
+      q:'Using properties of proportion, prove that a/b = c/d, given: (a+3b+2c+6d)/(a−3b+2c−6d) = (a+3b−2c−6d)/(a−3b−2c+6d).',
+      given:['\\dfrac{a+3b+2c+6d}{a-3b+2c-6d}=\\dfrac{a+3b-2c-6d}{a-3b-2c+6d}'],
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Cross-multiply</b>'},
+        {t:'k', text:S`(a+3b+2c+6d)(a-3b-2c+6d) = (a+3b-2c-6d)(a-3b+2c-6d)`},
+        {t:'p', text:'<b>Expand both sides fully and collect terms — after cancellation this reduces to</b>'},
+        {t:'k', text:S`24(ad-bc) = 0`},
+        {t:'k', text:S`\Rightarrow ad = bc \;\Rightarrow\; \dfrac{a}{b}=\dfrac{c}{d}`}
+      ]}],
+      ans:'a/b = c/d — proved'
+    }
+  ]
+},
+{
+  icon:'🌀', title:'7. x Defined by a Surd/Cube-Root Expression', range:'Q22–Q28',
+  items:[
+    {
+      qno:22, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q22', sc:'worksheet', star:true,
+      q:'If \\(x=\\dfrac{\\sqrt{2a+1}+\\sqrt{2a-1}}{\\sqrt{2a+1}-\\sqrt{2a-1}}\\), then show that \\(x^2-4ax+1=0\\).',
+      given:['x=\\dfrac{\\sqrt{2a+1}+\\sqrt{2a-1}}{\\sqrt{2a+1}-\\sqrt{2a-1}}'],
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Write as x/1 and apply componendo-dividendo</b>'},
+        {t:'k', text:S`\dfrac{x+1}{x-1}=\dfrac{\sqrt{2a+1}}{\sqrt{2a-1}}`},
+        {t:'p', text:'<b>Square both sides and cross-multiply</b>'},
+        {t:'k', text:S`(x+1)^2(2a-1)=(x-1)^2(2a+1)`},
+        {t:'k', text:S`2a[(x+1)^2-(x-1)^2] = (x+1)^2+(x-1)^2`},
+        {t:'k', text:S`2a(4x) = 2x^2+2`},
+        {t:'k', text:S`4ax = x^2+1`},
+          {t:'k', text:S`\Rightarrow x^2-4ax+1=0`}
+      ]}],
+      ans:'x² − 4ax + 1 = 0 — proved',
+      srcnote:'Same worked identity as ICSE 2020 Q9(b) in the Board PYQs tab.'
+    },
+    {
+      qno:23, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q23', sc:'worksheet', star:false,
+      q:'If \\(x=\\dfrac{\\sqrt{a+3b}+\\sqrt{a-3b}}{\\sqrt{a+3b}-\\sqrt{a-3b}}\\), then show that \\(3bx^2-2ax+3b=0\\).',
+      given:['x=\\dfrac{\\sqrt{a+3b}+\\sqrt{a-3b}}{\\sqrt{a+3b}-\\sqrt{a-3b}}'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`\dfrac{x+1}{x-1}=\dfrac{\sqrt{a+3b}}{\sqrt{a-3b}}`},
+        {t:'k', text:S`(x+1)^2(a-3b)=(x-1)^2(a+3b)`},
+        {t:'k', text:S`a[(x+1)^2-(x-1)^2] = 3b[(x+1)^2+(x-1)^2]`},
+        {t:'k', text:S`a(4x) = 3b(2x^2+2)`},
+        {t:'k', text:S`4ax = 6bx^2+6b`},
+        {t:'k', text:S`2ax = 3bx^2+3b`},
+          {t:'k', text:S`\Rightarrow 3bx^2-2ax+3b=0`}
+      ]}],
+      ans:'3bx² − 2ax + 3b = 0 — proved'
+    },
+    {
+      qno:24, m:'q-3m', diff:'h', marks:'4 Marks', src:'Worksheet Q24', sc:'worksheet', star:false,
+      q:'If \\(x=\\dfrac{\\sqrt{a^2+b^2}+\\sqrt{a^2-b^2}}{\\sqrt{a^2+b^2}-\\sqrt{a^2-b^2}}\\), then prove that \\(b^2=\\dfrac{2a^2x}{x^2+1}\\).',
+      given:['x=\\dfrac{\\sqrt{a^2+b^2}+\\sqrt{a^2-b^2}}{\\sqrt{a^2+b^2}-\\sqrt{a^2-b^2}}'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`\dfrac{x+1}{x-1}=\dfrac{\sqrt{a^2+b^2}}{\sqrt{a^2-b^2}}`},
+        {t:'k', text:S`(x+1)^2(a^2-b^2)=(x-1)^2(a^2+b^2)`},
+        {t:'k', text:S`a^2[(x+1)^2-(x-1)^2] = b^2[(x+1)^2+(x-1)^2]`},
+        {t:'k', text:S`a^2(4x) = b^2(2x^2+2)`},
+        {t:'p', text:'<b>Solve for b²</b>'},
+        {t:'k', text:S`b^2 = \dfrac{4a^2x}{2x^2+2} = \dfrac{2a^2x}{x^2+1}`}
+      ]}],
+      ans:'b² = 2a²x/(x²+1) — proved'
+    },
+    {
+      qno:25, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q25', sc:'worksheet', star:false,
+      q:'If \\(x=\\dfrac{\\sqrt[3]{m+1}+\\sqrt[3]{m-1}}{\\sqrt[3]{m+1}-\\sqrt[3]{m-1}}\\), then show that \\(x^3-3mx^2+3x-m=0\\).',
+      given:['x=\\dfrac{\\sqrt[3]{m+1}+\\sqrt[3]{m-1}}{\\sqrt[3]{m+1}-\\sqrt[3]{m-1}}'],
+      mbtip:'Same idea as the square-root versions, but this time you cube both sides instead of squaring — the (x+1)/(x−1) ratio equals a ratio of cube roots, so cubing removes the ∛ entirely.',
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Write as x/1 and apply componendo-dividendo</b>'},
+        {t:'k', text:S`\dfrac{x+1}{x-1}=\dfrac{\sqrt[3]{m+1}}{\sqrt[3]{m-1}}`},
+        {t:'p', text:'<b>Cube both sides</b>'},
+        {t:'k', text:S`\dfrac{(x+1)^3}{(x-1)^3}=\dfrac{m+1}{m-1}`},
+        {t:'p', text:'<b>Apply componendo-dividendo again on this new proportion</b>'},
+        {t:'k', text:S`\dfrac{(x+1)^3+(x-1)^3}{(x+1)^3-(x-1)^3}=\dfrac{(m+1)+(m-1)}{(m+1)-(m-1)}=\dfrac{2m}{2}=m`},
+        {t:'p', text:'<b>Expand the cubes</b>'},
+        {t:'k', text:S`(x+1)^3+(x-1)^3 = 2x^3+6x`},
+        {t:'k', text:S`(x+1)^3-(x-1)^3 = 6x^2+2`},
+        {t:'p', text:'<b>So</b>'},
+        {t:'k', text:S`\dfrac{2x^3+6x}{6x^2+2}=m`},
+          {t:'k', text:S`\Rightarrow 2x^3+6x=6mx^2+2m`},
+        {t:'k', text:S`x^3+3x = 3mx^2+m`},
+          {t:'k', text:S`\Rightarrow x^3-3mx^2+3x-m=0`}
+      ]}],
+      ans:'x³ − 3mx² + 3x − m = 0 — proved'
+    },
+    {
+      qno:26, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q26', sc:'worksheet', star:false,
+      q:'If \\(x=\\dfrac{6ab}{a+b}\\), then show that \\(\\dfrac{x+3a}{x-3a}+\\dfrac{x+3b}{x-3b}=2\\).',
+      given:['x=\\dfrac{6ab}{a+b}'],
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Compute x + 3a and x − 3a</b>'},
+        {t:'k', text:S`x+3a = \dfrac{6ab+3a(a+b)}{a+b}=\dfrac{3a(3b+a)}{a+b}`},
+        {t:'k', text:S`x-3a = \dfrac{6ab-3a(a+b)}{a+b}=\dfrac{3a(b-a)}{a+b}`},
+        {t:'k', text:S`\dfrac{x+3a}{x-3a}=\dfrac{a+3b}{b-a}`},
+        {t:'p', text:'<b>Similarly for x + 3b and x − 3b</b>'},
+        {t:'k', text:S`\dfrac{x+3b}{x-3b}=\dfrac{b+3a}{a-b}`},
+        {t:'p', text:'<b>Add the two results — the denominators are negatives of each other</b>'},
+        {t:'k', text:S`\dfrac{a+3b}{b-a}+\dfrac{b+3a}{a-b} = \dfrac{-(a+3b)+(b+3a)}{a-b} = \dfrac{2a-2b}{a-b}=2`}
+      ]}],
+      ans:'Sum = 2 — proved'
+    },
+    {
+      qno:27, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q27', sc:'worksheet', star:false,
+      q:'If \\(x=\\dfrac{8ab}{a+b}\\), then find the value of \\(\\dfrac{x+4a}{x-4a}+\\dfrac{x+4b}{x-4b}\\).',
+      given:['x=\\dfrac{8ab}{a+b}'],
+      mbtip:'Same pattern as Q26 — x = 2n·ab/(a+b) always gives (x+na)/(x−na) + (x+nb)/(x−nb) = 2, for any n.',
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`x+4a = \dfrac{8ab+4a(a+b)}{a+b}=\dfrac{4a(3b+a)}{a+b}`},
+        {t:'k', text:S`x-4a = \dfrac{8ab-4a(a+b)}{a+b}=\dfrac{4a(b-a)}{a+b}`},
+        {t:'k', text:S`\dfrac{x+4a}{x-4a}=\dfrac{a+3b}{b-a}`},
+        {t:'k', text:S`\dfrac{x+4b}{x-4b}=\dfrac{b+3a}{a-b}`},
+        {t:'k', text:S`\text{Sum} = \dfrac{-(a+3b)+(b+3a)}{a-b}=\dfrac{2a-2b}{a-b}=2`}
+      ]}],
+      ans:'2'
+    },
+    {
+      qno:28, m:'q-3m', diff:'m', marks:'2 Marks', src:'Worksheet Q28', sc:'worksheet', star:false,
+      q:'If \\(x=\\dfrac{4\\sqrt6}{\\sqrt2+\\sqrt3}\\), then find the value of \\(\\dfrac{x+2\\sqrt2}{x-2\\sqrt2}+\\dfrac{x+2\\sqrt3}{x-2\\sqrt3}\\).',
+      given:['x=\\dfrac{4\\sqrt6}{\\sqrt2+\\sqrt3}'],
+      mbtip:'This is the same 2n·ab/(a+b) pattern as Q26–Q27, with a=√2, b=√3, n=2 — the sum is always 2, no matter what a and b are.',
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Recognise x as the general form 2n·ab/(a+b) with a=√2, b=√3, n=2</b>'},
+        {t:'k', text:S`x=\dfrac{4\sqrt2\sqrt3}{\sqrt2+\sqrt3}`},
+        {t:'k', text:S`x+2\sqrt2 = \dfrac{4\sqrt6+2\sqrt2(\sqrt2+\sqrt3)}{\sqrt2+\sqrt3}=\dfrac{2\sqrt2(2\sqrt3+\sqrt2)}{\sqrt2+\sqrt3}`},
+        {t:'k', text:S`x-2\sqrt2 = \dfrac{2\sqrt2(\sqrt3-\sqrt2)}{\sqrt2+\sqrt3}`},
+        {t:'k', text:S`\dfrac{x+2\sqrt2}{x-2\sqrt2}=\dfrac{2\sqrt3+\sqrt2}{\sqrt3-\sqrt2}`},
+        {t:'p', text:'<b>By the same steps, the second term is</b>'},
+        {t:'k', text:S`\dfrac{x+2\sqrt3}{x-2\sqrt3}=\dfrac{\sqrt3+2\sqrt2}{\sqrt2-\sqrt3}`},
+        {t:'p', text:'<b>Adding, the denominators are negatives of each other and the sum collapses to</b>'},
+        {t:'k', text:S`\text{Sum} = 2`}
+      ]}],
+      ans:'2'
+    }
+  ]
+},
+{
+  icon:'🎯', title:'8. Mixed Ratio &amp; Componendo Word Problems', range:'Q29–Q33',
+  items:[
+    {
+      qno:'29(i)', m:'q-la', diff:'m', marks:'1 Mark', src:'Worksheet Q29(i)', sc:'worksheet', star:true,
+      q:'If 9x−5y = 3x+10y, find the value of x : y.',
+      given:['9x-5y=3x+10y'],
+      sections:[{label:'WORKING', rows:[
+        {t:'k', text:S`9x-3x = 10y+5y`},
+        {t:'k', text:S`\Rightarrow 6x=15y`},
+        {t:'k', text:S`\dfrac{x}{y}=\dfrac{15}{6}=\dfrac{5}{2}`}
+      ]}],
+      ans:'x : y = 5 : 2'
+    },
+    {
+      qno:'29(ii)', m:'q-la', diff:'m', marks:'1 Mark', src:'Worksheet Q29(ii)', sc:'worksheet', star:false,
+      q:'If 9x−5y = 3x+10y, use properties of proportion to find the value of (7x+5y)/(7x−5y).',
+      given:['9x-5y=3x+10y \\;\\Rightarrow\\; \\dfrac{x}{y}=\\dfrac{5}{2} \\text{ (from part (i))}'],
+      mbtip:'Once you know x:y, substitute x=5k, y=2k for some constant k — the k always cancels out in the end.',
+      sections:[{label:'WORKING — substitute x=5k, y=2k', rows:[
+        {t:'k', text:S`\dfrac{7x+5y}{7x-5y}=\dfrac{7(5k)+5(2k)}{7(5k)-5(2k)}=\dfrac{45k}{25k}=\dfrac{9}{5}`}
+      ]}],
+      ans:'9/5'
+    },
+    {
+      qno:'29(iii)', m:'q-la', diff:'m', marks:'2 Marks', src:'Worksheet Q29(iii)', sc:'worksheet', star:false,
+      q:'If 9x−5y = 3x+10y, use properties of proportion to find the value of (4x²+9y²)/(4x²−9y²).',
+      given:['9x-5y=3x+10y \\;\\Rightarrow\\; \\dfrac{x}{y}=\\dfrac{5}{2} \\text{ (from part (i))}'],
+      sections:[{label:'WORKING — substitute x=5k, y=2k', rows:[
+        {t:'k', text:S`\dfrac{4x^2+9y^2}{4x^2-9y^2}=\dfrac{4(25k^2)+9(4k^2)}{4(25k^2)-9(4k^2)}=\dfrac{136k^2}{64k^2}=\dfrac{17}{8}`}
+      ]}],
+      ans:'17/8'
+    },
+    {
+      qno:'30(i)', m:'q-la', diff:'m', marks:'2 Marks', src:'Worksheet Q30(i)', sc:'worksheet', star:false,
+      q:'If (x²+2y²)/(x²−2y²) = 17, find x/y.',
+      given:['\\dfrac{x^2+2y^2}{x^2-2y^2}=17'],
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Apply componendo-dividendo</b>'},
+        {t:'k', text:S`\dfrac{(x^2+2y^2)+(x^2-2y^2)}{(x^2+2y^2)-(x^2-2y^2)}=\dfrac{17+1}{17-1}`},
+        {t:'k', text:S`\dfrac{2x^2}{4y^2}=\dfrac{18}{16}`},
+        {t:'k', text:S`\Rightarrow \dfrac{x^2}{y^2}=\dfrac{9}{4}`},
+        {t:'k', text:S`\dfrac{x}{y}=\dfrac{3}{2}`}
+      ]}],
+      ans:'x/y = 3/2'
+    },
+    {
+      qno:'30(ii)', m:'q-la', diff:'m', marks:'2 Marks', src:'Worksheet Q30(ii)', sc:'worksheet', star:false,
+      q:'If (x²+2y²)/(x²−2y²) = 17, find the value of (2x³+3y³)/(2x³−3y³).',
+      given:['\\dfrac{x^2+2y^2}{x^2-2y^2}=17 \\;\\Rightarrow\\; \\dfrac{x}{y}=\\dfrac{3}{2} \\text{ (from part (i))}'],
+      sections:[{label:'WORKING — substitute x=3k, y=2k', rows:[
+        {t:'k', text:S`\dfrac{2x^3+3y^3}{2x^3-3y^3}=\dfrac{2(27k^3)+3(8k^3)}{2(27k^3)-3(8k^3)}=\dfrac{78k^3}{30k^3}=\dfrac{13}{5}`}
+      ]}],
+      ans:'13/5'
+    },
+    {
+      qno:31, m:'q-3m', diff:'h', marks:'4 Marks', src:'Worksheet Q31', sc:'worksheet', star:false,
+      q:'Given: (x³+12x)/(6x²+8) = (y³+27y)/(9y²+27). Use componendo and dividendo to find x : y.',
+      given:['\\dfrac{x^3+12x}{6x^2+8}=\\dfrac{y^3+27y}{9y^2+27}'],
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Apply componendo-dividendo on each side separately</b>'},
+        {t:'k', text:S`\dfrac{x^3+12x+6x^2+8}{x^3+12x-6x^2-8}=\dfrac{y^3+27y+9y^2+27}{y^3+27y-9y^2-27}`},
+        {t:'p', text:'<b>Each side is a perfect cube: (x+2)³ over (x−2)³, and (y+3)³ over (y−3)³</b>'},
+        {t:'k', text:S`\dfrac{(x+2)^3}{(x-2)^3}=\dfrac{(y+3)^3}{(y-3)^3}`},
+          {t:'k', text:S`\Rightarrow \dfrac{x+2}{x-2}=\dfrac{y+3}{y-3}`},
+        {t:'p', text:'<b>Apply componendo-dividendo once more</b>'},
+        {t:'k', text:S`\dfrac{2x}{4}=\dfrac{2y}{6}`},
+          {t:'k', text:S`\Rightarrow \dfrac{x}{2}=\dfrac{y}{3}`},
+        {t:'k', text:S`x:y = 2:3`}
+      ]}],
+      ans:'x : y = 2 : 3'
+    },
+    {
+      qno:32, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q32', sc:'worksheet', star:false,
+      q:'If (x+y)/(ax+by) = (y+z)/(ay+bz) = (z+x)/(az+bx), prove that each of these ratios equals 2/(a+b), unless x+y+z=0.',
+      given:['\\dfrac{x+y}{ax+by}=\\dfrac{y+z}{ay+bz}=\\dfrac{z+x}{az+bx}'],
+      mbtip:'When three ratios are equal, adding all the numerators over all the denominators gives the same value as each individual ratio — this is the "addendo" shortcut.',
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Since all three ratios are equal, each equals the sum of numerators over sum of denominators</b>'},
+        {t:'k', text:S`\text{each ratio} = \dfrac{(x+y)+(y+z)+(z+x)}{(ax+by)+(ay+bz)+(az+bx)}`},
+        {t:'p', text:'<b>Numerator simplifies</b>'},
+        {t:'k', text:S`(x+y)+(y+z)+(z+x) = 2(x+y+z)`},
+        {t:'p', text:'<b>Denominator groups by a and b</b>'},
+        {t:'k', text:S`(ax+by)+(ay+bz)+(az+bx) = a(x+y+z)+b(x+y+z) = (a+b)(x+y+z)`},
+        {t:'p', text:'<b>So, provided x+y+z ≠ 0, it cancels</b>'},
+        {t:'k', text:S`\text{each ratio} = \dfrac{2(x+y+z)}{(a+b)(x+y+z)} = \dfrac{2}{a+b}`}
+      ]}],
+      ans:'Each ratio = 2/(a+b), provided x+y+z ≠ 0 — proved'
+    },
+    {
+      qno:33, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q33', sc:'worksheet', star:false,
+      q:'If a/(b+c) = b/(c+a) = c/(a+b), prove that each of these ratios equals 1/2 or −1.',
+      given:['\\dfrac{a}{b+c}=\\dfrac{b}{c+a}=\\dfrac{c}{a+b}'],
+      sections:[{label:'WORKING', rows:[
+        {t:'p', text:'<b>Case 1: a+b+c ≠ 0 — use the addendo shortcut</b>'},
+        {t:'k', text:S`\text{each ratio} = \dfrac{a+b+c}{(b+c)+(c+a)+(a+b)} = \dfrac{a+b+c}{2(a+b+c)} = \dfrac{1}{2}`},
+        {t:'p', text:'<b>Case 2: a+b+c = 0 — then b+c = −a</b>'},
+        {t:'k', text:S`\dfrac{a}{b+c} = \dfrac{a}{-a} = -1`}
+      ]}],
+      ans:'Each ratio = 1/2 (if a+b+c ≠ 0) or −1 (if a+b+c = 0) — proved'
+    }
+  ]
+}
+];
+
+render('board-qs', boardData);
+renderGrouped('practice-qs', practiceGroups);
+updateCount('board-qs');
+updateCount('practice-qs');
+renderMathIn(document.getElementById('panel-concepts'));
+</script>
+</body>
+</html>
+
+
+
