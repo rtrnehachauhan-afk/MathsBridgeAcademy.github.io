@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remainder &amp; Factor Theorem — ICSE Class 10 | MathsBridge</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --page:#F5F0E8; --card-bd:#E2D9C6;
+  --green:#2E6B3E; --green-tint:#EEF7F0;
+  --purple:#6B4E9E; --purple-tint:#F1EBF9;
+  --navy:#1F3A5F; --darkblue:#123A6B; --blue-tint:#E9F1FA;
+  --gold:#C9A227;
+  --text:#1a1a1a; --text2:#444; --text3:#777;
+  --card:#FFFDF8;
+}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--page);color:var(--text);font-size:19px;line-height:1.7}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px 70px}
+
+/* ---------- overflow safety (locked, per spec) ---------- */
+.box.formula, .box.working, .qtext, .box .line{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:3px 0}
+
+/* HERO */
+.hero{background:var(--green); border-bottom:4px solid var(--gold); padding:20px; border-radius:0 0 14px 14px; margin-bottom:20px; position:relative; overflow:hidden}
+.hero::after{content:'f(x)';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:90px;color:rgba(255,255,255,.06);pointer-events:none;font-family:'JetBrains Mono',monospace}
+.hero .sub{text-transform:uppercase; letter-spacing:1px; font-size:12px; color:#DDEFE0}
+.hero h1{font-size:34px; color:#fff; margin:4px 0; font-family:'Playfair Display',serif; font-weight:800}
+.hero .meta{color:#CFE3D1; font-size:14px}
+.hero .pill-row{margin-top:10px}
+.hero .pill{display:inline-block; border-radius:12px; border:1px solid #fff; color:#fff; font-size:11px; padding:2px 8px; margin-right:6px; margin-bottom:6px; font-family:'JetBrains Mono',monospace}
+.hero .stat-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.hero .stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:9px;padding:7px 14px;text-align:center}
+.hero .stat .n{font-size:20px;font-weight:700;color:#fff;font-family:'Playfair Display',serif}
+.hero .stat .l{font-size:10px;color:#DDEFE0;font-weight:600}
+
+/* TABS */
+.sec-tab{display:flex; gap:6px; flex-wrap:wrap; background:#EDE7D8; padding:7px; border-radius:11px; border:1px solid var(--card-bd); margin-bottom:18px}
+.ctab{flex:1; min-width:120px; border-radius:5px; background:transparent; border:1px solid var(--green); color:var(--green); padding:9px 10px; font-size:15px; font-weight:700; cursor:pointer; font-family:'Crimson Pro',serif; transition:all .15s}
+.ctab:hover:not(.active){background:var(--green-tint)}
+.ctab.active{background:var(--green); color:#fff}
+.ctab.board.active{background:var(--purple); border-color:var(--purple)}
+
+/* DIFFICULTY FILTER */
+.diff-filter{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.df-btn{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;border:2px solid var(--card-bd);background:var(--card);color:var(--text3);cursor:pointer}
+.df-btn.active[data-f="all"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.df-btn.active[data-f="e"]{background:#DFF5E3;border-color:#1A5C2A;color:#1A5C2A}
+.df-btn.active[data-f="m"]{background:#FFF3CC;border-color:#7A5500;color:#7A5500}
+.df-btn.active[data-f="h"]{background:#FFE5E5;border-color:#8B1A1A;color:#8B1A1A}
+.df-count{font-size:12px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-left:2px}
+
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--card-bd)}
+.sec-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--green)}
+.sec-note{font-size:13px;color:var(--text3);margin-left:auto;font-style:italic}
+
+/* QUESTION CARD */
+.qcard{border:1px solid var(--card-bd); border-radius:9px; box-shadow:0 2px 6px rgba(0,0,0,.06); position:relative; overflow:hidden; margin-bottom:14px; background:var(--card)}
+.qcard-stripe{position:absolute; left:0; top:0; bottom:0; width:6px}
+.qcard-stripe.default{background:var(--green)}
+.qcard-stripe.two-mark{background:var(--purple)}
+.qcard-stripe.three-five{background:var(--navy)}
+.qcard-inner{padding:14px 16px 14px 20px}
+
+.qcard-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.badge{display:inline-block; border-radius:3px; border:1px solid currentColor; text-transform:uppercase; letter-spacing:.6px; font-size:10px; padding:2px 6px; font-family:'JetBrains Mono',monospace; font-weight:700}
+.badge.qno{color:var(--navy)}
+.badge.marks{color:var(--darkblue); background:var(--blue-tint); border-color:var(--darkblue)}
+.badge.pyq{background:var(--purple-tint); color:var(--purple); border-color:var(--purple)}
+.badge.worksheet{background:var(--green-tint); color:var(--green); border-color:var(--green)}
+.diff-badge{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace}
+.diff-badge.e{background:#DFF5E3;color:#1A5C2A}
+.diff-badge.m{background:#FFF3CC;color:#7A5500}
+.diff-badge.h{background:#FFE5E5;color:#8B1A1A}
+.star{font-size:13px}
+
+.qtext{font-size:18px;color:var(--text);line-height:1.6;margin-bottom:2px}
+
+/* MCQ OPTIONS */
+.mcq-opts{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:10px 0}
+.mopt{border-radius:4px; padding:9px 12px; font-size:17px; cursor:pointer; border:2px solid var(--card-bd); background:#fff; color:var(--text); text-align:left; font-family:'Crimson Pro',serif; font-weight:600; transition:all .15s}
+.mopt:hover:not(.locked){border-color:var(--green); background:var(--green-tint)}
+.mopt.correct{border-color:var(--green); background:var(--green-tint); color:var(--green)}
+.mopt.wrong{border-color:#C94040; background:#FBF3F3; color:#8B1A1A}
+.mcq-res{display:none; margin:6px 0 4px; padding:8px 12px; background:#FAFAF5; border-radius:6px}
+.mcq-res.show{display:block}
+.mcq-res .ml{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.mcq-res.ok .ml{color:var(--green)} .mcq-res.wr .ml{color:#8B1A1A}
+.mcq-res .mt{font-size:14px;color:var(--text2)}
+
+/* FOOTER */
+.qcard-foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;padding-top:8px;border-top:1px solid var(--card-bd)}
+.rep-btn, .toggle-btn{border-radius:5px; border:1px solid var(--green); background:transparent; color:var(--green); padding:4px 10px; font-size:11px; font-weight:700; cursor:pointer; font-family:'JetBrains Mono',monospace; transition:all .15s}
+.toggle-btn:hover{background:var(--green); color:#fff}
+.rep-btn{border-color:#C99; color:#9A2B2B; background:#FBF3F3; margin-left:auto}
+.rep-btn:hover{background:#F3E3E3}
+.rep-btn.sent{background:var(--green-tint); border-color:var(--green); color:var(--green)}
+
+/* SOLUTION BODY */
+.sol-body{display:none; margin-top:10px; border-top:2px dashed var(--card-bd); padding-top:10px}
+.sol-body.open{display:block}
+.part-block{margin-bottom:12px}
+.part-block:last-child{margin-bottom:0}
+.part-lbl{display:inline-block;background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:2px 9px;border-radius:4px;margin-bottom:8px;font-family:'JetBrains Mono',monospace}
+
+.callout{border-radius:4px; border:1px solid; padding:8px 10px; margin-bottom:8px}
+.callout.given{background:#F3F8F4; border-color:var(--green)}
+.callout.formula{background:#FBF7EC; border-color:var(--gold)}
+.callout.working{background:#F5F5F5; border-color:#CCC}
+.callout-lbl{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.given-row{font-size:16px;color:var(--text2);margin-bottom:2px}
+.wline{font-size:16px;color:var(--navy);margin:3px 0;display:block}
+.wtext{font-size:15px;color:var(--text2);margin:4px 0;display:block}
+.wtext b{color:var(--navy)}
+.wnote{font-size:13px;color:var(--text3);font-style:italic;margin:2px 0 4px;display:block}
+.identity-label{color:var(--text3);font-size:13px}
+
+.answer-box{background:var(--green-tint); border-left:4px solid var(--green); border-radius:0 4px 4px 0; padding:8px 10px; display:flex; gap:8px; align-items:baseline; flex-wrap:wrap}
+.answer-box .a-lbl{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.06em;font-family:'JetBrains Mono',monospace}
+.answer-box .a-val{font-size:17px;font-weight:700;color:var(--green)}
+
+.src-note{font-size:13px;font-weight:600;color:#8B1A1A;background:#FFF3F0;border-left:3px solid #C94040;padding:6px 10px;border-radius:0 4px 4px 0;margin-bottom:8px}
+.src-note b{color:#6B1414}
+
+/* MB TIP */
+.mbtip{background:#FFF8E6;border:2px dashed var(--gold);border-radius:8px;padding:10px 13px;margin-top:8px}
+.mbtip-lbl{font-size:10px;font-weight:700;color:#8A6D10;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.mbtip-text{font-size:15px;color:var(--text2);line-height:1.65}
+
+/* CONCEPT BOX (formula reference at top of Exercise tab) */
+.concept-box{background:#FBF7EC;border:1px solid var(--gold);border-radius:8px;padding:14px 16px;margin-bottom:18px}
+.concept-box .cl{font-size:11px;font-weight:700;color:#8A6D10;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.concept-box .ct{font-size:17px;color:var(--text);line-height:1.9}
+
+/* CONCEPTS TAB — accordion cards */
+.cc{background:var(--card);border:1px solid var(--card-bd);border-radius:9px;margin-bottom:13px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+.cc-head{background:var(--green);padding:11px 15px;display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none}
+.cc-head .ci{font-size:16px}
+.cc-head .ct2{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#fff;flex:1}
+.cc-head .ca{color:#fff;font-size:13px;transition:transform .2s}
+.cc-head.open .ca{transform:rotate(180deg)}
+.cc-body{display:none;padding:15px 17px;border-top:2px solid var(--card-bd)}
+.cc-body.open{display:block}
+.cc-body p{font-size:16px;color:var(--text2);line-height:1.8;margin-bottom:9px}
+.cc-body p b{color:var(--green)}
+
+.tbox{background:var(--blue-tint);border:2px solid var(--navy);border-radius:8px;padding:13px 16px;margin:10px 0}
+.tbox .tl{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:#fff;background:var(--navy);padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:9px;letter-spacing:.04em}
+.tbox .tb{font-size:16px;color:var(--text2);line-height:1.85}
+.tbox .tf{margin-top:8px}
+
+.ex-box{background:var(--green-tint);border-left:4px solid var(--green);border-radius:0 6px 6px 0;padding:10px 13px;margin:9px 0}
+.ex-box .el{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+
+.analogy-box{background:#FFF8E6;border:2px dashed var(--gold);border-radius:8px;padding:12px 15px;margin:10px 0}
+.analogy-box .al{font-size:10px;font-weight:700;color:#8A6D10;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.analogy-box .at{font-size:15px;color:var(--text2);line-height:1.7}
+.analogy-box .at-list{margin:0 0 0 4px;padding-left:18px}
+.analogy-box .at-list li{font-size:15.5px;color:var(--text2);line-height:1.65;margin-bottom:4px}
+.analogy-box .at-list li b{color:#8A6D10}
+
+.ctbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.ctbl th{background:var(--navy);color:#fff;padding:8px 12px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700}
+.ctbl td{padding:8px 12px;border-bottom:1px solid var(--card-bd);color:var(--text2);vertical-align:top}
+.ctbl tr:nth-child(even) td{background:#F8F4E8}
+
+.steps-list{margin:8px 0 8px 4px;padding-left:18px}
+.steps-list li{font-size:16px;color:var(--text2);line-height:1.8;margin-bottom:4px}
+
+.panel{animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+footer{text-align:center;padding:24px;color:var(--text3);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="sub">ICSE Class 10 Mathematics</div>
+  <h1>Remainder &amp; Factor Theorem</h1>
+  <div class="meta">Remainder Theorem &amp; Factor Theorem — finding remainders, unknown coefficients, and factorising polynomials</div>
+  <div class="pill-row">
+    <span class="pill">Exercise Q1–Q15</span>
+    <span class="pill">Board PYQs 2019–2025</span>
+    <span class="pill">⭐ = Board-frequent pattern</span>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="n">28</div><div class="l">Exercise Cards</div></div>
+    <div class="stat"><div class="n">9</div><div class="l">Board PYQs</div></div>
+    <div class="stat"><div class="n">2019–25</div><div class="l">PYQ Years</div></div>
+  </div>
+</div>
+
+<div class="sec-tab">
+  <button class="ctab active" id="btn-concepts" onclick="sw('concepts')">📘 Concepts</button>
+  <button class="ctab" id="btn-exercise" onclick="sw('exercise')">✓ Exercise</button>
+  <button class="ctab board" id="btn-board" onclick="sw('board')">✎ Board PYQs</button>
+</div>
+
+<div id="panel-concepts" class="panel">
+  <div class="sec-head"><div class="sec-title">All Concepts &amp; Formulae</div></div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">📄</span><span class="ct2">1. Basic Terms</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <p>A <b>polynomial</b> in x is an expression made up of terms with non-negative whole-number powers of x, such as \( f(x) = 2x^3+3x^2-x-2 \). The highest power of x present is called the <b>degree</b> of the polynomial.</p>
+      <table class="ctbl">
+        <tr><th>Symbol</th><th>Meaning</th></tr>
+        <tr><td>f(x)</td><td>The polynomial written as a function of x</td></tr>
+        <tr><td>a</td><td>The value of x that makes the divisor (x − a) equal to zero</td></tr>
+        <tr><td>f(a)</td><td>The value obtained by substituting x = a into f(x)</td></tr>
+      </table>
+      <p>Every division has a <b>divisor</b>, a <b>quotient</b>, and a <b>remainder</b> — exactly like dividing whole numbers. For polynomials, this is written using the <b>Division Algorithm</b>:</p>
+      <div class="tbox"><span class="tl">DIVISION ALGORITHM</span><div class="tb">\( f(x) = (x-a)\times Q(x) + R \), where Q(x) is the quotient and R is the remainder.</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head" onclick="toggleCC(this)"><span class="ci">➗</span><span class="ct2">2. Remainder Theorem</span><span class="ca">▾</span></div>
+    <div class="cc-body">
+      <div class="tbox"><span class="tl">REMAINDER THEOREM</span><div class="tb">If a polynomial f(x) is divided by (x − a), the remainder is exactly f(a) — no long division needed.</div></div>
+      <p><b>Why it works:</b> from the Division Algorithm, \( f(x) = (x-a)\times Q(x) + R \). Substituting \( x = a \) makes the first term vanish, since \( (a-a) = 0 \), leaving \( f(a) = R \).</p>
+      <div class="ex-box">
+        <div class="el">Quick Example</div>
+        <div>Find the remainder when \( f(x) = x^2+3x+1 \) is divided by \( (x-1) \).</div>
+        <div style="margin-top:6px">Divisor \( (x-1)=0 \Rightarrow x=1 \). \( f(1) = 1+3+1 = 5 \). ∴ Remainder = 5.</div>
+      </div>
+      <p>For a divisor like \( (2x-1) \), set \( 2x-1=0 \Rightarrow x = \tfrac12 \) and substitute that fraction — this is exactly the pattern used in Q1(iii).</p>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head" onclick="toggleCC(this)"><span class="ci">✔</span><span class="ct2">3. Factor Theorem</span><span class="ca">▾</span></div>
+    <div class="cc-body">
+      <div class="tbox"><span class="tl">FACTOR THEOREM</span><div class="tb">\( (x-a) \) is a factor of f(x)  \( \Leftrightarrow \)  \( f(a) = 0 \). It is just the Remainder Theorem for the special case where the remainder is zero.</div></div>
+      <div class="analogy-box">
+        <div class="al">💡 Number analogy (from the lecture notes)</div>
+        <ul class="at-list">
+          <li>Take \( p(x) = x^2-5x+6 \).</li>
+          <li>Compare it to normal division of numbers.</li>
+          <li>10 ÷ 5 leaves remainder 0.</li>
+          <li>So 5 <b>is</b> a factor of 10.</li>
+          <li>10 ÷ 3 leaves remainder 1.</li>
+          <li>So 3 is <b>not</b> a factor of 10.</li>
+          <li>Polynomials work the same way.</li>
+          <li>Put x = 2 into p(x).</li>
+          <li>\( p(2) = 4-10+6 = 0 \).</li>
+          <li>Remainder is 0.</li>
+          <li>So (x − 2) <b>is</b> a factor of p(x).</li>
+          <li>Now put x = 4 into p(x).</li>
+          <li>\( p(4) = 16-20+6 = 2 \).</li>
+          <li>Remainder is 2, not 0.</li>
+          <li>So (x − 4) is <b>not</b> a factor of p(x).</li>
+          <li><b>Rule:</b> remainder 0 means factor. Remainder not 0 means not a factor.</li>
+        </ul>
+      </div>
+      <p>This single idea — "substitute and check for zero" — is what Q6, Q7, Q8, Q9, and every board MCQ on this topic (B1, B3, B5) is built on.</p>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head" onclick="toggleCC(this)"><span class="ci">🔍</span><span class="ct2">4. Finding an Unknown Coefficient</span><span class="ca">▾</span></div>
+    <div class="cc-body">
+      <p>Whenever a question gives a remainder (or says "factor") and asks for an unknown letter like a, b, or k, the same four-step recipe applies:</p>
+      <ol class="steps-list">
+        <li>Set the divisor equal to zero and solve for x.</li>
+        <li>Substitute that value of x into f(x) in place of x.</li>
+        <li>Set the result equal to the given remainder (or to 0, if it's a factor condition).</li>
+        <li>Solve the resulting equation for the unknown.</li>
+      </ol>
+      <p>When <b>two</b> unknowns appear (e.g. a and b), you need <b>two</b> conditions — each one gives its own equation, and the two equations are solved simultaneously (by elimination or substitution). This is the pattern behind Q4, Q8, Q10, Q13, and board question B7.</p>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head" onclick="toggleCC(this)"><span class="ci">🧩</span><span class="ct2">5. Factorising a Cubic Completely</span><span class="ca">▾</span></div>
+    <div class="cc-body">
+      <p>To factorise a cubic like \( 2x^3-9x^2-11x+30 \) completely:</p>
+      <ol class="steps-list">
+        <li><b>Find one root by trial.</b> Try values that divide the constant term (e.g. ±1, ±2, ±3, ±5...) until \( f(a) = 0 \).</li>
+        <li><b>Confirm it's a factor</b> using the Factor Theorem — this also proves the step, which board questions often ask for explicitly.</li>
+        <li><b>Divide</b> the cubic by that linear factor (long division or synthetic division) to get a quadratic quotient.</li>
+        <li><b>Factorise the quadratic</b> by splitting the middle term, giving the final three linear factors.</li>
+      </ol>
+      <div class="ex-box">
+        <div class="el">Where this is used</div>
+        <div>Q11, Q12, Q13, Q14, Q15 in the Exercise tab, and B4, B8, B9 in Board PYQs all follow exactly this four-step process.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="panel-exercise" class="panel" style="display:none">
+  <div class="concept-box">
+    <div class="cl">Formulae used throughout</div>
+    <div class="ct">
+      Remainder Theorem: \( f(x) \div (x-a) \Rightarrow \text{Remainder} = f(a) \)<br>
+      Factor Theorem: \( (x-a) \) is a factor of \( f(x) \Leftrightarrow f(a) = 0 \)
+    </div>
+  </div>
+  <div class="sec-head"><div class="sec-title">Exercise (Q1–Q15)</div><span class="sec-note">Full worked solutions</span></div>
+  <div class="diff-filter" id="filter-exercise-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('exercise-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('exercise-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('exercise-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('exercise-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-exercise-qs"></span>
+  </div>
+  <div id="exercise-qs"></div>
+</div>
+
+<div id="panel-board" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-title">Board PYQs</div><span class="sec-note">All Section-A items — no Section-B question on this topic found 2018–2025</span></div>
+  <div class="diff-filter" id="filter-board-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('board-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('board-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('board-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('board-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-board-qs"></span>
+  </div>
+  <div id="board-qs"></div>
+</div>
+
+</div>
+
+<footer>MathsBridge · ICSE Class 10 · Remainder &amp; Factor Theorem &nbsp;|&nbsp; Found an error? Use the Report button on that card.</footer>
+
+<div class="rep-modal" id="rep-modal" style="display:none;position:fixed;inset:0;background:rgba(26,61,40,.55);z-index:999;align-items:center;justify-content:center;padding:18px">
+  <div class="rep-card" style="background:var(--card);border:2px solid var(--green);border-radius:14px;max-width:440px;width:100%;padding:20px;box-shadow:0 12px 40px rgba(0,0,0,.3)">
+    <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--green);margin-bottom:8px">Report an error</div>
+    <div class="rep-ctx" id="rep-ctx" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3);background:#EDE7D8;border-radius:7px;padding:7px 10px;margin-bottom:12px"></div>
+    <textarea class="rep-ta" id="rep-msg" placeholder="What looks wrong? (e.g. Step 3 arithmetic, final answer, wrong option marked...)" style="width:100%;min-height:90px;font-family:'Crimson Pro',serif;font-size:16px;border:1.5px solid var(--card-bd);border-radius:9px;padding:10px 12px;resize:vertical"></textarea>
+    <div class="rep-status" id="rep-status" style="font-size:13px;color:var(--green);min-height:18px;margin:10px 0 4px;font-weight:600"></div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:6px">
+      <button onclick="repClose()" style="font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 16px;border-radius:8px;border:1.5px solid var(--card-bd);background:#fff;color:var(--text3);cursor:pointer">Cancel</button>
+      <button onclick="repSend()" style="font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 18px;border-radius:8px;border:none;background:var(--green);color:#fff;cursor:pointer;font-weight:700">Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== ERROR REPORT CONFIG ===== */
+const REPORT_META = { board:'ICSE', grade:'10', chapter:'Remainder & Factor Theorem' };
+const REPORT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx3vGZZjTHbAnKtOwSz6TaWtpYtnudCzxKMtm3Eo9bB4Ey6Xlor6LunLFEmyIQQy5e6/exec';
+/* ================================ */
+var _repCtx = {};
+function reportError(card, btn){
+  var parts = String(card).split(' ');
+  _repCtx = { tab: parts[0]||'', qno: parts[1]||card, btn: btn };
+  document.getElementById('rep-ctx').textContent =
+    REPORT_META.board+' · Grade '+REPORT_META.grade+' · '+REPORT_META.chapter+' · '+_repCtx.tab+' · '+_repCtx.qno;
+  document.getElementById('rep-msg').value='';
+  document.getElementById('rep-status').textContent='';
+  document.getElementById('rep-modal').style.display='flex';
+  document.getElementById('rep-msg').focus();
+}
+function repClose(){ document.getElementById('rep-modal').style.display='none'; }
+function repSend(){
+  var msg = document.getElementById('rep-msg').value.trim();
+  var status = document.getElementById('rep-status');
+  if(!msg){ status.style.color='#9A2B2B'; status.textContent='Please type what is wrong.'; return; }
+  status.style.color='var(--green)'; status.textContent='Sending...';
+  var qs = 'board='+encodeURIComponent(REPORT_META.board)
+         +'&grade='+encodeURIComponent(REPORT_META.grade)
+         +'&chapter='+encodeURIComponent(REPORT_META.chapter)
+         +'&tab='+encodeURIComponent(_repCtx.tab)
+         +'&qno='+encodeURIComponent(_repCtx.qno)
+         +'&error='+encodeURIComponent(msg);
+  function done(){
+    status.style.color='var(--green)'; status.textContent='\u2713 Thank you! Reported.';
+    if(_repCtx.btn){ _repCtx.btn.classList.add('sent'); _repCtx.btn.textContent='\u2713 Reported'; }
+    setTimeout(repClose, 1200);
+  }
+  fetch(REPORT_ENDPOINT+'?'+qs, { method:'GET', mode:'no-cors' }).then(done).catch(done);
+}
+function reportBtn(card){
+  return '<button class="rep-btn" onclick="reportError(\''+card+'\', this)" title="Found a mistake? Report it">\u26a0 Report error</button>';
+}
+function updateCount(cid){
+  var el = document.getElementById('count-'+cid);
+  if(!el) return;
+  var all = document.querySelectorAll('#'+cid+' .qcard');
+  var visible = document.querySelectorAll('#'+cid+' .qcard:not([style*="display: none"])');
+  el.textContent = 'Showing '+visible.length+' of '+all.length;
+}
+function filterDiff(cid, level, btn){
+  var bar = document.getElementById('filter-'+cid);
+  bar.querySelectorAll('.df-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var cards = document.querySelectorAll('#'+cid+' .qcard');
+  cards.forEach(function(card){
+    card.style.display = (level==='all' || card.getAttribute('data-diff')===level) ? '' : 'none';
+  });
+  updateCount(cid);
+}
+function sw(id){
+  ['concepts','exercise','board'].forEach(function(t){
+    document.getElementById('panel-'+t).style.display = t===id ? 'block' : 'none';
+    var b = document.getElementById('btn-'+t);
+    b.classList.remove('active');
+    if(t===id) b.classList.add('active');
+  });
+  renderMathIn(document.getElementById('panel-'+id));
+}
+function toggleCC(h){ h.classList.toggle('open'); h.nextElementSibling.classList.toggle('open'); }
+function renderMathIn(container){
+  if(window.renderMathInElement && container){
+    renderMathInElement(container, {
+      delimiters:[{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],
+      throwOnError:false
+    });
+  }
+}
+function togSol(btn){
+  var b = btn.closest('.qcard-inner').querySelector('.sol-body');
+  var open = b.classList.toggle('open');
+  btn.textContent = open ? 'Hide Solution' : 'Show Solution';
+  if(open) renderMathIn(b);
+}
+function chk(btn,id,chosen,correct){
+  var all = btn.closest('.mcq-opts').querySelectorAll('.mopt');
+  all.forEach(function(b){ b.classList.add('locked'); });
+  all.forEach(function(b,i){
+    if(i===correct) b.classList.add('correct');
+    else if(i===chosen) b.classList.add('wrong');
+  });
+  var res = document.getElementById('mr-'+id);
+  res.classList.add('show');
+  if(chosen===correct){
+    res.classList.add('ok');
+    res.querySelector('.ml').textContent = '\u2713 Correct!';
+    res.querySelector('.mt').innerHTML = 'Correct: '+all[correct].textContent.trim();
+  } else {
+    res.classList.add('wr');
+    res.querySelector('.ml').textContent = '\u2717 Incorrect';
+    res.querySelector('.mt').innerHTML = 'Correct answer: '+all[correct].textContent.trim();
+  }
+}
+function S(strings, ...vals){ return String.raw(strings, ...vals); } // proper String.raw wrapper — DO NOT re-wrap in {raw:strings}
+
+/* ---------- row/section builders ---------- */
+function buildRow(r){
+  if(!r) return '';
+  if(r.t==='w') return '<span class="wtext">'+r.text+'</span>';
+  if(r.t==='k') return '<span class="wline">\\[ '+r.text+' \\]</span>';
+  if(r.t==='n') return '<span class="wnote">'+r.text+'</span>';
+  if(r.t==='html') return r.html;
+  return '';
+}
+function buildCallout(kind, label, rows){
+  if(!rows || !rows.length) return '';
+  return '<div class="callout '+kind+'"><div class="callout-lbl">'+label+'</div>'+rows.map(buildRow).join('')+'</div>';
+}
+function buildGiven(given){
+  if(!given || !given.length) return '';
+  var rows = given.map(function(g){ return '<div class="given-row">\\( '+g+' \\)</div>'; }).join('');
+  return '<div class="callout given"><div class="callout-lbl">Given</div>'+rows+'</div>';
+}
+function buildPart(part){
+  var lbl = part.label ? '<div class="part-lbl">'+part.label+'</div>' : '';
+  var given = buildGiven(part.given);
+  var formula = buildCallout('formula','Formula', part.formula);
+  var working = buildCallout('working','Working', part.working);
+  var srcnote = part.srcnote ? '<div class="src-note">\u2691 <b>Source Note:</b> '+part.srcnote+'</div>' : '';
+  var ans = '<div class="answer-box"><span class="a-lbl">Answer</span><span class="a-val">'+part.ans+'</span></div>';
+  var mbtip = part.mbtip ? '<div class="mbtip"><div class="mbtip-lbl">\ud83d\udca1 MB Tip</div><div class="mbtip-text">'+part.mbtip+'</div></div>' : '';
+  return '<div class="part-block">'+lbl+given+formula+working+srcnote+ans+mbtip+'</div>';
+}
+function buildSolBody(q){
+  if(q.parts && q.parts.length){
+    return '<div class="sol-body">'+q.parts.map(buildPart).join('')+'</div>';
+  }
+  return '';
+}
+function diffLabel(d){ return {'e':'Easy','m':'Medium','h':'Hard'}[d]; }
+
+function render(cid, data){
+  var c = document.getElementById(cid);
+  data.forEach(function(q, i){
+    var diff = q.diff || 'm';
+    var div = document.createElement('div');
+    div.className = 'qcard';
+    div.setAttribute('data-diff', diff);
+    var stripe = q.stripe || 'default';
+    var star = q.star ? '<span class="star" title="Board-frequent pattern">\u2b50</span>' : '';
+    var srcBadgeClass = q.sc === 'pyq' ? 'badge pyq' : 'badge worksheet';
+    var srcHtml = '<span class="'+srcBadgeClass+'">'+q.src+'</span>';
+    var qid = cid+'-'+i;
+    var cardLbl = (cid==='board-qs'?'BOARD':'EXERCISE')+' '+q.qno;
+
+    if(q.type === 'mcq'){
+      var mopts = q.opts.map(function(o,oi){
+        return '<button class="mopt" onclick="chk(this,\''+qid+'\','+oi+','+q.ans+')">'+o+'</button>';
+      }).join('');
+      var mcqSolBtn = q.parts ? '<button class="toggle-btn" onclick="togSol(this)">Show Solution</button>' : '';
+      var mcqSolBody = buildSolBody(q);
+      div.innerHTML =
+        '<div class="qcard-stripe '+stripe+'"></div>'+
+        '<div class="qcard-inner">'+
+        '<div class="qcard-head"><span class="badge qno">'+q.qno+'</span><span class="badge marks">'+q.marks+'</span>'+star+'<span class="diff-badge '+diff+'">'+diffLabel(diff)+'</span></div>'+
+        '<div class="qtext">'+q.q+'</div>'+
+        '<div class="mcq-opts">'+mopts+'</div>'+
+        '<div class="mcq-res" id="mr-'+qid+'"><div class="ml"></div><div class="mt"></div></div>'+
+        '<div class="qcard-foot">'+srcHtml+mcqSolBtn+reportBtn(cardLbl)+'</div>'+
+        mcqSolBody+
+        '</div>';
+    } else {
+      div.innerHTML =
+        '<div class="qcard-stripe '+stripe+'"></div>'+
+        '<div class="qcard-inner">'+
+        '<div class="qcard-head"><span class="badge qno">'+q.qno+'</span><span class="badge marks">'+q.marks+'</span>'+star+'<span class="diff-badge '+diff+'">'+diffLabel(diff)+'</span></div>'+
+        '<div class="qtext">'+q.q+'</div>'+
+        '<div class="qcard-foot">'+srcHtml+'<button class="toggle-btn" onclick="togSol(this)">Show Solution</button>'+reportBtn(cardLbl)+'</div>'+
+        buildSolBody(q)+
+        '</div>';
+    }
+    c.appendChild(div);
+  });
+}
+
+/* =========================================================================
+   EXERCISE DATA (Q1–Q15, Remainder And Factor Theorem.pdf worksheet)
+   Full working reconstructed from Lecture_1 worked-solution PDFs and,
+   where a worked page was missing, recomputed independently and checked
+   against the worksheet's own printed answer key.
+   ========================================================================= */
+const exerciseData = [
+  {
+    qno:'Q1(i)', marks:'Practice', diff:'e', star:false, sc:'worksheet', src:'Worksheet Q1(i)',
+    q:'Find the remainder when \\(5x^3+3x^2-12x-8\\) is divided by \\((x-2)\\)',
+    parts:[{ label:'',
+      given:['f(x) = 5x^3+3x^2-12x-8','\\text{Divisor: } (x-2)'],
+      formula:[{t:'k',text:S`f(x) \div (x-a) \Rightarrow \text{Remainder} = f(a)`}],
+      working:[
+        {t:'w', text:'x − 2 = 0  ∴ x = 2'},
+        {t:'k', text:S`f(2) = 5(2)^3+3(2)^2-12(2)-8`},
+        {t:'k', text:S`f(2) = 40+12-24-8`}
+      ],
+      ans:'Remainder = 20'
+    }]
+  },
+  {
+    qno:'Q1(ii)', marks:'Practice', diff:'e', star:false, sc:'worksheet', src:'Worksheet Q1(ii)',
+    q:'Find the remainder when \\(x^4-3x^2+2x+1\\) is divided by \\((x-1)\\)',
+    parts:[{ label:'',
+      given:['f(x) = x^4-3x^2+2x+1','\\text{Divisor: } (x-1)'],
+      formula:[{t:'k',text:S`f(x) \div (x-a) \Rightarrow \text{Remainder} = f(a)`}],
+      working:[
+        {t:'w', text:'x − 1 = 0  ∴ x = 1'},
+        {t:'k', text:S`f(1) = (1)^4-3(1)^2+2(1)+1`},
+        {t:'k', text:S`f(1) = 1-3+2+1`}
+      ],
+      ans:'Remainder = 1'
+    }]
+  },
+  {
+    qno:'Q1(iii)', marks:'Practice', diff:'m', star:false, sc:'worksheet', src:'Worksheet Q1(iii)',
+    q:'Find the remainder when \\(4x^3-8x^2-x+9\\) is divided by \\((2x-1)\\)',
+    parts:[{ label:'',
+      given:['f(x) = 4x^3-8x^2-x+9','\\text{Divisor: } (2x-1)'],
+      formula:[{t:'k',text:S`f(x) \div (x-a) \Rightarrow \text{Remainder} = f(a)`}],
+      working:[
+        {t:'w', text:'2x − 1 = 0  ∴ x = 1/2'},
+        {t:'k', text:S`f\left(\dfrac12\right) = 4\left(\dfrac12\right)^3-8\left(\dfrac12\right)^2-\dfrac12+9`},
+        {t:'k', text:S`f\left(\dfrac12\right) = \dfrac12-2-\dfrac12+9`}
+      ],
+      ans:'Remainder = 7',
+      mbtip:'Whenever the divisor is like (2x − 1) and not just (x − a), don\'t set x = 1. Solve 2x − 1 = 0 properly to get x = 1/2, and substitute that fraction — a very common slip is using the wrong root here.'
+    }]
+  },
+  {
+    qno:'Q2(i)', marks:'Practice', diff:'m', star:true, sc:'worksheet', src:'Worksheet Q2(i)',
+    q:'Find the value of \'a\' when \\(2x^3+3x^2+ax-2\\) is divided by \\((2x-3)\\), remainder is 7',
+    parts:[{ label:'',
+      given:['f(x) = 2x^3+3x^2+ax-2','\\text{Divisor: } (2x-3), \\text{ Remainder} = 7'],
+      formula:[{t:'k',text:S`f(x) \div (x-a) \Rightarrow \text{Remainder} = f(a)`}],
+      working:[
+        {t:'w', text:'2x − 3 = 0  ∴ x = 3/2'},
+        {t:'k', text:S`f\left(\dfrac32\right) = 2\left(\dfrac32\right)^3+3\left(\dfrac32\right)^2+a\left(\dfrac32\right)-2 = 7`},
+        {t:'k', text:S`\dfrac{27}{4}+\dfrac{27}{4}+\dfrac{3a}{2}-2 = 7`},
+        {t:'w', text:'∴ Multiply every term by 4'},
+        {t:'k', text:S`27+27+6a-8 = 28`},
+        {t:'k', text:S`46+6a = 28`},
+        {t:'k', text:S`6a = -18`}
+      ],
+      ans:'a = −3'
+    }]
+  },
+  {
+    qno:'Q2(ii)', marks:'Practice', diff:'m', star:true, sc:'worksheet', src:'Worksheet Q2(ii)',
+    q:'Find the value of \'a\' when \\(ax^3+9x^2+4x-10\\) is divided by \\((x+3)\\), remainder is 5',
+    parts:[{ label:'',
+      given:['f(x) = ax^3+9x^2+4x-10','\\text{Divisor: } (x+3), \\text{ Remainder} = 5'],
+      formula:[{t:'k',text:S`f(x) \div (x-a) \Rightarrow \text{Remainder} = f(a)`}],
+      working:[
+        {t:'w', text:'x + 3 = 0  ∴ x = −3'},
+        {t:'k', text:S`f(-3) = a(-3)^3+9(-3)^2+4(-3)-10 = 5`},
+        {t:'k', text:S`-27a+81-12-10 = 5`},
+        {t:'k', text:S`-27a+59 = 5`},
+        {t:'k', text:S`-27a = -54`}
+      ],
+      ans:'a = 2'
+    }]
+  },
+  {
+    qno:'Q2(iii)', marks:'Practice', diff:'h', star:true, sc:'worksheet', src:'Worksheet Q2(iii)',
+    q:'Find the value of \'a\' when \\(2x^3-ax^2+(5a-3)x-8\\) is divided by \\((x-2)\\), remainder is 14',
+    parts:[{ label:'',
+      given:['f(x) = 2x^3-ax^2+(5a-3)x-8','\\text{Divisor: } (x-2), \\text{ Remainder} = 14'],
+      formula:[{t:'k',text:S`f(x) \div (x-a) \Rightarrow \text{Remainder} = f(a)`}],
+      working:[
+        {t:'w', text:'x − 2 = 0  ∴ x = 2'},
+        {t:'k', text:S`f(2) = 2(2)^3-a(2)^2+(5a-3)(2)-8 = 14`},
+        {t:'k', text:S`16-4a+10a-6-8 = 14`},
+        {t:'k', text:S`2+6a = 14`},
+        {t:'k', text:S`6a = 12`}
+      ],
+      ans:'a = 2',
+      mbtip:'\'a\' appears twice here — once alone and once inside (5a − 3). Substitute x = 2 first and expand everything before collecting the a-terms, or it\'s very easy to miss one of the two a\'s when solving.'
+    }]
+  },
+  {
+    qno:'Q3', marks:'Practice', diff:'m', star:false, sc:'worksheet', src:'Worksheet Q3',
+    q:'If \\(f(x) = x^3+ax^2-x-2\\) and \\(p(x) = ax^3+x^2-6x-4\\) leave the same remainder when divided by \\((x-2)\\), find \'a\'.',
+    parts:[{ label:'',
+      given:['f(x) = x^3+ax^2-x-2','p(x) = ax^3+x^2-6x-4','\\text{Both} \\div (x-2) \\text{ leave the same remainder}'],
+      formula:[{t:'k',text:S`f(x) \div (x-a) \Rightarrow \text{Remainder} = f(a)`}],
+      working:[
+        {t:'w', text:'By the Remainder Theorem, x = 2 in both'},
+        {t:'k', text:S`f(2) = (2)^3+a(2)^2-2-2 = 4a+4`},
+        {t:'k', text:S`p(2) = a(2)^3+(2)^2-6(2)-4 = 8a-12`},
+        {t:'w', text:'∴ Set f(2) = p(2)'},
+        {t:'k', text:S`4a+4 = 8a-12`},
+        {t:'k', text:S`16 = 4a`}
+      ],
+      ans:'a = 4'
+    }]
+  },
+  {
+    qno:'Q4(i)', marks:'Practice', diff:'h', star:true, sc:'worksheet', src:'Worksheet Q4(i)',
+    q:'\\(f(x) = x^3+ax^2-bx-8\\); remainder 0 when divided by \\((x-2)\\), remainder −30 when divided by \\((x+1)\\). Find a and b.',
+    parts:[{ label:'',
+      given:['f(x) = x^3+ax^2-bx-8'],
+      formula:[{t:'k',text:S`f(x) \div (x-a) \Rightarrow \text{Remainder} = f(a)`}],
+      working:[
+        {t:'w', text:'Condition 1: (x − 2) ⟹ x = 2, remainder = 0'},
+        {t:'k', text:S`f(2) = 8+4a-2b-8 = 0`},
+        {t:'k', text:S`4a-2b = 0 \quad \dots (i)`},
+        {t:'w', text:'Condition 2: (x + 1) ⟹ x = −1, remainder = −30'},
+        {t:'k', text:S`f(-1) = -1+a+b-8 = -30`},
+        {t:'k', text:S`a+b = -21 \quad \dots (ii)`},
+        {t:'w', text:'∴ From (i): b = 2a. Substitute into (ii)'},
+        {t:'k', text:S`a+2a = -21`},
+        {t:'k', text:S`3a = -21`},
+        {t:'w', text:'∴ a = −7, so b = 2(−7)'}
+      ],
+      ans:'a = −7, b = −14',
+      mbtip:'With two unknowns, look at both equations before picking one to substitute — here (i) gives b = 2a directly with no fractions, which is much easier to substitute into (ii) than trying it the other way round.'
+    }]
+  },
+  {
+    qno:'Q4(ii)', marks:'Practice', diff:'h', star:true, sc:'worksheet', src:'Worksheet Q4(ii)',
+    q:'\\(2x^3+ax^2+bx-2\\) leaves remainder 7 and 0 when divided by \\((2x-3)\\) and \\((x+2)\\) respectively. Find a and b.',
+    parts:[{ label:'',
+      given:['f(x) = 2x^3+ax^2+bx-2'],
+      formula:[{t:'k',text:S`f(x) \div (x-a) \Rightarrow \text{Remainder} = f(a)`}],
+      working:[
+        {t:'w', text:'Condition 1: (2x − 3) ⟹ x = 3/2, remainder = 7'},
+        {t:'k', text:S`f\left(\dfrac32\right) = 2\left(\dfrac32\right)^3+a\left(\dfrac32\right)^2+b\left(\dfrac32\right)-2 = 7`},
+        {t:'k', text:S`\dfrac{27}{4}+\dfrac{9a}{4}+\dfrac{3b}{2}-2 = 7`},
+        {t:'w', text:'∴ Multiply every term by 4'},
+        {t:'k', text:S`27+9a+6b-8 = 36`},
+        {t:'k', text:S`3a+2b = 3 \quad \dots (i)`},
+        {t:'w', text:'Condition 2: (x + 2) ⟹ x = −2, remainder = 0'},
+        {t:'k', text:S`f(-2) = 2(-2)^3+a(-2)^2+b(-2)-2 = 0`},
+        {t:'k', text:S`-16+4a-2b-2 = 0`},
+        {t:'k', text:S`4a-2b = 18`},
+        {t:'k', text:S`2a-b = 9 \quad \dots (ii)`},
+        {t:'w', text:'∴ Add 2×(ii) to (i): (3a+2b)+(4a-2b) = 3+18'},
+        {t:'k', text:S`7a = 21`},
+        {t:'w', text:'∴ a = 3. Substitute into (ii): 2(3) − b = 9'}
+      ],
+      ans:'a = 3, b = −3'
+    }]
+  },
+  {
+    qno:'Q5(i)', marks:'Practice', diff:'m', star:false, sc:'worksheet', src:'Worksheet Q5(i)',
+    q:'What number should be added to \\(2x^3-3x^2+x\\) so that on dividing by \\((x-2)\\), remainder is 3?',
+    parts:[{ label:'',
+      given:['\\text{Let number to be added} = k','f(x) = 2x^3-3x^2+x+k'],
+      formula:[{t:'k',text:S`f(x) \div (x-a) \Rightarrow \text{Remainder} = f(a)`}],
+      working:[
+        {t:'w', text:'Divisor (x − 2) ⟹ x = 2'},
+        {t:'k', text:S`f(2) = 2(2)^3-3(2)^2+2+k = 3`},
+        {t:'k', text:S`16-12+2+k = 3`},
+        {t:'k', text:S`6+k = 3`}
+      ],
+      ans:'Number to be added = −3'
+    }]
+  },
+  {
+    qno:'Q5(ii)', marks:'Practice', diff:'m', star:false, sc:'worksheet', src:'Worksheet Q5(ii)',
+    q:'What number should be subtracted from \\(x^3+3x^2-8x+14\\) so that on dividing by \\((x-2)\\), remainder is 10?',
+    parts:[{ label:'',
+      given:['\\text{Let number to be subtracted} = k','f(x) = x^3+3x^2-8x+14-k'],
+      formula:[{t:'k',text:S`f(x) \div (x-a) \Rightarrow \text{Remainder} = f(a)`}],
+      working:[
+        {t:'w', text:'Divisor (x − 2) ⟹ x = 2'},
+        {t:'k', text:S`f(2) = (2)^3+3(2)^2-8(2)+14-k = 10`},
+        {t:'k', text:S`8+12-16+14-k = 10`},
+        {t:'k', text:S`18-k = 10`}
+      ],
+      ans:'Number to be subtracted = 8',
+      mbtip:'Since the number is being subtracted, write f(x) with a "−k" at the end, not "+k". Getting this sign wrong is the single most common mistake in "what should be added/subtracted" questions.'
+    }]
+  },
+  {
+    qno:'Q6(i)', marks:'Practice', diff:'m', star:false, sc:'worksheet', src:'Worksheet Q6(i)',
+    q:'Is \\((x-1)\\) a factor of \\(x^6-x^5+x^4+x^3-x^2-x+1\\)?',
+    parts:[{ label:'',
+      given:['f(x) = x^6-x^5+x^4+x^3-x^2-x+1'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'x − 1 = 0  ∴ x = 1'},
+        {t:'k', text:S`f(1) = 1-1+1+1-1-1+1`},
+        {t:'k', text:S`f(1) = 1`}
+      ],
+      ans:'f(1) ≠ 0  ∴ (x − 1) is NOT a factor'
+    }]
+  },
+  {
+    qno:'Q6(ii)', marks:'Practice', diff:'e', star:false, sc:'worksheet', src:'Worksheet Q6(ii)',
+    q:'Show that \\((3x+2)\\) is a factor of \\(3x^2-x-2\\).',
+    parts:[{ label:'',
+      given:['f(x) = 3x^2-x-2'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'3x + 2 = 0  ∴ x = −2/3'},
+        {t:'k', text:S`f\left(-\dfrac23\right) = 3\left(\dfrac49\right)-\left(-\dfrac23\right)-2`},
+        {t:'k', text:S`f\left(-\dfrac23\right) = \dfrac43+\dfrac23-2`},
+        {t:'k', text:S`f\left(-\dfrac23\right) = 2-2`}
+      ],
+      ans:'f(−2/3) = 0  ∴ (3x + 2) IS a factor'
+    }]
+  },
+  {
+    qno:'Q7(i)', marks:'Practice', diff:'e', star:false, sc:'worksheet', src:'Worksheet Q7(i)',
+    q:'If \\((2x+1)\\) is a factor of \\(2x^2+ax-3\\), find a.',
+    parts:[{ label:'',
+      given:['f(x) = 2x^2+ax-3'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'2x + 1 = 0  ∴ x = −1/2'},
+        {t:'k', text:S`f\left(-\dfrac12\right) = 2\left(\dfrac14\right)+a\left(-\dfrac12\right)-3 = 0`},
+        {t:'k', text:S`\dfrac12-\dfrac{a}{2}-3 = 0`},
+        {t:'w', text:'∴ Multiply every term by 2'},
+        {t:'k', text:S`1-a-6 = 0`}
+      ],
+      ans:'a = −5'
+    }]
+  },
+  {
+    qno:'Q7(ii)', marks:'Practice', diff:'m', star:false, sc:'worksheet', src:'Worksheet Q7(ii)',
+    q:'Find k if \\((x+3)\\) is a factor of \\(2x^3+kx^2-x+24\\).',
+    parts:[{ label:'',
+      given:['f(x) = 2x^3+kx^2-x+24'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'x + 3 = 0  ∴ x = −3'},
+        {t:'k', text:S`f(-3) = 2(-3)^3+k(-3)^2-(-3)+24 = 0`},
+        {t:'k', text:S`-54+9k+3+24 = 0`},
+        {t:'k', text:S`9k-27 = 0`}
+      ],
+      ans:'k = 3'
+    }]
+  },
+  {
+    qno:'Q8(i)', marks:'Practice', diff:'m', star:false, sc:'worksheet', src:'Worksheet Q8(i)',
+    q:'Find a and b if \\((x-3)\\) and \\((x+1)\\) are factors of \\(x^3+ax^2+bx+9\\).',
+    parts:[{ label:'',
+      given:['f(x) = x^3+ax^2+bx+9'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'(x − 3) is a factor ⟹ f(3) = 0'},
+        {t:'k', text:S`27+9a+3b+9 = 0`},
+        {t:'k', text:S`3a+b = -12 \quad \dots (i)`},
+        {t:'w', text:'(x + 1) is a factor ⟹ f(−1) = 0'},
+        {t:'k', text:S`-1+a-b+9 = 0`},
+        {t:'k', text:S`a-b = -8 \quad \dots (ii)`},
+        {t:'w', text:'∴ Add (i) and (ii)'},
+        {t:'k', text:S`4a = -20`},
+        {t:'w', text:'∴ a = −5. Substitute into (ii): −5 − b = −8'}
+      ],
+      ans:'a = −5, b = 3'
+    }]
+  },
+  {
+    qno:'Q8(ii)', marks:'Practice', diff:'m', star:false, sc:'worksheet', src:'Worksheet Q8(ii)',
+    q:'Find a and b if \\((x-2)\\) and \\((x+3)\\) are factors of \\(x^3+ax^2+bx-12\\).',
+    parts:[{ label:'',
+      given:['f(x) = x^3+ax^2+bx-12'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'(x − 2) is a factor ⟹ f(2) = 0'},
+        {t:'k', text:S`8+4a+2b-12 = 0`},
+        {t:'k', text:S`2a+b = 2 \quad \dots (i)`},
+        {t:'w', text:'(x + 3) is a factor ⟹ f(−3) = 0'},
+        {t:'k', text:S`-27+9a-3b-12 = 0`},
+        {t:'k', text:S`3a-b = 13 \quad \dots (ii)`},
+        {t:'w', text:'∴ Add (i) and (ii)'},
+        {t:'k', text:S`5a = 15`},
+        {t:'w', text:'∴ a = 3. Substitute into (i): 2(3) + b = 2'}
+      ],
+      ans:'a = 3, b = −4'
+    }]
+  },
+  {
+    qno:'Q9', marks:'Practice', diff:'e', star:false, sc:'worksheet', src:'Worksheet Q9',
+    q:'What number should be subtracted from \\(4x^3+6x^2-5x\\) so that \\((x-1)\\) is a factor?',
+    parts:[{ label:'',
+      given:['\\text{Let number to be subtracted} = k','f(x) = 4x^3+6x^2-5x-k'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'x − 1 = 0  ∴ x = 1'},
+        {t:'k', text:S`f(1) = 4+6-5-k = 0`},
+        {t:'k', text:S`5-k = 0`}
+      ],
+      ans:'Number to be subtracted = 5'
+    }]
+  },
+  {
+    qno:'Q10(i)', marks:'Practice', diff:'h', star:true, sc:'worksheet', src:'Worksheet Q10(i)',
+    q:'\\((x-1)\\) is a factor of \\(ax^3-x^2+bx+6\\), and dividing by \\((x-3)\\) gives remainder 30. Find a and b.',
+    parts:[{ label:'',
+      given:['f(x) = ax^3-x^2+bx+6'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0. \quad f(x) \div (x-a) \Rightarrow \text{Remainder} = f(a)`}],
+      working:[
+        {t:'w', text:'(x − 1) is a factor ⟹ f(1) = 0'},
+        {t:'k', text:S`a-1+b+6 = 0`},
+        {t:'k', text:S`a+b = -5 \quad \dots (i)`},
+        {t:'w', text:'Dividing by (x − 3) gives remainder 30 ⟹ f(3) = 30'},
+        {t:'k', text:S`27a-9+3b+6 = 30`},
+        {t:'k', text:S`27a+3b = 33`},
+        {t:'k', text:S`9a+b = 11 \quad \dots (ii)`},
+        {t:'w', text:'∴ Subtract (i) from (ii)'},
+        {t:'k', text:S`8a = 16`},
+        {t:'w', text:'∴ a = 2. Substitute into (i): 2 + b = −5'}
+      ],
+      ans:'a = 2, b = −7',
+      mbtip:'Notice the two conditions are different types — one is a factor condition (set f(1) = 0), the other is a remainder condition (set f(3) = 30, not 0). Mixing these up — putting 0 where 30 should be, or vice versa — is the usual error here.'
+    }]
+  },
+  {
+    qno:'Q10(ii)', marks:'Practice', diff:'h', star:true, sc:'worksheet', src:'Worksheet Q10(ii)',
+    q:'\\((x-2)\\) is a factor of \\(x^3+ax^2+bx+26\\), and f(3) = 32. Find a and b.',
+    parts:[{ label:'',
+      given:['f(x) = x^3+ax^2+bx+26'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'(x − 2) is a factor ⟹ f(2) = 0'},
+        {t:'k', text:S`8+4a+2b+26 = 0`},
+        {t:'k', text:S`2a+b = -17 \quad \dots (i)`},
+        {t:'w', text:'f(3) = 32 (given directly)'},
+        {t:'k', text:S`27+9a+3b+26 = 32`},
+        {t:'k', text:S`9a+3b = -21`},
+        {t:'k', text:S`3a+b = -7 \quad \dots (ii)`},
+        {t:'w', text:'∴ Subtract (i) from (ii)'},
+        {t:'k', text:S`a = 10`},
+        {t:'w', text:'∴ Substitute into (ii): 3(10) + b = −7'}
+      ],
+      ans:'a = 10, b = −37'
+    }]
+  },
+  {
+    qno:'Q11(i)', marks:'Practice', diff:'m', star:false, sc:'worksheet', src:'Worksheet Q11(i)',
+    q:'Prove \\((x+3)\\) is a factor of \\(x^3+3x^2-4x-12\\). Hence factorise fully.',
+    parts:[{ label:'',
+      given:['f(x) = x^3+3x^2-4x-12'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'x + 3 = 0  ∴ x = −3'},
+        {t:'k', text:S`f(-3) = -27+27+12-12`},
+        {t:'k', text:S`f(-3) = 0`},
+        {t:'w', text:'∴ (x + 3) is a factor. Divide f(x) by (x + 3) using long division'},
+        {t:'k', text:S`\begin{array}{r|rrrr} & & \textcolor{#1F3A5F}{x^2} & & \textcolor{#1F3A5F}{-4} \\ \hline x+3 & x^3 & +3x^2 & -4x & -12 \\ \textcolor{#8B1A1A}{-} & \underline{\textcolor{#8B1A1A}{x^3}} & \underline{\textcolor{#8B1A1A}{+3x^2}} & & \\  & & & \textcolor{#B8860B}{-4x} & \textcolor{#B8860B}{-12} \\ \textcolor{#8B1A1A}{-} & & & \underline{\textcolor{#8B1A1A}{-4x}} & \underline{\textcolor{#8B1A1A}{-12}} \\ \hline  & & & & \textcolor{#2E6B3E}{0}\end{array}`},
+        {t:'w', text:'∴ Remainder = 0, confirming exact division. Quotient = x² − 4'},
+        {t:'k', text:S`x^3+3x^2-4x-12 = (x+3)(x^2-4)`},
+        {t:'w', text:'∴ Factorise x² − 4 as a difference of squares'},
+        {t:'k', text:S`x^2-4 = (x-2)(x+2)`}
+      ],
+      ans:'(x + 3)(x − 2)(x + 2)'
+    }]
+  },
+  {
+    qno:'Q11(ii)', marks:'Practice', diff:'m', star:false, sc:'worksheet', src:'Worksheet Q11(ii)',
+    q:'Prove \\((x-1)\\) is a factor of \\(x^3-3x+2\\). Hence factorise fully.',
+    parts:[{ label:'',
+      given:['f(x) = x^3-3x+2'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'x − 1 = 0  ∴ x = 1'},
+        {t:'k', text:S`f(1) = 1-3+2`},
+        {t:'k', text:S`f(1) = 0`},
+        {t:'w', text:'∴ (x − 1) is a factor. Divide f(x) by (x − 1) using long division'},
+        {t:'w', text:'Write f(x) with a placeholder term: x³ + 0x² − 3x + 2'},
+        {t:'k', text:S`\begin{array}{r|rrrr} & & \textcolor{#1F3A5F}{x^2} & \textcolor{#1F3A5F}{+x} & \textcolor{#1F3A5F}{-2} \\ \hline x-1 & x^3 & +0x^2 & -3x & +2 \\ \textcolor{#8B1A1A}{-} & \underline{\textcolor{#8B1A1A}{x^3}} & \underline{\textcolor{#8B1A1A}{-x^2}} & & \\  & & x^2 & \textcolor{#B8860B}{-3x} & \\ \textcolor{#8B1A1A}{-} & & \underline{\textcolor{#8B1A1A}{x^2}} & \underline{\textcolor{#8B1A1A}{-x}} & \\  & & & -2x & \textcolor{#B8860B}{+2} \\ \textcolor{#8B1A1A}{-} & & & \underline{\textcolor{#8B1A1A}{-2x}} & \underline{\textcolor{#8B1A1A}{+2}} \\ \hline  & & & & \textcolor{#2E6B3E}{0}\end{array}`},
+        {t:'w', text:'∴ Remainder = 0, confirming exact division. Quotient = x² + x − 2'},
+        {t:'k', text:S`x^3-3x+2 = (x-1)(x^2+x-2)`},
+        {t:'w', text:'∴ Factorise x² + x − 2'},
+        {t:'k', text:S`x^2+x-2 = (x-1)(x+2)`}
+      ],
+      ans:'(x − 1)²(x + 2)',
+      mbtip:'This cubic has no x² term written, but it still has one — with coefficient 0. Always write that 0x² placeholder before dividing, or the columns won\'t line up and the long division will go wrong.'
+    }]
+  },
+  {
+    qno:'Q11(iii)', marks:'Practice', diff:'h', star:false, sc:'worksheet', src:'Worksheet Q11(iii)',
+    q:'Prove \\((x+2)\\) is a factor of \\(6x^3+19x^2+11x-6\\). Hence factorise fully.',
+    parts:[{ label:'',
+      given:['f(x) = 6x^3+19x^2+11x-6'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'x + 2 = 0  ∴ x = −2'},
+        {t:'k', text:S`f(-2) = 6(-8)+19(4)+11(-2)-6`},
+        {t:'k', text:S`f(-2) = -48+76-22-6`},
+        {t:'k', text:S`f(-2) = 0`},
+        {t:'w', text:'∴ (x + 2) is a factor. Divide f(x) by (x + 2) using long division'},
+        {t:'k', text:S`\begin{array}{r|rrrr} & & \textcolor{#1F3A5F}{6x^2} & \textcolor{#1F3A5F}{+7x} & \textcolor{#1F3A5F}{-3} \\ \hline x+2 & 6x^3 & +19x^2 & +11x & -6 \\ \textcolor{#8B1A1A}{-} & \underline{\textcolor{#8B1A1A}{6x^3}} & \underline{\textcolor{#8B1A1A}{+12x^2}} & & \\  & & 7x^2 & \textcolor{#B8860B}{+11x} & \\ \textcolor{#8B1A1A}{-} & & \underline{\textcolor{#8B1A1A}{7x^2}} & \underline{\textcolor{#8B1A1A}{+14x}} & \\  & & & -3x & \textcolor{#B8860B}{-6} \\ \textcolor{#8B1A1A}{-} & & & \underline{\textcolor{#8B1A1A}{-3x}} & \underline{\textcolor{#8B1A1A}{-6}} \\ \hline  & & & & \textcolor{#2E6B3E}{0}\end{array}`},
+        {t:'w', text:'∴ Remainder = 0, confirming exact division. Quotient = 6x² + 7x − 3'},
+        {t:'k', text:S`6x^3+19x^2+11x-6 = (x+2)(6x^2+7x-3)`},
+        {t:'w', text:'∴ Factorise 6x² + 7x − 3 by splitting the middle term'},
+        {t:'k', text:S`6x^2+7x-3 = 6x^2+9x-2x-3`},
+        {t:'k', text:S`= 3x(2x+3)-1(2x+3)`},
+        {t:'k', text:S`= (2x+3)(3x-1)`}
+      ],
+      ans:'(x + 2)(2x + 3)(3x − 1)'
+    }]
+  },
+  {
+    qno:'Q12', marks:'Practice', diff:'m', star:false, sc:'worksheet', src:'Worksheet Q12',
+    q:'Find k if \\((x+2)\\) is a factor of \\(3x^3+kx^2-18x+40\\). Hence factorise.',
+    parts:[{ label:'',
+      given:['f(x) = 3x^3+kx^2-18x+40'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'x + 2 = 0  ∴ x = −2'},
+        {t:'k', text:S`f(-2) = 3(-8)+k(4)-18(-2)+40 = 0`},
+        {t:'k', text:S`-24+4k+36+40 = 0`},
+        {t:'k', text:S`4k+52 = 0`},
+        {t:'w', text:'∴ k = −13. Divide f(x) by (x + 2) using long division, with k = −13'},
+        {t:'k', text:S`\begin{array}{r|rrrr} & & \textcolor{#1F3A5F}{3x^2} & \textcolor{#1F3A5F}{-19x} & \textcolor{#1F3A5F}{+20} \\ \hline x+2 & 3x^3 & -13x^2 & -18x & +40 \\ \textcolor{#8B1A1A}{-} & \underline{\textcolor{#8B1A1A}{3x^3}} & \underline{\textcolor{#8B1A1A}{+6x^2}} & & \\  & & -19x^2 & \textcolor{#B8860B}{-18x} & \\ \textcolor{#8B1A1A}{-} & & \underline{\textcolor{#8B1A1A}{-19x^2}} & \underline{\textcolor{#8B1A1A}{-38x}} & \\  & & & 20x & \textcolor{#B8860B}{+40} \\ \textcolor{#8B1A1A}{-} & & & \underline{\textcolor{#8B1A1A}{20x}} & \underline{\textcolor{#8B1A1A}{+40}} \\ \hline  & & & & \textcolor{#2E6B3E}{0}\end{array}`},
+        {t:'w', text:'∴ Remainder = 0, confirming exact division. Quotient = 3x² − 19x + 20'},
+        {t:'k', text:S`3x^3-13x^2-18x+40 = (x+2)(3x^2-19x+20)`},
+        {t:'w', text:'∴ Factorise 3x² − 19x + 20 by splitting the middle term'},
+        {t:'k', text:S`3x^2-19x+20 = 3x^2-15x-4x+20`},
+        {t:'k', text:S`= 3x(x-5)-4(x-5)`},
+        {t:'k', text:S`= (x-5)(3x-4)`}
+      ],
+      ans:'k = −13; factorised form: (x + 2)(x − 5)(3x − 4)'
+    }]
+  },
+  {
+    qno:'Q13', marks:'Practice', diff:'h', star:true, sc:'worksheet', src:'Worksheet Q13',
+    q:'Find a and b so that \\(x^3+ax^2+bx-45\\) has \\((x-1)\\) and \\((x+5)\\) as factors. Hence factorise completely.',
+    parts:[{ label:'',
+      given:['f(x) = x^3+ax^2+bx-45'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'(x − 1) is a factor ⟹ f(1) = 0'},
+        {t:'k', text:S`1+a+b-45 = 0`},
+        {t:'k', text:S`a+b = 44 \quad \dots (i)`},
+        {t:'w', text:'(x + 5) is a factor ⟹ f(−5) = 0'},
+        {t:'k', text:S`-125+25a-5b-45 = 0`},
+        {t:'k', text:S`25a-5b = 170`},
+        {t:'k', text:S`5a-b = 34 \quad \dots (ii)`},
+        {t:'w', text:'∴ Add (i) and (ii)'},
+        {t:'k', text:S`6a = 78`},
+        {t:'w', text:'∴ a = 13. Substitute into (i): 13 + b = 44'},
+        {t:'w', text:'∴ b = 31. Divide f(x) by (x − 1) using long division'},
+        {t:'k', text:S`\begin{array}{r|rrrr} & & \textcolor{#1F3A5F}{x^2} & \textcolor{#1F3A5F}{+14x} & \textcolor{#1F3A5F}{+45} \\ \hline x-1 & x^3 & +13x^2 & +31x & -45 \\ \textcolor{#8B1A1A}{-} & \underline{\textcolor{#8B1A1A}{x^3}} & \underline{\textcolor{#8B1A1A}{-x^2}} & & \\  & & 14x^2 & \textcolor{#B8860B}{+31x} & \\ \textcolor{#8B1A1A}{-} & & \underline{\textcolor{#8B1A1A}{14x^2}} & \underline{\textcolor{#8B1A1A}{-14x}} & \\  & & & 45x & \textcolor{#B8860B}{-45} \\ \textcolor{#8B1A1A}{-} & & & \underline{\textcolor{#8B1A1A}{45x}} & \underline{\textcolor{#8B1A1A}{-45}} \\ \hline  & & & & \textcolor{#2E6B3E}{0}\end{array}`},
+        {t:'w', text:'∴ Remainder = 0, confirming exact division. Quotient = x² + 14x + 45'},
+        {t:'k', text:S`x^3+13x^2+31x-45 = (x-1)(x^2+14x+45)`},
+        {t:'w', text:'∴ Factorise x² + 14x + 45 (roots 5 and 9, since 5×9=45 and 5+9=14)'},
+        {t:'k', text:S`x^2+14x+45 = (x+5)(x+9)`}
+      ],
+      ans:'a = 13, b = 31; factorised form: (x − 1)(x + 5)(x + 9)',
+      mbtip:'After dividing by (x − 1), the quadratic you get should factor using the OTHER known root, (x + 5), as a built-in check. If (x + 5) doesn\'t come out of the quadratic, go back — a or b was solved incorrectly.'
+    }]
+  },
+  {
+    qno:'Q14', marks:'Practice', diff:'m', star:false, sc:'worksheet', src:'Worksheet Q14',
+    q:'Using factor theorem, factorise: \\(x^3+10x^2-37x+26\\).',
+    parts:[{ label:'',
+      given:['f(x) = x^3+10x^2-37x+26'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'Try x = 1 (a factor of the constant term, 26)'},
+        {t:'k', text:S`f(1) = 1+10-37+26`},
+        {t:'k', text:S`f(1) = 0`},
+        {t:'w', text:'∴ (x − 1) is a factor. Divide f(x) by (x − 1) using long division'},
+        {t:'k', text:S`\begin{array}{r|rrrr} & & \textcolor{#1F3A5F}{x^2} & \textcolor{#1F3A5F}{+11x} & \textcolor{#1F3A5F}{-26} \\ \hline x-1 & x^3 & +10x^2 & -37x & +26 \\ \textcolor{#8B1A1A}{-} & \underline{\textcolor{#8B1A1A}{x^3}} & \underline{\textcolor{#8B1A1A}{-x^2}} & & \\  & & 11x^2 & \textcolor{#B8860B}{-37x} & \\ \textcolor{#8B1A1A}{-} & & \underline{\textcolor{#8B1A1A}{11x^2}} & \underline{\textcolor{#8B1A1A}{-11x}} & \\  & & & -26x & \textcolor{#B8860B}{+26} \\ \textcolor{#8B1A1A}{-} & & & \underline{\textcolor{#8B1A1A}{-26x}} & \underline{\textcolor{#8B1A1A}{+26}} \\ \hline  & & & & \textcolor{#2E6B3E}{0}\end{array}`},
+        {t:'w', text:'∴ Remainder = 0, confirming exact division. Quotient = x² + 11x − 26'},
+        {t:'k', text:S`x^3+10x^2-37x+26 = (x-1)(x^2+11x-26)`},
+        {t:'w', text:'∴ Factorise x² + 11x − 26 by splitting the middle term'},
+        {t:'k', text:S`x^2+11x-26 = x^2+13x-2x-26`},
+        {t:'k', text:S`= x(x+13)-2(x+13)`},
+        {t:'k', text:S`= (x+13)(x-2)`}
+      ],
+      ans:'(x − 1)(x − 2)(x + 13)',
+      mbtip:'When no root is given, try small divisors of the constant term first — ±1, ±2, ±13, ±26 for this one — starting with ±1 since it\'s quickest to test. Don\'t give up after one failed guess; try both the positive and negative version of each divisor.'
+    }]
+  },
+  {
+    qno:'Q15(i)', marks:'Practice', diff:'m', star:false, sc:'worksheet', src:'Worksheet Q15(i)',
+    q:'Factorise completely: \\(2x^3-9x^2-11x+30\\)',
+    parts:[{ label:'',
+      given:['f(x) = 2x^3-9x^2-11x+30'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'Try x = 5 (a factor of the constant term, 30)'},
+        {t:'k', text:S`f(5) = 2(125)-9(25)-11(5)+30`},
+        {t:'k', text:S`f(5) = 250-225-55+30`},
+        {t:'k', text:S`f(5) = 0`},
+        {t:'w', text:'∴ (x − 5) is a factor. Divide f(x) by (x − 5) using long division'},
+        {t:'k', text:S`\begin{array}{r|rrrr} & & \textcolor{#1F3A5F}{2x^2} & \textcolor{#1F3A5F}{+x} & \textcolor{#1F3A5F}{-6} \\ \hline x-5 & 2x^3 & -9x^2 & -11x & +30 \\ \textcolor{#8B1A1A}{-} & \underline{\textcolor{#8B1A1A}{2x^3}} & \underline{\textcolor{#8B1A1A}{-10x^2}} & & \\  & & x^2 & \textcolor{#B8860B}{-11x} & \\ \textcolor{#8B1A1A}{-} & & \underline{\textcolor{#8B1A1A}{x^2}} & \underline{\textcolor{#8B1A1A}{-5x}} & \\  & & & -6x & \textcolor{#B8860B}{+30} \\ \textcolor{#8B1A1A}{-} & & & \underline{\textcolor{#8B1A1A}{-6x}} & \underline{\textcolor{#8B1A1A}{+30}} \\ \hline  & & & & \textcolor{#2E6B3E}{0}\end{array}`},
+        {t:'w', text:'∴ Remainder = 0, confirming exact division. Quotient = 2x² + x − 6'},
+        {t:'k', text:S`2x^3-9x^2-11x+30 = (x-5)(2x^2+x-6)`},
+        {t:'w', text:'∴ Factorise 2x² + x − 6 by splitting the middle term'},
+        {t:'k', text:S`2x^2+x-6 = 2x^2+4x-3x-6`},
+        {t:'k', text:S`= 2x(x+2)-3(x+2)`},
+        {t:'k', text:S`= (x+2)(2x-3)`}
+      ],
+      ans:'(x − 5)(x + 2)(2x − 3)'
+    }]
+  },
+  {
+    qno:'Q15(ii)', marks:'Practice', diff:'m', star:false, sc:'worksheet', src:'Worksheet Q15(ii)',
+    q:'Factorise completely: \\(3x^3+2x^2-19x+6\\)',
+    parts:[{ label:'',
+      given:['f(x) = 3x^3+2x^2-19x+6'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'Try x = 2 (a factor of the constant term, 6)'},
+        {t:'k', text:S`f(2) = 3(8)+2(4)-19(2)+6`},
+        {t:'k', text:S`f(2) = 24+8-38+6`},
+        {t:'k', text:S`f(2) = 0`},
+        {t:'w', text:'∴ (x − 2) is a factor. Divide f(x) by (x − 2) using long division'},
+        {t:'k', text:S`\begin{array}{r|rrrr} & & \textcolor{#1F3A5F}{3x^2} & \textcolor{#1F3A5F}{+8x} & \textcolor{#1F3A5F}{-3} \\ \hline x-2 & 3x^3 & +2x^2 & -19x & +6 \\ \textcolor{#8B1A1A}{-} & \underline{\textcolor{#8B1A1A}{3x^3}} & \underline{\textcolor{#8B1A1A}{-6x^2}} & & \\  & & 8x^2 & \textcolor{#B8860B}{-19x} & \\ \textcolor{#8B1A1A}{-} & & \underline{\textcolor{#8B1A1A}{8x^2}} & \underline{\textcolor{#8B1A1A}{-16x}} & \\  & & & -3x & \textcolor{#B8860B}{+6} \\ \textcolor{#8B1A1A}{-} & & & \underline{\textcolor{#8B1A1A}{-3x}} & \underline{\textcolor{#8B1A1A}{+6}} \\ \hline  & & & & \textcolor{#2E6B3E}{0}\end{array}`},
+        {t:'w', text:'∴ Remainder = 0, confirming exact division. Quotient = 3x² + 8x − 3'},
+        {t:'k', text:S`3x^3+2x^2-19x+6 = (x-2)(3x^2+8x-3)`},
+        {t:'w', text:'∴ Factorise 3x² + 8x − 3 by splitting the middle term'},
+        {t:'k', text:S`3x^2+8x-3 = 3x^2+9x-x-3`},
+        {t:'k', text:S`= 3x(x+3)-1(x+3)`},
+        {t:'k', text:S`= (x+3)(3x-1)`}
+      ],
+      ans:'(x − 2)(x + 3)(3x − 1)'
+    }]
+  }
+];
+
+/* =========================================================================
+   BOARD PYQ DATA (9 verified Section-A items, 2019–2025)
+   All answers independently recomputed against the Remainder/Factor
+   Theorem formula and, for Q11/B1, against synthetic division.
+   ========================================================================= */
+const boardData = [
+  {
+    qno:'B1', marks:'MCQ · 1 Mark', diff:'e', star:true, sc:'pyq', src:'ICSE 2025 Q1(vii)', stripe:'two-mark',
+    type:'mcq',
+    q:'The factor common to the two polynomials \\(x^2-4\\) and \\(x^3-x^2-4x+4\\) is:',
+    opts:['(x+1)','(x−1)','(x+2)','(x−2)'], ans:3,
+    parts:[{ label:'',
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'Factorise x² − 4 as a difference of squares'},
+        {t:'k', text:S`x^2-4 = (x-2)(x+2)`},
+        {t:'w', text:'Test x = 2 in the cubic'},
+        {t:'k', text:S`(2)^3-(2)^2-4(2)+4 = 8-4-8+4 = 0`},
+        {t:'w', text:'Test x = −2 in the cubic'},
+        {t:'k', text:S`(-2)^3-(-2)^2-4(-2)+4 = -8-4+8+4 = 0`}
+      ],
+      srcnote:'Both x = 2 and x = −2 satisfy the cubic — this means the entire quadratic (x−2)(x+2) actually divides it exactly (the cubic factorises as (x−1)(x−2)(x+2)), so both option (c) and option (d) are mathematically valid common factors. Option (d) is given as the answer here since it is the conventionally expected single choice on this type of MCQ, but I could not independently verify the official ICSE answer key for this exact question — please cross-check against the official key before relying on this.',
+      ans:'(x − 2)'
+    }]
+  },
+  {
+    qno:'B2', marks:'MCQ · 1 Mark', diff:'m', star:false, sc:'pyq', src:'ICSE 2024 Q1(ii)', stripe:'two-mark',
+    type:'mcq',
+    q:'What must be subtracted from the polynomial \\(x^3+x^2-2x+1\\), so that the result is exactly divisible by \\((x-3)\\)?',
+    opts:['−31','−30','30','31'], ans:3,
+    parts:[{ label:'',
+      given:['\\text{Let number to be subtracted} = k','f(x) = x^3+x^2-2x+1-k'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'x − 3 = 0  ∴ x = 3'},
+        {t:'k', text:S`f(3) = 27+9-6+1-k = 0`},
+        {t:'k', text:S`31-k = 0`}
+      ],
+      ans:'k = 31'
+    }]
+  },
+  {
+    qno:'B3', marks:'MCQ · 1 Mark', diff:'e', star:false, sc:'pyq', src:'ICSE 2023 Q1(ii)', stripe:'two-mark',
+    type:'mcq',
+    q:'If \\(x-2\\) is a factor of \\(x^3-kx-12\\), then the value of k is:',
+    opts:['3','2','−2','−3'], ans:2,
+    parts:[{ label:'',
+      given:['f(x) = x^3-kx-12'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'x − 2 = 0  ∴ x = 2'},
+        {t:'k', text:S`f(2) = 8-2k-12 = 0`},
+        {t:'k', text:S`-4-2k = 0`}
+      ],
+      ans:'k = −2'
+    }]
+  },
+  {
+    qno:'B4', marks:'4 Marks', diff:'m', star:false, sc:'pyq', src:'ICSE 2023 Q10(i)', stripe:'three-five',
+    q:'Factorize completely using factor theorem: \\(2x^3-x^2-13x-6\\)',
+    parts:[{ label:'',
+      given:['f(x) = 2x^3-x^2-13x-6'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'Try x = −2 (a factor of the constant term, 6)'},
+        {t:'k', text:S`f(-2) = 2(-8)-4-13(-2)-6`},
+        {t:'k', text:S`f(-2) = -16-4+26-6`},
+        {t:'k', text:S`f(-2) = 0`},
+        {t:'w', text:'∴ (x + 2) is a factor. Divide f(x) by (x + 2)'},
+        {t:'k', text:S`2x^3-x^2-13x-6 = (x+2)(2x^2-5x-3)`},
+        {t:'w', text:'∴ Factorise 2x² − 5x − 3 by splitting the middle term'},
+        {t:'k', text:S`2x^2-5x-3 = 2x^2-6x+x-3`},
+        {t:'k', text:S`= 2x(x-3)+1(x-3)`},
+        {t:'k', text:S`= (x-3)(2x+1)`}
+      ],
+      ans:'(x + 2)(x − 3)(2x + 1)'
+    }]
+  },
+  {
+    qno:'B5', marks:'MCQ · 1 Mark', diff:'e', star:false, sc:'pyq', src:'ICSE 2022 Sem 1, Q1', stripe:'two-mark',
+    type:'mcq',
+    q:'If \\((x+2)\\) is a factor of the polynomial \\(x^3-kx^2-5x+6\\), then the value of k is:',
+    opts:['1','2','3','−2'], ans:1,
+    parts:[{ label:'',
+      given:['f(x) = x^3-kx^2-5x+6'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'x + 2 = 0  ∴ x = −2'},
+        {t:'k', text:S`f(-2) = -8-4k+10+6 = 0`},
+        {t:'k', text:S`8-4k = 0`}
+      ],
+      ans:'k = 2'
+    }]
+  },
+  {
+    qno:'B6', marks:'MCQ · 1 Mark', diff:'m', star:false, sc:'pyq', src:'ICSE 2022 Sem 1, Q11', stripe:'two-mark',
+    type:'mcq',
+    q:'The polynomial \\(x^3-2x^2+ax+12\\) when divided by \\((x+1)\\) leaves remainder 20, then \'a\' is equal to:',
+    opts:['−31','9','11','−11'], ans:3,
+    parts:[{ label:'',
+      given:['f(x) = x^3-2x^2+ax+12'],
+      formula:[{t:'k',text:S`f(x) \div (x-a) \Rightarrow \text{Remainder} = f(a)`}],
+      working:[
+        {t:'w', text:'x + 1 = 0  ∴ x = −1'},
+        {t:'k', text:S`f(-1) = -1-2-a+12 = 20`},
+        {t:'k', text:S`9-a = 20`}
+      ],
+      ans:'a = −11'
+    }]
+  },
+  {
+    qno:'B7', marks:'3 Marks', diff:'m', star:false, sc:'pyq', src:'ICSE 2022 Sem 2, Q3(a)', stripe:'three-five',
+    q:'If \\((x+2)\\) and \\((x+3)\\) are factors of \\(x^3+ax+b\\), find the values of \'a\' and \'b\'.',
+    parts:[{ label:'',
+      given:['f(x) = x^3+ax+b \\ \\ (\\text{no } x^2 \\text{ term})'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'(x + 2) is a factor ⟹ f(−2) = 0'},
+        {t:'k', text:S`-8-2a+b = 0`},
+        {t:'k', text:S`-2a+b = 8 \quad \dots (i)`},
+        {t:'w', text:'(x + 3) is a factor ⟹ f(−3) = 0'},
+        {t:'k', text:S`-27-3a+b = 0`},
+        {t:'k', text:S`-3a+b = 27 \quad \dots (ii)`},
+        {t:'w', text:'∴ Subtract (i) from (ii)'},
+        {t:'k', text:S`-a = 19`}
+      ],
+      ans:'a = −19, b = −30',
+      mbtip:'Since there\'s no x² term, f(x) has only three terms — don\'t accidentally write ax² instead of ax when substituting. Also, "a" here is just the coefficient of x, not related to the roots −2 and −3 at all.'
+    }]
+  },
+  {
+    qno:'B8', marks:'3 Marks', diff:'m', star:false, sc:'pyq', src:'ICSE 2020 Q2(a)', stripe:'three-five',
+    q:'Use factor theorem to factorise \\(6x^3+17x^2+4x-12\\) completely.',
+    parts:[{ label:'',
+      given:['f(x) = 6x^3+17x^2+4x-12'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'Try x = −2 (a factor of the constant term, 12)'},
+        {t:'k', text:S`f(-2) = 6(-8)+17(4)+4(-2)-12`},
+        {t:'k', text:S`f(-2) = -48+68-8-12`},
+        {t:'k', text:S`f(-2) = 0`},
+        {t:'w', text:'∴ (x + 2) is a factor. Divide f(x) by (x + 2)'},
+        {t:'k', text:S`6x^3+17x^2+4x-12 = (x+2)(6x^2+5x-6)`},
+        {t:'w', text:'∴ Factorise 6x² + 5x − 6 by splitting the middle term'},
+        {t:'k', text:S`6x^2+5x-6 = 6x^2+9x-4x-6`},
+        {t:'k', text:S`= 3x(2x+3)-2(2x+3)`},
+        {t:'k', text:S`= (2x+3)(3x-2)`}
+      ],
+      ans:'(x + 2)(2x + 3)(3x − 2)'
+    }]
+  },
+  {
+    qno:'B9', marks:'3 Marks', diff:'m', star:false, sc:'pyq', src:'ICSE — year as tagged in extraction file, recommend re-verifying', stripe:'three-five',
+    q:'Using the factor theorem, show that \\((x-2)\\) is a factor of \\(x^3+x^2-4x-4\\). Hence, factorise the polynomial completely.',
+    parts:[{ label:'',
+      given:['f(x) = x^3+x^2-4x-4'],
+      formula:[{t:'k',text:S`(x-a) \text{ is a factor} \Leftrightarrow f(a) = 0`}],
+      working:[
+        {t:'w', text:'x − 2 = 0  ∴ x = 2'},
+        {t:'k', text:S`f(2) = 8+4-8-4`},
+        {t:'k', text:S`f(2) = 0`},
+        {t:'w', text:'∴ (x − 2) is a factor. Divide f(x) by (x − 2)'},
+        {t:'k', text:S`x^3+x^2-4x-4 = (x-2)(x^2+3x+2)`},
+        {t:'w', text:'∴ Factorise x² + 3x + 2 (roots −1 and −2, since (−1)(−2)=2 and −1+−2=−3... check: 1×2=2, 1+2=3)'},
+        {t:'k', text:S`x^2+3x+2 = (x+1)(x+2)`}
+      ],
+      srcnote:'This item\'s exact board-paper year could not be pinned down with full confidence from the extraction snippet — the source note in the earlier intake report flagged this for re-verification; please confirm the year against the source PDF before treating it as final.',
+      ans:'(x − 2)(x + 1)(x + 2)'
+    }]
+  }
+];
+
+render('exercise-qs', exerciseData);
+render('board-qs', boardData);
+updateCount('exercise-qs');
+updateCount('board-qs');
+renderMathIn(document.getElementById('panel-concepts'));
+</script>
+</body>
+</html>
