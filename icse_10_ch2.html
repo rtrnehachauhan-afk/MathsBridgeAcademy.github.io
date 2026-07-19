@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banking — ICSE Class 10 | Maths Bridge Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F0E8;--bg2:#EDE8DC;--bg3:#E4DDD0;
+  --green:#2D5A3D;--green2:#3D7A55;--green3:#1A3D28;
+  --gold:#C9A84C;--gold2:#E8C56A;--gold3:#A07830;
+  --slate:#1A3050;--blue:#2563A8;--cbblue:#0D2B4E;
+  --purple:#7B5EA7;
+  --amber:#7A5C00;--amberbg:#FFF8DC;
+  --text:#000;--text2:#1a1a1a;--text3:#555;
+  --white:#fff;--card:#FFFDF8;--border:#D4C9B0;
+  --fbg:#EEF5F0;--hbg:#FFF8E6;
+}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--bg);color:var(--text);font-size:20px;line-height:1.75}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px 80px}
+
+/* ---------- overflow safety (locked, per spec) ---------- */
+.k, .formula-text, .qtxt, .sol-body, .given-row{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:3px 0}
+
+/* HEADER */
+.site-header{background:var(--green3);border-bottom:3px solid var(--gold)}
+.header-inner{display:flex;align-items:center;gap:16px;padding:12px 24px;max-width:960px;margin:0 auto}
+.logo-mark{width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--green3);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;font-size:16px;flex-shrink:0}
+.ht-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--white);line-height:1.1}
+.ht-tag{font-size:11px;color:var(--gold2);letter-spacing:.05em;margin-top:2px}
+.hr-right{margin-left:auto;text-align:right}
+.hr-board{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.hr-ch{font-family:'Playfair Display',serif;font-size:15px;color:var(--white);font-weight:700}
+
+/* HERO */
+.hero{background:var(--green);padding:22px 28px;border-radius:0 0 8px 8px;margin-bottom:22px;position:relative;overflow:hidden}
+.h-lbl{font-size:10px;font-weight:700;color:var(--gold2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.h-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:800;color:var(--white);line-height:1.1;margin-bottom:5px}
+.h-sub{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:16px}
+.h-pills{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:4px}
+.h-pill{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);color:var(--white);font-size:11px;font-weight:600;padding:3px 12px;border-radius:20px;font-family:'JetBrains Mono',monospace}
+
+/* TABS */
+.tabs{display:flex;gap:5px;flex-wrap:wrap;background:var(--bg2);padding:7px;border-radius:6px;border:1px solid var(--border);margin-bottom:20px}
+.tab-btn{flex:1;min-width:100px;padding:9px 8px;font-size:15px;font-weight:700;border:2px solid transparent;cursor:pointer;border-radius:5px;transition:all .16s;font-family:'Crimson Pro',serif;background:transparent;color:var(--text3)}
+.tab-btn:not(.active):hover{background:var(--bg3);color:var(--text)}
+.tb-concepts.active{background:var(--green);color:var(--white);border-color:var(--green)}
+.tb-board.active{background:var(--gold3);color:var(--white);border-color:var(--gold3)}
+.tb-practice.active{background:var(--slate);color:var(--white);border-color:var(--slate)}
+
+/* DIFFICULTY FILTER */
+.diff-filter{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.df-btn{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:6px 15px;border-radius:20px;border:2px solid var(--border);background:var(--card);color:var(--text3);cursor:pointer;transition:all .15s;letter-spacing:.02em}
+.df-btn:hover{border-color:var(--green2)}
+.df-btn.active[data-f="all"]{background:var(--green3);border-color:var(--green3);color:var(--white)}
+.df-btn.active[data-f="e"]{background:#DFF5E3;border-color:#1A5C2A;color:#1A5C2A}
+.df-btn.active[data-f="m"]{background:#FFF3CC;border-color:#7A5500;color:#7A5500}
+.df-btn.active[data-f="h"]{background:#FFE5E5;border-color:#8B1A1A;color:#8B1A1A}
+.df-count{font-size:12px;color:var(--text3);align-self:center;margin-left:2px;font-family:'JetBrains Mono',monospace}
+
+/* SECTION HEAD */
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.sec-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0;font-family:'JetBrains Mono',monospace;color:var(--white)}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--green)}
+.sec-badge{margin-left:auto;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+
+/* FORMULA / HIGHLIGHT / THEOREM BOXES (used in Concepts tab) */
+.fbox{background:var(--fbg);border-left:4px solid var(--green);border-radius:0 5px 5px 0;padding:13px 16px;margin:10px 0;position:relative}
+.fbox .fl{font-size:10px;font-weight:700;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.fbox .fm{font-size:19px;font-weight:600;color:var(--green3);line-height:1.9}
+.fbox .fn{font-size:15px;color:var(--text2);margin-top:5px;line-height:1.6}
+.hbox{background:var(--hbg);border-left:4px solid var(--gold);border-radius:0 5px 5px 0;padding:11px 15px;margin:10px 0}
+.hbox .hl{font-size:10px;font-weight:700;color:var(--gold3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.hbox .ht{font-size:16px;color:var(--text2);line-height:1.7}
+.tbox{background:var(--card);border:1px solid var(--green);border-radius:6px;padding:15px 18px;margin:12px 0}
+.mba-note{font-size:13px;font-weight:700;color:#8B1A1A;background:#FFF3F0;border-left:3px solid #C94040;padding:5px 11px;border-radius:0 6px 6px 0;margin:6px 0 10px}
+.mba-note b{color:#6B1414}
+.src-note{font-size:13px;font-weight:700;color:var(--amber);background:var(--amberbg);border-left:3px solid var(--gold3);padding:5px 11px;border-radius:0 6px 6px 0;margin:6px 16px 10px}
+.src-note b{color:var(--gold3)}
+.tbox .tl{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--white);background:var(--green);padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:9px;letter-spacing:.04em}
+.tbox .tb{font-size:16px;color:var(--text2);line-height:1.8}
+
+/* CONCEPT CARD */
+.cc{background:var(--card);border:1px solid var(--border);border-radius:6px;margin-bottom:13px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.cc-head{background:var(--green3);padding:11px 16px;display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none}
+.cc-head .ci{font-size:16px}
+.cc-head .ct{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--white);flex:1}
+.cc-head .ca{color:var(--gold2);font-size:13px;transition:transform .2s}
+.cc-head.open .ca{transform:rotate(180deg)}
+.cc-body{display:none;padding:16px 18px;border-top:2px solid var(--border)}
+.cc-body.open{display:block}
+.cc-body p{font-size:16px;color:var(--text2);line-height:1.8;margin-bottom:9px}
+.ctbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.ctbl th{background:var(--green3);color:var(--white);padding:9px 13px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700}
+.ctbl td{padding:9px 13px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+.ctbl tr:nth-child(even) td{background:var(--bg2)}
+
+/* QUESTION CARD */
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:6px;margin-bottom:13px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.q-stripe{height:6px}
+.qcard.q-1m .q-stripe{background:linear-gradient(90deg,var(--green),var(--green2))}
+.qcard.q-2m .q-stripe{background:linear-gradient(90deg,var(--purple),#A07BD4)}
+.qcard.q-3m .q-stripe{background:linear-gradient(90deg,var(--gold3),var(--gold))}
+.qcard.q-la .q-stripe{background:linear-gradient(90deg,var(--slate),var(--blue))}
+
+.q-head{background:var(--card);padding:12px 16px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--border)}
+.q-head-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.qnb{min-width:32px;height:32px;border-radius:5px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;padding:0 6px;background:var(--bg2);color:var(--text2)}
+.qtxt{font-size:19px;font-weight:600;color:var(--text2);line-height:1.6;width:100%;font-family:'Crimson Pro',serif}
+.qmp{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;font-family:'JetBrains Mono',monospace;background:var(--bg2);color:var(--text3)}
+.star{font-size:14px;flex-shrink:0}
+.diff{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap;flex-shrink:0}
+.diff-e{background:#DFF5E3;color:#1A5C2A}
+.diff-m{background:#FFF3CC;color:#7A5500}
+.diff-h{background:#FFE5E5;color:#8B1A1A}
+
+/* PYQ PILLS */
+.pyq-pills{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.pyq-lbl{font-size:9px;font-weight:700;color:var(--text3);font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+.pyq-yr{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;font-family:'JetBrains Mono',monospace;background:#F0EBF8;color:var(--purple);border:1px solid #C4B0E8}
+
+/* MCQ OPTIONS */
+.mcq-opts{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:13px 16px;background:#FAFAF5;border-bottom:1px solid var(--border)}
+.mopt{padding:10px 14px;border-radius:5px;font-size:18px;cursor:pointer;border:2px solid var(--border);background:var(--card);color:var(--text);transition:all .15s;text-align:left;font-family:'Crimson Pro',serif;font-weight:600}
+.mopt:hover:not(.locked){border-color:var(--green2);background:var(--fbg)}
+.mopt.correct{border-color:var(--green);background:#EEF5F0;color:var(--green3)}
+.mopt.wrong{border-color:var(--amber);background:var(--amberbg);color:var(--amber)}
+.mcq-res{display:none;padding:9px 16px 12px;background:#FAFAF5}
+.mcq-res.show{display:block}
+.mcq-res .ml{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.mcq-res.ok .ml{color:var(--green)}.mcq-res.wr .ml{color:var(--amber)}
+.mcq-res .mt{font-size:15px;color:var(--text2);line-height:1.7}
+
+/* FOOTER (card) */
+.q-foot{background:rgba(45,90,61,.06);padding:7px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border)}
+.qsrc{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.src-worksheet{background:#EEF5F0;color:var(--green3)}
+.src-pyq{background:#F0EBF8;color:var(--purple)}
+.sol-btn{margin-left:auto;font-size:11px;font-weight:700;padding:4px 13px;border-radius:5px;border:2px solid var(--green);background:transparent;cursor:pointer;color:var(--green);transition:all .15s;font-family:'JetBrains Mono',monospace}
+.sol-btn:hover{background:var(--green);color:var(--white)}
+.rep-btn{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid #E0C9C9;background:#FBF3F3;color:#9A2B2B;cursor:pointer;transition:all .15s;white-space:nowrap}
+.rep-btn:hover{background:#F3E3E3;border-color:#C99}
+.rep-btn.sent{background:#EEF5F0;border-color:var(--green);color:var(--green)}
+.rep-modal{display:none;position:fixed;inset:0;background:rgba(26,61,40,.55);z-index:999;align-items:center;justify-content:center;padding:18px}
+.rep-modal.show{display:flex}
+.rep-card{background:var(--card);border:1px solid var(--green);border-radius:8px;max-width:440px;width:100%;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,.18)}
+.rep-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--green);margin-bottom:8px}
+.rep-ctx{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3);background:var(--bg2);border-radius:5px;padding:7px 10px;margin-bottom:12px}
+.rep-ta{width:100%;min-height:90px;font-family:'Crimson Pro',serif;font-size:17px;border:1.5px solid var(--border);border-radius:5px;padding:10px 12px;resize:vertical}
+.rep-ta:focus{outline:none;border-color:var(--gold)}
+.rep-status{font-size:13px;color:var(--green);min-height:18px;margin:10px 0 4px;font-weight:600}
+.rep-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+.rep-cancel{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 16px;border-radius:5px;border:1.5px solid var(--border);background:#fff;color:var(--text3);cursor:pointer}
+.rep-send{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 18px;border-radius:5px;border:none;background:var(--green);color:#fff;cursor:pointer;font-weight:700}
+.rep-send:hover{background:var(--green3)}
+
+/* MB TIP */
+.mbtip{background:#FFF8E6;border:2px dashed var(--gold3);border-radius:6px;padding:11px 15px;margin:10px 16px}
+.mbtip-lbl{font-size:10px;font-weight:700;color:var(--gold3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.mbtip-text{font-size:15px;color:var(--text2);line-height:1.65}
+
+/* SOLUTION BODY */
+.sol-body{display:none;border-top:2px solid var(--border)}
+.sol-body.open{display:block}
+.given-blk{background:var(--fbg);padding:10px 16px;border-bottom:1px solid #C8DCCC}
+.given-lbl{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.given-row{font-size:17px;color:var(--text2);line-height:1.7;margin-bottom:3px}
+.ysec{padding:14px 16px;border-bottom:1px solid var(--border)}
+.ysec:last-of-type{border-bottom:none}
+.y-lbl{display:inline-block;background:var(--green3);color:var(--white);font-size:10px;font-weight:700;padding:2px 10px;border-radius:4px;margin-bottom:12px;letter-spacing:.04em;font-family:'JetBrains Mono',monospace}
+.k{font-size:17px;color:var(--green3);background:var(--fbg);border-left:3px solid var(--green);padding:6px 12px;border-radius:0 6px 6px 0;margin:4px 0 5px;display:block}
+.p{font-size:17px;color:var(--text2);line-height:1.7;margin-bottom:6px}
+.p b{color:var(--green3)}
+.gr{font-size:14px;color:var(--text3);font-style:italic;margin-left:4px;display:block;margin-bottom:4px}
+.final-ans{background:var(--green3);padding:11px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fa-lbl{font-size:11px;font-weight:700;color:var(--gold2);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
+.fav{font-size:18px;font-weight:700;color:var(--white);font-family:'Crimson Pro',serif}
+
+.panel{animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+footer{text-align:center;padding:26px;color:var(--text3);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="header-inner">
+    <div class="logo-mark">MBA</div>
+    <div><div class="ht-name">Maths Bridge Academy</div><div class="ht-tag">Nurturing Young Minds Through Maths Mastery</div></div>
+    <div class="hr-right"><div class="hr-board">ICSE · Class 10</div><div class="hr-ch">Banking</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+<div class="hero">
+  <div class="h-lbl">ICSE Class 10 Mathematics</div>
+  <div class="h-title">Banking</div>
+  <div class="h-sub">Recurring Deposit Accounts — maturity value, rate, time &amp; instalment problems</div>
+  <div class="h-pills">
+    <span class="h-pill">Worksheet Q1–Q11</span>
+    <span class="h-pill">Board PYQs 2018–2025</span>
+    <span class="h-pill">⭐ = Board-frequent pattern</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn tb-concepts active" id="btn-concepts" onclick="sw('concepts')">📘 Concepts</button>
+  <button class="tab-btn tb-board" id="btn-board" onclick="sw('board')">✎ Board PYQs</button>
+  <button class="tab-btn tb-practice" id="btn-practice" onclick="sw('practice')">✓ Practice Worksheet</button>
+</div>
+
+<div id="panel-concepts" class="panel">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--green)">₹</div><div class="sec-title">All Concepts &amp; Formulae</div></div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">📄</span><span class="ct">1. Basic Terms</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">RECURRING DEPOSIT (R.D.) ACCOUNT</span><div class="tb">An account where a fixed sum of money (the instalment) is deposited every month for a fixed number of months. At the end of the term, the account "matures" — the depositor receives back everything deposited, plus interest.</div></div>
+      <table class="ctbl">
+        <tr><th>Symbol</th><th>Meaning</th></tr>
+        <tr><td>P</td><td>Monthly instalment (the fixed sum deposited each month)</td></tr>
+        <tr><td>n</td><td>Number of months (the deposit is always monthly, so time must be converted to months)</td></tr>
+        <tr><td>r</td><td>Rate of interest, per annum (%)</td></tr>
+        <tr><td>M.V.</td><td>Maturity Value — total amount received when the account matures</td></tr>
+      </table>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> n is always in MONTHS — convert years first (1 year = 12 months)</div>
+      <div class="hbox"><div class="hl">Converting time to months</div><div class="ht">"4 years" → n = 48. "2½ years" → n = 30. "3½ years" → n = 42. Always multiply the number of years by 12 before touching the formula.</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🧮</span><span class="ct">2. The Recurring Deposit Formula</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="fbox"><div class="fl">Interest earned on the R.D. account</div><div class="fm">\( I = \dfrac{P\times n\times(n+1)\times r}{2\times12\times100} \)</div><div class="fn">This is simple interest on the sum of an arithmetic series of monthly balances — it is given directly, never derived from scratch in an exam answer.</div></div>
+      <div class="fbox"><div class="fl">Maturity Value</div><div class="fm">\( M.V. = P\times n \;+\; \dfrac{P\times n\times(n+1)\times r}{2\times12\times100} \)</div><div class="fn">Money paid in (P × n) plus the interest earned (I). Every single question in this chapter is a variation on this one line.</div></div>
+      <div class="hbox"><div class="hl">Which piece is usually missing</div><div class="ht">Most questions give you three of {P, n, r, M.V.} and ask for the fourth. Identify which one is unknown before you substitute — it decides whether you get a straight line (easy) or a quadratic (needs more care).</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🔎</span><span class="ct">3. Solving for the Unknown</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">UNKNOWN = r (rate)</span><div class="tb">P and n are known numbers, so M.V. = (known number) + (known number)×r, a straight line in r. Isolate r directly — no quadratic needed.</div></div>
+      <div class="tbox"><span class="tl">UNKNOWN = P (instalment)</span><div class="tb">n and r are known numbers, so M.V. = P×(known number) + P×(known number), i.e. M.V. = P×(a single combined number). Divide M.V. by that combined coefficient to get P directly.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> When solving for r or P, the equation is linear — resist the urge to reach for the quadratic formula</div>
+      <div class="tbox"><span class="tl">UNKNOWN = n (time)</span><div class="tb">Both n and n(n+1) appear, giving a quadratic in n. Expand fully, bring everything to one side, and either factorise or use the quadratic formula. Since n represents months, only the positive integer root is valid.</div></div>
+      <div class="hbox"><div class="hl">Sanity-check n</div><div class="ht">Once you solve for n, it should come out to a whole number of months (and usually a "nice" one — a multiple of 6 or 12). If it doesn't, re-check the expansion of n(n+1) before assuming the question is wrong.</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🔁</span><span class="ct">4. Common Question Patterns</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">COMPARING TWO ACCOUNTS</span><div class="tb">Work out each person's Maturity Value completely and separately using the same formula, then subtract at the very end to find who gets more and by how much. Never mix the two people's numbers mid-calculation.</div></div>
+      <div class="tbox"><span class="tl">"LEAST MONEY, IN A MULTIPLE OF ₹5"</span><div class="tb">Solve the equation for P normally — it usually won't come out as a round number. Since P must be a multiple of ₹5 and the target M.V. must be met or exceeded, round UP to the next multiple of ₹5, not to the nearest one.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> "Least ... to get at least ₹X" → round P UP to the next multiple, not to the nearest one</div>
+      <div class="tbox"><span class="tl">QUESTIONS FRAMED AROUND "INTEREST" (I) INSTEAD OF M.V.</span><div class="tb">Some questions state the interest earned rather than the maturity value directly. Use the Interest formula on its own first to find the missing quantity, then add P×n only at the end if the maturity value itself is also asked for.</div></div>
+      <div class="fbox"><div class="fl">Recap — Interest only</div><div class="fm">\( I = \dfrac{P\times n\times(n+1)\times r}{2\times12\times100} \)</div></div>
+      <div class="tbox"><span class="tl">"HOW MUCH MORE INTEREST IF DEPOSITED ₹X MORE PER MONTH"</span><div class="tb">Find the interest at the original P first, then recompute interest at the new (larger) P using the same n and r, then subtract. Never assume the extra interest scales in a simple proportion unless you check it against the formula.</div></div>
+    </div>
+  </div>
+
+</div>
+
+<div id="panel-board" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--purple)">B</div><div class="sec-title">Board PYQs (2018–2025)</div><span class="sec-badge" style="background:#F0EBF8;color:var(--purple);border:1px solid #C4B0E8">MCQs + Short Answer</span></div>
+  <div class="diff-filter" id="filter-board-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('board-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('board-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('board-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('board-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-board-qs"></span>
+  </div>
+  <div id="board-qs"></div>
+</div>
+
+<div id="panel-practice" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--slate)">P</div><div class="sec-title">Practice Worksheet (Q1–Q11)</div><span class="sec-badge" style="background:#E8EEF5;color:var(--slate);border:1px solid #A0B4C8">Full Worked Solutions</span></div>
+  <div class="diff-filter" id="filter-practice-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('practice-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('practice-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('practice-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('practice-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-practice-qs"></span>
+  </div>
+  <div id="practice-qs"></div>
+</div>
+
+</div>
+
+<footer>Maths Bridge Academy · ICSE Class 10 · Banking &nbsp;|&nbsp; Found an error? Use the Report button on that card.</footer>
+
+<div class="rep-modal" id="rep-modal">
+  <div class="rep-card">
+    <div class="rep-title">Report an error</div>
+    <div class="rep-ctx" id="rep-ctx"></div>
+    <textarea class="rep-ta" id="rep-msg" placeholder="What looks wrong? (e.g. Step 3 arithmetic, final answer, wrong option marked...)"></textarea>
+    <div class="rep-status" id="rep-status"></div>
+    <div class="rep-actions">
+      <button class="rep-cancel" onclick="repClose()">Cancel</button>
+      <button class="rep-send" onclick="repSend()">Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== ERROR REPORT CONFIG ===== */
+const REPORT_META = { board:'ICSE', grade:'10', chapter:'Banking' };
+const REPORT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx3vGZZjTHbAnKtOwSz6TaWtpYtnudCzxKMtm3Eo9bB4Ey6Xlor6LunLFEmyIQQy5e6/exec';
+/* ================================ */
+var _repCtx = {};
+function reportError(card, btn){
+  var parts = String(card).split(' ');
+  _repCtx = { tab: parts[0]||'', qno: parts[1]||card, btn: btn };
+  document.getElementById('rep-ctx').textContent =
+    REPORT_META.board+' · Grade '+REPORT_META.grade+' · '+REPORT_META.chapter+' · '+_repCtx.tab+' · '+_repCtx.qno;
+  document.getElementById('rep-msg').value='';
+  document.getElementById('rep-status').textContent='';
+  document.getElementById('rep-modal').classList.add('show');
+  document.getElementById('rep-msg').focus();
+}
+function repClose(){ document.getElementById('rep-modal').classList.remove('show'); }
+function repSend(){
+  var msg = document.getElementById('rep-msg').value.trim();
+  var status = document.getElementById('rep-status');
+  if(!msg){ status.style.color='#9A2B2B'; status.textContent='Please type what is wrong.'; return; }
+  status.style.color='var(--green)'; status.textContent='Sending...';
+  var qs = 'board='+encodeURIComponent(REPORT_META.board)
+         +'&grade='+encodeURIComponent(REPORT_META.grade)
+         +'&chapter='+encodeURIComponent(REPORT_META.chapter)
+         +'&tab='+encodeURIComponent(_repCtx.tab)
+         +'&qno='+encodeURIComponent(_repCtx.qno)
+         +'&error='+encodeURIComponent(msg);
+  function done(){
+    status.style.color='var(--green)'; status.textContent='\u2713 Thank you! Reported.';
+    if(_repCtx.btn){ _repCtx.btn.classList.add('sent'); _repCtx.btn.textContent='\u2713 Reported'; }
+    setTimeout(repClose, 1200);
+  }
+  fetch(REPORT_ENDPOINT+'?'+qs, { method:'GET', mode:'no-cors' }).then(done).catch(done);
+}
+function reportBtn(card, alone){
+  var ml = alone ? 'style="margin-left:auto"' : '';
+  return '<button class="rep-btn" '+ml+' onclick="reportError(\''+card+'\', this)" title="Found a mistake? Report it">\u26a0 Report error</button>';
+}
+function updateCount(cid){
+  var el = document.getElementById('count-'+cid);
+  if(!el) return;
+  var all = document.querySelectorAll('#'+cid+' .qcard');
+  var visible = document.querySelectorAll('#'+cid+' .qcard:not([style*="display: none"])');
+  el.textContent = 'Showing '+visible.length+' of '+all.length;
+}
+function filterDiff(cid, level, btn){
+  var bar = document.getElementById('filter-'+cid);
+  bar.querySelectorAll('.df-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var cards = document.querySelectorAll('#'+cid+' .qcard');
+  cards.forEach(function(card){
+    card.style.display = (level==='all' || card.getAttribute('data-diff')===level) ? '' : 'none';
+  });
+  updateCount(cid);
+}
+function toggleCC(h){ h.classList.toggle('open'); h.nextElementSibling.classList.toggle('open'); }
+function sw(id){
+  ['concepts','board','practice'].forEach(function(t){
+    document.getElementById('panel-'+t).style.display = t===id ? 'block' : 'none';
+    var b = document.getElementById('btn-'+t);
+    b.classList.remove('active');
+    if(t===id) b.classList.add('active');
+  });
+  renderMathIn(document.getElementById('panel-'+id));
+}
+function pyqPills(yrs){
+  if(!yrs || !yrs.length) return '';
+  var pills = yrs.map(function(y){ return '<span class="pyq-yr">'+y+'</span>'; }).join('');
+  return '<span class="pyq-lbl">PYQ:</span><div class="pyq-pills">'+pills+'</div>';
+}
+function togSol(btn){
+  var b = btn.closest('.qcard').querySelector('.sol-body');
+  var open = b.classList.toggle('open');
+  btn.textContent = open ? 'Hide Solution' : 'Show Solution';
+  if(open) renderMathIn(b);
+}
+function chk(btn,id,chosen,correct){
+  var all = btn.closest('.mcq-opts').querySelectorAll('.mopt');
+  all.forEach(function(b){ b.classList.add('locked'); });
+  all.forEach(function(b,i){
+    if(i===correct) b.classList.add('correct');
+    else if(i===chosen) b.classList.add('wrong');
+  });
+  var res = document.getElementById('mr-'+id);
+  res.classList.add('show');
+  if(chosen===correct){
+    res.classList.add('ok');
+    res.querySelector('.ml').textContent = '\u2713 Correct!';
+    res.querySelector('.mt').innerHTML = 'Correct: '+all[correct].textContent.trim();
+  } else {
+    res.classList.add('wr');
+    res.querySelector('.ml').textContent = '\u2717 Incorrect';
+    res.querySelector('.mt').innerHTML = 'Correct answer: '+all[correct].textContent.trim();
+  }
+}
+function buildRow(r){
+  if(!r) return '';
+  if(r.t==='p') return '<div class="p">'+r.text+'</div>';
+  if(r.t==='gr') return '<div class="gr">'+r.text+'</div>';
+  if(r.t==='k') return '<div class="k">\\[ '+r.text+' \\]</div>';
+  if(r.t==='div') return '<hr style="border:none;border-top:1px dashed var(--border);margin:6px 0">';
+  return '';
+}
+function buildSections(sections){
+  return (sections||[]).map(function(sec){
+    var rows = sec.rows.map(buildRow).join('');
+    return '<div class="ysec"><div class="y-lbl">'+sec.label+'</div>'+rows+'</div>';
+  }).join('');
+}
+function buildGiven(given){
+  if(!given || !given.length) return '';
+  var rows = given.map(function(g){ return '<div class="given-row">'+g+'</div>'; }).join('');
+  return '<div class="given-blk"><div class="given-lbl">Given</div>'+rows+'</div>';
+}
+function buildMbTip(tip){
+  if(!tip) return '';
+  return '<div class="mbtip"><div class="mbtip-lbl">\ud83d\udca1 MB Tip</div><div class="mbtip-text">'+tip+'</div></div>';
+}
+function buildSrcNote(note){
+  if(!note) return '';
+  return '<div class="src-note">\u2691 <b>Source Note:</b> '+note+'</div>';
+}
+function renderMathIn(container){
+  if(window.renderMathInElement && container){
+    renderMathInElement(container, {
+      delimiters:[{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],
+      throwOnError:false
+    });
+  }
+}
+function render(cid, data){
+  var c = document.getElementById(cid);
+  data.forEach(function(q, i){
+    var diff = q.diff || 'm';
+    var div = document.createElement('div');
+    div.className = 'qcard ' + q.m;
+    div.setAttribute('data-diff', diff);
+    var star = q.star ? '<span class="star" title="Board-frequent pattern">\u2b50</span>' : '';
+    var srcHtml = '<span class="qsrc src-'+q.sc+'">'+q.src+'</span>';
+    var pyqHtml = pyqPills(q.pyq);
+    var qid = cid+'-'+i;
+    var cardLbl = cid.replace('-qs','').toUpperCase()+' Q'+(i+1);
+    var diffLbl = {'e':'Easy','m':'Medium','h':'Hard'}[diff];
+
+    if(q.type === 'mcq'){
+      var mopts = q.opts.map(function(o,oi){
+        return '<button class="mopt" onclick="chk(this,\''+qid+'\','+oi+','+q.ans+')">'+o+'</button>';
+      }).join('');
+      var mcqSolBtn = q.sol ? '<button class="sol-btn" onclick="togSol(this)">Show Solution</button>' : '';
+      var mcqSolBody = q.sol ? '<div class="sol-body">'+buildSections(q.sol)+'<div class="final-ans"><span class="fa-lbl">Answer</span><span class="fav">'+q.opts[q.ans]+'</span></div></div>' : '';
+      div.innerHTML =
+        '<div class="q-stripe"></div>'+
+        '<div class="q-head"><div class="q-head-top"><div class="qnb">Q'+(i+1)+'</div><span class="qmp">'+q.marks+'</span>'+star+'<span class="diff diff-'+diff+'">'+diffLbl+'</span></div><div class="qtxt">'+q.q+'</div></div>'+
+        buildMbTip(q.mbtip)+
+        '<div class="mcq-opts">'+mopts+'</div>'+
+        '<div class="mcq-res" id="mr-'+qid+'"><div class="ml"></div><div class="mt"></div></div>'+
+        '<div class="q-foot">'+srcHtml+pyqHtml+mcqSolBtn+reportBtn(cardLbl,!q.sol)+'</div>'+
+        mcqSolBody;
+    } else {
+      div.innerHTML =
+        '<div class="q-stripe"></div>'+
+        '<div class="q-head"><div class="q-head-top"><div class="qnb">Q'+(i+1)+'</div><span class="qmp">'+q.marks+'</span>'+star+'<span class="diff diff-'+diff+'">'+diffLbl+'</span></div><div class="qtxt">'+q.q+'</div></div>'+
+        buildMbTip(q.mbtip)+
+        '<div class="q-foot">'+srcHtml+pyqHtml+'<button class="sol-btn" onclick="togSol(this)">Show Solution</button>'+reportBtn(cardLbl,false)+'</div>'+
+        '<div class="sol-body">'+buildGiven(q.given)+buildSections(q.sections)+buildSrcNote(q.srcnote)+'<div class="final-ans"><span class="fa-lbl">Answer</span><span class="fav">'+q.ans+'</span></div></div>';
+    }
+    c.appendChild(div);
+  });
+}
+
+function S(strings, ...vals){ return String.raw(strings, ...vals); } // proper String.raw wrapper — DO NOT re-wrap in {raw:strings}
+
+/* =========================================================================
+   BOARD PYQ DATA (10 verified questions, 2018-2025, from ICSE_Chapterwise_Extraction.md)
+   All answers independently recomputed against the M.V./Interest formula.
+   ========================================================================= */
+const boardData = [
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2025 Q1(ii)', sc:'pyq', star:true, pyq:['2025'],
+    type:'mcq',
+    q:'Mr. Anuj deposits ₹500 per month for 18 months in a recurring deposit account at a certain rate. If he earns ₹570 as interest at the time of maturity, then his matured amount is:',
+    opts:['₹(500×18+570)','₹(500×19+570)','₹(500×18×19+570)','₹(500×9×19+570)'], ans:0,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`M.V. = P\times n + I`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`M.V. = 500\times18 + 570`},
+      {t:'gr', text:'(Maturity value is always money paid in, plus interest earned — no other combination of the given numbers is needed)'}
+    ]}]
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'ICSE 2025 Q2(ii)', sc:'pyq', star:false, pyq:['2025'],
+    q:'Mrs. Rao deposited ₹250 per month in a recurring deposit account for a period of 3 years. She received ₹10,110 at the time of maturity. Find: (a) the rate of interest, (b) how much more interest Mrs. Rao would receive if she had deposited ₹250 more per month at the same rate of interest and for the same time.',
+    given:['P = ₹250','n = 3 years = 36 months','M.V. = ₹10{,}110','r = ?'],
+    mbtip:'For part (b), don\'t assume the extra interest is simply double — recompute the interest formula fresh at the new instalment (₹500) using the same n and r, then subtract the original interest.',
+    sections:[
+      {label:'(a) RATE OF INTEREST', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`M.V. = P\times n + \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`10110 = 250\times36 + \dfrac{250\times36\times37\times r}{2400}`},
+        {t:'k', text:S`10110 = 9000 + \dfrac{333000\times r}{2400}`},
+        {t:'p', text:'<b>Isolate r</b>'},
+        {t:'k', text:S`10110 - 9000 = \dfrac{333000\times r}{2400}`},
+        {t:'k', text:S`1110\times2400 = 333000\times r`},
+        {t:'k', text:S`r = \dfrac{2664000}{333000} = 8`}
+      ]},
+      {label:'(b) EXTRA INTEREST AT ₹500/MONTH', rows:[
+        {t:'p', text:'<b>Interest at original P = ₹250</b>'},
+        {t:'k', text:S`I_1 = M.V. - P\times n = 10110 - 9000 = 1110`},
+        {t:'p', text:'<b>Interest at new P = ₹500 (same n, same r)</b>'},
+        {t:'k', text:S`I_2 = \dfrac{500\times36\times37\times8}{2400}`},
+        {t:'k', text:S`I_2 = \dfrac{5328000}{2400} = 2220`},
+        {t:'p', text:'<b>Extra interest</b>'},
+        {t:'k', text:S`\text{Extra} = I_2 - I_1 = 2220 - 1110`}
+      ]}
+    ],
+    ans:'(a) Rate of interest = 8% p.a.  (b) ₹1,110 more interest',
+    srcnote:'The chapter-wise extraction lists the monthly deposit as "₹50", but that gives an implausible rate of interest (≈299%). Using ₹250 instead gives a clean r = 8% that matches the stated maturity value exactly, so ₹250 (likely a dropped digit in the OCR extraction) was used above.'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2024 Q4(i)', sc:'pyq', star:false, pyq:['2024'],
+    q:'Suresh has a recurring deposit account in a bank. He deposits ₹2000 per month and the bank pays interest at the rate of 8% per annum. If he gets ₹1040 as interest at the time of maturity, find (in years) the total time for which the account was held.',
+    given:['P = ₹2000','r = 8% p.a.','I = ₹1040','n = ?'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`I = \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`1040 = \dfrac{2000\times n(n+1)\times8}{2400}`},
+      {t:'k', text:S`1040 = \dfrac{20}{3}\times n(n+1)`},
+      {t:'p', text:'<b>Solve for n</b>'},
+      {t:'k', text:S`n(n+1) = \dfrac{1040\times3}{20} = 156`},
+      {t:'k', text:S`n = 12`},
+      {t:'gr', text:'(checked: 12\\times13 = 156 ✓)'}
+    ]}],
+    ans:'n = 12 months = 1 year'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2023 Q1(xiv)', sc:'pyq', star:false, pyq:['2023'],
+    type:'mcq',
+    q:'Naveen deposits ₹800 every month in a recurring deposit account for 6 months. If he receives ₹4884 at the time of maturity, then the interest he earns is:',
+    opts:['₹84','₹42','₹24','₹284'], ans:0,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`I = M.V. - P\times n`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`I = 4884 - (800\times6) = 4884 - 4800`}
+    ]}]
+  },
+  {
+    m:'q-3m', diff:'m', marks:'4 Marks', src:'ICSE 2023 Q2(ii)', sc:'pyq', star:true, pyq:['2023'],
+    q:'Salman deposits ₹1000 every month in a recurring deposit account for 2 years. If he receives ₹26,000 on maturity, find: (a) the total interest Salman earns, (b) the rate of interest.',
+    given:['P = ₹1000','n = 2 years = 24 months','M.V. = ₹26{,}000'],
+    sections:[
+      {label:'(a) TOTAL INTEREST', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`I = M.V. - P\times n`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`I = 26000 - (1000\times24) = 26000 - 24000`}
+      ]},
+      {label:'(b) RATE OF INTEREST', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`I = \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`2000 = \dfrac{1000\times24\times25\times r}{2400}`},
+        {t:'k', text:S`2000 = 250r`},
+        {t:'k', text:S`r = \dfrac{2000}{250}`}
+      ]}
+    ],
+    ans:'(a) Interest = ₹2,000  (b) Rate of interest = 8% p.a.'
+  },
+  {
+    m:'q-3m', diff:'e', marks:'3 Marks', src:'ICSE 2020 Q8(b)', sc:'pyq', star:false, pyq:['2020'],
+    q:'Mr. Sona has a recurring deposit account and deposits ₹750 per month for 2 years. If he gets ₹19,125 at the time of maturity, find the rate of interest.',
+    given:['P = ₹750','n = 2 years = 24 months','M.V. = ₹19{,}125','r = ?'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`I = M.V. - P\times n`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`I = 19125 - (750\times24) = 19125 - 18000 = 1125`},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`I = \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`1125 = \dfrac{750\times24\times25\times r}{2400}`},
+      {t:'k', text:S`1125 = 187.5r`},
+      {t:'k', text:S`r = \dfrac{1125}{187.5}`}
+    ]}],
+    ans:'Rate of interest = 6% p.a.'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'4 Marks', src:'ICSE 2019 Q5(b)', sc:'pyq', star:false, pyq:['2019'],
+    q:'Rekha opened a recurring deposit account for 20 months. The rate of interest is 9% per annum and Rekha receives ₹441 as interest at the time of maturity. Find the amount Rekha deposited each month.',
+    given:['n = 20 months','r = 9% p.a.','I = ₹441','P = ?'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`I = \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`441 = \dfrac{P\times20\times21\times9}{2400}`},
+      {t:'k', text:S`441 = 1.575P`}
+    ]}],
+    ans:'P = ₹280'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'3 Marks', src:'ICSE 2018 Q1(b)', sc:'pyq', star:true, pyq:['2018'],
+    q:'Sonia had a recurring deposit account in a bank and deposited ₹600 per month for 2½ years. If the rate of interest was 10% p.a., find the maturity value of this account.',
+    given:['P = ₹600','n = 2\\tfrac{1}{2}\\ years = 30\\ months','r = 10% p.a.'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`M.V. = P\times n + \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`M.V. = 600\times30 + \dfrac{600\times30\times31\times10}{2400}`},
+      {t:'k', text:S`M.V. = 18000 + \dfrac{5580000}{2400}`},
+      {t:'k', text:S`M.V. = 18000 + 2325`}
+    ]}],
+    ans:'Maturity Value = ₹20,325'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2018 Q9(a)', sc:'pyq', star:false, pyq:['2018'],
+    q:'Priyanka has a recurring deposit account of ₹1,000 per month at 10% per annum. If she gets ₹5,550 as interest at the time of maturity, find the total time for which the account was held.',
+    given:['P = ₹1000','r = 10% p.a.','I = ₹5550','n = ?'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`I = \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`5550 = \dfrac{1000\times n(n+1)\times10}{2400}`},
+      {t:'k', text:S`5550 = \dfrac{25}{6}\times n(n+1)`},
+      {t:'p', text:'<b>Solve for n</b>'},
+      {t:'k', text:S`n(n+1) = \dfrac{5550\times6}{25} = 1332`},
+      {t:'k', text:S`n = 36`},
+      {t:'gr', text:'(checked: 36\\times37 = 1332 ✓)'}
+    ]}],
+    ans:'n = 36 months = 3 years'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2022 Sem-1 Q8', sc:'pyq', star:false, pyq:['2022'],
+    type:'mcq',
+    q:'Mohit opened a Recurring deposit account for 2 years. He deposits ₹1000 every month and receives ₹25,500 on maturity. The interest he earned in 2 years is:',
+    opts:['₹13,500','₹3,000','₹24,000','₹1,500'], ans:3,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`I = M.V. - P\times n`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`I = 25500 - (1000\times24) = 25500 - 24000`}
+    ]}]
+  },
+  {
+    m:'q-la', diff:'m', marks:'4×1 Marks', src:'ICSE 2022 Sem-1 Q25', sc:'pyq', star:true, pyq:['2022'],
+    q:'Joseph has a recurring deposit account for two years at 8% p.a. simple interest. Find: (i) the monthly instalment, if the interest received is ₹2,000. (ii) the total amount deposited. (iii) the amount received on maturity. (iv) If a monthly instalment of ₹100 is kept at the same 8% rate instead, in how many months will Joseph receive ₹52 as interest?',
+    given:['n = 2 years = 24 months','r = 8% p.a.','I = ₹2000 (parts i–iii)'],
+    sections:[
+      {label:'(i) MONTHLY INSTALMENT', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`I = \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`2000 = \dfrac{P\times24\times25\times8}{2400}`},
+        {t:'k', text:S`2000 = 2P`}
+      ]},
+      {label:'(ii) TOTAL AMOUNT DEPOSITED', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`\text{Total deposited} = P\times n`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`\text{Total deposited} = 1000\times24`}
+      ]},
+      {label:'(iii) MATURITY VALUE', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`M.V. = \text{Total deposited} + I`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`M.V. = 24000 + 2000`}
+      ]},
+      {label:'(iv) NEW SCENARIO — P=₹100, I=₹52, find n', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`I = \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`52 = \dfrac{100\times n(n+1)\times8}{2400}`},
+        {t:'k', text:S`52 = \dfrac{1}{3}\times n(n+1)`},
+        {t:'k', text:S`n(n+1) = 156`},
+        {t:'k', text:S`n = 12`}
+      ]}
+    ],
+    ans:'(i) P = ₹1,000  (ii) ₹24,000  (iii) M.V. = ₹26,000  (iv) n = 12 months'
+  }
+];
+
+/* =========================================================================
+   PRACTICE WORKSHEET DATA (11 questions, from uploaded classwork PDFs)
+   All answers independently recomputed against the M.V./Interest formula.
+   ========================================================================= */
+const practiceData = [
+  {
+    m:'q-1m', diff:'e', marks:'3 Marks', src:'Worksheet Q1', sc:'worksheet', star:true,
+    q:'Manish opens a Recurring Deposit Account with the Bank of Rajasthan and deposits ₹600 per month for 20 months. Calculate the maturity value of this account, if the bank pays interest at the rate of 10% per annum.',
+    given:['P = ₹600','n = 20 months','r = 10% p.a.'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`M.V. = P\times n + \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`M.V. = 600\times20 + \dfrac{600\times20\times21\times10}{2\times12\times100}`},
+      {t:'k', text:S`M.V. = 12000 + \dfrac{2520000}{2400}`},
+      {t:'k', text:S`M.V. = 12000 + 1050`}
+    ]}],
+    ans:'Maturity Value = ₹13,050'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'3 Marks', src:'Worksheet Q2', sc:'worksheet', star:true,
+    q:'Find the maturity value of a recurring deposit scheme when Mr. Rao deposits ₹300 every month at 8% p.a. for 2½ years.',
+    given:['P = ₹300','n = 2\\tfrac{1}{2}\\ years = 30\\ months','r = 8% p.a.'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`M.V. = P\times n + \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`M.V. = 300\times30 + \dfrac{300\times30\times31\times8}{2\times12\times100}`},
+      {t:'k', text:S`M.V. = 9000 + \dfrac{2232000}{2400}`},
+      {t:'k', text:S`M.V. = 9000 + 930`}
+    ]}],
+    ans:'Maturity Value = ₹9,930'
+  },
+  {
+    m:'q-la', diff:'m', marks:'4 Marks', src:'Worksheet Q3', sc:'worksheet', star:true,
+    q:'Each of A and B opened a recurring deposit account in a bank. A deposited ₹1,200 per month for 3 years and B deposited ₹1,500 per month for 2½ years. On maturity, who gets more, and by how much? Rate of interest = 10% p.a.',
+    given:['A: P = ₹1200, n = 3 years = 36 months, r = 10% p.a.','B: P = ₹1500, n = 2\\tfrac{1}{2}\\ years = 30\\ months, r = 10% p.a.'],
+    sections:[
+      {label:'FOR A', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`M.V._A = P\times n + \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`M.V._A = 1200\times36 + \dfrac{1200\times36\times37\times10}{2\times12\times100}`},
+        {t:'k', text:S`M.V._A = 43200 + \dfrac{15984000}{2400}`},
+        {t:'k', text:S`M.V._A = 43200 + 6660 = 49860`}
+      ]},
+      {label:'FOR B', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`M.V._B = P\times n + \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`M.V._B = 1500\times30 + \dfrac{1500\times30\times31\times10}{2\times12\times100}`},
+        {t:'k', text:S`M.V._B = 45000 + \dfrac{13950000}{2400}`},
+        {t:'k', text:S`M.V._B = 45000 + 5812.5 = 50812.5`}
+      ]},
+      {label:'COMPARE', rows:[
+        {t:'k', text:S`\text{Difference} = M.V._B - M.V._A = 50812.5 - 49860`}
+      ]}
+    ],
+    ans:'B gets more by ₹952.5 (M.V._A = ₹49,860, M.V._B = ₹50,812.5)'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q4', sc:'worksheet', star:false,
+    q:'Puneet has a Recurring Deposit Account in the Bank of Baroda and deposits ₹140 per month for 4 years. If he gets ₹8,092 on maturity, find the rate of interest given by the bank.',
+    given:['P = ₹140','n = 4 years = 48 months','M.V. = ₹8092','r = ?'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`M.V. = P\times n + \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`8092 = 140\times48 + \dfrac{140\times48\times49\times r}{2400}`},
+      {t:'k', text:S`8092 = 6720 + \dfrac{329280\times r}{2400}`},
+      {t:'p', text:'<b>Isolate r</b>'},
+      {t:'k', text:S`8092 - 6720 = \dfrac{329280\times r}{2400}`},
+      {t:'k', text:S`1372\times2400 = 329280\times r`},
+      {t:'k', text:S`r = \dfrac{3292800}{329280}`}
+    ]}],
+    ans:'Rate of interest = 10% p.a.'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'3 Marks', src:'Worksheet Q5', sc:'worksheet', star:false,
+    q:'Mr. Madhav Rao gets ₹6,455 at the end of one year when he deposits ₹500 per month in a recurring deposit scheme. Find the rate of interest.',
+    given:['P = ₹500','n = 1 year = 12 months','M.V. = ₹6455','r = ?'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`M.V. = P\times n + \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`6455 = 500\times12 + \dfrac{500\times12\times13\times r}{2400}`},
+      {t:'k', text:S`6455 = 6000 + \dfrac{78000\times r}{2400}`},
+      {t:'p', text:'<b>Isolate r</b>'},
+      {t:'k', text:S`6455 - 6000 = \dfrac{78000\times r}{2400}`},
+      {t:'k', text:S`455\times2400 = 78000\times r`},
+      {t:'k', text:S`r = \dfrac{1092000}{78000}`}
+    ]}],
+    ans:'Rate of interest = 14% p.a.'
+  },
+  {
+    m:'q-la', diff:'m', marks:'4 Marks', src:'Worksheet Q6', sc:'worksheet', star:false,
+    q:'Mr. Gulati has a Recurring Deposit Account of ₹300 per month. If the rate of interest is 12% and the maturity value of this account is ₹8,100, find the time (in years) of this account.',
+    given:['P = ₹300','r = 12% p.a.','M.V. = ₹8100','n = ?'],
+    mbtip:'This is a quadratic in n. Expand n(n+1) fully, collect everything on one side, and solve — the answer will be a clean whole number of months since real R.D. terms are always whole months.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`M.V. = P\times n + \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`8100 = 300n + \dfrac{300\times n\times(n+1)\times12}{2400}`},
+      {t:'k', text:S`8100 = 300n + 1.5n(n+1)`},
+      {t:'p', text:'<b>Expand and collect</b>'},
+      {t:'k', text:S`8100 = 300n + 1.5n^2 + 1.5n`},
+      {t:'k', text:S`1.5n^2 + 301.5n - 8100 = 0`},
+      {t:'p', text:'<b>Solve for n</b>'},
+      {t:'k', text:S`n = 24`},
+      {t:'gr', text:'(checked: 300\\times24 + 1.5\\times24\\times25 = 7200+900 = 8100 ✓)'}
+    ]}],
+    ans:'n = 24 months = 2 years'
+  },
+  {
+    m:'q-la', diff:'m', marks:'4 Marks', src:'Worksheet Q7', sc:'worksheet', star:false,
+    q:'Mr. Motasha opens a recurring deposit account of ₹600 per month at 12% p.a. If he is paid ₹7,668 as maturity amount, how many instalments does he need to pay?',
+    given:['P = ₹600','r = 12% p.a.','M.V. = ₹7668','n = ?'],
+    mbtip:'Same quadratic pattern as the previous question — expand fully, bring everything to one side, then solve.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`M.V. = P\times n + \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`7668 = 600n + \dfrac{600\times n\times(n+1)\times12}{2400}`},
+      {t:'k', text:S`7668 = 600n + 3n(n+1)`},
+      {t:'p', text:'<b>Expand and collect</b>'},
+      {t:'k', text:S`7668 = 600n + 3n^2 + 3n`},
+      {t:'k', text:S`3n^2 + 603n - 7668 = 0`},
+      {t:'k', text:S`n^2 + 201n - 2556 = 0`},
+      {t:'p', text:'<b>Solve using the quadratic formula</b>'},
+      {t:'k', text:S`n = \dfrac{-201+\sqrt{201^2+4\times2556}}{2} = \dfrac{-201+225}{2}`}
+    ]}],
+    ans:'n = 12 instalments',
+    srcnote:'The uploaded classwork PDF does not give a boxed answer for this question — solved independently above.'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q8', sc:'worksheet', star:false,
+    q:'Mr. Bajaj needs ₹30,000 after 2 years. What is the least money (in a multiple of ₹5) he must deposit every month in a recurring deposit account to get the required money at the end of 2 years, the rate of interest being 8% p.a.?',
+    given:['n = 2 years = 24 months','r = 8% p.a.','Required M.V. \\ge ₹30{,}000','P = ?'],
+    mbtip:'The equation for P won\'t come out round. Round UP to the next multiple of ₹5 so the maturity value meets or exceeds the ₹30,000 target — rounding down would fall short.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`M.V. = P\times n + \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`30000 = P\times24 + \dfrac{P\times24\times25\times8}{2400}`},
+      {t:'k', text:S`30000 = 24P + 2P`},
+      {t:'k', text:S`30000 = 26P`},
+      {t:'k', text:S`P = \dfrac{30000}{26} = 1153.8\ (approx.)`},
+      {t:'p', text:'<b>Round up to the next multiple of ₹5</b>'},
+      {t:'gr', text:'(check: P=₹1150 gives M.V.=26\\times1150=29900, short of target; P=₹1155 gives M.V.=26\\times1155=30030, meets target)'}
+    ]}],
+    ans:'Least P (multiple of ₹5) = ₹1,155',
+    srcnote:'The uploaded classwork PDF only tags "n = 24" for this item — the actual unknown to solve for is P. Solved and rounded up independently above.'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'4 Marks', src:'Worksheet Q9', sc:'worksheet', star:false,
+    q:'A man has a Recurring Deposit Account in a bank for 3½ years. If the rate of interest is 12% per annum and the man gets ₹10,206 on maturity, find the value of the monthly instalment.',
+    given:['n = 3\\tfrac{1}{2}\\ years = 42\\ months','r = 12% p.a.','M.V. = ₹10{,}206','P = ?'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`M.V. = P\times n + \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`10206 = 42P + \dfrac{P\times42\times43\times12}{2400}`},
+      {t:'k', text:S`10206 = 42P + 9.03P`},
+      {t:'k', text:S`10206 = 51.03P`}
+    ]}],
+    ans:'P = ₹200',
+    srcnote:'The uploaded classwork PDF labels this item "n = 12", which appears to be a mislabelling — the question itself states 3½ years (42 months), and the actual unknown being solved for is the monthly instalment P. Recomputed independently above.'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'3 Marks', src:'Worksheet Q10', sc:'worksheet', star:false,
+    q:'Mr. R.K. Nair gets ₹6,455 at the end of one year at the rate of 14% per annum in a Recurring Deposit Account. Find the monthly instalment.',
+    given:['n = 1 year = 12 months','r = 14% p.a.','M.V. = ₹6455','P = ?'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`M.V. = P\times n + \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`6455 = 12P + \dfrac{P\times12\times13\times14}{2400}`},
+      {t:'k', text:S`6455 = 12P + 0.91P`},
+      {t:'k', text:S`6455 = 12.91P`}
+    ]}],
+    ans:'P = ₹500'
+  },
+  {
+    m:'q-la', diff:'m', marks:'2+2 Marks', src:'Worksheet Q11', sc:'worksheet', star:true,
+    q:'Mohan has a recurring deposit account in a bank for 2 years at 6% p.a. simple interest. If he gets ₹1,200 as interest at the time of maturity, find: (i) the monthly instalment, and (ii) the amount of maturity.',
+    given:['n = 2 years = 24 months','r = 6% p.a.','Interest, I = ₹1200'],
+    sections:[
+      {label:'(i) MONTHLY INSTALMENT', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`I = \dfrac{P\times n\times(n+1)\times r}{2\times12\times100}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`1200 = \dfrac{P\times24\times25\times6}{2400}`},
+        {t:'k', text:S`1200 = 1.5P`}
+      ]},
+      {label:'(ii) MATURITY VALUE', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`M.V. = P\times n + I`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`M.V. = 800\times24 + 1200`},
+        {t:'k', text:S`M.V. = 19200 + 1200`}
+      ]}
+    ],
+    ans:'(i) P = ₹800  (ii) M.V. = ₹20,400'
+  }
+];
+
+render('board-qs', boardData);
+render('practice-qs', practiceData);
+updateCount('board-qs');
+updateCount('practice-qs');
+renderMathIn(document.getElementById('panel-concepts'));
+</script>
+</body>
+</html>
