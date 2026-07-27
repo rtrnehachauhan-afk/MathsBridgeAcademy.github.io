@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geometric Progressions — ICSE Class 10 | Maths Bridge Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --page:#F5F0E8;--bg2:#EDE8DC;--bg3:#E4DDD0;
+  --card:#FFFDF8;--cardborder:#E2D9C6;
+  --green:#2D5A3D;--green2:#3D7A55;--green3:#1A3D28;--greenlight:#EEF7F0;
+  --purple:#7B5EA7;--purplelight:#F0EBF8;--purpleborder:#C4B0E8;
+  --navy:#1A3050;--blue:#2563A8;
+  --darkblue:#0D2B4E;
+  --gold:#C9A84C;--gold2:#E8C56A;--gold3:#A07830;--goldlight:#FFF8E6;
+  --amber:#7A5C00;--amberbg:#FFF8DC;
+  --text:#000;--text2:#1a1a1a;--text3:#555;
+  --white:#fff;--border:#D4C9B0;
+}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--page);color:var(--text);font-size:20px;line-height:1.75}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px 80px}
+
+/* ---------- overflow safety (locked, per spec) ---------- */
+.k, .formula-text, .qtxt, .sol-body, .given-row{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:3px 0}
+
+/* ---------- hero ---------- */
+.hero{background:var(--green);padding:24px 28px 20px;border-bottom:3px solid var(--gold);margin-bottom:20px}
+.h-sub{font-size:11px;font-weight:700;color:var(--gold2);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.h-title{font-family:'Playfair Display',serif;font-size:38px;font-weight:800;color:var(--white);line-height:1.1;margin-bottom:8px}
+.h-meta{font-size:15px;color:rgba(255,255,255,.7);margin-bottom:14px}
+.h-pills{display:flex;gap:7px;flex-wrap:wrap}
+.h-pill{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.2);color:var(--white);font-size:11px;font-weight:600;padding:3px 11px;border-radius:20px;font-family:'JetBrains Mono',monospace}
+
+/* ---------- top-level tabs ---------- */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.ctab{flex:1;min-width:100px;padding:9px 8px;font-size:15px;font-weight:700;border:2px solid var(--green);cursor:pointer;border-radius:5px;transition:all .16s;font-family:'Crimson Pro',serif;background:transparent;color:var(--green)}
+.ctab:not(.active):hover{background:var(--greenlight)}
+.ctab.active{background:var(--green);color:var(--white)}
+
+/* ---------- section header ---------- */
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.sec-icon{width:30px;height:30px;border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:700;font-size:14px;flex-shrink:0}
+.sec-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--text2)}
+.sec-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;font-family:'JetBrains Mono',monospace;margin-left:auto}
+
+/* ---------- diff filter ---------- */
+.diff-filter{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.df-btn{font-size:11px;font-weight:700;padding:5px 12px;border-radius:3px;border:1px solid var(--border);background:var(--card);color:var(--text3);cursor:pointer;text-transform:uppercase;letter-spacing:.06em;font-family:'JetBrains Mono',monospace}
+.df-btn.active{background:var(--text2);color:var(--white);border-color:var(--text2)}
+.count-note{font-size:13px;color:var(--text3);margin-bottom:14px}
+
+/* ---------- concept cards (accordion) ---------- */
+.cc{background:var(--card);border:1px solid var(--cardborder);border-radius:6px;margin-bottom:12px;overflow:hidden;box-shadow:0 1px 3px rgba(45,90,61,.06)}
+.cc-head{background:var(--greenlight);padding:11px 16px;display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none}
+.cc-head .ci{font-size:16px}
+.cc-head .ct{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--green3);flex:1}
+.cc-head .ca{color:var(--green);font-size:13px;transition:transform .2s}
+.cc-head.open .ca{transform:rotate(180deg)}
+.cc-body{display:none;padding:16px 18px;border-top:1px solid var(--cardborder)}
+.cc-body.open{display:block}
+.cc-body p{font-size:16px;color:var(--text2);line-height:1.8;margin-bottom:9px}
+.ctbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.ctbl th{background:var(--bg2);text-align:left;padding:6px 10px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--text3);border:1px solid var(--border)}
+.ctbl td{padding:6px 10px;border:1px solid var(--border)}
+.mba-note{background:var(--goldlight);border:1px solid var(--gold);border-radius:4px;padding:9px 13px;margin:10px 0;font-size:14px;color:var(--amber)}
+
+/* ---------- callout boxes (given / formula / working) ---------- */
+.tbox{background:var(--card);border:1px solid var(--navy);border-radius:4px;padding:13px 16px;margin:10px 0}
+.tbox .tl{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--white);background:var(--navy);padding:3px 9px;border-radius:3px;display:inline-block;margin-bottom:8px;letter-spacing:.05em;text-transform:uppercase}
+.tbox .tb{font-size:16px;color:var(--text2);line-height:1.8}
+.fbox{background:var(--greenlight);border:1px solid var(--green);border-radius:4px;padding:13px 16px;margin:10px 0}
+.fbox .fl{font-size:10px;font-weight:700;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.fbox .fm{font-size:19px;font-weight:600;color:var(--green3);line-height:1.9}
+.fbox .fn{font-size:15px;color:var(--text2);margin-top:5px;line-height:1.6}
+.hbox{background:var(--goldlight);border:1px solid var(--gold3);border-radius:4px;padding:11px 15px;margin:10px 0}
+.hbox .hl{font-size:10px;font-weight:700;color:var(--gold3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.hbox .ht{font-size:16px;color:var(--text2);line-height:1.7}
+
+/* ---------- question cards ---------- */
+.qcard{background:var(--card);border:1px solid var(--cardborder);border-radius:6px;margin-bottom:13px;overflow:hidden;box-shadow:0 1px 3px rgba(45,90,61,.06);display:flex;align-items:stretch}
+.q-stripe{width:6px;flex-shrink:0}
+.q-inner{overflow:hidden;flex:1;min-width:0}
+.qcard.q-1m .q-stripe{background:linear-gradient(180deg,var(--green),var(--green2))}
+.qcard.q-2m .q-stripe{background:linear-gradient(180deg,var(--purple),#A07BD4)}
+.qcard.q-3m .q-stripe{background:linear-gradient(180deg,var(--navy),var(--blue))}
+.qcard.q-cb .q-stripe{background:linear-gradient(180deg,var(--darkblue),#1A4570)}
+.q-head{padding:12px 16px 10px;display:flex;flex-direction:column;gap:8px}
+.type-tag{align-self:flex-start;font-size:10px;font-weight:700;padding:3px 10px;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;font-family:'JetBrains Mono',monospace;background:var(--bg2);color:var(--text3);border:1px solid var(--border)}
+.q-head-top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.qnb{min-width:28px;height:24px;border-radius:3px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;padding:0 6px;background:#DFF5E3;color:var(--green3);border:1px solid #B8E0C0}
+.qcard.q-2m .qnb{background:var(--purplelight);color:var(--purple);border-color:var(--purpleborder)}
+.qcard.q-3m .qnb{background:#E8EEF5;color:var(--navy);border-color:#A0B4C8}
+.qtxt{font-size:19px;font-weight:600;color:var(--text2);line-height:1.6;width:100%;font-family:'Crimson Pro',serif}
+.qmp{font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;white-space:nowrap;flex-shrink:0;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.05em;background:#DFF5E3;color:var(--green3);border:1px solid #B8E0C0}
+.qcard.q-2m .qmp{background:var(--purplelight);color:var(--purple);border-color:var(--purpleborder)}
+.qcard.q-3m .qmp{background:#E8EEF5;color:var(--navy);border-color:#A0B4C8}
+.star{font-size:13px;flex-shrink:0}
+.diff{font-size:10px;font-weight:700;padding:2px 9px;border-radius:3px;font-family:'JetBrains Mono',monospace;white-space:nowrap;flex-shrink:0;text-transform:uppercase;letter-spacing:.05em;border:1px solid}
+.diff-e{background:#DFF5E3;color:#1A5C2A;border-color:#B8E0C0}
+.diff-m{background:#FFF3CC;color:#7A5500;border-color:#E8D89A}
+.diff-h{background:#FFE5E5;color:#8B1A1A;border-color:#F0BABA}
+
+.q-foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:0 16px 12px}
+.src-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:.05em;font-family:'JetBrains Mono',monospace;border:1px solid}
+.src-pyq{background:var(--purplelight);color:var(--purple);border-color:var(--purpleborder)}
+.src-ws{background:#E8EEF5;color:var(--navy);border-color:#A0B4C8}
+.pyq-yr{font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;font-family:'JetBrains Mono',monospace;background:var(--purplelight);color:var(--purple);border:1px solid var(--purpleborder);text-transform:uppercase}
+.sol-btn{margin-left:auto;font-size:11px;font-weight:700;padding:4px 13px;border-radius:5px;border:1.5px solid var(--green);background:transparent;cursor:pointer;color:var(--green);transition:all .15s;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
+.sol-btn:hover{background:var(--green);color:var(--white)}
+.rep-btn{font-size:11px;font-weight:700;padding:4px 11px;border-radius:5px;border:1.5px solid var(--border);background:transparent;cursor:pointer;color:var(--text3);font-family:'JetBrains Mono',monospace}
+.rep-btn:hover{border-color:var(--amber);color:var(--amber)}
+
+.sol-body{display:none;padding:0 16px 16px}
+.sol-body.open{display:block}
+.given-blk{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:11px 15px;margin-bottom:10px}
+.given-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.given-row{font-size:16px;color:var(--text2);margin-bottom:3px}
+.ysec{margin:10px 0}
+.y-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;background:#E8EEF5;display:inline-block;padding:2px 9px;border-radius:3px;border:1px solid #A0B4C8}
+.p{font-size:16px;color:var(--text2);line-height:1.7;margin:4px 0}
+.gr{font-size:15px;color:var(--green3);font-weight:700;font-style:normal;margin-left:4px;display:block;margin-bottom:4px}
+.k{font-size:17px;color:var(--text2);margin:2px 0 8px;padding-left:4px}
+.final-ans{background:var(--greenlight);border-left:4px solid var(--green);padding:11px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-radius:0 4px 4px 0;margin-top:6px}
+.fa-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.06em}
+.fav{font-size:18px;font-weight:700;color:var(--green3);font-family:'Crimson Pro',serif}
+.srcnote{background:var(--goldlight);border:1px solid var(--gold3);border-radius:4px;padding:9px 13px;margin:10px 0;font-size:14px;color:var(--amber)}
+.srcnote b{color:var(--gold3)}
+
+/* ---------- MCQ (kept for architecture consistency; unused in GP — no MCQ items found in source) ---------- */
+.mcq-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 16px;margin-bottom:10px}
+.mopt{padding:10px 14px;border-radius:4px;font-size:18px;cursor:pointer;border:1.5px solid var(--border);background:var(--card);color:var(--text);transition:all .15s;text-align:left;font-family:'Crimson Pro',serif;font-weight:600}
+.mopt:hover:not(.locked){border-color:var(--green2);background:var(--greenlight)}
+.mopt.correct{border-color:var(--green);background:#EEF5F0;color:var(--green3)}
+.mopt.wrong{border-color:var(--amber);background:var(--amberbg);color:var(--amber)}
+.mcq-res{padding:0 16px;margin-bottom:8px}
+.mcq-res .ml{font-size:15px;font-weight:700}
+.mcq-res .mt{font-size:14px;color:var(--text3)}
+
+/* ---------- report modal ---------- */
+.rep-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:999;align-items:center;justify-content:center;padding:16px}
+.rep-overlay.open{display:flex}
+.rep-card{background:var(--card);border:1.5px solid var(--green);border-radius:8px;max-width:440px;width:100%;padding:20px;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.rep-card h3{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:6px;color:var(--green3)}
+.rep-card p{font-size:14px;color:var(--text3);margin-bottom:10px}
+.rep-card textarea{width:100%;min-height:80px;border:1.5px solid var(--border);border-radius:5px;padding:8px 10px;font-family:'Crimson Pro',serif;font-size:15px;margin-bottom:12px;resize:vertical}
+.rep-actions{display:flex;justify-content:flex-end;gap:8px}
+.rep-cancel{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 16px;border-radius:5px;border:1.5px solid var(--border);background:#fff;color:var(--text3);cursor:pointer}
+.rep-send{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 18px;border-radius:5px;border:none;background:var(--green);color:#fff;cursor:pointer;font-weight:700}
+.rep-send:hover{background:var(--green3)}
+.rep-ctx{font-size:12px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-bottom:10px;background:var(--bg2);padding:6px 10px;border-radius:4px}
+
+footer{text-align:center;font-size:13px;color:var(--text3);padding:24px 0 10px}
+.panel{display:none}
+.panel.active{display:block}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="h-sub">ICSE Class 10 Mathematics</div>
+  <div class="h-title">Geometric Progressions</div>
+  <div class="h-meta">nth term, sum to n terms &amp; the smart-substitution trick for GP word problems</div>
+  <div class="h-pills">
+    <span class="h-pill">Worksheet Q1–Q38</span>
+    <span class="h-pill">Board PYQs 2018–2025</span>
+    <span class="h-pill">⭐ = Board-frequent pattern</span>
+  </div>
+</div>
+
+<div class="wrap">
+<div class="tabs">
+  <button class="ctab active" id="btn-concepts" onclick="sw('concepts')">📘 Concepts</button>
+  <button class="ctab" id="btn-board" onclick="sw('board')">✎ Board PYQs</button>
+  <button class="ctab" id="btn-practice" onclick="sw('practice')">✓ Practice Worksheet</button>
+</div>
+
+<div id="panel-concepts" class="panel active">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--green)">Σ</div><div class="sec-title">All Concepts &amp; Formulae</div></div>
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">📄</span><span class="ct">1. What is a Geometric Progression?</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">GEOMETRIC PROGRESSION (G.P.)</span><div class="tb">A sequence of numbers in which every term (after the first) is obtained by multiplying the previous term by a fixed, non-zero number. This fixed multiplier is called the <b>common ratio</b>, written r. If the first term is a, the G.P. looks like a, ar, ar², ar³, …</div></div>
+      <table class="ctbl">
+        <tr><th>Symbol</th><th>Meaning</th></tr>
+        <tr><td>a</td><td>First term of the G.P.</td></tr>
+        <tr><td>r</td><td>Common ratio = (any term) ÷ (the term just before it)</td></tr>
+        <tr><td>n</td><td>Number of terms / the position of a term</td></tr>
+        <tr><td>tₙ (or aₙ)</td><td>The nth term (general term)</td></tr>
+        <tr><td>l</td><td>Last term of the G.P.</td></tr>
+      </table>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> To check if a sequence is a G.P., divide EVERY consecutive pair — one matching ratio isn't enough, all of them must give the same r. Never subtract to check a G.P. — that tests for an A.P. instead</div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🧮</span><span class="ct">2. The nth Term (General Term)</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="fbox"><div class="fl">nth term formula</div><div class="fm">\( t_n = a \cdot r^{n-1} \)</div><div class="fn">Gives the value of the term sitting at position n, without listing every term before it.</div></div>
+      <div class="tbox"><span class="tl">nth TERM FROM THE END — REVERSE-GP LOGIC</span><div class="tb">Reading a G.P. backward gives another G.P.: its first term is the original last term (l), and its common ratio is 1/r. So the "nth term from the end" is nothing new — it is just the ordinary nth-term formula applied to this reversed G.P.</div></div>
+      <div class="fbox"><div class="fl">Step 1 — form the reversed G.P.</div><div class="fm">\( a' = l, \qquad r' = \dfrac{1}{r} \)</div></div>
+      <div class="fbox"><div class="fl">Step 2 — apply the usual nth-term formula to it</div><div class="fm">\( t_n = a'\cdot(r')^{n-1} = \dfrac{l}{r^{n-1}} \)</div><div class="fn">The compact form l/rⁿ⁻¹ is just this same working with a' and r' substituted back in — derive it fresh each time rather than quoting it as a separate rule to memorise.</div></div>
+      <div class="tbox"><span class="tl">WORKING BACKWARDS — "WHICH TERM IS X?"</span><div class="tb">Set tₙ equal to the given value and solve the same formula for n instead of for the term. Since n appears as an exponent, this usually means writing both sides as powers of the same base and equating the exponents.</div></div>
+      <div class="tbox"><span class="tl">FINDING a AND r FROM TWO GIVEN TERMS</span><div class="tb">Write tₙ = a·rⁿ⁻¹ for each given term — this gives two equations in a and r. Divide one equation by the other so a cancels, leaving an equation purely in r.</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">Σ</span><span class="ct">3. Sum of n Terms (Sₙ)</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="fbox"><div class="fl">Sum formula — when r &gt; 1</div><div class="fm">\( S_n = \dfrac{a(r^n-1)}{r-1} \)</div></div>
+      <div class="fbox"><div class="fl">Sum formula — when r &lt; 1</div><div class="fm">\( S_n = \dfrac{a(1-r^n)}{1-r} \)</div><div class="fn">Both formulas give the same value for a given G.P. — the two versions just avoid dividing by a negative number, keeping the working tidy.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> Series like 9+99+999+… or 7+77+777+… are NOT themselves a G.P. — rewrite each term as (10ᵏ − 1)×constant first, split into a G.P. part and a "−n" part, then sum each separately</div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🎯</span><span class="ct">4. The Smart Substitution Trick</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">WHY IT WORKS</span><div class="tb">When a question gives the SUM or PRODUCT of a small, specific number of terms in G.P. (and asks you to find the actual numbers), don't use a, ar, ar², … Instead centre the terms symmetrically around the middle so the ratio cancels out of the product completely.</div></div>
+      <table class="ctbl">
+        <tr><th>No. of terms</th><th>Take the terms as</th><th>Product simplifies to</th></tr>
+        <tr><td>3 terms</td><td>a/r, a, ar</td><td>a³</td></tr>
+        <tr><td>4 terms</td><td>a/r³, a/r, ar, ar³</td><td>a⁴</td></tr>
+      </table>
+      <div class="hbox"><div class="hl">After finding a</div><div class="ht">Use the SECOND piece of given information (sum, difference, a ratio, etc.) to form an equation in r and solve for it. Then convert the symmetric terms (a/r, a, ar, …) back into the actual numbers of the sequence.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> Insert-k-geometric-means problems (e.g. "insert 5 terms between 4374 and 6") are really a "find r" nth-term problem in disguise — the two given numbers are just the first and last term of a longer G.P.</div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🗂️</span><span class="ct">5. The 7 Question Types — Spot the Pattern First</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">WHY THIS MATTERS</span><div class="tb">Every question in this chapter is really one of only 7 recurring patterns. Before you start solving, ask "which type is this?" — once you recognise the type, you already know the shape of the solution, even before you've done any working.</div></div>
+      <table class="ctbl">
+        <tr><th>Type</th><th>How to recognise it</th><th>The core move</th></tr>
+        <tr><td><b>Type 1</b><br>Direct Substitution</td><td>You already know (or can instantly get) a and r</td><td>Plug straight into a formula</td></tr>
+        <tr><td><b>Type 2</b><br>Two Terms Given</td><td>Two different terms are given (e.g. t₄ and t₇), need a and r</td><td>Build the bridge: t_{later} = t_{earlier} × r^{gap}</td></tr>
+        <tr><td><b>Type 3</b><br>GP Condition</td><td>An unknown letter (x, k, …) appears in 3 terms said to be in G.P.</td><td>middle² = outer product</td></tr>
+        <tr><td><b>Type 4</b><br>Word Problem (Few Numbers)</td><td>Sum or product of a small count of terms given (word problem)</td><td>Symmetric substitution: a/r, a, ar</td></tr>
+        <tr><td><b>Type 5</b><br>Reverse GP</td><td>Asks for a term counted from the END</td><td>Reversed sequence is a brand-new G.P.</td></tr>
+        <tr><td><b>Type 6</b><br>Sum to n Terms</td><td>Involves the total (Sₙ) of several terms added together</td><td>Formula → substitute → solve</td></tr>
+        <tr><td><b>Type 7</b><br>Special Series</td><td>Series like 9+99+999+… — NOT a G.P. by itself</td><td>Regroup into a genuine G.P. part + a leftover part</td></tr>
+      </table>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> Some questions are two types back-to-back (e.g. "find n, then find the sum" is Type 1 followed by Type 6) — every card in this chapter is labelled with its type(s) at the top, in the order they're used, so you can build the same muscle memory question after question</div>
+    </div>
+  </div>
+
+</div>
+
+<div id="panel-board" class="panel">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--purple)">B</div><div class="sec-title">Board PYQs (2018–2025)</div><span class="sec-badge" style="background:var(--purplelight);color:var(--purple);border:1px solid var(--purpleborder)">Short Answer</span></div>
+  <div class="diff-filter" id="df-board">
+    <button class="df-btn active" onclick="filterDiff('board-qs','all',this)">All</button>
+    <button class="df-btn" onclick="filterDiff('board-qs','e',this)">Easy</button>
+    <button class="df-btn" onclick="filterDiff('board-qs','m',this)">Medium</button>
+    <button class="df-btn" onclick="filterDiff('board-qs','h',this)">Hard</button>
+  </div>
+  <div class="count-note" id="count-board-qs"></div>
+  <div id="board-qs"></div>
+</div>
+
+<div id="panel-practice" class="panel">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--navy)">P</div><div class="sec-title">Practice Worksheet (Q1–Q38)</div><span class="sec-badge" style="background:#E8EEF5;color:var(--navy);border:1px solid #A0B4C8">Full Worked Solutions</span></div>
+  <div class="diff-filter" id="df-practice">
+    <button class="df-btn active" onclick="filterDiff('practice-qs','all',this)">All</button>
+    <button class="df-btn" onclick="filterDiff('practice-qs','e',this)">Easy</button>
+    <button class="df-btn" onclick="filterDiff('practice-qs','m',this)">Medium</button>
+    <button class="df-btn" onclick="filterDiff('practice-qs','h',this)">Hard</button>
+  </div>
+  <div class="count-note" id="count-practice-qs"></div>
+  <div id="practice-qs"></div>
+</div>
+
+<footer>Maths Bridge Academy · ICSE Class 10 · Geometric Progressions &nbsp;|&nbsp; Found an error? Use the Report button on that card.</footer>
+</div>
+
+<div class="rep-overlay" id="rep-overlay">
+  <div class="rep-card">
+    <h3>Report an error</h3>
+    <p>Spotted a mistake? Let us know and we'll review it.</p>
+    <div class="rep-ctx" id="rep-ctx"></div>
+    <textarea id="rep-text" placeholder="What's wrong with this question or solution?"></textarea>
+    <div class="rep-actions">
+      <button class="rep-cancel" onclick="closeRep()">Cancel</button>
+      <button class="rep-send" onclick="sendRep()">Send Report</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function S(strings, ...vals){ return String.raw(strings, ...vals); } // proper String.raw wrapper — DO NOT re-wrap in {raw:strings}
+
+const REPORT_META = { board:'ICSE', grade:'10', chapter:'Geometric Progressions' };
+const REPORT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx3vGZZjTHbAnKtOwSz6TaWtpYtnudCzxKMtm3Eo9bB4Ey6Xlor6LunLFEmyIQQy5e6/exec';
+
+var _repCtx = {tab:'', qno:''};
+
+function sw(name){
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('panel-'+name).classList.add('active');
+  document.querySelectorAll('.ctab').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('btn-'+name).classList.add('active');
+}
+
+function toggleCC(head){
+  head.classList.toggle('open');
+  head.nextElementSibling.classList.toggle('open');
+}
+
+function togSol(btn){
+  var body = btn.closest('.qcard').querySelector('.sol-body');
+  body.classList.toggle('open');
+  btn.textContent = body.classList.contains('open') ? 'Hide Solution' : 'Show Solution';
+}
+
+function chk(btn, qid, chosen, correct){
+  var opts = btn.closest('.mcq-opts').querySelectorAll('.mopt');
+  opts.forEach(function(o){ o.classList.add('locked'); o.style.pointerEvents='none'; });
+  opts[correct].classList.add('correct');
+  if(chosen !== correct){ btn.classList.add('wrong'); }
+  var res = document.getElementById('mr-'+qid);
+  if(res){
+    res.querySelector('.ml').textContent = chosen===correct ? '✓ Correct!' : '✗ Not quite';
+    res.querySelector('.ml').style.color = chosen===correct ? 'var(--green3)' : 'var(--amber)';
+  }
+}
+
+function filterDiff(cid, level, btn){
+  btn.parentElement.querySelectorAll('.df-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var cards = document.querySelectorAll('#'+cid+' .qcard');
+  cards.forEach(function(c){
+    if(level==='all' || c.dataset.diff===level){ c.style.display=''; } else { c.style.display='none'; }
+  });
+  updateCount(cid);
+}
+
+function updateCount(cid){
+  var all = document.querySelectorAll('#'+cid+' .qcard');
+  var visible = 0;
+  all.forEach(function(c){ if(c.style.display !== 'none') visible++; });
+  var note = document.getElementById('count-'+cid);
+  if(note) note.textContent = 'Showing '+visible+' of '+all.length+' questions';
+}
+
+function reportBtn(label, disabled){
+  return '<button class="rep-btn" onclick="openRep(\''+label.replace(/'/g,"\\'")+'\')">⚑ Report</button>';
+}
+function openRep(label){
+  _repCtx.label = label;
+  document.getElementById('rep-ctx').textContent = REPORT_META.board+' · Grade '+REPORT_META.grade+' · '+REPORT_META.chapter+' · '+label;
+  document.getElementById('rep-text').value = '';
+  document.getElementById('rep-overlay').classList.add('open');
+}
+function closeRep(){
+  document.getElementById('rep-overlay').classList.remove('open');
+}
+function sendRep(){
+  var errText = document.getElementById('rep-text').value;
+  var qs = 'board='+encodeURIComponent(REPORT_META.board)
+         +'&grade='+encodeURIComponent(REPORT_META.grade)
+         +'&chapter='+encodeURIComponent(REPORT_META.chapter)
+         +'&tab='+encodeURIComponent(_repCtx.label||'')
+         +'&qno='+encodeURIComponent('')
+         +'&error='+encodeURIComponent(errText);
+  function done(){ closeRep(); }
+  fetch(REPORT_ENDPOINT+'?'+qs, { method:'GET', mode:'no-cors' }).then(done).catch(done);
+}
+
+function buildRow(r){
+  if(!r) return '';
+  if(r.t==='p') return '<div class="p">'+r.text+'</div>';
+  if(r.t==='gr') return '<div class="gr">'+r.text+'</div>';
+  if(r.t==='k') return '<div class="k">\\[ '+r.text+' \\]</div>';
+  if(r.t==='div') return '<hr style="border:none;border-top:1px dashed var(--border);margin:6px 0">';
+  return '';
+}
+function buildSections(sections){
+  return (sections||[]).map(function(sec){
+    var rows = sec.rows.map(buildRow).join('');
+    return '<div class="ysec"><div class="y-lbl">'+sec.label+'</div>'+rows+'</div>';
+  }).join('');
+}
+function buildGiven(given){
+  if(!given || !given.length) return '';
+  var rows = given.map(function(g){ return '<div class="given-row">\\('+g+'\\)</div>'; }).join('');
+  return '<div class="given-blk"><div class="given-lbl">Given</div>'+rows+'</div>';
+}
+function buildToFind(tf){
+  if(!tf) return '';
+  return '<div class="given-blk" style="background:var(--goldlight);border-color:var(--gold3)"><div class="given-lbl" style="color:var(--gold3)">To Find</div><div class="given-row">'+tf+'</div></div>';
+}
+function buildTypeTag(t){
+  if(!t) return '';
+  return '<div class="type-tag">'+t+'</div>';
+}
+function buildSrcNote(note){
+  if(!note) return '';
+  return '<div class="srcnote">⚑ <b>Source Note:</b> '+note+'</div>';
+}
+function buildMbTip(tip){
+  if(!tip) return '';
+  return '<div class="hbox"><div class="hl">MBA Tip</div><div class="ht">'+tip+'</div></div>';
+}
+
+function render(cid, data){
+  var container = document.getElementById(cid);
+  var html = data.map(function(q, i){
+    var diff = q.diff || 'm';
+    var dispNum = q.num || (i+1);
+    var cardLbl = cid.replace('-qs','').toUpperCase()+' Q'+dispNum;
+    var diffLbl = {'e':'Easy','m':'Medium','h':'Hard'}[diff];
+    var star = q.star ? '<span class="star" title="Board-frequent pattern">⭐</span>' : '';
+
+    var srcHtml = q.sc==='pyq'
+      ? '<span class="src-badge src-pyq">'+q.src+'</span>'
+      : '<span class="src-badge src-ws">'+q.src+'</span>';
+    var pyqHtml = (q.pyq||[]).map(function(y){ return '<span class="pyq-yr">'+y+'</span>'; }).join('');
+
+    var body;
+    if(q.type === 'mcq'){
+      var qid = cid+'-'+i;
+      var mopts = q.opts.map(function(o,oi){
+        return '<button class="mopt" onclick="chk(this,\''+qid+'\','+oi+','+q.ans+')">'+o+'</button>';
+      }).join('');
+      var mcqSolBtn = q.sol ? '<button class="sol-btn" onclick="togSol(this)">Show Solution</button>' : '';
+      var mcqSolBody = q.sol ? '<div class="sol-body">'+buildSections(q.sol)+'<div class="final-ans"><span class="fa-lbl">Answer</span><span class="fav">'+q.opts[q.ans]+'</span></div></div>' : '';
+      body =
+        '<div class="q-head"><div class="q-head-top"><div class="qnb">Q'+dispNum+'</div><span class="qmp">'+q.marks+'</span>'+star+'<span class="diff diff-'+diff+'">'+diffLbl+'</span></div><div class="qtxt">'+q.q+'</div></div>'+
+        buildMbTip(q.mbtip)+
+        '<div class="mcq-opts">'+mopts+'</div>'+
+        '<div class="mcq-res" id="mr-'+qid+'"><div class="ml"></div><div class="mt"></div></div>'+
+        '<div class="q-foot">'+srcHtml+pyqHtml+mcqSolBtn+reportBtn(cardLbl,!q.sol)+'</div>'+
+        mcqSolBody;
+    } else {
+      body =
+        '<div class="q-head">'+buildTypeTag(q.qtype)+'<div class="q-head-top"><div class="qnb">Q'+dispNum+'</div><span class="qmp">'+q.marks+'</span>'+star+'<span class="diff diff-'+diff+'">'+diffLbl+'</span></div><div class="qtxt">'+q.q+'</div></div>'+
+        buildMbTip(q.mbtip)+
+        '<div class="q-foot">'+srcHtml+pyqHtml+'<button class="sol-btn" onclick="togSol(this)">Show Solution</button>'+reportBtn(cardLbl,false)+'</div>'+
+        '<div class="sol-body">'+buildGiven(q.given)+buildToFind(q.toFind)+buildSections(q.sections)+buildSrcNote(q.srcnote)+'<div class="final-ans"><span class="fa-lbl">Answer</span><span class="fav">'+q.ans+'</span></div></div>';
+    }
+
+    return '<div class="qcard '+q.m+'" data-diff="'+diff+'"><div class="q-stripe"></div><div class="q-inner">'+body+'</div></div>';
+  }).join('');
+  container.innerHTML = html;
+}
+
+function renderMathIn(container){
+  if(window.renderMathInElement){
+    renderMathInElement(container, {
+      delimiters:[{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],
+      throwOnError:false
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.body, {
+      delimiters:[{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],
+      throwOnError:false
+    });
+  }
+});
+
+/* =========================================================================
+   BOARD PYQ DATA (5 verified questions, 2018-2025) — rebuilt per the
+   weak/anxious-student framework:
+   - Every card labelled with its Type (see Concepts tab for the 7 types)
+   - Given -> To Find -> Formula -> Substitute -> Transpose, in that order
+   - Two-terms-given cards: build tn2 = tn1 x r^gap by substitution,
+     never divide two equations
+   - Exponent facts built up step by step, not stated as bare truths
+   - Cancel before multiplying wherever it makes the numbers smaller first
+   ========================================================================= */
+const boardData = [
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2025 Q10(i)', sc:'pyq', star:true, pyq:['2025'],
+    qtype:'Type 1, then Type 6',
+    q:'If 1701 is the nth term of the Geometric Progression (G.P.) 7, 21, 63, ......., find: (a) the value of \'n\' (b) hence find the sum of the \'n\' terms of the G.P.',
+    given:['a = 7','r = 3','t_n = 1701'],
+    toFind:'(a) The position n where the term equals 1701  (b) The sum of the first n terms',
+    sections:[
+      {label:'(a) VALUE OF n — Type 1 (Direct Substitution)', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`1701 = 7\times3^{n-1}`},
+        {t:'p', text:'<b>Transpose — divide both sides by 7</b>'},
+        {t:'k', text:S`3^{n-1} = \dfrac{1701}{7}`},
+        {t:'k', text:S`3^{n-1} = 243`},
+        {t:'p', text:'<b>Write 243 as a power of 3 (build it up, don\'t just state it)</b>'},
+        {t:'k', text:S`3^1=3,\ 3^2=9,\ 3^3=27,\ 3^4=81,\ 3^5=243`},
+        {t:'p', text:'So 243 = 3⁵. Now match the exponents on both sides:'},
+        {t:'k', text:S`3^{n-1} = 3^5`},
+        {t:'k', text:S`n-1 = 5`},
+        {t:'gr', text:'∴ n = 6'}
+      ]},
+      {label:'(b) SUM OF n TERMS — Type 6 (Sum to n Terms)', rows:[
+        {t:'p', text:'<b>Formula (r &gt; 1)</b>'},
+        {t:'k', text:S`S_n = \dfrac{a(r^n-1)}{r-1}`},
+        {t:'p', text:'<b>Substitute a=7, r=3, n=6</b>'},
+        {t:'k', text:S`S_6 = \dfrac{7(3^6-1)}{3-1}`},
+        {t:'p', text:'<b>Work out 3⁶ first, on its own — don\'t rush into the subtraction</b>'},
+        {t:'k', text:S`3^6 = 3^5\times3 = 243\times3 = 729`},
+        {t:'p', text:'<b>Now substitute that back in</b>'},
+        {t:'k', text:S`S_6 = \dfrac{7(729-1)}{2} = \dfrac{7\times728}{2}`},
+        {t:'p', text:'<b>Cancel the 2 into 728 before multiplying by 7 — keeps the numbers small</b>'},
+        {t:'k', text:S`\dfrac{728}{2} = 364`},
+        {t:'k', text:S`S_6 = 7\times364`},
+        {t:'gr', text:'∴ S₆ = 2548'}
+      ]}
+    ],
+    ans:'(a) n = 6  (b) S₆ = 2548'
+  },
+  {
+    m:'q-la', diff:'m', marks:'4 Marks', src:'ICSE 2024 Q2(iii)', sc:'pyq', star:true, pyq:['2024'],
+    qtype:'Type 1, then Type 6',
+    q:'15, 30, 60, 120... are in G.P. (a) Find the nth term of this G.P. in terms of n. (b) How many terms of the above G.P. will give the sum 945?',
+    given:['a = 15','r = 2'],
+    toFind:'(a) A general formula for the nth term  (b) How many terms make the sum exactly 945',
+    sections:[
+      {label:'(a) nth TERM — Type 1 (Direct Substitution)', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+        {t:'p', text:'<b>Substitute a=15, r=2</b>'},
+        {t:'k', text:S`t_n = 15\times2^{n-1}`}
+      ]},
+      {label:'(b) NUMBER OF TERMS FOR SUM 945 — Type 6 (Sum to n Terms)', rows:[
+        {t:'p', text:'<b>Formula (r &gt; 1)</b>'},
+        {t:'k', text:S`S_n = \dfrac{a(r^n-1)}{r-1}`},
+        {t:'p', text:'<b>Substitute a=15, r=2, Sₙ=945</b>'},
+        {t:'k', text:S`945 = \dfrac{15(2^n-1)}{2-1}`},
+        {t:'k', text:S`945 = 15(2^n-1)`},
+        {t:'p', text:'<b>Transpose — divide both sides by 15</b>'},
+        {t:'k', text:S`2^n-1 = \dfrac{945}{15}`},
+        {t:'k', text:S`2^n-1 = 63`},
+        {t:'k', text:S`2^n = 64`},
+        {t:'p', text:'<b>Write 64 as a power of 2 (build it up)</b>'},
+        {t:'k', text:S`2^1=2,\ 2^2=4,\ 2^3=8,\ 2^4=16,\ 2^5=32,\ 2^6=64`},
+        {t:'p', text:'So 64 = 2⁶. Now match the exponents:'},
+        {t:'k', text:S`2^n = 2^6`},
+        {t:'gr', text:'∴ n = 6'}
+      ]}
+    ],
+    ans:'(a) tₙ = 15 × 2ⁿ⁻¹  (b) n = 6 terms'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'ICSE 2020 Q5(c)', sc:'pyq', star:false, pyq:['2020'],
+    qtype:'Type 2, then Type 1',
+    q:'The 4th, 6th and the last term of a geometric progression are 10, 40 and 640 respectively. If the common ratio is positive, find the first term, common ratio and the number of terms of the series.',
+    given:['t_4 = 10','t_6 = 40','l = 640','r > 0'],
+    toFind:'The first term a, the common ratio r, and the total number of terms n',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Type 2 move — build t₆ FROM t₄ instead of writing two separate equations</b>'},
+      {t:'p', text:'t₆ is 2 steps after t₄ (position 6 − position 4 = 2), so t₆ is just t₄ multiplied by r twice:'},
+      {t:'k', text:S`t_6 = t_4\cdot r^2`},
+      {t:'p', text:'<b>Substitute the known values</b>'},
+      {t:'k', text:S`40 = 10\times r^2`},
+      {t:'p', text:'<b>Transpose — divide both sides by 10</b>'},
+      {t:'k', text:S`r^2 = 4`},
+      {t:'gr', text:'∴ r = 2 (taking the positive root, as the question requires)'},
+      {t:'p', text:'<b>Now find a — substitute r=2 back into t₄ = a·r³</b>'},
+      {t:'k', text:S`10 = a\times2^3`},
+      {t:'p', text:'<b>Work out 2³ on its own first</b>'},
+      {t:'k', text:S`2^3 = 2\times2\times2 = 8`},
+      {t:'k', text:S`10 = 8a`},
+      {t:'p', text:'<b>Transpose — divide both sides by 8</b>'},
+      {t:'gr', text:'∴ a = 5/4'},
+      {t:'p', text:'<b>Now find n — Type 1: substitute the last term into the nth-term formula</b>'},
+      {t:'k', text:S`l = a\cdot r^{n-1}`},
+      {t:'k', text:S`640 = \tfrac{5}{4}\times2^{n-1}`},
+      {t:'p', text:'<b>Transpose — divide both sides by 5/4 (same as multiplying by 4/5)</b>'},
+      {t:'k', text:S`2^{n-1} = 640\times\dfrac{4}{5}`},
+      {t:'p', text:'<b>Cancel 5 into 640 before multiplying by 4 — keeps the numbers smaller</b>'},
+      {t:'k', text:S`\dfrac{640}{5} = 128`},
+      {t:'k', text:S`2^{n-1} = 128\times4 = 512`},
+      {t:'p', text:'<b>Write 512 as a power of 2 (build it up)</b>'},
+      {t:'k', text:S`2^6=64,\ 2^7=128,\ 2^8=256,\ 2^9=512`},
+      {t:'p', text:'So 512 = 2⁹. Now match the exponents:'},
+      {t:'k', text:S`2^{n-1} = 2^9`},
+      {t:'k', text:S`n-1 = 9`},
+      {t:'gr', text:'∴ n = 10'}
+    ]}],
+    ans:'a = 5/4, r = 2, n = 10 terms'
+  },
+  {
+    m:'q-3m', diff:'e', marks:'3 Marks', src:'ICSE 2019 Q6(b)', sc:'pyq', star:false, pyq:['2019'],
+    qtype:'Type 1, then Type 6',
+    q:'The first and last term of a G.P. are 3 and 96 respectively. If the common ratio is 2, find: (i) \'n\' the number of terms of the G.P. (ii) Sum of the n terms.',
+    given:['a = 3','l = 96','r = 2'],
+    toFind:'(i) The number of terms n  (ii) The sum of all n terms',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>(i) Formula</b>'},
+      {t:'k', text:S`l = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`96 = 3\times2^{n-1}`},
+      {t:'p', text:'<b>Transpose — divide both sides by 3</b>'},
+      {t:'k', text:S`2^{n-1} = 32`},
+      {t:'p', text:'<b>Write 32 as a power of 2 (build it up)</b>'},
+      {t:'k', text:S`2^1=2,\ 2^2=4,\ 2^3=8,\ 2^4=16,\ 2^5=32`},
+      {t:'p', text:'So 32 = 2⁵. Now match the exponents:'},
+      {t:'k', text:S`2^{n-1} = 2^5`},
+      {t:'k', text:S`n-1 = 5`},
+      {t:'gr', text:'∴ n = 6'},
+      {t:'p', text:'<b>(ii) Formula for the sum (r &gt; 1)</b>'},
+      {t:'k', text:S`S_n = \dfrac{a(r^n-1)}{r-1}`},
+      {t:'p', text:'<b>Substitute a=3, r=2, n=6</b>'},
+      {t:'k', text:S`S_6 = \dfrac{3(2^6-1)}{2-1}`},
+      {t:'p', text:'<b>Work out 2⁶ on its own first</b>'},
+      {t:'k', text:S`2^6 = 2^5\times2 = 32\times2 = 64`},
+      {t:'k', text:S`S_6 = 3\times(64-1) = 3\times63`},
+      {t:'gr', text:'∴ S₆ = 189'}
+    ]}],
+    ans:'(i) n = 6  (ii) S₆ = 189'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2018 Q5(a)', sc:'pyq', star:true, pyq:['2018'],
+    qtype:'Type 2 — Two Terms Given',
+    q:'The 4th term of a G.P. is 16 and the 7th term is 128. Find the first term and common ratio of the series.',
+    given:['t_4 = 16','t_7 = 128'],
+    toFind:'The first term a and the common ratio r',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Type 2 move — build t₇ FROM t₄ instead of dividing two equations</b>'},
+      {t:'p', text:'t₇ is 3 steps after t₄ (position 7 − position 4 = 3), so t₇ is just t₄ multiplied by r three times:'},
+      {t:'k', text:S`t_7 = t_4\cdot r^3`},
+      {t:'p', text:'<b>Substitute the known values</b>'},
+      {t:'k', text:S`128 = 16\times r^3`},
+      {t:'p', text:'<b>Transpose — divide both sides by 16</b>'},
+      {t:'k', text:S`r^3 = \dfrac{128}{16}`},
+      {t:'k', text:S`r^3 = 8`},
+      {t:'p', text:'<b>Write 8 as a cube (build it up)</b>'},
+      {t:'k', text:S`2^3 = 2\times2\times2 = 8`},
+      {t:'k', text:S`r^3 = 2^3`},
+      {t:'gr', text:'∴ r = 2'},
+      {t:'p', text:'<b>Now find a — substitute r=2 back into t₄ = a·r³</b>'},
+      {t:'k', text:S`16 = a\times2^3`},
+      {t:'k', text:S`16 = 8a`},
+      {t:'p', text:'<b>Transpose — divide both sides by 8</b>'},
+      {t:'gr', text:'∴ a = 2'}
+    ]}],
+    ans:'a = 2, r = 2'
+  }
+];
+
+/* =========================================================================
+   PRACTICE WORKSHEET DATA (Q1-Q38) — rebuilt per the weak/anxious-student
+   framework. Same rules as board.js (see header there).
+   ========================================================================= */
+const practiceData = [
+  {
+    num:1, m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q1', sc:'worksheet', star:false,
+    qtype:'Type 1 — Direct Substitution',
+    q:'Show that 3, 6, 12, 24, 48, … is a G.P. Write (i) first term (ii) common ratio (iii) nth term (iv) 10th term.',
+    given:['\\text{Sequence: } 3, 6, 12, 24, 48, \\ldots'],
+    toFind:'Whether this is a G.P., and if so its a, r, general nth term, and its 10th term',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — a sequence is a G.P. only if every consecutive ratio is the same</b>'},
+      {t:'k', text:S`r = \dfrac{t_2}{t_1} = \dfrac{t_3}{t_2} = \dfrac{t_4}{t_3} = \dfrac{t_5}{t_4}`},
+      {t:'p', text:'<b>Substitute the terms, one ratio at a time</b>'},
+      {t:'k', text:S`\dfrac{6}{3}=2`},
+      {t:'k', text:S`\dfrac{12}{6}=2`},
+      {t:'k', text:S`\dfrac{24}{12}=2`},
+      {t:'k', text:S`\dfrac{48}{24}=2`},
+      {t:'p', text:'All four ratios came out the same (2), so the difference-check is done and it holds every time.'},
+      {t:'gr', text:'∴ It is a G.P. with a = 3, r = 2'},
+      {t:'p', text:'<b>(iii) Formula for the nth term</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Substitute a=3, r=2</b>'},
+      {t:'k', text:S`t_n = 3\times2^{n-1}`},
+      {t:'p', text:'<b>(iv) Substitute n=10</b>'},
+      {t:'k', text:S`t_{10} = 3\times2^{9}`},
+      {t:'p', text:'<b>Build up 2⁹ step by step, doubling each time — don\'t jump straight to the answer</b>'},
+      {t:'k', text:S`2^1=2,\ 2^2=4,\ 2^3=8,\ 2^4=16,\ 2^5=32`},
+      {t:'k', text:S`2^6=64,\ 2^7=128,\ 2^8=256,\ 2^9=512`},
+      {t:'k', text:S`t_{10} = 3\times512`},
+      {t:'gr', text:'∴ t₁₀ = 1536'}
+    ]}],
+    ans:'(i) a = 3  (ii) r = 2  (iii) tₙ = 3 × 2ⁿ⁻¹  (iv) t₁₀ = 1536'
+  },
+  {
+    num:2, m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q2', sc:'worksheet', star:false,
+    qtype:'Type 1 — Direct Substitution',
+    q:'Show that 81, 27, 9, 3, 1, … is a G.P. Write (i) first term (ii) common ratio (iii) nth term (iv) 11th term.',
+    given:['\\text{Sequence: } 81, 27, 9, 3, 1, \\ldots'],
+    toFind:'Whether this is a G.P., and if so its a, r, general nth term, and its 11th term',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — check every consecutive ratio is the same</b>'},
+      {t:'k', text:S`r = \dfrac{t_2}{t_1} = \dfrac{t_3}{t_2} = \dfrac{t_4}{t_3} = \dfrac{t_5}{t_4}`},
+      {t:'p', text:'<b>Substitute the terms, one ratio at a time</b>'},
+      {t:'k', text:S`\dfrac{27}{81}=\tfrac{1}{3}`},
+      {t:'k', text:S`\dfrac{9}{27}=\tfrac{1}{3}`},
+      {t:'k', text:S`\dfrac{3}{9}=\tfrac{1}{3}`},
+      {t:'k', text:S`\dfrac{1}{3}=\tfrac{1}{3}`},
+      {t:'p', text:'All four ratios came out the same (1/3).'},
+      {t:'gr', text:'∴ It is a G.P. with a = 81, r = 1/3'},
+      {t:'p', text:'<b>(iii) Formula for the nth term</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Substitute a=81, r=1/3</b>'},
+      {t:'k', text:S`t_n = 81\times\left(\tfrac{1}{3}\right)^{n-1}`},
+      {t:'p', text:'<b>(iv) Substitute n=11</b>'},
+      {t:'k', text:S`t_{11} = 81\times\left(\tfrac{1}{3}\right)^{10}`},
+      {t:'p', text:'<b>Notice 81 is a power of 3 — rewrite it that way so the bases match</b>'},
+      {t:'k', text:S`81 = 3\times3\times3\times3 = 3^4`},
+      {t:'k', text:S`t_{11} = 3^4\times3^{-10}`},
+      {t:'p', text:'<b>Same base, so add the exponents</b>'},
+      {t:'k', text:S`t_{11} = 3^{4-10} = 3^{-6} = \dfrac{1}{3^6}`},
+      {t:'p', text:'<b>Build up 3⁶ step by step</b>'},
+      {t:'k', text:S`3^1=3,\ 3^2=9,\ 3^3=27,\ 3^4=81,\ 3^5=243,\ 3^6=729`},
+      {t:'gr', text:'∴ t₁₁ = 1/729'}
+    ]}],
+    ans:'(i) a = 81  (ii) r = 1/3  (iii) tₙ = 81 × (1/3)ⁿ⁻¹  (iv) t₁₁ = 1/729'
+  },
+  {
+    num:3, m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q3', sc:'worksheet', star:false,
+    qtype:'Type 1 — Direct Substitution',
+    q:'Which term of the G.P. 5, 10, 20, 40, … is 2560?',
+    given:['a = 5','r = 2','t_n = 2560'],
+    toFind:'The position n at which the term equals 2560',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`2560 = 5\times2^{n-1}`},
+      {t:'p', text:'<b>Transpose — divide both sides by 5</b>'},
+      {t:'k', text:S`2^{n-1} = \dfrac{2560}{5}`},
+      {t:'k', text:S`2^{n-1} = 512`},
+      {t:'p', text:'<b>Build up powers of 2 until we reach 512</b>'},
+      {t:'k', text:S`2^6=64,\ 2^7=128,\ 2^8=256,\ 2^9=512`},
+      {t:'p', text:'So 512 = 2⁹. Now match the exponents:'},
+      {t:'k', text:S`2^{n-1} = 2^9`},
+      {t:'k', text:S`n-1 = 9`},
+      {t:'gr', text:'∴ n = 10'}
+    ]}],
+    ans:'The 10th term of the G.P. is 2560'
+  },
+  {
+    num:4, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q4', sc:'worksheet', star:true,
+    qtype:'Type 2 — Two Terms Given',
+    q:'The 4th and 7th terms of a G.P. are 54 and 1458. Find (i) first term (ii) common ratio (iii) nth term (iv) 6th term.',
+    given:['t_4 = 54','t_7 = 1458'],
+    toFind:'(i) The first term a  (ii) The common ratio r  (iii) A general formula for tₙ  (iv) The 6th term',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Build t₇ FROM t₄ — don\'t write two separate equations and divide</b>'},
+      {t:'p', text:'t₇ is 3 steps after t₄ (7 − 4 = 3), so t₇ is t₄ multiplied by r three times:'},
+      {t:'k', text:S`t_7 = t_4\cdot r^3`},
+      {t:'p', text:'<b>Substitute the known values</b>'},
+      {t:'k', text:S`1458 = 54\times r^3`},
+      {t:'p', text:'<b>Transpose — divide both sides by 54</b>'},
+      {t:'k', text:S`r^3 = \dfrac{1458}{54}`},
+      {t:'k', text:S`r^3 = 27`},
+      {t:'p', text:'<b>Write 27 as a cube</b>'},
+      {t:'k', text:S`3\times3\times3 = 27`},
+      {t:'k', text:S`r^3 = 3^3`},
+      {t:'gr', text:'∴ r = 3'},
+      {t:'p', text:'<b>(i) Now find a — substitute r=3 back into t₄ = a·r³</b>'},
+      {t:'k', text:S`54 = a\times3^3`},
+      {t:'k', text:S`54 = 27a`},
+      {t:'p', text:'<b>Transpose — divide both sides by 27</b>'},
+      {t:'gr', text:'∴ a = 2'},
+      {t:'p', text:'<b>(iii) Substitute a=2, r=3 into the nth-term formula</b>'},
+      {t:'k', text:S`t_n = 2\times3^{n-1}`},
+      {t:'p', text:'<b>(iv) Substitute n=6</b>'},
+      {t:'k', text:S`t_6 = 2\times3^5`},
+      {t:'p', text:'<b>Build up 3⁵ step by step</b>'},
+      {t:'k', text:S`3^1=3,\ 3^2=9,\ 3^3=27,\ 3^4=81,\ 3^5=243`},
+      {t:'k', text:S`t_6 = 2\times243`},
+      {t:'gr', text:'∴ t₆ = 486'}
+    ]}],
+    ans:'(i) a = 2  (ii) r = 3  (iii) tₙ = 2 × 3ⁿ⁻¹  (iv) t₆ = 486'
+  },
+  {
+    num:5, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q5', sc:'worksheet', star:false,
+    qtype:'Type 1 — Direct Substitution',
+    q:'Which term of the G.P. \\(\\sqrt3\\), 3, \\(3\\sqrt3\\), 9, … is 729?',
+    given:['a = \\sqrt3','r = \\sqrt3','t_n = 729'],
+    toFind:'The position n at which the term equals 729',
+    srcnote:'The worksheet\'s question list prints this sequence as "3, 3, 3√3, 9" (radical signs dropped by OCR), which would make the sequence internally inconsistent as a G.P. The lesson PDF\'s own worked solution confirms the true sequence is √3, 3, 3√3, 9, … with a = r = √3, matching the answer key\'s "12th term."',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Substitute a=√3, r=√3</b>'},
+      {t:'k', text:S`729 = \sqrt3\times(\sqrt3)^{n-1}`},
+      {t:'p', text:'<b>Same base (√3), so combine into a single power — add the exponents</b>'},
+      {t:'k', text:S`729 = (\sqrt3)^{1+(n-1)} = (\sqrt3)^n`},
+      {t:'p', text:'<b>Rewrite √3 as 3^(1/2) so we can compare exponents cleanly</b>'},
+      {t:'k', text:S`(\sqrt3)^n = 3^{n/2}`},
+      {t:'k', text:S`729 = 3^{n/2}`},
+      {t:'p', text:'<b>Write 729 as a power of 3</b>'},
+      {t:'k', text:S`3^4=81,\ 3^5=243,\ 3^6=729`},
+      {t:'p', text:'So 729 = 3⁶. Now match the exponents:'},
+      {t:'k', text:S`3^{n/2} = 3^6`},
+      {t:'k', text:S`\dfrac{n}{2} = 6`},
+      {t:'gr', text:'∴ n = 12'}
+    ]}],
+    ans:'The 12th term of the G.P. is 729'
+  },
+  {
+    num:6, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q6', sc:'worksheet', star:false,
+    qtype:'Type 2 — Two Terms Given',
+    q:'Find the G.P. whose 5th and 8th terms are 80 and 640 respectively.',
+    given:['t_5 = 80','t_8 = 640'],
+    toFind:'The whole G.P. (i.e. its first term a and common ratio r)',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Build t₈ FROM t₅</b>'},
+      {t:'p', text:'t₈ is 3 steps after t₅ (8 − 5 = 3), so t₈ is t₅ multiplied by r three times:'},
+      {t:'k', text:S`t_8 = t_5\cdot r^3`},
+      {t:'p', text:'<b>Substitute the known values</b>'},
+      {t:'k', text:S`640 = 80\times r^3`},
+      {t:'p', text:'<b>Transpose — divide both sides by 80</b>'},
+      {t:'k', text:S`r^3 = \dfrac{640}{80}`},
+      {t:'k', text:S`r^3 = 8`},
+      {t:'p', text:'<b>Write 8 as a cube</b>'},
+      {t:'k', text:S`2\times2\times2 = 8`},
+      {t:'k', text:S`r^3 = 2^3`},
+      {t:'gr', text:'∴ r = 2'},
+      {t:'p', text:'<b>Now find a — substitute r=2 back into t₅ = a·r⁴</b>'},
+      {t:'k', text:S`80 = a\times2^4`},
+      {t:'p', text:'<b>Build up 2⁴</b>'},
+      {t:'k', text:S`2\times2=4,\ 4\times2=8,\ 8\times2=16`},
+      {t:'k', text:S`80 = 16a`},
+      {t:'p', text:'<b>Transpose — divide both sides by 16</b>'},
+      {t:'gr', text:'∴ a = 5'}
+    ]}],
+    ans:'a = 5, r = 2; the G.P. is 5, 10, 20, 40, 80, …'
+  },
+  {
+    num:7, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q7', sc:'worksheet', star:false,
+    qtype:'Type 2 — Two Terms Given',
+    q:'Find the G.P. whose 4th term is \\(\\dfrac{1}{16}\\) and 7th term is \\(-\\dfrac{1}{54}\\).',
+    given:['t_4 = \\tfrac{1}{16}','t_7 = -\\tfrac{1}{54}'],
+    toFind:'The whole G.P. (i.e. its first term a and common ratio r)',
+    srcnote:'The source prints the 7th term as −1/486, but this is inconsistent with its own answer key, which gives a = −27/128, r = −2/3 and lists the G.P. as −27/128, 9/64, −3/32, 1/16, … — continuing that exact sequence gives a 7th term of −1/54, not −1/486. −1/54 is used below so the working matches the source\'s own verified answer.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Build t₇ FROM t₄</b>'},
+      {t:'p', text:'t₇ is 3 steps after t₄ (7 − 4 = 3), so t₇ is t₄ multiplied by r three times:'},
+      {t:'k', text:S`t_7 = t_4\cdot r^3`},
+      {t:'p', text:'<b>Substitute the known values</b>'},
+      {t:'k', text:S`-\tfrac{1}{54} = \tfrac{1}{16}\times r^3`},
+      {t:'p', text:'<b>Transpose — divide both sides by 1/16 (same as multiplying by 16)</b>'},
+      {t:'k', text:S`r^3 = -\tfrac{1}{54}\times16`},
+      {t:'p', text:'<b>Cancel before multiplying — 54 and 16 share a factor of 2</b>'},
+      {t:'k', text:S`r^3 = -\dfrac{16}{54} = -\dfrac{8}{27}`},
+      {t:'p', text:'<b>Write −8/27 as a cube</b>'},
+      {t:'k', text:S`\left(-\tfrac{2}{3}\right)^3 = -\dfrac{2\times2\times2}{3\times3\times3} = -\dfrac{8}{27}`},
+      {t:'gr', text:'∴ r = −2/3'},
+      {t:'p', text:'<b>Now find a — substitute r=−2/3 back into t₄ = a·r³</b>'},
+      {t:'k', text:S`\tfrac{1}{16} = a\times\left(-\tfrac{8}{27}\right)`},
+      {t:'p', text:'<b>Transpose — divide both sides by −8/27 (same as multiplying by −27/8)</b>'},
+      {t:'k', text:S`a = \tfrac{1}{16}\times\left(-\tfrac{27}{8}\right)`},
+      {t:'gr', text:'∴ a = −27/128'}
+    ]}],
+    ans:'a = −27/128, r = −2/3; the G.P. is −27/128, 9/64, −3/32, 1/16, …'
+  },
+  {
+    num:8, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q8', sc:'worksheet', star:false,
+    qtype:'Type 2 — Two Terms Given',
+    q:'The 3rd term of a G.P. is 0.08 and the 7th term is 0.000128. Find the first term and the common ratio.',
+    given:['t_3 = 0.08','t_7 = 0.000128'],
+    toFind:'The first term a and the common ratio r',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Build t₇ FROM t₃</b>'},
+      {t:'p', text:'t₇ is 4 steps after t₃ (7 − 3 = 4), so t₇ is t₃ multiplied by r four times:'},
+      {t:'k', text:S`t_7 = t_3\cdot r^4`},
+      {t:'p', text:'<b>Substitute the known values</b>'},
+      {t:'k', text:S`0.000128 = 0.08\times r^4`},
+      {t:'p', text:'<b>Transpose — divide both sides by 0.08</b>'},
+      {t:'k', text:S`r^4 = \dfrac{0.000128}{0.08}`},
+      {t:'k', text:S`r^4 = 0.0016`},
+      {t:'p', text:'<b>Write 0.0016 as a 4th power</b>'},
+      {t:'k', text:S`(0.2)^2 = 0.04,\quad (0.04)^2 = 0.0016`},
+      {t:'k', text:S`r^4 = (0.2)^4`},
+      {t:'gr', text:'∴ r = 0.2 (taking the positive real root)'},
+      {t:'p', text:'<b>Now find a — substitute r=0.2 back into t₃ = a·r²</b>'},
+      {t:'k', text:S`0.08 = a\times(0.2)^2`},
+      {t:'k', text:S`0.08 = 0.04a`},
+      {t:'p', text:'<b>Transpose — divide both sides by 0.04</b>'},
+      {t:'gr', text:'∴ a = 2'}
+    ]}],
+    ans:'a = 2, r = 0.2'
+  },
+  {
+    num:9, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q9', sc:'worksheet', star:false,
+    qtype:'Type 2, then Type 1',
+    q:'The 5th, 8th and the last terms of a G.P. are 5, 40 and 5120 respectively. Find the first term and the number of terms in the G.P.',
+    given:['t_5 = 5','t_8 = 40','l = 5120'],
+    toFind:'The first term a and the total number of terms n',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Build t₈ FROM t₅ — Type 2 move</b>'},
+      {t:'p', text:'t₈ is 3 steps after t₅ (8 − 5 = 3), so t₈ is t₅ multiplied by r three times:'},
+      {t:'k', text:S`t_8 = t_5\cdot r^3`},
+      {t:'p', text:'<b>Substitute the known values</b>'},
+      {t:'k', text:S`40 = 5\times r^3`},
+      {t:'p', text:'<b>Transpose — divide both sides by 5</b>'},
+      {t:'k', text:S`r^3 = 8`},
+      {t:'p', text:'<b>Write 8 as a cube</b>'},
+      {t:'k', text:S`2\times2\times2=8`},
+      {t:'gr', text:'∴ r = 2'},
+      {t:'p', text:'<b>Now find a — substitute r=2 back into t₅ = a·r⁴</b>'},
+      {t:'k', text:S`5 = a\times2^4`},
+      {t:'p', text:'<b>Build up 2⁴</b>'},
+      {t:'k', text:S`2\times2=4,\ 4\times2=8,\ 8\times2=16`},
+      {t:'k', text:S`5 = 16a`},
+      {t:'p', text:'<b>Transpose — divide both sides by 16</b>'},
+      {t:'gr', text:'∴ a = 5/16'},
+      {t:'p', text:'<b>Now find n — Type 1: substitute the last term into the nth-term formula</b>'},
+      {t:'k', text:S`l = a\cdot r^{n-1}`},
+      {t:'k', text:S`5120 = \tfrac{5}{16}\times2^{n-1}`},
+      {t:'p', text:'<b>Transpose — divide both sides by 5/16 (same as multiplying by 16/5)</b>'},
+      {t:'k', text:S`2^{n-1} = 5120\times\dfrac{16}{5}`},
+      {t:'p', text:'<b>Cancel the 5 into 5120 first — keeps the numbers smaller</b>'},
+      {t:'k', text:S`\dfrac{5120}{5} = 1024`},
+      {t:'k', text:S`2^{n-1} = 1024\times16`},
+      {t:'p', text:'<b>1024 is already a power of 2 — use that instead of multiplying out</b>'},
+      {t:'k', text:S`1024 = 2^{10},\qquad 16 = 2^4`},
+      {t:'k', text:S`2^{n-1} = 2^{10}\times2^4 = 2^{14}`},
+      {t:'k', text:S`n-1 = 14`},
+      {t:'gr', text:'∴ n = 15'}
+    ]}],
+    ans:'First term = 5/16; number of terms = 15'
+  },
+  {
+    num:10, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q10', sc:'worksheet', star:false,
+    qtype:'Type 1 — Direct Substitution',
+    q:'The 6th term of a G.P. is 8 times the third term and the 5th term is 48. Find the G.P.',
+    given:['t_6 = 8\\cdot t_3','t_5 = 48'],
+    toFind:'The whole G.P. (its first term a and common ratio r)',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Substitute n=6 and n=3 into the given condition tₙ=8t₃</b>'},
+      {t:'k', text:S`a\cdot r^5 = 8\times a\cdot r^2`},
+      {t:'p', text:'<b>Both sides have a·r² in them — divide both sides by a·r² to cancel it</b>'},
+      {t:'k', text:S`r^3 = 8`},
+      {t:'p', text:'<b>Write 8 as a cube</b>'},
+      {t:'k', text:S`2\times2\times2=8`},
+      {t:'gr', text:'∴ r = 2'},
+      {t:'p', text:'<b>Substitute r=2, n=5 into t₅=48</b>'},
+      {t:'k', text:S`a\times2^4 = 48`},
+      {t:'p', text:'<b>Build up 2⁴</b>'},
+      {t:'k', text:S`2\times2=4,\ 4\times2=8,\ 8\times2=16`},
+      {t:'k', text:S`16a = 48`},
+      {t:'p', text:'<b>Transpose — divide both sides by 16</b>'},
+      {t:'gr', text:'∴ a = 3'}
+    ]}],
+    ans:'a = 3, r = 2; the G.P. is 3, 6, 12, 24, …'
+  },
+  {
+    num:11, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q11', sc:'worksheet', star:true,
+    qtype:'Type 2 — Two Terms Given',
+    q:'Insert 5 terms between 4374 and 6, so that they form a G.P.',
+    given:['a = 4374','l = 6','\\text{7 terms total (5 inserted + first + last)}'],
+    toFind:'The 5 missing terms that sit between 4374 and 6',
+    mbtip:'Inserting k terms between two numbers means those two numbers become the 1st and (k+2)th terms of one longer G.P. — this reduces the problem to a Type 2 problem: two terms are known (the first and the last), find r.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Substitute a=4374, l=6, n=7 (the last term is the 7th term here)</b>'},
+      {t:'k', text:S`6 = 4374\times r^6`},
+      {t:'p', text:'<b>Transpose — divide both sides by 4374</b>'},
+      {t:'k', text:S`r^6 = \dfrac{6}{4374}`},
+      {t:'p', text:'<b>Cancel — both numbers share a factor of 6</b>'},
+      {t:'k', text:S`r^6 = \dfrac{1}{729}`},
+      {t:'p', text:'<b>Write 1/729 as a 6th power</b>'},
+      {t:'k', text:S`3^1=3,\ 3^2=9,\ 3^3=27,\ 3^4=81,\ 3^5=243,\ 3^6=729`},
+      {t:'k', text:S`r^6 = \left(\tfrac{1}{3}\right)^6`},
+      {t:'gr', text:'∴ r = 1/3'},
+      {t:'p', text:'<b>Now build all 7 terms — multiply by 1/3 each time, starting from a</b>'},
+      {t:'k', text:S`4374,\quad 4374\times\tfrac{1}{3}=1458,\quad 1458\times\tfrac{1}{3}=486`},
+      {t:'k', text:S`486\times\tfrac{1}{3}=162,\quad 162\times\tfrac{1}{3}=54,\quad 54\times\tfrac{1}{3}=18,\quad 18\times\tfrac{1}{3}=6`},
+      {t:'gr', text:'∴ 4374, 1458, 486, 162, 54, 18, 6'}
+    ]}],
+    ans:'4374, 1458, 486, 162, 54, 18, 6'
+  },
+  {
+    num:12, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q12', sc:'worksheet', star:false,
+    qtype:'Type 1 — Direct Substitution',
+    q:'The first term of a G.P. is 1 and the 6th term is 1024. Find the common ratio and insert 4 terms between them.',
+    given:['a = 1','t_6 = 1024'],
+    toFind:'The common ratio r, and the 4 missing terms between t₁ and t₆',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Substitute a=1, n=6</b>'},
+      {t:'k', text:S`1024 = 1\times r^5`},
+      {t:'k', text:S`r^5 = 1024`},
+      {t:'p', text:'<b>Write 1024 as a 5th power — build up powers of a small whole number</b>'},
+      {t:'k', text:S`4^1=4,\ 4^2=16,\ 4^3=64,\ 4^4=256,\ 4^5=1024`},
+      {t:'k', text:S`r^5 = 4^5`},
+      {t:'gr', text:'∴ r = 4'},
+      {t:'p', text:'<b>Now build all 6 terms — multiply by 4 each time, starting from a</b>'},
+      {t:'k', text:S`1,\quad 1\times4=4,\quad 4\times4=16,\quad 16\times4=64,\quad 64\times4=256,\quad 256\times4=1024`},
+      {t:'gr', text:'∴ 1, 4, 16, 64, 256, 1024'}
+    ]}],
+    ans:'r = 4; G.P.: 1, 4, 16, 64, 256, 1024'
+  },
+  {
+    num:13, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q13', sc:'worksheet', star:false,
+    qtype:'Type 3 — GP Condition',
+    q:'The 4th term of a G.P. is the square of its second term, and the first term is −3. Determine the 6th term.',
+    given:['t_4 = (t_2)^2','a = -3'],
+    toFind:'The 6th term, t₆',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Substitute n=4 and n=2 into the given condition tₙ=(t₂)²</b>'},
+      {t:'k', text:S`a\cdot r^3 = (a\cdot r)^2`},
+      {t:'p', text:'<b>Expand the right side</b>'},
+      {t:'k', text:S`a\cdot r^3 = a^2\cdot r^2`},
+      {t:'p', text:'<b>Both sides have a·r² — divide both sides by a·r² to cancel it</b>'},
+      {t:'k', text:S`r = a`},
+      {t:'p', text:'<b>Substitute a=−3</b>'},
+      {t:'gr', text:'∴ r = −3'},
+      {t:'p', text:'<b>Substitute a=−3, r=−3, n=6 into the nth-term formula</b>'},
+      {t:'k', text:S`t_6 = a\cdot r^5 = (-3)\times(-3)^5`},
+      {t:'p', text:'<b>Work out (−3)⁵ on its own first — odd power of a negative number stays negative</b>'},
+      {t:'k', text:S`(-3)^2=9,\ (-3)^3=-27,\ (-3)^4=81,\ (-3)^5=-243`},
+      {t:'k', text:S`t_6 = (-3)\times(-243)`},
+      {t:'p', text:'<b>Negative times negative is positive</b>'},
+      {t:'gr', text:'∴ t₆ = 729'}
+    ]}],
+    ans:'t₆ = 729'
+  },
+  {
+    num:14, m:'q-1m', diff:'m', marks:'2 Marks', src:'Worksheet Q14', sc:'worksheet', star:false,
+    qtype:'Type 1 — Direct Substitution',
+    q:'The 3rd term of a G.P. is 3. Find the product of its first 5 terms.',
+    given:['t_3 = 3'],
+    toFind:'The product of the first 5 terms, multiplied together',
+    mbtip:'The 1st and 5th terms are the same distance from the 3rd term (2 steps on either side), and so are the 2nd and 4th — every such pair multiplies to t₃² by the same cancelling trick used in Type 2 problems.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — write out the product of all 5 terms</b>'},
+      {t:'k', text:S`P = a\times(ar)\times(ar^2)\times(ar^3)\times(ar^4)`},
+      {t:'p', text:'<b>Collect all the a\'s and all the r\'s together</b>'},
+      {t:'k', text:S`P = a^5\cdot r^{10}`},
+      {t:'p', text:'<b>Rewrite this as (a·r²) raised to the power 5 — notice a·r² is exactly t₃</b>'},
+      {t:'k', text:S`P = (a\cdot r^2)^5 = (t_3)^5`},
+      {t:'p', text:'<b>Substitute t₃=3</b>'},
+      {t:'k', text:S`P = 3^5`},
+      {t:'p', text:'<b>Build up 3⁵ step by step</b>'},
+      {t:'k', text:S`3^1=3,\ 3^2=9,\ 3^3=27,\ 3^4=81,\ 3^5=243`},
+      {t:'gr', text:'∴ P = 243'}
+    ]}],
+    ans:'Product of first 5 terms = 243'
+  },
+  {
+    num:15, m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q15', sc:'worksheet', star:false,
+    qtype:'Type 3 — GP Condition',
+    q:'For what values of x are \\(\\dfrac{5}{7}\\), x, \\(\\dfrac{7}{5}\\) in G.P.?',
+    given:['\\tfrac{5}{7},\\ x,\\ \\tfrac{7}{5} \\text{ in G.P.}'],
+    toFind:'The value(s) of x that make these 3 terms a G.P.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — for 3 consecutive G.P. terms, the middle term squared equals the product of the outer two</b>'},
+      {t:'k', text:S`x^2 = (\text{first term})\times(\text{third term})`},
+      {t:'p', text:'<b>Substitute the given terms</b>'},
+      {t:'k', text:S`x^2 = \tfrac{5}{7}\times\tfrac{7}{5}`},
+      {t:'p', text:'<b>Cancel before multiplying — the 5s and 7s cancel completely</b>'},
+      {t:'k', text:S`x^2 = 1`},
+      {t:'p', text:'<b>Take the square root of both sides — remember both + and − work</b>'},
+      {t:'gr', text:'∴ x = 1 or x = −1'}
+    ]}],
+    ans:'x = 1 or x = −1'
+  },
+  {
+    num:16, m:'q-la', diff:'m', marks:'3 Marks', src:'Worksheet Q16', sc:'worksheet', star:false,
+    qtype:'Type 3 — GP Condition',
+    q:'For what values of x are x + 9, x − 6, 4 in G.P.?',
+    given:['x+9,\\ x-6,\\ 4 \\text{ in G.P.}'],
+    toFind:'The value(s) of x that make these 3 terms a G.P.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — middle term squared equals product of outer two</b>'},
+      {t:'k', text:S`(x-6)^2 = (x+9)\times4`},
+      {t:'p', text:'<b>Expand the left side</b>'},
+      {t:'k', text:S`(x-6)^2 = x^2-12x+36`},
+      {t:'p', text:'<b>Expand the right side</b>'},
+      {t:'k', text:S`(x+9)\times4 = 4x+36`},
+      {t:'p', text:'<b>Now the equation reads</b>'},
+      {t:'k', text:S`x^2-12x+36 = 4x+36`},
+      {t:'p', text:'<b>Transpose — move everything to the left side</b>'},
+      {t:'k', text:S`x^2-12x-4x+36-36 = 0`},
+      {t:'k', text:S`x^2-16x = 0`},
+      {t:'p', text:'<b>Factorise — x is common to both terms</b>'},
+      {t:'k', text:S`x(x-16) = 0`},
+      {t:'gr', text:'∴ x = 0 or x = 16'}
+    ]}],
+    ans:'x = 0 (G.P.: 9, −6, 4) or x = 16 (G.P.: 25, 10, 4)'
+  },
+  {
+    num:17, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q17', sc:'worksheet', star:true,
+    qtype:'Type 3 — GP Condition',
+    q:'(k − 1), (k + 2), 3k are the first 3 terms of a G.P. Find k and the 4th term.',
+    given:['(k-1),\\ (k+2),\\ 3k \\text{ in G.P.}'],
+    toFind:'The value(s) of k, and then the 4th term of the resulting G.P.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — middle term squared equals product of outer two</b>'},
+      {t:'k', text:S`(k+2)^2 = (k-1)\times3k`},
+      {t:'p', text:'<b>Expand the left side</b>'},
+      {t:'k', text:S`(k+2)^2 = k^2+4k+4`},
+      {t:'p', text:'<b>Expand the right side</b>'},
+      {t:'k', text:S`(k-1)\times3k = 3k^2-3k`},
+      {t:'p', text:'<b>Now the equation reads</b>'},
+      {t:'k', text:S`k^2+4k+4 = 3k^2-3k`},
+      {t:'p', text:'<b>Transpose — move everything to the right side (so k² stays positive)</b>'},
+      {t:'k', text:S`0 = 3k^2-k^2-3k-4k-4`},
+      {t:'k', text:S`2k^2-7k-4 = 0`},
+      {t:'p', text:'<b>Factorise</b>'},
+      {t:'k', text:S`(2k+1)(k-4) = 0`},
+      {t:'gr', text:'∴ k = −1/2 or k = 4'},
+      {t:'p', text:'<b>Case k = −1/2 — substitute into the 3 given terms</b>'},
+      {t:'k', text:S`k-1=-\tfrac{3}{2},\quad k+2=\tfrac{3}{2},\quad 3k=-\tfrac{3}{2}`},
+      {t:'p', text:'<b>Find r — divide the 2nd term by the 1st</b>'},
+      {t:'k', text:S`r = \dfrac{3/2}{-3/2} = -1`},
+      {t:'p', text:'<b>4th term = 3rd term × r</b>'},
+      {t:'k', text:S`t_4 = -\tfrac{3}{2}\times(-1) = \tfrac{3}{2}`},
+      {t:'p', text:'<b>Case k = 4 — substitute into the 3 given terms</b>'},
+      {t:'k', text:S`k-1=3,\quad k+2=6,\quad 3k=12`},
+      {t:'p', text:'<b>Find r — divide the 2nd term by the 1st</b>'},
+      {t:'k', text:S`r = \dfrac{6}{3} = 2`},
+      {t:'p', text:'<b>4th term = 3rd term × r</b>'},
+      {t:'k', text:S`t_4 = 12\times2 = 24`}
+    ]}],
+    ans:'k = −1/2 gives 4th term = 3/2; k = 4 gives 4th term = 24'
+  },
+  {
+    num:18, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q18', sc:'worksheet', star:false,
+    qtype:'Type 6 — Sum to n Terms',
+    q:'Find the sum of 8 terms of the G.P. \\(\\dfrac{1}{3}\\), \\(\\dfrac{1}{6}\\), \\(\\dfrac{1}{12}\\), \\(\\dfrac{1}{24}\\), …',
+    given:['a = \\tfrac{1}{3}','r = \\tfrac{1}{2}'],
+    toFind:'The sum of the first 8 terms, S₈',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula (r &lt; 1)</b>'},
+      {t:'k', text:S`S_n = \dfrac{a(1-r^n)}{1-r}`},
+      {t:'p', text:'<b>Substitute a=1/3, r=1/2, n=8</b>'},
+      {t:'k', text:S`S_8 = \dfrac{\tfrac{1}{3}\left(1-\left(\tfrac{1}{2}\right)^8\right)}{1-\tfrac{1}{2}}`},
+      {t:'p', text:'<b>Work out (1/2)⁸ on its own first, by doubling the denominator each time</b>'},
+      {t:'k', text:S`2,4,8,16,32,64,128,256`},
+      {t:'k', text:S`\left(\tfrac{1}{2}\right)^8 = \tfrac{1}{256}`},
+      {t:'p', text:'<b>Now the numerator becomes</b>'},
+      {t:'k', text:S`1-\tfrac{1}{256} = \tfrac{255}{256}`},
+      {t:'p', text:'<b>And the denominator is</b>'},
+      {t:'k', text:S`1-\tfrac{1}{2} = \tfrac{1}{2}`},
+      {t:'p', text:'<b>So we now have</b>'},
+      {t:'k', text:S`S_8 = \dfrac{\tfrac{1}{3}\times\tfrac{255}{256}}{\tfrac{1}{2}}`},
+      {t:'p', text:'<b>Dividing by 1/2 is the same as multiplying by 2 — do that first</b>'},
+      {t:'k', text:S`S_8 = \tfrac{1}{3}\times\tfrac{255}{256}\times2`},
+      {t:'p', text:'<b>Cancel the 2 into 256 before multiplying anything else</b>'},
+      {t:'k', text:S`\dfrac{256}{2} = 128`},
+      {t:'k', text:S`S_8 = \tfrac{1}{3}\times\dfrac{255}{128}`},
+      {t:'p', text:'<b>Cancel the 3 into 255 before multiplying</b>'},
+      {t:'k', text:S`\dfrac{255}{3} = 85`},
+      {t:'k', text:S`S_8 = \dfrac{85}{128}`}
+    ]}],
+    ans:'S₈ = 85/128'
+  },
+  {
+    num:19, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q19', sc:'worksheet', star:false,
+    qtype:'Type 6 — Sum to n Terms',
+    q:'Find the sum to n terms of the G.P. 5, \\(\\dfrac{20}{7}\\), \\(\\dfrac{80}{49}\\), …',
+    given:['a = 5','r = \\tfrac{4}{7}'],
+    toFind:'A formula for the sum of the first n terms, Sₙ',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula (r &lt; 1)</b>'},
+      {t:'k', text:S`S_n = \dfrac{a(1-r^n)}{1-r}`},
+      {t:'p', text:'<b>Substitute a=5, r=4/7</b>'},
+      {t:'k', text:S`S_n = \dfrac{5\left(1-\left(\tfrac{4}{7}\right)^n\right)}{1-\tfrac{4}{7}}`},
+      {t:'p', text:'<b>Simplify the denominator on its own first</b>'},
+      {t:'k', text:S`1-\tfrac{4}{7} = \tfrac{3}{7}`},
+      {t:'p', text:'<b>Dividing by 3/7 is the same as multiplying by 7/3</b>'},
+      {t:'k', text:S`S_n = 5\left(1-\left(\tfrac{4}{7}\right)^n\right)\times\dfrac{7}{3}`},
+      {t:'p', text:'<b>Combine the two plain numbers (5 and 7/3) together first — leave the (4/7)ⁿ part alone</b>'},
+      {t:'k', text:S`5\times\dfrac{7}{3} = \dfrac{35}{3}`}
+    ]}],
+    ans:'Sₙ = (35/3) × [1 − (4/7)ⁿ]'
+  },
+  {
+    num:20, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q20', sc:'worksheet', star:true,
+    qtype:'Type 7 — Special Series',
+    q:'Find the sum of the following to n terms: (a) \\(1+\\dfrac{1}{10}+\\dfrac{1}{100}+\\dfrac{1}{1000}+\\ldots\\) (b) 9 + 99 + 999 + 9999 + … (c) 7 + 77 + 777 + 7777 + …',
+    given:['\\text{Three separate series}'],
+    toFind:'A formula for each series\' sum to n terms',
+    mbtip:'Parts (b) and (c) are NOT themselves a G.P. (check: 99−9=90, 999−99=900 — not equal, so it fails the G.P. ratio test). Rewrite each term as (a power of 10, minus 1), then split the sum into a genuine G.P. part plus a separate "−n" part.',
+    sections:[
+      {label:'(a) 1 + 1/10 + 1/100 + … (n terms) — Type 6', rows:[
+        {t:'k', text:S`a=1,\quad r=\tfrac{1}{10}`},
+        {t:'p', text:'<b>Formula (r &lt; 1)</b>'},
+        {t:'k', text:S`S_n = \dfrac{a(1-r^n)}{1-r}`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`S_n = \dfrac{1\left(1-\left(\tfrac{1}{10}\right)^n\right)}{1-\tfrac{1}{10}}`},
+        {t:'p', text:'<b>Simplify the denominator</b>'},
+        {t:'k', text:S`1-\tfrac{1}{10} = \tfrac{9}{10}`},
+        {t:'p', text:'<b>Dividing by 9/10 is the same as multiplying by 10/9</b>'},
+        {t:'k', text:S`S_n = \left(1-\left(\tfrac{1}{10}\right)^n\right)\times\dfrac{10}{9}`}
+      ]},
+      {label:'(b) 9 + 99 + 999 + … (n terms) — Type 7', rows:[
+        {t:'p', text:'<b>Step 1 — rewrite each term as (a power of 10) minus 1</b>'},
+        {t:'k', text:S`9=10-1,\quad 99=100-1,\quad 999=1000-1,\ \ldots`},
+        {t:'p', text:'<b>Step 2 — split the whole sum into two separate groups</b>'},
+        {t:'k', text:S`S_n = \underbrace{(10+100+\ldots+10^n)}_{\text{a genuine G.P.}} - \underbrace{(1+1+\ldots+1)}_{n\text{ ones}}`},
+        {t:'p', text:'<b>Step 3 — the second group is just n, since we\'re adding 1 to itself n times</b>'},
+        {t:'k', text:S`1+1+\ldots+1 = n`},
+        {t:'p', text:'<b>Step 4 — the first group IS a genuine G.P. (a=10, r=10) — apply the sum formula to it</b>'},
+        {t:'k', text:S`10+100+\ldots+10^n = \dfrac{10(10^n-1)}{10-1} = \dfrac{10(10^n-1)}{9}`},
+        {t:'p', text:'<b>Step 5 — combine both parts</b>'},
+        {t:'k', text:S`S_n = \dfrac{10(10^n-1)}{9} - n`}
+      ]},
+      {label:'(c) 7 + 77 + 777 + … (n terms) — Type 7', rows:[
+        {t:'p', text:'<b>Notice every term here is 7 times the matching term in part (b)\'s pattern (1, 11, 111, …)</b>'},
+        {t:'k', text:S`7=7\times1,\quad 77=7\times11,\quad 777=7\times111,\ \ldots`},
+        {t:'p', text:'<b>And "1+11+111+…" is exactly "(9+99+999+…)" divided by 9</b>'},
+        {t:'k', text:S`1+11+111+\ldots = \dfrac{9+99+999+\ldots}{9}`},
+        {t:'p', text:'<b>Substitute the part (b) result for 9+99+999+…</b>'},
+        {t:'k', text:S`1+11+111+\ldots = \dfrac{1}{9}\left[\dfrac{10(10^n-1)}{9}-n\right]`},
+        {t:'p', text:'<b>Now multiply this whole thing by 7 (from the first step)</b>'},
+        {t:'k', text:S`S_n = 7\times\dfrac{1}{9}\left[\dfrac{10(10^n-1)}{9}-n\right]`},
+        {t:'p', text:'<b>Distribute the 7/9 into the bracket</b>'},
+        {t:'k', text:S`S_n = \dfrac{70(10^n-1)}{81} - \dfrac{7n}{9}`}
+      ]}
+    ],
+    ans:'(a) Sₙ = (10/9)[1 − (1/10)ⁿ]  (b) Sₙ = 10(10ⁿ−1)/9 − n  (c) Sₙ = 70(10ⁿ−1)/81 − 7n/9'
+  },
+  {
+    num:21, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q21', sc:'worksheet', star:false,
+    qtype:'Type 6 — Sum to n Terms',
+    q:'How many terms of the G.P. 3, 9, 27, 81, … must be taken to make the sum 3279?',
+    given:['a = 3','r = 3','S_n = 3279'],
+    toFind:'The number of terms n needed to reach a sum of 3279',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula (r &gt; 1)</b>'},
+      {t:'k', text:S`S_n = \dfrac{a(r^n-1)}{r-1}`},
+      {t:'p', text:'<b>Substitute a=3, r=3, Sₙ=3279</b>'},
+      {t:'k', text:S`3279 = \dfrac{3(3^n-1)}{3-1}`},
+      {t:'k', text:S`3279 = \dfrac{3(3^n-1)}{2}`},
+      {t:'p', text:'<b>Transpose — multiply both sides by 2</b>'},
+      {t:'k', text:S`3279\times2 = 3(3^n-1)`},
+      {t:'k', text:S`6558 = 3(3^n-1)`},
+      {t:'p', text:'<b>Transpose — divide both sides by 3</b>'},
+      {t:'k', text:S`3^n-1 = 2186`},
+      {t:'k', text:S`3^n = 2187`},
+      {t:'p', text:'<b>Write 2187 as a power of 3 (build it up)</b>'},
+      {t:'k', text:S`3^4=81,\ 3^5=243,\ 3^6=729,\ 3^7=2187`},
+      {t:'gr', text:'∴ n = 7 terms'}
+    ]}],
+    ans:'n = 7 terms'
+  },
+  {
+    num:22, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q22', sc:'worksheet', star:true,
+    qtype:'Type 6 — Sum to n Terms',
+    q:'How many terms of the G.P. \\(\\sqrt2\\), 2, \\(2\\sqrt2\\), … will make the sum 30 + 31√2?',
+    given:['a = \\sqrt2','r = \\sqrt2','S_n = 30+31\\sqrt2'],
+    srcnote:'The worksheet\'s question list prints this as "2, 2, 2√2, …" (radical signs dropped by OCR). The true first term is √2 (so a = r = √2) — confirmed because only this sequence produces the exact target sum 30+31√2 at a whole-number n, matching the answer key\'s "9 terms."',
+    toFind:'The number of terms n needed to reach the sum 30+31√2',
+    mbtip:'With surds it\'s often safer to build the running total term-by-term rather than solve the Sₙ formula algebraically — that algebra needs rationalising a surd denominator, which is an extra place to slip.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Build the terms one at a time, multiplying by r=√2 each time</b>'},
+      {t:'k', text:S`t_1=\sqrt2`},
+      {t:'k', text:S`t_2=t_1\times\sqrt2=\sqrt2\times\sqrt2=2`},
+      {t:'k', text:S`t_3=t_2\times\sqrt2=2\sqrt2`},
+      {t:'k', text:S`t_4=t_3\times\sqrt2=2\sqrt2\times\sqrt2=4`},
+      {t:'k', text:S`t_5=t_4\times\sqrt2=4\sqrt2`},
+      {t:'k', text:S`t_6=t_5\times\sqrt2=4\sqrt2\times\sqrt2=8`},
+      {t:'k', text:S`t_7=t_6\times\sqrt2=8\sqrt2`},
+      {t:'k', text:S`t_8=t_7\times\sqrt2=8\sqrt2\times\sqrt2=16`},
+      {t:'k', text:S`t_9=t_8\times\sqrt2=16\sqrt2`},
+      {t:'p', text:'<b>Now add them up, keeping the whole-number part and the √2 part separate</b>'},
+      {t:'k', text:S`S_1=\sqrt2`},
+      {t:'k', text:S`S_2=2+\sqrt2`},
+      {t:'k', text:S`S_3=2+3\sqrt2`},
+      {t:'k', text:S`S_4=6+3\sqrt2`},
+      {t:'k', text:S`S_5=6+7\sqrt2`},
+      {t:'k', text:S`S_6=14+7\sqrt2`},
+      {t:'k', text:S`S_7=14+15\sqrt2`},
+      {t:'k', text:S`S_8=30+15\sqrt2`},
+      {t:'k', text:S`S_9=30+31\sqrt2`},
+      {t:'p', text:'S₉ matches the target sum exactly.'},
+      {t:'gr', text:'∴ n = 9'}
+    ]}],
+    ans:'n = 9 terms'
+  },
+  {
+    num:23, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q23', sc:'worksheet', star:false,
+    qtype:'Type 6 — Sum to n Terms',
+    q:'How many terms of the G.P. \\(\\sqrt5\\), 5, \\(5\\sqrt5\\), … will make the sum 780 + 156√5?',
+    given:['a = \\sqrt5','r = \\sqrt5','S_n = 780+156\\sqrt5'],
+    srcnote:'As with Q22, the worksheet\'s question list prints this as "5, 5, 5√5, 25" (radical signs dropped by OCR). The true first term is √5 (so a = r = √5) — confirmed because only this sequence produces the exact target sum 780+156√5 at a whole-number n, matching the answer key\'s "8 terms."',
+    toFind:'The number of terms n needed to reach the sum 780+156√5',
+    mbtip:'Same idea as Q22 — build the running total term-by-term rather than solving the Sₙ formula algebraically.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Build the terms one at a time, multiplying by r=√5 each time</b>'},
+      {t:'k', text:S`t_1=\sqrt5`},
+      {t:'k', text:S`t_2=t_1\times\sqrt5=\sqrt5\times\sqrt5=5`},
+      {t:'k', text:S`t_3=t_2\times\sqrt5=5\sqrt5`},
+      {t:'k', text:S`t_4=t_3\times\sqrt5=5\sqrt5\times\sqrt5=25`},
+      {t:'k', text:S`t_5=t_4\times\sqrt5=25\sqrt5`},
+      {t:'k', text:S`t_6=t_5\times\sqrt5=25\sqrt5\times\sqrt5=125`},
+      {t:'k', text:S`t_7=t_6\times\sqrt5=125\sqrt5`},
+      {t:'k', text:S`t_8=t_7\times\sqrt5=125\sqrt5\times\sqrt5=625`},
+      {t:'p', text:'<b>Now add them up, keeping the whole-number part and the √5 part separate</b>'},
+      {t:'k', text:S`S_1=\sqrt5`},
+      {t:'k', text:S`S_2=5+\sqrt5`},
+      {t:'k', text:S`S_3=5+6\sqrt5`},
+      {t:'k', text:S`S_4=30+6\sqrt5`},
+      {t:'k', text:S`S_5=30+31\sqrt5`},
+      {t:'k', text:S`S_6=155+31\sqrt5`},
+      {t:'k', text:S`S_7=155+156\sqrt5`},
+      {t:'k', text:S`S_8=780+156\sqrt5`},
+      {t:'p', text:'S₈ matches the target sum exactly.'},
+      {t:'gr', text:'∴ n = 8'}
+    ]}],
+    ans:'n = 8 terms'
+  },
+  {
+    num:24, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q24', sc:'worksheet', star:false,
+    qtype:'Type 1, then Type 6',
+    q:'The sum of n terms of a G.P. is 2295. Its first term is 9 and the common ratio is 2. Find the number of terms and its 5th term.',
+    given:['S_n = 2295','a = 9','r = 2'],
+    toFind:'The number of terms n, and the 5th term t₅',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula (r &gt; 1)</b>'},
+      {t:'k', text:S`S_n = \dfrac{a(r^n-1)}{r-1}`},
+      {t:'p', text:'<b>Substitute a=9, r=2, Sₙ=2295</b>'},
+      {t:'k', text:S`2295 = \dfrac{9(2^n-1)}{2-1}`},
+      {t:'k', text:S`2295 = 9(2^n-1)`},
+      {t:'p', text:'<b>Transpose — divide both sides by 9</b>'},
+      {t:'k', text:S`2^n-1 = \dfrac{2295}{9}`},
+      {t:'k', text:S`2^n-1 = 255`},
+      {t:'k', text:S`2^n = 256`},
+      {t:'p', text:'<b>Write 256 as a power of 2 (build it up)</b>'},
+      {t:'k', text:S`2^6=64,\ 2^7=128,\ 2^8=256`},
+      {t:'gr', text:'∴ n = 8'},
+      {t:'p', text:'<b>Formula for the 5th term</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Substitute a=9, r=2, n=5</b>'},
+      {t:'k', text:S`t_5 = 9\times2^4`},
+      {t:'p', text:'<b>Build up 2⁴</b>'},
+      {t:'k', text:S`2\times2=4,\ 4\times2=8,\ 8\times2=16`},
+      {t:'k', text:S`t_5 = 9\times16`},
+      {t:'gr', text:'∴ t₅ = 144'}
+    ]}],
+    ans:'n = 8, t₅ = 144'
+  },
+  {
+    num:25, m:'q-la', diff:'m', marks:'4 Marks', src:'Worksheet Q25', sc:'worksheet', star:false,
+    qtype:'Type 1, then Type 6',
+    q:'The first two terms of a G.P. are 96 and 48. Find the 6th term and the sum of the first 10 terms of the G.P.',
+    given:['a = 96','t_2 = 48'],
+    toFind:'The 6th term t₆, and the sum of the first 10 terms S₁₀',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Find r first</b>'},
+      {t:'k', text:S`r = \dfrac{t_2}{a} = \dfrac{48}{96}`},
+      {t:'gr', text:'∴ r = 1/2'},
+      {t:'p', text:'<b>Formula for the 6th term</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Substitute a=96, r=1/2, n=6</b>'},
+      {t:'k', text:S`t_6 = 96\times\left(\tfrac{1}{2}\right)^5`},
+      {t:'p', text:'<b>Build up (1/2)⁵ by halving the denominator each time</b>'},
+      {t:'k', text:S`2,4,8,16,32`},
+      {t:'k', text:S`\left(\tfrac{1}{2}\right)^5 = \tfrac{1}{32}`},
+      {t:'p', text:'<b>Cancel the 32 into 96 before doing anything else</b>'},
+      {t:'k', text:S`\dfrac{96}{32} = 3`},
+      {t:'gr', text:'∴ t₆ = 3'},
+      {t:'p', text:'<b>Formula for the sum (r &lt; 1)</b>'},
+      {t:'k', text:S`S_n = \dfrac{a(1-r^n)}{1-r}`},
+      {t:'p', text:'<b>Substitute a=96, r=1/2, n=10</b>'},
+      {t:'k', text:S`S_{10} = \dfrac{96\left(1-\left(\tfrac{1}{2}\right)^{10}\right)}{1-\tfrac{1}{2}}`},
+      {t:'p', text:'<b>Build up (1/2)¹⁰ by continuing to halve</b>'},
+      {t:'k', text:S`32,64,128,256,512,1024`},
+      {t:'k', text:S`\left(\tfrac{1}{2}\right)^{10} = \tfrac{1}{1024}`},
+      {t:'p', text:'<b>Now the numerator becomes</b>'},
+      {t:'k', text:S`1-\tfrac{1}{1024} = \tfrac{1023}{1024}`},
+      {t:'p', text:'<b>Dividing by 1/2 is the same as multiplying by 2</b>'},
+      {t:'k', text:S`S_{10} = 96\times\tfrac{1023}{1024}\times2`},
+      {t:'p', text:'<b>Cancel 96 and 1024 first — they share a factor of 32</b>'},
+      {t:'k', text:S`\dfrac{96}{32}=3,\qquad \dfrac{1024}{32}=32`},
+      {t:'k', text:S`S_{10} = \dfrac{3\times1023\times2}{32} = \dfrac{6138}{32}`},
+      {t:'p', text:'<b>Simplify — both share a factor of 2</b>'},
+      {t:'k', text:S`\dfrac{6138}{2}=3069,\qquad \dfrac{32}{2}=16`},
+      {t:'k', text:S`S_{10} = \dfrac{3069}{16}`}
+    ]}],
+    ans:'t₆ = 3, S₁₀ = 3069/16'
+  },
+  {
+    num:26, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q26', sc:'worksheet', star:false,
+    qtype:'Type 2, then Type 6',
+    q:'The 2nd and the 5th terms of a G.P. are \\(-\\dfrac{1}{2}\\) and \\(\\dfrac{1}{16}\\) respectively. Find the sum of the first 8 terms of the G.P.',
+    given:['t_2 = -\\tfrac{1}{2}','t_5 = \\tfrac{1}{16}'],
+    toFind:'The sum of the first 8 terms, S₈',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Build t₅ FROM t₂</b>'},
+      {t:'p', text:'t₅ is 3 steps after t₂ (5 − 2 = 3), so t₅ is t₂ multiplied by r three times:'},
+      {t:'k', text:S`t_5 = t_2\cdot r^3`},
+      {t:'p', text:'<b>Substitute the known values</b>'},
+      {t:'k', text:S`\tfrac{1}{16} = -\tfrac{1}{2}\times r^3`},
+      {t:'p', text:'<b>Transpose — divide both sides by −1/2 (same as multiplying by −2)</b>'},
+      {t:'k', text:S`r^3 = \tfrac{1}{16}\times(-2)`},
+      {t:'k', text:S`r^3 = -\tfrac{2}{16} = -\tfrac{1}{8}`},
+      {t:'p', text:'<b>Write −1/8 as a cube</b>'},
+      {t:'k', text:S`\left(-\tfrac{1}{2}\right)^3 = -\dfrac{1}{8}`},
+      {t:'gr', text:'∴ r = −1/2'},
+      {t:'p', text:'<b>Now find a — substitute r=−1/2 back into t₂ = a·r</b>'},
+      {t:'k', text:S`-\tfrac{1}{2} = a\times\left(-\tfrac{1}{2}\right)`},
+      {t:'gr', text:'∴ a = 1'},
+      {t:'p', text:'<b>Formula for the sum (r &lt; 1)</b>'},
+      {t:'k', text:S`S_n = \dfrac{a(1-r^n)}{1-r}`},
+      {t:'p', text:'<b>Substitute a=1, r=−1/2, n=8</b>'},
+      {t:'k', text:S`S_8 = \dfrac{1\left(1-\left(-\tfrac{1}{2}\right)^8\right)}{1-\left(-\tfrac{1}{2}\right)}`},
+      {t:'p', text:'<b>Build up (−1/2)⁸ — even power, so the result is positive</b>'},
+      {t:'k', text:S`2,4,8,16,32,64,128,256`},
+      {t:'k', text:S`\left(-\tfrac{1}{2}\right)^8 = \tfrac{1}{256}`},
+      {t:'p', text:'<b>Numerator and denominator become</b>'},
+      {t:'k', text:S`1-\tfrac{1}{256}=\tfrac{255}{256},\qquad 1+\tfrac{1}{2}=\tfrac{3}{2}`},
+      {t:'p', text:'<b>Dividing by 3/2 is the same as multiplying by 2/3</b>'},
+      {t:'k', text:S`S_8 = \tfrac{255}{256}\times\tfrac{2}{3}`},
+      {t:'p', text:'<b>Cancel the 2 into 256, and the 3 into 255, before multiplying</b>'},
+      {t:'k', text:S`\dfrac{256}{2}=128,\qquad \dfrac{255}{3}=85`},
+      {t:'k', text:S`S_8 = \dfrac{85}{128}`}
+    ]}],
+    ans:'S₈ = 85/128'
+  },
+  {
+    num:27, m:'q-3m', diff:'e', marks:'3 Marks', src:'Worksheet Q27', sc:'worksheet', star:true,
+    qtype:'Type 1, then Type 6',
+    q:'The first and the last term of a G.P. are 3 and 96 respectively. If the common ratio is 2, find (i) the number of terms of the G.P. (ii) the sum of n terms.',
+    given:['a = 3','l = 96','r = 2'],
+    toFind:'(i) The number of terms n  (ii) The sum of all n terms',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>(i) Formula</b>'},
+      {t:'k', text:S`l = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`96 = 3\times2^{n-1}`},
+      {t:'p', text:'<b>Transpose — divide both sides by 3</b>'},
+      {t:'k', text:S`2^{n-1} = 32`},
+      {t:'p', text:'<b>Write 32 as a power of 2 (build it up)</b>'},
+      {t:'k', text:S`2^1=2,\ 2^2=4,\ 2^3=8,\ 2^4=16,\ 2^5=32`},
+      {t:'k', text:S`n-1 = 5`},
+      {t:'gr', text:'∴ n = 6'},
+      {t:'p', text:'<b>(ii) Formula for the sum (r &gt; 1)</b>'},
+      {t:'k', text:S`S_n = \dfrac{a(r^n-1)}{r-1}`},
+      {t:'p', text:'<b>Substitute a=3, r=2, n=6</b>'},
+      {t:'k', text:S`S_6 = \dfrac{3(2^6-1)}{2-1}`},
+      {t:'p', text:'<b>Build up 2⁶</b>'},
+      {t:'k', text:S`2^4=16,\ 2^5=32,\ 2^6=64`},
+      {t:'k', text:S`S_6 = 3\times(64-1) = 3\times63`},
+      {t:'gr', text:'∴ S₆ = 189'}
+    ]}],
+    ans:'(i) n = 6  (ii) S₆ = 189'
+  },
+  {
+    num:28, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q28', sc:'worksheet', star:true,
+    qtype:'Type 4 — Word Problem (Few Numbers)',
+    q:'The sum of the first 3 terms of a G.P. is \\(\\dfrac{49}{15}\\) and their product is 1. Find the common ratio and the first 3 terms.',
+    given:['\\text{Sum} = \\tfrac{49}{15}','\\text{Product} = 1'],
+    toFind:'The common ratio r, and the 3 actual terms',
+    mbtip:'3 terms — use the symmetric-substitution formula from the Concepts tab: take them as a/r, a, ar so the product collapses to a³ instantly.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — let the 3 terms be a/r, a, ar</b>'},
+      {t:'k', text:S`\dfrac{a}{r}\times a\times ar = a^3`},
+      {t:'p', text:'<b>Substitute the given product</b>'},
+      {t:'k', text:S`a^3 = 1`},
+      {t:'gr', text:'∴ a = 1'},
+      {t:'p', text:'<b>Formula for the sum condition</b>'},
+      {t:'k', text:S`\dfrac{a}{r}+a+ar = \tfrac{49}{15}`},
+      {t:'p', text:'<b>Substitute a=1</b>'},
+      {t:'k', text:S`\dfrac{1}{r}+1+r = \tfrac{49}{15}`},
+      {t:'p', text:'<b>Transpose — multiply every term by 15r to clear the fractions</b>'},
+      {t:'k', text:S`15+15r+15r^2 = 49r`},
+      {t:'p', text:'<b>Transpose — move everything to one side</b>'},
+      {t:'k', text:S`15r^2-49r+15r = -15`},
+      {t:'k', text:S`15r^2-34r+15 = 0`},
+      {t:'p', text:'<b>Factorise</b>'},
+      {t:'k', text:S`(5r-3)(3r-5) = 0`},
+      {t:'gr', text:'∴ r = 3/5 or r = 5/3'},
+      {t:'p', text:'<b>Substitute a=1, r=3/5 to get the 3 terms</b>'},
+      {t:'k', text:S`\dfrac{a}{r}=\dfrac{1}{3/5}=\tfrac{5}{3},\qquad a=1,\qquad ar=\tfrac{3}{5}`},
+      {t:'gr', text:'∴ 5/3, 1, 3/5'}
+    ]}],
+    ans:'r = 3/5, terms 5/3, 1, 3/5 (or r = 5/3, terms 3/5, 1, 5/3)'
+  },
+  {
+    num:29, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q29', sc:'worksheet', star:false,
+    qtype:'Type 4 — Word Problem (Few Numbers)',
+    q:'Find 3 terms in a G.P. such that their product is 512 and the sum of the first and the third term is 34.',
+    given:['\\text{Product} = 512','t_1+t_3 = 34'],
+    toFind:'The 3 actual terms of the G.P.',
+    mbtip:'3 terms — take them as a/r, a, ar.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — let the 3 terms be a/r, a, ar</b>'},
+      {t:'k', text:S`\dfrac{a}{r}\times a\times ar = a^3`},
+      {t:'p', text:'<b>Substitute the given product</b>'},
+      {t:'k', text:S`a^3 = 512`},
+      {t:'p', text:'<b>Write 512 as a cube (build it up)</b>'},
+      {t:'k', text:S`2^3=8,\ 4^3=64,\ 8^3=512`},
+      {t:'gr', text:'∴ a = 8'},
+      {t:'p', text:'<b>Formula for the first+third condition</b>'},
+      {t:'k', text:S`\dfrac{a}{r}+ar = 34`},
+      {t:'p', text:'<b>Substitute a=8</b>'},
+      {t:'k', text:S`\dfrac{8}{r}+8r = 34`},
+      {t:'p', text:'<b>Transpose — multiply every term by r to clear the fraction</b>'},
+      {t:'k', text:S`8+8r^2 = 34r`},
+      {t:'p', text:'<b>Transpose — move everything to one side</b>'},
+      {t:'k', text:S`8r^2-34r+8 = 0`},
+      {t:'p', text:'<b>Divide every term by 2 first — smaller numbers are easier to factorise</b>'},
+      {t:'k', text:S`4r^2-17r+4 = 0`},
+      {t:'p', text:'<b>Factorise</b>'},
+      {t:'k', text:S`(4r-1)(r-4) = 0`},
+      {t:'gr', text:'∴ r = 1/4 or r = 4'},
+      {t:'p', text:'<b>Substitute a=8, r=4 to get the 3 terms</b>'},
+      {t:'k', text:S`\dfrac{a}{r}=\dfrac{8}{4}=2,\qquad a=8,\qquad ar=8\times4=32`}
+    ]}],
+    ans:'2, 8, 32 (or 32, 8, 2)'
+  },
+  {
+    num:30, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q30', sc:'worksheet', star:true,
+    qtype:'Type 6 — Sum to n Terms',
+    q:'The sum of the first 3 terms of a G.P. is 1 and the sum of the next 3 terms is 8. Determine the first term, the common ratio, and the sum of n terms of the G.P.',
+    given:['S_3 = 1','\\text{Sum of terms 4-6} = 8'],
+    toFind:'The first term a, the common ratio r, and a formula for Sₙ',
+    mbtip:'"Sum of the next 3 terms" means S₆ − S₃, not S₃ again — so S₆ = S₃ + 8 = 9.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`S_n = \dfrac{a(r^n-1)}{r-1}`},
+      {t:'p', text:'<b>Substitute n=3, S₃=1</b>'},
+      {t:'k', text:S`\dfrac{a(r^3-1)}{r-1} = 1 \quad \dots(i)`},
+      {t:'p', text:'<b>Substitute n=6, S₆=S₃+8=9</b>'},
+      {t:'k', text:S`\dfrac{a(r^6-1)}{r-1} = 9 \quad \dots(ii)`},
+      {t:'p', text:'<b>Divide (ii) by (i) — this cancels a and (r−1) since both equations share them</b>'},
+      {t:'k', text:S`\dfrac{r^6-1}{r^3-1} = 9`},
+      {t:'p', text:'<b>Notice r⁶−1 is a difference of squares: (r³)² − 1² = (r³−1)(r³+1)</b>'},
+      {t:'k', text:S`\dfrac{(r^3-1)(r^3+1)}{r^3-1} = 9`},
+      {t:'p', text:'<b>Cancel (r³−1) from top and bottom</b>'},
+      {t:'k', text:S`r^3+1 = 9`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`r^3 = 8`},
+      {t:'p', text:'<b>Write 8 as a cube</b>'},
+      {t:'k', text:S`2\times2\times2=8`},
+      {t:'gr', text:'∴ r = 2'},
+      {t:'p', text:'<b>Back-substitute r=2 into (i)</b>'},
+      {t:'k', text:S`\dfrac{a(2^3-1)}{2-1} = 1`},
+      {t:'k', text:S`a(8-1) = 1`},
+      {t:'k', text:S`7a = 1`},
+      {t:'gr', text:'∴ a = 1/7'},
+      {t:'p', text:'<b>Substitute a=1/7, r=2 into the sum formula</b>'},
+      {t:'k', text:S`S_n = \dfrac{\tfrac{1}{7}(2^n-1)}{2-1}`},
+      {t:'gr', text:'∴ Sₙ = (2ⁿ − 1)/7'}
+    ]}],
+    ans:'a = 1/7, r = 2, Sₙ = (2ⁿ − 1)/7'
+  },
+  {
+    num:31, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q31', sc:'worksheet', star:false,
+    qtype:'Type 4 — Word Problem (Few Numbers)',
+    q:'Four numbers are in G.P. in which the 3rd term is greater than the first by 9 and the 2nd term is greater than the 4th term by 18. Find the numbers.',
+    given:['t_3-t_1 = 9','t_2-t_4 = 18'],
+    toFind:'The 4 actual numbers of the G.P.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Substitute into t₃ − t₁ = 9</b>'},
+      {t:'k', text:S`ar^2-a = 9`},
+      {t:'p', text:'<b>Factor out a</b>'},
+      {t:'k', text:S`a(r^2-1) = 9 \quad \dots(i)`},
+      {t:'p', text:'<b>Substitute into t₂ − t₄ = 18</b>'},
+      {t:'k', text:S`ar-ar^3 = 18`},
+      {t:'p', text:'<b>Factor out ar</b>'},
+      {t:'k', text:S`ar(1-r^2) = 18 \quad \dots(ii)`},
+      {t:'p', text:'<b>Divide (ii) by (i) — this cancels a and lets us solve for r directly</b>'},
+      {t:'k', text:S`\dfrac{ar(1-r^2)}{a(r^2-1)} = \dfrac{18}{9}`},
+      {t:'p', text:'<b>Notice (1−r²) = −(r²−1), so they cancel with a sign flip</b>'},
+      {t:'k', text:S`-r = 2`},
+      {t:'gr', text:'∴ r = −2'},
+      {t:'p', text:'<b>Back-substitute r=−2 into (i)</b>'},
+      {t:'k', text:S`a((-2)^2-1) = 9`},
+      {t:'k', text:S`a(4-1) = 9`},
+      {t:'k', text:S`3a = 9`},
+      {t:'gr', text:'∴ a = 3'},
+      {t:'p', text:'<b>Substitute a=3, r=−2 to build all 4 terms</b>'},
+      {t:'k', text:S`t_1=3,\quad t_2=3\times(-2)=-6,\quad t_3=-6\times(-2)=12,\quad t_4=12\times(-2)=-24`}
+    ]}],
+    ans:'3, −6, 12, −24'
+  },
+  {
+    num:32, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q32', sc:'worksheet', star:false,
+    qtype:'Type 4 — Word Problem (Few Numbers)',
+    q:'Find four numbers in G.P. such that the third number is greater than the first by 12 and the second number is greater than the fourth by 24.',
+    given:['t_3-t_1 = 12','t_2-t_4 = 24'],
+    toFind:'The 4 actual numbers of the G.P.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a\cdot r^{n-1}`},
+      {t:'p', text:'<b>Substitute into t₃ − t₁ = 12</b>'},
+      {t:'k', text:S`ar^2-a = 12`},
+      {t:'p', text:'<b>Factor out a</b>'},
+      {t:'k', text:S`a(r^2-1) = 12 \quad \dots(i)`},
+      {t:'p', text:'<b>Substitute into t₂ − t₄ = 24</b>'},
+      {t:'k', text:S`ar-ar^3 = 24`},
+      {t:'p', text:'<b>Factor out ar</b>'},
+      {t:'k', text:S`ar(1-r^2) = 24 \quad \dots(ii)`},
+      {t:'p', text:'<b>Divide (ii) by (i) — this cancels a and lets us solve for r directly</b>'},
+      {t:'k', text:S`\dfrac{ar(1-r^2)}{a(r^2-1)} = \dfrac{24}{12}`},
+      {t:'p', text:'<b>Notice (1−r²) = −(r²−1), so they cancel with a sign flip</b>'},
+      {t:'k', text:S`-r = 2`},
+      {t:'gr', text:'∴ r = −2'},
+      {t:'p', text:'<b>Back-substitute r=−2 into (i)</b>'},
+      {t:'k', text:S`a((-2)^2-1) = 12`},
+      {t:'k', text:S`a(4-1) = 12`},
+      {t:'k', text:S`3a = 12`},
+      {t:'gr', text:'∴ a = 4'},
+      {t:'p', text:'<b>Substitute a=4, r=−2 to build all 4 terms</b>'},
+      {t:'k', text:S`t_1=4,\quad t_2=4\times(-2)=-8,\quad t_3=-8\times(-2)=16,\quad t_4=16\times(-2)=-32`}
+    ]}],
+    ans:'4, −8, 16, −32'
+  },
+  {
+    num:33, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q33', sc:'worksheet', star:false,
+    qtype:'Type 1 — Direct Substitution',
+    q:'If the sum of first n terms of a G.P. is 5(2ⁿ − 1), write the G.P. and find the 8th term.',
+    given:['S_n = 5(2^n-1)'],
+    toFind:'The G.P. itself (a and r), and its 8th term',
+    mbtip:'When Sₙ is given as a formula, use tₙ = Sₙ − Sₙ₋₁ (and t₁ = S₁) to recover the actual terms.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_1 = a = S_1,\qquad t_2 = S_2-S_1`},
+      {t:'p', text:'<b>Substitute n=1</b>'},
+      {t:'k', text:S`S_1 = 5(2^1-1) = 5\times1`},
+      {t:'gr', text:'∴ a = 5'},
+      {t:'p', text:'<b>Substitute n=2</b>'},
+      {t:'k', text:S`S_2 = 5(2^2-1) = 5\times3`},
+      {t:'k', text:S`S_2 = 15`},
+      {t:'k', text:S`t_2 = S_2-S_1 = 15-5`},
+      {t:'k', text:S`t_2 = 10`},
+      {t:'p', text:'<b>Find r</b>'},
+      {t:'k', text:S`r = \dfrac{t_2}{a} = \dfrac{10}{5}`},
+      {t:'gr', text:'∴ r = 2'},
+      {t:'p', text:'<b>Substitute a=5, r=2, n=8 into the nth-term formula</b>'},
+      {t:'k', text:S`t_8 = a\cdot r^7 = 5\times2^7`},
+      {t:'p', text:'<b>Build up 2⁷ step by step</b>'},
+      {t:'k', text:S`2^1=2,\ 2^2=4,\ 2^3=8,\ 2^4=16,\ 2^5=32,\ 2^6=64,\ 2^7=128`},
+      {t:'k', text:S`t_8 = 5\times128`},
+      {t:'gr', text:'∴ t₈ = 640'}
+    ]}],
+    ans:'G.P.: 5, 10, 20, 40, …; t₈ = 640'
+  },
+  {
+    num:34, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q34', sc:'worksheet', star:true,
+    qtype:'Type 4 — Word Problem (Few Numbers)',
+    q:'The sum of the first 10 terms of an A.P. is 155 and the sum of the first 2 terms of a G.P. is 9. Find these two progressions, if the first term of the A.P. is equal to the common ratio of the G.P. and the first term of the G.P. is equal to the common difference of the A.P.',
+    given:['S_{10}(\\text{AP}) = 155','S_2(\\text{GP}) = 9','a_{AP} = r_{GP}','a_{GP} = d_{AP}'],
+    toFind:'The complete A.P. (its a and d) and the complete G.P. (its a and r)',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula for the A.P. sum</b>'},
+      {t:'k', text:S`S_n(\text{AP}) = \dfrac{n}{2}\big[2a_{AP}+(n-1)d_{AP}\big]`},
+      {t:'p', text:'<b>Substitute n=10, S₁₀=155</b>'},
+      {t:'k', text:S`\dfrac{10}{2}\big[2a_{AP}+9d_{AP}\big] = 155`},
+      {t:'k', text:S`5\big[2a_{AP}+9d_{AP}\big] = 155`},
+      {t:'p', text:'<b>Transpose — divide both sides by 5</b>'},
+      {t:'k', text:S`2a_{AP}+9d_{AP} = 31 \quad \dots(i)`},
+      {t:'p', text:'<b>Formula for the G.P. sum</b>'},
+      {t:'k', text:S`S_2(\text{GP}) = a_{GP}+a_{GP}\cdot r_{GP}`},
+      {t:'p', text:'<b>Factor out a_GP</b>'},
+      {t:'k', text:S`S_2(\text{GP}) = a_{GP}(1+r_{GP})`},
+      {t:'p', text:'<b>Substitute the given links a_GP=d_AP and r_GP=a_AP</b>'},
+      {t:'k', text:S`d_{AP}(1+a_{AP}) = 9 \quad \dots(ii)`},
+      {t:'p', text:'<b>From (i), write a_AP in terms of d_AP</b>'},
+      {t:'k', text:S`2a_{AP} = 31-9d_{AP}`},
+      {t:'k', text:S`a_{AP} = \dfrac{31-9d_{AP}}{2}`},
+      {t:'p', text:'<b>Substitute this into (ii)</b>'},
+      {t:'k', text:S`d_{AP}\left(1+\dfrac{31-9d_{AP}}{2}\right) = 9`},
+      {t:'p', text:'<b>Combine the terms inside the bracket over 2</b>'},
+      {t:'k', text:S`d_{AP}\times\dfrac{2+31-9d_{AP}}{2} = 9`},
+      {t:'k', text:S`d_{AP}\times\dfrac{33-9d_{AP}}{2} = 9`},
+      {t:'p', text:'<b>Transpose — multiply both sides by 2</b>'},
+      {t:'k', text:S`d_{AP}(33-9d_{AP}) = 18`},
+      {t:'k', text:S`33d_{AP}-9d_{AP}^2 = 18`},
+      {t:'p', text:'<b>Transpose — move everything to one side, divide by 3 to make numbers smaller</b>'},
+      {t:'k', text:S`9d_{AP}^2-33d_{AP}+18 = 0`},
+      {t:'k', text:S`3d_{AP}^2-11d_{AP}+6 = 0`},
+      {t:'p', text:'<b>Factorise</b>'},
+      {t:'k', text:S`(3d_{AP}-2)(d_{AP}-3) = 0`},
+      {t:'gr', text:'∴ d_AP = 2/3 or d_AP = 3 (taking the whole-number case)'},
+      {t:'p', text:'<b>Back-substitute d_AP=3 into (i) to get a_AP</b>'},
+      {t:'k', text:S`2a_{AP}+9(3) = 31`},
+      {t:'k', text:S`2a_{AP} = 31-27`},
+      {t:'k', text:S`2a_{AP} = 4`},
+      {t:'gr', text:'∴ a_AP = 2, so r_GP = 2 and a_GP = d_AP = 3'}
+    ]}],
+    ans:'A.P.: 2, 5, 8, 11, …; G.P.: 3, 6, 12, 24, …'
+  },
+  {
+    num:35, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q35', sc:'worksheet', star:true,
+    qtype:'Type 6 — Sum to n Terms',
+    q:'A man promises to repay his loan of Rs. 3,27,600 in 12 monthly instalments. The value of each instalment is double the value of the earlier one. Find the value of the first and the last instalment.',
+    given:['n = 12','r = 2','S_{12} = 327600'],
+    toFind:'The first instalment (a), and the last (12th) instalment',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula (r &gt; 1)</b>'},
+      {t:'k', text:S`S_n = \dfrac{a(r^n-1)}{r-1}`},
+      {t:'p', text:'<b>Substitute r=2, n=12, S₁₂=327600</b>'},
+      {t:'k', text:S`327600 = \dfrac{a(2^{12}-1)}{2-1}`},
+      {t:'p', text:'<b>Build up 2¹² step by step</b>'},
+      {t:'k', text:S`2^8=256,\ 2^9=512,\ 2^{10}=1024,\ 2^{11}=2048,\ 2^{12}=4096`},
+      {t:'k', text:S`327600 = a\times(4096-1)`},
+      {t:'k', text:S`327600 = 4095a`},
+      {t:'p', text:'<b>Transpose — divide both sides by 4095</b>'},
+      {t:'gr', text:'∴ a = 80 (first instalment)'},
+      {t:'p', text:'<b>Formula for the last (12th) instalment</b>'},
+      {t:'k', text:S`t_{12} = a\cdot r^{11}`},
+      {t:'p', text:'<b>Substitute a=80, r=2</b>'},
+      {t:'k', text:S`t_{12} = 80\times2^{11}`},
+      {t:'p', text:'<b>We already built 2¹¹=2048 above — reuse it</b>'},
+      {t:'k', text:S`t_{12} = 80\times2048`},
+      {t:'gr', text:'∴ Last instalment = ₹1,63,840'}
+    ]}],
+    ans:'First instalment = ₹80, Last instalment = ₹1,63,840'
+  },
+  {
+    num:36, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q36', sc:'worksheet', star:true,
+    qtype:'Type 1 — Direct Substitution',
+    q:'The number of bacteria in a certain culture doubles every hour. If there were 30 bacteria in the culture originally, how many will be present at the end of the 4th hour and the nth hour?',
+    given:['a = 30','r = 2'],
+    toFind:'The bacteria count at the end of the 4th hour, and a formula for the nth hour',
+    mbtip:'The starting count (30) is the count BEFORE any hour has passed — so after n hours have passed, the count has doubled n times, giving 30 × 2ⁿ (not 2ⁿ⁻¹, since we start counting doublings from hour 1).',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — count after n doublings</b>'},
+      {t:'k', text:S`\text{count} = a\cdot r^{n}`},
+      {t:'p', text:'<b>Substitute a=30, r=2, n=4</b>'},
+      {t:'k', text:S`\text{count at hour 4} = 30\times2^4`},
+      {t:'p', text:'<b>Build up 2⁴</b>'},
+      {t:'k', text:S`2\times2=4,\ 4\times2=8,\ 8\times2=16`},
+      {t:'k', text:S`\text{count at hour 4} = 30\times16`},
+      {t:'gr', text:'∴ 480 bacteria at the end of the 4th hour'}
+    ]}],
+    ans:'480 bacteria at the end of the 4th hour; 30 × 2ⁿ bacteria at the end of the nth hour'
+  },
+  {
+    num:37, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q37', sc:'worksheet', star:false,
+    qtype:'Type 5 — Reverse GP',
+    q:'Find the 8th term from the end of the G.P. 3, 6, 12, 24, …, 6144.',
+    given:['l = 6144','r = 2'],
+    toFind:'The 8th term, counting backward from the last term',
+    mbtip:'Counting from the end is the same as reading the G.P. backward — and the reverse of a G.P. is itself a G.P., with the last term as its new first term and 1/r as its new common ratio.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Reverse the G.P. — it becomes a new G.P.</b>'},
+      {t:'k', text:S`a' = l = 6144,\qquad r' = \dfrac{1}{r} = \dfrac{1}{2}`},
+      {t:'p', text:'<b>Formula — apply the ordinary nth-term formula to this new (reversed) G.P.</b>'},
+      {t:'k', text:S`t_n = a'\cdot(r')^{n-1}`},
+      {t:'p', text:'<b>Substitute a\'=6144, r\'=1/2, n=8</b>'},
+      {t:'k', text:S`t_8 = 6144\times\left(\dfrac{1}{2}\right)^7`},
+      {t:'p', text:'<b>Build up (1/2)⁷ by halving the denominator each time</b>'},
+      {t:'k', text:S`2,4,8,16,32,64,128`},
+      {t:'k', text:S`\left(\dfrac{1}{2}\right)^7 = \dfrac{1}{128}`},
+      {t:'p', text:'<b>Cancel — divide 6144 by 128 directly</b>'},
+      {t:'k', text:S`t_8 = \dfrac{6144}{128}`},
+      {t:'gr', text:'∴ 8th term from the end = 48'}
+    ]}],
+    ans:'8th term from the end = 48'
+  },
+  {
+    num:38, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q38', sc:'worksheet', star:false,
+    qtype:'Type 5 — Reverse GP',
+    q:'Find the 4th term from the end of the G.P. \\(\\dfrac{2}{81}\\), \\(\\dfrac{2}{27}\\), \\(\\dfrac{2}{9}\\), …, 54.',
+    given:['l = 54','r = 3'],
+    toFind:'The 4th term, counting backward from the last term',
+    mbtip:'Counting from the end is the same as reading the G.P. backward — and the reverse of a G.P. is itself a G.P., with the last term as its new first term and 1/r as its new common ratio.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Find r (of the original G.P.) first</b>'},
+      {t:'k', text:S`r = \dfrac{2/27}{2/81} = \dfrac{2}{27}\times\dfrac{81}{2}`},
+      {t:'p', text:'<b>Cancel the 2s, then divide 81 by 27</b>'},
+      {t:'k', text:S`r = \dfrac{81}{27}`},
+      {t:'gr', text:'∴ r = 3'},
+      {t:'p', text:'<b>Reverse the G.P. — it becomes a new G.P.</b>'},
+      {t:'k', text:S`a' = l = 54,\qquad r' = \dfrac{1}{r} = \dfrac{1}{3}`},
+      {t:'p', text:'<b>Formula — apply the ordinary nth-term formula to this new (reversed) G.P.</b>'},
+      {t:'k', text:S`t_n = a'\cdot(r')^{n-1}`},
+      {t:'p', text:'<b>Substitute a\'=54, r\'=1/3, n=4</b>'},
+      {t:'k', text:S`t_4 = 54\times\left(\dfrac{1}{3}\right)^3`},
+      {t:'p', text:'<b>Build up (1/3)³</b>'},
+      {t:'k', text:S`3,9,27`},
+      {t:'k', text:S`\left(\dfrac{1}{3}\right)^3 = \dfrac{1}{27}`},
+      {t:'p', text:'<b>Cancel — divide 54 by 27 directly</b>'},
+      {t:'k', text:S`t_4 = \dfrac{54}{27}`},
+      {t:'gr', text:'∴ 4th term from the end = 2'}
+    ]}],
+    ans:'4th term from the end = 2'
+  }
+];
+
+
+render('board-qs', boardData);
+render('practice-qs', practiceData);
+updateCount('board-qs');
+updateCount('practice-qs');
+renderMathIn(document.body);
+</script>
+</body>
+</html>
