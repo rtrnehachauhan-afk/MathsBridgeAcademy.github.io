@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chapter 2 — Introduction to Linear Polynomials | Complete Question Bank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{
+  --page:#F5F0E8; --card:#FFFDF8; --green:#1A3D28; --green2:#2D5A3D;
+  --gold:#C9A84C; --gold2:#E8C56A; --la:#1A3050; --text:#22201B;
+  --amber:#7A5C00; --amberbg:#FFF8DC; --red:#B03030;
+  --purple:#7B5EA7; --purple2:#A07BD4; --pyqbg:#F3EEFA; --pyqborder:#D6C7EC;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--page);color:var(--text);font-family:'Crimson Pro',serif;font-size:20px;line-height:1.6;padding:0 0 80px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+
+header.top{background:var(--green);color:#F5F0E8;padding:34px 0 30px;border-bottom:5px solid var(--gold)}
+header.top h1{font-family:'Playfair Display',serif;font-weight:800;font-size:36px;line-height:1.2}
+header.top .sub{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold2);margin-bottom:8px}
+header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
+header.top .h-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+header.top .h-pill{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.3px;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#E4EDE6}
+
+.ctabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 18px}
+.ctab{font-family:'Playfair Display',serif;font-weight:700;font-size:15px;padding:10px 16px;border:2px solid var(--green);background:transparent;color:var(--green);border-radius:5px;cursor:pointer}
+.ctab.active{background:var(--green);color:#F5F0E8}
+
+.subtabs{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 18px;border-bottom:2px solid #DED5C4;padding-bottom:10px}
+.subtab{font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;letter-spacing:.4px;padding:7px 12px;border:1.5px solid #C4B79B;background:var(--card);color:#5A5240;border-radius:20px;cursor:pointer}
+.subtab.active{background:var(--gold);border-color:var(--gold);color:#2B2308}
+
+.filter-bar{display:flex;gap:6px;margin:12px 0 20px;align-items:center;flex-wrap:wrap}
+.filter-bar .fl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:#8A8067;text-transform:uppercase;margin-right:4px}
+.filter-btn{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;padding:6px 12px;border:1.5px solid #C4B79B;background:transparent;color:#5A5240;border-radius:20px;cursor:pointer}
+.filter-btn.active{background:var(--green2);border-color:var(--green2);color:#fff}
+
+.cpanel{display:none}
+.cpanel.active{display:block}
+.spanel{display:none}
+.spanel.active{display:block}
+
+.qcard{display:flex;background:var(--card);border:1px solid #E2D9C6;border-radius:6px;margin-bottom:20px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.qcard-stripe{width:6px;flex:0 0 6px;background:linear-gradient(180deg,#2D5A3D,#4A8A5D)}
+.qcard.q-ex .qcard-stripe{background:linear-gradient(180deg,#7A5C00,var(--gold))}
+.qcard.q-tr .qcard-stripe{background:var(--purple)}
+.qcard.q-2m .qcard-stripe{background:linear-gradient(180deg,var(--purple),var(--purple2))}
+.qcard.q-3m .qcard-stripe,.qcard.q-5m .qcard-stripe{background:linear-gradient(180deg,#1A3050,#5B9FE0)}
+.qcard-body{flex:1;padding:20px 22px}
+
+.badge-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;align-items:center}
+.badge{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.6px;padding:4px 9px;border-radius:3px;text-transform:uppercase}
+.b-src{background:#EAF1EB;color:var(--green);border:1px solid #C8DCCD}
+.b-marks{background:#F0EAD8;color:#6B5A22;border:1px solid #DCCFA6}
+.b-pyq{background:var(--pyqbg);color:var(--purple);border:1px solid var(--pyqborder)}
+.b-easy{background:#E6F2E9;color:#2D5A3D;border:1px solid #BEDCC6}
+.b-med{background:#FFF3D9;color:#8A6A12;border:1px solid #E8CE8E}
+.b-hard{background:#FBE6E6;color:var(--red);border:1px solid #EDC2C2}
+
+.qno{font-family:'JetBrains Mono',monospace;font-size:11px;color:#9A9078;margin-left:auto}
+
+.qt{font-size:20px;line-height:1.65;margin-bottom:6px}
+.qt b{font-weight:700}
+
+.sol-toggle{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.5px;margin-top:14px;padding:8px 16px;border:1.5px solid var(--green2);background:transparent;color:var(--green2);border-radius:5px;cursor:pointer}
+.sol-toggle:hover{background:var(--green2);color:#fff}
+.rep-btn{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.5px;margin-top:14px;margin-left:8px;padding:8px 16px;border:1.5px solid #C4B79B;background:transparent;color:#8A8067;border-radius:5px;cursor:pointer}
+.rep-btn:hover{background:#EFE8DA}
+
+.sol-box{display:none;margin-top:16px;border-top:2px dashed #DED5C4;padding-top:16px}
+.sol-box.open{display:block}
+.sol-h{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1.4px;margin-bottom:7px}
+.sol-given{background:#EEF7F0;border:1px solid #C8DCCD;border-radius:4px;padding:12px 15px;margin-bottom:12px}
+.sol-given .sol-h{color:var(--green2)}
+.sol-given .g{font-size:18px;line-height:1.85}
+.sol-work{background:#FFFDF8;border:1px solid #E2D9C6;border-radius:4px;padding:12px 15px;margin-bottom:12px}
+.sol-work .sol-h{color:#5A5240}
+.sol-work .k{font-family:'JetBrains Mono',monospace;font-size:15px;line-height:1.9;color:var(--green)}
+.sol-answer{background:var(--green);border-radius:4px;padding:12px 15px}
+.sol-answer .sol-h{color:var(--gold2)}
+.sol-answer .a{color:#F1EADA;font-size:19px;line-height:1.6}
+.q-5m .sol-answer{background:var(--la)}
+.q-ex .sol-answer{background:var(--amber)}
+.q-tr .sol-answer{background:var(--purple2)}
+
+.gtbl-block{margin:12px 0}
+.gtbl-title{font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:700;color:#8A6A12;margin-bottom:6px;letter-spacing:.3px}
+.gtbl{border-collapse:collapse;margin-bottom:10px;font-family:'JetBrains Mono',monospace;font-size:14px}
+.gtbl td,.gtbl th{border:1.5px solid var(--gold);padding:6px 14px;text-align:center;background:#FFFDF8}
+.gtbl th{background:#FFF8E6;font-weight:700}
+.gsvg{background:#FFFDF8;border:1px solid #E2D9C6;border-radius:4px;margin:4px 0 10px;max-width:100%;display:block}
+
+.formula-card{background:var(--card);border:1px solid #E2D9C6;border-radius:6px;margin-bottom:16px;overflow:hidden}
+.formula-header{font-family:'Playfair Display',serif;font-weight:700;font-size:19px;padding:14px 18px;background:#EEF7F0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--green)}
+.formula-body{display:none;padding:16px 18px;border-top:1px solid #E2D9C6}
+.formula-body.open{display:block}
+.formula-body .fml{font-family:'JetBrains Mono',monospace;font-size:15px;line-height:2.1;color:var(--green)}
+.formula-body .note{font-family:'Crimson Pro',serif;font-size:16px;color:#4A4335;margin-top:8px;padding:8px 12px;border-left:3px solid var(--gold);background:var(--amberbg);border-radius:0 4px 4px 0}
+.formula-body ul{margin-left:20px;margin-top:6px}
+.formula-body li{margin-bottom:6px;font-size:17px;line-height:1.6}
+.arrow{font-family:'JetBrains Mono',monospace;color:var(--gold)}
+
+.empty{font-family:'JetBrains Mono',monospace;font-size:13px;color:#9A9078;padding:20px 0}
+.exttl{font-family:'Playfair Display',serif;font-weight:700;font-size:24px;color:var(--green);margin-bottom:6px}
+.exsub{font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A8067;margin-bottom:16px;letter-spacing:.3px}
+
+/* KaTeX overflow safety — math rows can run wider than the card on small screens */
+.qt, .sol-work .k, .sol-given .g, .sol-formula .fml, .sol-answer .a {
+  overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch;
+}
+.katex-display { overflow-x:auto; overflow-y:hidden; padding:3px 0; }
+
+/* Grey bracket label for a named identity/formula used in a working step */
+.idlabel{color:#9A9078;font-size:0.82em;font-style:italic;margin-left:6px;white-space:nowrap}
+
+#repMask{display:none;position:fixed;inset:0;background:rgba(20,18,12,.45);z-index:99;align-items:center;justify-content:center}
+#repMask.open{display:flex}
+#repBox{background:var(--card);border:2px solid var(--green);border-radius:6px;padding:22px;width:min(460px,92vw)}
+#repBox h3{font-family:'Playfair Display',serif;font-size:21px;color:var(--green);margin-bottom:6px}
+#repBox .rm{font-family:'JetBrains Mono',monospace;font-size:11px;color:#8A8067;margin-bottom:10px}
+#repBox textarea{width:100%;height:96px;font-family:'Crimson Pro',serif;font-size:17px;padding:9px;border:1.5px solid #C4B79B;border-radius:4px;background:#FFFDF8;resize:vertical}
+#repBox .btns{display:flex;gap:8px;margin-top:12px}
+#repBox button{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:8px 16px;border-radius:5px;cursor:pointer;border:1.5px solid var(--green2)}
+#repSend{background:var(--green2);color:#fff}
+#repCancel{background:transparent;color:#5A5240;border-color:#C4B79B}
+#repMsg{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green2);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="sub">CBSE &middot; Ganita Manjari &middot; Class 9, Part I</div>
+  <h1>Chapter 2 &mdash; Introduction to Linear Polynomials</h1>
+  <div class="meta">Complete Exercise-wise Bank: Concept Rules + Solved Examples + Think&amp;Reflect + Exercise Questions</div>
+  <div class="h-pills">
+    <span class="h-pill">NCERT</span>
+    <span class="h-pill">Worked Examples</span>
+    <span class="h-pill">Think &amp; Reflect</span>
+    <span class="h-pill">Full Exercises</span>
+  </div>
+</header>
+
+<div class="ctabs" id="exTabs"></div>
+
+<div class="subtabs" id="subTabs"></div>
+
+<div class="filter-bar">
+  <span class="fl">Show</span>
+  <button class="filter-btn active" data-f="All">All</button>
+  <button class="filter-btn" data-f="q-ex">Examples</button>
+  <button class="filter-btn" data-f="q-tr">Think&amp;Reflect</button>
+  <button class="filter-btn" data-f="questions">Exercise Qs</button>
+</div>
+
+<div id="exPanels"></div>
+
+</div>
+
+<div id="repMask">
+  <div id="repBox">
+    <h3>Report an error</h3>
+    <div class="rm">Tell us what looks wrong &mdash; we'll take a look.</div>
+    <textarea id="repText" placeholder="Describe the issue..."></textarea>
+    <div class="btns">
+      <button id="repSend">Send</button>
+      <button id="repCancel">Cancel</button>
+    </div>
+    <div id="repMsg"></div>
+  </div>
+</div>
+
+<script>
+// ================= DATA =================
+const DATA = [
+{
+  id:"2.1", label:"Ex 2.1", qcount:5,
+  title:"2.1 Introduction — Algebraic Expressions, Polynomials & Degree",
+  exsub:"Section 2.1 &middot; leads into Exercise Set 2.1 (5 questions)",
+  rule:{name:"Concept Rule — Degree of a Polynomial", body:`
+    <div class="fml">\\(\\text{Degree} = \\) highest power of the variable having a nonzero coefficient</div>
+    <div class="note">First, a rule you'll need: any number raised to the power \\(0\\) equals \\(1\\). So \\(x^0=1\\). This is why a plain number like \\(-9\\) can be written as \\(-9x^0\\) — it has degree \\(0\\).</div>
+    <ul>
+      <li>Degree <b>0</b> : constant polynomial (e.g. \\(8,\\ -9\\))</li>
+      <li>Degree <b>1</b> : linear polynomial (e.g. \\(3z+7\\))</li>
+      <li>Degree <b>2</b> : quadratic polynomial (e.g. \\(x^2+5x+1\\))</li>
+      <li>Degree <b>3</b> : cubic polynomial (e.g. \\(5y^3+y^2+2y-1\\))</li>
+    </ul>
+    <div class="note">An algebraic expression combines numbers, variables and operation symbols. A <b>univariate polynomial</b> involves only one variable. The coefficient is the number multiplying a term's variable part.</div>`},
+  examples:[
+    {no:"Example 1", qt:"Raju buys \\(x\\) red boxes (4 pens each) and \\(y\\) blue boxes (5 pencils each), plus 3 extra free pens. Write an expression for the total pens and pencils.",
+     work:[["Set up the expression",
+       "Pens from red boxes \\(=x\\times4=4x\\)",
+       "Pencils from blue boxes \\(=y\\times5=5y\\)",
+       "Extra free pens \\(=3\\)",
+       "∴ Total \\(=4x+5y+3\\)"]],
+     ans:"\\(4x+5y+3\\). Terms: \\(4x,5y,3\\); variables: \\(x,y\\); coefficients of \\(x\\) and \\(y\\) are \\(4\\) and \\(5\\); constant \\(=3\\)."},
+    {no:"Example 2", qt:"A rectangular garden (length \\(l\\) m, width \\(w\\) m) needs wire fencing along the length (&#8377;100/m), wooden fencing along the width (&#8377;80/m), and seed-sowing over the whole area (&#8377;50/m&sup2;). Find the total cost.",
+     work:[["Cost of each part",
+       "Wire fencing (2 lengths) \\(=2l\\times100=200l\\)",
+       "Wooden fencing (2 widths) \\(=2w\\times80=160w\\)",
+       "Seeds over area \\(=50\\times l\\times w=50lw\\)"],
+       ["Add the parts","∴ Total cost \\(=200l+160w+50lw\\)"]],
+     ans:"Total cost \\(=\\)&#8377;\\((200l+160w+50lw)\\)"},
+    {no:"Example 3", qt:"A 20 cm wire is bent into a rectangle of length \\(x\\) cm. Write an expression for its area.",
+     work:[["Find the width",
+       "Perimeter \\(=2(\\text{length}+\\text{width})=20\\)",
+       "Divide both sides by \\(2\\)","\\(\\text{length}+\\text{width}=20\\div2\\)",
+       "∴ Length \\(+\\) Width \\(=10\\)",
+       "∴ Width \\(=10-x\\)"],
+       ["Find the area",
+       "Area \\(=\\text{length}\\times\\text{width}=x(10-x)\\)",
+       "∴ Area \\(=10x-x^2\\)"]],
+     ans:"Area \\(=10x-x^2\\) (a one-variable, degree-2 expression)"}
+  ],
+  reflect:[
+    {no:"Think & Reflect — on Example 2", qt:"Identify the terms, variables and coefficients of \\(200l+160w+50lw\\). How is it different from Example 1's expression?",
+     work:[["Terms","\\(200l,\\ 160w,\\ 50lw\\)"],
+           ["Variables","\\(l,\\ w\\)"],
+           ["Coefficient of \\(l\\)","\\(=200\\)"],
+           ["Coefficient of \\(w\\)","\\(=160\\)"],
+           ["Coefficient of \\(lw\\)","\\(=50\\)"]],
+     ans:"2 variables \\((l,w)\\); has a product term \\(lw\\) — Example 1 had none"},
+    {no:"Think & Reflect — on Example 3", qt:"Identify the terms, variables and coefficients of \\(10x-x^2\\). Compare it with Examples 1 and 2.",
+     work:[["Terms","\\(10x,\\ -x^2\\)"],
+           ["Variable","\\(x\\) only"],
+           ["Coefficient of \\(x\\)","\\(=10\\)"],
+           ["Coefficient of \\(x^2\\)","\\(=-1\\)"]],
+     ans:"1 variable only; first term with \\(x^2\\) (degree 2) — Examples 1, 2 had 2 variables"}
+  ],
+  qs:[
+    {no:1, marks:"2 MARKS", diff:"Easy", cls:"q-2m", src:"NCERT",
+     qt:"Find the degree of each polynomial: (i) \\(2x^2-5x+3\\) &nbsp; (ii) \\(y^3+2y-1\\) &nbsp; (iii) \\(-9\\) &nbsp; (iv) \\(4z-3\\)",
+     work:[["(i)","Highest power of \\(x\\) is \\(2\\)","∴ degree \\(=2\\)"],
+           ["(ii)","Highest power of \\(y\\) is \\(3\\)","∴ degree \\(=3\\)"],
+           ["(iii)","\\(-9=-9x^0\\)","∴ degree \\(=0\\)"],
+           ["(iv)","Highest power of \\(z\\) is \\(1\\)","∴ degree \\(=1\\)"]],
+     ans:"(i) Degree \\(2\\) &nbsp;(ii) Degree \\(3\\) &nbsp;(iii) Degree \\(0\\) &nbsp;(iv) Degree \\(1\\)"},
+    {no:2, marks:"1 MARK", diff:"Easy", cls:"q-mcq", src:"NCERT",
+     qt:"Write one polynomial each of degree 1, degree 2 and degree 3 in \\(x\\).",
+     work:[["Requirement","Highest power needed: \\(1\\), then \\(2\\), then \\(3\\)","Many correct answers exist"]],
+     ans:"Degree 1: \\(3x+5\\) &nbsp; Degree 2: \\(x^2-2x+1\\) &nbsp; Degree 3: \\(2x^3+x-4\\)"},
+    {no:3, marks:"2 MARKS", diff:"Medium", cls:"q-2m", src:"NCERT",
+     qt:"What are the coefficients of \\(x^2\\) and \\(x^3\\) in \\(x^4-3x^3+6x^2-2x+7\\)?",
+     work:[["Match each term to its coefficient","Coefficient of \\(x^3\\) is \\(-3\\)","Coefficient of \\(x^2\\) is \\(6\\)"]],
+     ans:"Coefficient of \\(x^3=-3\\); coefficient of \\(x^2=6\\)"},
+    {no:4, marks:"1 MARK", diff:"Medium", cls:"q-mcq", src:"NCERT",
+     qt:"What is the coefficient of \\(z\\) in the polynomial \\(4z^3+5z^2-11\\)?",
+     work:[["Check for a \\(z^1\\) term","Terms present: \\(z^3, z^2\\), and a constant","No \\(z^1\\) term exists"]],
+     ans:"Coefficient of \\(z=0\\) (no \\(z\\)-term is present)"},
+    {no:5, marks:"1 MARK", diff:"Easy", cls:"q-mcq", src:"NCERT",
+     qt:"What is the constant term of the polynomial \\(9x^3+5x^2-8x-10\\)?",
+     work:[["Identify the term with no variable","The term without \\(x\\) is \\(-10\\)"]],
+     ans:"Constant term \\(=-10\\)"}
+  ]
+},
+{
+  id:"2.2", label:"Ex 2.2", qcount:7,
+  title:"2.2 Linear Polynomials",
+  exsub:"Section 2.2 &middot; leads into Exercise Set 2.2 (7 questions)",
+  rule:{name:"Concept Rule — Forming & Solving Linear Equations from Words", body:`
+    <div class="fml">Assign a variable, express other quantities in terms of it, translate the conditions into an equation, solve, then answer in context</div>
+    <ul>
+      <li>A linear polynomial has degree 1 (e.g. \\(2x+3\\)); a quadratic polynomial has degree 2 (e.g. \\(10x-x^2\\)).</li>
+      <li>To evaluate a polynomial at a value, substitute that value and simplify.</li>
+      <li>For ratio problems, write the two quantities as \\(2k\\) and \\(5k\\) (etc.) so the ratio is automatically preserved.</li>
+      <li>A linear polynomial's defining feature: the difference between successive values at consecutive integers is constant.</li>
+      <li><b>Moving a term across the \\(=\\) sign flips its sign</b> (\\(+\\) becomes \\(-\\), and \\(-\\) becomes \\(+\\)). Example: \\(2x+10=64\\) becomes \\(2x=64-10\\) — the \\(+10\\) became \\(-10\\) when it crossed over.</li>
+    </ul>`},
+  examples:[
+    {no:"Example 4", qt:"The perimeter of a square of side \\(x\\) is a linear polynomial in \\(x\\). Write it.",
+     work:[["Perimeter formula","Perimeter \\(=4\\times\\text{side}\\)","∴ Perimeter \\(=4x\\)"]],
+     ans:"Perimeter \\(=4x\\) (linear in \\(x\\))"},
+    {no:"Example 5", qt:"A chess club charges a joining fee of &#8377;200 plus &#8377;50 per match played. Find the amount paid for \\(m\\) matches.",
+     work:[["Build the expression","Fixed fee \\(=200\\)","Per-match cost \\(=50m\\)","∴ Amount \\(=200+50m\\)"]],
+     ans:"Amount paid \\(=\\)&#8377;\\((200+50m)\\); increases by a constant &#8377;50 per match."},
+    {no:"Example 6", qt:"The sum of two numbers is 64. One number is 10 more than the other. Find the numbers.",
+     given:"Let the smaller number \\(=x\\) and the larger number \\(=y\\)",
+     work:[["Equation 1 (sum is 64)","\\(x+y=64\\)\u2026(i)"],
+           ["Equation 2 (one is 10 more)","\\(y-x=10\\)\u2026(ii)"],
+           ["Add equation (i) and equation (ii)","\\((x+y)+(y-x)=64+10\\)"],
+           ["Expand the brackets","\\(\\textcolor{#B03030}{x}+y+y\\textcolor{#B03030}{-x}=74\\)"],
+           ["The red terms cancel out","\\(2y=74\\)"],
+           ["Solve for \\(y\\)","∴ \\(y=37\\)"],
+           ["Back-substitute into equation (i)","\\(x+37=64\\)"],
+           ["Solve for \\(x\\)","∴ \\(x=27\\)"]],
+     ans:"The numbers are \\(27\\) and \\(37\\)"}
+  ],
+  reflect:[
+    {no:"Think & Reflect — on Example 4", qt:"Find the perimeter of squares with sides 1, 1.5, 2, 2.5, 3 cm. What happens if the side increases by 0.5 cm each time?",
+     work:[["Side \\(=1\\)","Perimeter \\(=4\\times1=4\\)"],
+           ["Side \\(=1.5\\)","Perimeter \\(=4\\times1.5=6\\)"],
+           ["Side \\(=2\\)","Perimeter \\(=4\\times2=8\\)"],
+           ["Side \\(=2.5\\)","Perimeter \\(=4\\times2.5=10\\)"],
+           ["Side \\(=3\\)","∴ Perimeter \\(=4\\times3=12\\)"]],
+     ans:"Perimeters: \\(4,6,8,10,12\\) cm. Each \\(0.5\\) cm increase in side gives a constant \\(2\\) cm increase — so \\(4x\\) is linear."},
+    {no:"Think & Reflect — on Example 5", qt:"If a player paid &#8377;750, how many matches did he play?",
+     work:[["Set up the equation","\\(750=200+50m\\)"],["Isolate","\\(50m=750-200\\)<span class=\"idlabel\">(move 200 to the other side)</span>","\\(50m=550\\)"],["Solve","∴ \\(m=11\\)"]],
+     ans:"He played \\(11\\) matches"},
+    {no:"Think & Reflect — on the input-output idea (revisiting Example 3)", qt:"Interpret the area \\(10x-x^2\\) (Example 3) as an input-output process. What value does it take at \\(x=6\\) cm?",
+     work:[["Substitute \\(x=6\\)","\\(10(6)-6^2\\)","\\(=60-36\\)","∴ \\(=24\\)"]],
+     ans:"Input \\(x\\) is fed into \\(10x-x^2\\); output is the area. At \\(x=6\\): \\(24\\ \\text{cm}^2\\)."}
+  ],
+  qs:[
+    {no:1, marks:"2 MARKS", diff:"Easy", cls:"q-2m", src:"NCERT",
+     qt:"Find the value of the linear polynomial \\(5x-3\\) if: (i) \\(x=0\\) &nbsp; (ii) \\(x=-1\\) &nbsp; (iii) \\(x=2\\)",
+     work:[["(i)","\\(5(0)-3\\)","∴ \\(=-3\\)"],
+           ["(ii)","\\(5(-1)-3\\)","\\(=-5-3\\)","∴ \\(=-8\\)"],
+           ["(iii)","\\(5(2)-3\\)","\\(=10-3\\)","∴ \\(=7\\)"]],
+     ans:"(i) \\(-3\\) &nbsp; (ii) \\(-8\\) &nbsp; (iii) \\(7\\)"},
+    {no:2, marks:"2 MARKS", diff:"Easy", cls:"q-2m", src:"NCERT",
+     qt:"Find the value of the quadratic polynomial \\(7s^2-4s+6\\) if: (i) \\(s=0\\) &nbsp; (ii) \\(s=-3\\) &nbsp; (iii) \\(s=4\\)",
+     work:[["(i)","\\(7(0)^2-4(0)+6\\)","∴ \\(=6\\)"],
+           ["(ii)","\\(7(-3)^2-4(-3)+6\\)","\\(=7(9)+12+6\\)","\\(=63+12+6\\)","∴ \\(=81\\)"],
+           ["(iii)","\\(7(4)^2-4(4)+6\\)","\\(=7(16)-16+6\\)","\\(=112-16+6\\)","∴ \\(=102\\)"]],
+     ans:"(i) \\(6\\) &nbsp; (ii) \\(81\\) &nbsp; (iii) \\(102\\)"},
+    {no:3, marks:"3 MARKS", diff:"Medium", cls:"q-3m", src:"NCERT",
+     qt:"Salil's mother's present age is 3 times Salil's present age. After 5 years their ages add up to 70. Find their present ages.",
+     given:"Let Salil's present age \\(=x\\) years and mother's present age \\(=y\\) years",
+     work:[["Understand the problem","<table class='gtbl'><tr><th>Time</th><th>Salil's age</th><th>Mother's age</th></tr><tr><td>Present</td><td>x</td><td>y</td></tr><tr><td>After 5 years</td><td>x+5</td><td>y+5</td></tr></table>"],
+           ["Equation 1 (mother is 3\u00d7 Salil, now)","\\(y=3x\\)\u2026(i)"],
+           ["Equation 2 (ages add to 70, after 5 years)","\\((x+5)+(y+5)=70\\)"],
+           ["Simplify","\\(x+y+10=70\\)"],
+           ["∴","\\(x+y=60\\)\u2026(ii)"],
+           ["Substitute equation (i) into equation (ii)","\\(x+3x=60\\)"],
+           ["Simplify","\\(4x=60\\)"],
+           ["Solve for \\(x\\)","∴ \\(x=15\\)<span class=\"idlabel\">(divide both sides by 4)</span>"],
+           ["Back-substitute into equation (i)","\\(y=3\\times15\\)"],
+           ["Solve for \\(y\\)","∴ \\(y=45\\)"]],
+     ans:"Salil \\(=15\\) years; Mother \\(=45\\) years"},
+    {no:4, marks:"2 MARKS", diff:"Easy", cls:"q-2m", src:"NCERT",
+     qt:"The difference of two positive integers is 63, in ratio 2:5. Find them.",
+     given:"Let the two integers be \\(x\\) and \\(y\\) (with \\(y>x\\))",
+     work:[["Equation 1 (ratio \\(2:5\\))","\\(\\dfrac{x}{y}=\\dfrac{2}{5}\\)"],
+           ["Cross-multiply","\\(5x=2y\\)\u2026(i)"],
+           ["Equation 2 (difference is 63)","\\(y-x=63\\)\u2026(ii)"],
+           ["From (i), write \\(y\\) in terms of \\(x\\)","\\(y=\\dfrac{5x}{2}\\)"],
+           ["Substitute into equation (ii)","\\(\\dfrac{5x}{2}-x=63\\)"],
+           ["Combine the left side","\\(\\dfrac{5x-2x}{2}=63\\)","\\(\\dfrac{3x}{2}=63\\)"],
+           ["Solve for \\(x\\)","\\(3x=126\\)","∴ \\(x=42\\)"],
+           ["Back-substitute into equation (ii)","\\(y-42=63\\)"],
+           ["Solve for \\(y\\)","∴ \\(y=105\\)"]],
+     ans:"Integers: \\(42\\) and \\(105\\)"},
+    {no:5, marks:"3 MARKS", diff:"Medium", cls:"q-3m", src:"NCERT",
+     qt:"Ruby has 3 times as many two-rupee coins as five-rupee coins, total &#8377;88. Find the coins of each type.",
+     given:"Let five-rupee coins \\(=x\\) and two-rupee coins \\(=y\\)",
+     work:[["Equation 1 (3\u00d7 as many two-rupee coins)","\\(y=3x\\)\u2026(i)"],
+           ["Equation 2 (total value \\(=88\\))","\\(5x+2y=88\\)\u2026(ii)"],
+           ["Substitute equation (i) into equation (ii)","\\(5x+2(3x)=88\\)"],
+           ["Expand","\\(5x+6x=88\\)<span class=\"idlabel\">(multiply 2 into the bracket)</span>"],
+           ["Simplify","\\(11x=88\\)"],
+           ["Solve for \\(x\\)","∴ \\(x=8\\)<span class=\"idlabel\">(divide both sides by 11)</span>"],
+           ["Back-substitute into equation (i)","\\(y=3\\times8\\)"],
+           ["Solve for \\(y\\)","∴ \\(y=24\\)"]],
+     ans:"Five-rupee coins \\(=8\\); Two-rupee coins \\(=24\\)"},
+    {no:6, marks:"2 MARKS", diff:"Easy", cls:"q-2m", src:"NCERT",
+     qt:"A 300-ft fence is cut so the longer piece is 4 times the shorter. Find both lengths.",
+     given:"Let the shorter piece \\(=x\\) and the longer piece \\(=y\\)",
+     work:[["Equation 1 (longer is 4\u00d7 shorter)","\\(y=4x\\)\u2026(i)"],
+           ["Equation 2 (pieces add to 300)","\\(x+y=300\\)\u2026(ii)"],
+           ["Substitute equation (i) into equation (ii)","\\(x+4x=300\\)"],
+           ["Simplify","\\(5x=300\\)"],
+           ["Solve for \\(x\\)","∴ \\(x=60\\)<span class=\"idlabel\">(divide both sides by 5)</span>"],
+           ["Back-substitute into equation (i)","\\(y=4\\times60\\)"],
+           ["Solve for \\(y\\)","∴ \\(y=240\\)"]],
+     ans:"Shorter \\(=60\\) ft; Longer \\(=240\\) ft"},
+    {no:7, marks:"3 MARKS", diff:"Medium", cls:"q-3m", src:"NCERT",
+     qt:"A rectangle's length is 3 more than twice its width; perimeter 24 cm. Find the dimensions.",
+     given:"Let width \\(=x\\) and length \\(=y\\)",
+     work:[["Equation 1 (length is 3 more than twice width)","\\(y=2x+3\\)\u2026(i)"],
+           ["Perimeter formula","\\(2(x+y)=24\\)"],
+           ["Divide both sides by \\(2\\)","\\(x+y=24\\div2\\)"],
+           ["Equation 2","\\(x+y=12\\)\u2026(ii)"],
+           ["Substitute equation (i) into equation (ii)","\\((x)+(2x+3)=12\\)"],
+           ["Simplify","\\(3x+3=12\\)"],
+           ["Isolate","\\(3x=9\\)<span class=\"idlabel\">(move 3 to the other side)</span>"],
+           ["Solve for \\(x\\)","∴ \\(x=3\\)<span class=\"idlabel\">(divide both sides by 3)</span>"],
+           ["Back-substitute into equation (i)","\\(y=2\\times3+3\\)"],
+           ["Solve for \\(y\\)","∴ \\(y=9\\)"]],
+     ans:"Width \\(=3\\) cm; Length \\(=9\\) cm"}
+  ]
+},
+{
+  id:"2.3", label:"Ex 2.3", qcount:5,
+  title:"2.3 Exploring Linear Patterns",
+  exsub:"Section 2.3 &middot; leads into Exercise Set 2.3 (5 questions)",
+  rule:{name:"Concept Rule — Linear Patterns", body:`
+    <div class="fml">A linear pattern is a sequence where the difference between consecutive terms is constant</div>
+    <ul>
+      <li>Build a small table of the first few terms, spot the constant difference, then write the general (\\(n\\)th-term) rule.</li>
+      <li>Check the rule against at least two entries of the table before using it further.</li>
+    </ul>`},
+  examples:[
+    {no:"Illustrative Pattern", qt:"A growing pattern of square tiles gives the sequence 1, 3, 5, 7, 9, 11, 13 for Stages 1–7. Find the rule for Stage \\(n\\).",
+     work:[["Make a table and find the difference between terms","<table class='gtbl'><tr><th>Stage</th><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><th>Squares</th><td>1</td><td>3</td><td>5</td><td>7</td></tr><tr><th>Difference</th><td>&mdash;</td><td>+2</td><td>+2</td><td>+2</td></tr></table>"],
+           ["Difference is always \\(+2\\)","∴ this is a linear pattern with common difference \\(2\\)"],
+           ["Try a rule of the form \\(2n+c\\)","At Stage \\(1\\): \\(2(1)+c=1\\)","∴ \\(c=-1\\)"],
+           ["Check the rule \\(2n-1\\) against the table","Stage \\(2\\): \\(2(2)-1=3\\)","Stage \\(5\\): \\(2(5)-1=9\\)","Both match ✓"]],
+     ans:"Number of squares at Stage \\(n=2n-1\\) (linear; constant difference \\(=2\\))"},
+    {no:"Example 7", qt:"Bela has &#8377;100 pocket money and spends &#8377;5 every day. After how many days will she be left with &#8377;40?",
+     work:[["Amount left on day \\(n\\)","\\(100-5n\\)"],
+           ["Set equal to \\(40\\)","\\(100-5n=40\\)"],
+           ["Isolate","\\(5n=60\\)<span class=\"idlabel\">(move 100 to the other side)</span>"],
+           ["Solve","∴ \\(n=12\\)<span class=\"idlabel\">(divide both sides by 5)</span>"]],
+     ans:"Amount left on day \\(n=100-5n\\); she is left with &#8377;40 after \\(12\\) days"},
+    {no:"Example 8", qt:"An auto fare starts at &#8377;25 for the first 2 km, then rises by &#8377;15/km. Find the fare for 10 km.",
+     work:[["Fare for \\(n\\) km (\\(n\\ge2\\))","\\(25+15(n-2)\\)","\\(=25+15n-30\\)","∴ \\(=15n-5\\)"],
+           ["At \\(n=10\\)","\\(15(10)-5\\)","\\(=150-5\\)","∴ \\(=145\\)"]],
+     ans:"Fare\\((n)=15n-5\\) for \\(n\\ge2\\); fare for 10 km \\(=\\)&#8377;145"}
+  ],
+  reflect:[
+    {no:"Think & Reflect — tile pattern", qt:"Predict the next 3 stages of the tile pattern (sequence up to Stage 7). Also, using \\(2n-1\\), find the tiles at Stage 15 and 26, and which stage has 21 and 47 tiles.",
+     work:[["Stages 5–7","Stage 5: \\(2(5)-1=9\\)","Stage 6: \\(2(6)-1=11\\)","Stage 7: \\(2(7)-1=13\\)"],
+           ["Stages 15 & 26","\\(2(15)-1=29\\)","\\(2(26)-1=51\\)"],
+           ["Find \\(n\\) for 21 tiles","\\(2n-1=21\\)","\\(2n=22\\)","∴ \\(n=11\\)"],
+           ["Find \\(n\\) for 47 tiles","\\(2n-1=47\\)","\\(2n=48\\)","∴ \\(n=24\\)"]],
+     ans:"Sequence to Stage 7: \\(1,3,5,7,9,11,13\\). Stage 15 \\(=29\\); Stage 26 \\(=51\\); 21 tiles at Stage 11; 47 tiles at Stage 24."},
+    {no:"Think & Reflect — on Example 7", qt:"What amount is left on the 15th day? How many days until the money is fully spent?",
+     work:[["Day 15","\\(100-5(15)\\)","∴ \\(=25\\)"],["Fully spent","\\(100-5n=0\\)","∴ \\(n=20\\)"]],
+     ans:"&#8377;25 left on day 15; fully spent after 20 days"},
+    {no:"Think & Reflect — on Example 8", qt:"For how many km will the fare be &#8377;130?",
+     work:[["Set the fare \\(=130\\)","\\(15n-5=130\\)"],["Isolate","\\(15n=135\\)<span class=\"idlabel\">(move 5 to the other side)</span>"],["Solve","∴ \\(n=9\\) km<span class=\"idlabel\">(divide both sides by 15)</span>"]],
+     ans:"Fare is &#8377;130 at \\(n=9\\) km"}
+  ],
+  qs:[
+    {no:1, marks:"3 MARKS", diff:"Medium", cls:"q-3m", src:"NCERT",
+     qt:"A student has &#8377;500 savings and gets &#8377;150/month pocket money. Find the linear expression for her amount in the nth month.",
+     work:[["Build the rule","Amount after \\(n\\) months \\(=500+150n\\)"]],
+     ans:"Amount in \\(n\\)th month \\(=\\)&#8377;\\((500+150n)\\)"},
+    {no:2, marks:"3 MARKS", diff:"Medium", cls:"q-3m", src:"NCERT",
+     qt:"A rally starts with 120 members; 9 drop out each hour. Find a linear expression for the members remaining after n hours.",
+     work:[["Build the rule","Members after \\(n\\) hours \\(=120-9n\\)"]],
+     ans:"Members\\((n)=120-9n\\)"},
+    {no:3, marks:"2 MARKS", diff:"Easy", cls:"q-2m", src:"NCERT",
+     qt:"A rectangle has length 13 cm. Find the area if the breadth is (i) 12 cm (ii) 10 cm (iii) 8 cm, and give the linear pattern for the area.",
+     work:[["Area \\(=\\) length \\(\\times\\) breadth","(i) \\(13\\times12=156\\)","(ii) \\(13\\times10=130\\)","(iii) \\(13\\times8=104\\)"]],
+     ans:"Areas: \\(156,130,104\\ \\text{cm}^2\\); pattern \\(A=13b\\) (linear in breadth \\(b\\), length fixed)"},
+    {no:4, marks:"2 MARKS", diff:"Easy", cls:"q-2m", src:"NCERT",
+     qt:"A box has length 7 cm, breadth 11 cm. Find the volume if height is (i) 5 cm (ii) 9 cm (iii) 13 cm, and give the linear pattern for the volume.",
+     work:[["Volume \\(=l\\times b\\times h\\)","(i) \\(7\\times11\\times5=385\\)","(ii) \\(7\\times11\\times9=693\\)","(iii) \\(7\\times11\\times13=1001\\)"],
+           ["Fixed part","\\(7\\times11=77\\)","∴ pattern \\(V=77h\\)"]],
+     ans:"Volumes: \\(385,693,1001\\ \\text{cm}^3\\); pattern \\(V=77h\\) (linear in height \\(h\\))"},
+    {no:5, marks:"2 MARKS", diff:"Easy", cls:"q-2m", src:"NCERT",
+     qt:"Sarita is reading a 500-page book at 20 pages/day. Express the pages left as a linear pattern.",
+     work:[["Build the rule","Pages left after \\(d\\) days \\(=500-20d\\)"]],
+     ans:"Pages left\\((d)=500-20d\\)"}
+  ]
+},
+{
+  id:"2.4", label:"Ex 2.4", qcount:4,
+  title:"2.4 Linear Growth and Linear Decay",
+  exsub:"Section 2.4 &middot; leads into Exercise Set 2.4 (4 questions)",
+  rule:{name:"Concept Rule — Linear Growth & Decay", body:`
+    <div class="fml">\\(y=ax+b\\), where \\(a\\) is the fixed change per interval, \\(b\\) is the starting value</div>
+    <ul>
+      <li><b>Linear growth</b>: quantity increases by a fixed amount each interval; slope \\(a\\) is positive.</li>
+      <li><b>Linear decay</b>: quantity decreases by a fixed amount each interval; slope \\(a\\) is negative.</li>
+      <li>To justify growth/decay: show the difference between consecutive values is constant, then state its sign.</li>
+    </ul>`},
+  examples:[
+    {no:"Example 9", qt:"The cost of a journey is \\(C(d)=100+60d\\) (\\(d\\) in km). Tabulate for \\(d=0\\) to \\(5\\) and identify the type of pattern.",
+     work:[["Table of values","<table class='gtbl'><tr><th>d (km)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th>C (&#8377;)</th><td>100</td><td>160</td><td>220</td><td>280</td><td>340</td><td>400</td></tr></table>"],
+           ["Observe","\\(C\\) increases by a constant &#8377;60 for every extra km","∴ this is linear growth"]],
+     ans:"\\(C(d)=100+60d\\); linear growth (positive slope \\(60\\))"},
+    {no:"Example 10", qt:"A tank's water height is \\(h(t)=3-0.5t\\) (\\(t\\) in months). Identify the type of pattern.",
+     work:[["Table of values","<table class='gtbl'><tr><th>t (months)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><th>h (m)</th><td>3</td><td>2.5</td><td>2</td><td>1.5</td><td>1</td></tr></table>"],
+           ["Observe","\\(h\\) decreases by a constant \\(0.5\\) m per month","∴ this is linear decay"]],
+     ans:"\\(h(t)=3-0.5t\\); linear decay (negative slope \\(-0.5\\))"}
+  ],
+  reflect:[
+    {no:"Think & Reflect — on Example 9", qt:"What is the cost for 15 km? For how many km will the cost be &#8377;700?",
+     work:[["At \\(d=15\\)","\\(100+60(15)\\)","\\(=100+900\\)","∴ \\(=1000\\)"],
+           ["Set cost \\(=700\\)","\\(100+60d=700\\)","\\(60d=600\\)","∴ \\(d=10\\) km"]],
+     ans:"Cost at 15 km \\(=\\)&#8377;1000; cost is &#8377;700 at \\(d=10\\) km"},
+    {no:"Think & Reflect — on Example 10", qt:"What will the height of water be at the end of 5 months?",
+     work:[["At \\(t=5\\)","\\(3-0.5(5)\\)","\\(=3-2.5\\)","∴ \\(=0.5\\) m"]],
+     ans:"Height after 5 months \\(=0.5\\) m"}
+  ],
+  qs:[
+    {no:1, marks:"5 MARKS", diff:"Medium", cls:"q-5m", src:"NCERT",
+     qt:"A plant of height 1.75 ft grows 0.5 ft/month. (i) Height after 7 months. (ii) Table for t=0–10. (iii) Expression & why it's linear growth.",
+     work:[["(i) Height after 7 months","\\(1.75+0.5(7)\\)","\\(=1.75+3.5\\)","∴ \\(=5.25\\) ft"],
+           ["(ii) Table for \\(t=0\\) to \\(10\\)","<table class='gtbl'><tr><th>t</th><td>0</td><td>1</td><td>2</td><td>&hellip;</td><td>10</td></tr><tr><th>h</th><td>1.75</td><td>2.25</td><td>2.75</td><td>&hellip;</td><td>6.75</td></tr></table>"],
+           ["(iii) General expression","\\(h=1.75+0.5t\\)","Slope \\(=0.5>0\\)","∴ linear growth"]],
+     ans:"\\(h=1.75+0.5t\\); height after 7 months \\(=5.25\\) ft; linear growth"},
+    {no:2, marks:"5 MARKS", diff:"Medium", cls:"q-5m", src:"NCERT",
+     qt:"A phone bought for &#8377;10,000 loses &#8377;800/year. (i) Value after 3 years. (ii) Table for t=0–8. (iii) Expression & why it's linear decay.",
+     work:[["(i) Value after 3 years","\\(10000-800(3)\\)","\\(=10000-2400\\)","∴ \\(=7600\\)"],
+           ["(ii) Table for \\(t=0\\) to \\(8\\)","<table class='gtbl'><tr><th>t</th><td>0</td><td>1</td><td>2</td><td>&hellip;</td><td>8</td></tr><tr><th>v</th><td>10000</td><td>9200</td><td>8400</td><td>&hellip;</td><td>3600</td></tr></table>"],
+           ["(iii) General expression","\\(v=10000-800t\\)","Slope \\(=-800<0\\)","∴ linear decay"]],
+     ans:"\\(v=10000-800t\\); value after 3 years \\(=\\)&#8377;7600; linear decay"},
+    {no:3, marks:"5 MARKS", diff:"Medium", cls:"q-5m", src:"NCERT",
+     qt:"A village of population 750 gains 50 people/year. (i) Population after 6 years. (ii) Table for t=0–10. (iii) Expression & why it's linear growth.",
+     work:[["(i) Population after 6 years","\\(750+50(6)\\)","\\(=750+300\\)","∴ \\(=1050\\)"],
+           ["(ii) Table for \\(t=0\\) to \\(10\\)","<table class='gtbl'><tr><th>t</th><td>0</td><td>1</td><td>2</td><td>&hellip;</td><td>10</td></tr><tr><th>P</th><td>750</td><td>800</td><td>850</td><td>&hellip;</td><td>1250</td></tr></table>"],
+           ["(iii) General expression","\\(P=750+50t\\)","Slope \\(=50>0\\)","∴ linear growth"]],
+     ans:"\\(P=750+50t\\); population after 6 years \\(=1050\\); linear growth"},
+    {no:4, marks:"3 MARKS", diff:"Medium", cls:"q-3m", src:"NCERT",
+     qt:"A &#8377;600 recharge loses &#8377;15/day. (i) Equation for balance b(x) & why it's linear decay. (ii) When does it run out? (iii) Table for x=1–10.",
+     work:[["(i) Equation","\\(b(x)=600-15x\\)","Slope \\(=-15<0\\)","∴ linear decay"],
+           ["(ii) Balance \\(=0\\)","\\(600-15x=0\\)","\\(15x=600\\)","∴ \\(x=40\\) days"],
+           ["(iii) Table for \\(x=1\\) to \\(10\\)","<table class='gtbl'><tr><th>x</th><td>1</td><td>2</td><td>&hellip;</td><td>10</td></tr><tr><th>b(x)</th><td>585</td><td>570</td><td>&hellip;</td><td>450</td></tr></table>"]],
+     ans:"\\(b(x)=600-15x\\); balance runs out after \\(40\\) days"}
+  ]
+},
+{
+  id:"2.5", label:"Ex 2.5", qcount:3,
+  title:"2.5 Linear Relationships",
+  exsub:"Section 2.5 &middot; leads into Exercise Set 2.5 (3 questions)",
+  rule:{name:"Concept Rule — Finding a and b from Two Known Pairs", body:`
+    <div class="fml">If \\((x_1,y_1)\\) and \\((x_2,y_2)\\) both satisfy \\(y=ax+b\\), substitute both to get two equations, then solve simultaneously.</div>
+    <ul><li>\\(y_1=ax_1+b\\)</li><li>\\(y_2=ax_2+b\\)</li><li>Both equations have the <b>same \\(b\\)</b>, so subtracting one equation from the other cancels \\(b\\) out completely, leaving only \\(a\\) to solve.</li><li>Once \\(a\\) is known, put it back into either equation to find \\(b\\).</li></ul>`},
+  examples:[
+    {no:"Example 11", qt:"A telecom bill \\(y=ax+b\\) (\\(x=\\)GB used). 10 GB costs &#8377;350; 20 GB costs &#8377;550. Find \\(a\\) and \\(b\\).",
+     given:"\\(350=10a+b\\) and \\(550=20a+b\\)",
+     work:[["Why subtract?","Both equations have \\(+b\\)","∴ subtracting cancels \\(b\\), leaving just \\(a\\)"],
+           ["Subtract the two equations","\\(550-350=(20a+b)-(10a+b)\\)"],
+           ["Expand the brackets","\\(200=20a+\\textcolor{#B03030}{b}-10a\\textcolor{#B03030}{-b}\\)"],
+           ["The red terms cancel out","\\(200=10a\\)"],
+           ["Solve for \\(a\\)","∴ \\(a=20\\)"],
+           ["Back-substitute into the first equation","\\(350=10(20)+b\\)","\\(350=200+b\\)"],
+           ["Solve for \\(b\\)","∴ \\(b=150\\)"]],
+     ans:"\\(a=20\\), \\(b=150\\); ∴ \\(y=20x+150\\)"}
+  ],
+  reflect:[
+    {no:"Think & Reflect — on Example 11", qt:"Can you guess what the numbers 20 and 150 in \\(y=20x+150\\) represent?",
+     work:[["\\(20\\) = slope","rate per GB"],["\\(150\\) = \\(y\\)-intercept","fixed monthly fee"]],
+     ans:"\\(20=\\) cost per GB; \\(150=\\) fixed fee (charged even at \\(0\\) GB)"}
+  ],
+  qs:[
+    {no:1, marks:"3 MARKS", diff:"Medium", cls:"q-3m", src:"NCERT",
+     qt:"A learning platform: 10 modules cost &#8377;400; 14 modules cost &#8377;500. Given \\(y=ax+b\\), find \\(a,b\\).",
+     given:"\\(400=10a+b\\) and \\(500=14a+b\\)",
+     work:[["Subtract the two equations","\\(500-400=(14a+b)-(10a+b)\\)"],
+           ["Expand the brackets","\\(100=14a+\\textcolor{#B03030}{b}-10a\\textcolor{#B03030}{-b}\\)"],
+           ["The red terms cancel out","\\(100=4a\\)"],
+           ["Solve for \\(a\\)","∴ \\(a=25\\)"],
+           ["Back-substitute","\\(400=10(25)+b\\)","\\(400=250+b\\)"],
+           ["Solve for \\(b\\)","∴ \\(b=150\\)"]],
+     ans:"\\(y=25x+150\\)"},
+    {no:2, marks:"3 MARKS", diff:"Medium", cls:"q-3m", src:"NCERT",
+     qt:"A gym: 10 hrs costs &#8377;800; 15 hrs costs &#8377;1100. Given \\(y=ax+b\\), find \\(a,b\\).",
+     given:"\\(800=10a+b\\) and \\(1100=15a+b\\)",
+     work:[["Subtract the two equations","\\(1100-800=(15a+b)-(10a+b)\\)"],
+           ["Expand the brackets","\\(300=15a+\\textcolor{#B03030}{b}-10a\\textcolor{#B03030}{-b}\\)"],
+           ["The red terms cancel out","\\(300=5a\\)"],
+           ["Solve for \\(a\\)","∴ \\(a=60\\)"],
+           ["Back-substitute","\\(800=10(60)+b\\)","\\(800=600+b\\)"],
+           ["Solve for \\(b\\)","∴ \\(b=200\\)"]],
+     ans:"\\(y=60x+200\\)"},
+    {no:3, marks:"3 MARKS", diff:"Medium", cls:"q-3m", src:"NCERT",
+     qt:"\\(°\\text{C}=a\\cdot°\\text{F}+b\\). Ice melts at 0°C/32°F; water boils at 100°C/212°F. Find \\(a,b\\).",
+     given:"\\(0=32a+b\\) and \\(100=212a+b\\)",
+     work:[["Subtract the two equations","\\(100-0=(212a+b)-(32a+b)\\)"],
+           ["Expand the brackets","\\(100=212a+\\textcolor{#B03030}{b}-32a\\textcolor{#B03030}{-b}\\)"],
+           ["The red terms cancel out","\\(100=180a\\)"],
+           ["Solve for \\(a\\)","∴ \\(a=\\dfrac{5}{9}\\)"],
+           ["Back-substitute","\\(0=32\\left(\\dfrac{5}{9}\\right)+b\\)"],
+           ["Multiply out","\\(32\\times\\dfrac{5}{9}=\\dfrac{160}{9}\\)","\\(0=\\dfrac{160}{9}+b\\)"],
+           ["Solve for \\(b\\)","∴ \\(b=-\\dfrac{160}{9}\\)"],
+           ["Check with the second point (\\(212°\\)F)","\\(a(212)+b=\\dfrac{5}{9}(212)-\\dfrac{160}{9}\\)","\\(=\\dfrac{1060}{9}-\\dfrac{160}{9}\\)","\\(=\\dfrac{900}{9}=100\\)","Matches ✓"],
+           ["Why this matches the familiar formula","\\(\\dfrac{5}{9}x-\\dfrac{160}{9}=\\dfrac{5}{9}(x-32)\\)<span class=\"idlabel\">(factor out 5/9)</span>"]],
+     ans:"\\(a=\\dfrac{5}{9}\\), \\(b=-\\dfrac{160}{9}\\) (the familiar \\(°\\text{C}=\\dfrac{5}{9}(°\\text{F}-32)\\) relation)"}
+  ]
+},
+{
+  id:"2.6", label:"Ex 2.6", qcount:1,
+  title:"2.6 Visualising Linear Relationships",
+  exsub:"Section 2.6 &middot; leads into Exercise Set 2.6 (1 question, 5 parts)",
+  rule:{name:"Concept Rule — Slope, y-Intercept & Parallel Lines", body:`
+    <div class="fml">\\(y=ax+b\\): \\(a=\\) slope, \\(b=\\) y-intercept, the line crosses the \\(y\\)-axis at \\((0,b)\\)</div>
+    <ul>
+      <li>Changing \\(a\\) (\\(b\\) fixed): steepness/tilt changes; still crosses the \\(y\\)-axis at the same point.</li>
+      <li>Changing \\(b\\) (\\(a\\) fixed): the line shifts up/down, staying <b>parallel</b> to the original.</li>
+      <li>Same slope, different \\(y\\)-intercept: parallel lines. Different slope: the lines cross somewhere.</li>
+    </ul>`},
+  examples:[
+    {no:"Illustrative — Plotting a Line", qt:"To plot \\(y=2x+1\\), find two points, e.g. \\((0,1)\\) and \\((3,7)\\), and join them. Verify that \\((7,15)\\) also lies on the line.",
+     work:[["Check the point","At \\(x=7\\): \\(y=2(7)+1\\)","\\(y=14+1\\)","∴ \\(y=15\\)","Matches — \\((7,15)\\) lies on the line"]],
+     ans:"\\((7,15)\\) satisfies \\(y=2x+1\\)",
+     graph:graphBlock("y = 2x + 1", graphSVG([{a:2,b:1,color:'#2D5A3D'}],[{x:0,y:1,label:'(0,1)'},{x:3,y:7,label:'(3,7)'},{x:7,y:15,label:'(7,15)',color:'#B03030'}],{xmin:-1,xmax:9,ymin:-2,ymax:16}))},
+    {no:"Example 12", qt:"Points \\((-1,-3),(0,0),(1,3),(3,9),(4,12)\\) lie on a straight line. Find its equation.",
+     work:[["Find \\(\\dfrac{y}{x}\\) for each point (skip \\(x=0\\))","<table class='gtbl'><tr><th>x</th><td>-1</td><td>1</td><td>3</td><td>4</td></tr><tr><th>y</th><td>-3</td><td>3</td><td>9</td><td>12</td></tr><tr><th>y/x</th><td>3</td><td>3</td><td>3</td><td>3</td></tr></table>"],
+           ["Same ratio every time","∴ \\(y=3x\\) (since \\(y/x=3\\) always)"]],
+     ans:"\\(y=3x\\)",
+     graph:graphBlock("y = 3x", graphSVG([{a:3,b:0,color:'#2D5A3D'}],[{x:-1,y:-3,label:''},{x:0,y:0,label:''},{x:1,y:3,label:''},{x:3,y:9,label:''},{x:4,y:12,label:''}],{xmin:-2,xmax:5,ymin:-4,ymax:13}))},
+    {no:"Example 13", qt:"Points \\((-3,6),(-2,4),(0,0),(1,-2),(2,-4),(3,-6)\\) lie on a line. Find its equation.",
+     work:[["Find \\(\\dfrac{y}{x}\\) for each point (skip \\(x=0\\))","<table class='gtbl'><tr><th>x</th><td>-3</td><td>-2</td><td>1</td><td>2</td><td>3</td></tr><tr><th>y</th><td>6</td><td>4</td><td>-2</td><td>-4</td><td>-6</td></tr><tr><th>y/x</th><td>-2</td><td>-2</td><td>-2</td><td>-2</td><td>-2</td></tr></table>"],
+           ["Same ratio every time","∴ \\(y=-2x\\) (since \\(y/x=-2\\) always)"]],
+     ans:"\\(y=-2x\\)",
+     graph:graphBlock("y = \u22122x", graphSVG([{a:-2,b:0,color:'#2D5A3D'}],[{x:-3,y:6},{x:-2,y:4},{x:0,y:0},{x:1,y:-2},{x:2,y:-4},{x:3,y:-6}],{xmin:-4,xmax:4,ymin:-7,ymax:7}))},
+    {no:"Example 14", qt:"Draw \\(y=\\dfrac{1}{2}x\\), \\(y=x\\), \\(y=2x\\) on the same axes and compare their steepness.",
+     work:[["Compare slopes","All three pass through the origin","Larger \\(a\\) gives a steeper line"]],
+     ans:"\\(y=2x\\) is steepest; \\(y=\\dfrac{1}{2}x\\) is least steep — steepness increases with \\(a\\)",
+     graph:graphBlock("y=\u00bdx (purple), y=x (green), y=2x (red)", graphSVG([{a:0.5,b:0,color:'#7B5EA7'},{a:1,b:0,color:'#2D5A3D'},{a:2,b:0,color:'#B03030'}],[],{xmin:-4,xmax:4,ymin:-8,ymax:8,legend:[{color:'#7B5EA7',label:'y=\u00bdx'},{color:'#2D5A3D',label:'y=x'},{color:'#B03030',label:'y=2x'}]}))},
+    {no:"Example 15", qt:"Draw \\(y=-\\dfrac{1}{3}x\\), \\(y=-x\\), \\(y=-3x\\) on the same axes.",
+     work:[["Compare slopes","All three pass through the origin, negative slope","Larger \\(|a|\\) gives a steeper (more downward) line"]],
+     ans:"\\(y=-3x\\) is steepest downward; \\(y=-\\dfrac{1}{3}x\\) is least steep",
+     graph:graphBlock("y=\u2212\u2153x (purple), y=\u2212x (green), y=\u22123x (red)", graphSVG([{a:-1/3,b:0,color:'#7B5EA7'},{a:-1,b:0,color:'#2D5A3D'},{a:-3,b:0,color:'#B03030'}],[],{xmin:-4,xmax:4,ymin:-8,ymax:8,legend:[{color:'#7B5EA7',label:'y=\u2212\u2153x'},{color:'#2D5A3D',label:'y=\u2212x'},{color:'#B03030',label:'y=\u22123x'}]}))},
+    {no:"Example 16", qt:"Draw \\(y=2x-1\\), \\(y=2x+1\\), \\(y=2x+5\\) on the same axes.",
+     work:[["Compare the three lines","Same slope \\(a=2\\) for all three","Different \\(y\\)-intercepts: \\(-1,1,5\\)"]],
+     ans:"The three lines are parallel, each shifted vertically according to its \\(y\\)-intercept",
+     graph:graphBlock("Three parallel lines, slope 2", graphSVG([{a:2,b:-1,color:'#7B5EA7'},{a:2,b:1,color:'#2D5A3D'},{a:2,b:5,color:'#B03030'}],[],{xmin:-4,xmax:4,ymin:-9,ymax:13,legend:[{color:'#7B5EA7',label:'y=2x\u22121'},{color:'#2D5A3D',label:'y=2x+1'},{color:'#B03030',label:'y=2x+5'}]}))}
+  ],
+  reflect:[
+    {no:"Think & Reflect — completing a table for y=2x+1", qt:"Complete the table: \\(x=1,2,5,7,9,12,20\\); find \\(y\\).",
+     work:[["Compute each \\(y=2x+1\\)","\\(x=1: y=2(1)+1=3\\)","\\(x=2: y=2(2)+1=5\\)","\\(x=5: y=2(5)+1=11\\)","\\(x=7: y=2(7)+1=15\\)","\\(x=9: y=2(9)+1=19\\)","\\(x=12: y=2(12)+1=25\\)","\\(x=20: y=2(20)+1=41\\)"]],
+     ans:"\\(y\\)-values: \\(3,5,11,15,19,25,41\\)"},
+    {no:"Think & Reflect — on Example 14 (Fig. 2.9)", qt:"As \\(a\\) varies (\\(a>0\\)) in \\(y=ax\\), what do you conclude? What happens when \\(a>1\\) vs \\(a<1\\)?",
+     work:[["\\(b=0\\) for all","∴ every line passes through origin"],["\\(a>1\\)","steeper than \\(y=x\\)"],["\\(0<a<1\\)","less steep than \\(y=x\\)"]],
+     ans:"Origin-fixed; \\(a>1\\) steeper, \\(a<1\\) flatter than \\(y=x\\)"},
+    {no:"Think & Reflect — same intercept, opposite slope (Fig. 2.11)", qt:"Differentiate between the graphs of \\(y=3x+1\\) and \\(y=-3x+1\\).",
+     work:[["\\(y\\)-intercept, both","\\((0,1)\\) — same"],["Slope of \\(y=3x+1\\)","\\(=3\\) (rises)"],["Slope of \\(y=-3x+1\\)","\\(=-3\\) (falls)"]],
+     ans:"Same \\(y\\)-intercept \\((0,1)\\); opposite slopes \\(3\\) and \\(-3\\) — mirror images"},
+    {no:"Think & Reflect — on Example 16 (Fig. 2.13/2.14)", qt:"When \\(a\\) is fixed but \\(b\\) varies, what do you conclude about \\(y=ax+b\\)?",
+     work:[["Slope \\(a\\)","same for all"],["\\(y\\)-intercept \\(b\\)","different for each"]],
+     ans:"Same \\(a\\), different \\(b\\): parallel lines shifted vertically"}
+  ],
+  qs:[
+    {no:1, marks:"5 MARKS", diff:"Medium", cls:"q-5m", src:"NCERT",
+     qt:"For each set, reflect on the role of \\(a\\) and \\(b\\): (i) \\(y=4x,2x,x\\) &nbsp;(ii) \\(y=-6x,-3x,-x\\) &nbsp;(iii) \\(y=5x,-5x\\) &nbsp;(iv) \\(y=3x-1,3x,3x+1\\) &nbsp;(v) \\(y=-2x-3,-2x,2x+3\\)",
+     graph: graphBlock("(i) y=4x, 2x, x", graphSVG([{a:4,b:0,color:'#7B5EA7'},{a:2,b:0,color:'#2D5A3D'},{a:1,b:0,color:'#B03030'}],[],{w:260,h:190,xmin:-3,xmax:3,ymin:-12,ymax:12,legend:[{color:'#7B5EA7',label:'y=4x'},{color:'#2D5A3D',label:'y=2x'},{color:'#B03030',label:'y=x'}]}))
+       + graphBlock("(ii) y=\u22126x, \u22123x, \u2212x", graphSVG([{a:-6,b:0,color:'#7B5EA7'},{a:-3,b:0,color:'#2D5A3D'},{a:-1,b:0,color:'#B03030'}],[],{w:260,h:190,xmin:-2,xmax:2,ymin:-12,ymax:12,legend:[{color:'#7B5EA7',label:'y=\u22126x'},{color:'#2D5A3D',label:'y=\u22123x'},{color:'#B03030',label:'y=\u2212x'}]}))
+       + graphBlock("(iii) y=5x, \u22125x", graphSVG([{a:5,b:0,color:'#2D5A3D'},{a:-5,b:0,color:'#B03030'}],[],{w:260,h:190,xmin:-2,xmax:2,ymin:-10,ymax:10,legend:[{color:'#2D5A3D',label:'y=5x'},{color:'#B03030',label:'y=\u22125x'}]}))
+       + graphBlock("(iv) y=3x\u22121, 3x, 3x+1", graphSVG([{a:3,b:-1,color:'#7B5EA7'},{a:3,b:0,color:'#2D5A3D'},{a:3,b:1,color:'#B03030'}],[],{w:260,h:190,xmin:-3,xmax:3,ymin:-10,ymax:10,legend:[{color:'#7B5EA7',label:'y=3x\u22121'},{color:'#2D5A3D',label:'y=3x'},{color:'#B03030',label:'y=3x+1'}]}))
+       + graphBlock("(v) y=\u22122x\u22123, \u22122x, 2x+3", graphSVG([{a:-2,b:-3,color:'#7B5EA7'},{a:-2,b:0,color:'#2D5A3D'},{a:2,b:3,color:'#B03030'}],[],{w:260,h:190,xmin:-4,xmax:4,ymin:-11,ymax:11,legend:[{color:'#7B5EA7',label:'y=\u22122x\u22123'},{color:'#2D5A3D',label:'y=\u22122x'},{color:'#B03030',label:'y=2x+3'}]})),
+     work:[["(i) & (ii)","All lines pass through the origin, \\(b=0\\)","Larger \\(|a|\\) gives a steeper line","The sign of \\(a\\) sets the direction"],
+           ["(iii)","\\(y=5x\\) and \\(y=-5x\\) have the same steepness","Opposite direction (slopes \\(5\\) and \\(-5\\))","Not parallel — mirror images"],
+           ["(iv)","Same slope \\(a=3\\) for all three","Different \\(y\\)-intercepts: \\(-1,0,1\\)","∴ three parallel lines"],
+           ["(v)","\\(y=-2x-3\\) and \\(y=-2x\\) share slope \\(-2\\)","∴ parallel to each other","\\(y=2x+3\\) has a different slope","∴ not parallel to the other two"]],
+     ans:"Same \\(a\\), different \\(b\\): parallel lines shifted vertically. Different \\(a\\): different steepness/direction, not parallel."}
+  ]
+},
+{
+  id:"eoc", label:"End of Chapter", qcount:14,
+  title:"End-of-Chapter Exercises",
+  exsub:"Cumulative review &middot; 14 questions",
+  rule:{name:"Concept Rule — Chapter 2 Summary", body:`<ul>
+    <li>An <b>algebraic expression</b> combines numbers, variables and operation symbols; its terms have <b>coefficients</b>.</li>
+    <li>A <b>univariate polynomial</b> involves only one variable; its <b>degree</b> is the highest power of that variable.</li>
+    <li>A degree-1 polynomial is <b>linear</b>.</li>
+    <li>A <b>linear pattern</b> has a constant difference between consecutive terms.</li>
+    <li>A <b>linear relationship</b> \\(y=ax+b\\) has slope \\(a\\) and \\(y\\)-intercept \\(b\\) (point \\((0,b)\\)); \\(b=0\\) gives a line through the origin.</li>
+    <li><b>Linear growth</b>: positive slope; <b>linear decay</b>: negative slope.</li>
+    <li>Lines \\(y=ax+b\\) with the same \\(a\\) but different \\(b\\) are <b>parallel</b>.</li>
+  </ul>`},
+  examples:[], reflect:[],
+  qs:[
+    {no:1, marks:"1 MARK", diff:"Easy", cls:"q-mcq", src:"NCERT",
+     qt:"Write a degree-3 polynomial in \\(x\\) with the coefficient of \\(x^2\\) equal to \\(-7\\).",
+     work:[["Requirement","Need a nonzero \\(x^3\\) term","Need an \\(x^2\\) term with coefficient \\(-7\\)"]],
+     ans:"\\(x^3-7x^2+2x+1\\) (one valid example)"},
+    {no:2, marks:"2 MARKS", diff:"Easy", cls:"q-2m", src:"NCERT",
+     qt:"Find: (i) \\(5x^2-3x+7\\) at \\(x=1\\) &nbsp; (ii) \\(4t^3-t^2+6\\) at \\(t=a\\)",
+     work:[["(i) Replace \\(x\\) with \\(1\\)","\\(5(1)^2-3(1)+7\\)","\\(=5-3+7\\)","∴ \\(=9\\)"],
+           ["(ii) Replace every \\(t\\) with \\(a\\)","\\(4(a)^3-(a)^2+6\\)","∴ \\(=4a^3-a^2+6\\)"]],
+     ans:"(i) \\(9\\) &nbsp; (ii) \\(4a^3-a^2+6\\)"},
+    {no:3, marks:"2 MARKS", diff:"Medium", cls:"q-2m", src:"NCERT",
+     qt:"A number multiplied by \\(\\dfrac{5}{2}\\), plus 23, gives \\(-\\dfrac{7}{12}\\). Find the number.",
+     given:"Let the number \\(=x\\)",
+     work:[["Form the equation","\\(\\dfrac{5}{2}x+23=-\\dfrac{7}{12}\\)"],
+           ["Isolate the fraction term","\\(\\dfrac{5}{2}x=-\\dfrac{7}{12}-23\\)<span class=\"idlabel\">(move 23 to the other side)</span>"],
+           ["Write 23 as a fraction with 12 as denominator","\\(23=\\dfrac{23\\times12}{12}=\\dfrac{276}{12}\\)"],
+           ["Combine the right side","\\(\\dfrac{5}{2}x=-\\dfrac{7}{12}-\\dfrac{276}{12}\\)"],
+           ["Simplify","\\(\\dfrac{5}{2}x=-\\dfrac{283}{12}\\)"],
+           ["Multiply both sides by \\(\\dfrac{2}{5}\\)","\\(x=-\\dfrac{283}{12}\\times\\dfrac{2}{5}\\)<span class=\"idlabel\">(flip the fraction to cancel it)</span>"],
+           ["Solve","∴ \\(x=-\\dfrac{283}{30}\\)"]],
+     ans:"\\(x=-\\dfrac{283}{30}\\)"},
+    {no:4, marks:"3 MARKS", diff:"Medium", cls:"q-3m", src:"NCERT",
+     qt:"A positive number is 5 times another. Adding 21 to both makes one new number twice the other. Find the numbers.",
+     given:"Let the smaller number \\(=x\\) and the larger number \\(=y\\)",
+     work:[["Equation 1 (one number is 5\u00d7 the other)","\\(y=5x\\)\u2026(i)"],
+           ["Equation 2 (after adding 21 to both)","\\(y+21=2(x+21)\\)\u2026(ii)"],
+           ["Substitute equation (i) into equation (ii)","\\(5x+21=2(x+21)\\)"],
+           ["Expand the bracket","\\(5x+21=2x+42\\)<span class=\"idlabel\">(multiply 2 into the bracket)</span>"],
+           ["Isolate \\(x\\)","\\(5x-2x=42-21\\)<span class=\"idlabel\">(collect x-terms on one side)</span>"],
+           ["Simplify","\\(3x=21\\)"],
+           ["Solve for \\(x\\)","∴ \\(x=7\\)<span class=\"idlabel\">(divide both sides by 3)</span>"],
+           ["Back-substitute into equation (i)","\\(y=5\\times7\\)"],
+           ["Solve for \\(y\\)","∴ \\(y=35\\)"]],
+     ans:"Numbers are \\(7\\) and \\(35\\)"},
+    {no:5, marks:"3 MARKS", diff:"Easy", cls:"q-3m", src:"NCERT",
+     qt:"&#8377;800 saved, plus &#8377;250/month. Find the amount after (i) 6 months (ii) 2 years; express as a linear pattern.",
+     work:[["Rule","\\(A=800+250n\\)"],
+           ["(i) \\(n=6\\)","\\(800+250(6)\\)","\\(=800+1500\\)","∴ \\(=2300\\)"],
+           ["(ii) \\(n=24\\) months","\\(800+250(24)\\)","\\(=800+6000\\)","∴ \\(=6800\\)"]],
+     ans:"\\(A=800+250n\\); after 6 months \\(=\\)&#8377;2300; after 2 years \\(=\\)&#8377;6800"},
+    {no:6, marks:"5 MARKS", diff:"Hard", cls:"q-5m", src:"Exemplar",
+     qt:"Digits of a two-digit number differ by 3. Interchanging the digits and adding both numbers together gives 143. Find both numbers.",
+     given:"Let the tens digit \\(=x\\) and the units digit \\(=y\\)",
+     work:[["A 2-digit number \\(=10\\times\\text{tens digit}+\\text{units digit}\\)","<span class=\"idlabel\">(place value rule)</span>"],
+           ["Original number","\\(=10x+y\\)"],
+           ["Reversed number (digits swap places)","\\(=10y+x\\)"],
+           ["Equation 1 (digits differ by 3)","\\(x-y=3\\)"],
+           ["Equation 2 (original + reversed \\(=143\\))","\\((10x+y)+(10y+x)=143\\)"],
+           ["Expand","\\(10x+y+10y+x=143\\)<span class=\"idlabel\">(remove the brackets)</span>"],
+           ["Simplify","\\(11x+11y=143\\)"],
+           ["Divide both sides by \\(11\\)","∴ \\(x+y=13\\)"],
+           ["Now solve the pair","\\(x-y=3\\)","\\(x+y=13\\)"],
+           ["Add the two equations","\\((x-y)+(x+y)=3+13\\)<span class=\"idlabel\">(y cancels out)</span>"],
+           ["Simplify","\\(2x=16\\)"],
+           ["Solve for \\(x\\)","∴ \\(x=8\\)<span class=\"idlabel\">(divide both sides by 2)</span>"],
+           ["Back-substitute into \\(x+y=13\\)","\\(8+y=13\\)"],
+           ["Solve for \\(y\\)","∴ \\(y=5\\)"],
+           ["Original number","\\(=10x+y=10\\times8+5=85\\)"],
+           ["Reversed number","\\(=10y+x=10\\times5+8=58\\)"],
+           ["Check","\\(85+58=143\\)","Matches ✓"]],
+     ans:"Digits \\(8\\) and \\(5\\); the numbers are \\(85\\) and \\(58\\)"},
+    {no:7, marks:"5 MARKS", diff:"Hard", cls:"q-5m", src:"Exemplar",
+     qt:"Find slope & \\(y\\)-intercept, check for parallels: (i) \\(y=-3x+4\\) (ii) \\(2y=4x+7\\) (iii) \\(5y=6x-10\\) (iv) \\(3y=6x-11\\)",
+     work:[["(i)","\\(y=-3x+4\\)","Slope \\(=-3\\), \\(y\\)-intercept \\(=4\\)"],
+           ["(ii)","\\(2y=4x+7\\)"],
+           ["Divide both sides by \\(2\\)","\\(y=\\dfrac{4x+7}{2}\\)"],
+           ["Split the fraction","\\(y=2x+\\dfrac{7}{2}\\)","Slope \\(=2\\), \\(y\\)-intercept \\(=\\dfrac{7}{2}\\)"],
+           ["(iii)","\\(5y=6x-10\\)"],
+           ["Divide both sides by \\(5\\)","\\(y=\\dfrac{6x-10}{5}\\)"],
+           ["Split the fraction","\\(y=\\dfrac{6}{5}x-2\\)","Slope \\(=\\dfrac{6}{5}\\), \\(y\\)-intercept \\(=-2\\)"],
+           ["(iv)","\\(3y=6x-11\\)"],
+           ["Divide both sides by \\(3\\)","\\(y=\\dfrac{6x-11}{3}\\)"],
+           ["Split the fraction","\\(y=2x-\\dfrac{11}{3}\\)","Slope \\(=2\\), \\(y\\)-intercept \\(=-\\dfrac{11}{3}\\)"]],
+     graph: graphBlock("(ii) & (iv) are parallel (both slope 2)", graphSVG([{a:-3,b:4,color:'#7B5EA7'},{a:2,b:3.5,color:'#2D5A3D'},{a:1.2,b:-2,color:'#B03030'},{a:2,b:-3.667,color:'#2D5A3D'}],[],{xmin:-4,xmax:4,ymin:-9,ymax:9,legend:[{color:'#7B5EA7',label:'(i) y=\u22123x+4'},{color:'#2D5A3D',label:'(ii)&(iv) slope 2'},{color:'#B03030',label:'(iii) y=1.2x\u22122'}]})),
+     ans:"(ii) and (iv) share slope \\(2\\) — parallel to each other; the others are not parallel"},
+    {no:8, marks:"3 MARKS", diff:"Medium", cls:"q-3m", src:"NCERT",
+     qt:"\\(y=\\dfrac{9}{5}(x-273)+32\\) relates Kelvin \\((x)\\) and Fahrenheit \\((y)\\). (i) \\(°\\)F at 313 K. (ii) K at 158\\(°\\)F.",
+     work:[["(i) At \\(x=313\\)","\\(y=\\dfrac{9}{5}(313-273)+32\\)","\\(=\\dfrac{9}{5}(40)+32\\)","\\(=72+32\\)","∴ \\(=104\\)"],
+           ["(ii) At \\(y=158\\)","\\(158=\\dfrac{9}{5}(x-273)+32\\)","\\(126=\\dfrac{9}{5}(x-273)\\)","\\(x-273=70\\)","∴ \\(x=343\\)"]],
+     ans:"(i) \\(104°\\text{F}\\) &nbsp; (ii) \\(343\\ \\text{K}\\)"},
+    {no:9, marks:"5 MARKS", diff:"Medium", cls:"q-5m", src:"NCERT",
+     qt:"Work \\(w=\\) force \\(\\times\\) distance \\(d\\), force \\(=3\\) units. Express as a linear equation; find \\(w\\) at \\(d=2\\).",
+     work:[["Equation","\\(w=3d\\)<span class=\"idlabel\">(work = force &times; distance)</span>"],
+           ["At \\(d=2\\)","\\(w=3(2)\\)","∴ \\(w=6\\)"]],
+     graph: graphBlock("w = 3d", graphSVG([{a:3,b:0,color:'#2D5A3D'}],[{x:2,y:6,label:'(2,6)',color:'#B03030'}],{xmin:-1,xmax:5,ymin:-2,ymax:15})),
+     ans:"\\(w=3d\\); work at \\(d=2\\) units \\(=6\\) units (line through the origin, slope \\(3\\))"},
+    {no:10, marks:"5 MARKS", diff:"Hard", cls:"q-5m", src:"Exemplar",
+     qt:"\\(p(x)\\) passes through \\((1,5)\\) and \\((3,11)\\). Find \\(p(x)\\) and where it cuts the axes.",
+     given:"Let \\(p(x)=ax+b\\). Point \\((1,5)\\) gives \\(5=a+b\\). Point \\((3,11)\\) gives \\(11=3a+b\\)",
+     work:[["Subtract the two equations","\\(11-5=(3a+b)-(a+b)\\)"],
+           ["Expand the brackets","\\(6=3a+\\textcolor{#B03030}{b}-a\\textcolor{#B03030}{-b}\\)"],
+           ["The red terms cancel out","\\(6=2a\\)"],
+           ["Solve for \\(a\\)","∴ \\(a=3\\)"],
+           ["Back-substitute","\\(5=3+b\\)"],
+           ["Solve for \\(b\\)","∴ \\(b=2\\)"],
+           ["\\(y\\)-intercept","\\(p(0)=2\\)","∴ point \\((0,2)\\)"],
+           ["\\(x\\)-intercept","\\(3x+2=0\\)","\\(3x=-2\\)","∴ \\(x=-\\dfrac{2}{3}\\)"]],
+     graph: graphBlock("p(x) = 3x + 2", graphSVG([{a:3,b:2,color:'#2D5A3D'}],[{x:1,y:5,label:'(1,5)'},{x:3,y:11,label:'(3,11)'},{x:0,y:2,label:'(0,2)',color:'#B03030'},{x:-2/3,y:0,label:'(\u22122/3,0)',color:'#B03030'}],{xmin:-2,xmax:4,ymin:-2,ymax:12})),
+     ans:"\\(p(x)=3x+2\\); cuts axes at \\((0,2)\\) and \\(\\left(-\\dfrac{2}{3},0\\right)\\)"},
+    {no:11, marks:"5 MARKS", diff:"Hard", cls:"q-5m", src:"Exemplar",
+     qt:"\\(p(x)=ax+b\\), \\(q(x)=cx+d\\): \\(p(0)=5\\); \\(p(x)-q(x)\\) cuts the \\(x\\)-axis at \\((3,0)\\); \\(p(x)+q(x)=6x+4\\). Find \\(p(x),q(x)\\).",
+     given:"\\(p(0)=5\\) gives \\(b=5\\)",
+     work:[["Use \\(p(x)+q(x)=6x+4\\)","\\((a+c)x+(b+d)=6x+4\\)","∴ \\(a+c=6\\)","∴ \\(b+d=4\\)"],
+           ["Find \\(d\\)","\\(5+d=4\\)","∴ \\(d=-1\\)"],
+           ["Use the \\(x\\)-intercept of \\(p(x)-q(x)\\)","\\(p(x)-q(x)=(a-c)x+(b-d)\\)","At \\(x=3\\): \\((a-c)(3)+\\big(5-(-1)\\big)=0\\)","\\(3(a-c)+6=0\\)","∴ \\(a-c=-2\\)"],
+           ["Add the two equations \\(a+c=6\\) and \\(a-c=-2\\)","\\((a+c)+(a-c)=6+(-2)\\)"],
+           ["Expand the brackets","\\(a+\\textcolor{#B03030}{c}+a\\textcolor{#B03030}{-c}=4\\)"],
+           ["The red terms cancel out","\\(2a=4\\)"],
+           ["Solve for \\(a\\)","∴ \\(a=2\\)"],
+           ["Back-substitute into \\(a+c=6\\)","\\(2+c=6\\)"],
+           ["Solve for \\(c\\)","∴ \\(c=4\\)"]],
+     ans:"\\(p(x)=2x+5\\); \\(q(x)=4x-1\\)"},
+    {no:12, marks:"5 MARKS", diff:"Hard", cls:"q-5m", src:"Exemplar",
+     qt:"Hexagon matchstick pattern: Stage 1 \\(=6\\) matchsticks, each new stage adds 5. (i) Matchsticks at Stage 15. (ii) Can 200 form a stage?",
+     given:"\\(n\\)th stage \\(=6+5(n-1)\\)",
+     work:[["Simplify the general rule","\\(6+5(n-1)\\)","\\(=6+5n-5\\)","∴ \\(=5n+1\\)"],
+           ["(i) Stage 15","\\(5(15)+1\\)","∴ \\(=76\\)"],
+           ["(ii) Check 200","\\(5n+1=200\\)","\\(5n=199\\)","\\(n=39.8\\)","Not a whole number"]],
+     ans:"Matchsticks at Stage \\(n=5n+1\\); Stage 15 needs \\(76\\); \\(200\\) cannot form an exact stage"},
+    {no:13, marks:"5 MARKS", diff:"Hard", cls:"q-5m", src:"Exemplar",
+     qt:"\\(p(x)\\) passes \\((2,3),(6,11)\\); \\(q(x)\\) passes \\((4,-1)\\), parallel to \\(p(x)\\). Find \\(p(x)\\), \\(q(x)\\), and their \\(x\\)-intercepts.",
+     given:"Let \\(p(x)=ax+b\\). Point \\((2,3)\\) gives \\(3=2a+b\\). Point \\((6,11)\\) gives \\(11=6a+b\\)",
+     work:[["Subtract the two equations","\\(11-3=(6a+b)-(2a+b)\\)"],
+           ["Expand the brackets","\\(8=6a+\\textcolor{#B03030}{b}-2a\\textcolor{#B03030}{-b}\\)"],
+           ["The red terms cancel out","\\(8=4a\\)"],
+           ["Solve for \\(a\\)","∴ \\(a=2\\)"],
+           ["Back-substitute","\\(3=2(2)+b\\)","\\(3=4+b\\)"],
+           ["Solve for \\(b\\)","∴ \\(b=-1\\)"],
+           ["So \\(p(x)=2x-1\\)"],
+           ["\\(q(x)\\) is parallel to \\(p(x)\\), so \\(q(x)=2x+d\\)","Point \\((4,-1)\\): \\(-1=2(4)+d\\)","\\(-1=8+d\\)","∴ \\(d=-9\\)"],
+           ["So \\(q(x)=2x-9\\)"],
+           ["\\(x\\)-intercept of \\(p(x)\\)","\\(2x-1=0\\)","∴ \\(x=\\dfrac{1}{2}\\)"],
+           ["\\(x\\)-intercept of \\(q(x)\\)","\\(2x-9=0\\)","∴ \\(x=\\dfrac{9}{2}\\)"]],
+     ans:"\\(p(x)=2x-1\\) meets the \\(x\\)-axis at \\(\\left(\\dfrac{1}{2},0\\right)\\); \\(q(x)=2x-9\\) meets it at \\(\\left(\\dfrac{9}{2},0\\right)\\)"},
+    {no:14, marks:"3 MARKS", diff:"Medium", cls:"q-3m", src:"Exemplar",
+     qt:"What do all linear functions \\(f(x)=ax+a\\) (\\(a>0\\)) have in common?",
+     work:[["Rewrite","\\(f(x)=ax+a\\)","\\(=a(x+1)\\)"],
+           ["Find where \\(f(x)=0\\)","\\(a(x+1)=0\\)","Since \\(a\\ne0\\)","∴ \\(x=-1\\)"],
+           ["Compare slope and \\(y\\)-intercept","In \\(f(x)=ax+a\\): slope \\(=a\\), \\(y\\)-intercept \\(=a\\)","∴ slope and \\(y\\)-intercept are always equal"]],
+     ans:"Every such line passes through \\((-1,0)\\) regardless of \\(a\\); all have positive slope since \\(a>0\\); and the slope always equals the \\(y\\)-intercept"}
+  ]
+}
+];
+
+// ================= RENDER =================
+const exTabs = document.getElementById('exTabs');
+const subTabs = document.getElementById('subTabs');
+const exPanels = document.getElementById('exPanels');
+let currentFilter = 'All';
+let currentExId = DATA[0].id;
+
+// ---------- Coordinate-plane graph renderer ----------
+function graphSVG(lines, points, opts){
+  opts = opts||{};
+  const W = opts.w||300, H = opts.h||240;
+  const xmin = opts.xmin!==undefined?opts.xmin:-6, xmax = opts.xmax!==undefined?opts.xmax:6;
+  const ymin = opts.ymin!==undefined?opts.ymin:-6, ymax = opts.ymax!==undefined?opts.ymax:6;
+  const pad = 28;
+  const sx = (W-2*pad)/(xmax-xmin);
+  const sy = (H-2*pad)/(ymax-ymin);
+  const px = x => pad + (x-xmin)*sx;
+  const py = y => H-pad - (y-ymin)*sy;
+  // small triangle arrowhead pointing in direction (dx,dy) at tip (tx,ty)
+  function arrowHead(tx, ty, dx, dy, color, size){
+    size = size || 6;
+    const len = Math.sqrt(dx*dx+dy*dy) || 1;
+    const ux = dx/len, uy = dy/len;
+    const perpx = -uy, perpy = ux;
+    const bx = tx - ux*size, by = ty - uy*size;
+    const p1x = bx + perpx*size*0.45, p1y = by + perpy*size*0.45;
+    const p2x = bx - perpx*size*0.45, p2y = by - perpy*size*0.45;
+    return `<polygon points="${tx},${ty} ${p1x},${p1y} ${p2x},${p2y}" fill="${color}"/>`;
+  }
+  let s = `<svg class="gsvg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`;
+  for(let gx=Math.ceil(xmin); gx<=Math.floor(xmax); gx++){
+    s += `<line x1="${px(gx)}" y1="${pad}" x2="${px(gx)}" y2="${H-pad}" stroke="#E2D9C6" stroke-width="1"/>`;
+  }
+  for(let gy=Math.ceil(ymin); gy<=Math.floor(ymax); gy++){
+    s += `<line x1="${pad}" y1="${py(gy)}" x2="${W-pad}" y2="${py(gy)}" stroke="#E2D9C6" stroke-width="1"/>`;
+  }
+  // axes with arrowheads at both ends, like a proper graph-paper axis
+  const axisColor = "#22201B";
+  s += `<line x1="${px(xmin)}" y1="${py(0)}" x2="${px(xmax)}" y2="${py(0)}" stroke="${axisColor}" stroke-width="1.6"/>`;
+  s += arrowHead(px(xmax), py(0), 1, 0, axisColor, 7);
+  s += arrowHead(px(xmin), py(0), -1, 0, axisColor, 7);
+  s += `<line x1="${px(0)}" y1="${py(ymin)}" x2="${px(0)}" y2="${py(ymax)}" stroke="${axisColor}" stroke-width="1.6"/>`;
+  s += arrowHead(px(0), py(ymax), 0, -1, axisColor, 7);
+  s += arrowHead(px(0), py(ymin), 0, 1, axisColor, 7);
+  s += `<text x="${px(xmax)-4}" y="${py(0)-9}" font-size="13" font-family="JetBrains Mono, monospace" font-weight="700" fill="${axisColor}">X</text>`;
+  s += `<text x="${px(0)+8}" y="${py(ymax)+13}" font-size="13" font-family="JetBrains Mono, monospace" font-weight="700" fill="${axisColor}">Y</text>`;
+  (lines||[]).forEach(ln=>{
+    const x1=xmin, y1=ln.a*x1+ln.b, x2=xmax, y2=ln.a*x2+ln.b;
+    const col = ln.color||'#2D5A3D';
+    s += `<line x1="${px(x1)}" y1="${py(y1)}" x2="${px(x2)}" y2="${py(y2)}" stroke="${col}" stroke-width="2.6"/>`;
+    s += arrowHead(px(x2), py(y2), px(x2)-px(x1), py(y2)-py(y1), col, 8);
+    s += arrowHead(px(x1), py(y1), px(x1)-px(x2), py(y1)-py(y2), col, 8);
+  });
+  (points||[]).forEach(p=>{
+    s += `<circle cx="${px(p.x)}" cy="${py(p.y)}" r="4" fill="${p.color||'#B03030'}" stroke="#FFFDF8" stroke-width="1.2"/>`;
+    if(p.label) s += `<text x="${px(p.x)+7}" y="${py(p.y)-7}" font-size="11.5" font-family="JetBrains Mono, monospace" font-weight="700" fill="${p.color||'#B03030'}">${p.label}</text>`;
+  });
+  if(opts.legend){
+    opts.legend.forEach((item,i)=>{
+      const ly = pad + 4 + i*13;
+      s += `<rect x="${pad+2}" y="${ly}" width="12" height="3" fill="${item.color}"/>`;
+      s += `<text x="${pad+18}" y="${ly+4.5}" font-size="9.5" font-family="JetBrains Mono, monospace" fill="#4A4335">${item.label}</text>`;
+    });
+  }
+  s += `</svg>`;
+  return s;
+}
+function graphBlock(title, svg){
+  return `<div class="gtbl-block"><div class="gtbl-title">${title}</div>${svg}</div>`;
+}
+
+function diffBadge(diff){
+  if(diff==='Easy') return '<span class="badge b-easy">Easy</span>';
+  if(diff==='Medium') return '<span class="badge b-med">Medium</span>';
+  return '<span class="badge b-hard">Hard</span>';
+}
+
+
+function card(clsExtra, badgesHtml, qno, qt, given, work, ans, groupCls, tagId, graphHtml){
+  const workHtml = (work||[]).map(w=>{
+    const [h,...lines]=w;
+    return `<div class="sol-work"><div class="sol-h">${h}</div>${lines.map(l=>`<div class="k">${l}</div>`).join('')}</div>`;
+  }).join('');
+  const givenHtml = given ? `<div class="sol-given"><div class="sol-h">GIVEN</div><div class="g">&bull; ${given}</div></div>` : '';
+  const graphSection = graphHtml ? `<div class="sol-work"><div class="sol-h">GRAPH</div>${graphHtml}</div>` : '';
+  return `
+  <div class="qcard ${clsExtra}" data-group="${groupCls}">
+    <div class="qcard-stripe"></div>
+    <div class="qcard-body">
+      <div class="badge-row">${badgesHtml}<span class="qno">${qno}</span></div>
+      <div class="qt">${qt}</div>
+      <button class="sol-toggle" onclick="toggleSol(this)">Show Solution</button>
+      <button class="rep-btn" onclick="openReport('${tagId}')">Report Error</button>
+      <div class="sol-box">${givenHtml}${workHtml}${graphSection}<div class="sol-answer"><div class="sol-h">ANSWER</div><div class="a">${ans}</div></div></div>
+    </div>
+  </div>`;
+}
+
+function renderExample(ex, e){
+  const badges = `<span class="badge b-src">Worked Example</span>`;
+  return card('q-ex', badges, e.no, e.qt, e.given, e.work, e.ans, 'q-ex', `${ex.id} ${e.no}`, e.graph||'');
+}
+function renderReflect(ex, r){
+  const badges = `<span class="badge b-pyq">Think &amp; Reflect</span>`;
+  return card('q-tr', badges, r.no, r.qt, null, null, r.ans, 'q-tr', `${ex.id} ${r.no}`, r.graph||'');
+}
+function renderQ(ex, q){
+  const badges = `<span class="badge b-src">${q.src}</span><span class="badge b-marks">${q.marks}</span>${diffBadge(q.diff)}`;
+  return card(q.cls, badges, `${ex.id} &middot; Q${q.no}`, q.qt, q.given, q.work, q.ans, 'questions', `${ex.id} Q${q.no}`, q.graph||'');
+}
+
+function renderExercise(ex){
+  let html = `<div class="cpanel" id="panel-${ex.id}">
+    <div class="exttl">${ex.title}</div>
+    <div class="exsub">${ex.exsub}</div>
+    <div class="formula-card">
+      <div class="formula-header" onclick="toggleFormula(this)"><span>${ex.rule.name}</span><span class="arrow">&#9662;</span></div>
+      <div class="formula-body">${ex.rule.body}</div>
+    </div>`;
+  if(ex.examples && ex.examples.length){
+    html += ex.examples.map(e=>renderExample(ex,e)).join('');
+  }
+  if(ex.reflect && ex.reflect.length){
+    html += ex.reflect.map(r=>renderReflect(ex,r)).join('');
+  }
+  html += ex.qs.map(q=>renderQ(ex,q)).join('');
+  html += `</div>`;
+  return html;
+}
+
+DATA.forEach((ex,i)=>{
+  const tab = document.createElement('button');
+  tab.className = 'ctab' + (i===0?' active':'');
+  tab.textContent = `${ex.label} (${ex.qcount})`;
+  tab.dataset.id = ex.id;
+  tab.onclick = ()=>selectExercise(ex.id);
+  exTabs.appendChild(tab);
+  exPanels.insertAdjacentHTML('beforeend', renderExercise(ex));
+});
+document.getElementById(`panel-${DATA[0].id}`).classList.add('active');
+document.querySelectorAll('.formula-body')[0].classList.add('open');
+
+// ---------- KaTeX: render once, after all content is injected ----------
+function renderKaTeX(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.body, {
+      delimiters:[
+        {left:"\\[", right:"\\]", display:true},
+        {left:"\\(", right:"\\)", display:false}
+      ],
+      throwOnError:false
+    });
+  } else {
+    // KaTeX scripts are deferred; retry shortly if not yet loaded
+    setTimeout(renderKaTeX, 60);
+  }
+}
+renderKaTeX();
+
+function selectExercise(id){
+  currentExId = id;
+  document.querySelectorAll('.ctab').forEach(t=>t.classList.toggle('active', t.dataset.id===id));
+  document.querySelectorAll('.cpanel').forEach(p=>p.classList.toggle('active', p.id===`panel-${id}`));
+  applyFilter();
+}
+function toggleSol(btn){
+  const box = btn.parentElement.querySelector('.sol-box');
+  const open = box.classList.toggle('open');
+  btn.textContent = open ? 'Hide Solution' : 'Show Solution';
+}
+function toggleFormula(header){
+  header.parentElement.querySelector('.formula-body').classList.toggle('open');
+}
+function applyFilter(){
+  const activePanel = document.querySelector('.cpanel.active');
+  if(!activePanel) return;
+  const cards = activePanel.querySelectorAll('.qcard');
+  let visible = 0;
+  cards.forEach(c=>{
+    const grp = c.dataset.group;
+    const show = currentFilter==='All' || grp===currentFilter;
+    c.style.display = show ? 'flex' : 'none';
+    if(show) visible++;
+  });
+  let empty = activePanel.querySelector('.empty');
+  if(visible===0){
+    if(!empty){ empty=document.createElement('div'); empty.className='empty'; empty.textContent='Nothing here for this filter in this section.'; activePanel.appendChild(empty); }
+  } else if(empty){ empty.remove(); }
+}
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.onclick = ()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.f;
+    applyFilter();
+  };
+});
+
+// ---------- Report modal ----------
+const repMask = document.getElementById('repMask');
+const repText = document.getElementById('repText');
+const repMsg = document.getElementById('repMsg');
+let currentReportRef = '';
+function openReport(ref){
+  currentReportRef = ref; repText.value=''; repMsg.textContent=''; repMask.classList.add('open');
+}
+document.getElementById('repCancel').onclick = ()=> repMask.classList.remove('open');
+document.getElementById('repSend').onclick = ()=>{
+  repMsg.textContent = `Thanks — noted for ${currentReportRef}. (Local demo; nothing is sent anywhere.)`;
+  setTimeout(()=>{ repMask.classList.remove('open'); }, 1400);
+};
+</script>
+</body>
+</html>
