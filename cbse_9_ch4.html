@@ -59,6 +59,8 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
 .qno{font-family:'JetBrains Mono',monospace;font-size:11px;color:#9A9078;margin-left:auto}
 
 .qt{font-size:20px;line-height:1.65;margin-bottom:6px;overflow-x:auto}
+.qfig{margin:14px 0;text-align:center}
+.qfig svg{max-width:100%;height:auto;display:inline-block}
 
 .sol-toggle{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.5px;margin-top:14px;padding:10px 16px;border:1.5px solid var(--green2);background:transparent;color:var(--green2);border-radius:5px;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .sol-toggle:hover{background:var(--green2);color:#fff}
@@ -146,6 +148,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 1</span>
     </div>
     <div class="qt">Consider any three consecutive square numbers, e.g. \(1,4,9\). Add the smallest and largest, then subtract twice the middle. What do you notice?</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 1')">Report Error</button>
     <div class="sol-box">
@@ -167,6 +170,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 2</span>
     </div>
     <div class="qt">Check whether \( (a+b)^2=a^2+2ab+b^2 \) still holds when \(a\) and \(b\) are negative. Take \(a=-2,\ b=-3\).</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 2')">Report Error</button>
     <div class="sol-box">
@@ -188,6 +192,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 3</span>
     </div>
     <div class="qt">Expand \( (5x+2y)^2 \).</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 3')">Report Error</button>
     <div class="sol-box">
@@ -209,6 +214,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 4</span>
     </div>
     <div class="qt">Find \( (43)^2 \) using a suitable identity.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 4')">Report Error</button>
     <div class="sol-box">
@@ -230,6 +236,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 5</span>
     </div>
     <div class="qt">Factor \( x^2+4x+4 \).</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 5')">Report Error</button>
     <div class="sol-box">
@@ -251,6 +258,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 6</span>
     </div>
     <div class="qt">Factor \( 36x^2+12x+1 \).</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 6')">Report Error</button>
     <div class="sol-box">
@@ -272,6 +280,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 7</span>
     </div>
     <div class="qt">Factor \( 50p^2+60pq+18q^2 \).</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 7')">Report Error</button>
     <div class="sol-box">
@@ -293,6 +302,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 8</span>
     </div>
     <div class="qt">Find \( (29)^2 \) using a suitable identity.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 8')">Report Error</button>
     <div class="sol-box">
@@ -314,6 +324,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 9</span>
     </div>
     <div class="qt">Find \( (119)^2 \) using a suitable identity.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 9')">Report Error</button>
     <div class="sol-box">
@@ -335,11 +346,12 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 10</span>
     </div>
     <div class="qt">Factor \( x^2+7x+12 \) by splitting the middle term.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 10')">Report Error</button>
     <div class="sol-box">
       
-      <div class="sol-formula"><div class="sol-h">Formula</div><div class="fml">\( \text{Need } a+b=7,\ ab=12 \)</div></div>
+      
       <div class="sol-work"><div class="sol-h">Working</div><div class="k"><div class="say">Split \(7x\) using \((3)+(4)=7\), \((3)(4)=12\)</div><div>\[ x^2+7x+12 = x^2+3x+4x+12 \]</div><div>\[ = x(x+3)+4(x+3) \]</div><div>\[ = (x+3)(x+4) \]</div><div>\( \therefore x^2+7x+12 = (x+3)(x+4) \)</div></div></div>
       <div class="sol-answer"><div class="sol-h">Answer</div><div class="a">\( (x+3)(x+4) \)</div></div>
     </div>
@@ -356,11 +368,12 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 11</span>
     </div>
     <div class="qt">Factor \( x^2+11x+30 \) by splitting the middle term.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 11')">Report Error</button>
     <div class="sol-box">
       
-      <div class="sol-formula"><div class="sol-h">Formula</div><div class="fml">\( \text{Need } a+b=11,\ ab=30 \)</div></div>
+      
       <div class="sol-work"><div class="sol-h">Working</div><div class="k"><div class="say">Split \(11x\) using \((5)+(6)=11\), \((5)(6)=30\)</div><div>\[ x^2+11x+30 = x^2+5x+6x+30 \]</div><div>\[ = x(x+5)+6(x+5) \]</div><div>\[ = (x+5)(x+6) \]</div><div>\( \therefore x^2+11x+30 = (x+5)(x+6) \)</div></div></div>
       <div class="sol-answer"><div class="sol-h">Answer</div><div class="a">\( (x+5)(x+6) \)</div></div>
     </div>
@@ -377,11 +390,12 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 12</span>
     </div>
     <div class="qt">Factor \( x^2-5x+6 \) by splitting the middle term.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 12')">Report Error</button>
     <div class="sol-box">
       
-      <div class="sol-formula"><div class="sol-h">Formula</div><div class="fml">\( \text{Need } a+b=-5,\ ab=6 \)</div></div>
+      
       <div class="sol-work"><div class="sol-h">Working</div><div class="k"><div class="say">Split \(-5x\) using \((-2)+(-3)=-5\), \((-2)(-3)=6\)</div><div>\[ x^2-5x+6 = x^2-2x-3x+6 \]</div><div>\[ = x(x-2)-3(x-2) \]</div><div>\[ = (x-2)(x-3) \]</div><div>\( \therefore x^2-5x+6 = (x-2)(x-3) \)</div></div></div>
       <div class="sol-answer"><div class="sol-h">Answer</div><div class="a">\( (x-2)(x-3) \)</div></div>
     </div>
@@ -398,6 +412,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 13</span>
     </div>
     <div class="qt">Find the side of a cube whose volume is \( p^3+6p^2q+12pq^2+8q^3 \) cubic units.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 13')">Report Error</button>
     <div class="sol-box">
@@ -419,6 +434,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 14</span>
     </div>
     <div class="qt">Factor \( 8n^3-60n^2m+150nm^2-125m^3 \) using the \( (a-b)^3 \) identity.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 14')">Report Error</button>
     <div class="sol-box">
@@ -440,6 +456,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 15</span>
     </div>
     <div class="qt">Three numbers have sum \(10\), product \(25\), and the sum of their squares is \(38\). Find the sum of their cubes.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 15')">Report Error</button>
     <div class="sol-box">
@@ -461,6 +478,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 16</span>
     </div>
     <div class="qt">Simplify \( \dfrac{x^2-7x+12}{5x^2+5x-100} \), given the denominator \(\ne 0\).</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 16')">Report Error</button>
     <div class="sol-box">
@@ -482,12 +500,13 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 17</span>
     </div>
     <div class="qt">Saira arranges a square of side \(x\), 8 rectangular strips of size \(x\times1\), and 15 unit squares into one bigger rectangle. Find its length and breadth.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 17')">Report Error</button>
     <div class="sol-box">
       <div class="sol-given"><div class="sol-h">Given</div><div class="g">\( \text{Total area} = x^2+8x+15 \text{ sq. units} \)</div></div>
-      <div class="sol-formula"><div class="sol-h">Formula</div><div class="fml">\( \text{Need } a+b=8,\ ab=15 \)</div></div>
-      <div class="sol-work"><div class="sol-h">Working</div><div class="k"><div>\[ a=3,\ b=5 \Rightarrow a+b=8,\ ab=15 \]</div><div>\[ \therefore x^2+8x+15 = x^2+3x+5x+15 \]</div><div>\[ = x(x+3)+5(x+3) \]</div><div>\[ = (x+3)(x+5) \]</div><div>\( \therefore x^2+8x+15 = (x+3)(x+5) \)</div></div></div>
+      
+      <div class="sol-work"><div class="sol-h">Working</div><div class="k"><div class="say">Split \(8x\) using \((3)+(5)=8\), \((3)(5)=15\)</div><div>\[ x^2+8x+15 = x^2+3x+5x+15 \]</div><div>\[ = x(x+3)+5(x+3) \]</div><div>\[ = (x+3)(x+5) \]</div><div>\( \therefore x^2+8x+15 = (x+3)(x+5) \)</div></div></div>
       <div class="sol-answer"><div class="sol-h">Answer</div><div class="a">Length \(=(x+5)\) units, breadth \(=(x+3)\) units.</div></div>
     </div>
   </div>
@@ -503,6 +522,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Example 18</span>
     </div>
     <div class="qt">A rectangular pool has breadth \(4\) m less than its length, and area \(96\) sq. m. Find its length and breadth.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('SOLVED EXAMPLE Example 18')">Report Error</button>
     <div class="sol-box">
@@ -525,6 +545,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1</span>
     </div>
     <div class="qt">Try to find other patterns like this one. Consider 4 consecutive squares and check for a pattern.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('THINK &amp; REFLECT 1 Q1')">Report Error</button>
     <div class="sol-box">
@@ -547,6 +568,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1</span>
     </div>
     <div class="qt">What can you say about \(a\) and \(b\) if \( (a+b)^2 &lt; a^2+b^2 \)?</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('THINK &amp; REFLECT 2 Q1')">Report Error</button>
     <div class="sol-box">
@@ -568,6 +590,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2</span>
     </div>
     <div class="qt">What can you say about \(a\) and \(b\) if \( (a+b)^2 &gt; a^2+b^2 \)?</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('THINK &amp; REFLECT 2 Q2')">Report Error</button>
     <div class="sol-box">
@@ -589,6 +612,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3</span>
     </div>
     <div class="qt">When will \( (a+b)^2 \) equal \( a^2+b^2 \)? Use the expansion of \( (a+b)^2 \) to decide which term controls this.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('THINK &amp; REFLECT 2 Q3')">Report Error</button>
     <div class="sol-box">
@@ -611,6 +635,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1</span>
     </div>
     <div class="qt">What if we replace \(b\) by \(-b\) in \( (a+b)^2=a^2+2ab+b^2 \)?</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('THINK &amp; REFLECT 3 Q1')">Report Error</button>
     <div class="sol-box">
@@ -633,6 +658,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1</span>
     </div>
     <div class="qt">Label the squares and rectangles in Fig. 4.4 so that it represents the identity \( (a+b+c)^2=a^2+b^2+c^2+2ab+2bc+2ca \).</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('THINK &amp; REFLECT 4 Q1')">Report Error</button>
     <div class="sol-box">
@@ -655,6 +681,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1</span>
     </div>
     <div class="qt">Evaluate using a suitable identity, and look for a pattern: (i) \(35^2\) (ii) \(65^2\) (iii) \(85^2\) (iv) \(105^2\)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('THINK &amp; REFLECT 5 Q1')">Report Error</button>
     <div class="sol-box">
@@ -676,6 +703,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2</span>
     </div>
     <div class="qt">The two rows of squares shown represent an algebraic identity. Identify it.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('THINK &amp; REFLECT 5 Q2')">Report Error</button>
     <div class="sol-box">
@@ -698,6 +726,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1</span>
     </div>
     <div class="qt">Suppose \(7x\) is split as \(2x+5x\). Can algebra tiles form a rectangle for \(x^2+7x+12\)? Try other splits and check.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('THINK &amp; REFLECT 6 Q1')">Report Error</button>
     <div class="sol-box">
@@ -720,6 +749,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1</span>
     </div>
     <div class="qt">Find the product of \( (x+2) \) and \( (x+3) \) using algebra tiles.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('THINK &amp; REFLECT 7 Q1')">Report Error</button>
     <div class="sol-box">
@@ -741,6 +771,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2</span>
     </div>
     <div class="qt">Lay out algebra tiles for \( x^2+11x+30 \) so that its factors can be seen.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('THINK &amp; REFLECT 7 Q2')">Report Error</button>
     <div class="sol-box">
@@ -763,6 +794,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1</span>
     </div>
     <div class="qt">Given \( (x+3)(x+4)=x^2+7x+12 \) and \( (x+6)(x+7)=x^2+13x+42 \), generalise to find \( (x+a)(x+b) \).</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('THINK &amp; REFLECT 8 Q1')">Report Error</button>
     <div class="sol-box">
@@ -785,6 +817,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1</span>
     </div>
     <div class="qt">James expands \( (a-b)^2(a+b) \) as \( (a^2-2ab+b^2)(a+b) \). Reshma instead writes \( (a-b)^2(a+b)=(a-b)[(a-b)(a+b)]=(a-b)(a^2-b^2) \). Who is correct?</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('THINK &amp; REFLECT 9 Q1')">Report Error</button>
     <div class="sol-box">
@@ -807,6 +840,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1</span>
     </div>
     <div class="qt">We know \( x^2-y^2=(x-y)(x+y) \) and \( x^3-y^3=(x-y)(x^2+xy+y^2) \). Is \( (x-y) \) also a factor of \( x^4-y^4 \)? Of \( x^5-y^5 \)?</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('THINK &amp; REFLECT 10 Q1')">Report Error</button>
     <div class="sol-box">
@@ -829,6 +863,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1</span>
     </div>
     <div class="qt">Simplify: \( \dfrac{36s^2-12st+t^2}{t^2+2ts-48s^2} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('THINK &amp; REFLECT 11 Q1')">Report Error</button>
     <div class="sol-box">
@@ -850,6 +885,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(i)</span>
     </div>
     <div class="qt">Using the identity \( (a+b)^2=a^2+2ab+b^2 \), expand: \((7x+4y)^2\)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.1 Q1(i)')">Report Error</button>
     <div class="sol-box">
@@ -871,6 +907,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(ii)</span>
     </div>
     <div class="qt">Using the identity \( (a+b)^2=a^2+2ab+b^2 \), expand: \( \left(\dfrac{5}{7}x+\dfrac{2}{3}y\right)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.1 Q1(ii)')">Report Error</button>
     <div class="sol-box">
@@ -892,6 +929,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(iii)</span>
     </div>
     <div class="qt">Using the identity \( (a+b)^2=a^2+2ab+b^2 \), expand: \((2.5p+1.5q)^2\)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.1 Q1(iii)')">Report Error</button>
     <div class="sol-box">
@@ -913,6 +951,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(iv)</span>
     </div>
     <div class="qt">Using the identity \( (a+b)^2=a^2+2ab+b^2 \), expand: \( \left(\dfrac{3}{4}s+8t\right)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.1 Q1(iv)')">Report Error</button>
     <div class="sol-box">
@@ -934,6 +973,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(v)</span>
     </div>
     <div class="qt">Using the identity \( (a+b)^2=a^2+2ab+b^2 \), expand: \( \left(x+\dfrac{1}{2y}\right)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.1 Q1(v)')">Report Error</button>
     <div class="sol-box">
@@ -955,6 +995,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(vi)</span>
     </div>
     <div class="qt">Using the identity \( (a+b)^2=a^2+2ab+b^2 \), expand: \( \left(\dfrac{1}{x}+\dfrac{1}{y}\right)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.1 Q1(vi)')">Report Error</button>
     <div class="sol-box">
@@ -976,6 +1017,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(i)</span>
     </div>
     <div class="qt">Using the identity \( (a+b)^2=a^2+2ab+b^2 \), find the value of: \( (64)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.1 Q2(i)')">Report Error</button>
     <div class="sol-box">
@@ -997,6 +1039,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(ii)</span>
     </div>
     <div class="qt">Using the identity \( (a+b)^2=a^2+2ab+b^2 \), find the value of: \( (105)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.1 Q2(ii)')">Report Error</button>
     <div class="sol-box">
@@ -1018,6 +1061,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(iii)</span>
     </div>
     <div class="qt">Using the identity \( (a+b)^2=a^2+2ab+b^2 \), find the value of: \( (205)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.1 Q2(iii)')">Report Error</button>
     <div class="sol-box">
@@ -1039,6 +1083,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(i)</span>
     </div>
     <div class="qt">Factor completely: \( 9x^2+24xy+16y^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.2 Q1(i)')">Report Error</button>
     <div class="sol-box">
@@ -1060,6 +1105,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(ii)</span>
     </div>
     <div class="qt">Factor completely: \( 4s^2+20st+25t^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.2 Q1(ii)')">Report Error</button>
     <div class="sol-box">
@@ -1081,6 +1127,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(iii)</span>
     </div>
     <div class="qt">Factor completely: \( 49x^2+28xy+4y^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.2 Q1(iii)')">Report Error</button>
     <div class="sol-box">
@@ -1102,6 +1149,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(iv)</span>
     </div>
     <div class="qt">Factor completely: \( 64p^2+\dfrac{32}{3}pq+\dfrac{4}{9}q^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.2 Q1(iv)')">Report Error</button>
     <div class="sol-box">
@@ -1123,6 +1171,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(v)</span>
     </div>
     <div class="qt">Factor completely: \( 3a^2+\dfrac{4}{3}ab+\dfrac{1}{3}b^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.2 Q1(v)')">Report Error</button>
     <div class="sol-box">
@@ -1144,6 +1193,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(vi)</span>
     </div>
     <div class="qt">Factor completely: \( \dfrac{1}{5}s^2+\dfrac{9}{5}sv+5v^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.2 Q1(vi)')">Report Error</button>
     <div class="sol-box">
@@ -1165,6 +1215,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(i)</span>
     </div>
     <div class="qt">Find the value using \( (a-b)^2=a^2-2ab+b^2 \): \( (79)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.2 Q2(i)')">Report Error</button>
     <div class="sol-box">
@@ -1186,6 +1237,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(ii)</span>
     </div>
     <div class="qt">Find the value using \( (a-b)^2=a^2-2ab+b^2 \): \( (193)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.2 Q2(ii)')">Report Error</button>
     <div class="sol-box">
@@ -1207,6 +1259,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(iii)</span>
     </div>
     <div class="qt">Find the value using \( (a-b)^2=a^2-2ab+b^2 \): \( (299)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.2 Q2(iii)')">Report Error</button>
     <div class="sol-box">
@@ -1228,6 +1281,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(i)</span>
     </div>
     <div class="qt">Find \( (117)^2 \) using a suitable identity.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.3 Q1(i)')">Report Error</button>
     <div class="sol-box">
@@ -1249,6 +1303,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(ii)</span>
     </div>
     <div class="qt">Find \( (78)^2 \) using a suitable identity.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.3 Q1(ii)')">Report Error</button>
     <div class="sol-box">
@@ -1270,6 +1325,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(iii)</span>
     </div>
     <div class="qt">Find \( (198)^2 \) using a suitable identity.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.3 Q1(iii)')">Report Error</button>
     <div class="sol-box">
@@ -1291,6 +1347,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(iv)</span>
     </div>
     <div class="qt">Find \( (214)^2 \) using a suitable identity.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.3 Q1(iv)')">Report Error</button>
     <div class="sol-box">
@@ -1312,6 +1369,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(v)</span>
     </div>
     <div class="qt">Find \( (1104)^2 \) using a suitable identity.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.3 Q1(v)')">Report Error</button>
     <div class="sol-box">
@@ -1333,6 +1391,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(vi)</span>
     </div>
     <div class="qt">Find \( (1120)^2 \) using a suitable identity.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.3 Q1(vi)')">Report Error</button>
     <div class="sol-box">
@@ -1354,6 +1413,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(i)</span>
     </div>
     <div class="qt">Factor using a suitable identity: \( 16y^2-24y+9 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.3 Q2(i)')">Report Error</button>
     <div class="sol-box">
@@ -1375,6 +1435,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(ii)</span>
     </div>
     <div class="qt">Factor using a suitable identity: \( \dfrac{9}{4}s^2+6st+4t^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.3 Q2(ii)')">Report Error</button>
     <div class="sol-box">
@@ -1396,6 +1457,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(iii)</span>
     </div>
     <div class="qt">Factor using a suitable identity: \( \dfrac{m^2}{9}+\dfrac{k^2}{4}+9n^2+\dfrac{mk}{3}+3nk+2mn \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.3 Q2(iii)')">Report Error</button>
     <div class="sol-box">
@@ -1417,6 +1479,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(iv)</span>
     </div>
     <div class="qt">Factor using a suitable identity: \( \dfrac{16}{p^2}-2+\dfrac{p^2}{16} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.3 Q2(iv)')">Report Error</button>
     <div class="sol-box">
@@ -1438,6 +1501,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(v)</span>
     </div>
     <div class="qt">Factor using a suitable identity: \( 9a^2+4b^2+c^2-12ab+6ac-4bc \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.3 Q2(v)')">Report Error</button>
     <div class="sol-box">
@@ -1459,6 +1523,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(i)</span>
     </div>
     <div class="qt">Expand using \( (a+b+c)^2=a^2+b^2+c^2+2ab+2bc+2ca \): \( (p+3q+7r)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.3 Q3(i)')">Report Error</button>
     <div class="sol-box">
@@ -1480,6 +1545,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(ii)</span>
     </div>
     <div class="qt">Expand using \( (a+b+c)^2=a^2+b^2+c^2+2ab+2bc+2ca \): \( (3x-2y+4z)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.3 Q3(ii)')">Report Error</button>
     <div class="sol-box">
@@ -1501,6 +1567,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q4</span>
     </div>
     <div class="qt">Is this an identity? \( (a+b-c)^2+(a-b+c)^2+(a-b-c)^2 = 2a^2+2b^2+2c^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.3 Q4')">Report Error</button>
     <div class="sol-box">
@@ -1522,11 +1589,12 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(i)</span>
     </div>
     <div class="qt">Fill in the blanks: \( s^2-11s+24 = (\ \ )(\ \ ) \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q1(i)')">Report Error</button>
     <div class="sol-box">
       
-      <div class="sol-formula"><div class="sol-h">Formula</div><div class="fml">\( \text{Need } a+b=-11,\ ab=24 \)</div></div>
+      
       <div class="sol-work"><div class="sol-h">Working</div><div class="k"><div class="say">Split \(-11s\) using \((-3)+(-8)=-11\), \((-3)(-8)=24\)</div><div>\[ s^2-11s+24 = s^2-3s-8s+24 \]</div><div>\[ = s(s-3)-8(s-3) \]</div><div>\[ = (s-3)(s-8) \]</div><div>\( \therefore s^2-11s+24 = (s-3)(s-8) \)</div></div></div>
       <div class="sol-answer"><div class="sol-h">Answer</div><div class="a">\( (s-3)(s-8) \)</div></div>
     </div>
@@ -1543,11 +1611,12 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(ii)</span>
     </div>
     <div class="qt">Fill in the blank: \( (\ \ )(x+1) = 3x^2-4x-7 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q1(ii)')">Report Error</button>
     <div class="sol-box">
       
-      <div class="sol-formula"><div class="sol-h">Formula</div><div class="fml">\( \text{Need product} = 3\times(-7)=-21,\ \text{sum}=-4 \)</div></div>
+      
       <div class="sol-work"><div class="sol-h">Working</div><div class="k"><div class="say">Split \(-4x\) using \((-7)+(3)=-4\), \((-7)(3)=-21\)</div><div>\[ 3x^2-4x-7 = 3x^2-7x+3x-7 \]</div><div>\[ = x(3x-7)+1(3x-7) \]</div><div>\[ = (3x-7)(x+1) \]</div><div>\( \therefore 3x^2-4x-7 = (3x-7)(x+1) \)</div></div></div>
       <div class="sol-answer"><div class="sol-h">Answer</div><div class="a">\( (3x-7)(x+1) \)</div></div>
     </div>
@@ -1564,11 +1633,12 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(iii)</span>
     </div>
     <div class="qt">Fill in the blanks: \( 10x^2-11x-6 = (2x-\ \ )(\ \ +2) \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q1(iii)')">Report Error</button>
     <div class="sol-box">
       
-      <div class="sol-formula"><div class="sol-h">Formula</div><div class="fml">\( \text{Need product} = 10\times(-6)=-60,\ \text{sum}=-11 \)</div></div>
+      
       <div class="sol-work"><div class="sol-h">Working</div><div class="k"><div class="say">Split \(-11x\) using \((-15)+(4)=-11\), \((-15)(4)=-60\)</div><div>\[ 10x^2-11x-6 = 10x^2-15x+4x-6 \]</div><div>\[ = 5x(2x-3)+2(2x-3) \]</div><div>\[ = (2x-3)(5x+2) \]</div><div>\( \therefore 10x^2-11x-6 = (2x-3)(5x+2) \)</div></div></div>
       <div class="sol-answer"><div class="sol-h">Answer</div><div class="a">\( (2x-3)(5x+2) \)</div></div>
     </div>
@@ -1585,11 +1655,12 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(iv)</span>
     </div>
     <div class="qt">Fill in the blanks: \( 6x^2+7x+2 = (\ \ )(\ \ ) \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q1(iv)')">Report Error</button>
     <div class="sol-box">
       
-      <div class="sol-formula"><div class="sol-h">Formula</div><div class="fml">\( \text{Need product} = 6\times2=12,\ \text{sum}=7 \)</div></div>
+      
       <div class="sol-work"><div class="sol-h">Working</div><div class="k"><div class="say">Split \(7x\) using \((3)+(4)=7\), \((3)(4)=12\)</div><div>\[ 6x^2+7x+2 = 6x^2+3x+4x+2 \]</div><div>\[ = 3x(2x+1)+2(2x+1) \]</div><div>\[ = (2x+1)(3x+2) \]</div><div>\( \therefore 6x^2+7x+2 = (2x+1)(3x+2) \)</div></div></div>
       <div class="sol-answer"><div class="sol-h">Answer</div><div class="a">\( (2x+1)(3x+2) \)</div></div>
     </div>
@@ -1606,6 +1677,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(i)</span>
     </div>
     <div class="qt">Use a suitable identity to find: \( (41)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q2(i)')">Report Error</button>
     <div class="sol-box">
@@ -1627,6 +1699,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(ii)</span>
     </div>
     <div class="qt">Use a suitable identity to find: \( (27)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q2(ii)')">Report Error</button>
     <div class="sol-box">
@@ -1648,6 +1721,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(iii)</span>
     </div>
     <div class="qt">Use a suitable identity to find: \( 23\times 17 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q2(iii)')">Report Error</button>
     <div class="sol-box">
@@ -1669,6 +1743,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(iv)</span>
     </div>
     <div class="qt">Use a suitable identity to find: \( (135)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q2(iv)')">Report Error</button>
     <div class="sol-box">
@@ -1690,6 +1765,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(v)</span>
     </div>
     <div class="qt">Use a suitable identity to find: \( (97)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q2(v)')">Report Error</button>
     <div class="sol-box">
@@ -1711,6 +1787,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(vi)</span>
     </div>
     <div class="qt">Use a suitable identity to find: \( 18\times 29 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q2(vi)')">Report Error</button>
     <div class="sol-box">
@@ -1732,6 +1809,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(vii)</span>
     </div>
     <div class="qt">Use a suitable identity to find: \( 34\times 43 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q2(vii)')">Report Error</button>
     <div class="sol-box">
@@ -1753,6 +1831,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(viii)</span>
     </div>
     <div class="qt">Use a suitable identity to find: \( (205)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q2(viii)')">Report Error</button>
     <div class="sol-box">
@@ -1774,6 +1853,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(i)</span>
     </div>
     <div class="qt">Factor: \( 9a^2+b^2+4c^2-6ab+12ac-4bc \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q3(i)')">Report Error</button>
     <div class="sol-box">
@@ -1795,6 +1875,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(ii)</span>
     </div>
     <div class="qt">Factor: \( 16s^2+25t^2-40st \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q3(ii)')">Report Error</button>
     <div class="sol-box">
@@ -1816,11 +1897,12 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(iii)</span>
     </div>
     <div class="qt">Factor: \( r^2-r-42 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q3(iii)')">Report Error</button>
     <div class="sol-box">
       
-      <div class="sol-formula"><div class="sol-h">Formula</div><div class="fml">\( \text{Need sum}=-1,\ \text{product}=-42 \)</div></div>
+      
       <div class="sol-work"><div class="sol-h">Working</div><div class="k"><div class="say">Split \(-r\) using \((-7)+(6)=-1\), \((-7)(6)=-42\)</div><div>\[ r^2-r-42 = r^2-7r+6r-42 \]</div><div>\[ = r(r-7)+6(r-7) \]</div><div>\[ = (r-7)(r+6) \]</div><div>\( \therefore r^2-r-42 = (r-7)(r+6) \)</div></div></div>
       <div class="sol-answer"><div class="sol-h">Answer</div><div class="a">\( (r-7)(r+6) \)</div></div>
     </div>
@@ -1837,6 +1919,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(iv)</span>
     </div>
     <div class="qt">Factor: \( 49g^2+14gh+h^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q3(iv)')">Report Error</button>
     <div class="sol-box">
@@ -1858,6 +1941,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(v)</span>
     </div>
     <div class="qt">Factor: \( 64u^2+121v^2+4w^2-176uv-32uw+44vw \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.4 Q3(v)')">Report Error</button>
     <div class="sol-box">
@@ -1879,6 +1963,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(i)</span>
     </div>
     <div class="qt">Simplify (denominator \(\ne 0\)): \( \dfrac{3p^2-3pq-18q^2}{p^2+3pq-10q^2} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.5 Q1(i)')">Report Error</button>
     <div class="sol-box">
@@ -1900,6 +1985,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(ii)</span>
     </div>
     <div class="qt">Simplify (denominator \(\ne 0\)): \( \dfrac{n^3-3n^2m+3nm^2-m^3}{5m^2-10mn+5n^2} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.5 Q1(ii)')">Report Error</button>
     <div class="sol-box">
@@ -1921,6 +2007,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(iii)</span>
     </div>
     <div class="qt">Simplify (denominator \(\ne 0\)): \( \dfrac{w^3-v^3+x^3+3wvx}{w^2+v^2+x^2-2wv-2vx+2wx} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.5 Q1(iii)')">Report Error</button>
     <div class="sol-box">
@@ -1942,6 +2029,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(iv)</span>
     </div>
     <div class="qt">Simplify (denominator \(\ne 0\)): \( \dfrac{4y^2-20yz+25z^2}{25z^2-4y^2} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.5 Q1(iv)')">Report Error</button>
     <div class="sol-box">
@@ -1963,6 +2051,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(v)</span>
     </div>
     <div class="qt">Simplify (denominator \(\ne 0\)): \( \dfrac{(x^2+x-6)(x^2-7x+12)}{(x^2-6x+8)(x^2-9)} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.5 Q1(v)')">Report Error</button>
     <div class="sol-box">
@@ -1984,6 +2073,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(vi)</span>
     </div>
     <div class="qt">Simplify (denominator \(\ne 0\)): \( \dfrac{p^4-16}{p^2-4p+4} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('EXERCISE 4.5 Q1(vi)')">Report Error</button>
     <div class="sol-box">
@@ -2005,6 +2095,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(i)</span>
     </div>
     <div class="qt">Use a suitable identity: \( (-3x+4)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q1(i)')">Report Error</button>
     <div class="sol-box">
@@ -2026,6 +2117,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(ii)</span>
     </div>
     <div class="qt">Use a suitable identity: \( (2s+7)(2s-7) \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q1(ii)')">Report Error</button>
     <div class="sol-box">
@@ -2047,6 +2139,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(iii)</span>
     </div>
     <div class="qt">Use a suitable identity: \( \left(p^2+\dfrac{1}{2}\right)\left(p^2-\dfrac{1}{2}\right) \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q1(iii)')">Report Error</button>
     <div class="sol-box">
@@ -2068,6 +2161,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(iv)</span>
     </div>
     <div class="qt">Use a suitable identity: \( (2n+7)(2n-7) \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q1(iv)')">Report Error</button>
     <div class="sol-box">
@@ -2089,6 +2183,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(v)</span>
     </div>
     <div class="qt">Use a suitable identity: \( (s-2t)(s^2+2st+4t^2) \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q1(v)')">Report Error</button>
     <div class="sol-box">
@@ -2110,6 +2205,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(vi)</span>
     </div>
     <div class="qt">Use a suitable identity: \( \left(\dfrac{1}{2r}-4r\right)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q1(vi)')">Report Error</button>
     <div class="sol-box">
@@ -2131,6 +2227,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(vii)</span>
     </div>
     <div class="qt">Use a suitable identity: \( (-3m+4k-l)^2 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q1(vii)')">Report Error</button>
     <div class="sol-box">
@@ -2152,6 +2249,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(viii)</span>
     </div>
     <div class="qt">Use a suitable identity: \( \left(x-\dfrac{1}{3}y\right)^3 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q1(viii)')">Report Error</button>
     <div class="sol-box">
@@ -2173,6 +2271,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q1(ix)</span>
     </div>
     <div class="qt">Use a suitable identity: \( \left(\dfrac{7}{2}k-\dfrac{2}{3}m\right)^3 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q1(ix)')">Report Error</button>
     <div class="sol-box">
@@ -2194,6 +2293,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(i)</span>
     </div>
     <div class="qt">Find the value using a suitable identity: \( 17\times21 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q2(i)')">Report Error</button>
     <div class="sol-box">
@@ -2215,6 +2315,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(ii)</span>
     </div>
     <div class="qt">Find the value using a suitable identity: \( 104\times96 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q2(ii)')">Report Error</button>
     <div class="sol-box">
@@ -2236,6 +2337,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(iii)</span>
     </div>
     <div class="qt">Find the value using a suitable identity: \( 24\times16 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q2(iii)')">Report Error</button>
     <div class="sol-box">
@@ -2257,6 +2359,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(iv)</span>
     </div>
     <div class="qt">Find the value using a suitable identity: \( (147)^3 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q2(iv)')">Report Error</button>
     <div class="sol-box">
@@ -2278,6 +2381,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(v)</span>
     </div>
     <div class="qt">Find the value using a suitable identity: \( (199)^3 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q2(v)')">Report Error</button>
     <div class="sol-box">
@@ -2299,6 +2403,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(vi)</span>
     </div>
     <div class="qt">Find the value using a suitable identity: \( (127)^3 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q2(vi)')">Report Error</button>
     <div class="sol-box">
@@ -2320,6 +2425,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(vii)</span>
     </div>
     <div class="qt">Find the value using a suitable identity: \( (-107)^3 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q2(vii)')">Report Error</button>
     <div class="sol-box">
@@ -2341,6 +2447,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q2(viii)</span>
     </div>
     <div class="qt">Find the value using a suitable identity: \( (-299)^3 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q2(viii)')">Report Error</button>
     <div class="sol-box">
@@ -2362,6 +2469,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(i)</span>
     </div>
     <div class="qt">Factor: \( 4y^2+1+\dfrac{1}{16y^2} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q3(i)')">Report Error</button>
     <div class="sol-box">
@@ -2383,6 +2491,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(ii)</span>
     </div>
     <div class="qt">Factor: \( 9m^2-\dfrac{1}{25n^2} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q3(ii)')">Report Error</button>
     <div class="sol-box">
@@ -2404,6 +2513,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(iii)</span>
     </div>
     <div class="qt">Factor: \( 27b^3-\dfrac{1}{64b^3} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q3(iii)')">Report Error</button>
     <div class="sol-box">
@@ -2425,6 +2535,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(iv)</span>
     </div>
     <div class="qt">Factor: \( x^2+\dfrac{5x}{6}+\dfrac{1}{6} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q3(iv)')">Report Error</button>
     <div class="sol-box">
@@ -2446,6 +2557,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(v)</span>
     </div>
     <div class="qt">Factor: \( 27u^3-\dfrac{9u^2}{5}+\dfrac{3u}{25}-\dfrac{1}{125} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q3(v)')">Report Error</button>
     <div class="sol-box">
@@ -2467,6 +2579,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(vi)</span>
     </div>
     <div class="qt">Factor: \( 64y^3+\dfrac{1}{125}z^3 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q3(vi)')">Report Error</button>
     <div class="sol-box">
@@ -2488,6 +2601,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(vii)</span>
     </div>
     <div class="qt">Factor: \( p^3+27q^3+r^3-9pqr \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q3(vii)')">Report Error</button>
     <div class="sol-box">
@@ -2509,6 +2623,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(viii)</span>
     </div>
     <div class="qt">Factor: \( 9m^2-12m+4 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q3(viii)')">Report Error</button>
     <div class="sol-box">
@@ -2530,6 +2645,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(ix)</span>
     </div>
     <div class="qt">Factor: \( 9x^3-\dfrac{8}{3}y^3+\dfrac{1}{3}z^3+6xyz \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q3(ix)')">Report Error</button>
     <div class="sol-box">
@@ -2551,6 +2667,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(x)</span>
     </div>
     <div class="qt">Factor: \( 4x^2+9y^2+36z^2+12xy+36yz+24xz \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q3(x)')">Report Error</button>
     <div class="sol-box">
@@ -2572,6 +2689,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q3(xi)</span>
     </div>
     <div class="qt">Factor: \( 27u^3-\dfrac{9u^2}{2}+\dfrac{u}{4}-\dfrac{1}{216} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q3(xi)')">Report Error</button>
     <div class="sol-box">
@@ -2593,6 +2711,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q4(i)</span>
     </div>
     <div class="qt">Simplify: \( \dfrac{4x^2+4x+1}{4x^2-1} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q4(i)')">Report Error</button>
     <div class="sol-box">
@@ -2614,6 +2733,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q4(ii)</span>
     </div>
     <div class="qt">Simplify: \( \dfrac{9(3a^3-24b^3)}{9a^2-36b^2} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q4(ii)')">Report Error</button>
     <div class="sol-box">
@@ -2635,6 +2755,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q4(iii)</span>
     </div>
     <div class="qt">Simplify: \( \dfrac{s^3+125t^3}{s^2-2st-35t^2} \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q4(iii)')">Report Error</button>
     <div class="sol-box">
@@ -2656,6 +2777,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q5(i)</span>
     </div>
     <div class="qt">The area of a rectangle is \( 25a^2-30ab+9b^2 \) sq. units. Find possible length and breadth.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q5(i)')">Report Error</button>
     <div class="sol-box">
@@ -2677,6 +2799,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q5(ii)</span>
     </div>
     <div class="qt">The area of a rectangle is \( 36s^2-49t^2 \) sq. units. Find possible length and breadth.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q5(ii)')">Report Error</button>
     <div class="sol-box">
@@ -2698,6 +2821,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q6(i)</span>
     </div>
     <div class="qt">The volume of a cuboid is \( 6a^2-24b^2 \) cubic units. Find possible length, breadth and height.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q6(i)')">Report Error</button>
     <div class="sol-box">
@@ -2719,11 +2843,12 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q6(ii)</span>
     </div>
     <div class="qt">The volume of a cuboid is \( 3ps^2-15ps+12p \) cubic units. Find possible length, breadth and height.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q6(ii)')">Report Error</button>
     <div class="sol-box">
       
-      <div class="sol-formula"><div class="sol-h">Formula</div><div class="fml">\( \text{Need sum}=-5,\ \text{product}=4 \)</div></div>
+      
       <div class="sol-work"><div class="sol-h">Working</div><div class="k"><div>\[ 3ps^2-15ps+12p = 3p(s^2-5s+4) \]</div><div class="say">Split \(-5s\) using \((-1)+(-4)=-5\), \((-1)(-4)=4\)</div><div>\[ = 3p(s^2-4s-s+4) \]</div><div>\[ = 3p[s(s-4)-1(s-4)] \]</div><div>\[ = 3p(s-1)(s-4) \]</div><div>\( \therefore \text{length}=3p,\ \text{breadth}=(s-1),\ \text{height}=(s-4) \)</div></div></div>
       <div class="sol-answer"><div class="sol-h">Answer</div><div class="a">Length \(=3p\) units, breadth \(=(s-1)\) units, height \(=(s-4)\) units.</div></div>
     </div>
@@ -2740,12 +2865,31 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q7</span>
     </div>
     <div class="qt">A square playground has side 40 m. A path of width \(s\) m runs around it. Find the area of the path in terms of \(s\).</div>
+    <div class="qfig"><svg viewBox="-30 0 350 345" xmlns="http://www.w3.org/2000/svg" style="max-width:280px">
+    <rect x="10" y="10" width="300" height="300" fill="#C9A84C" fill-opacity="0.35" stroke="#1A3D28" stroke-width="2"/>
+    <rect x="60" y="60" width="200" height="200" fill="#FFFDF8" stroke="#1A3D28" stroke-width="2"/>
+    <text x="160" y="150" text-anchor="middle" font-family="Crimson Pro, serif" font-size="16" fill="#1A3D28">Playground</text>
+    <text x="160" y="172" text-anchor="middle" font-family="Crimson Pro, serif" font-size="15" fill="#1A3D28">40 m &#215; 40 m</text>
+    <line x1="60" y1="40" x2="260" y2="40" stroke="#1A3D28" stroke-width="1"/>
+    <line x1="60" y1="34" x2="60" y2="46" stroke="#1A3D28" stroke-width="1"/>
+    <line x1="260" y1="34" x2="260" y2="46" stroke="#1A3D28" stroke-width="1"/>
+    <text x="160" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A3D28">40 m</text>
+    <line x1="10" y1="10" x2="10" y2="60" stroke="#7B5EA7" stroke-width="2"/>
+    <line x1="4" y1="10" x2="16" y2="10" stroke="#7B5EA7" stroke-width="1"/>
+    <line x1="4" y1="60" x2="16" y2="60" stroke="#7B5EA7" stroke-width="1"/>
+    <text x="-10" y="38" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#7B5EA7">s</text>
+    <text x="160" y="300" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#8A6A12">path, width s</text>
+    <line x1="10" y1="315" x2="310" y2="315" stroke="#1A3D28" stroke-width="1"/>
+    <line x1="10" y1="309" x2="10" y2="321" stroke="#1A3D28" stroke-width="1"/>
+    <line x1="310" y1="309" x2="310" y2="321" stroke="#1A3D28" stroke-width="1"/>
+    <text x="160" y="335" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A3D28">(40 + 2s) m</text>
+  </svg></div>
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q7')">Report Error</button>
     <div class="sol-box">
       <div class="sol-given"><div class="sol-h">Given</div><div class="g">\( \text{Outer square side} = (40+2s) \)</div></div>
       <div class="sol-formula"><div class="sol-h">Formula</div><div class="fml">\( \text{Area of path} = (\text{outer square}) - (\text{playground}) \)</div></div>
-      <div class="sol-work"><div class="sol-h">Working</div><div class="k"><div>\[ \text{Area of path} = (40+2s)^2-(40)^2 \]</div><div>\[ \therefore (40+2s)^2 = (40)^2+2(40)(2s)+(2s)^2 = 1600+160s+4s^2 \]</div><div>\[ \therefore \text{Area of path} = 1600+160s+4s^2-1600 \]</div><div>\[ = 4s^2+160s \]</div><div>\[ = 4s(s+40) \]</div><div>\( \therefore \text{Area of path} = 4s(s+40) \text{ sq. m} \)</div></div></div>
+      <div class="sol-work"><div class="sol-h">Working</div><div class="k"><div>\[ \text{Area of path} = (40+2s)^2-(40)^2 \]</div><div>\[ \therefore (40+2s)^2 = (40)^2+2(40)(2s)+(2s)^2 \]</div><div>\[ = 1600+160s+4s^2 \]</div><div>\[ \therefore \text{Area of path} = 1600+160s+4s^2-1600 \]</div><div>\[ = 4s^2+160s \]</div><div>\[ = 4s(s+40) \]</div><div>\( \therefore \text{Area of path} = 4s(s+40) \text{ sq. m} \)</div></div></div>
       <div class="sol-answer"><div class="sol-h">Answer</div><div class="a">\( 4s(s+40) \) sq. m, or \( 4s^2+160s \) sq. m.</div></div>
     </div>
   </div>
@@ -2761,6 +2905,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q8</span>
     </div>
     <div class="qt">A number plus its reciprocal equals \( \dfrac{10}{3} \). Find the number.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q8')">Report Error</button>
     <div class="sol-box">
@@ -2782,12 +2927,13 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q9</span>
     </div>
     <div class="qt">A rectangular pool has area \( 2x^2+7x+3 \) sq. hastas. Its width is \( (2x+1) \) hastas. Find its length.</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q9')">Report Error</button>
     <div class="sol-box">
-      <div class="sol-given"><div class="sol-h">Given</div><div class="g">\( \text{Length} = \dfrac{\text{Area}}{\text{Width}} \)</div></div>
-      <div class="sol-formula"><div class="sol-h">Formula</div><div class="fml">\( \text{Need sum}=7,\ \text{product}=6 \)</div></div>
-      <div class="sol-work"><div class="sol-h">Working</div><div class="k"><div>\[ 2x^2+7x+3 = 2x^2+6x+x+3 \]</div><div>\[ = 2x(x+3)+1(x+3) \]</div><div>\[ = (2x+1)(x+3) \]</div><div>\[ \therefore \text{Length} = \dfrac{(2x+1)(x+3)}{2x+1} = x+3 \]</div><div>\( \therefore \text{Length} = (x+3) \text{ hastas} \)</div></div></div>
+      <div class="sol-given"><div class="sol-h">Given</div><div class="g">\( \text{Area} = 2x^2+7x+3,\quad \text{Width} = (2x+1) \)</div></div>
+      <div class="sol-formula"><div class="sol-h">Formula</div><div class="fml">\( \text{Area} = \text{Length} \times \text{Width} \)</div></div>
+      <div class="sol-work"><div class="sol-h">Working</div><div class="k"><div>\[ 2x^2+7x+3 = \text{Length} \times (2x+1) \]</div><div class="say">Factor the area first</div><div class="say">Split \(7x\) using \((6x)+(x)=7x\), \((2)(3)=6\)</div><div>\[ \therefore 2x^2+7x+3 = 2x^2+6x+x+3 \]</div><div>\[ = 2x(x+3)+1(x+3) \]</div><div>\[ = (2x+1)(x+3) \]</div><div class="say">So \((2x+1)(x+3) = \text{Length}\times(2x+1)\)</div><div>\[ \therefore \text{Length} = \dfrac{(2x+1)(x+3)}{2x+1} \]</div><div>\[ = x+3 \]</div><div>\( \therefore \text{Length} = (x+3) \text{ hastas} \)</div></div></div>
       <div class="sol-answer"><div class="sol-h">Answer</div><div class="a">Length \(=(x+3)\) hastas.</div></div>
     </div>
   </div>
@@ -2803,6 +2949,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q10</span>
     </div>
     <div class="qt">If both \( (x-2) \) and \( \left(x-\dfrac{1}{2}\right) \) are factors of \( px^2+5x+r \), show that \( p=r \).</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q10')">Report Error</button>
     <div class="sol-box">
@@ -2824,6 +2971,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q11</span>
     </div>
     <div class="qt">If \( a+b+c=5 \) and \( ab+bc+ca=10 \), prove that \( a^3+b^3+c^3-3abc = -25 \).</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q11')">Report Error</button>
     <div class="sol-box">
@@ -2845,6 +2993,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q12</span>
     </div>
     <div class="qt">Factor \( n^3-n \) and check that it is always divisible by \(6\) for every natural number \(n\).</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q12')">Report Error</button>
     <div class="sol-box">
@@ -2866,6 +3015,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q13(i)</span>
     </div>
     <div class="qt">Find the value of \( x^3+y^3-12xy+64 \), when \( x+y=-4 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q13(i)')">Report Error</button>
     <div class="sol-box">
@@ -2887,6 +3037,7 @@ header.top .meta{font-size:17px;color:#CFE0D4;margin-top:8px}
       <span class="qno">Q13(ii)</span>
     </div>
     <div class="qt">Find the value of \( x^3-8y^3-36xy-216 \), when \( x=2y+6 \)</div>
+    
     <button class="sol-toggle" onclick="var b=this.parentElement.querySelector('.sol-box'); b.classList.toggle('open'); this.textContent = b.classList.contains('open') ? 'Hide Solution' : 'Show Solution'; if(typeof updateBackButton==='function'){setTimeout(updateBackButton,0);}">Show Solution</button>
     <button class="rep-btn" onclick="openReport('END-OF-CHAPTER Q13(ii)')">Report Error</button>
     <div class="sol-box">
