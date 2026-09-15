@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ICSE Class 10 · Ch.19 Constructions — Tangents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Crimson+Pro:wght@400;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#F5F0E8; --card:#FFFDF8; --border:#E2D9C6;
+    --green-dk:#1A3D28; --green:#2D5A3D;
+    --gold-dk:#C9A84C; --gold:#E8C56A;
+    --purple-dk:#7B5EA7; --purple:#A07BD4;
+    --navy-dk:#1A3050; --navy:#123A6B;
+    --ink:#1565C0; --line:#1a1a1a;
+    --arc:#2E7D32; --accent:#C9962C; --final:#C62828;
+    --text:#1A3050;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:'Crimson Pro',Georgia,serif; background:var(--page); color:var(--navy-dk); padding:16px;}
+  .kicker{
+    font-family:'JetBrains Mono',monospace; font-size:.72rem; font-weight:600;
+    letter-spacing:.06em; text-transform:uppercase; color:var(--green);
+    background:rgba(26,61,40,.08); border:1px solid var(--green); border-radius:999px;
+    display:inline-block; padding:4px 12px; margin-bottom:10px;
+  }
+  h1{font-family:'Playfair Display',Georgia,serif; font-weight:800; font-size:1.5rem; margin:0 0 6px; color:var(--green-dk);}
+  .sub{font-family:'Crimson Pro',serif; color:#5b6b73; font-size:1rem; margin-bottom:16px;}
+  .layout{display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; justify-content:center;}
+  .panel{
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:18px; box-shadow:0 2px 8px rgba(26,48,80,.06); flex:1 1 340px; max-width:400px;
+  }
+  select{
+    width:100%; padding:10px; border-radius:8px; border:1px solid var(--border);
+    font-family:'JetBrains Mono',monospace; font-size:.85rem; font-weight:600;
+    margin-bottom:14px; background:#fff; color:var(--navy-dk);
+  }
+  select:disabled{opacity:.5;}
+  .steps-box{
+    background:rgba(201,168,76,.08); border:1px solid var(--border); border-radius:10px;
+    padding:12px 14px; margin-bottom:16px;
+  }
+  .steps-box-title{
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.72rem; color:var(--green);
+    text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px;
+  }
+  #stepTextWrap{
+    font-family:'Crimson Pro',serif; font-size:1.05rem; line-height:1.6; color:var(--navy-dk);
+    font-weight:600; min-height:2.6em; transition:opacity .25s ease, transform .25s ease;
+  }
+  #stepTextNum{font-family:'JetBrains Mono',monospace; color:var(--gold-dk); font-weight:700;}
+  #stepTextWrap.fading{opacity:0; transform:translateY(6px);}
+  .controls{display:flex; gap:10px; margin-top:4px;}
+  button{
+    flex:1; padding:11px 14px; border-radius:8px; border:1px solid var(--border);
+    background:#fff; font-family:'JetBrains Mono',monospace; font-size:.82rem; font-weight:700;
+    letter-spacing:.02em; cursor:pointer; color:var(--navy-dk);
+  }
+  button.primary{background:linear-gradient(135deg,var(--green-dk),var(--green)); color:#fff; border-color:var(--green-dk);}
+  button:disabled{opacity:.4; cursor:not-allowed;}
+  .progress{display:flex; gap:6px; margin-top:14px; flex-wrap:wrap;}
+  .dot{width:10px; height:10px; border-radius:50%; background:var(--border); cursor:pointer;}
+  .dot.active{background:var(--gold-dk);}
+  svg.diagram{background:var(--card); border:1px solid var(--border); border-radius:14px; box-shadow:0 2px 8px rgba(26,48,80,.06); width:100%; max-width:400px; height:auto; display:block; margin:0 auto;}
+  @media (max-width:480px){ body{padding:10px;} .panel{max-width:100%;} svg.diagram{max-width:320px;} }
+  .lbl{font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700; fill:var(--navy-dk);}
+  .measure{font-family:'JetBrains Mono',monospace; font-size:12px; fill:var(--navy-dk); font-weight:600;}
+  .final-note{
+    margin-top:14px; font-family:'Crimson Pro',serif; font-size:.95rem;
+    background:rgba(26,61,40,.08); border:1px solid var(--green); padding:10px 12px;
+    border-radius:10px; color:var(--green-dk);
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <marker id="arrowTangent" markerWidth="11" markerHeight="11" refX="6" refY="5.5" orient="auto">
+      <path d="M1.2,1.8 L7.4,5.5 L1.2,9.2" fill="none" stroke="#C62828" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrowTangentStart" markerWidth="11" markerHeight="11" refX="2.6" refY="5.5" orient="auto">
+      <path d="M7.4,1.8 L1.2,5.5 L7.4,9.2" fill="none" stroke="#C62828" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+</svg>
+
+<div class="kicker">Ch.19 · ICSE · Class 10 Maths — Constructions (Tangents)</div>
+<div id="qFullText" style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 16px; margin:10px auto 18px; max-width:560px; font-size:.95rem; line-height:1.5; color:var(--text);"></div>
+
+<div class="layout">
+  <div class="panel">
+    <select id="qPicker">
+      <option value="0">Question 1 — Tangent at a Point on a Circle</option>
+      <option value="1">Question 2 — Two Tangents Inclined at 60°</option>
+      <option value="2">Question 3 — Two Tangents Inclined at 45°</option>
+      <option value="3">Question 4 — Tangents from an External Point — I</option>
+      <option value="4">Question 5 — Tangents from an External Point — II</option>
+      <option value="5">Question 6 — Tangents Without Using the Centre — I</option>
+      <option value="6">Question 7 — Tangents Without Using the Centre — II</option>
+      <option value="7">Question 8 — Circumcircle of a Triangle (SAS, 120°)</option>
+      <option value="8">Question 9 — Circumcircle of a Triangle (via Altitude)</option>
+      <option value="9">Question 10 — Incircle of a Triangle (SAS, 60°)</option>
+      <option value="10">Question 11 — Incircle of a Triangle (via Altitude)</option>
+      <option value="11">Question 12 — Regular Hexagon (side 4 cm) — Circumscribing Circle</option>
+      <option value="12">Question 13 — Regular Hexagon (side 3.5 cm) — Circumscribing Circle</option>
+      <option value="13">Question 14 — Regular Hexagon (side 3 cm) — Inscribed Circle</option>
+      <option value="14">Question 15 — Regular Hexagon (side 2.4 cm) — Inscribed Circle</option>
+    </select>
+
+    <div class="steps-box">
+      <div class="steps-box-title">Steps of Construction</div>
+      <div id="stepTextWrap"><span id="stepTextNum">1.</span> <span id="stepTextBody"></span></div>
+    </div>
+
+    <div class="controls">
+      <button id="prevBtn">◀ Back</button>
+      <button id="nextBtn" class="primary">Next ▶</button>
+    </div>
+    <div class="progress" id="progress"></div>
+    <div class="final-note" id="finalNote" style="display:none;"></div>
+  </div>
+
+  <div class="stage-wrap">
+<svg class="diagram" id="svgQ1" width="480" height="520" viewBox="0 0 480 520" style="display:block;">
+<g id="q1_g1" style="opacity:0">
+        <circle id="givenCircle1" class="compass-circle" data-cx="190" data-cy="330" cx="190" cy="330" r="140" fill="none" stroke="var(--line)" stroke-width="2.5"/>
+        <circle cx="190" cy="330" r="3" fill="var(--line)"/>
+        <text x="172" y="335" class="lbl">O</text>
+        <circle cx="300.32" cy="243.81" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="308.32" y="237.81" class="lbl" style="opacity:0">P</text>
+      </g>
+<g id="q1_g2" style="opacity:0">
+        <line x1="190.00" y1="330.00" x2="300.32" y2="243.81" stroke="var(--ink)" stroke-width="1.6"/>
+        <text x="253.78" y="297.94" class="measure" style="opacity:0">3.5 cm</text>
+      </g>
+<g id="q1_g3" style="opacity:0">
+        <path id="carc1" class="compass-arc" data-cx="300.32" data-cy="243.81" d="M 256.98 277.67 A 55 55 0 1 0 343.66 209.95" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="256.98" cy="277.67" r="3" fill="var(--line)" style="opacity:0"/>
+        <text x="236.98" y="281.67" class="lbl" style="opacity:0">X</text>
+        <circle cx="343.66" cy="209.95" r="3" fill="var(--line)" style="opacity:0"/>
+        <text x="351.66" y="205.95" class="lbl" style="opacity:0">Y</text>
+      </g>
+<g id="q1_g4" style="opacity:0">
+        <path id="carc2" class="compass-arc" data-cx="256.98" data-cy="277.67" d="M 331.55 318.46 A 85 85 0 0 0 341.61 269.79" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc3" class="compass-arc" data-cx="343.66" data-cy="209.95" d="M 315.54 290.16 A 85 85 0 0 0 365.20 292.17" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="340.22" cy="294.88" r="3.5" fill="var(--ink)" style="opacity:0"/>
+        <text x="348.22" y="292.88" class="lbl" style="opacity:0">S</text>
+      </g>
+<g id="q1_g5" style="opacity:0">
+        <line x1="229.52" y1="153.19" x2="371.12" y2="334.43" stroke="var(--final)" stroke-width="2.5" marker-start="url(#arrowTangentStart)" marker-end="url(#arrowTangent)"/>
+        <rect x="0" y="0" width="10.00" height="10.00" fill="none" stroke="var(--line)" stroke-width="1.2" transform="matrix(-0.7883,0.6153,0.6163,0.7883,300.32,243.81)" style="opacity:0"/>
+      </g>
+</svg>
+
+<svg class="diagram" id="svgQ2" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+<g id="q2_g1" style="opacity:0"><circle id="givenCircle2" class="compass-circle" data-cx="195" data-cy="340" cx="195" cy="340" r="128" fill="none" stroke="var(--line)" stroke-width="2.5"/><circle cx="195" cy="340" r="3" fill="var(--line)"/><text x="177" y="356" class="lbl">O</text><line x1="195.00" y1="340.00" x2="195.00" y2="212.00" stroke="var(--ink)" stroke-width="1.6"/><text x="209.00" y="276.00" class="measure" style="opacity:0">3.2 cm</text><circle cx="195.00" cy="212.00" r="3" fill="var(--line)" style="opacity:0"/><text x="203.00" y="206.00" class="lbl" style="opacity:0">A</text></g>
+<g id="q2_g2" style="opacity:0">
+        <path id="carc4" class="compass-arc" data-cx="195" data-cy="340" d="M 187.19 295.68 A 45 45 0 0 1 229.47 368.93" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="195.00" cy="295.00" r="3" fill="var(--line)" style="opacity:0"/>
+        <path id="carc5" class="compass-arc" data-cx="195.00" data-cy="295.00" d="M 223.93 329.47 A 45 45 0 0 0 239.32 302.81" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="233.97" cy="317.50" r="3" fill="var(--line)" style="opacity:0"/>
+        <path id="carc6" class="compass-arc" data-cx="233.97" data-cy="317.50" d="M 249.36 359.79 A 45 45 0 0 1 218.58 359.79" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="233.97" cy="362.50" r="3" fill="var(--line)" style="opacity:0"/>
+        <line x1="195.00" y1="340.00" x2="305.85" y2="404.00" stroke="var(--ink)" stroke-width="1.6"/>
+        <text x="243.43" y="384.12" class="measure" style="opacity:0">3.2 cm</text>
+        <circle cx="305.85" cy="404.00" r="3" fill="var(--line)" style="opacity:0"/>
+        <text x="313.85" y="420.00" class="lbl" style="opacity:0">B</text>
+        </g>
+<g id="q2_g3" style="opacity:0">
+        <path id="carc133" class="compass-arc" data-cx="195.00" data-cy="212.00" d="M 189.82 192.68 A 20.00 20.00 0 0 1 200.18 192.68" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc134" class="compass-arc" data-cx="195.00" data-cy="212.00" d="M 200.18 231.32 A 20.00 20.00 0 0 1 189.82 231.32" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="195.00" cy="192.00" r="3" fill="var(--line)" style="opacity:0"/><text x="201.00" y="186.00" class="lbl" style="opacity:0">M</text>
+        <circle cx="195.00" cy="232.00" r="3" fill="var(--line)" style="opacity:0"/><text x="177.00" y="240.00" class="lbl" style="opacity:0">N</text>
+        <path id="carc135" class="compass-arc" data-cx="195.00" data-cy="192.00" d="M 233.02 202.52 A 39.45 39.45 0 0 1 222.67 220.12" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc136" class="compass-arc" data-cx="195.00" data-cy="232.00" d="M 222.67 203.88 A 39.45 39.45 0 0 1 233.02 221.48" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="229.00" cy="212.00" r="3" fill="var(--ink)" style="opacity:0"/><text x="235.00" y="206.00" class="lbl" style="opacity:0">S</text>
+        <line x1="195.00" y1="212.00" x2="442.70" y2="212.00" stroke="var(--final)" stroke-width="2.3" marker-end="url(#arrowTangent)"/>
+        <rect x="0" y="0" width="10.00" height="10.00" fill="none" stroke="var(--line)" stroke-width="1.2" transform="matrix(0.0000,1.0000,1.0000,0.0000,195.00,212.00)" style="opacity:0"/>
+      </g>
+<g id="q2_g4" style="opacity:0">
+        <path id="carc137" class="compass-arc" data-cx="305.85" data-cy="404.00" d="M 325.17 409.18 A 20.00 20.00 0 0 1 319.99 418.14" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc138" class="compass-arc" data-cx="305.85" data-cy="404.00" d="M 286.53 398.82 A 20.00 20.00 0 0 1 291.71 389.86" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="323.17" cy="414.00" r="3" fill="var(--line)" style="opacity:0"/><text x="329.17" y="420.00" class="lbl" style="opacity:0">M′</text>
+        <circle cx="288.53" cy="394.00" r="3" fill="var(--line)" style="opacity:0"/><text x="264.53" y="390.00" class="lbl" style="opacity:0">N′</text>
+        <path id="carc139" class="compass-arc" data-cx="323.17" data-cy="414.00" d="M 312.65 375.98 A 39.45 39.45 0 0 1 333.07 375.82" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc140" class="compass-arc" data-cx="288.53" data-cy="394.00" d="M 316.65 366.33 A 39.45 39.45 0 0 1 326.71 384.10" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="322.85" cy="374.55" r="3" fill="var(--ink)" style="opacity:0"/><text x="328.85" y="368.55" class="lbl" style="opacity:0">S′</text>
+        <line x1="305.85" y1="404.00" x2="429.70" y2="189.48" stroke="var(--final)" stroke-width="2.3" marker-end="url(#arrowTangent)"/>
+        <rect x="0" y="0" width="10.00" height="10.00" fill="none" stroke="var(--line)" stroke-width="1.2" transform="matrix(-0.8660,-0.5000,0.5000,-0.8660,305.85,404.00)" style="opacity:0"/>
+        <circle cx="416.70" cy="212.00" r="3.5" fill="var(--ink)" style="opacity:0"/><text x="424.70" y="208.00" class="lbl" style="opacity:0">P</text>
+      </g>
+</svg>
+
+<svg class="diagram" id="svgQ3" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+<g id="q3_g1" style="opacity:0"><circle id="givenCircle3" class="compass-circle" data-cx="160" data-cy="340" cx="160" cy="340" r="90" fill="none" stroke="var(--line)" stroke-width="2.5"/><circle cx="160" cy="340" r="3" fill="var(--line)"/><text x="142" y="356" class="lbl">O</text><line x1="160.00" y1="340.00" x2="160.00" y2="250.00" stroke="var(--ink)" stroke-width="1.6"/><text x="174.00" y="295.00" class="measure" style="opacity:0">3 cm</text><circle cx="160.00" cy="250.00" r="3" fill="var(--line)" style="opacity:0"/><text x="168.00" y="244.00" class="lbl" style="opacity:0">A</text></g>
+<g id="q3_g2" style="opacity:0">
+        <line x1="160.00" y1="430.00" x2="160.00" y2="250.00" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="5 4" style="opacity:0"/>
+        <path id="carc7" class="compass-arc" data-cx="160" data-cy="340" d="M 160.00 374.00 A 34 34 0 0 0 160.00 306.00" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="160.00" cy="306.00" r="3" fill="var(--line)" style="opacity:0"/><text x="144.00" y="300.00" class="lbl" style="opacity:0">K</text>
+        <circle cx="160.00" cy="374.00" r="3" fill="var(--line)" style="opacity:0"/><text x="144.00" y="388.00" class="lbl" style="opacity:0">K′</text>
+        <path id="carc8" class="compass-arc" data-cx="160.00" data-cy="306.00" d="M 196.02 356.47 A 62 62 0 0 0 220.03 321.51" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc9" class="compass-arc" data-cx="160.00" data-cy="374.00" d="M 220.03 358.49 A 62 62 0 0 0 196.02 323.53" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="160" y1="340" x2="209.50" y2="340.00" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/><circle cx="209.50" cy="340.00" r="3" fill="var(--line)" style="opacity:0"/><text x="215.50" y="334.00" class="lbl" style="opacity:0">V</text>
+        <path id="carc10" class="compass-arc" data-cx="194.00" data-cy="340.00" d="M 225.61 385.01 A 55.00 55.00 0 0 1 196.96 394.92" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc11" class="compass-arc" data-cx="160.00" data-cy="374.00" d="M 214.92 376.96 A 55.00 55.00 0 0 1 205.01 405.61" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="194.00" cy="340.00" r="3" fill="var(--line)" style="opacity:0"/><text x="188.00" y="330.00" class="lbl" style="opacity:0">W</text>
+        <circle cx="211.98" cy="391.98" r="3" fill="var(--ink)" style="opacity:0"/><text x="218.00" y="386.00" class="lbl" style="opacity:0">X</text>
+        <line x1="160.00" y1="340.00" x2="223.64" y2="403.64" stroke="var(--ink)" stroke-width="1.6"/>
+        <text x="181.92" y="381.72" class="measure" style="opacity:0">3 cm</text>
+        <circle cx="223.64" cy="403.64" r="3" fill="var(--line)" style="opacity:0"/>
+        <text x="201.64" y="399.64" class="lbl" style="opacity:0">B</text>
+        </g>
+<g id="q3_g3" style="opacity:0">
+        <path id="carc141" class="compass-arc" data-cx="160.00" data-cy="250.00" d="M 154.82 230.68 A 20.00 20.00 0 0 1 165.18 230.68" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc142" class="compass-arc" data-cx="160.00" data-cy="250.00" d="M 165.18 269.32 A 20.00 20.00 0 0 1 154.82 269.32" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="160.00" cy="230.00" r="3" fill="var(--line)" style="opacity:0"/><text x="166.00" y="224.00" class="lbl" style="opacity:0">M</text>
+        <circle cx="160.00" cy="270.00" r="3" fill="var(--line)" style="opacity:0"/><text x="142.00" y="278.00" class="lbl" style="opacity:0">N</text>
+        <path id="carc143" class="compass-arc" data-cx="160.00" data-cy="230.00" d="M 198.02 240.52 A 39.45 39.45 0 0 1 187.67 258.12" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc144" class="compass-arc" data-cx="160.00" data-cy="270.00" d="M 187.67 241.88 A 39.45 39.45 0 0 1 198.02 259.48" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="194.00" cy="250.00" r="3" fill="var(--ink)" style="opacity:0"/><text x="200.00" y="244.00" class="lbl" style="opacity:0">S</text>
+        <line x1="160.00" y1="250.00" x2="403.28" y2="250.00" stroke="var(--final)" stroke-width="2.3" marker-end="url(#arrowTangent)"/>
+        <rect x="0" y="0" width="10.00" height="10.00" fill="none" stroke="var(--line)" stroke-width="1.2" transform="matrix(0.0000,1.0000,1.0000,0.0000,160.00,250.00)" style="opacity:0"/>
+      </g>
+<g id="q3_g4" style="opacity:0">
+        <path id="carc145" class="compass-arc" data-cx="223.64" data-cy="403.64" d="M 240.96 413.64 A 20.00 20.00 0 0 1 233.64 420.96" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc146" class="compass-arc" data-cx="223.64" data-cy="403.64" d="M 206.32 393.64 A 20.00 20.00 0 0 1 213.64 386.32" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="237.78" cy="417.78" r="3" fill="var(--line)" style="opacity:0"/><text x="243.78" y="423.78" class="lbl" style="opacity:0">M′</text>
+        <circle cx="209.50" cy="389.50" r="3" fill="var(--line)" style="opacity:0"/><text x="185.50" y="385.50" class="lbl" style="opacity:0">N′</text>
+        <path id="carc147" class="compass-arc" data-cx="237.78" data-cy="417.78" d="M 237.46 378.34 A 39.45 39.45 0 0 1 257.23 383.46" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc148" class="compass-arc" data-cx="209.50" data-cy="389.50" d="M 243.82 370.05 A 39.45 39.45 0 0 1 248.94 389.82" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="247.68" cy="379.60" r="3" fill="var(--ink)" style="opacity:0"/><text x="253.68" y="373.60" class="lbl" style="opacity:0">S′</text>
+        <line x1="223.64" y1="403.64" x2="395.66" y2="231.62" stroke="var(--final)" stroke-width="2.3" marker-end="url(#arrowTangent)"/>
+        <rect x="0" y="0" width="10.00" height="10.00" fill="none" stroke="var(--line)" stroke-width="1.2" transform="matrix(-0.7071,-0.7071,0.7071,-0.7071,223.64,403.64)" style="opacity:0"/>
+        <circle cx="377.28" cy="250.00" r="3.5" fill="var(--ink)" style="opacity:0"/><text x="385.28" y="246.00" class="lbl" style="opacity:0">P</text>
+      </g>
+</svg>
+
+<svg class="diagram" id="svgQ4" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+<g id="q4_g1" style="opacity:0"><circle id="givenCircle4" class="compass-circle" data-cx="150" data-cy="320" cx="150" cy="320" r="100" fill="none" stroke="var(--line)" stroke-width="2.5"/><circle cx="150" cy="320" r="3" fill="var(--line)"/><text x="132" y="325" class="lbl">O</text><circle cx="410.00" cy="320.00" r="3.5" fill="var(--line)" style="opacity:0"/><text x="416.00" y="338.00" class="lbl" style="opacity:0">P</text></g>
+<g id="q4_g2" style="opacity:0"><line x1="150.00" y1="320.00" x2="410.00" y2="320.00" stroke="var(--ink)" stroke-width="1.6"/><text x="280.00" y="304.00" class="measure" style="opacity:0">6.5 cm</text></g>
+<g id="q4_g3" style="opacity:0">
+        <path id="carc12" class="compass-arc" data-cx="150" data-cy="320" d="M 250.90 445.72 A 161.2 161.2 0 0 0 300.24 378.42" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc13" class="compass-arc" data-cx="150" data-cy="320" d="M 300.24 261.58 A 161.2 161.2 0 0 0 250.90 194.28" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc14" class="compass-arc" data-cx="410.00" data-cy="320.00" d="M 259.76 378.42 A 161.2 161.2 0 0 0 309.10 445.72" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc15" class="compass-arc" data-cx="410.00" data-cy="320.00" d="M 309.10 194.28 A 161.2 161.2 0 0 0 259.76 261.58" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <line x1="280.00" y1="224.68" x2="280.00" y2="415.32" stroke="var(--ink)" stroke-width="1.3" stroke-dasharray="5 4"/><circle cx="280.00" cy="320.00" r="2.5" fill="var(--ink)" style="opacity:0"/><text x="276.00" y="312.00" class="lbl" style="opacity:0">M</text><circle id="q4helperCirc" class="compass-circle" data-cx="280.00" data-cy="320.00" cx="280.00" cy="320.00" r="130.00" fill="none" stroke="var(--ink)" stroke-width="1.3" stroke-dasharray="4 4"/>
+      </g>
+<g id="q4_g4" style="opacity:0"><circle cx="188.46" cy="227.69" r="3.5" fill="var(--line)" style="opacity:0"/><text x="198.46" y="221.69" class="lbl" style="opacity:0">A</text><circle cx="188.46" cy="412.31" r="3.5" fill="var(--line)" style="opacity:0"/><text x="198.46" y="426.31" class="lbl" style="opacity:0">B</text></g>
+<g id="q4_g5" style="opacity:0">
+        <line x1="150.00" y1="320.00" x2="188.46" y2="227.69" stroke="var(--ink)" stroke-width="1.6"/>
+        <text x="181.23" y="278.85" class="measure" style="opacity:0">2.5 cm</text>
+        <line x1="150.00" y1="320.00" x2="188.46" y2="412.31" stroke="var(--ink)" stroke-width="1.6"/>
+        <text x="157.23" y="371.15" class="measure" style="opacity:0">2.5 cm</text>
+        <line x1="410.00" y1="320.00" x2="188.46" y2="227.69" stroke="var(--final)" stroke-width="2.4"/>
+        <line x1="410.00" y1="320.00" x2="188.46" y2="412.31" stroke="var(--final)" stroke-width="2.4"/>
+        <rect x="0" y="0" width="10.00" height="10.00" fill="none" stroke="var(--line)" stroke-width="1.2" transform="matrix(0.3850,-0.9229,-0.9229,-0.3840,188.46,227.69)" style="opacity:0"/>
+        <rect x="0" y="0" width="10.00" height="10.00" fill="none" stroke="var(--line)" stroke-width="1.2" transform="matrix(0.3850,0.9229,-0.9229,0.3840,188.46,412.31)" style="opacity:0"/>
+        <text x="299.23" y="267.85" class="measure" style="opacity:0">6 cm</text>
+        <text x="299.23" y="380.15" class="measure" style="opacity:0">6 cm</text>
+      </g>
+</svg>
+
+<svg class="diagram" id="svgQ5" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+<g id="q5_g1" style="opacity:0"><circle id="givenCircle5" class="compass-circle" data-cx="170" data-cy="340" cx="170" cy="340" r="157.5" fill="none" stroke="var(--line)" stroke-width="2.5"/><circle cx="170" cy="340" r="3" fill="var(--line)"/><text x="152" y="345" class="lbl">O</text><circle cx="432.50" cy="340.00" r="3.5" fill="var(--line)" style="opacity:0"/><text x="438.50" y="358.00" class="lbl" style="opacity:0">P</text></g>
+<g id="q5_g2" style="opacity:0"><line x1="170.00" y1="340.00" x2="432.50" y2="340.00" stroke="var(--ink)" stroke-width="1.6"/><text x="301.25" y="324.00" class="measure" style="opacity:0">7.5 cm</text></g>
+<g id="q5_g3" style="opacity:0">
+        <path id="carc16" class="compass-arc" data-cx="170" data-cy="340" d="M 271.87 466.92 A 162.75 162.75 0 0 0 321.68 398.98" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc17" class="compass-arc" data-cx="170" data-cy="340" d="M 321.68 281.02 A 162.75 162.75 0 0 0 271.87 213.08" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc18" class="compass-arc" data-cx="432.50" data-cy="340.00" d="M 280.82 398.98 A 162.75 162.75 0 0 0 330.63 466.92" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc19" class="compass-arc" data-cx="432.50" data-cy="340.00" d="M 330.63 213.08 A 162.75 162.75 0 0 0 280.82 281.02" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <line x1="301.25" y1="243.77" x2="301.25" y2="436.23" stroke="var(--ink)" stroke-width="1.3" stroke-dasharray="5 4"/><circle cx="301.25" cy="340.00" r="2.5" fill="var(--ink)" style="opacity:0"/><text x="297.25" y="332.00" class="lbl" style="opacity:0">M</text><circle id="q5helperCirc" class="compass-circle" data-cx="301.25" data-cy="340.00" cx="301.25" cy="340.00" r="131.25" fill="none" stroke="var(--ink)" stroke-width="1.3" stroke-dasharray="4 4"/>
+      </g>
+<g id="q5_g4" style="opacity:0"><circle cx="264.50" cy="214.00" r="3.5" fill="var(--line)" style="opacity:0"/><text x="274.50" y="208.00" class="lbl" style="opacity:0">A</text><circle cx="264.50" cy="466.00" r="3.5" fill="var(--line)" style="opacity:0"/><text x="274.50" y="480.00" class="lbl" style="opacity:0">B</text></g>
+<g id="q5_g5" style="opacity:0">
+        <line x1="170.00" y1="340.00" x2="264.50" y2="214.00" stroke="var(--ink)" stroke-width="1.6"/>
+        <text x="227.65" y="284.80" class="measure" style="opacity:0">4.5 cm</text>
+        <line x1="170.00" y1="340.00" x2="264.50" y2="466.00" stroke="var(--ink)" stroke-width="1.6"/>
+        <text x="206.85" y="410.80" class="measure" style="opacity:0">4.5 cm</text>
+        <line x1="432.50" y1="340.00" x2="264.50" y2="214.00" stroke="var(--final)" stroke-width="2.4"/>
+        <line x1="432.50" y1="340.00" x2="264.50" y2="466.00" stroke="var(--final)" stroke-width="2.4"/>
+        <rect x="0" y="0" width="10.00" height="10.00" fill="none" stroke="var(--line)" stroke-width="1.2" transform="matrix(0.6000,-0.8000,-0.8000,-0.6000,264.50,214.00)" style="opacity:0"/>
+        <rect x="0" y="0" width="10.00" height="10.00" fill="none" stroke="var(--line)" stroke-width="1.2" transform="matrix(0.6000,0.8000,-0.8000,0.6000,264.50,466.00)" style="opacity:0"/>
+        <text x="348.50" y="271.00" class="measure" style="opacity:0">6 cm</text>
+        <text x="348.50" y="417.00" class="measure" style="opacity:0">6 cm</text>
+      </g>
+</svg>
+
+<svg class="diagram" id="svgQ6" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+<g id="q6_g1" style="opacity:0"><circle id="givenCircle6" class="compass-circle" data-cx="300" data-cy="180" cx="300" cy="180" r="80" fill="none" stroke="var(--line)" stroke-width="2.5"/><circle cx="112.06" cy="248.40" r="3.5" fill="var(--line)" style="opacity:0"/><text x="92.06" y="253.40" class="lbl" style="opacity:0">P</text></g>
+<g id="q6_g2" style="opacity:0"><line x1="112.06" y1="248.40" x2="375.18" y2="152.64" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="5 4"/><circle cx="224.82" cy="207.36" r="3" fill="var(--line)" style="opacity:0"/><text x="220.82" y="197.36" class="lbl" style="opacity:0">A</text><circle cx="375.18" cy="152.64" r="3" fill="var(--line)" style="opacity:0"/><text x="381.18" y="166.64" class="lbl" style="opacity:0">B</text></g>
+<g id="q6_g3" style="opacity:0">
+      <path id="carc20" class="compass-arc" data-cx="243.62" data-cy="200.52" d="M 112.06 248.40 A 140.0 140.0 0 0 0 375.18 152.64" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/><circle cx="243.62" cy="200.52" r="2.5" fill="var(--ink)" style="opacity:0"/><text x="237.62" y="190.52" class="lbl" style="opacity:0">M</text>
+      </g>
+<g id="q6_g4" style="opacity:0">
+        <path id="carc149" class="compass-arc" data-cx="224.82" data-cy="207.36" d="M 237.11 198.76 A 15.00 15.00 0 0 1 239.76 206.05" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc150" class="compass-arc" data-cx="224.82" data-cy="207.36" d="M 212.53 215.96 A 15.00 15.00 0 0 1 209.88 208.67" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="238.92" cy="202.23" r="3" fill="var(--line)" style="opacity:0"/><text x="244.92" y="194.23" class="lbl" style="opacity:0">X</text>
+        <circle cx="210.72" cy="212.49" r="3" fill="var(--line)" style="opacity:0"/><text x="194.72" y="226.49" class="lbl" style="opacity:0">Y</text>
+        <path id="carc151" class="compass-arc" data-cx="238.92" data-cy="202.23" d="M 246.13 238.68 A 37.16 37.16 0 0 1 226.94 237.41" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc152" class="compass-arc" data-cx="210.72" data-cy="212.49" d="M 242.51 231.74 A 37.16 37.16 0 0 1 228.63 245.05" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="236.45" cy="239.31" r="3" fill="var(--ink)" style="opacity:0"/><text x="242.45" y="237.31" class="lbl" style="opacity:0">S</text>
+        <line x1="224.82" y1="207.36" x2="272.22" y2="337.57" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/><circle cx="272.22" cy="337.57" r="3" fill="var(--line)" style="opacity:0"/><text x="278.22" y="331.57" class="lbl" style="opacity:0">C</text></g>
+<g id="q6_g5" style="opacity:0"><line x1="112.06" y1="248.40" x2="272.22" y2="337.57" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/></g>
+<g id="q6_g6" style="opacity:0">
+        <path id="carc21" class="compass-arc" data-cx="112.06" data-cy="248.40" d="M 244.85 122.05 A 183.30302779823361 183.30302779823361 0 0 1 295.01 259.84" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="244.85" cy="122.05" r="3.5" fill="var(--line)" style="opacity:0"/><text x="250.85" y="116.05" class="lbl" style="opacity:0">T₁</text><circle cx="295.01" cy="259.84" r="3.5" fill="var(--line)" style="opacity:0"/><text x="301.01" y="275.84" class="lbl" style="opacity:0">T₂</text>
+      </g>
+<g id="q6_g7" style="opacity:0">
+        <line x1="112.06" y1="248.40" x2="244.85" y2="122.05" stroke="var(--final)" stroke-width="2.4"/><line x1="112.06" y1="248.40" x2="295.01" y2="259.84" stroke="var(--final)" stroke-width="2.4"/>
+        <text x="178.46" y="177.22" class="measure" style="opacity:0">4.6 cm</text>
+        <text x="203.53" y="270.12" class="measure" style="opacity:0">4.6 cm</text>
+      </g>
+</svg>
+
+<svg class="diagram" id="svgQ7" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+<g id="q7_g1" style="opacity:0"><circle id="givenCircle7" class="compass-circle" data-cx="300" data-cy="220" cx="300" cy="220" r="160" fill="none" stroke="var(--line)" stroke-width="2.5"/><circle cx="46.23" cy="338.33" r="3.5" fill="var(--line)" style="opacity:0"/><text x="26.23" y="343.33" class="lbl" style="opacity:0">D</text></g>
+<g id="q7_g2" style="opacity:0"><line x1="46.23" y1="338.33" x2="445.01" y2="152.38" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="5 4"/><circle cx="154.99" cy="287.62" r="3" fill="var(--line)" style="opacity:0"/><text x="150.99" y="277.62" class="lbl" style="opacity:0">A</text><circle cx="445.01" cy="152.38" r="3" fill="var(--line)" style="opacity:0"/><text x="451.01" y="166.38" class="lbl" style="opacity:0">B</text></g>
+<g id="q7_g3" style="opacity:0">
+      <path id="carc22" class="compass-arc" data-cx="245.62" data-cy="245.36" d="M 46.23 338.33 A 220.0 220.0 0 1 0 445.01 152.38" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/><circle cx="245.62" cy="245.36" r="2.5" fill="var(--ink)" style="opacity:0"/><text x="239.62" y="235.36" class="lbl" style="opacity:0">M</text>
+      </g>
+<g id="q7_g4" style="opacity:0">
+        <path id="carc153" class="compass-arc" data-cx="154.99" data-cy="287.62" d="M 170.31 274.76 A 20.00 20.00 0 0 1 174.69 284.15" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc154" class="compass-arc" data-cx="154.99" data-cy="287.62" d="M 139.67 300.48 A 20.00 20.00 0 0 1 135.29 291.09" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="173.12" cy="279.17" r="3" fill="var(--line)" style="opacity:0"/><text x="179.12" y="273.17" class="lbl" style="opacity:0">X</text>
+        <circle cx="136.86" cy="296.07" r="3" fill="var(--line)" style="opacity:0"/><text x="120.86" y="310.07" class="lbl" style="opacity:0">Y</text>
+        <path id="carc155" class="compass-arc" data-cx="173.12" data-cy="279.17" d="M 179.65 318.07 A 39.45 39.45 0 0 1 159.32 316.12" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc156" class="compass-arc" data-cx="136.86" data-cy="296.07" d="M 174.04 309.26 A 39.45 39.45 0 0 1 162.46 326.08" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="169.36" cy="318.43" r="3" fill="var(--ink)" style="opacity:0"/><text x="175.36" y="316.43" class="lbl" style="opacity:0">S</text>
+        <line x1="154.99" y1="287.62" x2="237.81" y2="465.22" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/><circle cx="237.81" cy="465.22" r="3" fill="var(--line)" style="opacity:0"/><text x="243.81" y="459.22" class="lbl" style="opacity:0">E</text></g>
+<g id="q7_g5" style="opacity:0"><line x1="46.23" y1="338.33" x2="237.81" y2="465.22" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/></g>
+<g id="q7_g6" style="opacity:0">
+        <path id="carc23" class="compass-arc" data-cx="46.23" data-cy="338.33" d="M 161.65 139.64 A 229.78250586152117 229.78250586152117 0 0 1 272.63 377.64" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="161.65" cy="139.64" r="3.5" fill="var(--line)" style="opacity:0"/><text x="167.65" y="133.64" class="lbl" style="opacity:0">T₁</text><circle cx="272.63" cy="377.64" r="3.5" fill="var(--line)" style="opacity:0"/><text x="278.63" y="393.64" class="lbl" style="opacity:0">T₂</text>
+      </g>
+<g id="q7_g7" style="opacity:0">
+        <line x1="46.23" y1="338.33" x2="161.65" y2="139.64" stroke="var(--final)" stroke-width="2.4"/><line x1="46.23" y1="338.33" x2="272.63" y2="377.64" stroke="var(--final)" stroke-width="2.4"/>
+        <text x="103.94" y="230.99" class="measure" style="opacity:0">5.7 cm</text>
+        <text x="159.43" y="373.99" class="measure" style="opacity:0">5.7 cm</text>
+      </g>
+</svg>
+
+<svg class="diagram" id="svgQ8" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+<g id="q8_g1" style="opacity:0">
+        <line x1="200" y1="448" x2="369.0" y2="448" stroke="var(--line)" stroke-width="2.4"/><circle cx="200" cy="448" r="3.5" fill="var(--line)"/><text x="192" y="468" class="lbl">Q</text><circle cx="369.0" cy="448" r="3.5" fill="var(--line)"/><text x="375.0" y="468" class="lbl">R</text>
+        <text x="268.50" y="470.00" class="measure" style="opacity:0">6.5 cm</text>
+      </g>
+<g id="q8_g2" style="opacity:0">
+        <path id="carc25" class="compass-arc" data-cx="200.00" data-cy="448.00" d="M 240.00 448.00 A 40 40 0 0 0 180.00 413.36" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc26" class="compass-arc" data-cx="240.00" data-cy="448.00" d="M 233.05 408.61 A 40 40 0 0 0 209.36 422.29" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc27" class="compass-arc" data-cx="220.00" data-cy="413.36" d="M 182.41 399.68 A 40 40 0 0 0 182.41 427.04" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="200.00" y1="448.00" x2="125.00" y2="318.10" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrownavy)"/>
+      </g>
+<g id="q8_g3" style="opacity:0">
+        <path id="carc28" class="compass-arc" data-cx="200.00" data-cy="448.00" d="M 166.35 322.43 A 130 130 0 0 0 108.08 356.08" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="135.00" cy="335.42" r="3.5" fill="var(--line)" style="opacity:0"/><text x="129.00" y="325.42" class="lbl" style="opacity:0">P</text>
+      </g>
+<g id="q8_g4" style="opacity:0">
+        <line x1="200.00" y1="448.00" x2="135.00" y2="335.42" stroke="var(--line)" stroke-width="2.4"/>
+        <line x1="135.00" y1="335.42" x2="369.00" y2="448.00" stroke="var(--line)" stroke-width="2.4"/>
+        <text x="137.50" y="389.71" class="measure" style="opacity:0">5 cm</text>
+      </g>
+<g id="q8_g5" style="opacity:0">
+        <path id="carc29" class="compass-arc" data-cx="200.00" data-cy="448.00" d="M 265.59 529.72 A 104.78 104.78 0 0 0 297.66 485.98" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc30" class="compass-arc" data-cx="200.00" data-cy="448.00" d="M 297.66 410.02 A 104.78 104.78 0 0 0 265.59 366.28" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc31" class="compass-arc" data-cx="369.00" data-cy="448.00" d="M 271.34 485.98 A 104.78 104.78 0 0 0 303.41 529.72" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc32" class="compass-arc" data-cx="369.00" data-cy="448.00" d="M 303.41 366.28 A 104.78 104.78 0 0 0 271.34 410.02" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <line x1="284.50" y1="509.96" x2="284.50" y2="284.16" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+      </g>
+<g id="q8_g6" style="opacity:0">
+        <path id="carc33" class="compass-arc" data-cx="135.00" data-cy="335.42" d="M 105.79 410.54 A 80.60000000000002 80.60000000000002 0 0 0 147.26 415.08" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc34" class="compass-arc" data-cx="135.00" data-cy="335.42" d="M 197.86 385.87 A 80.60000000000002 80.60000000000002 0 0 0 214.66 347.68" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc35" class="compass-arc" data-cx="200.00" data-cy="448.00" d="M 137.14 397.55 A 80.60000000000002 80.60000000000002 0 0 0 120.34 435.74" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc36" class="compass-arc" data-cx="200.00" data-cy="448.00" d="M 229.21 372.88 A 80.60000000000002 80.60000000000002 0 0 0 187.74 368.34" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <line x1="126.23" y1="415.54" x2="319.14" y2="304.16" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <circle cx="284.50" cy="324.16" r="3.5" fill="var(--ink)" style="opacity:0"/><text x="292.50" y="318.16" class="lbl" style="opacity:0">O</text>
+      </g>
+<g id="q8_g7" style="opacity:0">
+        <circle id="q8circ" class="compass-circle" data-cx="284.50" data-cy="324.16" cx="284.50" cy="324.16" r="149.92" fill="none" stroke="var(--final)" stroke-width="2.5"/>
+      </g>
+</svg>
+
+<svg class="diagram" id="svgQ9" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+<g id="q9_g1" style="opacity:0">
+        <line x1="170" y1="445" x2="326" y2="445" stroke="var(--line)" stroke-width="2.4"/><circle cx="170" cy="445" r="3.5" fill="var(--line)"/><text x="152" y="451" class="lbl">B</text><circle cx="326" cy="445" r="3.5" fill="var(--line)"/><text x="334" y="451" class="lbl">C</text>
+        <text x="234.00" y="467.00" class="measure" style="opacity:0">6 cm</text>
+      </g>
+<g id="q9_g2" style="opacity:0">
+        <path id="carc117" class="compass-arc" data-cx="170.00" data-cy="445.00" d="M 215.00 445.00 A 45.00 45.00 0 0 1 125.00 445.00" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="215.00" cy="445.00" r="3" fill="var(--line)" style="opacity:0"/><text x="217.00" y="461.00" class="lbl" style="opacity:0">M</text>
+        <circle cx="125.00" cy="445.00" r="3" fill="var(--line)" style="opacity:0"/><text x="111.00" y="461.00" class="lbl" style="opacity:0">N</text>
+      </g>
+<g id="q9_g3" style="opacity:0">
+        <path id="carc118" class="compass-arc" data-cx="215.00" data-cy="445.00" d="M 157.66 404.85 A 70.00 70.00 0 0 1 185.41 381.56" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc119" class="compass-arc" data-cx="125.00" data-cy="445.00" d="M 154.59 381.56 A 70.00 70.00 0 0 1 182.34 404.85" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="170.00" cy="391.38" r="3" fill="var(--ink)" style="opacity:0"/><text x="178.00" y="393.38" class="lbl" style="opacity:0">S</text>
+        <line x1="170.00" y1="445.00" x2="170.00" y2="280.00" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="5 4"/>
+        <polygon points="170.00,280.00 175.40,295.30 164.60,295.30" fill="var(--ink)" style="opacity:0"/>
+      </g>
+<g id="q9_g4" style="opacity:0">
+        <path id="carc122" class="compass-arc" data-cx="170.00" data-cy="445.00" d="M 202.00 445.00 A 32 32 0 0 0 170.00 413.00" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc123" class="compass-arc" data-cx="202.00" data-cy="445.00" d="M 208.02 395.36 A 50 50 0 0 0 179.23 400.49" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc124" class="compass-arc" data-cx="170.00" data-cy="413.00" d="M 214.51 435.77 A 50 50 0 0 0 219.64 406.98" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="170.00" y1="445.00" x2="318.49" y2="296.51" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrownavy)"/>
+      </g>
+<g id="q9_g5" style="opacity:0">
+        <line x1="261.00" y1="445.00" x2="261.00" y2="354.00" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <line x1="191.00" y1="354.00" x2="331.00" y2="354.00" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <text x="267.00" y="399.50" class="measure" style="opacity:0">3.5 cm</text>
+        <circle cx="261.00" cy="354.00" r="3.5" fill="var(--line)" style="opacity:0"/><text x="257.00" y="344.00" class="lbl" style="opacity:0">A</text>
+      </g>
+<g id="q9_g6" style="opacity:0">
+        <line x1="170.00" y1="445.00" x2="261.00" y2="354.00" stroke="var(--line)" stroke-width="2.4"/>
+        <line x1="261.00" y1="354.00" x2="326.00" y2="445.00" stroke="var(--line)" stroke-width="2.4"/>
+      </g>
+<g id="q9_g7" style="opacity:0">
+        <path id="carc125" class="compass-arc" data-cx="170.00" data-cy="445.00" d="M 230.54 520.43 A 96.72 96.72 0 0 0 260.14 480.05" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc126" class="compass-arc" data-cx="170.00" data-cy="445.00" d="M 260.14 409.95 A 96.72 96.72 0 0 0 230.54 369.57" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc127" class="compass-arc" data-cx="326.00" data-cy="445.00" d="M 235.86 480.05 A 96.72 96.72 0 0 0 265.46 520.43" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc128" class="compass-arc" data-cx="326.00" data-cy="445.00" d="M 265.46 369.57 A 96.72 96.72 0 0 0 235.86 409.95" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <line x1="248.00" y1="502.19" x2="248.00" y2="392.00" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+      </g>
+<g id="q9_g8" style="opacity:0">
+        <path id="carc129" class="compass-arc" data-cx="261.00" data-cy="354.00" d="M 181.68 345.31 A 79.78992918909007 79.78992918909007 0 0 0 187.97 386.14" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc130" class="compass-arc" data-cx="261.00" data-cy="354.00" d="M 228.86 427.03 A 79.78992918909007 79.78992918909007 0 0 0 269.69 433.32" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc131" class="compass-arc" data-cx="170.00" data-cy="445.00" d="M 202.14 371.97 A 79.78992918909007 79.78992918909007 0 0 0 161.31 365.68" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="carc132" class="compass-arc" data-cx="170.00" data-cy="445.00" d="M 249.32 453.69 A 79.78992918909007 79.78992918909007 0 0 0 243.03 412.86" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <line x1="182.14" y1="366.14" x2="276.28" y2="460.28" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <circle cx="248.00" cy="432.00" r="3.5" fill="var(--ink)" style="opacity:0"/><text x="256.00" y="426.00" class="lbl" style="opacity:0">O</text>
+      </g>
+<g id="q9_g9" style="opacity:0">
+        <circle id="q9circ" class="compass-circle" data-cx="248.00" data-cy="432.00" cx="248.00" cy="432.00" r="79.08" fill="none" stroke="var(--final)" stroke-width="2.5"/>
+      </g>
+</svg>
+
+<svg class="diagram" id="svgQ10" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+<g id="q10_g1" style="opacity:0">
+        <line x1="170" y1="460" x2="380" y2="460" stroke="var(--line)" stroke-width="2.4"/><circle cx="170" cy="460" r="3.5" fill="var(--line)"/><text x="162" y="480" class="lbl">Q</text><circle cx="380" cy="460" r="3.5" fill="var(--line)"/><text x="386" y="480" class="lbl">R</text>
+        <text x="261.00" y="482.00" class="measure" style="opacity:0">7 cm</text>
+      </g>
+<g id="q10_g2" style="opacity:0">
+        <path id="carc51" class="compass-arc" data-cx="170.00" data-cy="460.00" d="M 210.00 460.00 A 40 40 0 0 0 190.00 425.36" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc52" class="compass-arc" data-cx="210.00" data-cy="460.00" d="M 203.05 420.61 A 40 40 0 0 0 179.36 434.29" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="170.00" y1="460.00" x2="245.00" y2="330.10" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrownavy)"/>
+      </g>
+<g id="q10_g3" style="opacity:0">
+        <path id="carc53" class="compass-arc" data-cx="170.00" data-cy="460.00" d="M 276.07 353.93 A 150 150 0 0 0 208.82 315.11" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="245.00" cy="330.10" r="3.5" fill="var(--line)" style="opacity:0"/><text x="239.00" y="320.10" class="lbl" style="opacity:0">P</text>
+      </g>
+<g id="q10_g4" style="opacity:0">
+        <line x1="170.00" y1="460.00" x2="245.00" y2="330.10" stroke="var(--line)" stroke-width="2.4"/>
+        <line x1="245.00" y1="330.10" x2="380.00" y2="460.00" stroke="var(--line)" stroke-width="2.4"/>
+        <text x="179.50" y="393.05" class="measure" style="opacity:0">5 cm</text>
+      </g>
+<g id="q10_g5" style="opacity:0">
+        <path id="carc54" class="compass-arc" data-cx="170.00" data-cy="460.00" d="M 212.00 460.00 A 42 42 0 0 0 191.00 423.63" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc55" class="compass-arc" data-cx="212.00" data-cy="460.00" d="M 216.33 400.16 A 60 60 0 0 0 182.12 407.97" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc56" class="compass-arc" data-cx="191.00" data-cy="423.63" d="M 221.12 475.52 A 60 60 0 0 0 244.99 449.80" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="170.00" y1="460.00" x2="299.90" y2="385.00" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrownavy)"/>
+      </g>
+<g id="q10_g6" style="opacity:0">
+        <path id="carc57" class="compass-arc" data-cx="380.00" data-cy="460.00" d="M 338.00 460.00 A 42 42 0 0 1 349.74 430.88" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc58" class="compass-arc" data-cx="338.00" data-cy="460.00" d="M 363.38 405.63 A 60 60 0 0 0 328.64 400.74" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc59" class="compass-arc" data-cx="349.74" data-cy="430.88" d="M 301.90 467.09 A 60 60 0 0 0 330.32 487.65" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="380.00" y1="460.00" x2="240.87" y2="403.93" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrownavy)"/>
+      </g>
+<g id="q10_g7" style="opacity:0">
+        <circle cx="256.33" cy="410.16" r="3.5" fill="var(--ink)" style="opacity:0"/><text x="264.33" y="404.16" class="lbl" style="opacity:0">I</text>
+        <line x1="256.33" y1="410.16" x2="256.33" y2="460.00" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <rect x="0" y="0" width="10" height="10" fill="none" stroke="var(--line)" stroke-width="1.2" transform="matrix(1.0000,0.0000,0.0000,-1.0000,256.33,460.00)" style="opacity:0"/>
+        <circle cx="256.33" cy="460.00" r="3" fill="var(--line)" style="opacity:0"/><text x="252.33" y="478.00" class="lbl" style="opacity:0">D</text>
+      </g>
+<g id="q10_g8" style="opacity:0">
+        <circle id="q10circ" class="compass-circle" data-cx="256.33" data-cy="410.16" cx="256.33" cy="410.16" r="49.84" fill="none" stroke="var(--final)" stroke-width="2.5"/>
+      </g>
+</svg>
+
+<svg class="diagram" id="svgQ11" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+<g id="q11_g1" style="opacity:0">
+        <line x1="170" y1="460" x2="330" y2="460" stroke="var(--line)" stroke-width="2.4"/><circle cx="170" cy="460" r="3.5" fill="var(--line)"/><text x="162" y="480" class="lbl">Q</text><circle cx="330" cy="460" r="3.5" fill="var(--line)"/><text x="336" y="480" class="lbl">R</text>
+        <text x="236.00" y="482.00" class="measure" style="opacity:0">5 cm</text>
+      </g>
+<g id="q11_g2" style="opacity:0">
+        <path id="carc60" class="compass-arc" data-cx="170.00" data-cy="460.00" d="M 210.00 460.00 A 40 40 0 0 0 190.00 425.36" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc61" class="compass-arc" data-cx="210.00" data-cy="460.00" d="M 203.05 420.61 A 40 40 0 0 0 179.36 434.29" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="170.00" y1="460.00" x2="252.50" y2="317.11" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrownavy)"/>
+      </g>
+<g id="q11_g3" style="opacity:0">
+        <line x1="225.43" y1="460.00" x2="225.43" y2="364.00" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <line x1="155.43" y1="364.00" x2="295.43" y2="364.00" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <text x="231.43" y="412.00" class="measure" style="opacity:0">3 cm</text>
+        <circle cx="225.43" cy="364.00" r="3.5" fill="var(--line)" style="opacity:0"/><text x="219.43" y="354.00" class="lbl" style="opacity:0">P</text>
+      </g>
+<g id="q11_g4" style="opacity:0">
+        <line x1="225.43" y1="364.00" x2="330.00" y2="460.00" stroke="var(--line)" stroke-width="2.4"/>
+      </g>
+<g id="q11_g5" style="opacity:0">
+        <path id="carc62" class="compass-arc" data-cx="170.00" data-cy="460.00" d="M 208.00 460.00 A 38 38 0 0 0 189.00 427.09" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc63" class="compass-arc" data-cx="208.00" data-cy="460.00" d="M 214.54 405.39 A 55 55 0 0 0 182.89 411.07" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc64" class="compass-arc" data-cx="189.00" data-cy="427.09" d="M 218.82 473.30 A 55 55 0 0 0 239.56 448.73" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="170.00" y1="460.00" x2="282.58" y2="395.00" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrownavy)"/>
+      </g>
+<g id="q11_g6" style="opacity:0">
+        <path id="carc65" class="compass-arc" data-cx="330.00" data-cy="460.00" d="M 292.00 460.00 A 38 38 0 0 1 302.01 434.30" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc66" class="compass-arc" data-cx="292.00" data-cy="460.00" d="M 311.50 408.57 A 55 55 0 0 0 279.40 406.46" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc67" class="compass-arc" data-cx="302.01" data-cy="434.30" d="M 256.52 465.22 A 55 55 0 0 0 281.59 485.37" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="330.00" y1="460.00" x2="208.86" y2="412.83" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrownavy)"/>
+      </g>
+<g id="q11_g7" style="opacity:0">
+        <circle cx="234.45" cy="422.79" r="3.5" fill="var(--ink)" style="opacity:0"/><text x="242.45" y="416.79" class="lbl" style="opacity:0">I</text>
+        <line x1="234.45" y1="422.79" x2="234.45" y2="460.00" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <rect x="0" y="0" width="9" height="9" fill="none" stroke="var(--line)" stroke-width="1.2" transform="matrix(1.0000,0.0000,0.0000,-1.0000,234.45,460.00)" style="opacity:0"/>
+        <circle cx="234.45" cy="460.00" r="3" fill="var(--line)" style="opacity:0"/><text x="230.45" y="478.00" class="lbl" style="opacity:0">D</text>
+      </g>
+<g id="q11_g8" style="opacity:0">
+        <circle id="q11circ" class="compass-circle" data-cx="234.45" data-cy="422.79" cx="234.45" cy="422.79" r="37.21" fill="none" stroke="var(--final)" stroke-width="2.5"/>
+      </g>
+</svg>
+
+<svg class="diagram" id="svgQ12" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+<g id="q12_g1" style="opacity:0">
+        <line x1="150" y1="392" x2="278.0" y2="392.0" stroke="var(--line)" stroke-width="2.4"/><circle cx="150" cy="392" r="3.5" fill="var(--line)"/><text x="134" y="410" class="lbl">A</text><circle cx="278.0" cy="392.0" r="3.5" fill="var(--line)"/><text x="286.0" y="410.0" class="lbl">B</text>
+        <text x="198.00" y="414.00" class="measure" style="opacity:0">4 cm</text>
+      </g>
+<g id="q12_g2" style="opacity:0">
+        <path id="carc68" class="compass-arc" data-cx="150.00" data-cy="392.00" d="M 182.00 392.00 A 32 32 0 0 0 134.00 364.29" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc69" class="compass-arc" data-cx="182.00" data-cy="392.00" d="M 176.44 360.49 A 32 32 0 0 0 157.49 371.43" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc70" class="compass-arc" data-cx="166.00" data-cy="364.29" d="M 135.93 353.34 A 32 32 0 0 0 135.93 375.23" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc157" class="compass-arc" data-cx="150.00" data-cy="392.00" d="M 59.49 301.49 A 128.00 128.00 0 0 1 116.87 268.36" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="150.00" y1="392.00" x2="86.00" y2="281.15" stroke="var(--line)" stroke-width="2.2"/><polygon points="86.00,281.15 98.33,291.70 88.97,297.10" fill="var(--line)" style="opacity:0"/>
+        <circle cx="86.00" cy="281.15" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="72.00" y="273.15" class="lbl" style="opacity:0">F</text>
+        <path id="carc71" class="compass-arc" data-cx="278.00" data-cy="392.00" d="M 246.00 392.00 A 32 32 0 0 1 294.00 364.29" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc72" class="compass-arc" data-cx="246.00" data-cy="392.00" d="M 270.51 371.43 A 32 32 0 0 0 251.56 360.49" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc73" class="compass-arc" data-cx="262.00" data-cy="364.29" d="M 292.07 375.23 A 32 32 0 0 0 292.07 353.34" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc158" class="compass-arc" data-cx="278.00" data-cy="392.00" d="M 311.13 268.36 A 128.00 128.00 0 0 1 368.51 301.49" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="278.00" y1="392.00" x2="342.00" y2="281.15" stroke="var(--line)" stroke-width="2.2"/><polygon points="342.00,281.15 339.03,297.10 329.67,291.70" fill="var(--line)" style="opacity:0"/>
+        <circle cx="342.00" cy="281.15" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="328.00" y="273.15" class="lbl" style="opacity:0">C</text>
+      </g>
+<g id="q12_g3" style="opacity:0">
+        <path id="carc74" class="compass-arc" data-cx="86.00" data-cy="281.15" d="M 102.00 308.86 A 32 32 0 0 0 102.00 253.44" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc75" class="compass-arc" data-cx="102.00" data-cy="308.86" d="M 126.51 288.29 A 32 32 0 0 0 107.56 277.35" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc76" class="compass-arc" data-cx="118.00" data-cy="281.15" d="M 112.44 249.63 A 32 32 0 0 0 93.49 260.58" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc159" class="compass-arc" data-cx="86.00" data-cy="281.15" d="M 119.13 157.51 A 128.00 128.00 0 0 1 176.51 190.64" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="86.00" y1="281.15" x2="150.00" y2="170.30" stroke="var(--line)" stroke-width="2.2"/><polygon points="150.00,170.30 147.03,186.25 137.67,180.85" fill="var(--line)" style="opacity:0"/>
+        <circle cx="150.00" cy="170.30" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="136.00" y="162.30" class="lbl" style="opacity:0">E</text>
+        <path id="carc77" class="compass-arc" data-cx="342.00" data-cy="281.15" d="M 326.00 308.86 A 32 32 0 0 1 326.00 253.44" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc78" class="compass-arc" data-cx="326.00" data-cy="308.86" d="M 320.44 277.35 A 32 32 0 0 0 301.49 288.29" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc79" class="compass-arc" data-cx="310.00" data-cy="281.15" d="M 334.51 260.58 A 32 32 0 0 0 315.56 249.63" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc160" class="compass-arc" data-cx="342.00" data-cy="281.15" d="M 251.49 190.64 A 128.00 128.00 0 0 1 308.87 157.51" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="342.00" y1="281.15" x2="278.00" y2="170.30" stroke="var(--line)" stroke-width="2.2"/><polygon points="278.00,170.30 290.33,180.85 280.97,186.25" fill="var(--line)" style="opacity:0"/>
+        <circle cx="278.00" cy="170.30" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="264.00" y="162.30" class="lbl" style="opacity:0">D</text>
+      </g>
+<g id="q12_g4" style="opacity:0">
+        <line x1="150.00" y1="170.30" x2="278.00" y2="170.30" stroke="var(--line)" stroke-width="2.4"/>
+      </g>
+<g id="q12_g5" style="opacity:0">
+        <line x1="150.00" y1="392.00" x2="278.00" y2="170.30" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <line x1="278.00" y1="392.00" x2="150.00" y2="170.30" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <circle cx="214.00" cy="281.15" r="3.5" fill="var(--ink)" style="opacity:0"/>
+        <text x="222.00" y="275.15" class="lbl" style="opacity:0">O</text>
+      </g>
+<g id="q12_g6" style="opacity:0">
+        <circle id="q12circ" class="compass-circle" data-cx="214.00" data-cy="281.15" cx="214.00" cy="281.15" r="128.00" fill="none" stroke="var(--final)" stroke-width="2.5"/>
+      </g>
+</svg>
+
+<svg class="diagram" id="svgQ13" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+<g id="q13_g1" style="opacity:0">
+        <line x1="160" y1="380" x2="272.0" y2="380.0" stroke="var(--line)" stroke-width="2.4"/><circle cx="160" cy="380" r="3.5" fill="var(--line)"/><text x="144" y="398" class="lbl">A</text><circle cx="272.0" cy="380.0" r="3.5" fill="var(--line)"/><text x="280.0" y="398.0" class="lbl">B</text>
+        <text x="200.00" y="402.00" class="measure" style="opacity:0">3.5 cm</text>
+      </g>
+<g id="q13_g2" style="opacity:0">
+        <path id="carc80" class="compass-arc" data-cx="160.00" data-cy="380.00" d="M 192.00 380.00 A 32 32 0 0 0 144.00 352.29" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc81" class="compass-arc" data-cx="192.00" data-cy="380.00" d="M 186.44 348.49 A 32 32 0 0 0 167.49 359.43" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc82" class="compass-arc" data-cx="176.00" data-cy="352.29" d="M 145.93 341.34 A 32 32 0 0 0 145.93 363.23" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc161" class="compass-arc" data-cx="160.00" data-cy="380.00" d="M 80.80 300.81 A 112.00 112.00 0 0 1 131.01 271.82" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="160.00" y1="380.00" x2="104.00" y2="283.01" stroke="var(--line)" stroke-width="2.2"/><polygon points="104.00,283.01 116.33,293.56 106.97,298.96" fill="var(--line)" style="opacity:0"/>
+        <circle cx="104.00" cy="283.01" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="90.00" y="275.01" class="lbl" style="opacity:0">F</text>
+        <path id="carc83" class="compass-arc" data-cx="272.00" data-cy="380.00" d="M 240.00 380.00 A 32 32 0 0 1 288.00 352.29" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc84" class="compass-arc" data-cx="240.00" data-cy="380.00" d="M 264.51 359.43 A 32 32 0 0 0 245.56 348.49" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc85" class="compass-arc" data-cx="256.00" data-cy="352.29" d="M 286.07 363.23 A 32 32 0 0 0 286.07 341.34" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc162" class="compass-arc" data-cx="272.00" data-cy="380.00" d="M 300.99 271.82 A 112.00 112.00 0 0 1 351.20 300.81" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="272.00" y1="380.00" x2="328.00" y2="283.01" stroke="var(--line)" stroke-width="2.2"/><polygon points="328.00,283.01 325.03,298.96 315.67,293.56" fill="var(--line)" style="opacity:0"/>
+        <circle cx="328.00" cy="283.01" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="314.00" y="275.01" class="lbl" style="opacity:0">C</text>
+      </g>
+<g id="q13_g3" style="opacity:0">
+        <path id="carc86" class="compass-arc" data-cx="104.00" data-cy="283.01" d="M 120.00 310.72 A 32 32 0 0 0 120.00 255.29" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc87" class="compass-arc" data-cx="120.00" data-cy="310.72" d="M 144.51 290.15 A 32 32 0 0 0 125.56 279.20" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc88" class="compass-arc" data-cx="136.00" data-cy="283.01" d="M 130.44 251.49 A 32 32 0 0 0 111.49 262.44" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc163" class="compass-arc" data-cx="104.00" data-cy="283.01" d="M 132.99 174.83 A 112.00 112.00 0 0 1 183.19 203.81" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="104.00" y1="283.01" x2="160.00" y2="186.01" stroke="var(--line)" stroke-width="2.2"/><polygon points="160.00,186.01 157.03,201.96 147.67,196.56" fill="var(--line)" style="opacity:0"/>
+        <circle cx="160.00" cy="186.01" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="146.00" y="178.01" class="lbl" style="opacity:0">E</text>
+        <path id="carc89" class="compass-arc" data-cx="328.00" data-cy="283.01" d="M 312.00 310.72 A 32 32 0 0 1 312.00 255.29" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc90" class="compass-arc" data-cx="312.00" data-cy="310.72" d="M 306.44 279.20 A 32 32 0 0 0 287.49 290.15" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc91" class="compass-arc" data-cx="296.00" data-cy="283.01" d="M 320.51 262.44 A 32 32 0 0 0 301.56 251.49" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc164" class="compass-arc" data-cx="328.00" data-cy="283.01" d="M 248.81 203.81 A 112.00 112.00 0 0 1 299.01 174.83" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="328.00" y1="283.01" x2="272.00" y2="186.01" stroke="var(--line)" stroke-width="2.2"/><polygon points="272.00,186.01 284.33,196.56 274.97,201.96" fill="var(--line)" style="opacity:0"/>
+        <circle cx="272.00" cy="186.01" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="258.00" y="178.01" class="lbl" style="opacity:0">D</text>
+      </g>
+<g id="q13_g4" style="opacity:0">
+        <line x1="160.00" y1="186.01" x2="272.00" y2="186.01" stroke="var(--line)" stroke-width="2.4"/>
+      </g>
+<g id="q13_g5" style="opacity:0">
+        <line x1="160.00" y1="380.00" x2="272.00" y2="186.01" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <line x1="272.00" y1="380.00" x2="160.00" y2="186.01" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <circle cx="216.00" cy="283.01" r="3.5" fill="var(--ink)" style="opacity:0"/>
+        <text x="224.00" y="277.01" class="lbl" style="opacity:0">O</text>
+      </g>
+<g id="q13_g6" style="opacity:0">
+        <circle id="q13circ" class="compass-circle" data-cx="216.00" data-cy="283.01" cx="216.00" cy="283.01" r="112.00" fill="none" stroke="var(--final)" stroke-width="2.5"/>
+      </g>
+</svg>
+
+<svg class="diagram" id="svgQ14" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+<g id="q14_g1" style="opacity:0">
+        <line x1="160" y1="392" x2="262.0" y2="392.0" stroke="var(--line)" stroke-width="2.4"/><circle cx="160" cy="392" r="3.5" fill="var(--line)"/><text x="144" y="410" class="lbl">A</text><circle cx="262.0" cy="392.0" r="3.5" fill="var(--line)"/><text x="270.0" y="410.0" class="lbl">B</text>
+        <text x="195.00" y="414.00" class="measure" style="opacity:0">3 cm</text>
+      </g>
+<g id="q14_g2" style="opacity:0">
+        <path id="carc92" class="compass-arc" data-cx="160.00" data-cy="392.00" d="M 192.00 392.00 A 32 32 0 0 0 144.00 364.29" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc93" class="compass-arc" data-cx="192.00" data-cy="392.00" d="M 186.44 360.49 A 32 32 0 0 0 167.49 371.43" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc94" class="compass-arc" data-cx="176.00" data-cy="364.29" d="M 145.93 353.34 A 32 32 0 0 0 145.93 375.23" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc165" class="compass-arc" data-cx="160.00" data-cy="392.00" d="M 87.87 319.88 A 102.00 102.00 0 0 1 133.60 293.48" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="160.00" y1="392.00" x2="109.00" y2="303.67" stroke="var(--line)" stroke-width="2.2"/><polygon points="109.00,303.67 121.33,314.22 111.97,319.62" fill="var(--line)" style="opacity:0"/>
+        <circle cx="109.00" cy="303.67" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="95.00" y="295.67" class="lbl" style="opacity:0">F</text>
+        <path id="carc95" class="compass-arc" data-cx="262.00" data-cy="392.00" d="M 230.00 392.00 A 32 32 0 0 1 278.00 364.29" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc96" class="compass-arc" data-cx="230.00" data-cy="392.00" d="M 254.51 371.43 A 32 32 0 0 0 235.56 360.49" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc97" class="compass-arc" data-cx="246.00" data-cy="364.29" d="M 276.07 375.23 A 32 32 0 0 0 276.07 353.34" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc166" class="compass-arc" data-cx="262.00" data-cy="392.00" d="M 288.40 293.48 A 102.00 102.00 0 0 1 334.13 319.88" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="262.00" y1="392.00" x2="313.00" y2="303.67" stroke="var(--line)" stroke-width="2.2"/><polygon points="313.00,303.67 310.03,319.62 300.67,314.22" fill="var(--line)" style="opacity:0"/>
+        <circle cx="313.00" cy="303.67" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="299.00" y="295.67" class="lbl" style="opacity:0">C</text>
+      </g>
+<g id="q14_g3" style="opacity:0">
+        <path id="carc98" class="compass-arc" data-cx="109.00" data-cy="303.67" d="M 125.00 331.38 A 32 32 0 0 0 125.00 275.95" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc99" class="compass-arc" data-cx="125.00" data-cy="331.38" d="M 149.51 310.81 A 32 32 0 0 0 130.56 299.86" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc100" class="compass-arc" data-cx="141.00" data-cy="303.67" d="M 135.44 272.15 A 32 32 0 0 0 116.49 283.10" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc167" class="compass-arc" data-cx="109.00" data-cy="303.67" d="M 135.40 205.14 A 102.00 102.00 0 0 1 181.12 231.54" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="109.00" y1="303.67" x2="160.00" y2="215.33" stroke="var(--line)" stroke-width="2.2"/><polygon points="160.00,215.33 157.03,231.28 147.67,225.88" fill="var(--line)" style="opacity:0"/>
+        <circle cx="160.00" cy="215.33" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="146.00" y="207.33" class="lbl" style="opacity:0">E</text>
+        <path id="carc101" class="compass-arc" data-cx="313.00" data-cy="303.67" d="M 297.00 331.38 A 32 32 0 0 1 297.00 275.95" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc102" class="compass-arc" data-cx="297.00" data-cy="331.38" d="M 291.44 299.86 A 32 32 0 0 0 272.49 310.81" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc103" class="compass-arc" data-cx="281.00" data-cy="303.67" d="M 305.51 283.10 A 32 32 0 0 0 286.56 272.15" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc168" class="compass-arc" data-cx="313.00" data-cy="303.67" d="M 240.88 231.54 A 102.00 102.00 0 0 1 286.60 205.14" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="313.00" y1="303.67" x2="262.00" y2="215.33" stroke="var(--line)" stroke-width="2.2"/><polygon points="262.00,215.33 274.33,225.88 264.97,231.28" fill="var(--line)" style="opacity:0"/>
+        <circle cx="262.00" cy="215.33" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="248.00" y="207.33" class="lbl" style="opacity:0">D</text>
+      </g>
+<g id="q14_g4" style="opacity:0">
+        <line x1="160.00" y1="215.33" x2="262.00" y2="215.33" stroke="var(--line)" stroke-width="2.4"/>
+      </g>
+<g id="q14_g5" style="opacity:0">
+        <line x1="160.00" y1="392.00" x2="262.00" y2="215.33" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <line x1="262.00" y1="392.00" x2="160.00" y2="215.33" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <circle cx="211.00" cy="303.67" r="3.5" fill="var(--ink)" style="opacity:0"/>
+        <text x="219.00" y="297.67" class="lbl" style="opacity:0">O</text>
+      </g>
+<g id="q14_g6" style="opacity:0">
+        <line x1="211.00" y1="303.67" x2="211.00" y2="392.00" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <rect x="0" y="0" width="9" height="9" fill="none" stroke="var(--line)" stroke-width="1.2" transform="matrix(1.0000,0.0000,0.0000,-1.0000,211.00,392.00)" style="opacity:0"/>
+        <circle cx="211.00" cy="392.00" r="3" fill="var(--line)" style="opacity:0"/><text x="207.00" y="410.00" class="lbl" style="opacity:0">M</text>
+      </g>
+<g id="q14_g7" style="opacity:0">
+        <circle id="q14circ" class="compass-circle" data-cx="211.00" data-cy="303.67" cx="211.00" cy="303.67" r="88.33" fill="none" stroke="var(--final)" stroke-width="2.5"/>
+      </g>
+</svg>
+
+<svg class="diagram" id="svgQ15" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+<g id="q15_g1" style="opacity:0">
+        <line x1="150" y1="390" x2="246.0" y2="390.0" stroke="var(--line)" stroke-width="2.4"/><circle cx="150" cy="390" r="3.5" fill="var(--line)"/><text x="134" y="408" class="lbl">A</text><circle cx="246.0" cy="390.0" r="3.5" fill="var(--line)"/><text x="254.0" y="408.0" class="lbl">B</text>
+        <text x="182.00" y="412.00" class="measure" style="opacity:0">2.4 cm</text>
+      </g>
+<g id="q15_g2" style="opacity:0">
+        <path id="carc104" class="compass-arc" data-cx="150.00" data-cy="390.00" d="M 182.00 390.00 A 32 32 0 0 0 134.00 362.29" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc105" class="compass-arc" data-cx="182.00" data-cy="390.00" d="M 176.44 358.49 A 32 32 0 0 0 157.49 369.43" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc106" class="compass-arc" data-cx="166.00" data-cy="362.29" d="M 135.93 351.34 A 32 32 0 0 0 135.93 373.23" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc169" class="compass-arc" data-cx="150.00" data-cy="390.00" d="M 82.12 322.12 A 96.00 96.00 0 0 1 125.15 297.27" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="150.00" y1="390.00" x2="102.00" y2="306.86" stroke="var(--line)" stroke-width="2.2"/><polygon points="102.00,306.86 114.33,317.41 104.97,322.81" fill="var(--line)" style="opacity:0"/>
+        <circle cx="102.00" cy="306.86" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="88.00" y="298.86" class="lbl" style="opacity:0">F</text>
+        <path id="carc107" class="compass-arc" data-cx="246.00" data-cy="390.00" d="M 214.00 390.00 A 32 32 0 0 1 262.00 362.29" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc108" class="compass-arc" data-cx="214.00" data-cy="390.00" d="M 238.51 369.43 A 32 32 0 0 0 219.56 358.49" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc109" class="compass-arc" data-cx="230.00" data-cy="362.29" d="M 260.07 373.23 A 32 32 0 0 0 260.07 351.34" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc170" class="compass-arc" data-cx="246.00" data-cy="390.00" d="M 270.85 297.27 A 96.00 96.00 0 0 1 313.88 322.12" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="246.00" y1="390.00" x2="294.00" y2="306.86" stroke="var(--line)" stroke-width="2.2"/><polygon points="294.00,306.86 291.03,322.81 281.67,317.41" fill="var(--line)" style="opacity:0"/>
+        <circle cx="294.00" cy="306.86" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="280.00" y="298.86" class="lbl" style="opacity:0">C</text>
+      </g>
+<g id="q15_g3" style="opacity:0">
+        <path id="carc110" class="compass-arc" data-cx="102.00" data-cy="306.86" d="M 118.00 334.57 A 32 32 0 0 0 118.00 279.15" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc111" class="compass-arc" data-cx="118.00" data-cy="334.57" d="M 142.51 314.01 A 32 32 0 0 0 123.56 303.06" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc112" class="compass-arc" data-cx="134.00" data-cy="306.86" d="M 128.44 275.35 A 32 32 0 0 0 109.49 286.29" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc171" class="compass-arc" data-cx="102.00" data-cy="306.86" d="M 126.85 214.13 A 96.00 96.00 0 0 1 169.88 238.98" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="102.00" y1="306.86" x2="150.00" y2="223.72" stroke="var(--line)" stroke-width="2.2"/><polygon points="150.00,223.72 147.03,239.67 137.67,234.27" fill="var(--line)" style="opacity:0"/>
+        <circle cx="150.00" cy="223.72" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="136.00" y="215.72" class="lbl" style="opacity:0">E</text>
+        <path id="carc113" class="compass-arc" data-cx="294.00" data-cy="306.86" d="M 278.00 334.57 A 32 32 0 0 1 278.00 279.15" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc114" class="compass-arc" data-cx="278.00" data-cy="334.57" d="M 272.44 303.06 A 32 32 0 0 0 253.49 314.01" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc115" class="compass-arc" data-cx="262.00" data-cy="306.86" d="M 286.51 286.29 A 32 32 0 0 0 267.56 275.35" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <path id="carc172" class="compass-arc" data-cx="294.00" data-cy="306.86" d="M 226.12 238.98 A 96.00 96.00 0 0 1 269.15 214.13" fill="none" stroke="var(--arc)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <line x1="294.00" y1="306.86" x2="246.00" y2="223.72" stroke="var(--line)" stroke-width="2.2"/><polygon points="246.00,223.72 258.33,234.27 248.97,239.67" fill="var(--line)" style="opacity:0"/>
+        <circle cx="246.00" cy="223.72" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text x="232.00" y="215.72" class="lbl" style="opacity:0">D</text>
+      </g>
+<g id="q15_g4" style="opacity:0">
+        <line x1="150.00" y1="223.72" x2="246.00" y2="223.72" stroke="var(--line)" stroke-width="2.4"/>
+      </g>
+<g id="q15_g5" style="opacity:0">
+        <line x1="150.00" y1="390.00" x2="246.00" y2="223.72" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <line x1="246.00" y1="390.00" x2="150.00" y2="223.72" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <circle cx="198.00" cy="306.86" r="3.5" fill="var(--ink)" style="opacity:0"/>
+        <text x="206.00" y="300.86" class="lbl" style="opacity:0">O</text>
+      </g>
+<g id="q15_g6" style="opacity:0">
+        <line x1="198.00" y1="306.86" x2="198.00" y2="390.00" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <rect x="0" y="0" width="9" height="9" fill="none" stroke="var(--line)" stroke-width="1.2" transform="matrix(1.0000,0.0000,0.0000,-1.0000,198.00,390.00)" style="opacity:0"/>
+        <circle cx="198.00" cy="390.00" r="3" fill="var(--line)" style="opacity:0"/><text x="194.00" y="408.00" class="lbl" style="opacity:0">M</text>
+      </g>
+<g id="q15_g7" style="opacity:0">
+        <circle id="q15circ" class="compass-circle" data-cx="198.00" data-cy="306.86" cx="198.00" cy="306.86" r="83.14" fill="none" stroke="var(--final)" stroke-width="2.5"/>
+      </g>
+</svg>
+  </div>
+</div>
+
+<script>
+/* ---------- low-level reveal helpers ---------- */
+function revealArc(el, duration){
+  duration = duration || 650;
+  if(!el) return;
+  let len; try{ len = el.getTotalLength(); } catch(e){ len = 200; }
+
+  // SVG markers (arrowheads) render at a path's raw endpoint using its
+  // actual geometry -- they ignore stroke-dasharray/stroke-dashoffset
+  // entirely. Left alone, an arrowhead on a line being revealed this way
+  // shows fully at the final tip from frame 1, before the shaft has drawn
+  // in underneath it. Strip markers for the duration of the reveal and
+  // restore them exactly when the stroke settles into its final state.
+  // A caller (e.g. drawGroupAction's pre-hide pass) may already have
+  // stripped the live attribute and stashed it on the dataset -- check
+  // both so the marker is never lost.
+  const markerStart = el.getAttribute('marker-start') || el.dataset.markerStart || null;
+  const markerEnd = el.getAttribute('marker-end') || el.dataset.markerEnd || null;
+  if(el.getAttribute('marker-start')) el.removeAttribute('marker-start');
+  if(el.getAttribute('marker-end')) el.removeAttribute('marker-end');
+
+  el.style.transition = 'none';
+  el.style.strokeDasharray = len;
+  el.style.strokeDashoffset = len;
+  el.getBoundingClientRect();
+  el.style.transition = 'stroke-dashoffset ' + duration + 'ms ease-in-out';
+  requestAnimationFrame(()=>{ el.style.strokeDashoffset = 0; });
+  setTimeout(()=>{
+    el.style.strokeDasharray=''; el.style.strokeDashoffset='';
+    if(markerStart) el.setAttribute('marker-start', markerStart);
+    if(markerEnd) el.setAttribute('marker-end', markerEnd);
+    delete el.dataset.markerStart;
+    delete el.dataset.markerEnd;
+  }, duration + 40);
+}
+function revealFade(el, duration){
+  duration = duration || 350;
+  if(!el) return;
+  el.style.transition = 'none';
+  el.style.opacity = 0;
+  el.getBoundingClientRect();
+  el.style.transition = 'opacity ' + duration + 'ms ease-in';
+  requestAnimationFrame(()=>{ el.style.opacity = 1; });
+}
+function fadeOut(el, duration){
+  duration = duration || 400;
+  if(!el) return;
+  el.style.transition = 'none';
+  el.style.opacity = 1;
+  el.getBoundingClientRect();
+  el.style.transition = 'opacity ' + duration + 'ms ease-out';
+  requestAnimationFrame(()=>{ el.style.opacity = 0; });
+}
+function animateCompass(path, onDone, animDuration){
+  if(!path){ if(onDone) onDone(); return; }
+  const cx = parseFloat(path.dataset.cx), cy = parseFloat(path.dataset.cy);
+  const genClass = 'gen-' + path.id;
+  path.parentNode.querySelectorAll('.' + genClass).forEach(el => el.remove());
+
+  let len; try{ len = path.getTotalLength(); } catch(e){ len = 200; }
+  const svgNS = "http://www.w3.org/2000/svg";
+  const parent = path.parentNode;
+
+  const pivot = document.createElementNS(svgNS, "circle");
+  pivot.setAttribute("cx", cx); pivot.setAttribute("cy", cy); pivot.setAttribute("r", 5.5);
+  pivot.setAttribute("fill", "#2563eb"); pivot.setAttribute("stroke", "#fff"); pivot.setAttribute("stroke-width", "1.5");
+  pivot.classList.add(genClass);
+  pivot.style.opacity = 0; pivot.style.transition = "opacity .2s";
+  parent.appendChild(pivot);
+
+  const arm = document.createElementNS(svgNS, "line");
+  arm.setAttribute("stroke", "#94a3b8"); arm.setAttribute("stroke-width", "1.5");
+  arm.classList.add(genClass);
+  arm.style.opacity = 0; arm.style.transition = "opacity .2s";
+  parent.appendChild(arm);
+
+  const pencil = document.createElementNS(svgNS, "circle");
+  pencil.setAttribute("r", 5); pencil.setAttribute("fill", "#f59e0b");
+  pencil.setAttribute("stroke", "#fff"); pencil.setAttribute("stroke-width", "1.5");
+  pencil.classList.add(genClass);
+  pencil.style.opacity = 0; pencil.style.transition = "opacity .2s";
+  parent.appendChild(pencil);
+
+  requestAnimationFrame(()=>{ pivot.style.opacity = 1; arm.style.opacity = 1; pencil.style.opacity = 1; });
+
+  const duration = animDuration || 1000;
+  const start = performance.now();
+  function easeInOutQuad(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t) * t; }
+  function frame(now){
+    const raw = Math.min((now - start) / duration, 1);
+    const eased = easeInOutQuad(raw);
+    let pt; try{ pt = path.getPointAtLength(eased * len); } catch(e){ pt = {x:cx,y:cy}; }
+    arm.setAttribute("x1", cx); arm.setAttribute("y1", cy);
+    arm.setAttribute("x2", pt.x); arm.setAttribute("y2", pt.y);
+    pencil.setAttribute("cx", pt.x); pencil.setAttribute("cy", pt.y);
+    if (raw < 1){ requestAnimationFrame(frame); }
+    else {
+      setTimeout(()=>{
+        arm.style.opacity = 0;
+        pencil.style.opacity = 0;
+        pivot.style.opacity = 0.55;
+        if(onDone) onDone();
+      }, 350);
+    }
+  }
+  requestAnimationFrame(frame);
+}
+function revealArcC(el, duration){ revealArc(el, duration); animateCompass(el); }
+
+function el(id){ return document.getElementById(id); }
+
+function drawGroupAction(gid){
+  const g = el(gid);
+  g.style.transition = 'none';
+
+  const compassEls = Array.from(g.querySelectorAll('.compass-arc, .compass-circle'));
+  const plainStrokes = Array.from(g.querySelectorAll('line, path')).filter(p=> !p.classList.contains('compass-arc'));
+  // Only elements the markup already marks opacity:0 are meant to be revealed
+  // later (points, labels, measurements). Elements with no opacity:0 preset
+  // (e.g. a centre dot + its letter label) are meant to appear the instant
+  // the group appears, and must never be touched again.
+  const others = Array.from(g.querySelectorAll('circle, text, rect, polygon'))
+    .filter(o=> !o.classList.contains('compass-circle') && o.style.opacity === '0');
+
+  // Pre-hide every element that will be animated in later -- compass arcs AND
+  // plain lines/paths -- before the group becomes visible. Previously the
+  // group's opacity flipped to 1 first, instantly exposing any child with no
+  // opacity:0/dasharray override in its raw static state (e.g. a radius
+  // line, or arcs after the first in a sequential chain). It then got yanked
+  // invisible and redrawn once its own turn in the sequence arrived -- the
+  // "fade, disappear, fade" glitch.
+  compassEls.forEach(node=>{
+    let len; try{ len = node.getTotalLength(); } catch(e){ len = 200; }
+    node.style.transition = 'none';
+    node.style.strokeDasharray = len;
+    node.style.strokeDashoffset = len;
+  });
+  plainStrokes.forEach(node=>{
+    let len; try{ len = node.getTotalLength(); } catch(e){ len = 300; }
+    node.style.transition = 'none';
+    node.style.strokeDasharray = len;
+    node.style.strokeDashoffset = len;
+    // Markers ignore stroke-dashoffset and render at the path's true
+    // endpoint immediately -- strip them now and stash them so revealArc
+    // can restore them only once the shaft has actually finished drawing.
+    const ms = node.getAttribute('marker-start');
+    const me = node.getAttribute('marker-end');
+    if(ms){ node.dataset.markerStart = ms; node.removeAttribute('marker-start'); }
+    if(me){ node.dataset.markerEnd = me; node.removeAttribute('marker-end'); }
+  });
+
+  g.style.opacity = 1;
+
+  function fadeOthers(){
+    others.forEach(o=>{
+      o.style.transition = 'none'; o.style.opacity = 0; o.getBoundingClientRect();
+      o.style.transition = 'opacity .5s ease-in';
+    });
+    requestAnimationFrame(()=>{ others.forEach(o=> o.style.opacity = 1); });
+  }
+
+  function revealPlainThenOthers(){
+    plainStrokes.forEach(p=> revealArc(p, 850));
+    if(plainStrokes.length > 0){
+      setTimeout(fadeOthers, 850);
+    } else {
+      fadeOthers();
+    }
+  }
+
+  function runCompassChain(i){
+    if(i >= compassEls.length){ revealPlainThenOthers(); return; }
+    const node = compassEls[i];
+    const dur = 1000;
+    revealArc(node, dur);
+    animateCompass(node, ()=> runCompassChain(i+1), dur);
+  }
+
+  if(compassEls.length > 0){
+    runCompassChain(0);
+  } else {
+    revealPlainThenOthers();
+  }
+}
+
+function instantShowElement(node){
+  node.style.transition = 'none';
+  if(node.tagName === 'path' || node.tagName === 'line'){
+    node.style.strokeDasharray = '';
+    node.style.strokeDashoffset = '';
+  } else {
+    node.style.opacity = 1;
+  }
+}
+function instantHideGroup(gid){
+  const g = el(gid);
+  g.style.transition = 'none';
+  g.style.opacity = 0;
+}
+function instantHideElement(node){
+  node.style.transition = 'none';
+  if(node.tagName === 'path' || node.tagName === 'line'){
+    let len; try{ len = node.getTotalLength(); } catch(e){ len = 300; }
+    node.style.strokeDasharray = len;
+    node.style.strokeDashoffset = len;
+  } else {
+    node.style.opacity = 0;
+  }
+}
+
+/* =====================================================================
+   Per-question data
+   ===================================================================== */
+const QUESTIONS = [
+  {
+    title: "Tangent at a Point on a Circle",
+    given: "radius = 3.5 cm, point P on the circle",
+    question: "Draw a circle of radius 3.5 cm. Take a point P on it and draw a tangent to the circle at point P.",
+    svgId: "svgQ1",
+    stepLines: [
+      "Draw a circle with centre O and radius 3.5 cm. Mark a point P on the circle.",
+      "Join OP.",
+      "Produce OP through P to a convenient length. With P as centre and the same convenient radius, draw an arc cutting this line at two points: X between O and P, and Y on OP produced beyond P \u2014 so P is exactly midway between X and Y.",
+      "With X and Y as centres and equal radii (more than half of XY), draw two arcs intersecting at S.",
+      "Join PS and produce it both ways. Since S is equidistant from X and Y, PS \u27c2 OP \u2014 so PS is the required tangent at P."
+    ],
+    groups: ["q1_g1", "q1_g2", "q1_g3", "q1_g4", "q1_g5"],
+    finalNote: "\u2705 The tangent PS is exactly perpendicular to the radius OP at P \u2014 the defining property of a tangent to a circle \u2014 because S was built equidistant from X and Y, which are themselves equidistant from P along OP.",
+    microActions: [
+      [ { ms:2050, fn:()=>drawGroupAction("q1_g1"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q1_g2"), ids:'ALL' } ],
+      [ { ms:2050, fn:()=>drawGroupAction("q1_g3"), ids:'ALL' } ],
+      [ { ms:3400, fn:()=>drawGroupAction("q1_g4"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q1_g5"), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Two Tangents Inclined at 60\u00b0",
+    given: "radius = 3.2 cm, angle between tangents = 60\u00b0",
+    question: "Draw a circle of radius 3.2 cm. Draw two tangents to it inclined at an angle of 60\u00b0 to each other.",
+    svgId: "svgQ2",
+    stepLines: [
+      "Draw a circle with centre O and radius 3.2 cm. Draw a radius OA.",
+      "Since the tangents must be inclined at 60\u00b0, construct \u2220AOB = 180\u00b0 \u2212 60\u00b0 = 120\u00b0 at O: with O as centre and a convenient radius, draw an arc cutting OA at P\u2081; with P\u2081 as centre, the same radius, draw an arc cutting the first arc at P\u2082 (60\u00b0 from A); with P\u2082 as centre, the same radius, draw another arc cutting the first arc at a new point B (120\u00b0 from A \u2014 not the point P\u2081, which stays where it is). Join OB.",
+      "With A as centre and a convenient radius, draw arcs cutting OA produced at M and N, so A is midway between M and N. With M and N as centres and equal radii (more than half MN), draw two arcs intersecting at S. Join AS \u2014 AS \u27c2 OA.",
+      "Similarly, with B as centre and the same convenient radius, draw arcs cutting OB produced at M\u2032 and N\u2032, so B is midway between them. With M\u2032 and N\u2032 as centres and equal radii (more than half M\u2032N\u2032), draw two arcs intersecting at S\u2032. Join BS\u2032 \u2014 BS\u2032 \u27c2 OB. Produce AS and BS\u2032 to meet at the external point P. PA and PB are the required tangents."
+    ],
+    groups: ["q2_g1", "q2_g2", "q2_g3", "q2_g4"],
+    finalNote: "\u2705 \u2220APB = 60\u00b0 exactly, since \u2220AOB = 120\u00b0 by construction and quadrilateral OAPB has right angles at A and B: \u2220APB = 360\u00b0 \u2212 90\u00b0 \u2212 90\u00b0 \u2212 120\u00b0 = 60\u00b0.",
+    microActions: [
+      [ { ms:2050, fn:()=>drawGroupAction("q2_g1"), ids:'ALL' } ],
+      [ { ms:4750, fn:()=>drawGroupAction("q2_g2"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q2_g3"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q2_g4"), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Two Tangents Inclined at 45\u00b0",
+    given: "radius = 3 cm, angle between tangents = 45\u00b0",
+    question: "Draw a circle of radius 3 cm. Draw tangents to this circle so that the angle between them is 45\u00b0.",
+    svgId: "svgQ3",
+    stepLines: [
+      "Draw a circle with centre O and radius 3 cm. Draw radius OA and produce it through O to A\u2032, so AOA\u2032 is a straight line (a diameter).",
+      "With O as centre and a convenient radius, draw one continuous arc starting at K on OA and passing through K\u2032 on OA\u2032, sweeping through the region above line AA\u2032 (this same arc is reused in the next step). With K and K\u2032 as centres and equal radii (more than half KK\u2032), draw two arcs intersecting above AA\u2032 at V; join OV, so \u2220AOV = 90\u00b0.",
+      "The first arc (drawn in the previous step, centred at O) also crosses OV \u2014 mark this crossing point W. With W and K\u2032 as centres and equal radii (more than half WK\u2032), draw two arcs intersecting at X; join OX and produce it to meet the circle at B, so \u2220AOB = 90\u00b0 + 45\u00b0 = 135\u00b0.",
+      "With A as centre and a convenient radius, draw arcs cutting OA produced at M and N, so A is midway between M and N. With M and N as centres and equal radii (more than half MN), draw two arcs intersecting at S. Join AS \u2014 AS \u27c2 OA. Likewise at B, using the same method, draw arcs cutting OB produced at M\u2032 and N\u2032, so B is midway between them; then two more equal radii (more than half M\u2032N\u2032) from M\u2032 and N\u2032 intersecting at S\u2032; join BS\u2032 \u2014 BS\u2032 \u27c2 OB. Produce AS and BS\u2032 to meet at the external point P. PA and PB are the required tangents, inclined at 45\u00b0."
+    ],
+    groups: ["q3_g1", "q3_g2", "q3_g3", "q3_g4"],
+    finalNote: "\u2705 \u2220APB = 45\u00b0 exactly, since \u2220AOB = 90\u00b0 + 45\u00b0 = 135\u00b0 by construction and quadrilateral OAPB has right angles at A and B: \u2220APB = 360\u00b0 \u2212 90\u00b0 \u2212 90\u00b0 \u2212 135\u00b0 = 45\u00b0.",
+    microActions: [
+      [ { ms:2050, fn:()=>drawGroupAction("q3_g1"), ids:'ALL' } ],
+      [ { ms:7450, fn:()=>drawGroupAction("q3_g2"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q3_g3"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q3_g4"), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Tangents from an External Point \u2014 I",
+    given: "radius = 2.5 cm, OP = 6.5 cm",
+    question: "Draw a circle of radius 2.5 cm. Mark a point at a distance of 6.5 cm from the centre of the circle. Draw two tangents to the circle from P and measure the length of each.",
+    svgId: "svgQ4",
+    stepLines: [
+      "Draw a circle with centre O and radius 2.5 cm. Mark a point P such that OP = 6.5 cm.",
+      "Join OP.",
+      "Bisect OP to find its mid-point M: with O and P as centres and equal radii (more than half OP), draw arcs intersecting above and below OP; join the intersections to cut OP at M. With M as centre and radius MO (= MP), draw a circle.",
+      "This circle cuts the given circle at two points, A and B.",
+      "Join PA and PB. Since OA and OB are radii and \u2220OAP, \u2220OBP are angles in a semicircle (hence 90\u00b0), PA \u27c2 OA and PB \u27c2 OB \u2014 so PA and PB are the required tangents. By measurement, PA = PB = 6 cm."
+    ],
+    groups: ["q4_g1", "q4_g2", "q4_g3", "q4_g4", "q4_g5"],
+    finalNote: "\u2705 PA = PB = 6 cm exactly, since PA\u00b2 = OP\u00b2 \u2212 OA\u00b2 = 6.5\u00b2 \u2212 2.5\u00b2 = 36 (Pythagoras in right triangle OAP, right-angled at A because \u2220OAP is an angle in the semicircle on OP).",
+    microActions: [
+      [ { ms:2050, fn:()=>drawGroupAction("q4_g1"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q4_g2"), ids:'ALL' } ],
+      [ { ms:6100, fn:()=>drawGroupAction("q4_g3"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q4_g4"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q4_g5"), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Tangents from an External Point \u2014 II",
+    given: "diameter = 9 cm, OP = 7.5 cm",
+    question: "Draw a circle of diameter 9 cm. Take a point P at a distance of 7.5 cm from the centre of the circle. Draw tangents PA and PB to the circle and measure their length.",
+    svgId: "svgQ5",
+    stepLines: [
+      "Draw a circle with centre O and radius 4.5 cm (since diameter = 9 cm). Mark a point P such that OP = 7.5 cm.",
+      "Join OP.",
+      "Bisect OP to find its mid-point M: with O and P as centres and equal radii (more than half OP), draw arcs intersecting above and below OP; join the intersections to cut OP at M. With M as centre and radius MO (= MP), draw a circle.",
+      "This circle cuts the given circle at two points, A and B.",
+      "Join PA and PB. Since \u2220OAP and \u2220OBP are angles in a semicircle, PA \u27c2 OA and PB \u27c2 OB \u2014 so PA and PB are the required tangents. By measurement, PA = PB = 6 cm."
+    ],
+    groups: ["q5_g1", "q5_g2", "q5_g3", "q5_g4", "q5_g5"],
+    finalNote: "\u2705 PA = PB = 6 cm exactly, since PA\u00b2 = OP\u00b2 \u2212 OA\u00b2 = 7.5\u00b2 \u2212 4.5\u00b2 = 36 (Pythagoras in right triangle OAP, right-angled at A).",
+    microActions: [
+      [ { ms:2050, fn:()=>drawGroupAction("q5_g1"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q5_g2"), ids:'ALL' } ],
+      [ { ms:6100, fn:()=>drawGroupAction("q5_g3"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q5_g4"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q5_g5"), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Tangents Without Using the Centre \u2014 I",
+    given: "radius = 2 cm, P outside the circle",
+    question: "Draw a circle of radius 2 cm. Take a point P outside it. Without using the centre, draw two tangents to the circle from point P.",
+    svgId: "svgQ6",
+    stepLines: [
+      "Draw a circle of radius 2 cm and mark an external point P.",
+      "Through P, draw a secant line cutting the circle at A (nearer to P) and B (farther from P).",
+      "Bisect PB to find its mid-point M: with P and B as centres and equal radii (more than half PB), draw arcs intersecting above and below PB; join the intersections to cut PB at M. With M as centre and radius MP (= MB), draw a full circle on PB as diameter \u2014 only the half above PB will actually be used.",
+      "With A as centre and a convenient radius (smaller than AM), draw arcs cutting PB on both sides of A at X and Y. With X and Y as centres and equal radii (more than half XY), draw two arcs intersecting at S. Join AS and produce it to meet the semicircle at C.",
+      "Join PC. Since \u2220PCB = 90\u00b0 (angle in a semicircle) and CA \u27c2 PB, triangle PCB gives PC\u00b2 = PA \u00d7 PB \u2014 so PC is exactly the length of the tangent from P.",
+      "With P as centre and radius PC, draw an arc cutting the given circle at T\u2081 and T\u2082 \u2014 the points of tangency.",
+      "Join PT\u2081 and PT\u2082. These are the required tangents from P, drawn without ever locating the centre O."
+    ],
+    groups: ["q6_g1", "q6_g2", "q6_g3", "q6_g4", "q6_g5", "q6_g6", "q6_g7"],
+    finalNote: "\u2705 PT\u2081 = PT\u2082 = PC \u2248 4.58 cm. This works for ANY secant through P, because PC\u00b2 = PA\u00b7PB is the power of the point P with respect to the circle \u2014 the same value no matter which chord AB is chosen \u2014 and no step ever referred to the circle's centre O.",
+    microActions: [
+      [ { ms:2050, fn:()=>drawGroupAction("q6_g1"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q6_g2"), ids:'ALL' } ],
+      [ { ms:2050, fn:()=>drawGroupAction("q6_g3"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q6_g4"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q6_g5"), ids:'ALL' } ],
+      [ { ms:2050, fn:()=>drawGroupAction("q6_g6"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q6_g7"), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Tangents Without Using the Centre \u2014 II",
+    given: "radius = 4 cm, centre C, CD = 7 cm",
+    question: "Draw a circle of radius 4 cm. Mark its centre as C and mark a point D such that CD = 7 cm. Using ruler and compass only, but not using the centre, construct two tangents from D.",
+    svgId: "svgQ7",
+    stepLines: [
+      "Draw a circle of radius 4 cm with centre C, and mark a point D with CD = 7 cm (C is only used to draw the circle \u2014 it will not be used again in the construction).",
+      "Through D, draw a secant line cutting the circle at A (nearer to D) and B (farther from D).",
+      "Bisect DB to find its mid-point M: with D and B as centres and equal radii (more than half DB), draw arcs intersecting above and below DB; join the intersections to cut DB at M. With M as centre and radius MB, draw a full circle on DB as diameter \u2014 only the half above DB will actually be used.",
+      "With A as centre and a convenient radius, draw arcs cutting DB on both sides of A at X and Y. With X and Y as centres and equal radii (more than half XY), draw two arcs intersecting at S. Join AS and produce it to meet the semicircle at E.",
+      "Join DE. Since \u2220DEB = 90\u00b0 (angle in a semicircle) and EA \u27c2 DB, triangle DEB gives DE\u00b2 = DA \u00d7 DB \u2014 so DE is exactly the length of the tangent from D.",
+      "With D as centre and radius DE, draw an arc cutting the given circle at T\u2081 and T\u2082 \u2014 the points of tangency.",
+      "Join DT\u2081 and DT\u2082. These are the required tangents from D, constructed entirely without locating the centre C."
+    ],
+    groups: ["q7_g1", "q7_g2", "q7_g3", "q7_g4", "q7_g5", "q7_g6", "q7_g7"],
+    finalNote: "\u2705 DT\u2081 = DT\u2082 = DE \u2248 5.74 cm, found purely from the secant DAB using the power-of-a-point relation DE\u00b2 = DA\u00b7DB \u2014 the centre C was used only to draw the circle itself, never again in the construction.",
+    microActions: [
+      [ { ms:2050, fn:()=>drawGroupAction("q7_g1"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q7_g2"), ids:'ALL' } ],
+      [ { ms:2050, fn:()=>drawGroupAction("q7_g3"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q7_g4"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q7_g5"), ids:'ALL' } ],
+      [ { ms:2050, fn:()=>drawGroupAction("q7_g6"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q7_g7"), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Circumcircle of a Triangle (SAS, 120\u00b0)",
+    given: "PQ = 5 cm, QR = 6.5 cm, \u2220PQR = 120\u00b0",
+    question: "Construct a triangle PQR, given PQ = 5 cm, QR = 6.5 cm, \u2220PQR = 120\u00b0. Construct a circumcircle of \u2206PQR.",
+    svgId: "svgQ8",
+    stepLines: [
+      "Draw QR = 6.5 cm.",
+      "At Q, construct \u2220RQX = 120\u00b0: with Q as centre and a convenient radius, draw an arc cutting QR at a point, P\u2081; with P\u2081 as centre, the same radius, draw an arc cutting the first arc at P\u2082 (60\u00b0 from QR); with P\u2082 as centre, the same radius, draw another arc cutting the first arc at a new point X (120\u00b0 from QR \u2014 not P\u2081). Join QX.",
+      "With Q as centre and radius 5 cm, draw an arc cutting QX at P.",
+      "Join QP and PR. Triangle PQR is now complete, with PQ = 5 cm, QR = 6.5 cm and \u2220PQR = 120\u00b0.",
+      "Draw the perpendicular bisector of QR: with Q and R as centres and equal radii (more than half QR), draw arcs intersecting above and below QR at U and V; join UV.",
+      "Draw the perpendicular bisector of PQ the same way. It meets the first bisector at O \u2014 the circumcentre, equidistant from P, Q and R.",
+      "With O as centre and radius OQ (= OP = OR), draw the circumcircle of triangle PQR."
+    ],
+    groups: ["q8_g1", "q8_g2", "q8_g3", "q8_g4", "q8_g5", "q8_g6", "q8_g7"],
+    finalNote: "\u2705 O is equidistant from all three vertices because it lies on the perpendicular bisector of both QR and PQ \u2014 every point on a segment's perpendicular bisector is equidistant from that segment's endpoints. So OQ = OR (from bisector 1) and OP = OQ (from bisector 2), giving OP = OQ = OR, the circumradius.",
+    microActions: [
+      [ { ms:1500, fn:()=>drawGroupAction("q8_g1"), ids:'ALL' } ],
+      [ { ms:4750, fn:()=>drawGroupAction("q8_g2"), ids:'ALL' } ],
+      [ { ms:2050, fn:()=>drawGroupAction("q8_g3"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q8_g4"), ids:'ALL' } ],
+      [ { ms:6100, fn:()=>drawGroupAction("q8_g5"), ids:'ALL' } ],
+      [ { ms:6100, fn:()=>drawGroupAction("q8_g6"), ids:'ALL' } ],
+      [ { ms:2050, fn:()=>drawGroupAction("q8_g7"), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Circumcircle of a Triangle (via Altitude)",
+    given: "BC = 6 cm, \u2220ABC = 45\u00b0, altitude from A to BC = 3.5 cm",
+    question: "Construct triangle ABC, BC = 6 cm, \u2220ABC = 45\u00b0 and perpendicular from A to BC is 3.5 cm. Construct a circumcircle of the triangle.",
+    svgId: "svgQ9",
+    stepLines: [
+      "Draw BC = 6 cm.",
+      "Produce CB through B to a convenient length. With B as centre and a convenient radius, draw an arc cutting this line on both sides of B, at M (toward C) and N (on the part produced beyond B) \u2014 so B is exactly midway between M and N.",
+      "With M and N as centres and equal radii (more than half MN), draw two arcs intersecting at S. Join BS \u2014 BS is exactly perpendicular to BC, so \u2220SBC = 90\u00b0.",
+      "Bisect \u2220SBC (the right angle just constructed, between BC and BS): with B as centre and a convenient radius, draw an arc cutting BC and BS at two points; with those two points as centres and equal radii (more than half the distance between them), draw two arcs intersecting at a point; join B to it \u2014 this ray is at 45\u00b0 to BC, because \u2220ABC = 45\u00b0 is where A must lie.",
+      "On ray BS, measure 3.5 cm from B to mark point H \u2014 this is the required altitude. Through H, construct a line parallel to BC by drawing a perpendicular to BH at H: with H as centre and a convenient radius, draw an arc cutting BH on both sides of H; with those two points as centres and equal radii (more than half the distance between them), draw two arcs intersecting on either side of BH; join these two intersections to draw the line through H \u2014 since this new line is perpendicular to BH, and BH is itself perpendicular to BC, the new line is parallel to BC.",
+      "The point where the 45\u00b0 ray meets this parallel line is A. Join AB and AC. Triangle ABC is complete.",
+      "Draw the perpendicular bisector of BC: with B and C as centres and equal radii (more than half BC), draw arcs intersecting above and below BC at U and V; join UV.",
+      "Draw the perpendicular bisector of AB the same way. It meets the first bisector at O, the circumcentre.",
+      "With O as centre and radius OB (= OA = OC), draw the circumcircle of triangle ABC."
+    ],
+    groups: ["q9_g1", "q9_g2", "q9_g3", "q9_g4", "q9_g5", "q9_g6", "q9_g7", "q9_g8", "q9_g9"],
+    finalNote: "\u2705 \u2220ABC = 45\u00b0 exactly, because the 90\u00b0 ray BS was built by the standard equal-arc perpendicular construction at B (M and N equidistant from B, S equidistant from M and N), and bisecting BC-to-90\u00b0 halves it to 45\u00b0. A sits exactly 3.5 cm up (the parallel-line height), and O \u2014 equidistant from B,C and from A,B \u2014 gives the true circumradius OB = OA = OC.",
+    microActions: [
+      [ { ms:1500, fn:()=>drawGroupAction("q9_g1"), ids:'ALL' } ],
+      [ { ms:3400, fn:()=>drawGroupAction("q9_g2"), ids:'ALL' } ],
+      [ { ms:4750, fn:()=>drawGroupAction("q9_g3"), ids:'ALL' } ],
+      [ { ms:4750, fn:()=>drawGroupAction("q9_g4"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q9_g5"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q9_g6"), ids:'ALL' } ],
+      [ { ms:6100, fn:()=>drawGroupAction("q9_g7"), ids:'ALL' } ],
+      [ { ms:6100, fn:()=>drawGroupAction("q9_g8"), ids:'ALL' } ],
+      [ { ms:2050, fn:()=>drawGroupAction("q9_g9"), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Incircle of a Triangle (SAS, 60\u00b0)",
+    given: "PQ = 5 cm, QR = 7 cm, \u2220PQR = 60\u00b0",
+    question: "Construct \u2206PQR, given PQ = 5 cm, QR = 7 cm, \u2220PQR = 60\u00b0. Inscribe a circle in the triangle.",
+    svgId: "svgQ10",
+    stepLines: [
+      "Draw QR = 7 cm.",
+      "At Q, construct \u2220RQX = 60\u00b0: with Q as centre and a convenient radius, draw an arc cutting QR at a point, P\u2081; with P\u2081 as centre, the same radius, draw an arc cutting the first arc at a new point. Join Q to this new point \u2014 that ray is QX, the required 60\u00b0 ray.",
+      "With Q as centre and radius 5 cm, draw an arc cutting QX at P.",
+      "Join QP and PR. Triangle PQR is complete.",
+      "Bisect \u2220Q: with Q as centre and a convenient radius, draw an arc cutting QR and QP at two points; with those two points as centres and equal radii (more than half the distance between them), draw two arcs meeting at a point \u2014 join Q to it.",
+      "Bisect \u2220R the same way. It meets the first bisector at I \u2014 the incentre, equidistant from all three sides.",
+      "From I, drop a perpendicular to QR: with I as centre, draw an arc cutting QR at two points; with those two points as centres and equal radii (more than half the distance between them), draw two arcs intersecting on the side of QR away from I; join I to that intersection, cutting QR at D. ID is the inradius.",
+      "With I as centre and radius ID, draw the incircle \u2014 it touches all three sides of the triangle."
+    ],
+    groups: ["q10_g1", "q10_g2", "q10_g3", "q10_g4", "q10_g5", "q10_g6", "q10_g7", "q10_g8"],
+    finalNote: "\u2705 I is equidistant from all three sides because it lies on the bisector of \u2220Q (equidistant from QR and QP) and the bisector of \u2220R (equidistant from QR and RP) \u2014 so I is equidistant from QP, QR and RP alike, and ID (the perpendicular distance to QR) is that common distance, the true inradius.",
+    microActions: [
+      [ { ms:1500, fn:()=>drawGroupAction("q10_g1"), ids:'ALL' } ],
+      [ { ms:3400, fn:()=>drawGroupAction("q10_g2"), ids:'ALL' } ],
+      [ { ms:2050, fn:()=>drawGroupAction("q10_g3"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q10_g4"), ids:'ALL' } ],
+      [ { ms:4750, fn:()=>drawGroupAction("q10_g5"), ids:'ALL' } ],
+      [ { ms:4750, fn:()=>drawGroupAction("q10_g6"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q10_g7"), ids:'ALL' } ],
+      [ { ms:2050, fn:()=>drawGroupAction("q10_g8"), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Incircle of a Triangle (via Altitude)",
+    given: "QR = 5 cm, \u2220PQR = 60\u00b0, altitude from P to QR = 3 cm",
+    question: "Construct \u2206PQR, QR = 5 cm, \u2220PQR = 60\u00b0 and the perpendicular from P to QR is 3 cm. Draw an incircle of \u2206PQR.",
+    svgId: "svgQ11",
+    stepLines: [
+      "Draw QR = 5 cm.",
+      "At Q, construct \u2220RQX = 60\u00b0: with Q as centre and a convenient radius, draw an arc cutting QR at a point, P\u2081; with P\u2081 as centre, the same radius, draw an arc cutting the first arc at a new point. Join Q to this new point \u2014 that ray is QX, the required 60\u00b0 ray.",
+      "Construct a perpendicular to QR at Q: produce RQ through Q to a convenient length; with Q as centre and a convenient radius, draw an arc cutting this line on both sides of Q; with those two points as centres and equal radii (more than half the distance between them), draw two arcs intersecting at a point; join Q to it \u2014 call this ray QH, perpendicular to QR. Measure 3 cm from Q along QH to mark point H \u2014 the required altitude. Through H, construct a line parallel to QR by drawing a perpendicular to QH at H: with H as centre and a convenient radius, draw an arc cutting QH on both sides of H; with those two points as centres and equal radii (more than half the distance between them), draw two arcs intersecting on either side of QH; join these two intersections to draw the line through H \u2014 since this line is perpendicular to QH, and QH is perpendicular to QR, the new line is parallel to QR. Where this parallel line meets QX is P.",
+      "Join PR. Triangle PQR is complete, with QR = 5 cm, \u2220PQR = 60\u00b0 and the altitude from P equal to 3 cm.",
+      "Bisect \u2220Q: with Q as centre and a convenient radius, draw an arc cutting QR and QP at two points; with those two points as centres and equal radii (more than half the distance between them), draw two arcs meeting at a point \u2014 join Q to it.",
+      "Bisect \u2220R the same way. It meets the first bisector at I, the incentre.",
+      "From I, drop a perpendicular to QR: with I as centre, draw an arc cutting QR at two points; with those two points as centres and equal radii (more than half the distance between them), draw two arcs intersecting on the side of QR away from I; join I to that intersection, cutting QR at D. ID is the inradius.",
+      "With I as centre and radius ID, draw the incircle."
+    ],
+    groups: ["q11_g1", "q11_g2", "q11_g3", "q11_g4", "q11_g5", "q11_g6", "q11_g7", "q11_g8"],
+    finalNote: "\u2705 Since I lies on the bisectors of both \u2220Q and \u2220R, it is equidistant from all three sides QP, QR and RP \u2014 that common distance is ID, so the circle centred at I with radius ID touches every side exactly once.",
+    microActions: [
+      [ { ms:1500, fn:()=>drawGroupAction("q11_g1"), ids:'ALL' } ],
+      [ { ms:3400, fn:()=>drawGroupAction("q11_g2"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q11_g3"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q11_g4"), ids:'ALL' } ],
+      [ { ms:4750, fn:()=>drawGroupAction("q11_g5"), ids:'ALL' } ],
+      [ { ms:4750, fn:()=>drawGroupAction("q11_g6"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q11_g7"), ids:'ALL' } ],
+      [ { ms:2050, fn:()=>drawGroupAction("q11_g8"), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Regular Hexagon (side 4 cm) \u2014 Circumscribing Circle",
+    given: "side = 4 cm",
+    question: "Construct a regular hexagon of side 4 cm. Construct a circle circumscribing the hexagon.",
+    svgId: "svgQ12",
+    stepLines: [
+      "Draw AB = 4 cm.",
+      "At A, construct \u2220FAB = 120\u00b0: with A as centre and a convenient radius, draw one continuous arc from a point on AB across to a point on the far side (this same arc will be reused for the next step); with the point on AB as centre, the same radius, draw an arc cutting the first arc at a point 60\u00b0 from AB; with that new point as centre, the same radius, draw another arc cutting the first arc at a further point, 120\u00b0 from AB \u2014 join A to this final point to get ray AF. Open the compass to the same width as AB (place the point on A, the pencil on B); with A as centre, draw an arc cutting ray AF at F, so AF = 4 cm. Similarly at B, construct \u2220ABC = 120\u00b0 the same way (three arcs from ray BA) to get ray BC, and cut off BC = 4 cm on it with the same compass width as AB.",
+      "At F, construct \u2220EFA = 120\u00b0 the same way as at A and B (three arcs from ray FA) to get ray FE; open the compass to the same width as AB and, with F as centre, cut an arc on ray FE to mark E, so EF = 4 cm. Similarly at C, construct \u2220BCD = 120\u00b0 the same way (three arcs from ray CB) to get ray CD, and cut off CD = 4 cm on it with the same compass width.",
+      "Join ED. Hence ABCDEF is the required regular hexagon \u2014 ED closes the figure automatically, without needing its own measurement.",
+      "Join the diagonals AD and BE. They intersect at O, the centre of the hexagon.",
+      "With O as centre and radius OA (= OB = OC = OD = OE = OF), draw the circle circumscribing the hexagon."
+    ],
+    groups: ["q12_g1", "q12_g2", "q12_g3", "q12_g4", "q12_g5", "q12_g6"],
+    finalNote: "\u2705 Every side was set off at exactly 4 cm and every angle at exactly 120\u00b0, so ABCDEF is genuinely regular \u2014 which is exactly why its diagonals AD and BE meet at a single common centre O equidistant from all six vertices.",
+    microActions: [
+      [ { ms:1500, fn:()=>drawGroupAction("q12_g1"), ids:'ALL' } ],
+      [ { ms:8800, fn:()=>drawGroupAction("q12_g2"), ids:'ALL' } ],
+      [ { ms:8800, fn:()=>drawGroupAction("q12_g3"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q12_g4"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q12_g5"), ids:'ALL' } ],
+      [ { ms:2050, fn:()=>drawGroupAction("q12_g6"), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Regular Hexagon (side 3.5 cm) \u2014 Circumscribing Circle",
+    given: "side = 3.5 cm",
+    question: "Construct a regular hexagon of side 3.5 cm. Construct a circle circumscribing the hexagon.",
+    svgId: "svgQ13",
+    stepLines: [
+      "Draw AB = 3.5 cm.",
+      "At A, construct \u2220FAB = 120\u00b0: with A as centre and a convenient radius, draw one continuous arc from a point on AB across to a point on the far side (this same arc will be reused for the next step); with the point on AB as centre, the same radius, draw an arc cutting the first arc at a point 60\u00b0 from AB; with that new point as centre, the same radius, draw another arc cutting the first arc at a further point, 120\u00b0 from AB \u2014 join A to this final point to get ray AF. Open the compass to the same width as AB (place the point on A, the pencil on B); with A as centre, draw an arc cutting ray AF at F, so AF = 3.5 cm. Similarly at B, construct \u2220ABC = 120\u00b0 the same way (three arcs from ray BA) to get ray BC, and cut off BC = 3.5 cm on it with the same compass width as AB.",
+      "At F, construct \u2220EFA = 120\u00b0 the same way as at A and B (three arcs from ray FA) to get ray FE; open the compass to the same width as AB and, with F as centre, cut an arc on ray FE to mark E, so EF = 3.5 cm. Similarly at C, construct \u2220BCD = 120\u00b0 the same way (three arcs from ray CB) to get ray CD, and cut off CD = 3.5 cm on it with the same compass width.",
+      "Join ED. Hence ABCDEF is the required regular hexagon \u2014 ED closes the figure automatically, without needing its own measurement.",
+      "Join the diagonals AD and BE. They intersect at O, the centre of the hexagon.",
+      "With O as centre and radius OA (= OB = OC = OD = OE = OF), draw the circle circumscribing the hexagon."
+    ],
+    groups: ["q13_g1", "q13_g2", "q13_g3", "q13_g4", "q13_g5", "q13_g6"],
+    finalNote: "\u2705 Every side was set off at exactly 3.5 cm and every angle at exactly 120\u00b0, so ABCDEF is genuinely regular \u2014 which is exactly why its diagonals AD and BE meet at a single common centre O equidistant from all six vertices.",
+    microActions: [
+      [ { ms:1500, fn:()=>drawGroupAction("q13_g1"), ids:'ALL' } ],
+      [ { ms:8800, fn:()=>drawGroupAction("q13_g2"), ids:'ALL' } ],
+      [ { ms:8800, fn:()=>drawGroupAction("q13_g3"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q13_g4"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q13_g5"), ids:'ALL' } ],
+      [ { ms:2050, fn:()=>drawGroupAction("q13_g6"), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Regular Hexagon (side 3 cm) \u2014 Inscribed Circle",
+    given: "side = 3 cm",
+    question: "Construct a regular hexagon of side 3 cm. Inscribe a circle in it.",
+    svgId: "svgQ14",
+    stepLines: [
+      "Draw AB = 3 cm.",
+      "At A, construct \u2220FAB = 120\u00b0: with A as centre and a convenient radius, draw one continuous arc from a point on AB across to a point on the far side (this same arc will be reused for the next step); with the point on AB as centre, the same radius, draw an arc cutting the first arc at a point 60\u00b0 from AB; with that new point as centre, the same radius, draw another arc cutting the first arc at a further point, 120\u00b0 from AB \u2014 join A to this final point to get ray AF. Open the compass to the same width as AB (place the point on A, the pencil on B); with A as centre, draw an arc cutting ray AF at F, so AF = 3 cm. Similarly at B, construct \u2220ABC = 120\u00b0 the same way (three arcs from ray BA) to get ray BC, and cut off BC = 3 cm on it with the same compass width as AB.",
+      "At F, construct \u2220EFA = 120\u00b0 the same way as at A and B (three arcs from ray FA) to get ray FE; open the compass to the same width as AB and, with F as centre, cut an arc on ray FE to mark E, so EF = 3 cm. Similarly at C, construct \u2220BCD = 120\u00b0 the same way (three arcs from ray CB) to get ray CD, and cut off CD = 3 cm on it with the same compass width.",
+      "Join ED. ABCDEF is the required regular hexagon.",
+      "Join the diagonals AD and BE. They intersect at O, the centre of the hexagon.",
+      "From O, drop a perpendicular to side AB: with O as centre, draw an arc cutting AB at two points; with those two points as centres and equal radii (more than half the distance between them), draw two arcs intersecting on the side of AB away from O; join O to that intersection, cutting AB at M. OM is the apothem \u2014 the distance from the centre to the middle of a side.",
+      "With O as centre and radius OM, draw the circle inscribed in the hexagon \u2014 it touches the middle of every side."
+    ],
+    groups: ["q14_g1", "q14_g2", "q14_g3", "q14_g4", "q14_g5", "q14_g6", "q14_g7"],
+    finalNote: "\u2705 By the hexagon's symmetry, the perpendicular distance from O to every side is identical to OM \u2014 so a single circle of radius OM, centred at O, touches all six sides at once, which is exactly what 'inscribed' requires.",
+    microActions: [
+      [ { ms:1500, fn:()=>drawGroupAction("q14_g1"), ids:'ALL' } ],
+      [ { ms:8800, fn:()=>drawGroupAction("q14_g2"), ids:'ALL' } ],
+      [ { ms:8800, fn:()=>drawGroupAction("q14_g3"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q14_g4"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q14_g5"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q14_g6"), ids:'ALL' } ],
+      [ { ms:2050, fn:()=>drawGroupAction("q14_g7"), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Regular Hexagon (side 2.4 cm) \u2014 Inscribed Circle",
+    given: "side = 2.4 cm",
+    question: "Construct a regular hexagon of side 2.4 cm. Inscribe a circle in it.",
+    svgId: "svgQ15",
+    stepLines: [
+      "Draw AB = 2.4 cm.",
+      "At A, construct \u2220FAB = 120\u00b0: with A as centre and a convenient radius, draw one continuous arc from a point on AB across to a point on the far side (this same arc will be reused for the next step); with the point on AB as centre, the same radius, draw an arc cutting the first arc at a point 60\u00b0 from AB; with that new point as centre, the same radius, draw another arc cutting the first arc at a further point, 120\u00b0 from AB \u2014 join A to this final point to get ray AF. Open the compass to the same width as AB (place the point on A, the pencil on B); with A as centre, draw an arc cutting ray AF at F, so AF = 2.4 cm. Similarly at B, construct \u2220ABC = 120\u00b0 the same way (three arcs from ray BA) to get ray BC, and cut off BC = 2.4 cm on it with the same compass width as AB.",
+      "At F, construct \u2220EFA = 120\u00b0 the same way as at A and B (three arcs from ray FA) to get ray FE; open the compass to the same width as AB and, with F as centre, cut an arc on ray FE to mark E, so EF = 2.4 cm. Similarly at C, construct \u2220BCD = 120\u00b0 the same way (three arcs from ray CB) to get ray CD, and cut off CD = 2.4 cm on it with the same compass width.",
+      "Join ED. ABCDEF is the required regular hexagon.",
+      "Join the diagonals AD and BE. They intersect at O, the centre of the hexagon.",
+      "From O, drop a perpendicular to side AB: with O as centre, draw an arc cutting AB at two points; with those two points as centres and equal radii (more than half the distance between them), draw two arcs intersecting on the side of AB away from O; join O to that intersection, cutting AB at M. OM is the apothem \u2014 the distance from the centre to the middle of a side.",
+      "With O as centre and radius OM, draw the circle inscribed in the hexagon \u2014 it touches the middle of every side."
+    ],
+    groups: ["q15_g1", "q15_g2", "q15_g3", "q15_g4", "q15_g5", "q15_g6", "q15_g7"],
+    finalNote: "\u2705 By the hexagon's symmetry, the perpendicular distance from O to every side is identical to OM \u2014 so a single circle of radius OM, centred at O, touches all six sides at once, which is exactly what 'inscribed' requires.",
+    microActions: [
+      [ { ms:1500, fn:()=>drawGroupAction("q15_g1"), ids:'ALL' } ],
+      [ { ms:8800, fn:()=>drawGroupAction("q15_g2"), ids:'ALL' } ],
+      [ { ms:8800, fn:()=>drawGroupAction("q15_g3"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q15_g4"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q15_g5"), ids:'ALL' } ],
+      [ { ms:1500, fn:()=>drawGroupAction("q15_g6"), ids:'ALL' } ],
+      [ { ms:2050, fn:()=>drawGroupAction("q15_g7"), ids:'ALL' } ]
+    ]
+  }
+];
+
+/* ---------- engine state ---------- */
+let currentQ = 0;
+let flatMicro = [];
+let microPos = -1;
+let animating = false;
+
+function buildFlat(q){
+  const flat = [];
+  q.microActions.forEach((arr, mainIdx)=>{
+    arr.forEach(a => flat.push({ mainIdx, ms:a.ms, fn:a.fn, ids:a.ids }));
+  });
+  return flat;
+}
+
+function lockControls(ms){
+  animating = true;
+  el("nextBtn").disabled = true;
+  el("prevBtn").disabled = true;
+  el("qPicker").disabled = true;
+  document.querySelectorAll('.dot').forEach(d=> d.style.pointerEvents = 'none');
+  setTimeout(()=>{
+    animating = false;
+    el("prevBtn").disabled = microPos <= 0;
+    el("nextBtn").disabled = microPos >= flatMicro.length - 1;
+    el("qPicker").disabled = false;
+    document.querySelectorAll('.dot').forEach(d=> d.style.pointerEvents = 'auto');
+  }, ms);
+}
+
+function updateUI(textChanged){
+  const q = QUESTIONS[currentQ];
+  const mi = flatMicro[microPos].mainIdx;
+
+  if(textChanged){
+    const wrap = el("stepTextWrap");
+    wrap.classList.add("fading");
+    setTimeout(()=>{
+      el("stepTextNum").textContent = (mi+1) + ".";
+      el("stepTextBody").textContent = q.stepLines[mi];
+      wrap.classList.remove("fading");
+    }, 220);
+  }
+
+  const isFinal = microPos === flatMicro.length - 1;
+  const finalNote = el("finalNote");
+  finalNote.style.display = isFinal ? "block" : "none";
+  finalNote.textContent = q.finalNote;
+
+  const prog = el("progress");
+  prog.innerHTML = "";
+  q.stepLines.forEach((s,i)=>{
+    const d = document.createElement("div");
+    d.className = "dot" + (i === mi ? " active" : "");
+    d.onclick = ()=>{ if(animating) return; jumpToMainStep(i); };
+    prog.appendChild(d);
+  });
+
+  el("prevBtn").disabled = microPos <= 0;
+  el("nextBtn").disabled = microPos >= flatMicro.length - 1;
+}
+
+function goForward(){
+  if(animating) return;
+  if(microPos >= flatMicro.length - 1) return;
+  const prevMain = microPos >= 0 ? flatMicro[microPos].mainIdx : -1;
+  microPos++;
+  const cur = flatMicro[microPos];
+  cur.fn();
+  updateUI(cur.mainIdx !== prevMain);
+  lockControls(cur.ms || 700);
+}
+
+function applyStateInstant(targetPos){
+  const q = QUESTIONS[currentQ];
+  q.groups.forEach(gid=> instantHideGroup(gid));
+  document.querySelectorAll('[class*="gen-"]').forEach(n=> n.remove());
+
+  const neededGroups = new Set();
+  for(let i = 0; i <= targetPos; i++) neededGroups.add(q.groups[flatMicro[i].mainIdx]);
+
+  neededGroups.forEach(gid=>{
+    const g = el(gid);
+    g.style.transition = 'none';
+    g.style.opacity = 1;
+    g.querySelectorAll('path, line, circle, text, rect, polygon, g').forEach(n=>{
+      n.style.transition = 'none';
+      if(n.tagName === 'path' || n.tagName === 'line'){
+        let len; try{ len = n.getTotalLength(); } catch(e){ len = 300; }
+        n.style.strokeDasharray = len;
+        n.style.strokeDashoffset = len;
+      } else {
+        n.style.opacity = 0;
+      }
+    });
+  });
+
+  for(let i = 0; i <= targetPos; i++){
+    const action = flatMicro[i];
+    if(action.ids === 'ALL'){
+      const gid = q.groups[action.mainIdx];
+      el(gid).querySelectorAll('path, line, circle, text, rect, polygon').forEach(n=> instantShowElement(n));
+    } else {
+      (action.ids || []).forEach(id=>{
+        const hide = id.charAt(0) === '-';
+        const n = el(hide ? id.slice(1) : id);
+        if(n) (hide ? instantHideElement : instantShowElement)(n);
+      });
+    }
+  }
+  microPos = targetPos;
+}
+
+function goBack(){
+  if(animating) return;
+  if(microPos <= 0) return;
+  const prevMain = flatMicro[microPos].mainIdx;
+  applyStateInstant(microPos - 1);
+  const newMain = flatMicro[microPos].mainIdx;
+  updateUI(newMain !== prevMain);
+  lockControls(300);
+}
+
+function jumpToMainStep(targetMainIdx){
+  if(animating) return;
+  let pos = -1;
+  flatMicro.forEach((m,i)=>{ if(m.mainIdx === targetMainIdx) pos = i; });
+  if(pos === -1) return;
+  applyStateInstant(pos);
+  updateUI(true);
+  lockControls(300);
+}
+
+function renderInitial(){
+  const q = QUESTIONS[currentQ];
+  el("stepTextNum").textContent = "1.";
+  el("stepTextBody").textContent = q.stepLines[0];
+  el("finalNote").style.display = "none";
+
+  const prog = el("progress");
+  prog.innerHTML = "";
+  q.stepLines.forEach((s,i)=>{
+    const d = document.createElement("div");
+    d.className = "dot";
+    d.onclick = ()=>{ if(animating) return; jumpToMainStep(i); };
+    prog.appendChild(d);
+  });
+
+  el("prevBtn").disabled = true;
+  el("nextBtn").disabled = false;
+}
+
+function initQuestion(qi){
+  currentQ = qi;
+  flatMicro = buildFlat(QUESTIONS[qi]);
+  QUESTIONS[qi].groups.forEach(gid=> instantHideGroup(gid));
+  microPos = -1;
+  el("qFullText").textContent = QUESTIONS[qi].question;
+  renderInitial();
+}
+
+el("nextBtn").onclick = goForward;
+el("prevBtn").onclick = goBack;
+
+el("qPicker").onchange = (e)=>{
+  if(animating) return;
+  el(QUESTIONS[currentQ].svgId).style.display = 'none';
+  const qi = parseInt(e.target.value, 10);
+  el("qFullText").textContent = QUESTIONS[qi].question;
+  el(QUESTIONS[qi].svgId).style.display = 'block';
+  initQuestion(qi);
+};
+
+initQuestion(0);
+</script>
+
+</body>
+</html>

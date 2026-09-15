@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arithmetic Progressions — ICSE Class 10 | Maths Bridge Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F0E8;--bg2:#EDE8DC;--bg3:#E4DDD0;
+  --green:#2D5A3D;--green2:#3D7A55;--green3:#1A3D28;
+  --gold:#C9A84C;--gold2:#E8C56A;--gold3:#A07830;
+  --slate:#1A3050;--blue:#2563A8;--cbblue:#0D2B4E;
+  --purple:#7B5EA7;
+  --amber:#7A5C00;--amberbg:#FFF8DC;
+  --text:#000;--text2:#1a1a1a;--text3:#555;
+  --white:#fff;--card:#FFFDF8;--border:#D4C9B0;
+  --fbg:#EEF5F0;--hbg:#FFF8E6;
+}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--bg);color:var(--text);font-size:20px;line-height:1.75}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px 80px}
+
+/* ---------- overflow safety (locked, per spec) ---------- */
+.k, .formula-text, .qtxt, .sol-body, .given-row{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:3px 0}
+
+/* HEADER */
+.site-header{background:var(--green3);border-bottom:3px solid var(--gold)}
+.header-inner{display:flex;align-items:center;gap:16px;padding:12px 24px;max-width:960px;margin:0 auto}
+.logo-mark{width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--green3);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;font-size:16px;flex-shrink:0}
+.ht-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--white);line-height:1.1}
+.ht-tag{font-size:11px;color:var(--gold2);letter-spacing:.05em;margin-top:2px}
+.hr-right{margin-left:auto;text-align:right}
+.hr-board{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.hr-ch{font-family:'Playfair Display',serif;font-size:15px;color:var(--white);font-weight:700}
+
+/* HERO */
+.hero{background:var(--green);padding:22px 28px;border-radius:0 0 8px 8px;margin-bottom:22px;position:relative;overflow:hidden}
+.h-lbl{font-size:10px;font-weight:700;color:var(--gold2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.h-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:800;color:var(--white);line-height:1.1;margin-bottom:5px}
+.h-sub{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:16px}
+.h-pills{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.h-pill{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);color:var(--white);font-size:11px;font-weight:600;padding:3px 12px;border-radius:20px;font-family:'JetBrains Mono',monospace}
+
+/* TABS */
+.tabs{display:flex;gap:5px;flex-wrap:wrap;background:var(--bg2);padding:7px;border-radius:6px;border:1px solid var(--border);margin-bottom:20px}
+.tab-btn{flex:1;min-width:100px;padding:9px 8px;font-size:15px;font-weight:700;border:2px solid transparent;cursor:pointer;border-radius:5px;transition:all .16s;font-family:'Crimson Pro',serif;background:transparent;color:var(--text3)}
+.tab-btn:not(.active):hover{background:var(--bg3);color:var(--text)}
+.tb-concepts.active{background:var(--green);color:var(--white);border-color:var(--green)}
+.tb-board.active{background:var(--gold3);color:var(--white);border-color:var(--gold3)}
+.tb-practice.active{background:var(--slate);color:var(--white);border-color:var(--slate)}
+
+/* DIFFICULTY FILTER */
+.diff-filter{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.df-btn{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:6px 15px;border-radius:20px;border:2px solid var(--border);background:var(--card);color:var(--text3);cursor:pointer;transition:all .15s;letter-spacing:.02em}
+.df-btn:hover{border-color:var(--green2)}
+.df-btn.active[data-f="all"]{background:var(--green3);border-color:var(--green3);color:var(--white)}
+.df-btn.active[data-f="e"]{background:#DFF5E3;border-color:#1A5C2A;color:#1A5C2A}
+.df-btn.active[data-f="m"]{background:#FFF3CC;border-color:#7A5500;color:#7A5500}
+.df-btn.active[data-f="h"]{background:#FFE5E5;border-color:#8B1A1A;color:#8B1A1A}
+.df-count{font-size:12px;color:var(--text3);align-self:center;margin-left:2px;font-family:'JetBrains Mono',monospace}
+
+/* SECTION HEAD */
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.sec-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0;font-family:'JetBrains Mono',monospace;color:var(--white)}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--green)}
+.sec-badge{margin-left:auto;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+
+/* FORMULA / HIGHLIGHT / THEOREM BOXES (used in Concepts tab) */
+.fbox{background:var(--fbg);border-left:4px solid var(--green);border-radius:0 5px 5px 0;padding:13px 16px;margin:10px 0;position:relative}
+.fbox .fl{font-size:10px;font-weight:700;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.fbox .fm{font-size:19px;font-weight:600;color:var(--green3);line-height:1.9}
+.fbox .fn{font-size:15px;color:var(--text2);margin-top:5px;line-height:1.6}
+.hbox{background:var(--hbg);border-left:4px solid var(--gold);border-radius:0 5px 5px 0;padding:11px 15px;margin:10px 0}
+.hbox .hl{font-size:10px;font-weight:700;color:var(--gold3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.hbox .ht{font-size:16px;color:var(--text2);line-height:1.7}
+.tbox{background:var(--card);border:1px solid var(--green);border-radius:6px;padding:15px 18px;margin:12px 0}
+.mba-note{font-size:13px;font-weight:700;color:#8B1A1A;background:#FFF3F0;border-left:3px solid #C94040;padding:5px 11px;border-radius:0 6px 6px 0;margin:6px 0 10px}
+.mba-note b{color:#6B1414}
+.src-note{font-size:13px;font-weight:700;color:var(--amber);background:var(--amberbg);border-left:3px solid var(--gold3);padding:5px 11px;border-radius:0 6px 6px 0;margin:6px 16px 10px}
+.src-note b{color:var(--gold3)}
+.tbox .tl{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--white);background:var(--green);padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:9px;letter-spacing:.04em}
+.tbox .tb{font-size:16px;color:var(--text2);line-height:1.8}
+
+/* CONCEPT CARD */
+.cc{background:var(--card);border:1px solid var(--border);border-radius:6px;margin-bottom:13px;overflow:hidden;box-shadow:0 1px 3px rgba(45,90,61,.07)}
+.cc-head{background:var(--green3);padding:11px 16px;display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none}
+.cc-head .ci{font-size:16px}
+.cc-head .ct{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--white);flex:1}
+.cc-head .ca{color:var(--gold2);font-size:13px;transition:transform .2s}
+.cc-head.open .ca{transform:rotate(180deg)}
+.cc-body{display:none;padding:16px 18px;border-top:2px solid var(--border)}
+.cc-body.open{display:block}
+.cc-body p{font-size:16px;color:var(--text2);line-height:1.8;margin-bottom:9px}
+.ctbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.ctbl th{background:var(--green3);color:var(--white);padding:9px 13px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700}
+.ctbl td{padding:9px 13px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+.ctbl tr:nth-child(even) td{background:var(--bg2)}
+
+/* QUESTION CARD */
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:6px;margin-bottom:13px;overflow:hidden;box-shadow:0 1px 3px rgba(45,90,61,.07)}
+.q-stripe{height:6px}
+.qcard.q-1m .q-stripe{background:linear-gradient(90deg,var(--green),var(--green2))}
+.qcard.q-2m .q-stripe{background:linear-gradient(90deg,var(--purple),#A07BD4)}
+.qcard.q-3m .q-stripe{background:linear-gradient(90deg,var(--gold3),var(--gold))}
+.qcard.q-la .q-stripe{background:linear-gradient(90deg,var(--slate),var(--blue))}
+
+.q-head{background:var(--card);padding:12px 16px;display:flex;flex-direction:column;gap:8px}
+.q-head-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.qnb{min-width:32px;height:32px;border-radius:4px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;padding:0 6px;background:#DFF5E3;color:var(--green3)}
+.qcard.q-2m .qnb{background:#F0EBF8;color:var(--purple)}
+.qcard.q-3m .qnb{background:#FFF3CC;color:var(--gold3)}
+.qcard.q-la .qnb{background:#E8EEF5;color:var(--slate)}
+.qtxt{font-size:19px;font-weight:600;color:var(--text);line-height:1.6;width:100%;font-family:'Crimson Pro',serif}
+.qmp{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;font-family:'JetBrains Mono',monospace;background:#DFF5E3;color:var(--green3)}
+.qcard.q-2m .qmp{background:#F0EBF8;color:var(--purple)}
+.qcard.q-3m .qmp{background:#FFF3CC;color:var(--gold3)}
+.qcard.q-la .qmp{background:#E8EEF5;color:var(--slate)}
+.star{font-size:14px;flex-shrink:0}
+.diff{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap;flex-shrink:0}
+.diff-e{background:#DFF5E3;color:#1A5C2A}
+.diff-m{background:#FFF3CC;color:#7A5500}
+.diff-h{background:#FFE5E5;color:#8B1A1A}
+
+/* PYQ PILLS */
+.pyq-pills{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.pyq-lbl{font-size:9px;font-weight:700;color:var(--text3);font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+.pyq-yr{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;font-family:'JetBrains Mono',monospace;background:#F0EBF8;color:var(--purple);border:1px solid #C4B0E8}
+
+/* MCQ OPTIONS */
+.mcq-opts{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:13px 16px;background:#FAFAF5;border-bottom:1px solid var(--border)}
+.mopt{padding:10px 14px;border-radius:5px;font-size:18px;cursor:pointer;border:2px solid var(--border);background:var(--card);color:var(--text);transition:all .15s;text-align:left;font-family:'Crimson Pro',serif;font-weight:600}
+.mopt:hover:not(.locked){border-color:var(--green2);background:var(--fbg)}
+.mopt.correct{border-color:var(--green);background:#EEF5F0;color:var(--green3)}
+.mopt.wrong{border-color:var(--amber);background:var(--amberbg);color:var(--amber)}
+.mcq-res{display:none;padding:9px 16px 12px;background:#FAFAF5}
+.mcq-res.show{display:block}
+.mcq-res .ml{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.mcq-res.ok .ml{color:var(--green)}.mcq-res.wr .ml{color:var(--amber)}
+.mcq-res .mt{font-size:15px;color:var(--text2);line-height:1.7}
+
+/* FOOTER (card) */
+.q-foot{background:rgba(45,90,61,.06);padding:7px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border)}
+.qsrc{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.src-worksheet{background:#EEF5F0;color:var(--green3)}
+.src-pyq{background:#F0EBF8;color:var(--purple)}
+.sol-btn{margin-left:auto;font-size:11px;font-weight:700;padding:4px 13px;border-radius:4px;border:2px solid var(--green);background:transparent;cursor:pointer;color:var(--green);transition:all .15s;font-family:'JetBrains Mono',monospace}
+.sol-btn:hover{background:var(--green);color:var(--white)}
+.rep-btn{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid #E0C9C9;background:#FBF3F3;color:#9A2B2B;cursor:pointer;transition:all .15s;white-space:nowrap}
+.rep-btn:hover{background:#F3E3E3;border-color:#C99}
+.rep-btn.sent{background:#EEF5F0;border-color:var(--green);color:var(--green)}
+.rep-modal{display:none;position:fixed;inset:0;background:rgba(26,61,40,.55);z-index:999;align-items:center;justify-content:center;padding:18px}
+.rep-modal.show{display:flex}
+.rep-card{background:var(--card);border:2px solid var(--green);border-radius:8px;max-width:440px;width:100%;padding:20px;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.rep-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--green);margin-bottom:8px}
+.rep-ctx{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3);background:var(--bg2);border-radius:7px;padding:7px 10px;margin-bottom:12px}
+.rep-ta{width:100%;min-height:90px;font-family:'Crimson Pro',serif;font-size:17px;border:1.5px solid var(--border);border-radius:9px;padding:10px 12px;resize:vertical}
+.rep-ta:focus{outline:none;border-color:var(--gold)}
+.rep-status{font-size:13px;color:var(--green);min-height:18px;margin:10px 0 4px;font-weight:600}
+.rep-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+.rep-cancel{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 16px;border-radius:5px;border:1.5px solid var(--border);background:#fff;color:var(--text3);cursor:pointer}
+.rep-send{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 18px;border-radius:5px;border:none;background:var(--green);color:#fff;cursor:pointer;font-weight:700}
+.rep-send:hover{background:var(--green3)}
+
+/* MB TIP */
+.mbtip{background:#FFF8E6;border:2px dashed var(--gold3);border-radius:10px;padding:11px 15px;margin:10px 16px}
+.mbtip-lbl{font-size:10px;font-weight:700;color:var(--gold3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.mbtip-text{font-size:15px;color:var(--text2);line-height:1.65}
+
+/* SOLUTION BODY */
+.sol-body{display:none;border-top:2px solid var(--border)}
+.sol-body.open{display:block}
+.given-blk{background:var(--fbg);padding:10px 16px;border-bottom:1px solid #C8DCCC}
+.given-lbl{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.given-row{font-size:17px;color:var(--text2);line-height:1.7;margin-bottom:3px}
+.ysec{padding:14px 16px;border-bottom:1px solid var(--border)}
+.ysec:last-of-type{border-bottom:none}
+.y-lbl{display:inline-block;background:var(--green3);color:var(--white);font-size:10px;font-weight:700;padding:2px 10px;border-radius:4px;margin-bottom:12px;letter-spacing:.04em;font-family:'JetBrains Mono',monospace}
+.k{font-size:17px;color:var(--green3);background:var(--fbg);border-left:3px solid var(--green);padding:6px 12px;border-radius:0 6px 6px 0;margin:4px 0 5px;display:block}
+.p{font-size:17px;color:var(--text2);line-height:1.7;margin-bottom:6px}
+.p b{color:var(--green3)}
+.gr{font-size:15px;color:var(--green3);font-weight:700;font-style:normal;margin-left:4px;display:block;margin-bottom:4px}
+.ccl{font-size:17px;color:var(--green3);font-weight:700;background:var(--fbg);border-left:3px solid var(--gold3);padding:5px 12px;border-radius:0 6px 6px 0;margin:4px 0 6px;display:block}
+.final-ans{background:var(--green3);padding:11px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fa-lbl{font-size:11px;font-weight:700;color:var(--gold2);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
+.fav{font-size:18px;font-weight:700;color:var(--white);font-family:'Crimson Pro',serif}
+
+.panel{animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+footer{text-align:center;padding:26px;color:var(--text3);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="header-inner">
+    <div class="logo-mark">MBA</div>
+    <div><div class="ht-name">Maths Bridge Academy</div><div class="ht-tag">Nurturing Young Minds Through Maths Mastery</div></div>
+    <div class="hr-right"><div class="hr-board">ICSE · Class 10</div><div class="hr-ch">Arithmetic Progressions</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+<div class="hero">
+  <div class="h-lbl">ICSE Class 10 Mathematics</div>
+  <div class="h-title">Arithmetic Progressions</div>
+  <div class="h-sub">nth term, sum of n terms &amp; the smart-substitution trick for AP word problems</div>
+  <div class="h-pills">
+    <span class="h-pill">Worksheet Q1–Q44</span>
+    <span class="h-pill">Board PYQs 2018–2025</span>
+    <span class="h-pill">⭐ = Board-frequent pattern</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn tb-concepts active" id="btn-concepts" onclick="sw('concepts')">📘 Concepts</button>
+  <button class="tab-btn tb-board" id="btn-board" onclick="sw('board')">✎ Board PYQs</button>
+  <button class="tab-btn tb-practice" id="btn-practice" onclick="sw('practice')">✓ Practice Worksheet</button>
+</div>
+
+<div id="panel-concepts" class="panel">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--green)">Σ</div><div class="sec-title">All Concepts &amp; Formulae</div></div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">📄</span><span class="ct">1. What is an Arithmetic Progression?</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">ARITHMETIC PROGRESSION (A.P.)</span><div class="tb">A sequence of numbers in which the difference between any two consecutive terms is always the same. This fixed difference is called the <b>common difference</b>, written d. If the first term is a, the AP looks like a, a+d, a+2d, a+3d, …</div></div>
+      <table class="ctbl">
+        <tr><th>Symbol</th><th>Meaning</th></tr>
+        <tr><td>a</td><td>First term of the A.P.</td></tr>
+        <tr><td>d</td><td>Common difference = (any term) − (the term just before it)</td></tr>
+        <tr><td>n</td><td>Number of terms / the position of a term</td></tr>
+        <tr><td>tₙ (or aₙ)</td><td>The nth term (general term)</td></tr>
+        <tr><td>l</td><td>Last term of the A.P.</td></tr>
+      </table>
+      <table class="ctbl">
+        <tr><th>Type</th><th>Example</th><th>Sign of d</th></tr>
+        <tr><td>Increasing</td><td>2, 5, 8, 11, …</td><td>d &gt; 0</td></tr>
+        <tr><td>Decreasing</td><td>20, 17, 14, 11, …</td><td>d &lt; 0</td></tr>
+        <tr><td>Constant</td><td>5, 5, 5, 5, …</td><td>d = 0</td></tr>
+      </table>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> To check if a sequence is an A.P., subtract EVERY consecutive pair — one matching pair isn't enough, all of them must give the same d</div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🧮</span><span class="ct">2. The nth Term (General Term)</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="fbox"><div class="fl">nth term formula</div><div class="fm">\( t_n = a + (n-1)d \)</div><div class="fn">Gives the value of the term sitting at position n, without listing every term before it.</div></div>
+      <div class="tbox"><span class="tl">WORKING BACKWARDS — "WHICH TERM IS X?"</span><div class="tb">Set tₙ equal to the given value and solve the same formula for n instead of for the term. n must always come out as a positive whole number — if it doesn't, that value is not a term of the A.P.</div></div>
+      <div class="tbox"><span class="tl">FINDING a AND d FROM TWO GIVEN TERMS</span><div class="tb">Write tₙ = a+(n−1)d for each given term — this gives two linear equations in a and d. Subtract one equation from the other so a cancels, leaving d directly; then substitute back to find a.</div></div>
+      <div class="hbox"><div class="hl">Two A.P.s with equal nth terms</div><div class="ht">Write the nth-term expression for each A.P. in terms of n, set them equal, and solve for n — then substitute back into either expression to get the common term value.</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">Σ</span><span class="ct">3. Sum of n Terms (Sₙ)</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="fbox"><div class="fl">Sum formula — when a, d, n are known</div><div class="fm">\( S_n = \dfrac{n}{2}\big[2a+(n-1)d\big] \)</div></div>
+      <div class="fbox"><div class="fl">Sum formula — when the last term l is known</div><div class="fm">\( S_n = \dfrac{n}{2}(a+l) \)</div><div class="fn">Faster whenever the last term is already stated in the question — no need to find d first.</div></div>
+      <div class="fbox"><div class="fl">Recovering a term from two sums</div><div class="fm">\( t_n = S_n - S_{n-1} \)</div><div class="fn">Useful when the question gives Sₙ as a formula/expression in n rather than giving a and d directly.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> "Sum of first 15 terms" and "sum of NEXT 15 terms" are different quantities — the second is S₃₀ − S₁₅, not S₁₅ again</div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🎯</span><span class="ct">4. The Smart Substitution Trick</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">WHY IT WORKS</span><div class="tb">When a question gives the SUM of a small, specific number of terms in A.P. (and asks you to find the actual numbers), don't use a, a+d, a+2d, … Instead centre the terms symmetrically around the middle so d cancels out of the sum completely — this finds a instantly.</div></div>
+      <table class="ctbl">
+        <tr><th>No. of terms</th><th>Take the terms as</th><th>Sum simplifies to</th></tr>
+        <tr><td>3 terms</td><td>a−d, a, a+d</td><td>3a</td></tr>
+        <tr><td>4 terms</td><td>a−3d, a−d, a+d, a+3d</td><td>4a</td></tr>
+        <tr><td>5 terms</td><td>a−2d, a−d, a, a+d, a+2d</td><td>5a</td></tr>
+      </table>
+      <div class="hbox"><div class="hl">After finding a</div><div class="ht">Use the SECOND piece of given information (product of terms, sum of squares, a ratio, etc.) to form an equation in d and solve for it. Then convert the symmetric terms (a−d, a, a+d, …) back into the actual numbers of the sequence.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> The "d" in the symmetric trick is HALF the true common difference of the original sequence when 4 terms are spaced a−3d,a−d,a+d,a+3d (each real term is 2d apart) — always convert back to the real sequence at the end</div>
+    </div>
+  </div>
+
+</div>
+
+<div id="panel-board" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--gold3)">B</div><div class="sec-title">Board PYQs (2018–2025)</div><span class="sec-badge" style="background:#FFF3CC;color:var(--gold3);border:1px solid #E0C878">MCQs + Short Answer</span></div>
+  <div class="diff-filter" id="filter-board-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('board-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('board-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('board-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('board-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-board-qs"></span>
+  </div>
+  <div id="board-qs"></div>
+</div>
+
+<div id="panel-practice" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--slate)">P</div><div class="sec-title">Practice Worksheet (Q1–Q44)</div><span class="sec-badge" style="background:#E8EEF5;color:var(--slate);border:1px solid #A0B4C8">Full Worked Solutions</span></div>
+  <div class="diff-filter" id="filter-practice-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('practice-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('practice-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('practice-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('practice-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-practice-qs"></span>
+  </div>
+  <div id="practice-qs"></div>
+</div>
+
+</div>
+
+<footer>Maths Bridge Academy · ICSE Class 10 · Arithmetic Progressions &nbsp;|&nbsp; Found an error? Use the Report button on that card.</footer>
+
+<div class="rep-modal" id="rep-modal">
+  <div class="rep-card">
+    <div class="rep-title">Report an error</div>
+    <div class="rep-ctx" id="rep-ctx"></div>
+    <textarea class="rep-ta" id="rep-msg" placeholder="What looks wrong? (e.g. Step 3 arithmetic, final answer, wrong option marked...)"></textarea>
+    <div class="rep-status" id="rep-status"></div>
+    <div class="rep-actions">
+      <button class="rep-cancel" onclick="repClose()">Cancel</button>
+      <button class="rep-send" onclick="repSend()">Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== ERROR REPORT CONFIG ===== */
+const REPORT_META = { board:'ICSE', grade:'10', chapter:'Arithmetic Progressions' };
+const REPORT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx3vGZZjTHbAnKtOwSz6TaWtpYtnudCzxKMtm3Eo9bB4Ey6Xlor6LunLFEmyIQQy5e6/exec';
+/* ================================ */
+var _repCtx = {};
+function reportError(card, btn){
+  var parts = String(card).split(' ');
+  _repCtx = { tab: parts[0]||'', qno: parts[1]||card, btn: btn };
+  document.getElementById('rep-ctx').textContent =
+    REPORT_META.board+' · Grade '+REPORT_META.grade+' · '+REPORT_META.chapter+' · '+_repCtx.tab+' · '+_repCtx.qno;
+  document.getElementById('rep-msg').value='';
+  document.getElementById('rep-status').textContent='';
+  document.getElementById('rep-modal').classList.add('show');
+  document.getElementById('rep-msg').focus();
+}
+function repClose(){ document.getElementById('rep-modal').classList.remove('show'); }
+function repSend(){
+  var msg = document.getElementById('rep-msg').value.trim();
+  var status = document.getElementById('rep-status');
+  if(!msg){ status.style.color='#9A2B2B'; status.textContent='Please type what is wrong.'; return; }
+  status.style.color='var(--green)'; status.textContent='Sending...';
+  var qs = 'board='+encodeURIComponent(REPORT_META.board)
+         +'&grade='+encodeURIComponent(REPORT_META.grade)
+         +'&chapter='+encodeURIComponent(REPORT_META.chapter)
+         +'&tab='+encodeURIComponent(_repCtx.tab)
+         +'&qno='+encodeURIComponent(_repCtx.qno)
+         +'&error='+encodeURIComponent(msg);
+  function done(){
+    status.style.color='var(--green)'; status.textContent='\u2713 Thank you! Reported.';
+    if(_repCtx.btn){ _repCtx.btn.classList.add('sent'); _repCtx.btn.textContent='\u2713 Reported'; }
+    setTimeout(repClose, 1200);
+  }
+  fetch(REPORT_ENDPOINT+'?'+qs, { method:'GET', mode:'no-cors' }).then(done).catch(done);
+}
+function reportBtn(card, alone){
+  var ml = alone ? 'style="margin-left:auto"' : '';
+  return '<button class="rep-btn" '+ml+' onclick="reportError(\''+card+'\', this)" title="Found a mistake? Report it">\u26a0 Report error</button>';
+}
+function updateCount(cid){
+  var el = document.getElementById('count-'+cid);
+  if(!el) return;
+  var all = document.querySelectorAll('#'+cid+' .qcard');
+  var visible = document.querySelectorAll('#'+cid+' .qcard:not([style*="display: none"])');
+  el.textContent = 'Showing '+visible.length+' of '+all.length;
+}
+function filterDiff(cid, level, btn){
+  var bar = document.getElementById('filter-'+cid);
+  bar.querySelectorAll('.df-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var cards = document.querySelectorAll('#'+cid+' .qcard');
+  cards.forEach(function(card){
+    card.style.display = (level==='all' || card.getAttribute('data-diff')===level) ? '' : 'none';
+  });
+  updateCount(cid);
+}
+function toggleCC(h){ h.classList.toggle('open'); h.nextElementSibling.classList.toggle('open'); }
+function sw(id){
+  ['concepts','board','practice'].forEach(function(t){
+    document.getElementById('panel-'+t).style.display = t===id ? 'block' : 'none';
+    var b = document.getElementById('btn-'+t);
+    b.classList.remove('active');
+    if(t===id) b.classList.add('active');
+  });
+  renderMathIn(document.getElementById('panel-'+id));
+}
+function pyqPills(yrs){
+  if(!yrs || !yrs.length) return '';
+  var pills = yrs.map(function(y){ return '<span class="pyq-yr">'+y+'</span>'; }).join('');
+  return '<span class="pyq-lbl">PYQ:</span><div class="pyq-pills">'+pills+'</div>';
+}
+function togSol(btn){
+  var b = btn.closest('.qcard').querySelector('.sol-body');
+  var open = b.classList.toggle('open');
+  btn.textContent = open ? 'Hide Solution' : 'Show Solution';
+  if(open) renderMathIn(b);
+}
+function chk(btn,id,chosen,correct){
+  var all = btn.closest('.mcq-opts').querySelectorAll('.mopt');
+  all.forEach(function(b){ b.classList.add('locked'); });
+  all.forEach(function(b,i){
+    if(i===correct) b.classList.add('correct');
+    else if(i===chosen) b.classList.add('wrong');
+  });
+  var res = document.getElementById('mr-'+id);
+  res.classList.add('show');
+  if(chosen===correct){
+    res.classList.add('ok');
+    res.querySelector('.ml').textContent = '\u2713 Correct!';
+    res.querySelector('.mt').innerHTML = 'Correct: '+all[correct].textContent.trim();
+  } else {
+    res.classList.add('wr');
+    res.querySelector('.ml').textContent = '\u2717 Incorrect';
+    res.querySelector('.mt').innerHTML = 'Correct answer: '+all[correct].textContent.trim();
+  }
+}
+function buildRow(r){
+  if(!r) return '';
+  if(r.t==='p') return '<div class="p">'+r.text+'</div>';
+  if(r.t==='gr') return '<div class="gr">'+r.text+'</div>';
+  if(r.t==='ccl') return '<div class="ccl">'+r.text+'</div>';
+  if(r.t==='k') return '<div class="k">\\[ '+r.text+' \\]</div>';
+  if(r.t==='div') return '<hr style="border:none;border-top:1px dashed var(--border);margin:6px 0">';
+  return '';
+}
+function buildSections(sections){
+  return (sections||[]).map(function(sec){
+    var rows = sec.rows.map(buildRow).join('');
+    return '<div class="ysec"><div class="y-lbl">'+sec.label+'</div>'+rows+'</div>';
+  }).join('');
+}
+function buildGiven(given){
+  if(!given || !given.length) return '';
+  var rows = given.map(function(g){ return '<div class="given-row">\\('+g+'\\)</div>'; }).join('');
+  return '<div class="given-blk"><div class="given-lbl">Given</div>'+rows+'</div>';
+}
+function buildMbTip(tip){
+  if(!tip) return '';
+  return '<div class="mbtip"><div class="mbtip-lbl">\ud83d\udca1 MB Tip</div><div class="mbtip-text">'+tip+'</div></div>';
+}
+function buildSrcNote(note){
+  if(!note) return '';
+  return '<div class="src-note">\u2691 <b>Source Note:</b> '+note+'</div>';
+}
+function renderMathIn(container){
+  if(window.renderMathInElement && container){
+    renderMathInElement(container, {
+      delimiters:[{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],
+      throwOnError:false
+    });
+  }
+}
+function render(cid, data){
+  var c = document.getElementById(cid);
+  data.forEach(function(q, i){
+    var diff = q.diff || 'm';
+    var div = document.createElement('div');
+    div.className = 'qcard ' + q.m;
+    div.setAttribute('data-diff', diff);
+    var star = q.star ? '<span class="star" title="Board-frequent pattern">\u2b50</span>' : '';
+    var srcHtml = '<span class="qsrc src-'+q.sc+'">'+q.src+'</span>';
+    var pyqHtml = pyqPills(q.pyq);
+    var qid = cid+'-'+i;
+    var dispNum = q.num || (i+1);
+    var cardLbl = cid.replace('-qs','').toUpperCase()+' Q'+dispNum;
+    var diffLbl = {'e':'Easy','m':'Medium','h':'Hard'}[diff];
+
+    if(q.type === 'mcq'){
+      var mopts = q.opts.map(function(o,oi){
+        return '<button class="mopt" onclick="chk(this,\''+qid+'\','+oi+','+q.ans+')">'+o+'</button>';
+      }).join('');
+      var mcqSolBtn = q.sol ? '<button class="sol-btn" onclick="togSol(this)">Show Solution</button>' : '';
+      var mcqSolBody = q.sol ? '<div class="sol-body">'+buildSections(q.sol)+'<div class="final-ans"><span class="fa-lbl">Answer</span><span class="fav">'+q.opts[q.ans]+'</span></div></div>' : '';
+      div.innerHTML =
+        '<div class="q-stripe"></div>'+
+        '<div class="q-head"><div class="q-head-top"><div class="qnb">Q'+dispNum+'</div><span class="qmp">'+q.marks+'</span>'+star+'<span class="diff diff-'+diff+'">'+diffLbl+'</span></div><div class="qtxt">'+q.q+'</div></div>'+
+        buildMbTip(q.mbtip)+
+        '<div class="mcq-opts">'+mopts+'</div>'+
+        '<div class="mcq-res" id="mr-'+qid+'"><div class="ml"></div><div class="mt"></div></div>'+
+        '<div class="q-foot">'+srcHtml+pyqHtml+mcqSolBtn+reportBtn(cardLbl,!q.sol)+'</div>'+
+        mcqSolBody;
+    } else {
+      div.innerHTML =
+        '<div class="q-stripe"></div>'+
+        '<div class="q-head"><div class="q-head-top"><div class="qnb">Q'+dispNum+'</div><span class="qmp">'+q.marks+'</span>'+star+'<span class="diff diff-'+diff+'">'+diffLbl+'</span></div><div class="qtxt">'+q.q+'</div></div>'+
+        buildMbTip(q.mbtip)+
+        '<div class="q-foot">'+srcHtml+pyqHtml+'<button class="sol-btn" onclick="togSol(this)">Show Solution</button>'+reportBtn(cardLbl,false)+'</div>'+
+        '<div class="sol-body">'+buildGiven(q.given)+buildSections(q.sections)+buildSrcNote(q.srcnote)+'<div class="final-ans"><span class="fa-lbl">Answer</span><span class="fav">'+q.ans+'</span></div></div>';
+    }
+    c.appendChild(div);
+  });
+}
+
+function S(strings, ...vals){ return String.raw(strings, ...vals); } // proper String.raw wrapper — DO NOT re-wrap in {raw:strings}
+
+/* =========================================================================
+   BOARD PYQ DATA (10 verified questions, 2018-2025, from ICSE_Chapterwise_Extraction.md)
+/* =========================================================================
+   BOARD PYQ DATA (14 verified questions, 2018-2025, from ICSE_Chapterwise_Extraction.md)
+   All answers independently recomputed against the tn/Sn formulas.
+   Every working states the standard formula (matching the Concepts tab) first,
+   then substitutes the given values, then shows each transposition/operation
+   as its own step.
+   NOTE: ICSE 2024 Q1(viii) MCQ ("7th term of AP 1/a, 1/(a+1)...") was found in
+   the source extraction but flagged there as OCR-garbled/incomplete ("[as printed]").
+   Reciprocals of consecutive integers do not themselves form an AP, so the true
+   wording could not be reconstructed with confidence — it has been excluded
+   rather than guessed, per the Honesty Rule.
+   ========================================================================= */
+const boardData = [
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2025 Q4(ii)', sc:'pyq', star:true, pyq:['2025'],
+    q:'The first term of an Arithmetic Progression (A.P.) is 5, the last term is 50 and their sum is 440. Find: (a) the number of terms (b) common difference.',
+    given:['a = 5','l = 50','S_n = 440'],
+    sections:[
+      {label:'(a) NUMBER OF TERMS', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`S_n = \dfrac{n}{2}(a+l)`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`440 = \dfrac{n}{2}(5+50)`},
+        {t:'p', text:'<b>Simplify inside the bracket</b>'},
+        {t:'k', text:S`440 = \dfrac{n}{2}\times55`},
+        {t:'p', text:'<b>Transpose to isolate n</b>'},
+        {t:'k', text:S`n = \dfrac{440\times2}{55}`},
+        {t:'gr', text:'∴ n = 16'}
+      ]},
+      {label:'(b) COMMON DIFFERENCE', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`t_n = a+(n-1)d`},
+        {t:'p', text:'<b>Substitute (last term l = t₁₆)</b>'},
+        {t:'k', text:S`50 = 5+(16-1)d`},
+        {t:'p', text:'<b>Simplify</b>'},
+        {t:'k', text:S`45 = 15d`},
+        {t:'p', text:'<b>Transpose to isolate d</b>'},
+        {t:'k', text:S`d = \dfrac{45}{15}`}
+      ]}
+    ],
+    ans:'(a) n = 16 terms  (b) d = 3'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2024 Q6(ii)', sc:'pyq', star:false, pyq:['2024'],
+    q:'The nth term of an A.P. is given by the relation Tₙ = 6(7 − n). Find: (a) its first term and common difference (b) sum of its first 25 terms.',
+    given:['T_n = 6(7-n) = 42-6n'],
+    mbtip:'Compare 42−6n directly with the standard form a+(n−1)d — write out T₁ and T₂ from the given rule, then read off a and d the same way you would from any two known terms.',
+    sections:[
+      {label:'(a) FIRST TERM AND COMMON DIFFERENCE', rows:[
+        {t:'p', text:'<b>Formula for the nth term</b>'},
+        {t:'k', text:S`t_n = a+(n-1)d`},
+        {t:'p', text:'<b>Use the given rule to find T₁ (substitute n=1)</b>'},
+        {t:'k', text:S`T_1 = 42-6(1) = 36`},
+        {t:'p', text:'<b>Use the given rule to find T₂ (substitute n=2)</b>'},
+        {t:'k', text:S`T_2 = 42-6(2) = 30`},
+        {t:'p', text:'<b>Common difference = T₂ − T₁</b>'},
+        {t:'k', text:S`d = 30-36`}
+      ]},
+      {label:'(b) SUM OF FIRST 25 TERMS', rows:[
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+        {t:'p', text:'<b>Substitute a=36, d=−6, n=25</b>'},
+        {t:'k', text:S`S_{25} = \dfrac{25}{2}\big[2(36)+24(-6)\big]`},
+        {t:'p', text:'<b>Simplify inside the bracket</b>'},
+        {t:'k', text:S`S_{25} = \dfrac{25}{2}\big[72-144\big]`},
+        {t:'k', text:S`S_{25} = \dfrac{25}{2}\times(-72)`}
+      ]}
+    ],
+    ans:'(a) a = 36, d = −6  (b) S₂₅ = −900'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2023 Q1(x)', sc:'pyq', star:true, pyq:['2023'],
+    type:'mcq',
+    q:'The nth term of an A.P. is 2n + 5. The 10th term is:',
+    opts:['7','15','25','45'], ans:2,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula given</b>'},
+      {t:'k', text:S`t_n = 2n+5`},
+      {t:'p', text:'<b>Substitute n = 10</b>'},
+      {t:'k', text:S`t_{10} = 2(10)+5 = 20+5`}
+    ]}]
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2023 Q6(ii)', sc:'pyq', star:true, pyq:['2023'],
+    q:'The 5th term and the 9th term of an A.P. are 4 and −12 respectively. Find: (a) the first term (b) common difference (c) sum of 16 terms of the A.P.',
+    given:['t_5 = 4','t_9 = -12'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute n=5</b>'},
+      {t:'k', text:S`t_5 = a+4d = 4 \quad \dots(i)`},
+      {t:'p', text:'<b>Substitute n=9</b>'},
+      {t:'k', text:S`t_9 = a+8d = -12 \quad \dots(ii)`},
+      {t:'p', text:'<b>Subtract (i) from (ii) to eliminate a</b>'},
+      {t:'k', text:S`4d = -16`},
+      {t:'p', text:'<b>Transpose to isolate d</b>'},
+      {t:'k', text:S`d = \dfrac{-16}{4}`},
+      {t:'gr', text:'∴ d = −4'},
+      {t:'p', text:'<b>Substitute d = −4 back into (i)</b>'},
+      {t:'k', text:S`a+4(-4) = 4`},
+      {t:'k', text:S`a-16 = 4`},
+      {t:'p', text:'<b>Transpose to isolate a</b>'},
+      {t:'k', text:S`a = 4+16`},
+      {t:'gr', text:'∴ a = 20'},
+      {t:'p', text:'<b>Formula for the sum</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute a=20, d=−4, n=16</b>'},
+      {t:'k', text:S`S_{16} = \dfrac{16}{2}\big[2(20)+15(-4)\big]`},
+      {t:'k', text:S`S_{16} = 8\big[40-60\big]`}
+    ]}],
+    ans:'(a) a = 20  (b) d = −4  (c) S₁₆ = −160'
+  },
+  {
+    m:'q-3m', diff:'e', marks:'3 Marks', src:'ICSE 2023 Q9(ii)', sc:'pyq', star:false, pyq:['2023'],
+    q:'Which term of the A.P. 15, 30, 45, 60, ... is 300? Hence find the sum of the terms of the A.P.',
+    given:['a = 15','d = 15','t_n = 300'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`300 = 15+(n-1)(15)`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`285 = 15(n-1)`},
+      {t:'k', text:S`n-1 = \dfrac{285}{15}`},
+      {t:'gr', text:'∴ n = 20'},
+      {t:'p', text:'<b>Formula for the sum (using the last term)</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}(a+l)`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`S_{20} = \dfrac{20}{2}(15+300)`}
+    ]}],
+    ans:'20th term is 300; S₂₀ = 3150'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2020 Q10(a)', sc:'pyq', star:false, pyq:['2020'],
+    q:'If the 6th term of an A.P. is equal to four times its first term and the sum of first six terms is 75, find the first term and the common difference.',
+    given:['t_6 = 4a','S_6 = 75'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula for the 6th term</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute n=6 and the given condition tₙ=4a</b>'},
+      {t:'k', text:S`a+5d = 4a`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`5d = 3a \quad \dots(i)`},
+      {t:'p', text:'<b>Formula for the sum</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute n=6, S₆=75</b>'},
+      {t:'k', text:S`\dfrac{6}{2}\big[2a+5d\big] = 75`},
+      {t:'k', text:S`2a+5d = 25 \quad \dots(ii)`},
+      {t:'p', text:'<b>Substitute (i) into (ii)</b>'},
+      {t:'k', text:S`2a+3a = 25`},
+      {t:'k', text:S`5a = 25`},
+      {t:'gr', text:'∴ a = 5'},
+      {t:'p', text:'<b>Back-substitute in (i)</b>'},
+      {t:'k', text:S`5d = 3(5)`}
+    ]}],
+    ans:'a = 5, d = 3'
+  },
+  {
+    m:'q-la', diff:'m', marks:'4 Marks', src:'ICSE 2019 Q2(c)', sc:'pyq', star:true, pyq:['2019'],
+    q:'In an A.P. the fourth and sixth terms are 8 and 14 respectively. Find the: (i) first term (ii) common difference (iii) sum of the first 20 terms.',
+    given:['t_4 = 8','t_6 = 14'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute n=4</b>'},
+      {t:'k', text:S`t_4 = a+3d = 8 \quad \dots(i)`},
+      {t:'p', text:'<b>Substitute n=6</b>'},
+      {t:'k', text:S`t_6 = a+5d = 14 \quad \dots(ii)`},
+      {t:'p', text:'<b>Subtract (i) from (ii)</b>'},
+      {t:'k', text:S`2d = 6`},
+      {t:'gr', text:'∴ d = 3'},
+      {t:'p', text:'<b>Back-substitute in (i)</b>'},
+      {t:'k', text:S`a+3(3) = 8`},
+      {t:'k', text:S`a+9 = 8`},
+      {t:'gr', text:'∴ a = −1'},
+      {t:'p', text:'<b>Formula for the sum</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute a=−1, d=3, n=20</b>'},
+      {t:'k', text:S`S_{20} = \dfrac{20}{2}\big[2(-1)+19(3)\big]`},
+      {t:'k', text:S`S_{20} = 10\big[-2+57\big]`}
+    ]}],
+    ans:'(i) a = −1  (ii) d = 3  (iii) S₂₀ = 550'
+  },
+  {
+    m:'q-la', diff:'h', marks:'3 Marks', src:'ICSE 2019 Q8(a)', sc:'pyq', star:false, pyq:['2019'],
+    q:'The sum of the first three terms of an A.P. is 42 and the product of the first and third term is 52. Find the first term and the common difference.',
+    given:['\\text{Sum of first 3 terms} = 42','t_1\\times t_3 = 52'],
+    mbtip:'Three terms — use the smart-substitution trick from the Concepts tab: take them as a−d, a, a+d so the sum collapses to 3a instantly.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Let the 3 terms be a−d, a, a+d (smart-substitution formula)</b>'},
+      {t:'k', text:S`(a-d)+a+(a+d) = 3a`},
+      {t:'p', text:'<b>Substitute the given sum</b>'},
+      {t:'k', text:S`3a = 42`},
+      {t:'gr', text:'∴ a = 14'},
+      {t:'p', text:'<b>Formula for the product condition</b>'},
+      {t:'k', text:S`(a-d)(a+d) = a^2-d^2`},
+      {t:'p', text:'<b>Substitute a=14 and the given product</b>'},
+      {t:'k', text:S`a^2-d^2 = 52`},
+      {t:'k', text:S`196-d^2 = 52`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`d^2 = 196-52`},
+      {t:'k', text:S`d^2 = 144`},
+      {t:'gr', text:'∴ d = 12 (taking the increasing case)'},
+      {t:'p', text:'<b>Convert back to the actual A.P.</b>'},
+      {t:'k', text:S`\text{First term} = a-d = 14-12`}
+    ]}],
+    ans:'First term = 2, common difference = 12 (the A.P. is 2, 14, 26, …; taking d = −12 instead gives the same A.P. read as 26, 14, 2, …)'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'3 Marks', src:'ICSE 2018 Q2(b)', sc:'pyq', star:false, pyq:['2018'],
+    q:'If (k−3), (2k+1) and (4k+3) are three consecutive terms of an A.P., find the value of k.',
+    given:['(k-3), (2k+1), (4k+3) \\text{ are consecutive A.P. terms}'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — for 3 consecutive A.P. terms, twice the middle term equals the sum of the outer two</b>'},
+      {t:'k', text:S`2\times(\text{middle term}) = (\text{first term})+(\text{third term})`},
+      {t:'p', text:'<b>Substitute the given terms</b>'},
+      {t:'k', text:S`2(2k+1) = (k-3)+(4k+3)`},
+      {t:'p', text:'<b>Simplify both sides</b>'},
+      {t:'k', text:S`4k+2 = 5k`},
+      {t:'p', text:'<b>Transpose to isolate k</b>'},
+      {t:'k', text:S`2 = 5k-4k`}
+    ]}],
+    ans:'k = 2'
+  },
+  {
+    m:'q-la', diff:'m', marks:'4 Marks', src:'ICSE 2018 Q11(a)', sc:'pyq', star:true, pyq:['2018'],
+    q:'The 4th term of an A.P. is 22 and 15th term is 66. Find the first term and the common difference. Hence find the sum of the series to 8 terms.',
+    given:['t_4 = 22','t_{15} = 66'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute n=4</b>'},
+      {t:'k', text:S`t_4 = a+3d = 22 \quad \dots(i)`},
+      {t:'p', text:'<b>Substitute n=15</b>'},
+      {t:'k', text:S`t_{15} = a+14d = 66 \quad \dots(ii)`},
+      {t:'p', text:'<b>Subtract (i) from (ii)</b>'},
+      {t:'k', text:S`11d = 44`},
+      {t:'gr', text:'∴ d = 4'},
+      {t:'p', text:'<b>Back-substitute in (i)</b>'},
+      {t:'k', text:S`a+3(4) = 22`},
+      {t:'gr', text:'∴ a = 10'},
+      {t:'p', text:'<b>Formula for the sum</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute a=10, d=4, n=8</b>'},
+      {t:'k', text:S`S_8 = \dfrac{8}{2}\big[2(10)+7(4)\big]`},
+      {t:'k', text:S`S_8 = 4\big[20+28\big]`}
+    ]}],
+    ans:'a = 10, d = 4, S₈ = 192'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2022 Sem 1 Q4', sc:'pyq', star:false, pyq:['2022'],
+    type:'mcq',
+    q:'If 70, 75, 80, 85 are the first four terms of an A.P., then the 10th term is:',
+    opts:['35','25','115','105'], ans:2,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute a=70, d=5, n=10</b>'},
+      {t:'k', text:S`t_{10} = 70+(10-1)(5)`},
+      {t:'k', text:S`t_{10} = 70+45`}
+    ]}]
+  },
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2022 Sem 1 Q12', sc:'pyq', star:false, pyq:['2022'],
+    type:'mcq',
+    q:'In an A.P. if first term is 5, common difference is −3 and the nth term is −7, then n is equal to:',
+    opts:['5','17','−13','7'], ans:0,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute a=5, d=−3, tₙ=−7</b>'},
+      {t:'k', text:S`-7 = 5+(n-1)(-3)`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`-12 = -3(n-1)`},
+      {t:'k', text:S`n-1 = 4`}
+    ]}]
+  },
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2022 Sem 1 Q15', sc:'pyq', star:false, pyq:['2022'],
+    type:'mcq',
+    q:'The first four terms of an A.P. whose first term is 4 and common difference is −6, are:',
+    opts:['4,−10,−16,−22','4,10,16,22','4,−2,−8,−14','4,2,8,14'], ans:2,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute a=4, d=−6 for n=1,2,3,4</b>'},
+      {t:'k', text:S`4,\ 4+(-6),\ 4+2(-6),\ 4+3(-6)`}
+    ]}]
+  },
+  {
+    m:'q-1m', diff:'e', marks:'2 Marks · MCQ', src:'ICSE 2022 Sem 1 Q18', sc:'pyq', star:false, pyq:['2022'],
+    type:'mcq',
+    q:'The sum of the first 20 terms of the A.P. 2, 4, 6, 8, ... is:',
+    opts:['400','840','420','800'], ans:2,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute a=2, d=2, n=20</b>'},
+      {t:'k', text:S`S_{20} = \dfrac{20}{2}\big[2(2)+19(2)\big]`},
+      {t:'k', text:S`S_{20} = 10\big[4+38\big]`}
+    ]}]
+  }
+];
+
+/* =========================================================================
+   PRACTICE WORKSHEET DATA (Q1-Q44 from ICSE_Grade_10_AP_CW__Final.pdf,
+   full working from AP_Q1_Q15_ICSE.pdf / AP_Q16_Q44_ICSE.pdf lesson PDFs
+   where available; all other answers independently recomputed and verified
+   against the source's own answer key. Every working states the standard
+   formula (matching the Concepts tab) first, then substitutes the given
+   values, then shows each transposition/operation as its own step.
+   NOTE: Q30 is intentionally omitted — the source worksheet's own printed
+   text is incomplete ("The ratio of its 10th term to its 20th term is"
+   — no ratio value is given, confirmed against the original scanned page),
+   and the answer-key entry for "Q30" does not correspond to this question.
+   Rather than guess a missing value, it has been dropped. Numbering below
+   uses q.num to preserve the original worksheet numbering despite this gap.
+   ========================================================================= */
+const practiceData = [
+  {
+    num:1, m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q1', sc:'worksheet', star:false,
+    q:'Is 12, 8, 4, 0, … an A.P.? If yes, state the first term and common difference.',
+    given:['\\text{Sequence: } 12, 8, 4, 0, \\ldots'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — check if the sequence is an A.P.</b>'},
+      {t:'k', text:S`d = t_2-t_1 = t_3-t_2 = t_4-t_3 = \ldots`},
+      {t:'p', text:'<b>Substitute the terms</b>'},
+      {t:'k', text:S`8-12 = -4`},
+      {t:'k', text:S`4-8 = -4`},
+      {t:'k', text:S`0-4 = -4`},
+      {t:'p', text:'Difference between successive terms is constant.'},
+      {t:'gr', text:'∴ It is an A.P.'}
+    ]}],
+    ans:'Yes, it is an A.P. with a = 12, d = −4'
+  },
+  {
+    num:2, m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q2', sc:'worksheet', star:false,
+    q:'Write the 17th term of the A.P., when the first 2 terms are −2 and 3.',
+    given:['a = -2','t_2 = 3'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Find d</b>'},
+      {t:'k', text:S`d = t_2-a = 3-(-2) = 5`},
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute a=−2, d=5, n=17</b>'},
+      {t:'k', text:S`t_{17} = -2+(17-1)(5)`},
+      {t:'k', text:S`t_{17} = -2+80`}
+    ]}],
+    ans:'t₁₇ = 78'
+  },
+  {
+    num:3, m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q3', sc:'worksheet', star:false,
+    q:'Which term of the A.P. 23, 44, 65, 86, ... is 212?',
+    given:['a = 23','d = 21','t_n = 212'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`212 = 23+(n-1)(21)`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`189 = 21(n-1)`},
+      {t:'k', text:S`n-1 = \dfrac{189}{21}`}
+    ]}],
+    ans:'The 10th term of the A.P. is 212'
+  },
+  {
+    num:4, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q4', sc:'worksheet', star:false,
+    q:'Show that 17, 11, 5, −1, −7, −13, ... form an A.P. Find (i) the nth term (ii) the 10th term.',
+    given:['\\text{Sequence: } 17, 11, 5, -1, -7, -13, \\ldots'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — check if the sequence is an A.P.</b>'},
+      {t:'k', text:S`d = t_2-t_1 = t_3-t_2 = t_4-t_3`},
+      {t:'p', text:'<b>Substitute the terms</b>'},
+      {t:'k', text:S`11-17=-6,\quad 5-11=-6,\quad -1-5=-6`},
+      {t:'p', text:'Difference between successive terms is constant.'},
+      {t:'gr', text:'∴ It is an A.P. with a = 17, d = −6'},
+      {t:'p', text:'<b>(i) Formula for the nth term</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute a=17, d=−6</b>'},
+      {t:'k', text:S`t_n = 17+(n-1)(-6)`},
+      {t:'p', text:'<b>Expand</b>'},
+      {t:'k', text:S`t_n = 17-6n+6`},
+      {t:'gr', text:'∴ tₙ = 23 − 6n'},
+      {t:'p', text:'<b>(ii) Substitute n=10 in tₙ</b>'},
+      {t:'k', text:S`t_{10} = 23-6(10)`}
+    ]}],
+    ans:'(i) tₙ = 23 − 6n  (ii) t₁₀ = −37'
+  },
+  {
+    num:5, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q5', sc:'worksheet', star:false,
+    q:'Show that −4, −5/2, −1, 1/2, 2, … is an A.P. Find (i) first term (ii) common difference (iii) 25th term.',
+    given:['\\text{Sequence: } -4, -\\tfrac{5}{2}, -1, \\tfrac{1}{2}, 2, \\ldots'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — check if the sequence is an A.P.</b>'},
+      {t:'k', text:S`d = t_2-t_1 = t_3-t_2`},
+      {t:'p', text:'<b>Substitute the terms</b>'},
+      {t:'k', text:S`-\tfrac{5}{2}-(-4) = \tfrac{3}{2}`},
+      {t:'k', text:S`-1-\left(-\tfrac{5}{2}\right) = \tfrac{3}{2}`},
+      {t:'p', text:'Difference between successive terms is constant.'},
+      {t:'gr', text:'∴ It is an A.P. with a = −4, d = 3/2'},
+      {t:'p', text:'<b>(iii) Formula for the nth term</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute n=25</b>'},
+      {t:'k', text:S`t_{25} = -4+(25-1)\times\tfrac{3}{2}`},
+      {t:'k', text:S`t_{25} = -4+24\times\tfrac{3}{2}`},
+      {t:'k', text:S`t_{25} = -4+36`}
+    ]}],
+    ans:'(i) a = −4  (ii) d = 3/2  (iii) t₂₅ = 32'
+  },
+  {
+    num:6, m:'q-3m', diff:'m', marks:'2 Marks', src:'Worksheet Q6', sc:'worksheet', star:false,
+    q:'Which term of the A.P. 5, 12, 19, 26, 33, … will be 35 more than its 12th term?',
+    given:['a = 5','d = 7'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute n=12 to find the 12th term</b>'},
+      {t:'k', text:S`t_{12} = 5+(12-1)(7) = 5+77`},
+      {t:'gr', text:'∴ t₁₂ = 82'},
+      {t:'p', text:'<b>Required term = t₁₂ + 35</b>'},
+      {t:'k', text:S`\text{Required term} = 82+35 = 117`},
+      {t:'p', text:'<b>Substitute 117 back into the formula to find n</b>'},
+      {t:'k', text:S`117 = 5+(n-1)(7)`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`112 = 7(n-1)`},
+      {t:'k', text:S`n-1 = \dfrac{112}{7}`}
+    ]}],
+    ans:'n = 17 (the 17th term)'
+  },
+  {
+    num:7, m:'q-1m', diff:'m', marks:'3 Marks', src:'Worksheet Q7', sc:'worksheet', star:false,
+    q:'If the 3rd term of an A.P. is 11 and its 7th term is 27, find the 5th term.',
+    given:['t_3 = 11','t_7 = 27'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute n=3</b>'},
+      {t:'k', text:S`t_3 = a+2d = 11 \quad \dots(i)`},
+      {t:'p', text:'<b>Substitute n=7</b>'},
+      {t:'k', text:S`t_7 = a+6d = 27 \quad \dots(ii)`},
+      {t:'p', text:'<b>Subtract (i) from (ii)</b>'},
+      {t:'k', text:S`4d = 16`},
+      {t:'gr', text:'∴ d = 4'},
+      {t:'p', text:'<b>Back-substitute in (i)</b>'},
+      {t:'k', text:S`a+2(4) = 11`},
+      {t:'gr', text:'∴ a = 3'},
+      {t:'p', text:'<b>Substitute a=3, d=4, n=5 into the formula</b>'},
+      {t:'k', text:S`t_5 = a+4d = 3+16`}
+    ]}],
+    ans:'t₅ = 19'
+  },
+  {
+    num:8, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q8', sc:'worksheet', star:true,
+    q:'5th and 10th terms of an A.P. are 36 and 61 respectively. Find the A.P. and its 15th term.',
+    given:['t_5 = 36','t_{10} = 61'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute n=5</b>'},
+      {t:'k', text:S`t_5 = a+4d = 36 \quad \dots(i)`},
+      {t:'p', text:'<b>Substitute n=10</b>'},
+      {t:'k', text:S`t_{10} = a+9d = 61 \quad \dots(ii)`},
+      {t:'p', text:'<b>Subtract (i) from (ii)</b>'},
+      {t:'k', text:S`5d = 25`},
+      {t:'gr', text:'∴ d = 5'},
+      {t:'p', text:'<b>Back-substitute in (i)</b>'},
+      {t:'k', text:S`a+4(5) = 36`},
+      {t:'gr', text:'∴ a = 16'},
+      {t:'p', text:'<b>Substitute a=16, d=5, n=15 into the formula</b>'},
+      {t:'k', text:S`t_{15} = 16+(15-1)(5) = 16+70`}
+    ]}],
+    ans:'A.P.: 16, 21, 26, 31, …; t₁₅ = 86'
+  },
+  {
+    num:9, m:'q-la', diff:'m', marks:'3 Marks', src:'Worksheet Q9', sc:'worksheet', star:false,
+    q:'The nth term of two A.P.s is the same. Find the value of n and the nth term. AP₁: 57, 54, 51, … AP₂: 1, 5, 9, …',
+    given:['AP_1: 57, 54, 51, \\ldots','AP_2: 1, 5, 9, \\ldots'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute AP₁ (a=57, d=−3)</b>'},
+      {t:'k', text:S`t_n = 57+(n-1)(-3) = 60-3n \quad \dots(i)`},
+      {t:'p', text:'<b>Substitute AP₂ (a=1, d=4)</b>'},
+      {t:'k', text:S`t_n = 1+(n-1)(4) = 4n-3 \quad \dots(ii)`},
+      {t:'p', text:'<b>Equate (i) and (ii)</b>'},
+      {t:'k', text:S`60-3n = 4n-3`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`63 = 7n`},
+      {t:'gr', text:'∴ n = 9'},
+      {t:'p', text:'<b>Substitute n=9 into (ii) for the common term</b>'},
+      {t:'k', text:S`t_n = 4(9)-3 = 36-3`}
+    ]}],
+    ans:'n = 9, common term = 33'
+  },
+  {
+    num:10, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q10', sc:'worksheet', star:false,
+    q:'If the 7th term of an A.P. is 1/9 and its 9th term is 1/7, find its 63rd term.',
+    given:['t_7 = \\tfrac{1}{9}','t_9 = \\tfrac{1}{7}'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute n=7</b>'},
+      {t:'k', text:S`t_7 = a+6d = \tfrac{1}{9} \quad \dots(i)`},
+      {t:'p', text:'<b>Substitute n=9</b>'},
+      {t:'k', text:S`t_9 = a+8d = \tfrac{1}{7} \quad \dots(ii)`},
+      {t:'p', text:'<b>Subtract (i) from (ii)</b>'},
+      {t:'k', text:S`2d = \tfrac{1}{7}-\tfrac{1}{9} = \tfrac{9-7}{63} = \tfrac{2}{63}`},
+      {t:'gr', text:'∴ d = 1/63'},
+      {t:'p', text:'<b>Back-substitute in (i)</b>'},
+      {t:'k', text:S`a+6\left(\tfrac{1}{63}\right) = \tfrac{1}{9}`},
+      {t:'k', text:S`a = \tfrac{1}{9}-\tfrac{6}{63} = \tfrac{7}{63}-\tfrac{6}{63}`},
+      {t:'gr', text:'∴ a = 1/63'},
+      {t:'p', text:'<b>Substitute a=1/63, d=1/63, n=63 into the formula</b>'},
+      {t:'k', text:S`t_{63} = a+62d = \tfrac{1}{63}+\tfrac{62}{63} = \tfrac{63}{63}`}
+    ]}],
+    ans:'t₆₃ = 1'
+  },
+  {
+    num:11, m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q11', sc:'worksheet', star:false,
+    q:'How many terms are there in the A.P. 9, 13, 17, ... 97?',
+    given:['a = 9','d = 4','t_n = 97'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`97 = 9+(n-1)(4)`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`88 = 4(n-1)`},
+      {t:'k', text:S`n-1 = \dfrac{88}{4}`}
+    ]}],
+    ans:'There are 23 terms in the A.P.'
+  },
+  {
+    num:12, m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q12', sc:'worksheet', star:false,
+    q:'Is 56 a term of the A.P: 7, 10, 13, 16, 19, ... ?',
+    given:['a = 7','d = 3','t_n = 56 \\text{ (to test)}'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`56 = 7+(n-1)(3)`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`49 = 3(n-1)`},
+      {t:'k', text:S`n-1 = \tfrac{49}{3}`},
+      {t:'p', text:'n is not a whole number.'}
+    ]}],
+    ans:'No, 56 is NOT a term of the given A.P.'
+  },
+  {
+    num:13, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q13', sc:'worksheet', star:false,
+    q:'Find the middle term of the A.P: 11, 8, 5, 2, ..., −61.',
+    given:['a = 11','d = -3','t_n = -61'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — find the number of terms</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`-61 = 11+(n-1)(-3)`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`-72 = -3(n-1)`},
+      {t:'k', text:S`n-1 = \dfrac{-72}{-3}`},
+      {t:'gr', text:'∴ n = 25 (an odd number of terms, so there is a single middle term)'},
+      {t:'p', text:'<b>Middle term is the 13th term — substitute n=13</b>'},
+      {t:'k', text:S`t_{13} = 11+(13-1)(-3) = 11-36`}
+    ]}],
+    ans:'Middle term = −25 (the 13th term)'
+  },
+  {
+    num:14, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q14', sc:'worksheet', star:false,
+    q:'Find the number of terms and the two middle-most terms of the A.P: 1, 4, 7, ..., 94.',
+    given:['a = 1','d = 3','t_n = 94'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — find the number of terms</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`94 = 1+(n-1)(3)`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`93 = 3(n-1)`},
+      {t:'gr', text:'∴ n = 32 (an even number of terms, so there are two middle terms)'},
+      {t:'p', text:'<b>Middle-most terms are the 16th and 17th — substitute both</b>'},
+      {t:'k', text:S`t_{16} = 1+(16-1)(3) = 1+45`},
+      {t:'k', text:S`t_{17} = 1+(17-1)(3) = 1+48`}
+    ]}],
+    ans:'32 terms; middle-most terms are 46 and 49'
+  },
+  {
+    num:15, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q15', sc:'worksheet', star:false,
+    q:'Find the number of integers between 50 and 300 which are divisible by 7.',
+    given:['\\text{Integers divisible by 7, between 50 and 300: } 56, 63, \\ldots, 294'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute a=56, d=7, tₙ=294</b>'},
+      {t:'k', text:S`294 = 56+(n-1)(7)`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`238 = 7(n-1)`}
+    ]}],
+    ans:'35 integers between 50 and 300 are divisible by 7'
+  },
+  {
+    num:16, m:'q-3m', diff:'e', marks:'2 Marks', src:'Worksheet Q16', sc:'worksheet', star:false,
+    q:'Find the number of all natural numbers between 20 and 80, which are divisible by 3.',
+    given:['\\text{Numbers divisible by 3, between 20 and 80: } 21, 24, \\ldots, 78'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute a=21, d=3, tₙ=78</b>'},
+      {t:'k', text:S`78 = 21+(n-1)(3)`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`57 = 3(n-1)`}
+    ]}],
+    ans:'20 numbers'
+  },
+  {
+    num:17, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q17', sc:'worksheet', star:false,
+    q:'Which term of the A.P. 4, 11, 18, 25, … is 42 more than its 25th term?',
+    given:['a = 4','d = 7'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute n=25 to find the 25th term</b>'},
+      {t:'k', text:S`t_{25} = 4+(25-1)(7) = 4+168`},
+      {t:'gr', text:'∴ t₂₅ = 172'},
+      {t:'p', text:'<b>Required term = t₂₅ + 42</b>'},
+      {t:'k', text:S`\text{Required term} = 172+42 = 214`},
+      {t:'p', text:'<b>Substitute 214 back into the formula to find n</b>'},
+      {t:'k', text:S`214 = 4+(n-1)(7)`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`210 = 7(n-1)`}
+    ]}],
+    ans:'n = 31 (the 31st term)'
+  },
+  {
+    num:18, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q18', sc:'worksheet', star:true,
+    q:'Find 4 numbers in A.P. whose sum is −4 and sum of squares is 84.',
+    given:['\\text{Sum} = -4','\\text{Sum of squares} = 84'],
+    mbtip:'4 terms — use the symmetric-substitution formula from the Concepts tab: take them as a−3d, a−d, a+d, a+3d so the sum collapses to 4a instantly. Each real term here is 2d apart.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — let the 4 numbers be a−3d, a−d, a+d, a+3d</b>'},
+      {t:'k', text:S`(a-3d)+(a-d)+(a+d)+(a+3d) = 4a`},
+      {t:'p', text:'<b>Substitute the given sum</b>'},
+      {t:'k', text:S`4a = -4`},
+      {t:'gr', text:'∴ a = −1'},
+      {t:'p', text:'<b>Formula for the sum-of-squares condition</b>'},
+      {t:'k', text:S`(a-3d)^2+(a-d)^2+(a+d)^2+(a+3d)^2 = 4a^2+20d^2`},
+      {t:'p', text:'<b>Substitute a=−1 and the given sum of squares</b>'},
+      {t:'k', text:S`4a^2+20d^2 = 84`},
+      {t:'k', text:S`4(1)+20d^2 = 84`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`20d^2 = 80`},
+      {t:'k', text:S`d^2 = 4`},
+      {t:'gr', text:'∴ d = 2 (taking the positive case)'},
+      {t:'p', text:'<b>Substitute a=−1, d=2 to get the 4 numbers</b>'},
+      {t:'k', text:S`a-3d=-7,\ a-d=-3,\ a+d=1,\ a+3d=5`}
+    ]}],
+    ans:'−7, −3, 1, 5 (or, taking d = −2: 5, 1, −3, −7 — the same A.P. read backward)'
+  },
+  {
+    num:19, m:'q-la', diff:'m', marks:'3 Marks', src:'Worksheet Q19', sc:'worksheet', star:false,
+    q:'Find 3 numbers in A.P. whose sum is 15 and product is 80.',
+    given:['\\text{Sum} = 15','\\text{Product} = 80'],
+    mbtip:'3 terms — use the symmetric-substitution formula: take them as a−d, a, a+d.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — let the 3 numbers be a−d, a, a+d</b>'},
+      {t:'k', text:S`(a-d)+a+(a+d) = 3a`},
+      {t:'p', text:'<b>Substitute the given sum</b>'},
+      {t:'k', text:S`3a = 15`},
+      {t:'gr', text:'∴ a = 5'},
+      {t:'p', text:'<b>Formula for the product condition</b>'},
+      {t:'k', text:S`(a-d)(a)(a+d) = a(a^2-d^2)`},
+      {t:'p', text:'<b>Substitute a=5 and the given product</b>'},
+      {t:'k', text:S`5(a^2-d^2) = 80`},
+      {t:'k', text:S`25-d^2 = 16`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`d^2 = 25-16`},
+      {t:'k', text:S`d^2 = 9`},
+      {t:'gr', text:'∴ d = 3'}
+    ]}],
+    ans:'2, 5, 8 (or 8, 5, 2)'
+  },
+  {
+    num:20, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q20', sc:'worksheet', star:false,
+    q:'Find 5 numbers in A.P. whose sum is 12½ and ratio of first to last is 2:3.',
+    given:['\\text{Sum} = 12\\tfrac{1}{2}','\\text{first}:\\text{last} = 2:3'],
+    mbtip:'5 terms — use the symmetric-substitution formula: take them as a−2d, a−d, a, a+d, a+2d.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — let the 5 numbers be a−2d, a−d, a, a+d, a+2d</b>'},
+      {t:'k', text:S`(a-2d)+(a-d)+a+(a+d)+(a+2d) = 5a`},
+      {t:'p', text:'<b>Substitute the given sum</b>'},
+      {t:'k', text:S`5a = 12\tfrac{1}{2}`},
+      {t:'gr', text:'∴ a = 5/2'},
+      {t:'p', text:'<b>Formula for the ratio condition</b>'},
+      {t:'k', text:S`\dfrac{a-2d}{a+2d} = \dfrac{2}{3}`},
+      {t:'p', text:'<b>Substitute a=5/2 and cross-multiply</b>'},
+      {t:'k', text:S`3(a-2d) = 2(a+2d)`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`3a-6d = 2a+4d`},
+      {t:'k', text:S`a = 10d`},
+      {t:'k', text:S`d = \dfrac{a}{10} = \dfrac{5/2}{10} = \dfrac{1}{4}`},
+      {t:'p', text:'<b>Substitute a=5/2, d=1/4 to get the 5 numbers</b>'},
+      {t:'k', text:S`a-2d=2,\ a-d=\tfrac{9}{4},\ a=\tfrac{5}{2},\ a+d=\tfrac{11}{4},\ a+2d=3`}
+    ]}],
+    ans:'2, 9/4, 5/2, 11/4, 3'
+  },
+  {
+    num:21, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q21', sc:'worksheet', star:false,
+    q:'Divide 22 into 4 parts in A.P. such that ratio of product of extremes to product of means is 5:14.',
+    given:['\\text{Sum} = 22','\\dfrac{\\text{product of extremes}}{\\text{product of means}} = \\dfrac{5}{14}'],
+    mbtip:'4 parts — use the symmetric-substitution formula: take them as a−3d, a−d, a+d, a+3d. Extremes = outer two, means = inner two.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — let the 4 parts be a−3d, a−d, a+d, a+3d</b>'},
+      {t:'k', text:S`(a-3d)+(a-d)+(a+d)+(a+3d) = 4a`},
+      {t:'p', text:'<b>Substitute the given sum</b>'},
+      {t:'k', text:S`4a = 22`},
+      {t:'gr', text:'∴ a = 5.5'},
+      {t:'p', text:'<b>Formula for the ratio condition</b>'},
+      {t:'k', text:S`\dfrac{(a-3d)(a+3d)}{(a-d)(a+d)} = \dfrac{a^2-9d^2}{a^2-d^2}`},
+      {t:'p', text:'<b>Substitute a=5.5 and the given ratio</b>'},
+      {t:'k', text:S`\dfrac{a^2-9d^2}{a^2-d^2} = \dfrac{5}{14}`},
+      {t:'p', text:'<b>Cross-multiply</b>'},
+      {t:'k', text:S`14(a^2-9d^2) = 5(a^2-d^2)`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`14a^2-126d^2 = 5a^2-5d^2`},
+      {t:'k', text:S`9a^2 = 121d^2`},
+      {t:'k', text:S`9(30.25) = 121d^2`},
+      {t:'k', text:S`d^2 = 2.25`},
+      {t:'gr', text:'∴ d = 1.5'},
+      {t:'p', text:'<b>Substitute a=5.5, d=1.5 to get the 4 parts</b>'},
+      {t:'k', text:S`a-3d=1,\ a-d=4,\ a+d=7,\ a+3d=10`}
+    ]}],
+    ans:'1, 4, 7, 10 (or 10, 7, 4, 1)'
+  },
+  {
+    num:22, m:'q-1m', diff:'e', marks:'3 Marks', src:'Worksheet Q22', sc:'worksheet', star:false,
+    q:'The angles of a quadrilateral are in A.P. whose common difference is 10°. Find the angles.',
+    given:['\\text{4 angles in A.P., } d=10°','\\text{Angle sum of quadrilateral} = 360°'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — let the angles be a, a+d, a+2d, a+3d</b>'},
+      {t:'k', text:S`a+(a+d)+(a+2d)+(a+3d) = 4a+6d`},
+      {t:'p', text:'<b>Substitute d=10 and the angle sum</b>'},
+      {t:'k', text:S`4a+6(10) = 360`},
+      {t:'k', text:S`4a+60 = 360`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`4a = 300`}
+    ]}],
+    ans:'75°, 85°, 95°, 105°'
+  },
+  {
+    num:23, m:'q-1m', diff:'e', marks:'3 Marks', src:'Worksheet Q23', sc:'worksheet', star:false,
+    q:'The angles of a triangle are in A.P, whose common difference is 20°. Find the angles.',
+    given:['\\text{3 angles in A.P., } d=20°','\\text{Angle sum of triangle} = 180°'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula — let the angles be a, a+d, a+2d</b>'},
+      {t:'k', text:S`a+(a+d)+(a+2d) = 3a+3d`},
+      {t:'p', text:'<b>Substitute d=20 and the angle sum</b>'},
+      {t:'k', text:S`3a+3(20) = 180`},
+      {t:'k', text:S`3a+60 = 180`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`3a = 120`}
+    ]}],
+    ans:'40°, 60°, 80°'
+  },
+  {
+    num:24, m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q24', sc:'worksheet', star:false,
+    q:'Find the sum of the first 15 terms of A.P. 3, 8, 13, 18, 23, …',
+    given:['a = 3','d = 5','n = 15'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`S_{15} = \dfrac{15}{2}\big[2(3)+14(5)\big]`},
+      {t:'k', text:S`S_{15} = \dfrac{15}{2}\big[6+70\big]`}
+    ]}],
+    ans:'S₁₅ = 570'
+  },
+  {
+    num:25, m:'q-la', diff:'m', marks:'4 Marks', src:'Worksheet Q25', sc:'worksheet', star:true,
+    q:'Find the sum: (i) 4+7+10+…+220 (ii) 5+19/4+9/2+17/4+… (25 terms) (iii) 1+(−3)+(−7)+(−11)+…+(−315) (iv) √2+√8+√18+√32+… (n terms)',
+    given:['\\text{Four separate A.P. sums}'],
+    srcnote:'Part (iv) reads "2+8+18+32+…" in the chapter-wise extraction summary, but the original scanned worksheet page confirms it is actually √2+√8+√18+√32+…(the radical signs were dropped by OCR) — these do form a genuine A.P. (a=√2, d=√2), which plain 2,8,18,32 do not. Verified directly against the source image.',
+    sections:[
+      {label:'(i) 4+7+10+…+220', rows:[
+        {t:'k', text:S`a=4,\ d=3,\ l=220`},
+        {t:'p', text:'<b>Formula — find n first</b>'},
+        {t:'k', text:S`t_n = a+(n-1)d`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`220 = 4+(n-1)(3)`},
+        {t:'k', text:S`n-1 = 72`},
+        {t:'gr', text:'∴ n = 73'},
+        {t:'p', text:'<b>Formula for the sum</b>'},
+        {t:'k', text:S`S_n = \dfrac{n}{2}(a+l)`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`S_{73} = \dfrac{73}{2}(4+220) = \dfrac{73}{2}\times224`}
+      ]},
+      {label:'(ii) 5+19/4+9/2+17/4+… (25 terms)', rows:[
+        {t:'k', text:S`a=5,\quad d=\tfrac{19}{4}-5=-\tfrac{1}{4}`},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`S_{25} = \dfrac{25}{2}\Big[2(5)+24\left(-\tfrac{1}{4}\right)\Big]`},
+        {t:'k', text:S`S_{25} = \dfrac{25}{2}\big[10-6\big]`}
+      ]},
+      {label:'(iii) 1+(−3)+(−7)+(−11)+…+(−315)', rows:[
+        {t:'k', text:S`a=1,\ d=-4,\ l=-315`},
+        {t:'p', text:'<b>Formula — find n first</b>'},
+        {t:'k', text:S`t_n = a+(n-1)d`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`-315 = 1+(n-1)(-4)`},
+        {t:'k', text:S`n-1 = 79`},
+        {t:'gr', text:'∴ n = 80'},
+        {t:'p', text:'<b>Formula for the sum</b>'},
+        {t:'k', text:S`S_n = \dfrac{n}{2}(a+l)`},
+        {t:'p', text:'<b>Substitute</b>'},
+        {t:'k', text:S`S_{80} = \dfrac{80}{2}(1+(-315)) = 40\times(-314)`}
+      ]},
+      {label:'(iv) √2+√8+√18+√32+… (n terms)', rows:[
+        {t:'k', text:S`\sqrt2,\ \sqrt8=2\sqrt2,\ \sqrt{18}=3\sqrt2,\ \sqrt{32}=4\sqrt2`},
+        {t:'gr', text:'∴ This is an A.P. with a=√2, d=√2'},
+        {t:'p', text:'<b>Formula</b>'},
+        {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+        {t:'p', text:'<b>Substitute a=√2, d=√2</b>'},
+        {t:'k', text:S`S_n = \dfrac{n}{2}\Big[2\sqrt2+(n-1)\sqrt2\Big]`},
+        {t:'k', text:S`S_n = \dfrac{n}{2}\times\sqrt2(n+1)`}
+      ]}
+    ],
+    ans:'(i) S₇₃ = 8176  (ii) S₂₅ = 50  (iii) S₈₀ = −12560  (iv) Sₙ = √2·n(n+1)/2'
+  },
+  {
+    num:26, m:'q-la', diff:'m', marks:'3 Marks', src:'Worksheet Q26', sc:'worksheet', star:false,
+    q:'Solve for x: 1+4+7+…+x = 247',
+    given:['a=1','d=3','S_n = 247, \\ \\text{last term} = x'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute a=1, d=3, Sₙ=247</b>'},
+      {t:'k', text:S`\dfrac{n}{2}\big[2(1)+(n-1)(3)\big] = 247`},
+      {t:'p', text:'<b>Simplify and transpose</b>'},
+      {t:'k', text:S`n(3n-1) = 494`},
+      {t:'k', text:S`3n^2-n-494 = 0`},
+      {t:'p', text:'<b>Solve using the quadratic formula</b>'},
+      {t:'k', text:S`n = \dfrac{1+\sqrt{1+4(3)(494)}}{6} = \dfrac{1+\sqrt{5929}}{6} = \dfrac{1+77}{6}`},
+      {t:'gr', text:'∴ n = 13'},
+      {t:'p', text:'<b>Substitute n=13 into tₙ = a+(n−1)d to find x</b>'},
+      {t:'k', text:S`x = 1+(13-1)(3) = 1+36`}
+    ]}],
+    ans:'x = 37'
+  },
+  {
+    num:27, m:'q-1m', diff:'e', marks:'3 Marks', src:'Worksheet Q27', sc:'worksheet', star:false,
+    q:'Find the sum of all 2-digit numbers divisible by 3.',
+    given:['\\text{2-digit numbers divisible by 3: } 12, 15, \\ldots, 99'],
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`a=12,\ d=3,\ l=99`},
+      {t:'p', text:'<b>Formula — find n first</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`99 = 12+(n-1)(3)`},
+      {t:'k', text:S`n-1 = 29`},
+      {t:'gr', text:'∴ n = 30'},
+      {t:'p', text:'<b>Formula for the sum</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}(a+l)`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`S_{30} = \dfrac{30}{2}(12+99) = 15\times111`}
+    ]}],
+    ans:'1665'
+  },
+  {
+    num:28, m:'q-1m', diff:'e', marks:'3 Marks', src:'Worksheet Q28', sc:'worksheet', star:false,
+    q:'Find the sum of all odd numbers between 100 and 300.',
+    given:['\\text{Odd numbers between 100 and 300: } 101, 103, \\ldots, 299'],
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`a=101,\ d=2,\ l=299`},
+      {t:'p', text:'<b>Formula — find n first</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`299 = 101+(n-1)(2)`},
+      {t:'k', text:S`n-1 = 99`},
+      {t:'gr', text:'∴ n = 100'},
+      {t:'p', text:'<b>Formula for the sum</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}(a+l)`},
+      {t:'p', text:'<b>Substitute</b>'},
+      {t:'k', text:S`S_{100} = \dfrac{100}{2}(101+299) = 50\times400`}
+    ]}],
+    ans:'20,000'
+  },
+  {
+    num:29, m:'q-1m', diff:'e', marks:'3 Marks', src:'Worksheet Q29', sc:'worksheet', star:false,
+    q:'If the sum of first 20 terms of an A.P. is 610 and the first term is 2, find the common difference.',
+    given:['S_{20}=610','a=2'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute a=2, n=20, S₂₀=610</b>'},
+      {t:'k', text:S`\dfrac{20}{2}\big[2(2)+19d\big] = 610`},
+      {t:'p', text:'<b>Simplify and transpose</b>'},
+      {t:'k', text:S`10(4+19d) = 610`},
+      {t:'k', text:S`4+19d = 61`},
+      {t:'k', text:S`19d = 57`}
+    ]}],
+    ans:'d = 3'
+  },
+  {
+    num:31, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q31', sc:'worksheet', star:true,
+    q:'The ratio of the 6th term and 14th term of an A.P is 2:5. Find the ratio of (i) the 4th and 19th terms (ii) the sum of the first 5 terms and the sum of the first 12 terms.',
+    given:['t_6:t_{14} = 2:5'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute n=6 and n=14 into the ratio</b>'},
+      {t:'k', text:S`\dfrac{a+5d}{a+13d} = \dfrac{2}{5}`},
+      {t:'p', text:'<b>Cross-multiply</b>'},
+      {t:'k', text:S`5(a+5d) = 2(a+13d)`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`5a+25d = 2a+26d`},
+      {t:'k', text:S`3a = d`},
+      {t:'gr', text:'∴ d = 3a'},
+      {t:'p', text:'<b>(i) Substitute d=3a into tₙ for n=4 and n=19</b>'},
+      {t:'k', text:S`t_4 = a+3d = a+9a = 10a`},
+      {t:'k', text:S`t_{19} = a+18d = a+54a = 55a`},
+      {t:'k', text:S`t_4:t_{19} = 10a:55a`},
+      {t:'p', text:'<b>(ii) Formula for the sum</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute d=3a into Sₙ for n=5 and n=12</b>'},
+      {t:'k', text:S`S_5 = \dfrac{5}{2}(2a+4d) = \dfrac{5}{2}(2a+12a) = 35a`},
+      {t:'k', text:S`S_{12} = \dfrac{12}{2}(2a+11d) = 6(2a+33a) = 210a`},
+      {t:'k', text:S`S_5:S_{12} = 35a:210a`}
+    ]}],
+    ans:'(i) t₄ : t₁₉ = 2 : 11  (ii) S₅ : S₁₂ = 1 : 6'
+  },
+  {
+    num:32, m:'q-la', diff:'m', marks:'3 Marks', src:'Worksheet Q32', sc:'worksheet', star:false,
+    q:'How many terms of A.P. 7, 10, 13, … are needed to get a sum of 710?',
+    given:['a=7','d=3','S_n=710'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute a=7, d=3, Sₙ=710</b>'},
+      {t:'k', text:S`\dfrac{n}{2}\big[2(7)+(n-1)(3)\big] = 710`},
+      {t:'p', text:'<b>Simplify and transpose</b>'},
+      {t:'k', text:S`n(14+3n-3) = 1420`},
+      {t:'k', text:S`3n^2+11n-1420=0`},
+      {t:'p', text:'<b>Solve using the quadratic formula</b>'},
+      {t:'k', text:S`n = \dfrac{-11+\sqrt{121+4(3)(1420)}}{6} = \dfrac{-11+\sqrt{17161}}{6} = \dfrac{-11+131}{6}`}
+    ]}],
+    ans:'n = 20 terms'
+  },
+  {
+    num:33, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q33', sc:'worksheet', star:true,
+    q:'How many terms of A.P. 17, 15, 13, 11, … must be added to get sum 72? Explain the double answer.',
+    given:['a=17','d=-2','S_n=72'],
+    mbtip:'This A.P. is decreasing and eventually goes negative — after the terms cross zero, later terms start CANCELLING earlier positive ones, so the same running total of 72 can be reached at two different values of n.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute a=17, d=−2, Sₙ=72</b>'},
+      {t:'k', text:S`\dfrac{n}{2}\big[2(17)+(n-1)(-2)\big] = 72`},
+      {t:'p', text:'<b>Simplify and transpose</b>'},
+      {t:'k', text:S`n\big[34-2(n-1)\big] = 144`},
+      {t:'k', text:S`n(36-2n) = 144`},
+      {t:'k', text:S`2n^2-36n+144=0`},
+      {t:'k', text:S`n^2-18n+72=0`},
+      {t:'p', text:'<b>Factorise</b>'},
+      {t:'k', text:S`(n-12)(n-6)=0`},
+      {t:'gr', text:'∴ n = 6 or n = 12'},
+      {t:'p', text:'<b>Explaining the double answer — check S₆ using the formula</b>'},
+      {t:'k', text:S`S_6 = 72`},
+      {t:'k', text:S`t_7=5,\ t_8=3,\ t_9=1,\ t_{10}=-1,\ t_{11}=-3,\ t_{12}=-5`},
+      {t:'k', text:S`t_7+t_8+t_9+t_{10}+t_{11}+t_{12} = 0`},
+      {t:'gr', text:'∴ Sum of terms 7 to 12 is 0, so S₁₂ is also 72'}
+    ]}],
+    ans:'n = 6 or n = 12 (both valid) — terms 7 through 12 add up to zero, so the running sum stays at 72 whether you stop at 6 terms or continue to 12'
+  },
+  {
+    num:34, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q34', sc:'worksheet', star:false,
+    q:'The sum of the first 15 terms of an A.P. is 105 and the sum of the next 15 terms is 780. Find the first 3 terms.',
+    given:['S_{15}=105','\\text{Sum of terms 16 to 30} = 780'],
+    mbtip:'"Sum of the next 15 terms" means S₃₀ − S₁₅, not S₁₅ again — so S₃₀ = 105+780 = 885.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute n=15, S₁₅=105</b>'},
+      {t:'k', text:S`\dfrac{15}{2}\big[2a+14d\big] = 105`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`2a+14d = 14`},
+      {t:'k', text:S`a+7d = 7 \quad \dots(i)`},
+      {t:'p', text:'<b>Substitute n=30, S₃₀ = S₁₅+780 = 885</b>'},
+      {t:'k', text:S`\dfrac{30}{2}\big[2a+29d\big] = 885`},
+      {t:'p', text:'<b>Transpose</b>'},
+      {t:'k', text:S`2a+29d = 59 \quad \dots(ii)`},
+      {t:'p', text:'<b>Substitute a = 7−7d from (i) into (ii)</b>'},
+      {t:'k', text:S`2(7-7d)+29d = 59`},
+      {t:'k', text:S`14+15d = 59`},
+      {t:'k', text:S`15d = 45`},
+      {t:'gr', text:'∴ d = 3'},
+      {t:'p', text:'<b>Back-substitute d=3 in (i)</b>'},
+      {t:'k', text:S`a = 7-7(3) = 7-21`}
+    ]}],
+    ans:'First 3 terms: −14, −11, −8'
+  },
+  {
+    num:35, m:'q-la', diff:'m', marks:'4 Marks', src:'Worksheet Q35', sc:'worksheet', star:false,
+    q:'The sum of the first 8 terms of an A.P. is 148 and the sum of its first 12 terms is 342. Find the sum of its first 25 terms of the A.P.',
+    given:['S_8=148','S_{12}=342'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute n=8, S₈=148</b>'},
+      {t:'k', text:S`\dfrac{8}{2}\big[2a+7d\big]=148`},
+      {t:'k', text:S`2a+7d=37 \quad \dots(i)`},
+      {t:'p', text:'<b>Substitute n=12, S₁₂=342</b>'},
+      {t:'k', text:S`\dfrac{12}{2}\big[2a+11d\big]=342`},
+      {t:'k', text:S`2a+11d=57 \quad \dots(ii)`},
+      {t:'p', text:'<b>Subtract (i) from (ii)</b>'},
+      {t:'k', text:S`4d=20`},
+      {t:'gr', text:'∴ d = 5'},
+      {t:'p', text:'<b>Back-substitute in (i)</b>'},
+      {t:'k', text:S`2a+7(5)=37`},
+      {t:'k', text:S`2a=2`},
+      {t:'gr', text:'∴ a = 1'},
+      {t:'p', text:'<b>Substitute a=1, d=5, n=25 into the formula</b>'},
+      {t:'k', text:S`S_{25}=\dfrac{25}{2}\big[2(1)+24(5)\big] = \dfrac{25}{2}\big[2+120\big]`}
+    ]}],
+    ans:'S₂₅ = 1525'
+  },
+  {
+    num:36, m:'q-la', diff:'h', marks:'3 Marks', src:'Worksheet Q36', sc:'worksheet', star:false,
+    q:'Prove that S₁₂ = 3(S₈ − S₄), where Sₙ denotes the sum of first n terms of an A.P.',
+    given:['S_n = \\dfrac{n}{2}\\big[2a+(n-1)d\\big]'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute n=4, n=8, n=12 in turn</b>'},
+      {t:'k', text:S`S_4 = \dfrac{4}{2}\big[2a+3d\big] = 4a+6d`},
+      {t:'k', text:S`S_8 = \dfrac{8}{2}\big[2a+7d\big] = 8a+28d`},
+      {t:'k', text:S`S_{12} = \dfrac{12}{2}\big[2a+11d\big] = 12a+66d`},
+      {t:'p', text:'<b>Compute 3(S₈ − S₄)</b>'},
+      {t:'k', text:S`3(S_8-S_4) = 3\big[(8a+28d)-(4a+6d)\big]`},
+      {t:'k', text:S`= 3\big[4a+22d\big]`},
+      {t:'k', text:S`= 12a+66d`},
+      {t:'gr', text:'This equals S₁₂ exactly.'},
+      {t:'p', text:'∴ S₁₂ = 3(S₈ − S₄)  <b>Hence proved.</b>'}
+    ]}],
+    ans:'Proved — both sides equal 12a + 66d'
+  },
+  {
+    num:37, m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q37', sc:'worksheet', star:false,
+    q:'The sum of the first n terms of an A.P. is n²+8n. Find the 12th term.',
+    given:['S_n = n^2+8n'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = S_n-S_{n-1}`},
+      {t:'p', text:'<b>Substitute n=12 into Sₙ</b>'},
+      {t:'k', text:S`S_{12} = 12^2+8(12) = 144+96 = 240`},
+      {t:'p', text:'<b>Substitute n=11 into Sₙ</b>'},
+      {t:'k', text:S`S_{11} = 11^2+8(11) = 121+88 = 209`},
+      {t:'p', text:'<b>Substitute both into the formula</b>'},
+      {t:'k', text:S`t_{12} = 240-209`}
+    ]}],
+    ans:'t₁₂ = 31'
+  },
+  {
+    num:38, m:'q-la', diff:'m', marks:'4 Marks', src:'Worksheet Q38', sc:'worksheet', star:false,
+    q:'The sum of the first 4 terms in an A.P. is 18 and the sum of the third and the fourth term is 19. Find the four terms.',
+    given:['S_4=18','t_3+t_4=19'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula for the sum</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute n=4, S₄=18</b>'},
+      {t:'k', text:S`\dfrac{4}{2}\big[2a+3d\big]=18`},
+      {t:'k', text:S`2a+3d=9 \quad \dots(i)`},
+      {t:'p', text:'<b>Formula for the nth term</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute n=3 and n=4 into t₃+t₄=19</b>'},
+      {t:'k', text:S`(a+2d)+(a+3d)=19`},
+      {t:'k', text:S`2a+5d=19 \quad \dots(ii)`},
+      {t:'p', text:'<b>Subtract (i) from (ii)</b>'},
+      {t:'k', text:S`2d=10`},
+      {t:'gr', text:'∴ d = 5'},
+      {t:'p', text:'<b>Back-substitute in (i)</b>'},
+      {t:'k', text:S`2a+3(5)=9`},
+      {t:'k', text:S`2a=-6`},
+      {t:'gr', text:'∴ a = −3'},
+      {t:'p', text:'<b>Substitute a=−3, d=5 to get the four terms</b>'},
+      {t:'k', text:S`-3,\ -3+5,\ -3+10,\ -3+15`}
+    ]}],
+    ans:'−3, 2, 7, 12'
+  },
+  {
+    num:39, m:'q-la', diff:'m', marks:'4 Marks', src:'Worksheet Q39', sc:'worksheet', star:true,
+    q:'A company produces 1200 units in the third year and 1400 units in the seventh year. Assuming that the production increases uniformly by a fixed number every year, find the production in (i) the first year (ii) the tenth year (iii) the first 8 years.',
+    given:['t_3=1200','t_7=1400'],
+    srcnote:'The opening phrase "A company" is missing from the scanned worksheet text (page begins mid-sentence with "produces...") — restored here for a complete, gradable question. The numbers and structure are unaffected.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute n=3</b>'},
+      {t:'k', text:S`t_3=a+2d=1200 \quad \dots(i)`},
+      {t:'p', text:'<b>Substitute n=7</b>'},
+      {t:'k', text:S`t_7=a+6d=1400 \quad \dots(ii)`},
+      {t:'p', text:'<b>Subtract (i) from (ii)</b>'},
+      {t:'k', text:S`4d=200`},
+      {t:'gr', text:'∴ d = 50'},
+      {t:'p', text:'<b>(i) Back-substitute in (i)</b>'},
+      {t:'k', text:S`a+2(50)=1200`},
+      {t:'gr', text:'∴ a = 1100'},
+      {t:'p', text:'<b>(ii) Substitute a=1100, d=50, n=10 into the formula</b>'},
+      {t:'k', text:S`t_{10}=1100+9(50)=1100+450`},
+      {t:'p', text:'<b>(iii) Formula for the sum</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute a=1100, d=50, n=8</b>'},
+      {t:'k', text:S`S_8=\dfrac{8}{2}\big[2(1100)+7(50)\big]=4\big[2200+350\big]`}
+    ]}],
+    ans:'(i) 1100 units  (ii) 1550 units  (iii) 10,200 units in 8 years'
+  },
+  {
+    num:40, m:'q-1m', diff:'m', marks:'3 Marks', src:'Worksheet Q40', sc:'worksheet', star:false,
+    q:'Reema saves ₹48 during the first month, ₹52 in the second month and ₹56 in the third month. If she continues to save in this manner, in how many months will she save ₹2400?',
+    given:['a=48','d=4','S_n=2400'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute a=48, d=4, Sₙ=2400</b>'},
+      {t:'k', text:S`\dfrac{n}{2}\big[2(48)+(n-1)(4)\big]=2400`},
+      {t:'p', text:'<b>Simplify and transpose</b>'},
+      {t:'k', text:S`n\big[96+4n-4\big]=4800`},
+      {t:'k', text:S`n(4n+92)=4800`},
+      {t:'k', text:S`4n^2+92n-4800=0`},
+      {t:'k', text:S`n^2+23n-1200=0`},
+      {t:'p', text:'<b>Solve using the quadratic formula</b>'},
+      {t:'k', text:S`n=\dfrac{-23+\sqrt{529+4800}}{2}=\dfrac{-23+\sqrt{5329}}{2}=\dfrac{-23+73}{2}`}
+    ]}],
+    ans:'25 months'
+  },
+  {
+    num:41, m:'q-la', diff:'m', marks:'4 Marks', src:'Worksheet Q41', sc:'worksheet', star:false,
+    q:'A sum of ₹3000 is used to award 8 prizes. If each prize is ₹30 more than its preceding prize, find the value of each prize.',
+    given:['n=8','d=30','S_8=3000'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute n=8, d=30, S₈=3000</b>'},
+      {t:'k', text:S`\dfrac{8}{2}\big[2a+7(30)\big]=3000`},
+      {t:'p', text:'<b>Simplify and transpose</b>'},
+      {t:'k', text:S`4\big[2a+210\big]=3000`},
+      {t:'k', text:S`2a+210=750`},
+      {t:'k', text:S`2a=540`},
+      {t:'gr', text:'∴ a = 270 (the smallest prize)'},
+      {t:'p', text:'<b>Substitute a=270, d=30 to get all 8 prizes</b>'},
+      {t:'k', text:S`270,\ 300,\ 330,\ 360,\ 390,\ 420,\ 450,\ 480`}
+    ]}],
+    ans:'₹270, ₹300, ₹330, ₹360, ₹390, ₹420, ₹450, ₹480'
+  },
+  {
+    num:42, m:'q-la', diff:'m', marks:'4 Marks', src:'Worksheet Q42', sc:'worksheet', star:false,
+    q:'The production of TV sets in a factory increases uniformly by a fixed number every year. It produced 8000 sets in the 6th year and 11,300 in the 9th year. Find the production in (i) the 1st year (ii) the 8th year (iii) the first 6 years altogether.',
+    given:['t_6=8000','t_9=11300'],
+    srcnote:'Part (iii) is printed in the source as "the 6th year" (a repeat of the given data), but the source\'s own answer key gives 31,500 for this part — which matches the TOTAL production over the first 6 years (S₆), not the single 6th-year figure (already given as 8000). Reworded to "the first 6 years altogether" to match the intended question.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`t_n = a+(n-1)d`},
+      {t:'p', text:'<b>Substitute n=6</b>'},
+      {t:'k', text:S`t_6=a+5d=8000 \quad \dots(i)`},
+      {t:'p', text:'<b>Substitute n=9</b>'},
+      {t:'k', text:S`t_9=a+8d=11300 \quad \dots(ii)`},
+      {t:'p', text:'<b>Subtract (i) from (ii)</b>'},
+      {t:'k', text:S`3d=3300`},
+      {t:'gr', text:'∴ d = 1100'},
+      {t:'p', text:'<b>(i) Back-substitute in (i)</b>'},
+      {t:'k', text:S`a+5(1100)=8000`},
+      {t:'gr', text:'∴ a = 2500'},
+      {t:'p', text:'<b>(ii) Substitute a=2500, d=1100, n=8 into the formula</b>'},
+      {t:'k', text:S`t_8=2500+7(1100)=2500+7700`},
+      {t:'p', text:'<b>(iii) Formula for the sum</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute a=2500, d=1100, n=6</b>'},
+      {t:'k', text:S`S_6=\dfrac{6}{2}\big[2(2500)+5(1100)\big]=3\big[5000+5500\big]`}
+    ]}],
+    ans:'(i) 2500 sets  (ii) 10,200 sets  (iii) 31,500 sets total in the first 6 years'
+  },
+  {
+    num:43, m:'q-1m', diff:'m', marks:'3 Marks', src:'Worksheet Q43', sc:'worksheet', star:false,
+    q:'200 logs are stacked in such a way that there are 20 logs in the bottom row, 19 logs in the next row, 18 logs in the next row and so on. How many rows are formed and how many logs are in the top row?',
+    given:['a=20','d=-1','S_n=200'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute a=20, d=−1, Sₙ=200</b>'},
+      {t:'k', text:S`\dfrac{n}{2}\big[2(20)+(n-1)(-1)\big]=200`},
+      {t:'p', text:'<b>Simplify and transpose</b>'},
+      {t:'k', text:S`n\big[40-(n-1)\big]=400`},
+      {t:'k', text:S`n(41-n)=400`},
+      {t:'k', text:S`n^2-41n+400=0`},
+      {t:'p', text:'<b>Solve using the quadratic formula</b>'},
+      {t:'k', text:S`n=\dfrac{41\pm\sqrt{1681-1600}}{2}=\dfrac{41\pm9}{2}`},
+      {t:'gr', text:'∴ n = 25 or n = 16'},
+      {t:'p', text:'<b>Reject n = 25 — substitute into tₙ = a+(n−1)d</b>'},
+      {t:'k', text:S`t_{25}=20+24(-1)=-4`},
+      {t:'p', text:'A negative number of logs is impossible, so n=25 is rejected.'},
+      {t:'p', text:'<b>Take n = 16 — substitute into tₙ = a+(n−1)d for the top row</b>'},
+      {t:'k', text:S`t_{16}=20+15(-1)=20-15`}
+    ]}],
+    ans:'16 rows are formed; 5 logs are in the top row'
+  },
+  {
+    num:44, m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q44', sc:'worksheet', star:false,
+    q:'A man saved ₹33,000 in 10 months. In each month after the first, he saves ₹100 more than he did in the preceding month. How much did he save in the first month?',
+    given:['n=10','d=100','S_{10}=33000'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Formula</b>'},
+      {t:'k', text:S`S_n = \dfrac{n}{2}\big[2a+(n-1)d\big]`},
+      {t:'p', text:'<b>Substitute n=10, d=100, S₁₀=33000</b>'},
+      {t:'k', text:S`\dfrac{10}{2}\big[2a+9(100)\big]=33000`},
+      {t:'p', text:'<b>Simplify and transpose</b>'},
+      {t:'k', text:S`5\big[2a+900\big]=33000`},
+      {t:'k', text:S`2a+900=6600`},
+      {t:'k', text:S`2a=5700`}
+    ]}],
+    ans:'₹2,850'
+  }
+];
+
+render('board-qs', boardData);
+render('practice-qs', practiceData);
+updateCount('board-qs');
+updateCount('practice-qs');
+renderMathIn(document.getElementById('panel-concepts'));
+</script>
+</body>
+</html>

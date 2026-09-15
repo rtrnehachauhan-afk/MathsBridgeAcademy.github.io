@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrices — ICSE Class 10 | Maths Bridge Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F0E8;--bg2:#EDE8DC;--bg3:#E4DDD0;
+  --green:#2D5A3D;--green2:#3D7A55;--green3:#1A3D28;
+  --gold:#C9A84C;--gold2:#E8C56A;--gold3:#A07830;
+  --slate:#1A3050;--blue:#2563A8;--cbblue:#0D2B4E;
+  --purple:#7B5EA7;
+  --amber:#7A5C00;--amberbg:#FFF8DC;
+  --text:#000;--text2:#1a1a1a;--text3:#555;
+  --white:#fff;--card:#FFFDF8;--border:#D4C9B0;
+  --fbg:#EEF5F0;--hbg:#FFF8E6;
+}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--bg);color:var(--text);font-size:20px;line-height:1.75}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px 80px}
+
+/* ---------- overflow safety (locked, per spec) ---------- */
+.k, .formula-text, .qtxt, .sol-body, .given-row, .mtx-wrap{overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;padding-top:2px;padding-bottom:2px}
+.katex-display{overflow-x:auto;overflow-y:visible;padding:6px 0}
+
+/* HEADER */
+.site-header{background:var(--green3);border-bottom:3px solid var(--gold)}
+.header-inner{display:flex;align-items:center;gap:16px;padding:12px 24px;max-width:960px;margin:0 auto}
+.logo-mark{width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--green3);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;font-size:16px;flex-shrink:0}
+.ht-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--white);line-height:1.1}
+.ht-tag{font-size:11px;color:var(--gold2);letter-spacing:.05em;margin-top:2px}
+.hr-right{margin-left:auto;text-align:right}
+.hr-board{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.hr-ch{font-family:'Playfair Display',serif;font-size:15px;color:var(--white);font-weight:700}
+
+/* HERO */
+.hero{background:var(--green);padding:22px 28px;border-radius:0 0 8px 8px;margin-bottom:22px;position:relative;overflow:hidden}
+.h-lbl{font-size:10px;font-weight:700;color:var(--gold2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.h-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:800;color:var(--white);line-height:1.1;margin-bottom:5px}
+.h-sub{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:16px}
+.h-pills{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:4px}
+.h-pill{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);color:var(--white);font-size:11px;font-weight:600;padding:3px 12px;border-radius:20px;font-family:'JetBrains Mono',monospace}
+
+/* TABS */
+.tabs{display:flex;gap:5px;flex-wrap:wrap;background:var(--bg2);padding:7px;border-radius:6px;border:1px solid var(--border);margin-bottom:20px}
+.tab-btn{flex:1;min-width:100px;padding:9px 8px;font-size:15px;font-weight:700;border:2px solid transparent;cursor:pointer;border-radius:5px;transition:all .16s;font-family:'Crimson Pro',serif;background:transparent;color:var(--text3)}
+.tab-btn:not(.active):hover{background:var(--bg3);color:var(--text)}
+.tb-concepts.active{background:var(--green);color:var(--white);border-color:var(--green)}
+.tb-board.active{background:var(--gold3);color:var(--white);border-color:var(--gold3)}
+.tb-practice.active{background:var(--slate);color:var(--white);border-color:var(--slate)}
+
+/* DIFFICULTY FILTER */
+.diff-filter{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.df-btn{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:6px 15px;border-radius:20px;border:2px solid var(--border);background:var(--card);color:var(--text3);cursor:pointer;transition:all .15s;letter-spacing:.02em}
+.df-btn:hover{border-color:var(--green2)}
+.df-btn.active[data-f="all"]{background:var(--green3);border-color:var(--green3);color:var(--white)}
+.df-btn.active[data-f="e"]{background:#DFF5E3;border-color:#1A5C2A;color:#1A5C2A}
+.df-btn.active[data-f="m"]{background:#FFF3CC;border-color:#7A5500;color:#7A5500}
+.df-btn.active[data-f="h"]{background:#FFE5E5;border-color:#8B1A1A;color:#8B1A1A}
+.df-count{font-size:12px;color:var(--text3);align-self:center;margin-left:2px;font-family:'JetBrains Mono',monospace}
+
+/* SECTION HEAD */
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.sec-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0;font-family:'JetBrains Mono',monospace;color:var(--white)}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--green)}
+.sec-badge{margin-left:auto;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+
+/* FORMULA / HIGHLIGHT / THEOREM BOXES (used in Concepts tab) */
+.fbox{background:var(--fbg);border-left:4px solid var(--green);border-radius:0 5px 5px 0;padding:13px 16px;margin:10px 0;position:relative}
+.fbox .fl{font-size:10px;font-weight:700;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.fbox .fm{font-size:19px;font-weight:600;color:var(--green3);line-height:1.9}
+.fbox .fn{font-size:15px;color:var(--text2);margin-top:5px;line-height:1.6}
+.hbox{background:var(--hbg);border-left:4px solid var(--gold);border-radius:0 5px 5px 0;padding:11px 15px;margin:10px 0}
+.hbox .hl{font-size:10px;font-weight:700;color:var(--gold3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.hbox .ht{font-size:16px;color:var(--text2);line-height:1.7}
+.tbox{background:var(--card);border:1px solid var(--green);border-radius:6px;padding:15px 18px;margin:12px 0}
+.mba-note{font-size:13px;font-weight:700;color:#8B1A1A;background:#FFF3F0;border-left:3px solid #C94040;padding:5px 11px;border-radius:0 6px 6px 0;margin:6px 0 10px}
+.mba-note b{color:#6B1414}
+.src-note{font-size:13px;font-weight:700;color:var(--amber);background:var(--amberbg);border-left:3px solid var(--gold3);padding:5px 11px;border-radius:0 6px 6px 0;margin:6px 16px 10px}
+.src-note b{color:var(--gold3)}
+.tbox .tl{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--white);background:var(--green);padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:9px;letter-spacing:.04em}
+.tbox .tb{font-size:16px;color:var(--text2);line-height:1.8}
+
+/* CONCEPT CARD */
+.cc{background:var(--card);border:1px solid var(--border);border-radius:6px;margin-bottom:13px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.cc-head{background:var(--green3);padding:11px 16px;display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none}
+.cc-head .ci{font-size:16px}
+.cc-head .ct{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--white);flex:1}
+.cc-head .ca{color:var(--gold2);font-size:13px;transition:transform .2s}
+.cc-head.open .ca{transform:rotate(180deg)}
+.cc-body{display:none;padding:16px 18px;border-top:2px solid var(--border)}
+.cc-body.open{display:block}
+.cc-body p{font-size:16px;color:var(--text2);line-height:1.8;margin-bottom:9px}
+.ctbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+.ctbl th{background:var(--green3);color:var(--white);padding:9px 13px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700}
+.ctbl td{padding:9px 13px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+.ctbl tr:nth-child(even) td{background:var(--bg2)}
+
+/* QUESTION CARD */
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:6px;margin-bottom:13px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.q-stripe{height:6px}
+.qcard.q-1m .q-stripe{background:linear-gradient(90deg,var(--green),var(--green2))}
+.qcard.q-2m .q-stripe{background:linear-gradient(90deg,var(--purple),#A07BD4)}
+.qcard.q-3m .q-stripe{background:linear-gradient(90deg,var(--gold3),var(--gold))}
+.qcard.q-la .q-stripe{background:linear-gradient(90deg,var(--slate),var(--blue))}
+
+.q-head{background:var(--card);padding:12px 16px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--border)}
+.q-head-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.qnb{min-width:32px;height:32px;border-radius:5px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;padding:0 6px;background:var(--bg2);color:var(--text2)}
+.qtxt{font-size:19px;font-weight:600;color:var(--text2);line-height:1.6;width:100%;font-family:'Crimson Pro',serif}
+.qmp{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;font-family:'JetBrains Mono',monospace;background:var(--bg2);color:var(--text3)}
+.star{font-size:14px;flex-shrink:0}
+.diff{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap;flex-shrink:0}
+.diff-e{background:#DFF5E3;color:#1A5C2A}
+.diff-m{background:#FFF3CC;color:#7A5500}
+.diff-h{background:#FFE5E5;color:#8B1A1A}
+
+/* PYQ PILLS */
+.pyq-pills{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.pyq-lbl{font-size:9px;font-weight:700;color:var(--text3);font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+.pyq-yr{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;font-family:'JetBrains Mono',monospace;background:#F0EBF8;color:var(--purple);border:1px solid #C4B0E8}
+
+/* MCQ OPTIONS */
+.mcq-opts{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:13px 16px;background:#FAFAF5;border-bottom:1px solid var(--border)}
+.mopt{padding:10px 14px;border-radius:5px;font-size:18px;cursor:pointer;border:2px solid var(--border);background:var(--card);color:var(--text);transition:all .15s;text-align:left;font-family:'Crimson Pro',serif;font-weight:600}
+.mopt:hover:not(.locked){border-color:var(--green2);background:var(--fbg)}
+.mopt.correct{border-color:var(--green);background:#EEF5F0;color:var(--green3)}
+.mopt.wrong{border-color:var(--amber);background:var(--amberbg);color:var(--amber)}
+.mcq-res{display:none;padding:9px 16px 12px;background:#FAFAF5}
+.mcq-res.show{display:block}
+.mcq-res .ml{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.mcq-res.ok .ml{color:var(--green)}.mcq-res.wr .ml{color:var(--amber)}
+.mcq-res .mt{font-size:15px;color:var(--text2);line-height:1.7}
+
+/* FOOTER (card) */
+.q-foot{background:rgba(45,90,61,.06);padding:7px 16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border)}
+.qsrc{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.src-worksheet{background:#EEF5F0;color:var(--green3)}
+.src-pyq{background:#F0EBF8;color:var(--purple)}
+.sol-btn{margin-left:auto;font-size:11px;font-weight:700;padding:4px 13px;border-radius:5px;border:2px solid var(--green);background:transparent;cursor:pointer;color:var(--green);transition:all .15s;font-family:'JetBrains Mono',monospace}
+.sol-btn:hover{background:var(--green);color:var(--white)}
+.rep-btn{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid #E0C9C9;background:#FBF3F3;color:#9A2B2B;cursor:pointer;transition:all .15s;white-space:nowrap}
+.rep-btn:hover{background:#F3E3E3;border-color:#C99}
+.rep-btn.sent{background:#EEF5F0;border-color:var(--green);color:var(--green)}
+.rep-modal{display:none;position:fixed;inset:0;background:rgba(26,61,40,.55);z-index:999;align-items:center;justify-content:center;padding:18px}
+.rep-modal.show{display:flex}
+.rep-card{background:var(--card);border:1px solid var(--green);border-radius:8px;max-width:440px;width:100%;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,.18)}
+.rep-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--green);margin-bottom:8px}
+.rep-ctx{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3);background:var(--bg2);border-radius:5px;padding:7px 10px;margin-bottom:12px}
+.rep-ta{width:100%;min-height:90px;font-family:'Crimson Pro',serif;font-size:17px;border:1.5px solid var(--border);border-radius:5px;padding:10px 12px;resize:vertical}
+.rep-ta:focus{outline:none;border-color:var(--gold)}
+.rep-status{font-size:13px;color:var(--green);min-height:18px;margin:10px 0 4px;font-weight:600}
+.rep-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+.rep-cancel{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 16px;border-radius:5px;border:1.5px solid var(--border);background:#fff;color:var(--text3);cursor:pointer}
+.rep-send{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 18px;border-radius:5px;border:none;background:var(--green);color:#fff;cursor:pointer;font-weight:700}
+.rep-send:hover{background:var(--green3)}
+
+/* MB TIP */
+.mbtip{background:#FFF8E6;border:2px dashed var(--gold3);border-radius:6px;padding:11px 15px;margin:10px 16px}
+.mbtip-lbl{font-size:10px;font-weight:700;color:var(--gold3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.mbtip-text{font-size:15px;color:var(--text2);line-height:1.65}
+
+/* SOLUTION BODY */
+.sol-body{display:none;border-top:2px solid var(--border)}
+.sol-body.open{display:block}
+.given-blk{background:var(--fbg);padding:10px 16px;border-bottom:1px solid #C8DCCC}
+.given-lbl{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.given-row{font-size:17px;color:var(--text2);line-height:1.7;margin-bottom:3px}
+.ysec{padding:14px 16px;border-bottom:1px solid var(--border)}
+.ysec:last-of-type{border-bottom:none}
+.y-lbl{display:inline-block;background:var(--green3);color:var(--white);font-size:10px;font-weight:700;padding:2px 10px;border-radius:4px;margin-bottom:12px;letter-spacing:.04em;font-family:'JetBrains Mono',monospace}
+.k{font-size:17px;color:var(--green3);background:var(--fbg);border-left:3px solid var(--green);padding:6px 12px;border-radius:0 6px 6px 0;margin:4px 0 5px;display:block}
+.p{font-size:17px;color:var(--text2);line-height:1.7;margin-bottom:6px}
+.p b{color:var(--green3)}
+.gr{font-size:14px;color:var(--text3);font-style:italic;margin-left:4px;display:block;margin-bottom:4px}
+.final-ans{background:var(--green3);padding:11px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fa-lbl{font-size:11px;font-weight:700;color:var(--gold2);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
+.fav{font-size:18px;font-weight:700;color:var(--white);font-family:'Crimson Pro',serif}
+
+.panel{animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+footer{text-align:center;padding:26px;color:var(--text3);font-size:13px}
+</style>
+</head>
+<body>
+<div class="site-header">
+  <div class="header-inner">
+    <div class="logo-mark">MBA</div>
+    <div><div class="ht-name">Maths Bridge Academy</div><div class="ht-tag">Nurturing Young Minds Through Maths Mastery</div></div>
+    <div class="hr-right"><div class="hr-board">ICSE · Class 10</div><div class="hr-ch">Matrices</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+<div class="hero">
+  <div class="h-lbl">ICSE Class 10 Mathematics</div>
+  <div class="h-title">Matrices</div>
+  <div class="h-sub">Order, types, equality, arithmetic &amp; multiplication of matrices</div>
+  <div class="h-pills">
+    <span class="h-pill">Practice Worksheet — 31 Questions</span>
+    <span class="h-pill">Board PYQs 2018–2025</span>
+    <span class="h-pill">⭐ = Board-frequent pattern</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn tb-concepts active" id="btn-concepts" onclick="sw('concepts')">📘 Concepts</button>
+  <button class="tab-btn tb-board" id="btn-board" onclick="sw('board')">✎ Board PYQs</button>
+  <button class="tab-btn tb-practice" id="btn-practice" onclick="sw('practice')">✓ Practice Worksheet</button>
+</div>
+
+<div id="panel-concepts" class="panel">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--green)">M</div><div class="sec-title">All Concepts &amp; Formulae</div></div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">📄</span><span class="ct">1. Meaning, Order &amp; Elements</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">MATRIX</span><div class="tb">A matrix is a rectangular arrangement of numbers in rows and columns, enclosed in brackets. Each number inside is called an <b>element</b> (or entry) of the matrix.</div></div>
+      <div class="fbox"><div class="fl">Order of a matrix</div><div class="fm">\( \text{Order} = m \times n \) &nbsp; (read "m by n")</div><div class="fn">m = number of rows, n = number of columns. A matrix with 2 rows and 3 columns has order 2×3 — never write this as 3×2.</div></div>
+      <div class="tbox"><span class="tl">ROW SUFFIX, COLUMN SUFFIX</span><div class="tb">The element in row i, column j of matrix A is written \(a_{ij}\). The first suffix is always the row number, the second is always the column number — never swap the order when reading a suffix.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> "2×3" always means 2 rows, 3 columns — row count comes first, column count second, no exceptions.</div>
+      <div class="hbox"><div class="hl">Worked example — constructing a matrix from a rule</div><div class="ht">Construct a 2×3 matrix where \(a_{ij} = 3i-j\).<br>
+      <b>Step 1 — set up the template:</b><br>
+      \[\left[\begin{matrix}a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 3}\]
+      <b>Step 2 — substitute the rule into every cell:</b><br>
+      \[=\left[\begin{matrix}3(1)-1 & 3(1)-2 & 3(1)-3\\3(2)-1 & 3(2)-2 & 3(2)-3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 3}\]
+      <b>Step 3 — assemble:</b> every cell filled in by substituting its own (i,j), never copied from a neighbouring cell:<br>
+      \[\left[\begin{matrix}2 & 1 & 0\\5 & 4 & 3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 3}\]</div></div>
+
+      <div class="fbox"><div class="fl">Number of elements vs. possible orders</div><div class="fm">Elements = m × n</div><div class="fn">A matrix with 6 elements could be 1×6, 2×3, 3×2, or 6×1 — list every factor pair of 6, in both orders, since m×n and n×m are different orders unless m=n.</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🗂️</span><span class="ct">2. Types of Matrices</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <table class="ctbl">
+        <tr><th>Type</th><th>Meaning</th></tr>
+        <tr><td>Row matrix</td><td>Only 1 row (order 1×n)</td></tr>
+        <tr><td>Column matrix</td><td>Only 1 column (order m×1)</td></tr>
+        <tr><td>Square matrix</td><td>Rows = columns (order n×n)</td></tr>
+        <tr><td>Zero (null) matrix</td><td>Every element is 0, any order</td></tr>
+        <tr><td>Diagonal matrix</td><td>Square, and every non-diagonal element is 0</td></tr>
+        <tr><td>Identity matrix (I)</td><td>Square, diagonal elements all 1, every other element 0</td></tr>
+      </table>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> Only <b>square</b> matrices can be identity or diagonal matrices — a 2×3 matrix can never be called an identity matrix, no matter what its entries are.</div>
+      <div class="hbox"><div class="hl">Why order matters before anything else</div><div class="ht">Before you add, subtract, or multiply two matrices — or call one an identity/diagonal matrix — check the order first. Almost every mistake in this chapter traces back to skipping that check.</div></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">⚖️</span><span class="ct">3. Equality of Matrices — Solving for Unknowns</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">EQUAL MATRICES</span><div class="tb">Two matrices are equal only if (1) they have the <b>same order</b>, and (2) every corresponding element is equal. If either condition fails, the matrices are not equal.</div></div>
+      <div class="fbox"><div class="fl">The one technique behind every "find x, y, ..." question</div><div class="fm">Equate corresponding elements — position by position</div><div class="fn">First simplify. If either side still has an addition, subtraction, scalar multiple, or product, carry that out completely so each side becomes a single matrix. Then match position (1,1) on the left with position (1,1) on the right, (1,2) with (1,2), and so on. Each matching pair gives one ordinary algebraic equation.</div></div>
+      <div class="hbox"><div class="hl">Worked example</div><div class="ht">Solve:<br>
+      \[\left[\begin{matrix}a+3 & 4\\-2 & b-6\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}-1 & c-3\\d+1 & 2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\]
+      Match position by position — four separate equations. They're independent because each one involves only its own letter (a, b, c, or d never appears in more than one position here), so they can be solved one at a time in any order:<br>
+      <b>Step 1 — position (1,1):</b> \(a+3=-1\), so \(a=-4\)<br>
+      <b>Step 2 — position (1,2):</b> \(4=c-3\), so \(c=7\)<br>
+      <b>Step 3 — position (2,1):</b> \(-2=d+1\), so \(d=-3\)<br>
+      <b>Step 4 — position (2,2):</b> \(b-6=2\), so \(b=8\)</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> If the LHS still has an operation (a sum, a scalar multiple, a product) do that operation FIRST and simplify to a single matrix — only then start equating positions.</div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">➕</span><span class="ct">4. Addition, Subtraction &amp; Scalar Multiplication</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">CONFORMABLE FOR ADDITION/SUBTRACTION</span><div class="tb">Two matrices can only be added or subtracted if they have the <b>exact same order</b>. Add/subtract each pair of corresponding entries — never combine entries from different positions.</div></div>
+      <div class="fbox"><div class="fl">Scalar multiplication</div><div class="fm">\(kA\) — multiply every single entry of A by k</div><div class="fn">A scalar (an ordinary number) multiplies every entry of the matrix, not just one row or column.</div></div>
+      <div class="hbox"><div class="hl">Worked example — linear combination</div><div class="ht">Given:<br>
+      \(A=\left[\begin{matrix}0&1\\5&-1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\), &nbsp; \(B=\left[\begin{matrix}1&-3\\0&-2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\), &nbsp; \(C=\left[\begin{matrix}2&-5\\4&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\)<br>
+      Find \(3A+4B-5C\).<br>
+      <b>Step 1 — scale each matrix first:</b><br>
+      \[3A=3\left[\begin{matrix}0&1\\5&-1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}3\times0 & 3\times1\\3\times5 & 3\times(-1)\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}0&3\\15&-3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\]
+      \[4B=4\left[\begin{matrix}1&-3\\0&-2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}4\times1 & 4\times(-3)\\4\times0 & 4\times(-2)\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}4&-12\\0&-8\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\]
+      \[5C=5\left[\begin{matrix}2&-5\\4&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}5\times2 & 5\times(-5)\\5\times4 & 5\times0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}10&-25\\20&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\]
+      <b>Step 2 — combine position by position:</b><br>
+      \[\left[\begin{matrix}0+4-10 & 3-12+25\\15+0-20 & -3-8-0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\]
+      <b>Step 3 — assemble the result:</b><br>
+      \[3A+4B-5C=\left[\begin{matrix}-6&16\\-5&-11\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\]</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> Scale every matrix completely BEFORE you start adding/subtracting position by position — don't try to do both steps in your head at once.</div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">✖️</span><span class="ct">5. Matrix Multiplication — Conformability &amp; the Row×Column Method</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="fbox"><div class="fl">Conformability rule for AB</div><div class="fm">A is m×n, B is n×p, so AB exists, and AB is m×p</div><div class="fn">"Conformable" just means: the orders actually allow this operation to be done. For multiplication, A and B are conformable when the number of <b>columns of A</b> equals the number of <b>rows of B</b> — that middle number (n) has to match. If they don't match, the product does not exist — say so, don't force an answer.<br><br>
+      <b>Concrete example:</b> if A is 2×3 and B is 3×2, the middle numbers (3 and 3) match, so AB exists and is 2×2 — the outer numbers (2 and 2). But BA would be checking if B's columns (2) match A's rows (2) — that also works here, giving BA as 3×3. Notice AB and BA aren't even the same order!</div></div>
+      <div class="tbox"><span class="tl">ROW × COLUMN METHOD</span><div class="tb">Each entry of AB is found by taking a full row of A, a full column of B, multiplying corresponding entries together, and adding the results. Entry (i,j) of AB always comes from row i of A and column j of B.</div></div>
+      <div class="hbox"><div class="hl">Worked example</div><div class="ht">Given \(A=\left[\begin{matrix}1&3\\2&-1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\) and \(B=\left[\begin{matrix}2\\-3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 1}\), find AB.<br>
+      <b>Step 1 — check conformability:</b> columns of A (=2) match rows of B (=2), so AB exists, with order 2×1.<br>
+      <b>Step 2 — row 1 of A times column 1 of B:</b> \(1(2)+3(-3)=2-9=-7\)<br>
+      <b>Step 3 — row 2 of A times column 1 of B:</b> \(2(2)+(-1)(-3)=4+3=7\)<br>
+      <b>Step 4 — assemble the result:</b><br>
+      \[AB=\left[\begin{matrix}-7\\7\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 1}\]
+      — every cell traced back to one specific row and one specific column, nothing assumed.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> Always check conformability and state the resulting order BEFORE multiplying — this is worth marks on its own in board answers, and catches order-mismatch errors before you waste time computing.</div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🔁</span><span class="ct">6. Properties of Matrix Multiplication</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="tbox"><span class="tl">NON-COMMUTATIVE: AB ≠ BA IN GENERAL</span><div class="tb">Unlike ordinary numbers, swapping the order of matrix multiplication usually changes the answer — sometimes AB and BA aren't even the same order (see the concrete example in card 5 above, where a 2×3 times a 3×2 gives a 2×2, but reversed it gives a 3×3). Always keep the order you're told to multiply in.</div></div>
+      <div class="fbox"><div class="fl">Associative law</div><div class="fm">\( (AB)C = A(BC) \)</div><div class="fn">Grouping doesn't matter as long as the left-to-right order of the matrices stays the same. In plain words: you can multiply A and B first and then multiply by C, or multiply B and C first and then multiply by A on the left — either way gives the same final matrix.</div></div>
+      <div class="fbox"><div class="fl">Distributive law</div><div class="fm">\( A(B+C) = AB + AC \)</div><div class="fn">Multiplication distributes over addition, exactly like ordinary algebra — but the multiplying matrix must stay on the same side (left or right) throughout. In plain words: adding B and C first and then multiplying by A gives the same result as multiplying A by each of B and C separately and then adding. A full worked numeric check of this is in the Practice Worksheet, Q20 — worth looking at once to see it isn't just a rule, it actually comes out equal.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> When a question asks "is A(B+C) = AB+AC?", compute both sides fully and independently, then compare — don't assume the law holds without checking the actual numbers for that specific question.</div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-head open" onclick="toggleCC(this)"><span class="ci">🪞</span><span class="ct">7. The Identity Matrix</span><span class="ca">▾</span></div>
+    <div class="cc-body open">
+      <div class="fbox"><div class="fl">Identity matrix, I</div><div class="fm">\(AI = IA = A\)</div><div class="fn">I plays the same role for matrices that 1 plays for ordinary numbers — multiplying by I leaves any conformable matrix unchanged.</div></div>
+      <div class="hbox"><div class="hl">Recognising I</div><div class="ht">\(I_2=\left[\begin{matrix}1&0\\0&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\) — 1s down the leading diagonal (top-left to bottom-right), 0s everywhere else, and always square.</div></div>
+      <div class="mba-note">⚠️ <b>MBA Note:</b> In equations like \(A^2-5A=kI\), first compute \(A^2-5A\) fully, then compare it directly to \(\left[\begin{matrix}k&0\\0&k\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\) — the off-diagonal entries must come out to 0 on their own; that's your check that the arithmetic is right.</div>
+    </div>
+  </div>
+
+</div>
+
+<div id="panel-board" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--purple)">B</div><div class="sec-title">Board PYQs (2018–2025)</div><span class="sec-badge" style="background:#F0EBF8;color:var(--purple);border:1px solid #C4B0E8">MCQs + Short/Long Answer</span></div>
+  <div class="diff-filter" id="filter-board-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('board-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('board-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('board-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('board-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-board-qs"></span>
+  </div>
+  <div id="board-qs"></div>
+</div>
+
+<div id="panel-practice" class="panel" style="display:none">
+  <div class="sec-head"><div class="sec-icon" style="background:var(--slate)">P</div><div class="sec-title">Practice Worksheet (31 Questions)</div><span class="sec-badge" style="background:#E8EEF5;color:var(--slate);border:1px solid #A0B4C8">Full Worked Solutions</span></div>
+  <div class="diff-filter" id="filter-practice-qs">
+    <button class="df-btn active" data-f="all" onclick="filterDiff('practice-qs','all',this)">All</button>
+    <button class="df-btn" data-f="e" onclick="filterDiff('practice-qs','e',this)">Easy</button>
+    <button class="df-btn" data-f="m" onclick="filterDiff('practice-qs','m',this)">Medium</button>
+    <button class="df-btn" data-f="h" onclick="filterDiff('practice-qs','h',this)">Hard</button>
+    <span class="df-count" id="count-practice-qs"></span>
+  </div>
+  <div id="practice-qs"></div>
+</div>
+
+</div>
+
+<footer>Maths Bridge Academy · ICSE Class 10 · Matrices &nbsp;|&nbsp; Found an error? Use the Report button on that card.</footer>
+
+<div class="rep-modal" id="rep-modal">
+  <div class="rep-card">
+    <div class="rep-title">Report an error</div>
+    <div class="rep-ctx" id="rep-ctx"></div>
+    <textarea class="rep-ta" id="rep-msg" placeholder="What looks wrong? (e.g. Step 3 arithmetic, final answer, wrong option marked...)"></textarea>
+    <div class="rep-status" id="rep-status"></div>
+    <div class="rep-actions">
+      <button class="rep-cancel" onclick="repClose()">Cancel</button>
+      <button class="rep-send" onclick="repSend()">Send</button>
+    </div>
+  </div>
+</div>
+<script>
+/* ===== ERROR REPORT CONFIG ===== */
+const REPORT_META = { board:'ICSE', grade:'10', chapter:'Matrices' };
+const REPORT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx3vGZZjTHbAnKtOwSz6TaWtpYtnudCzxKMtm3Eo9bB4Ey6Xlor6LunLFEmyIQQy5e6/exec';
+/* ================================ */
+var _repCtx = {};
+function reportError(card, btn){
+  var parts = String(card).split(' ');
+  _repCtx = { tab: parts[0]||'', qno: parts[1]||card, btn: btn };
+  document.getElementById('rep-ctx').textContent =
+    REPORT_META.board+' · Grade '+REPORT_META.grade+' · '+REPORT_META.chapter+' · '+_repCtx.tab+' · '+_repCtx.qno;
+  document.getElementById('rep-msg').value='';
+  document.getElementById('rep-status').textContent='';
+  document.getElementById('rep-modal').classList.add('show');
+  document.getElementById('rep-msg').focus();
+}
+function repClose(){ document.getElementById('rep-modal').classList.remove('show'); }
+function repSend(){
+  var msg = document.getElementById('rep-msg').value.trim();
+  var status = document.getElementById('rep-status');
+  if(!msg){ status.style.color='#9A2B2B'; status.textContent='Please type what is wrong.'; return; }
+  status.style.color='var(--green)'; status.textContent='Sending...';
+  /* CRITICAL: GET with query params, NOT POST — Apps Script /exec 302-redirects
+     and browsers silently drop POST bodies across a redirect. */
+  var qs = 'board='+encodeURIComponent(REPORT_META.board)
+         +'&grade='+encodeURIComponent(REPORT_META.grade)
+         +'&chapter='+encodeURIComponent(REPORT_META.chapter)
+         +'&tab='+encodeURIComponent(_repCtx.tab)
+         +'&qno='+encodeURIComponent(_repCtx.qno)
+         +'&error='+encodeURIComponent(msg);
+  function done(){
+    status.style.color='var(--green)'; status.textContent='\u2713 Thank you! Reported.';
+    if(_repCtx.btn){ _repCtx.btn.classList.add('sent'); _repCtx.btn.textContent='\u2713 Reported'; }
+    setTimeout(repClose, 1200);
+  }
+  fetch(REPORT_ENDPOINT+'?'+qs, { method:'GET', mode:'no-cors' }).then(done).catch(done);
+}
+function reportBtn(card, alone){
+  var ml = alone ? 'style="margin-left:auto"' : '';
+  return '<button class="rep-btn" '+ml+' onclick="reportError(\''+card+'\', this)" title="Found a mistake? Report it">\u26a0 Report error</button>';
+}
+function updateCount(cid){
+  var el = document.getElementById('count-'+cid);
+  if(!el) return;
+  var all = document.querySelectorAll('#'+cid+' .qcard');
+  var visible = document.querySelectorAll('#'+cid+' .qcard:not([style*="display: none"])');
+  el.textContent = 'Showing '+visible.length+' of '+all.length;
+}
+function filterDiff(cid, level, btn){
+  var bar = document.getElementById('filter-'+cid);
+  bar.querySelectorAll('.df-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var cards = document.querySelectorAll('#'+cid+' .qcard');
+  cards.forEach(function(card){
+    card.style.display = (level==='all' || card.getAttribute('data-diff')===level) ? '' : 'none';
+  });
+  updateCount(cid);
+}
+function toggleCC(h){ h.classList.toggle('open'); h.nextElementSibling.classList.toggle('open'); }
+function sw(id){
+  ['concepts','board','practice'].forEach(function(t){
+    document.getElementById('panel-'+t).style.display = t===id ? 'block' : 'none';
+    var b = document.getElementById('btn-'+t);
+    b.classList.remove('active');
+    if(t===id) b.classList.add('active');
+  });
+  renderMathIn(document.getElementById('panel-'+id));
+}
+function pyqPills(yrs){
+  if(!yrs || !yrs.length) return '';
+  var pills = yrs.map(function(y){ return '<span class="pyq-yr">'+y+'</span>'; }).join('');
+  return '<span class="pyq-lbl">PYQ:</span><div class="pyq-pills">'+pills+'</div>';
+}
+function togSol(btn){
+  var b = btn.closest('.qcard').querySelector('.sol-body');
+  var open = b.classList.toggle('open');
+  btn.textContent = open ? 'Hide Solution' : 'Show Solution';
+  if(open) renderMathIn(b);
+}
+function chk(btn,id,chosen,correct){
+  var all = btn.closest('.mcq-opts').querySelectorAll('.mopt');
+  all.forEach(function(b){ b.classList.add('locked'); });
+  all.forEach(function(b,i){
+    if(i===correct) b.classList.add('correct');
+    else if(i===chosen) b.classList.add('wrong');
+  });
+  var res = document.getElementById('mr-'+id);
+  res.classList.add('show');
+  if(chosen===correct){
+    res.classList.add('ok');
+    res.querySelector('.ml').textContent = '\u2713 Correct!';
+    res.querySelector('.mt').innerHTML = 'Correct: '+all[correct].textContent.trim();
+  } else {
+    res.classList.add('wr');
+    res.querySelector('.ml').textContent = '\u2717 Incorrect';
+    res.querySelector('.mt').innerHTML = 'Correct answer: '+all[correct].textContent.trim();
+  }
+  renderMathIn(res);
+}
+function buildRow(r){
+  if(!r) return '';
+  if(r.t==='p') return '<div class="p">'+r.text+'</div>';
+  if(r.t==='gr') return '<div class="gr">'+r.text+'</div>';
+  if(r.t==='k') return '<div class="k">\\[ '+r.text+' \\]</div>';
+  if(r.t==='div') return '<hr style="border:none;border-top:1px dashed var(--border);margin:6px 0">';
+  return '';
+}
+function buildSections(sections, given){
+  return (sections||[]).map(function(sec, idx){
+    var rows = sec.rows.map(buildRow).join('');
+    var givenRow = '';
+    if(idx===0 && given && given.length){
+      givenRow = '<div class="p"><b>Given:</b> ' + given.join(' &nbsp;·&nbsp; ') + '</div>';
+    }
+    return '<div class="ysec"><div class="y-lbl">'+sec.label+'</div>'+givenRow+rows+'</div>';
+  }).join('');
+}
+function buildMbTip(tip){
+  if(!tip) return '';
+  return '<div class="mbtip"><div class="mbtip-lbl">\ud83d\udca1 MB Tip</div><div class="mbtip-text">'+tip+'</div></div>';
+}
+function buildSrcNote(note){
+  if(!note) return '';
+  return '<div class="src-note">\u2691 <b>Source Note:</b> '+note+'</div>';
+}
+function renderMathIn(container){
+  if(window.renderMathInElement && container){
+    renderMathInElement(container, {
+      delimiters:[{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],
+      throwOnError:false
+    });
+  }
+}
+function render(cid, data){
+  var c = document.getElementById(cid);
+  data.forEach(function(q, i){
+    var diff = q.diff || 'm';
+    var div = document.createElement('div');
+    div.className = 'qcard ' + q.m;
+    div.setAttribute('data-diff', diff);
+    var star = q.star ? '<span class="star" title="Board-frequent pattern">\u2b50</span>' : '';
+    var srcHtml = '<span class="qsrc src-'+q.sc+'">'+q.src+'</span>';
+    var pyqHtml = pyqPills(q.pyq);
+    var qid = cid+'-'+i;
+    var cardLbl = cid.replace('-qs','').toUpperCase()+' Q'+(i+1);
+    var diffLbl = {'e':'Easy','m':'Medium','h':'Hard'}[diff];
+
+    if(q.type === 'mcq'){
+      var mopts = q.opts.map(function(o,oi){
+        return '<button class="mopt" onclick="chk(this,\''+qid+'\','+oi+','+q.ans+')">'+o+'</button>';
+      }).join('');
+      var mcqSolBtn = q.sol ? '<button class="sol-btn" onclick="togSol(this)">Show Solution</button>' : '';
+      var mcqSolBody = q.sol ? '<div class="sol-body">'+buildSections(q.sol)+'<div class="final-ans"><span class="fa-lbl">Answer</span><span class="fav">'+q.opts[q.ans]+'</span></div></div>' : '';
+      div.innerHTML =
+        '<div class="q-stripe"></div>'+
+        '<div class="q-head"><div class="q-head-top"><div class="qnb">Q'+(i+1)+'</div><span class="qmp">'+q.marks+'</span>'+star+'<span class="diff diff-'+diff+'">'+diffLbl+'</span></div><div class="qtxt">'+q.q+'</div></div>'+
+        buildMbTip(q.mbtip)+
+        '<div class="mcq-opts">'+mopts+'</div>'+
+        '<div class="mcq-res" id="mr-'+qid+'"><div class="ml"></div><div class="mt"></div></div>'+
+        '<div class="q-foot">'+srcHtml+pyqHtml+mcqSolBtn+reportBtn(cardLbl,!q.sol)+'</div>'+
+        mcqSolBody;
+    } else {
+      div.innerHTML =
+        '<div class="q-stripe"></div>'+
+        '<div class="q-head"><div class="q-head-top"><div class="qnb">Q'+(i+1)+'</div><span class="qmp">'+q.marks+'</span>'+star+'<span class="diff diff-'+diff+'">'+diffLbl+'</span></div><div class="qtxt">'+q.q+'</div></div>'+
+        buildMbTip(q.mbtip)+
+        '<div class="q-foot">'+srcHtml+pyqHtml+'<button class="sol-btn" onclick="togSol(this)">Show Solution</button>'+reportBtn(cardLbl,false)+'</div>'+
+        '<div class="sol-body">'+buildSections(q.sections, q.given)+buildSrcNote(q.srcnote)+'<div class="final-ans"><span class="fa-lbl">Answer</span><span class="fav">'+q.ans+'</span></div></div>';
+    }
+    c.appendChild(div);
+  });
+}
+
+function S(strings, ...vals){ return String.raw(strings, ...vals); } // proper String.raw wrapper — DO NOT re-wrap in {raw:strings}
+/* =========================================================================
+   BOARD PYQ DATA (14 questions/sub-parts, 2018-2025, from ICSE_Chapterwise_Extraction.md
+   cross-checked against original board papers where the extraction was incomplete).
+   All matrix arithmetic independently verified with numpy before inclusion.
+   ========================================================================= */
+const boardData = [
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2025 Q1(v)', sc:'pyq', star:true, pyq:['2025'],
+    type:'mcq',
+    q:'If A = \\(\\left[\\begin{matrix}0&1\\\\1&0\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), then A² is equal to:',
+    opts:['\\(\\left[\\begin{matrix}1&1\\\\0&0\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','\\(\\left[\\begin{matrix}0&0\\\\1&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','\\(\\left[\\begin{matrix}1&0\\\\0&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','\\(\\left[\\begin{matrix}0&1\\\\1&0\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'], ans:2,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Row × column, entry by entry</b>'},
+      {t:'k', text:S`A^2 = \left[\begin{matrix}0&1\\1&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}0&1\\1&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`= \left[\begin{matrix}0\times0+1\times1 & 0\times1+1\times0\\1\times0+0\times1 & 1\times1+0\times0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`= \left[\begin{matrix}1&0\\0&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'gr', text:'(A is its own conformability check here — 2×2 times 2×2 always gives 2×2)'}
+    ]}]
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'ICSE 2025 Q3(ii)', sc:'pyq', star:true, pyq:['2025'],
+    q:'If A = \\(\\left[\\begin{matrix}1&2\\\\3&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), B = \\(\\left[\\begin{matrix}2&1\\\\3&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and C = \\(\\left[\\begin{matrix}5&1\\\\-7&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), find: (a) A + C (b) B(A + C) (c) 5B (d) B(A + C) − 5B',
+    given:['A = \\(\\left[\\begin{matrix}1&2\\\\3&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','B = \\(\\left[\\begin{matrix}2&1\\\\3&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','C = \\(\\left[\\begin{matrix}5&1\\\\-7&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'],
+    mbtip:'Compute (a) first and reuse it in (b) and (d) — don\'t recompute A+C from scratch each time.',
+    sections:[
+      {label:'(a) A + C', rows:[
+        {t:'k', text:S`A+C = \left[\begin{matrix}1+5&2+1\\3+(-7)&4+4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}6&3\\-4&8\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+      ]},
+      {label:'(b) B(A + C)', rows:[
+        {t:'p', text:'<b>Conformability</b>: B is 2×2, (A+C) is 2×2 — product exists, order 2×2'},
+        {t:'k', text:S`B(A+C) = \left[\begin{matrix}2&1\\3&4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}6&3\\-4&8\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+        {t:'k', text:S`= \left[\begin{matrix}2(6)+1(-4) & 2(3)+1(8)\\3(6)+4(-4) & 3(3)+4(8)\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+        {t:'k', text:S`B(A+C) = \left[\begin{matrix}8&14\\2&41\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+      ]},
+      {label:'(c) 5B', rows:[
+        {t:'k', text:S`5B = 5\left[\begin{matrix}2&1\\3&4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+        {t:'k', text:S`= \left[\begin{matrix}5\times2 & 5\times1\\5\times3 & 5\times4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+        {t:'k', text:S`5B = \left[\begin{matrix}10&5\\15&20\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+      ]},
+      {label:'(d) B(A+C) − 5B', rows:[
+        {t:'k', text:S`\left[\begin{matrix}8&14\\2&41\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}-\left[\begin{matrix}10&5\\15&20\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}-2&9\\-13&21\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+      ]}
+    ],
+    ans:'(a) \\(\\left[\\begin{matrix}6&3\\\\-4&8\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)  (b) \\(\\left[\\begin{matrix}8&14\\\\2&41\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)  (c) \\(\\left[\\begin{matrix}10&5\\\\15&20\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)  (d) \\(\\left[\\begin{matrix}-2&9\\\\-13&21\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-1m', diff:'m', marks:'1 Mark · MCQ', src:'ICSE 2024 Q1(iv)', sc:'pyq', star:false, pyq:['2024'],
+    type:'mcq',
+    q:'If matrix A = \\(\\left[\\begin{matrix}2&2\\\\0&2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and A² = \\(\\left[\\begin{matrix}4&x\\\\0&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), then the value of x is:',
+    opts:['2','4','8','10'], ans:2,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Only the (1,2) entry of A² is unknown — compute it directly</b>'},
+      {t:'k', text:S`(1,2)\text{ of }A^2 = 2\times2+2\times2 = 4+4 = 8`},
+      {t:'gr', text:'(row 1 of A = [2,2], column 2 of A = [2,2] — same row and column here since A is upper triangular)'}
+    ]}]
+  },
+  {
+    m:'q-la', diff:'m', marks:'4 Marks', src:'ICSE 2024 Q2(i)', sc:'pyq', star:true, pyq:['2024'],
+    q:'Given A = \\(\\left[\\begin{matrix}x&0\\\\1&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), B = \\(\\left[\\begin{matrix}4&0\\\\y&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and C = \\(\\left[\\begin{matrix}4&0\\\\x&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\). Find the values of x and y, if AB = C.',
+    given:['A = \\(\\left[\\begin{matrix}x&0\\\\1&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','B = \\(\\left[\\begin{matrix}4&0\\\\y&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','C = \\(\\left[\\begin{matrix}4&0\\\\x&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'],
+    mbtip:'Compute AB fully in terms of x and y first, then equate to C position by position — resist solving for x from one entry before you\'ve written out every entry.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Compute AB (row × column)</b>'},
+      {t:'k', text:S`AB = \left[\begin{matrix}x&0\\1&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}4&0\\y&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}4x&0\\4+y&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>Equate to C, position by position</b>'},
+      {t:'k', text:S`4x=4`},
+      {t:'k', text:S`\therefore x=1`},
+      {t:'k', text:S`4+y=x`},
+      {t:'p', text:'<b>Substitute x = 1:</b>'},
+      {t:'k', text:S`4+y=1`},
+      {t:'k', text:S`\therefore y=1-4=-3`},
+      {t:'gr', text:S`(check: with x=1, AB = \(\left[\begin{matrix}4&0\\1&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]\) = C = \(\left[\begin{matrix}4&0\\1&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]\)\ ✓)`}
+    ]}],
+    ans:'x = 1, y = −3'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2023 Q1(i)', sc:'pyq', star:false, pyq:['2023'],
+    type:'mcq',
+    q:'If:<br>\\[\\left[\\begin{matrix}2&0\\\\0&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\,\\,\\left[\\begin{matrix}x\\\\y\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 1} = \\left[\\begin{matrix}2\\\\-8\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 1}\\]<br>the values of x and y respectively are:',
+    opts:['1, −2','−2, 1','1, 2','−2, −1'], ans:0,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Row × column, each row gives one equation directly</b>'},
+      {t:'k', text:S`2x+0y=2`},
+      {t:'k', text:S`2x=2`},
+      {t:'k', text:S`\therefore x=2\div2=1`},
+      {t:'k', text:S`0x+4y=-8`},
+      {t:'k', text:S`4y=-8`},
+      {t:'k', text:S`\therefore y=-8\div4=-2`}
+    ]}]
+  },
+  {
+    m:'q-la', diff:'m', marks:'4 Marks', src:'ICSE 2023 Q4(i)', sc:'pyq', star:false, pyq:['2023'],
+    q:'If A = \\(\\left[\\begin{matrix}1&3\\\\2&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), B = \\(\\left[\\begin{matrix}1&2\\\\2&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), C = \\(\\left[\\begin{matrix}4&1\\\\1&5\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and I = \\(\\left[\\begin{matrix}1&0\\\\0&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\). Find A(B + C) − 14I.',
+    given:['A = \\(\\left[\\begin{matrix}1&3\\\\2&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','B = \\(\\left[\\begin{matrix}1&2\\\\2&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','C = \\(\\left[\\begin{matrix}4&1\\\\1&5\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','I = \\(\\left[\\begin{matrix}1&0\\\\0&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>B + C</b>'},
+      {t:'k', text:S`B+C = \left[\begin{matrix}1+4&2+1\\2+1&4+5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}5&3\\3&9\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>A(B+C)</b> — conformability: 2×2 by 2×2, product is 2×2'},
+      {t:'k', text:S`A(B+C) = \left[\begin{matrix}1&3\\2&4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}5&3\\3&9\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`= \left[\begin{matrix}1(5)+3(3) & 1(3)+3(9)\\2(5)+4(3) & 2(3)+4(9)\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`= \left[\begin{matrix}14&30\\22&42\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>Subtract 14I</b>'},
+      {t:'k', text:S`\left[\begin{matrix}14&30\\22&42\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} - \left[\begin{matrix}14&0\\0&14\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}0&30\\22&28\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}],
+    ans:'\\(\\left[\\begin{matrix}0&30\\\\22&28\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-3m', diff:'h', marks:'3 Marks', src:'ICSE 2020 Q1(b)', sc:'pyq', star:true, pyq:['2020'],
+    q:'Given A = \\(\\left[\\begin{matrix}x&3\\\\y&3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\). If A² = 3I, where I is the identity matrix of order 2, find x and y.',
+    given:['A = \\(\\left[\\begin{matrix}x&3\\\\y&3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','A² = 3I'],
+    mbtip:'The (2,1) entry of A² gives y(x+3) = 0 — once you know x = −3 from the (1,2) entry, that equation is automatically satisfied for ANY y, so it gives you no information. Get y from the (2,2) entry instead.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Compute A² fully</b>'},
+      {t:'k', text:S`A^2 = \left[\begin{matrix}x&3\\y&3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}x&3\\y&3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}x^2+3y & 3x+9\\xy+3y & 3y+9\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>Set equal to \\(3I=\\left[\\begin{matrix}3&0\\\\0&3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), equate entries</b>'},
+      {t:'k', text:S`3x+9=0`},
+      {t:'k', text:S`\therefore x=-3`},
+      {t:'k', text:S`3y+9=3`},
+      {t:'k', text:S`\therefore y=-2`},
+      {t:'gr', text:'(check, (1,1): x²+3y = 9-6=3 ✓ &nbsp; check, (2,1): xy+3y = y(x+3) = -2(0)=0 ✓)'}
+    ]}],
+    ans:'x = −3, y = −2'
+  },
+  {
+    m:'q-3m', diff:'h', marks:'3 Marks', src:'ICSE 2020 Q6(a)', sc:'pyq', star:false, pyq:['2020'],
+    q:'Given A = \\(\\left[\\begin{matrix}3&0\\\\5&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and B = \\(\\left[\\begin{matrix}4&2\\\\-1&0\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\). Find A² − 2AB + B².',
+    given:['A = \\(\\left[\\begin{matrix}3&0\\\\5&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','B = \\(\\left[\\begin{matrix}4&2\\\\-1&0\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'],
+    mbtip:'A² − 2AB + B² is NOT the same as (A−B)² for matrices, since AB ≠ BA in general — compute each of the three terms (A², AB, B²) completely and separately.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>A²</b>'},
+      {t:'k', text:S`A^2 = \left[\begin{matrix}3&0\\5&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}3&0\\5&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`= \left[\begin{matrix}3(3)+0(5) & 3(0)+0(1)\\5(3)+1(5) & 5(0)+1(1)\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}9&0\\20&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>AB</b>'},
+      {t:'k', text:S`AB = \left[\begin{matrix}3&0\\5&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}4&2\\-1&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`= \left[\begin{matrix}3(4)+0(-1) & 3(2)+0(0)\\5(4)+1(-1) & 5(2)+1(0)\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}12&6\\19&10\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>B²</b>'},
+      {t:'k', text:S`B^2 = \left[\begin{matrix}4&2\\-1&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}4&2\\-1&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`= \left[\begin{matrix}4(4)+2(-1) & 4(2)+2(0)\\-1(4)+0(-1) & -1(2)+0(0)\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}14&8\\-4&-2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>2AB</b> — double every entry of AB:'},
+      {t:'k', text:S`2AB = \left[\begin{matrix}24&12\\38&20\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>Combine: A² − 2AB + B²</b>'},
+      {t:'k', text:S`\left[\begin{matrix}9&0\\20&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} - \left[\begin{matrix}24&12\\38&20\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} + \left[\begin{matrix}14&8\\-4&-2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}-1&-4\\-22&-21\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}],
+    ans:'\\(\\left[\\begin{matrix}-1&-4\\\\-22&-21\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-la', diff:'m', marks:'4 Marks', src:'ICSE 2019 Q7(c)', sc:'pyq', star:false, pyq:['2019'],
+    q:'Given:<br>\\[\\left[\\begin{matrix}4&2\\\\-1&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}M = 6I\\]<br>where M is a matrix and I is the unit matrix of order 2×2. (i) State the order of matrix M. (ii) Find the matrix M.',
+    mbtip:'For the given 2×2 matrix to multiply M and produce a 2×2 result (6I), M must itself be 2×2 — state this conformability reasoning before finding M.',
+    sections:[
+      {label:'(i) ORDER OF M', rows:[
+        {t:'p', text:'A (2×2) times M must give 6I (2×2). For a 2×2 times an m×n to give a 2×2, we need m=2 (rows of M = columns of A) and n=2 (columns of result). So M is 2×2.'}
+      ]},
+      {label:'(ii) FINDING M', rows:[
+        {t:'p', text:'<b>Let</b> \\(M=\\left[\\begin{matrix}p&q\\\\r&s\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'},
+        {t:'k', text:S`\left[\begin{matrix}4&2\\-1&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}p&q\\r&s\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}6&0\\0&6\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+        {t:'p', text:'<b>Column 1:</b> 4p+2r=6, −p+r=0 &nbsp; ⟹ &nbsp; r=p, so 4p+2p=6 ⟹ p=1, r=1'},
+        {t:'p', text:'<b>Column 2:</b> 4q+2s=0, −q+s=6 &nbsp; ⟹ &nbsp; s=q+6, so 4q+2(q+6)=0 ⟹ 6q=−12 ⟹ q=−2, s=4'},
+        {t:'k', text:S`M = \left[\begin{matrix}1&-2\\1&4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+      ]}
+    ],
+    ans:'(i) Order of M = 2×2 &nbsp; (ii) \\(M=\\left[\\begin{matrix}1&-2\\\\1&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'ICSE 2018 Q1(a)', sc:'pyq', star:true, pyq:['2018'],
+    q:'Find the value of x and y, if:<br>\\[2\\left[\\begin{matrix}x&7\\\\9&y-5\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2} + \\left[\\begin{matrix}6&-7\\\\4&5\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2} = \\left[\\begin{matrix}10&7\\\\22&15\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\]',
+    mbtip:'Two of the four entries ((1,2) and (2,1)) are already consistent numbers on both sides — they don\'t involve x or y at all, so only the (1,1) and (2,2) entries actually need solving.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Scale first</b>'},
+      {t:'k', text:S`2\left[\begin{matrix}x&7\\9&y-5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}2x&14\\18&2y-10\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>Add the second matrix</b>'},
+      {t:'k', text:S`\left[\begin{matrix}2x&14\\18&2y-10\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}+\left[\begin{matrix}6&-7\\4&5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}2x+6&7\\22&2y-5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>Equate to RHS, entry by entry</b>'},
+      {t:'k', text:S`2x+6=10`},
+      {t:'k', text:S`\therefore x=2`},
+      {t:'k', text:S`2y-5=15`},
+      {t:'k', text:S`\therefore y=10`},
+      {t:'gr', text:'(the (1,2) entry 14-7=7 and the (2,1) entry 18+4=22 already matched the RHS with no unknowns — good consistency check)'}
+    ]}],
+    ans:'x = 2, y = 10'
+  },
+  {
+    m:'q-la', diff:'h', marks:'3 Marks', src:'ICSE 2018 Q6(b)', sc:'pyq', star:false, pyq:['2018'],
+    q:'Given A = \\(\\left[\\begin{matrix}2&3\\\\5&7\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), B = \\(\\left[\\begin{matrix}0&4\\\\-1&7\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and C = \\(\\left[\\begin{matrix}1&0\\\\-1&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\). Find AC + B² − 10C.',
+    given:['A = \\(\\left[\\begin{matrix}2&3\\\\5&7\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','B = \\(\\left[\\begin{matrix}0&4\\\\-1&7\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','C = \\(\\left[\\begin{matrix}1&0\\\\-1&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>AC</b>'},
+      {t:'k', text:S`AC = \left[\begin{matrix}2&3\\5&7\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}1&0\\-1&4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`= \left[\begin{matrix}2(1)+3(-1) & 2(0)+3(4)\\5(1)+7(-1) & 5(0)+7(4)\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}-1&12\\-2&28\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>B²</b>'},
+      {t:'k', text:S`B^2 = \left[\begin{matrix}0&4\\-1&7\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}0&4\\-1&7\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`= \left[\begin{matrix}0(0)+4(-1) & 0(4)+4(7)\\-1(0)+7(-1) & -1(4)+7(7)\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}-4&28\\-7&45\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>10C</b>'},
+      {t:'k', text:S`10C = 10\left[\begin{matrix}1&0\\-1&4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}10\times1 & 10\times0\\10\times(-1) & 10\times4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}10&0\\-10&40\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>Combine: AC + B² − 10C</b>'},
+      {t:'k', text:S`\left[\begin{matrix}-1&12\\-2&28\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} + \left[\begin{matrix}-4&28\\-7&45\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} - \left[\begin{matrix}10&0\\-10&40\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}-15&40\\1&33\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}],
+    ans:'\\(\\left[\\begin{matrix}-15&40\\\\1&33\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2022 Sem-1 Q3', sc:'pyq', star:false, pyq:['2022'],
+    type:'mcq',
+    q:'The product AB of two matrices A and B is possible if:',
+    opts:['A and B have the same number of rows','the number of columns of A is equal to the number of rows of B','the number of rows of A equals the number of columns of B','A and B have the same number of columns'], ans:1,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'This is the conformability rule itself: for A(m×n) and B(n×p), AB exists exactly when the number of columns of A matches the number of rows of B — the "inner" dimensions must agree.'}
+    ]}]
+  },
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark · MCQ', src:'ICSE 2022 Sem-1 Q10', sc:'pyq', star:false, pyq:['2022'],
+    type:'mcq',
+    q:'If A = \\(\\left[\\begin{matrix}5&10\\\\3&-4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and I = \\(\\left[\\begin{matrix}1&0\\\\0&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), then AI is equal to:',
+    opts:['\\(\\left[\\begin{matrix}1&0\\\\0&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','\\(\\left[\\begin{matrix}0&0\\\\0&0\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','\\(\\left[\\begin{matrix}5&10\\\\3&-4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','\\(\\left[\\begin{matrix}10&5\\\\-4&3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'], ans:2,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'Multiplying by the identity matrix leaves any conformable matrix unchanged: AI = A. No row×column computation is even needed once you recognise I.'}
+    ]}]
+  },
+  {
+    m:'q-1m', diff:'m', marks:'2 Marks · MCQ', src:'ICSE 2022 Sem-2 Q22', sc:'pyq', star:false, pyq:['2022'],
+    type:'mcq',
+    q:'If A = \\(\\left[\\begin{matrix}3&5\\\\1&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), B = \\(\\left[\\begin{matrix}2&4\\\\0&3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and C = \\(\\left[\\begin{matrix}1&1\\\\-2&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), then 5A − BC is equal to:',
+    opts:['\\(\\left[\\begin{matrix}21&19\\\\11&17\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','\\(\\left[\\begin{matrix}15&25\\\\5&20\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','\\(\\left[\\begin{matrix}13&15\\\\9&15\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)','\\(\\left[\\begin{matrix}21&19\\\\5&20\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'], ans:0,
+    sol:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>5A</b>'},
+      {t:'k', text:S`5A = 5\left[\begin{matrix}3&5\\1&4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}5\times3 & 5\times5\\5\times1 & 5\times4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}15&25\\5&20\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>BC</b>'},
+      {t:'k', text:S`BC = \left[\begin{matrix}2&4\\0&3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}1&1\\-2&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`= \left[\begin{matrix}2(1)+4(-2) & 2(1)+4(1)\\0(1)+3(-2) & 0(1)+3(1)\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}-6&6\\-6&3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>5A − BC</b>'},
+      {t:'k', text:S`\left[\begin{matrix}15&25\\5&20\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} - \left[\begin{matrix}-6&6\\-6&3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}21&19\\11&17\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}]
+  }
+];
+/* =========================================================================
+   PRACTICE WORKSHEET DATA (30 of 32 classwork questions, from CW.pdf).
+   All arithmetic independently verified with numpy against the sheet's own
+   answer key before inclusion. Two items (worksheet Q28 and one "Q30"
+   given-a,b item) were excluded — the scanned sheet was too garbled at
+   those two spots to reconstruct the exact original layout with confidence;
+   see the note at the end of this file.
+   ========================================================================= */
+const practiceData = [
+  {
+    m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q1', sc:'worksheet', star:false,
+    q:'Construct a 2×3 matrix, whose elements are given by \\(a_{ij}=3i-j\\).',
+    given:['Order: 2 rows, 3 columns','Rule: \\(a_{ij}=3i-j\\)'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Work out every cell from its own (i,j) — never copy a neighbour</b>'},
+      {t:'k', text:S`\left[\begin{matrix}a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 3}`},
+      {t:'k', text:S`=\left[\begin{matrix}3(1)-1 & 3(1)-2 & 3(1)-3\\3(2)-1 & 3(2)-2 & 3(2)-3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 3}`},
+      {t:'k', text:S`=\left[\begin{matrix}2&1&0\\5&4&3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 3}`}
+    ]}],
+    ans:'\\(\\left[\\begin{matrix}2&1&0\\\\5&4&3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 3}\\)'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q2', sc:'worksheet', star:false,
+    q:'Construct a 3×2 matrix, whose elements are given by \\(a_{ij}=i\\times j\\).',
+    given:['Order: 3 rows, 2 columns','Rule: \\(a_{ij}=i\\times j\\)'],
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`\left[\begin{matrix}a_{11}&a_{12}\\a_{21}&a_{22}\\a_{31}&a_{32}\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{3\times 2}`},
+      {t:'k', text:S`=\left[\begin{matrix}1\times1 & 1\times2\\2\times1 & 2\times2\\3\times1 & 3\times2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{3\times 2}`},
+      {t:'k', text:S`=\left[\begin{matrix}1&2\\2&4\\3&6\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{3\times 2}`}
+    ]}],
+    ans:'\\(\\left[\\begin{matrix}1&2\\\\2&4\\\\3&6\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{3\\times 2}\\)'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark', src:'Worksheet Q3', sc:'worksheet', star:false,
+    q:'If a matrix has 4 elements, what are the possible orders it can have?',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'List every factor pair of 4, in both directions (m×n and n×m count separately unless m=n):'},
+      {t:'k', text:S`4 = 1\times4 = 2\times2 = 4\times1`}
+    ]}],
+    ans:'1×4, 2×2, 4×1'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'1 Mark', src:'Worksheet Q4', sc:'worksheet', star:false,
+    q:'If a matrix has 6 elements, what are the possible orders it can have?',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`6 = 1\times6 = 2\times3 = 3\times2 = 6\times1`}
+    ]}],
+    ans:'1×6, 2×3, 3×2, 6×1'
+  },
+  {
+    m:'q-2m', diff:'m', marks:'2 Marks', src:'Worksheet Q5', sc:'worksheet', star:false,
+    q:'Find the values of x and y when:<br>\\[\\left[\\begin{matrix}5x+3y\\\\2x-y\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 1}=\\left[\\begin{matrix}12\\\\7\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 1}\\]',
+    given:['5x+3y=12','2x-y=7'],
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>From the second equation</b>'},
+      {t:'k', text:S`2x-y=7`},
+      {t:'k', text:S`\therefore y=2x-7`},
+      {t:'p', text:'<b>Substitute into the first</b>'},
+      {t:'k', text:S`5x+3(2x-7)=12`},
+      {t:'k', text:S`5x+6x-21=12`},
+      {t:'k', text:S`\therefore 11x=33`},
+      {t:'k', text:S`\therefore x=3`},
+      {t:'k', text:S`y=2(3)-7=-1`}
+    ]}],
+    ans:'x = 3, y = −1'
+  },
+  {
+    m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q6', sc:'worksheet', star:false,
+    q:'Find the values of a, b, c and d when:<br>\\[\\left[\\begin{matrix}a+3&4\\\\-2&b-6\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}=\\left[\\begin{matrix}-1&c-3\\\\d+1&2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\]',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Equate entry by entry</b>'},
+      {t:'k', text:S`a+3=-1`},
+      {t:'k', text:S`\therefore a=-4`},
+      {t:'k', text:S`4=c-3`},
+      {t:'k', text:S`\therefore c=7`},
+      {t:'k', text:S`-2=d+1`},
+      {t:'k', text:S`\therefore d=-3`},
+      {t:'k', text:S`b-6=2`},
+      {t:'k', text:S`\therefore b=8`}
+    ]}],
+    ans:'a = −4, b = 8, c = 7, d = −3'
+  },
+  {
+    m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q7', sc:'worksheet', star:false,
+    q:'Find the values of x, y, a and b when:<br>\\[\\left[\\begin{matrix}x+y&a-b\\\\a+b&2x-3y\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}=\\left[\\begin{matrix}5&3\\\\-1&-5\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\]',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Equate entry by entry — four equations</b>'},
+      {t:'k', text:S`x+y=5`},
+      {t:'k', text:S`a-b=3`},
+      {t:'k', text:S`a+b=-1`},
+      {t:'k', text:S`2x-3y=-5`},
+      {t:'p', text:'<b>Solve the a,b pair</b>: add the two equations'},
+      {t:'k', text:S`(a-b)+(a+b)=3+(-1)`},
+      {t:'k', text:S`\therefore 2a=2`},
+      {t:'k', text:S`\therefore a=1,\ b=a-3=-2`},
+      {t:'p', text:'<b>Solve the x,y pair</b>: from x+y=5, x=5-y'},
+      {t:'k', text:S`2(5-y)-3y=-5`},
+      {t:'k', text:S`\therefore 10-5y=-5`},
+      {t:'k', text:S`\therefore y=3,\ x=2`}
+    ]}],
+    ans:'x = 2, y = 3, a = 1, b = −2'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'3 Marks', src:'Worksheet Q8', sc:'worksheet', star:false,
+    q:'If C = \\(\\left[\\begin{matrix}3&-6\\\\0&9\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), find (i) 2C (ii) \\(\\tfrac13\\)C (iii) −C',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'Scalar multiplication: multiply every entry by the scalar.'},
+      {t:'p', text:'<b>(i) 2C</b>'},
+      {t:'k', text:S`2C = 2\left[\begin{matrix}3&-6\\0&9\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`= \left[\begin{matrix}2\times3 & 2\times(-6)\\2\times0 & 2\times9\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`2C=\left[\begin{matrix}6&-12\\0&18\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:S`<b>(ii) \(\tfrac13\)C</b>`},
+      {t:'k', text:S`\tfrac13 C = \tfrac13\left[\begin{matrix}3&-6\\0&9\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`= \left[\begin{matrix}3\div3 & -6\div3\\0\div3 & 9\div3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`\tfrac13 C=\left[\begin{matrix}1&-2\\0&3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>(iii) −C</b> — flip the sign of every entry:'},
+      {t:'k', text:S`-C=\left[\begin{matrix}-3&6\\0&-9\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}],
+    ans:'(i) \\(\\left[\\begin{matrix}6&-12\\\\0&18\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) (ii) \\(\\left[\\begin{matrix}1&-2\\\\0&3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) (iii) \\(\\left[\\begin{matrix}-3&6\\\\0&-9\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-1m', diff:'e', marks:'2 Marks', src:'Worksheet Q9', sc:'worksheet', star:false,
+    q:'If:<br>\\[6M=\\left[\\begin{matrix}0&6\\\\-12&24\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\]<br>find M.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'Divide every entry by 6.'},
+      {t:'k', text:S`M=\left[\begin{matrix}0/6 & 6/6\\-12/6 & 24/6\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}0&1\\-2&4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}],
+    ans:'M = \\(\\left[\\begin{matrix}0&1\\\\-2&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-2m', diff:'e', marks:'3 Marks', src:'Worksheet Q10', sc:'worksheet', star:false,
+    q:'If A = \\(\\left[\\begin{matrix}2&5\\\\-3&7\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and B = \\(\\left[\\begin{matrix}1&-3\\\\2&5\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), find (i) A + B (ii) A − B (iii) B − A',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`A+B=\left[\begin{matrix}2+1&5-3\\-3+2&7+5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}3&2\\-1&12\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`A-B=\left[\begin{matrix}2-1&5+3\\-3-2&7-5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}1&8\\-5&2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`B-A=\left[\begin{matrix}1-2&-3-5\\2+3&5-7\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}-1&-8\\5&-2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}],
+    ans:'(i) \\(\\left[\\begin{matrix}3&2\\\\-1&12\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) (ii) \\(\\left[\\begin{matrix}1&8\\\\-5&2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) (iii) \\(\\left[\\begin{matrix}-1&-8\\\\5&-2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q11', sc:'worksheet', star:false,
+    q:'If A = \\(\\left[\\begin{matrix}0&1\\\\5&-1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), B = \\(\\left[\\begin{matrix}1&-3\\\\0&-2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and C = \\(\\left[\\begin{matrix}2&-5\\\\4&0\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), find 3A + 4B − 5C.',
+    mbtip:'Scale each matrix fully first, then combine position by position — don\'t try to scale and add in the same step.',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`3A=\left[\begin{matrix}0&3\\15&-3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} \quad 4B=\left[\begin{matrix}4&-12\\0&-8\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} \quad 5C=\left[\begin{matrix}10&-25\\20&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`3A+4B-5C = \left[\begin{matrix}0+4-10 & 3-12+25\\15+0-20 & -3-8-0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}-6&16\\-5&-11\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}],
+    ans:'\\(\\left[\\begin{matrix}-6&16\\\\-5&-11\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q12', sc:'worksheet', star:false,
+    q:'If A = \\(\\left[\\begin{matrix}-2&3\\\\4&5\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and B = \\(\\left[\\begin{matrix}5&2\\\\-7&3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), find a matrix C such that A + B − C = 0.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'A + B − C = 0 ⟹ C = A + B'},
+      {t:'k', text:S`C=\left[\begin{matrix}-2+5&3+2\\4-7&5+3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}3&5\\-3&8\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}],
+    ans:'C = \\(\\left[\\begin{matrix}3&5\\\\-3&8\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q13', sc:'worksheet', star:false,
+    q:'If A = \\(\\left[\\begin{matrix}2&-1\\\\2&0\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), B = \\(\\left[\\begin{matrix}-3&2\\\\4&0\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and C = \\(\\left[\\begin{matrix}1&0\\\\0&2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), find the matrix X such that A + X = 2B + C.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'X = 2B + C − A'},
+      {t:'k', text:S`2B=2\left[\begin{matrix}-3&2\\4&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}2\times(-3) & 2\times2\\2\times4 & 2\times0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}-6&4\\8&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`2B+C=\left[\begin{matrix}-5&4\\8&2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`X=\left[\begin{matrix}-5-2&4+1\\8-2&2-0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}-7&5\\6&2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}],
+    ans:'X = \\(\\left[\\begin{matrix}-7&5\\\\6&2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q14', sc:'worksheet', star:false,
+    q:'If A = \\(\\left[\\begin{matrix}6&2\\\\5&-4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and B = \\(\\left[\\begin{matrix}1&2\\\\-5&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), find a matrix X such that 2A + 3B − 5X = 0.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'X = (2A + 3B) / 5'},
+      {t:'k', text:S`2A=2\left[\begin{matrix}6&2\\5&-4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}2\times6 & 2\times2\\2\times5 & 2\times(-4)\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}12&4\\10&-8\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`3B=3\left[\begin{matrix}1&2\\-5&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}3\times1 & 3\times2\\3\times(-5) & 3\times1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}3&6\\-15&3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`2A+3B=\left[\begin{matrix}15&10\\-5&-5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`X=\left[\begin{matrix}15/5&10/5\\-5/5&-5/5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}3&2\\-1&-1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}],
+    ans:'X = \\(\\left[\\begin{matrix}3&2\\\\-1&-1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-2m', diff:'h', marks:'3 Marks', src:'Worksheet Q15', sc:'worksheet', star:true,
+    q:'Find matrices A and B such that A + B = \\(\\left[\\begin{matrix}5&4\\\\7&3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and A − B = \\(\\left[\\begin{matrix}11&2\\\\-1&7\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)',
+    mbtip:'Add the two given equations to eliminate B and get A; subtract them to eliminate A and get B — same technique as solving simultaneous equations, just entry by entry.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>A</b>: add the two equations, then halve'},
+      {t:'k', text:S`2A = \left[\begin{matrix}5+11&4+2\\7-1&3+7\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}16&6\\6&10\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`\therefore A=\left[\begin{matrix}8&3\\3&5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>B</b>: subtract, then halve'},
+      {t:'k', text:S`2B = \left[\begin{matrix}5-11&4-2\\7+1&3-7\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}-6&2\\8&-4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`\therefore B=\left[\begin{matrix}-3&1\\4&-2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}],
+    ans:'A = \\(\\left[\\begin{matrix}8&3\\\\3&5\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), B = \\(\\left[\\begin{matrix}-3&1\\\\4&-2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-2m', diff:'h', marks:'3 Marks', src:'Worksheet Q16', sc:'worksheet', star:true,
+    q:'If:<br>\\[3\\left[\\begin{matrix}2&x\\\\1&0\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2} + 2\\left[\\begin{matrix}4&3\\\\y&2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2} = \\left[\\begin{matrix}z&-3\\\\15&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\]<br>find the values of x, y and z.',
+    mbtip:'Scale both matrices completely before adding — the entries without x or y (top-left and bottom-right) give you z and a consistency check for free.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Scale each matrix</b>'},
+      {t:'k', text:S`3\left[\begin{matrix}2&x\\1&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}6&3x\\3&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`2\left[\begin{matrix}4&3\\y&2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}8&6\\2y&4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>Add, then equate to RHS entry by entry</b>'},
+      {t:'k', text:S`\left[\begin{matrix}6+8 & 3x+6\\3+2y & 0+4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}z&-3\\15&4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`14=z`},
+      {t:'k', text:S`3x+6=-3`},
+      {t:'k', text:S`\therefore x=-3`},
+      {t:'k', text:S`3+2y=15`},
+      {t:'k', text:S`\therefore y=6`}
+    ]}],
+    ans:'x = −3, y = 6, z = 14'
+  },
+  {
+    m:'q-1m', diff:'m', marks:'2 Marks', src:'Worksheet Q17', sc:'worksheet', star:false,
+    q:'Find the value of x and y, if:<br>\\[2\\left[\\begin{matrix}x&7\\\\9&y-5\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2} + \\left[\\begin{matrix}6&-7\\\\4&5\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2} = \\left[\\begin{matrix}10&7\\\\22&15\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\]',
+    given:['Identical structure to ICSE 2018 Q1(a) — see Board PYQs tab'],
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`2\left[\begin{matrix}x&7\\9&y-5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}2x&14\\18&2y-10\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`+\left[\begin{matrix}6&-7\\4&5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}2x+6&7\\22&2y-5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}10&7\\22&15\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`2x+6=10`},
+      {t:'k', text:S`\therefore x=2`},
+      {t:'k', text:S`2y-5=15`},
+      {t:'k', text:S`\therefore y=10`}
+    ]}],
+    ans:'x = 2, y = 10'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'2 Marks', src:'Worksheet Q18', sc:'worksheet', star:false,
+    q:'Let A = \\(\\left[\\begin{matrix}1&3\\\\2&-1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and B = \\(\\left[\\begin{matrix}2\\\\-3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 1}\\). (i) Show that AB exists and write its order. (ii) Find AB.',
+    sections:[
+      {label:'(i) CONFORMABILITY', rows:[
+        {t:'p', text:'A is 2×2, B is 2×1. Columns of A (=2) equal rows of B (=2), so AB exists, with order 2×1.'}
+      ]},
+      {label:'(ii) FINDING AB', rows:[
+        {t:'k', text:S`AB = \left[\begin{matrix}1&3\\2&-1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}2\\-3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 1}`},
+        {t:'k', text:S`= \left[\begin{matrix}1(2)+3(-3)\\2(2)+(-1)(-3)\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 1}`},
+        {t:'k', text:S`AB = \left[\begin{matrix}-7\\7\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 1}`}
+      ]}
+    ],
+    ans:'(i) AB exists, order 2×1 &nbsp; (ii) \\(\\left[\\begin{matrix}-7\\\\7\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 1}\\)'
+  },
+  {
+    m:'q-3m', diff:'m', marks:'3 Marks', src:'Worksheet Q19', sc:'worksheet', star:false,
+    q:'Let A = \\(\\left[\\begin{matrix}-1&2\\\\3&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and B = \\(\\left[\\begin{matrix}3&-2\\\\-4&5\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\). Find matrix (AB + BA).',
+    mbtip:'AB and BA are computed completely separately here — do not assume they will match.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>AB</b>'},
+      {t:'k', text:S`AB=\left[\begin{matrix}-1&2\\3&4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}3&-2\\-4&5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}-3-8&2+10\\9-16&-6+20\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}-11&12\\-7&14\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>BA</b>'},
+      {t:'k', text:S`BA=\left[\begin{matrix}3&-2\\-4&5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}-1&2\\3&4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}-3-6&6-8\\4+15&-8+20\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}-9&-2\\19&12\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>AB + BA</b> — note this is NOT the zero matrix, confirming AB ≠ −BA in general either'},
+      {t:'k', text:S`\left[\begin{matrix}-11&12\\-7&14\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}+\left[\begin{matrix}-9&-2\\19&12\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}-20&10\\12&26\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}],
+    ans:'\\(\\left[\\begin{matrix}-20&10\\\\12&26\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q20', sc:'worksheet', star:true,
+    q:'Let A = \\(\\left[\\begin{matrix}3&4\\\\-1&2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), B = \\(\\left[\\begin{matrix}5&0\\\\2&-3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and C = \\(\\left[\\begin{matrix}2&-1\\\\4&0\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\). Compute (i) A(B + C) (ii) AB + AC. Is A(B + C) = AB + AC?',
+    mbtip:'This is the distributive law in action — compute both sides fully and independently, then compare the actual numbers.',
+    sections:[
+      {label:'(i) A(B + C)', rows:[
+        {t:'k', text:S`B+C=\left[\begin{matrix}7&-1\\6&-3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+        {t:'k', text:S`A(B+C)=\left[\begin{matrix}3&4\\-1&2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}7&-1\\6&-3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}21+24&-3-12\\-7+12&1-6\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}45&-15\\5&-5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+      ]},
+      {label:'(ii) AB + AC', rows:[
+        {t:'k', text:S`AB=\left[\begin{matrix}3&4\\-1&2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}5&0\\2&-3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}23&-12\\-1&-6\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+        {t:'k', text:S`AC=\left[\begin{matrix}3&4\\-1&2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}2&-1\\4&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}22&-3\\6&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+        {t:'k', text:S`AB+AC=\left[\begin{matrix}45&-15\\5&-5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+        {t:'p', text:'<b>Yes — A(B+C) = AB + AC.</b> Both sides give the identical matrix, confirming the distributive law for this A, B, C.'}
+      ]}
+    ],
+    ans:'(i) \\(\\left[\\begin{matrix}45&-15\\\\5&-5\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) (ii) \\(\\left[\\begin{matrix}45&-15\\\\5&-5\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) — equal, so A(B+C)=AB+AC ✓'
+  },
+  {
+    m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q21', sc:'worksheet', star:false,
+    q:'If X = \\(\\left[\\begin{matrix}3&2\\\\2&3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), find 6X − X².',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`X^2=\left[\begin{matrix}3&2\\2&3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}3&2\\2&3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}9+4&6+6\\6+6&4+9\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}13&12\\12&13\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`6X=6\left[\begin{matrix}3&2\\2&3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}6\times3 & 6\times2\\6\times2 & 6\times3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}18&12\\12&18\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`6X-X^2=\left[\begin{matrix}18-13&12-12\\12-12&18-13\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}5&0\\0&5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}],
+    ans:'\\(\\left[\\begin{matrix}5&0\\\\0&5\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q22', sc:'worksheet', star:false,
+    q:'Let A = \\(\\left[\\begin{matrix}4&-2\\\\6&-3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), B = \\(\\left[\\begin{matrix}3&-2\\\\-1&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and C = \\(\\left[\\begin{matrix}4&3\\\\5&6\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\). Find A² − A + BC.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>A²</b>'},
+      {t:'k', text:S`A^2=\left[\begin{matrix}4&-2\\6&-3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}4&-2\\6&-3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}16-12&-8+6\\24-18&-12+9\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}4&-2\\6&-3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'gr', text:'(interesting — A² = A here, i.e. A is idempotent, so A² − A = 0)'},
+      {t:'p', text:'<b>BC</b>'},
+      {t:'k', text:S`BC=\left[\begin{matrix}3&-2\\-1&4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}4&3\\5&6\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}12-10&9-12\\-4+20&-3+24\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}2&-3\\16&21\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>A² − A + BC</b>'},
+      {t:'k', text:S`\left[\begin{matrix}0&0\\0&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}+\left[\begin{matrix}2&-3\\16&21\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}2&-3\\16&21\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}],
+    ans:'\\(\\left[\\begin{matrix}2&-3\\\\16&21\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-2m', diff:'h', marks:'3 Marks', src:'Worksheet Q23', sc:'worksheet', star:true,
+    q:'A = \\(\\left[\\begin{matrix}4&y\\\\x&-3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and B = \\(\\left[\\begin{matrix}4&-2\\\\6&-3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\). Solve for x and y if A² = B.',
+    mbtip:'Write out every entry of A² in terms of x and y before equating anything — the off-diagonal entries here both simplify to a single unknown, y.',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`A^2=\left[\begin{matrix}4&y\\x&-3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}4&y\\x&-3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}16+xy & 4y-3y\\4x-3x & xy+9\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}16+xy & y\\x & xy+9\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>Equate to B</b>'},
+      {t:'k', text:S`y=-2`},
+      {t:'k', text:S`x=6`},
+      {t:'gr', text:'(check: 16+xy=4 needs xy=-12, and 6×(-2)=-12 ✓)'}
+    ]}],
+    ans:'x = 6, y = −2'
+  },
+  {
+    m:'q-2m', diff:'h', marks:'3 Marks', src:'Worksheet Q24', sc:'worksheet', star:false,
+    q:'If:<br>\\[\\left[\\begin{matrix}0&4\\\\-3&0\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\,\\,\\left[\\begin{matrix}x&-5\\\\y&0\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2} = \\left[\\begin{matrix}5&z\\\\7&9\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2} + \\left[\\begin{matrix}3&4\\\\2&6\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\]<br>find the values of x, y and z.',
+    mbtip:'Simplify the RHS addition first, then compute the LHS product in terms of x and y, then equate.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>RHS first</b>'},
+      {t:'k', text:S`\left[\begin{matrix}5&z\\7&9\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}+\left[\begin{matrix}3&4\\2&6\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}8&z+4\\9&15\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>LHS product</b>'},
+      {t:'k', text:S`\left[\begin{matrix}0&4\\-3&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}x&-5\\y&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}4y&0\\-3x&15\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>Equate entry by entry</b>'},
+      {t:'k', text:S`4y=8`},
+      {t:'k', text:S`\therefore y=2`},
+      {t:'k', text:S`0=z+4`},
+      {t:'k', text:S`\therefore z=-4`},
+      {t:'k', text:S`-3x=9`},
+      {t:'k', text:S`\therefore x=-3`},
+      {t:'gr', text:'(check, (2,2): 15=15 ✓)'}
+    ]}],
+    ans:'x = −3, y = 2, z = −4'
+  },
+  {
+    m:'q-2m', diff:'h', marks:'2 Marks', src:'Worksheet Q25', sc:'worksheet', star:true,
+    q:'If X = \\(\\left[\\begin{matrix}3&5\\\\1&2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and Y = \\(\\left[\\begin{matrix}a&-5\\\\-1&b\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), find a and b, if XY = I.',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`XY=\left[\begin{matrix}3&5\\1&2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}a&-5\\-1&b\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}3a-5 & -15+5b\\a-2 & -5+2b\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>Set equal to \\(I=\\left[\\begin{matrix}1&0\\\\0&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)</b>'},
+      {t:'k', text:S`3a-5=1`},
+      {t:'k', text:S`\therefore a=2`},
+      {t:'k', text:S`-15+5b=0`},
+      {t:'k', text:S`\therefore b=3`},
+      {t:'gr', text:'(check, (2,1): a-2=0 ✓ &nbsp; check, (2,2): -5+2b=1 ✓)'}
+    ]}],
+    ans:'a = 2, b = 3'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q26', sc:'worksheet', star:true,
+    q:'If:<br>\\[\\left[\\begin{matrix}4&5&-2\\\\3&0&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 3}\\,\\,\\left[\\begin{matrix}2&b\\\\a&5\\\\1&4\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{3\\times 2} = \\left[\\begin{matrix}-4&1\\\\c&-8\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\]<br>find the values of a, b and c.',
+    mbtip:'Check conformability first: 2×3 times 3×2 gives 2×2, matching the RHS — good sign before diving into the row×column working.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Row 1 · Column 1</b>'},
+      {t:'k', text:S`4(2)+5(a)+(-2)(1) = 8+5a-2 = 6+5a = -4`},
+      {t:'k', text:S`\therefore a=-2`},
+      {t:'p', text:'<b>Row 1 · Column 2</b>'},
+      {t:'k', text:S`4(b)+5(5)+(-2)(4) = 4b+25-8 = 4b+17 = 1`},
+      {t:'k', text:S`\therefore b=-4`},
+      {t:'p', text:'<b>Row 2 · Column 1</b>'},
+      {t:'k', text:S`3(2)+0(a)+1(1) = 6+0+1 = 7 = c`},
+      {t:'gr', text:'(check, Row 2 · Column 2: 3b+0(5)+1(4) = 3(-4)+4 = -8 ✓ matches RHS)'}
+    ]}],
+    ans:'a = −2, b = −4, c = 7'
+  },
+  {
+    m:'q-2m', diff:'m', marks:'3 Marks', src:'Worksheet Q27', sc:'worksheet', star:false,
+    q:'Let A = \\(\\left[\\begin{matrix}1&4\\\\2&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\), B = \\(\\left[\\begin{matrix}-3&2\\\\4&0\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and C = \\(\\left[\\begin{matrix}1&0\\\\0&2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\). Find A² + BC.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>A²</b>'},
+      {t:'k', text:S`A^2=\left[\begin{matrix}1&4\\2&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}1&4\\2&1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}1+8&4+4\\2+2&8+1\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}9&8\\4&9\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>BC</b>'},
+      {t:'k', text:S`BC=\left[\begin{matrix}-3&2\\4&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}1&0\\0&2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`=\left[\begin{matrix}-3(1)+2(0) & -3(0)+2(2)\\4(1)+0(0) & 4(0)+0(2)\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}-3&4\\4&0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>A² + BC</b>'},
+      {t:'k', text:S`\left[\begin{matrix}9-3&8+4\\4+4&9+0\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}6&12\\8&9\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`}
+    ]}],
+    ans:'\\(\\left[\\begin{matrix}6&12\\\\8&9\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-2m', diff:'h', marks:'3 Marks', src:'Worksheet Q29', sc:'worksheet', star:true,
+    q:'If AB = BA, find the values of x and y, where A = \\(\\left[\\begin{matrix}5&2\\\\7&3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and B = \\(\\left[\\begin{matrix}3&x\\\\y&5\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)',
+    mbtip:'Compute AB and BA fully and separately, then equate them entry by entry — the four resulting equations are consistent with each other, so you don\'t need all four to solve for x and y.',
+    sections:[{label:'WORKING', rows:[
+      {t:'k', text:S`AB=\left[\begin{matrix}5&2\\7&3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}3&x\\y&5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}15+2y&5x+10\\21+3y&7x+15\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'k', text:S`BA=\left[\begin{matrix}3&x\\y&5\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}5&2\\7&3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}15+7x&6+3x\\5y+35&2y+15\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>Equate the (1,2) entries</b>'},
+      {t:'k', text:S`5x+10=6+3x`},
+      {t:'k', text:S`\therefore 2x=-4`},
+      {t:'k', text:S`\therefore x=-2`},
+      {t:'p', text:'<b>Equate the (2,1) entries</b>'},
+      {t:'k', text:S`21+3y=5y+35`},
+      {t:'k', text:S`\therefore -2y=14`},
+      {t:'k', text:S`\therefore y=-7`},
+      {t:'gr', text:'(check, (1,1): 15+2(-7)=1, 15+7(-2)=1 ✓ &nbsp; check, (2,2): 7(-2)+15=1, 2(-7)+15=1 ✓)'}
+    ]}],
+    ans:'x = −2, y = −7'
+  },
+  {
+    m:'q-2m', diff:'h', marks:'3 Marks', src:'Worksheet Q30', sc:'worksheet', star:true,
+    q:'If Q = \\(\\left[\\begin{matrix}3&-5\\\\-4&2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\) and Q² − 5Q = kI, where I is the identity matrix of order 2×2, find the value of the scalar k.',
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Q²</b>'},
+      {t:'k', text:S`Q^2=\left[\begin{matrix}3&-5\\-4&2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}3&-5\\-4&2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}9+20&-15-10\\-12-8&20+4\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}29&-25\\-20&24\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>5Q</b>'},
+      {t:'k', text:S`5Q=5\left[\begin{matrix}3&-5\\-4&2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}5\times3 & 5\times(-5)\\5\times(-4) & 5\times2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}15&-25\\-20&10\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>Q² − 5Q</b>'},
+      {t:'k', text:S`\left[\begin{matrix}29-15&-25+25\\-20+20&24-10\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=\left[\begin{matrix}14&0\\0&14\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}=kI`},
+      {t:'gr', text:'(both off-diagonal entries came out to 0 on their own — the required check that this really is a multiple of I)'}
+    ]}],
+    ans:'k = 14'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q31', sc:'worksheet', star:true,
+    q:'Find a matrix A, such that:<br>\\[A\\left[\\begin{matrix}3&4\\\\-1&2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2} = \\left[\\begin{matrix}9&2\\\\14&22\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\]',
+    mbtip:S`Let A = \(\left[\begin{matrix}p&q\\r&s\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]\) and multiply out A×(given matrix) symbolically — this turns into two independent pairs of simultaneous equations (one pair for row 1, one for row 2), solved by elimination — no matrix inverse formula needed at this level.`,
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Let</b> \\(A=\\left[\\begin{matrix}p&q\\\\r&s\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\). Multiply out:'},
+      {t:'k', text:S`\left[\begin{matrix}p&q\\r&s\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}3&4\\-1&2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}3p-q & 4p+2q\\3r-s & 4r+2s\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}9&2\\14&22\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>Row 1: solve for p, q</b>'},
+      {t:'k', text:S`3p-q=9`},
+      {t:'k', text:S`4p+2q=2`},
+      {t:'k', text:S`\therefore 2p+q=1`},
+      {t:'k', text:S`\text{Adding: } 5p=10`},
+      {t:'k', text:S`\therefore p=2,\ q=3p-9=-3`},
+      {t:'p', text:'<b>Row 2: solve for r, s</b>'},
+      {t:'k', text:S`3r-s=14`},
+      {t:'k', text:S`4r+2s=22`},
+      {t:'k', text:S`\therefore 2r+s=11`},
+      {t:'k', text:S`\text{Adding: } 5r=25`},
+      {t:'k', text:S`\therefore r=5,\ s=3r-14=1`}
+    ]}],
+    ans:'A = \\(\\left[\\begin{matrix}2&-3\\\\5&1\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  },
+  {
+    m:'q-la', diff:'h', marks:'4 Marks', src:'Worksheet Q32', sc:'worksheet', star:true,
+    q:'Find matrix X, such that:<br>\\[\\left[\\begin{matrix}5&-7\\\\-2&3\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}X = \\left[\\begin{matrix}-16&-6\\\\7&2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\]',
+    mbtip:S`Same technique as the previous question, but now the unknown matrix is on the right — set X = \(\left[\begin{matrix}p&q\\r&s\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]\) and multiply the fixed matrix by X symbolically.`,
+    sections:[{label:'WORKING', rows:[
+      {t:'p', text:'<b>Let</b> \\(X=\\left[\\begin{matrix}p&q\\\\r&s\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\). Multiply out:'},
+      {t:'k', text:S`\left[\begin{matrix}5&-7\\-2&3\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}\,\,\left[\begin{matrix}p&q\\r&s\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}5p-7r & 5q-7s\\-2p+3r & -2q+3s\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2} = \left[\begin{matrix}-16&-6\\7&2\end{matrix}\mathllap{\phantom{\begin{matrix}0\\0\\0\end{matrix}}}\right]_{2\times 2}`},
+      {t:'p', text:'<b>Column 1: solve for p, r</b>'},
+      {t:'k', text:S`5p-7r=-16`},
+      {t:'k', text:S`-2p+3r=7`},
+      {t:'k', text:S`\text{Eliminate } r:\ 3(5p-7r)+7(-2p+3r) = 3(-16)+7(7)`},
+      {t:'k', text:S`15p-21r-14p+21r = -48+49`},
+      {t:'k', text:S`\therefore p=1`},
+      {t:'k', text:S`\text{Substitute into } -2p+3r=7:\ -2(1)+3r=7`},
+      {t:'k', text:S`\therefore 3r=9,\ r=3`},
+      {t:'p', text:'<b>Column 2: solve for q, s</b>'},
+      {t:'k', text:S`5q-7s=-6`},
+      {t:'k', text:S`-2q+3s=2`},
+      {t:'k', text:S`\text{Eliminate } s:\ 3(5q-7s)+7(-2q+3s) = 3(-6)+7(2)`},
+      {t:'k', text:S`15q-21s-14q+21s = -18+14`},
+      {t:'k', text:S`\therefore q=-4`},
+      {t:'k', text:S`\text{Substitute into } -2q+3s=2:\ -2(-4)+3s=2`},
+      {t:'k', text:S`\therefore 3s=-6,\ s=-2`}
+    ]}],
+    ans:'X = \\(\\left[\\begin{matrix}1&-4\\\\3&-2\\end{matrix}\\mathllap{\\phantom{\\begin{matrix}0\\\\0\\\\0\\end{matrix}}}\\right]_{2\\times 2}\\)'
+  }
+];
+
+render('board-qs', boardData);
+render('practice-qs', practiceData);
+updateCount('board-qs');
+updateCount('practice-qs');
+renderMathIn(document.getElementById('panel-concepts'));
+</script>
+</body>
+</html>
