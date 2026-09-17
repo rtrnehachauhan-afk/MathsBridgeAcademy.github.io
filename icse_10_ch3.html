@@ -1091,7 +1091,2010 @@ table{max-width:100%;display:block;overflow-x:auto}
      opened stand-alone with no chapter wired up yet), the engine
      below falls back to a blank chapterData so it still runs.
      ========================================================== -->
-<script src="chapter-data/chapter.js"></script>
+<script>
+window.CHAPTER_DATA = {
+  "board": "ICSE",
+  "class": "X",
+  "chapterNo": "3",
+  "chapterTitle": "Shares and Dividend",
+  "subtitle": "Face Value · Market Value · Dividend & Return · Portfolio-change chains · Board PYQs 2019–2025",
+  "syllabusNotice": "",
+  "version": "1.0",
+  "lastUpdated": "17 Sep 2026",
+  "concepts": [
+    {
+      "id": "c1",
+      "title": "1. Basic Terms",
+      "body": "FACE VALUE (F.V.) / NOMINAL VALUE — The printed value of one share, fixed by the company when the share is issued (commonly ₹10, ₹25, ₹50, ₹100). Dividend is always calculated on the Face Value, never on the Market Value.<br><br>MBA Note: Dividend is on F.V., never on M.V.<br><br>MARKET VALUE (M.V.) — The price at which a share is actually bought or sold in the market. This can be equal to, above, or below the Face Value.<br><br>At Par: M.V. = F.V. &nbsp;&nbsp; Above Par (Premium): M.V. = F.V. + Premium &nbsp;&nbsp; Below Par (Discount): M.V. = F.V. − Discount.<br><br>CHECKLIST — WHEN A DISCOUNT % IS GIVEN: Two steps, always in this order: (a) find the Discount in ₹ first — Discount = Rate of Discount × F.V. ÷ 100. (b) then find M.V. = F.V. − Discount. Don't skip straight to guessing M.V.<br><br>MBA Note: Discount % → find ₹ discount first, then M.V.<br><br>Reading a share quote — \"₹100 shares at ₹120\" means F.V. = ₹100, M.V. = ₹120 — bought at a premium of ₹20. \"₹50 shares at a discount of ₹6\" means F.V. = ₹50, M.V. = ₹44.<br><br>DECODING THE WORDING — WHICH VALUE IS WHICH: Board questions often hide F.V. and M.V. inside ordinary sentences instead of labelling them. Use these keyword rules to tell them apart at a glance:<br><br>\"on\", \"in\", \"of\" (e.g. \"dividend on ₹100 shares\") → that value is the F.V. &nbsp;&nbsp; \"at\" (e.g. shares \"at ₹120\") → that value is the M.V. &nbsp;&nbsp; \"paid\" (e.g. \"the price paid\") → means M.V. &nbsp;&nbsp; \"rate/%\" immediately followed by \"investment\" → that is the % Return, not the dividend rate."
+    },
+    {
+      "id": "c1a",
+      "title": "1a. Profit on Sale of Shares",
+      "body": "MBA Note: \"at\" = M.V., \"on/in/of\" = F.V.<br><br>MBA Note: Profit ≠ Dividend — don't mix the two.<br><br>Not the same as Dividend — Dividend is the yearly income a share earns while you hold it. Profit is the one-time gain (or loss) made only if and when you later sell the share for more (or less) than you paid for it. A question can ask for both in the same problem — keep them separate.",
+      "formula": "Profit (when shares are sold): \\( \\text{Profit} = \\text{Sale Proceeds} - \\text{Investment} \\)"
+    },
+    {
+      "id": "c2",
+      "title": "2. Key Formulae",
+      "body": "Which formula to reach for — If the question gives Total Investment, start with \"No. of shares\". If it gives only rates/percentages and one price, the shortcut formula is faster. If it gives the Dividend amount directly, divide by (Rate × F.V./100) to get No. of shares first.",
+      "formula": "Investment: \\( \\text{Investment} = \\text{No. of shares}\\times \\text{M.V. of 1 share} \\)<br><br>Number of shares: \\( \\text{No. of shares} = \\dfrac{\\text{Total Amount Invested}}{\\text{M.V. of 1 share}} \\)<br><br>Number of shares — alternate route (when Investment isn't given directly): \\( \\text{No. of shares} = \\dfrac{\\text{Total Dividend Received}}{\\text{Dividend on 1 share}} \\) — useful whenever the question gives you the total dividend earned instead of the amount invested.<br><br>Dividend (Annual Income): \\( \\text{Dividend} = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\)<br><br>Rate of Return (Income %): \\( \\text{Rate of Return} = \\dfrac{\\text{Dividend}}{\\text{Investment}}\\times 100 \\)<br><br>The Shortcut Formula (very frequently used): \\( \\text{Rate of Dividend}\\times \\text{F.V.} = \\text{Rate of Return}\\times \\text{M.V.} \\) — both sides equal the dividend earned by ONE share, just written two different ways — so they must be equal. This shortcut lets you jump straight from one unknown (rate, F.V., return, or M.V.) to another without going through the full investment."
+    },
+    {
+      "id": "c3",
+      "title": "3. Selling & Reinvesting (Portfolio-change Chains)",
+      "body": "THE PATTERN — A person already owns shares in Company A. They sell all of them at a given Selling Price (S.P.), and the entire sale proceeds become the new Total Investment for Company B. The two companies are solved one after another using the same formulae — never mix the two companies' numbers together.<br><br>MBA Note: Change in Income = Greater − Smaller (not always New − Old)<br><br>Keep the two companies visually separate — Every chain question is worked as \"Company A\" fully, then \"Company B\" fully, then combined only in the final step (change in income, or % change on the original investment).<br><br>CHECKLIST — \"INVESTED THE PROCEEDS\": Whenever a question says a person sold shares and invested the proceeds elsewhere, you always need two numbers before anything else: (a) the Sale Proceeds, and (b) the New Investment in Company B, where New Investment = Sale Proceeds.<br><br>MBA Note: \"Invested proceeds\" → New Investment = Sale Proceeds (unless it says \"including dividend\")<br><br>SPECIAL CASE — \"INVESTED THE PROCEEDS INCLUDING DIVIDEND\": If the wording adds \"including dividend\", the year's dividend from Company A is added to the sale proceeds before reinvesting.",
+      "formula": "Sale Proceeds: \\( \\text{Sale Proceeds} = \\text{No. of shares held}\\times \\text{S.P. of 1 share} \\) — this Sale Proceeds becomes the new \"Total Amount Invested\" for the second company.<br><br>Change in Income: \\( \\text{Change in Income} = \\text{Greater Dividend} - \\text{Smaller Dividend} \\) — work out both dividends first, then subtract the smaller from the larger — don't assume the new dividend is always bigger.<br><br>New Investment (proceeds + dividend case): \\( \\text{New Investment} = \\text{Sale Proceeds} + \\text{Dividend} \\)"
+    }
+  ],
+  "exerciseWise": [
+    {
+      "section": "Board PYQs (2019–2025)",
+      "questions": [
+        {
+          "qno": "1",
+          "difficulty": "Medium",
+          "question": "⭐ [ICSE 2023 Q8(i)] A man bought ₹200 shares of a company at 25% premium. If he received a return of 5% on his investment. Find: (a) the market value (b) the dividend percent declared (c) the number of shares purchased, if annual dividend is ₹1000.",
+          "given": [
+            "F.V. = ₹200, Premium = 25% on F.V., Rate of Return = 5%, Annual dividend = ₹1000"
+          ],
+          "sections": [
+            {
+              "label": "(a) MARKET VALUE",
+              "type": "continuous",
+              "items": [
+                {
+                  "type": "subhead",
+                  "text": "Formula"
+                },
+                "\\[ \\text{Premium (amount)} = \\text{Rate of Premium}\\times \\text{F.V.} \\]",
+                "\\[ \\text{M.V.} = \\text{F.V.} + \\text{Premium} \\]",
+                {
+                  "type": "subhead",
+                  "text": "Substitute"
+                },
+                "\\[ \\text{Premium} = 25\\%\\times 200 = \\dfrac{25}{100}\\times 200 = 50 \\]",
+                "\\[ \\text{M.V.} = 200+50 = 250 \\]"
+              ]
+            },
+            {
+              "label": "(b) DIVIDEND PERCENT DECLARED",
+              "type": "continuous",
+              "items": [
+                {
+                  "type": "subhead",
+                  "text": "Formula — the shortcut"
+                },
+                "\\[ \\text{Rate of Dividend}\\times \\text{F.V.} = \\text{Rate of Return}\\times \\text{M.V.} \\]",
+                {
+                  "type": "subhead",
+                  "text": "Substitute"
+                },
+                "\\[ d\\times 200 = 5\\times 250 \\]",
+                "\\[ d\\times 200 = 1250 \\]",
+                "\\[ d = \\dfrac{1250}{200} = 6.25 \\]"
+              ]
+            },
+            {
+              "label": "(c) NUMBER OF SHARES PURCHASED",
+              "type": "continuous",
+              "items": [
+                {
+                  "type": "subhead",
+                  "text": "Formula — dividend earned by one share"
+                },
+                "\\[ \\text{Dividend per share} = \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+                {
+                  "type": "subhead",
+                  "text": "Substitute (using the rate just found)"
+                },
+                "\\[ \\text{Dividend per share} = \\dfrac{6.25}{100}\\times 200 = 12.5 \\]",
+                {
+                  "type": "subhead",
+                  "text": "Formula — number of shares from total dividend"
+                },
+                "\\[ \\text{No. of shares} = \\dfrac{\\text{Total Annual Dividend}}{\\text{Dividend per share}} \\]",
+                {
+                  "type": "subhead",
+                  "text": "Substitute"
+                },
+                "\\[ \\text{No. of shares} = \\dfrac{1000}{12.5} = 80 \\]"
+              ]
+            }
+          ],
+          "answer": "(a) M.V. = ₹250  (b) Dividend rate = 6.25%  (c) Number of shares = 80"
+        },
+        {
+          "qno": "2",
+          "difficulty": "Medium",
+          "question": "[ICSE 2020 Q5(a)] A company with 500 shares of nominal value ₹120 declares an annual dividend of 15%. Calculate: (i) the total amount of dividend paid by the company. (ii) annual income of Mr. Sharma who holds 80 shares of the company. If the return percent of Mr. Sharma from his shares is 10%, find the market value of each share.",
+          "given": [
+            "Total shares issued = 500, F.V. = ₹120, Rate of Dividend = 15%, Mr. Sharma holds 80 shares, his Rate of Return = 10%"
+          ],
+          "sections": [
+            {
+              "label": "WORKING",
+              "type": "continuous",
+              "items": [
+                {
+                  "type": "subhead",
+                  "text": "(i) Total dividend paid on all 500 shares"
+                },
+                {
+                  "type": "subhead",
+                  "text": "Formula"
+                },
+                "\\[ \\text{Dividend} = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+                {
+                  "type": "subhead",
+                  "text": "Substitute"
+                },
+                "\\[ \\text{Dividend per share} = \\dfrac{15}{100}\\times 120 = 18 \\]",
+                "\\[ \\text{Total Dividend} = 500\\times 18 = 9000 \\]",
+                {
+                  "type": "subhead",
+                  "text": "(ii) Mr. Sharma's annual income (80 shares, same dividend per share)"
+                },
+                "\\[ \\text{Income} = 80\\times 18 = 1440 \\]",
+                {
+                  "type": "subhead",
+                  "text": "Market value — Formula (the shortcut)"
+                },
+                "\\[ \\text{Rate of Dividend}\\times \\text{F.V.} = \\text{Rate of Return}\\times \\text{M.V.} \\]",
+                {
+                  "type": "subhead",
+                  "text": "Substitute"
+                },
+                "\\[ 15\\times 120 = 10\\times \\text{M.V.} \\]",
+                "\\[ 1800 = 10\\times \\text{M.V.} \\]",
+                "\\[ \\text{M.V.} = \\dfrac{1800}{10} = 180 \\]"
+              ]
+            }
+          ],
+          "answer": "(i) Total dividend = ₹9000  (ii) Mr. Sharma's income = ₹1440, Market value = ₹180"
+        },
+        {
+          "qno": "3",
+          "difficulty": "Easy",
+          "question": "[ICSE 2019 Q1(b)] A man invests ₹4500 in shares of a company which is paying 7.5% dividend. If ₹100 shares are available at a discount of 10%. Find: (i) Number of shares he purchases. (ii) His annual income.",
+          "given": [
+            "Total Investment = ₹4500, F.V. = ₹100, Discount = 10%, Rate of Dividend = 7.5%"
+          ],
+          "sections": [
+            {
+              "label": "Note",
+              "type": "continuous",
+              "items": [
+                {
+                  "type": "hint",
+                  "text": "MBA Note: Discount % → find ₹ discount first, then M.V."
+                }
+              ]
+            },
+            {
+              "label": "WORKING",
+              "type": "continuous",
+              "items": [
+                {
+                  "type": "subhead",
+                  "text": "Step 1 — Market Value"
+                },
+                {
+                  "type": "subhead",
+                  "text": "Formula"
+                },
+                "\\[ \\text{Discount} = \\text{Rate of Discount}\\times \\text{F.V.} \\]",
+                "\\[ \\text{M.V.} = \\text{F.V.} - \\text{Discount} \\]",
+                {
+                  "type": "subhead",
+                  "text": "Substitute"
+                },
+                "\\[ \\text{Discount} = 10\\%\\times 100 = \\dfrac{10}{100}\\times 100 = 10 \\]",
+                "\\[ \\text{M.V.} = 100-10 = 90 \\]",
+                {
+                  "type": "subhead",
+                  "text": "(i) Number of shares — Formula"
+                },
+                "\\[ \\text{No. of shares} = \\dfrac{\\text{Total Investment}}{\\text{M.V. of 1 share}} \\]",
+                {
+                  "type": "subhead",
+                  "text": "Substitute"
+                },
+                "\\[ \\text{No. of shares} = \\dfrac{4500}{90} = 50 \\]",
+                {
+                  "type": "subhead",
+                  "text": "(ii) Annual income — Formula"
+                },
+                "\\[ \\text{Dividend} = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+                {
+                  "type": "subhead",
+                  "text": "Substitute"
+                },
+                "\\[ \\text{Income} = 50\\times \\dfrac{7.5}{100}\\times 100 = 50\\times 7.5 = 375 \\]"
+              ]
+            }
+          ],
+          "answer": "(i) Number of shares = 50  (ii) Annual income = ₹375"
+        },
+        {
+          "qno": "4",
+          "difficulty": "Hard",
+          "question": "⭐ [ICSE 2019 Q9(c)] Sachin invests ₹8500 in 10%, ₹100 shares at ₹170. He sells the shares when the price of each share rises by ₹30. He invests the proceeds in 12%, ₹100 shares at ₹125. Find: (i) the sale proceeds. (ii) the number of ₹125 shares he buys. (iii) the change in his annual income.",
+          "given": [
+            "Company A: F.V. = ₹100, M.V. = ₹170, Rate = 10%, Investment = ₹8500",
+            "New S.P. = 170+30 = ₹200",
+            "Company B: F.V. = ₹100, M.V. = ₹125, Rate = 12%"
+          ],
+          "sections": [
+            {
+              "label": "Note",
+              "type": "continuous",
+              "items": [
+                {
+                  "type": "hint",
+                  "text": "Chain: 10% ₹100 shares at ₹170 → sold at ₹200 → reinvested in 12% ₹100 shares at ₹125"
+                },
+                {
+                  "type": "hint",
+                  "text": "MBA Note: Change in Income = Greater − Smaller (not always New − Old)"
+                },
+                {
+                  "type": "hint",
+                  "text": "MBA Note: \"Invested proceeds\" → New Investment = Sale Proceeds (unless it says \"including dividend\")"
+                },
+                {
+                  "type": "hint",
+                  "text": "MB Tip: This is a 3-stage chain: buy → sell at a <b>new</b> price → reinvest. The easiest mistake is selling at the old ₹170 instead of the new ₹200 (₹170 + the ₹30 rise). Always update the price before computing sale proceeds."
+                }
+              ]
+            },
+            {
+              "label": "COMPANY A",
+              "type": "continuous",
+              "items": [
+                {
+                  "type": "subhead",
+                  "text": "Formula"
+                },
+                "\\[ \\text{No. of shares} = \\dfrac{\\text{Total Investment}}{\\text{M.V. of 1 share}} \\]",
+                {
+                  "type": "subhead",
+                  "text": "Substitute"
+                },
+                "\\[ \\text{No. of shares} = \\dfrac{8500}{170} = 50 \\]",
+                {
+                  "type": "subhead",
+                  "text": "Formula"
+                },
+                "\\[ \\text{Dividend} = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+                {
+                  "type": "subhead",
+                  "text": "Substitute"
+                },
+                "\\[ \\text{Dividend}_A = 50\\times \\dfrac{10}{100}\\times 100 = 500 \\]"
+              ]
+            },
+            {
+              "label": "SALE OF COMPANY A SHARES",
+              "type": "continuous",
+              "items": [
+                {
+                  "type": "subhead",
+                  "text": "(i) Sale proceeds — Formula"
+                },
+                "\\[ \\text{Sale Proceeds} = \\text{No. of shares}\\times \\text{S.P. of 1 share} \\]",
+                {
+                  "type": "subhead",
+                  "text": "Substitute (at the new price of ₹200)"
+                },
+                "\\[ \\text{Sale Proceeds} = 50\\times 200 = 10000 \\]"
+              ]
+            },
+            {
+              "label": "COMPANY B",
+              "type": "continuous",
+              "items": [
+                {
+                  "type": "subhead",
+                  "text": "(ii) Number of shares bought — Formula (sale proceeds becomes the new investment)"
+                },
+                "\\[ \\text{No. of shares} = \\dfrac{\\text{Total Investment}}{\\text{M.V. of 1 share}} \\]",
+                {
+                  "type": "subhead",
+                  "text": "Substitute"
+                },
+                "\\[ \\text{No. of shares} = \\dfrac{10000}{125} = 80 \\]",
+                {
+                  "type": "subhead",
+                  "text": "Formula"
+                },
+                "\\[ \\text{Dividend} = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+                {
+                  "type": "subhead",
+                  "text": "Substitute"
+                },
+                "\\[ \\text{Dividend}_B = 80\\times \\dfrac{12}{100}\\times 100 = 960 \\]"
+              ]
+            },
+            {
+              "label": "(iii) CHANGE IN INCOME",
+              "type": "continuous",
+              "items": [
+                {
+                  "type": "subhead",
+                  "text": "Formula"
+                },
+                "\\[ \\text{Change in Income} = \\text{Dividend}_{new} - \\text{Dividend}_{old} \\]",
+                {
+                  "type": "subhead",
+                  "text": "Substitute"
+                },
+                "\\[ \\text{Change} = 960-500 = 460 \\]"
+              ]
+            }
+          ],
+          "answer": "(i) Sale proceeds = ₹10,000  (ii) Number of ₹125 shares = 80  (iii) Income increases by ₹460"
+        }
+      ]
+    }
+  ],
+  "extraPractice": [
+    {
+      "qno": "1",
+      "difficulty": "Easy",
+      "question": "[Worksheet Q1] Find the Market Value (M.V.) of: (i) 280 shares of ₹100 each at a premium of ₹16. (ii) 160 shares of ₹25 each at a discount of ₹6.",
+      "given": [
+        "(i) F.V. = ₹100, No. of shares = 280, Premium = ₹16",
+        "(ii) F.V. = ₹25, No. of shares = 160, Discount = ₹6"
+      ],
+      "sections": [
+        {
+          "label": "(i)",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{M.V. of 1 share} = \\text{F.V.} + \\text{Premium} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{M.V. of 1 share} = 100+16 = 116 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Total M.V.} = \\text{No. of shares}\\times \\text{M.V. of 1 share} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Total M.V.} = 280\\times 116 = 32480 \\]"
+          ]
+        },
+        {
+          "label": "(ii)",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{M.V. of 1 share} = \\text{F.V.} - \\text{Discount} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{M.V. of 1 share} = 25-6 = 19 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Total M.V.} = \\text{No. of shares}\\times \\text{M.V. of 1 share} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Total M.V.} = 160\\times 19 = 3040 \\]"
+          ]
+        }
+      ],
+      "answer": "(i) ₹32,480  (ii) ₹3,040"
+    },
+    {
+      "qno": "2",
+      "difficulty": "Easy",
+      "question": "⭐ [Worksheet Q2] Salman buys 50 shares of face value ₹100 available at ₹132. (i) What is his investment? (ii) If the dividend is 7.5%, what will be his annual income? (iii) If he wants to increase his annual income by ₹150, how many extra shares should he buy?",
+      "given": [
+        "F.V. = ₹100, No. of shares = 50, M.V. = ₹132, Rate of Dividend = 7.5%"
+      ],
+      "sections": [
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "(i) Investment — Formula"
+            },
+            "\\[ \\text{Investment} = \\text{No. of shares}\\times \\text{M.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Investment} = 50\\times 132 = 6600 \\]",
+            {
+              "type": "subhead",
+              "text": "(ii) Annual income — Formula"
+            },
+            "\\[ \\text{Dividend} = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Income} = 50\\times \\dfrac{7.5}{100}\\times 100 = 375 \\]",
+            {
+              "type": "subhead",
+              "text": "(iii) Extra shares for ₹150 more income"
+            },
+            {
+              "type": "subhead",
+              "text": "Formula — income earned by ONE share"
+            },
+            "\\[ \\text{Dividend per share} = \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend per share} = \\dfrac{7.5}{100}\\times 100 = 7.5 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Extra shares} = \\dfrac{\\text{Extra income needed}}{\\text{Dividend per share}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Extra shares} = \\dfrac{150}{7.5} = 20 \\]"
+          ]
+        }
+      ],
+      "answer": "(i) Investment = ₹6,600  (ii) Annual income = ₹375  (iii) 20 extra shares"
+    },
+    {
+      "qno": "3",
+      "difficulty": "Medium",
+      "question": "⭐ [Worksheet Q3] A man invests ₹9600 on ₹100 shares at ₹80. If the company pays him 18% dividend, find: (i) The number of shares he buys. (ii) His total annual dividend. (iii) His percentage return on the shares.",
+      "given": [
+        "Investment = ₹9600, F.V. = ₹100, M.V. = ₹80, Rate of Dividend = 18%"
+      ],
+      "sections": [
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "(i) Number of shares — Formula"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{\\text{Total Investment}}{\\text{M.V. of 1 share}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{9600}{80} = 120 \\]",
+            {
+              "type": "subhead",
+              "text": "(ii) Total annual dividend — Formula"
+            },
+            "\\[ \\text{Dividend} = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend} = 120\\times \\dfrac{18}{100}\\times 100 = 120\\times 18 = 2160 \\]",
+            {
+              "type": "subhead",
+              "text": "(iii) Percentage return — Formula"
+            },
+            "\\[ \\text{Rate of Return} = \\dfrac{\\text{Dividend}}{\\text{Investment}}\\times 100 \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Return \\%} = \\dfrac{2160}{9600}\\times 100 = 22.5 \\]"
+          ]
+        }
+      ],
+      "answer": "(i) 120 shares  (ii) Annual dividend = ₹2,160  (iii) Return = 22.5%"
+    },
+    {
+      "qno": "4",
+      "difficulty": "Medium",
+      "question": "[Worksheet Q4] A man invested a sum of money in ₹100 shares, paying 10% dividend and quoted at 20% premium. If his annual dividend is ₹540, calculate: (i) His total investment. (ii) The rate of return on his investment.",
+      "given": [
+        "F.V. = ₹100, Rate of Dividend = 10%, Premium = 20%, Annual dividend = ₹540"
+      ],
+      "sections": [
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Step 1 — Market Value — Formula"
+            },
+            "\\[ \\text{M.V.} = \\text{F.V.} + \\text{Rate of Premium}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ 20\\%\\times 100 = 20 \\]",
+            "\\[ \\text{M.V.} = 100+20 = 120 \\]",
+            {
+              "type": "subhead",
+              "text": "Step 2 — Number of shares (from the dividend) — Formula"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{\\text{Total Dividend}}{\\text{Dividend per share}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute (dividend per share first)"
+            },
+            "\\[ \\text{Dividend per share} = \\dfrac{10}{100}\\times 100 = 10 \\]",
+            "\\[ \\text{No. of shares} = \\dfrac{540}{10} = 54 \\]",
+            {
+              "type": "subhead",
+              "text": "(i) Total investment — Formula"
+            },
+            "\\[ \\text{Investment} = \\text{No. of shares}\\times \\text{M.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Investment} = 54\\times 120 = 6480 \\]",
+            {
+              "type": "subhead",
+              "text": "(ii) Rate of return — Formula"
+            },
+            "\\[ \\text{Rate of Return} = \\dfrac{\\text{Dividend}}{\\text{Investment}}\\times 100 \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Return \\%} = \\dfrac{540}{6480}\\times 100 = \\dfrac{25}{3} = 8.33 \\]"
+          ]
+        }
+      ],
+      "answer": "(i) Total investment = ₹6,480  (ii) Rate of return ≈ 8.33% (25/3 %)"
+    },
+    {
+      "qno": "5",
+      "difficulty": "Medium",
+      "question": "⭐ [Worksheet Q5] By purchasing ₹50 shares of a company for ₹75 each, Sonal gets 8% p.a. on her investment. (i) What rate percent p.a. is the company paying? (ii) What is the annual dividend, if she buys 350 shares?",
+      "given": [
+        "F.V. = ₹50, M.V. = ₹75, Rate of Return = 8%"
+      ],
+      "sections": [
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "(i) Rate of Dividend — Formula (the shortcut)"
+            },
+            "\\[ \\text{Rate of Dividend}\\times \\text{F.V.} = \\text{Rate of Return}\\times \\text{M.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ d\\times 50 = 8\\times 75 \\]",
+            "\\[ d\\times 50 = 600 \\]",
+            "\\[ d = \\dfrac{600}{50} = 12 \\]",
+            {
+              "type": "subhead",
+              "text": "(ii) Annual dividend for 350 shares — Formula"
+            },
+            "\\[ \\text{Dividend} = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend} = 350\\times \\dfrac{12}{100}\\times 50 = 350\\times 6 = 2100 \\]"
+          ]
+        }
+      ],
+      "answer": "(i) Company pays 12% dividend  (ii) Annual dividend = ₹2,100"
+    },
+    {
+      "qno": "6",
+      "difficulty": "Medium",
+      "question": "[Worksheet Q6] Calculate the amount invested if 500, ₹10 shares are bought at a premium of 25% from a company. If the dividend declared is 8%, find: (i) The annual income. (ii) The percentage return on the investment.",
+      "given": [
+        "F.V. = ₹10, No. of shares = 500, Premium = 25% of F.V., Rate of Dividend = 8%"
+      ],
+      "sections": [
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Step 1 — Market Value — Formula"
+            },
+            "\\[ \\text{M.V.} = \\text{F.V.} + \\text{Rate of Premium}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ 25\\%\\times 10 = \\dfrac{25}{100}\\times 10 = 2.5 \\]",
+            "\\[ \\text{M.V.} = 10+2.5 = 12.5 \\]",
+            {
+              "type": "subhead",
+              "text": "Amount invested — Formula"
+            },
+            "\\[ \\text{Investment} = \\text{No. of shares}\\times \\text{M.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Investment} = 500\\times 12.5 = 6250 \\]",
+            {
+              "type": "subhead",
+              "text": "(i) Annual income — Formula"
+            },
+            "\\[ \\text{Dividend} = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Income} = 500\\times \\dfrac{8}{100}\\times 10 = 500\\times 0.8 = 400 \\]",
+            {
+              "type": "subhead",
+              "text": "(ii) Percentage return — Formula"
+            },
+            "\\[ \\text{Rate of Return} = \\dfrac{\\text{Dividend}}{\\text{Investment}}\\times 100 \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Return \\%} = \\dfrac{400}{6250}\\times 100 = 6.4 \\]"
+          ]
+        }
+      ],
+      "answer": "Amount invested = ₹6,250  (i) Annual income = ₹400  (ii) Return = 6.4%"
+    },
+    {
+      "qno": "7",
+      "difficulty": "Medium",
+      "question": "⭐ [Worksheet Q7] A man buys 500, ₹20 shares at a discount of 20% and receives a return of 10% on his money. Calculate: (i) Amount invested. (ii) Rate of dividend paid by the company.",
+      "given": [
+        "F.V. = ₹20, No. of shares = 500, Discount = 20% of F.V., Rate of Return = 10%"
+      ],
+      "sections": [
+        {
+          "label": "Note",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "hint",
+              "text": "MBA Note: Discount % → find ₹ discount first, then M.V."
+            }
+          ]
+        },
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Step 1 — Market Value — Formula"
+            },
+            "\\[ \\text{M.V.} = \\text{F.V.} - \\text{Rate of Discount}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ 20\\%\\times 20 = \\dfrac{20}{100}\\times 20 = 4 \\]",
+            "\\[ \\text{M.V.} = 20-4 = 16 \\]",
+            {
+              "type": "subhead",
+              "text": "(i) Amount invested — Formula"
+            },
+            "\\[ \\text{Investment} = \\text{No. of shares}\\times \\text{M.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Investment} = 500\\times 16 = 8000 \\]",
+            {
+              "type": "subhead",
+              "text": "(ii) Rate of dividend — Formula (the shortcut)"
+            },
+            "\\[ \\text{Rate of Dividend}\\times \\text{F.V.} = \\text{Rate of Return}\\times \\text{M.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ d\\times 20 = 10\\times 16 \\]",
+            "\\[ d\\times 20 = 160 \\]",
+            "\\[ d = \\dfrac{160}{20} = 8 \\]"
+          ]
+        }
+      ],
+      "answer": "(i) Amount invested = ₹8,000  (ii) Rate of dividend = 8%"
+    },
+    {
+      "qno": "8",
+      "difficulty": "Medium",
+      "question": "[Worksheet Q8] Anupama invests ₹3240 in buying ₹50 shares of a company giving a dividend of 12%. At the end of the year, she receives ₹288 as dividend. At what price did she buy the shares?",
+      "given": [
+        "Investment = ₹3240, F.V. = ₹50, Rate of Dividend = 12%, Annual dividend received = ₹288"
+      ],
+      "sections": [
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Step 1 — Number of shares (from the dividend) — Formula"
+            },
+            "\\[ \\text{Dividend per share} = \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend per share} = \\dfrac{12}{100}\\times 50 = 6 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{\\text{Total Dividend}}{\\text{Dividend per share}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{288}{6} = 48 \\]",
+            {
+              "type": "subhead",
+              "text": "Step 2 — Price (M.V.) per share — Formula"
+            },
+            "\\[ \\text{M.V.} = \\dfrac{\\text{Total Investment}}{\\text{No. of shares}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{M.V.} = \\dfrac{3240}{48} = 67.5 \\]"
+          ]
+        }
+      ],
+      "answer": "Price per share (M.V.) = ₹67.50"
+    },
+    {
+      "qno": "9",
+      "difficulty": "Easy",
+      "question": "[Worksheet Q9] Find the dividend percent declared by the company if ₹100 share is quoted at ₹104 and an investment of ₹3120 fetches an annual dividend of ₹240.",
+      "given": [
+        "F.V. = ₹100, M.V. = ₹104, Investment = ₹3120, Annual dividend = ₹240"
+      ],
+      "sections": [
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Step 1 — Number of shares — Formula"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{\\text{Total Investment}}{\\text{M.V. of 1 share}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{3120}{104} = 30 \\]",
+            {
+              "type": "subhead",
+              "text": "Step 2 — Dividend percent — Formula"
+            },
+            "\\[ \\text{Dividend} = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ 240 = 30\\times \\dfrac{d}{100}\\times 100 \\]",
+            "\\[ 240 = 30d \\]",
+            "\\[ d = \\dfrac{240}{30} = 8 \\]"
+          ]
+        }
+      ],
+      "answer": "Dividend percent declared = 8%"
+    },
+    {
+      "qno": "10",
+      "difficulty": "Medium",
+      "question": "[Worksheet Q10] How much should Roopa invest in 12% ₹100 shares selling at a premium of ₹10 to get an income of ₹600 from the shares?",
+      "given": [
+        "F.V. = ₹100, Premium = ₹10, Rate of Dividend = 12%, Desired income = ₹600"
+      ],
+      "sections": [
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Step 1 — Market Value — Formula"
+            },
+            "\\[ \\text{M.V.} = \\text{F.V.} + \\text{Premium} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{M.V.} = 100+10 = 110 \\]",
+            {
+              "type": "subhead",
+              "text": "Step 2 — Number of shares needed for ₹600 income — Formula"
+            },
+            "\\[ \\text{Dividend per share} = \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend per share} = \\dfrac{12}{100}\\times 100 = 12 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{\\text{Desired Income}}{\\text{Dividend per share}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{600}{12} = 50 \\]",
+            {
+              "type": "subhead",
+              "text": "Step 3 — Investment required — Formula"
+            },
+            "\\[ \\text{Investment} = \\text{No. of shares}\\times \\text{M.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Investment} = 50\\times 110 = 5500 \\]"
+          ]
+        }
+      ],
+      "answer": "Roopa should invest ₹5,500"
+    },
+    {
+      "qno": "11",
+      "difficulty": "Medium",
+      "question": "[Worksheet Q11] Anand buys ₹20 shares of a company which pays 9% dividend at such a price that he gets a return of 12% on his investment. At what price did he buy the share?",
+      "given": [
+        "F.V. = ₹20, Rate of Dividend = 9%, Rate of Return = 12%"
+      ],
+      "sections": [
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula (the shortcut)"
+            },
+            "\\[ \\text{Rate of Dividend}\\times \\text{F.V.} = \\text{Rate of Return}\\times \\text{M.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ 9\\times 20 = 12\\times \\text{M.V.} \\]",
+            "\\[ 180 = 12\\times \\text{M.V.} \\]",
+            "\\[ \\text{M.V.} = \\dfrac{180}{12} = 15 \\]"
+          ]
+        }
+      ],
+      "answer": "Price per share (M.V.) = ₹15"
+    },
+    {
+      "qno": "12",
+      "difficulty": "Hard",
+      "question": "⭐ [Worksheet Q12] Arvind invested ₹12000 in shares. He invested ₹7800 in 9% ₹50 shares at ₹60 and the remaining in 10% ₹25 shares. If the total income is ₹1085, find the price at which he bought the ₹25 shares.",
+      "given": [
+        "Total investment = ₹12000, Company A: F.V. = ₹50, M.V. = ₹60, Rate = 9%, Investment = ₹7800",
+        "Company B: F.V. = ₹25, Rate = 10%, Investment = 12000−7800 = ₹4200, Total income = ₹1085"
+      ],
+      "sections": [
+        {
+          "label": "Note",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "hint",
+              "text": "MB Tip: The unknown here is Company B's M.V. — don't try to guess it. Find Company A's dividend fully first, subtract from the total ₹1085 to isolate Company B's dividend, then solve for the unknown M.V. (called M) from that equation."
+            }
+          ]
+        },
+        {
+          "label": "COMPANY A",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{\\text{Total Investment}}{\\text{M.V. of 1 share}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{7800}{60} = 130 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Dividend} = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend}_A = 130\\times \\dfrac{9}{100}\\times 50 = 130\\times 4.5 = 585 \\]"
+          ]
+        },
+        {
+          "label": "COMPANY B",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Income from Company B"
+            },
+            "\\[ \\text{Dividend}_B = 1085-585 = 500 \\]",
+            {
+              "type": "subhead",
+              "text": "Let the M.V. of a ₹25 share be \\(M\\). Formula"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{\\text{Total Investment}}{\\text{M.V.}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{4200}{M} \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Dividend}_B = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ 500 = \\dfrac{4200}{M}\\times \\dfrac{10}{100}\\times 25 \\]",
+            "\\[ 500 = \\dfrac{4200}{M}\\times 2.5 \\]",
+            "\\[ 500 = \\dfrac{10500}{M} \\]",
+            "\\[ M = \\dfrac{10500}{500} = 21 \\]"
+          ]
+        }
+      ],
+      "answer": "Price at which the ₹25 shares were bought = ₹21"
+    },
+    {
+      "qno": "13",
+      "difficulty": "Hard",
+      "question": "⭐ [Worksheet Q13] Kalyani invests ₹9000 partly in 5% ₹100 shares sold at ₹80 and the remaining in 6% ₹50 shares at ₹70. If the total annual dividend is ₹480, find the amount invested in each.",
+      "given": [
+        "Total investment = ₹9000, Company A: F.V. = ₹100, M.V. = ₹80, Rate = 5%",
+        "Company B: F.V. = ₹50, M.V. = ₹70, Rate = 6%, Total dividend = ₹480"
+      ],
+      "sections": [
+        {
+          "label": "Note",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "hint",
+              "text": "MB Tip: Setting up ONE equation in a single unknown (x) is the whole trick — don't try to solve for two separate unknowns. Once you have fractions on both sides, clear them by multiplying every term by the LCM before solving, or the algebra gets messy fast."
+            }
+          ]
+        },
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Let ₹\\(x\\) be invested in Company A, so ₹\\((9000-x)\\) in Company B"
+            },
+            {
+              "type": "subhead",
+              "text": "Formula — Dividend from Company A"
+            },
+            "\\[ \\text{No. of shares}_A = \\dfrac{x}{80} \\]",
+            "\\[ \\text{Dividend}_A = \\text{No. of shares}_A\\times \\dfrac{\\text{Rate}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend}_A = \\dfrac{x}{80}\\times \\dfrac{5}{100}\\times 100 = \\dfrac{5x}{80} = \\dfrac{x}{16} \\]",
+            {
+              "type": "subhead",
+              "text": "Formula — Dividend from Company B"
+            },
+            "\\[ \\text{No. of shares}_B = \\dfrac{9000-x}{70} \\]",
+            "\\[ \\text{Dividend}_B = \\text{No. of shares}_B\\times \\dfrac{\\text{Rate}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend}_B = \\dfrac{9000-x}{70}\\times \\dfrac{6}{100}\\times 50 = \\dfrac{3(9000-x)}{70} \\]",
+            {
+              "type": "subhead",
+              "text": "Set the total equal to ₹480 and solve"
+            },
+            "\\[ \\dfrac{x}{16} + \\dfrac{3(9000-x)}{70} = 480 \\]",
+            {
+              "type": "hint",
+              "text": "(LCM of 16 and 70 is 560; multiply every term by 560)"
+            },
+            "\\[ 35x + 24(9000-x) = 268800 \\]",
+            "\\[ 35x + 216000 - 24x = 268800 \\]",
+            "\\[ 11x = 52800 \\]",
+            "\\[ x = 4800 \\]",
+            "\\[ 9000-x = 4200 \\]"
+          ]
+        }
+      ],
+      "answer": "First company = ₹4,800, Second company = ₹4,200"
+    },
+    {
+      "qno": "14",
+      "difficulty": "Medium",
+      "question": "⭐ [Worksheet Q14] Shyam invested ₹3132 in ₹100 shares at a premium of ₹16 giving 8% dividend. (i) Find his annual dividend. (ii) If he sold the shares at ₹140 each, find his gain percent.",
+      "given": [
+        "Investment = ₹3132, F.V. = ₹100, Premium = ₹16, Rate of Dividend = 8%, S.P. = ₹140"
+      ],
+      "sections": [
+        {
+          "label": "Note",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "hint",
+              "text": "MBA Note: Profit ≠ Dividend — don't mix the two"
+            }
+          ]
+        },
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Step 1 — Market Value and number of shares — Formula"
+            },
+            "\\[ \\text{M.V.} = \\text{F.V.} + \\text{Premium} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{M.V.} = 100+16 = 116 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{\\text{Total Investment}}{\\text{M.V. of 1 share}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{3132}{116} = 27 \\]",
+            {
+              "type": "subhead",
+              "text": "(i) Annual dividend — Formula"
+            },
+            "\\[ \\text{Dividend} = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend} = 27\\times \\dfrac{8}{100}\\times 100 = 27\\times 8 = 216 \\]",
+            {
+              "type": "subhead",
+              "text": "(ii) Gain on selling at ₹140 each — Formula"
+            },
+            "\\[ \\text{Sale Proceeds} = \\text{No. of shares}\\times \\text{S.P.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Sale Proceeds} = 27\\times 140 = 3780 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Gain \\%} = \\dfrac{\\text{Sale Proceeds} - \\text{Investment}}{\\text{Investment}}\\times 100 \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Gain} = 3780-3132 = 648 \\]",
+            "\\[ \\text{Gain \\%} = \\dfrac{648}{3132}\\times 100 \\approx 20.69 \\]"
+          ]
+        }
+      ],
+      "answer": "(i) Annual dividend = ₹216  (ii) Gain ≈ 20.69% (≈20.7%)"
+    },
+    {
+      "qno": "15",
+      "difficulty": "Medium",
+      "question": "[Worksheet Q15] Parineeta buys 500 ₹20 shares at a discount of 20% and receives a return of 10% on her money. (i) Amount invested (ii) Rate of dividend (iii) Annual dividend",
+      "given": [
+        "F.V. = ₹20, No. of shares = 500, Discount = 20% of F.V., Rate of Return = 10%"
+      ],
+      "sections": [
+        {
+          "label": "Note",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "hint",
+              "text": "MBA Note: Discount % → find ₹ discount first, then M.V."
+            }
+          ]
+        },
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Step 1 — Market Value — Formula"
+            },
+            "\\[ \\text{M.V.} = \\text{F.V.} - \\text{Rate of Discount}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ 20\\%\\times 20 = 4 \\]",
+            "\\[ \\text{M.V.} = 20-4 = 16 \\]",
+            {
+              "type": "subhead",
+              "text": "(i) Amount invested — Formula"
+            },
+            "\\[ \\text{Investment} = \\text{No. of shares}\\times \\text{M.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Investment} = 500\\times 16 = 8000 \\]",
+            {
+              "type": "subhead",
+              "text": "(ii) Rate of dividend — Formula (the shortcut)"
+            },
+            "\\[ \\text{Rate of Dividend}\\times \\text{F.V.} = \\text{Rate of Return}\\times \\text{M.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ d\\times 20 = 10\\times 16 \\]",
+            "\\[ d = \\dfrac{160}{20} = 8 \\]",
+            {
+              "type": "subhead",
+              "text": "(iii) Annual dividend — Formula"
+            },
+            "\\[ \\text{Dividend} = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend} = 500\\times \\dfrac{8}{100}\\times 20 = 500\\times 1.6 = 800 \\]"
+          ]
+        }
+      ],
+      "answer": "(i) ₹8,000  (ii) 8%  (iii) ₹800"
+    },
+    {
+      "qno": "16",
+      "difficulty": "Hard",
+      "question": "⭐ [Worksheet Q16] Arjun invests ₹10,000 in ₹25 shares standing at ₹40. After one year, he receives 8% dividend and sells the shares at ₹42 each. He invests the sale proceeds in ₹10 shares quoted at ₹12 giving 9% dividend. (i) Find the change in income. (ii) % increase in return on original investment.",
+      "given": [
+        "Company A: F.V. = ₹25, M.V. = ₹40, Investment = ₹10,000, Rate = 8%, S.P. = ₹42",
+        "Company B: F.V. = ₹10, M.V. = ₹12, Rate = 9%"
+      ],
+      "sections": [
+        {
+          "label": "Note",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "hint",
+              "text": "Chain: 8% ₹25 shares at ₹40 → sold at ₹42 → reinvested in 9% ₹10 shares at ₹12"
+            },
+            {
+              "type": "hint",
+              "text": "MBA Note: Change in Income = Greater − Smaller (not always New − Old)"
+            },
+            {
+              "type": "hint",
+              "text": "MBA Note: \"Invested proceeds\" → New Investment = Sale Proceeds (unless it says \"including dividend\")"
+            },
+            {
+              "type": "hint",
+              "text": "MB Tip: The final % increase is measured against the ORIGINAL investment (₹10,000) — not against the new Company B investment (₹10,500). Dividing by the wrong denominator here is the single most common mistake."
+            }
+          ]
+        },
+        {
+          "label": "COMPANY A",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{\\text{Total Investment}}{\\text{M.V. of 1 share}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{10000}{40} = 250 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Dividend} = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend}_A = 250\\times \\dfrac{8}{100}\\times 25 = 500 \\]"
+          ]
+        },
+        {
+          "label": "SALE AND REINVESTMENT",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Sale Proceeds} = \\text{No. of shares}\\times \\text{S.P.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Sale Proceeds} = 250\\times 42 = 10500 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{No. of shares}_B = \\dfrac{\\text{Sale Proceeds}}{\\text{M.V. of 1 share}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{No. of shares}_B = \\dfrac{10500}{12} = 875 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Dividend}_B = \\text{No. of shares}_B\\times \\dfrac{\\text{Rate}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend}_B = 875\\times \\dfrac{9}{100}\\times 10 = 875\\times 0.9 = 787.5 \\]"
+          ]
+        },
+        {
+          "label": "(i) & (ii) CHANGE IN INCOME",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Change in Income} = \\text{Dividend}_{new} - \\text{Dividend}_{old} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Change} = 787.5-500 = 287.5 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\%\\text{ increase on original investment} = \\dfrac{\\text{Change in Income}}{\\text{Original Investment}}\\times 100 \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\%\\text{ increase} = \\dfrac{287.5}{10000}\\times 100 = 2.875 \\]"
+          ]
+        }
+      ],
+      "answer": "(i) Income increases by ₹287.50  (ii) % increase on original investment = 2.875%"
+    },
+    {
+      "qno": "17",
+      "difficulty": "Hard",
+      "question": "⭐ [Worksheet Q17] Shriya invested her savings in companies A and B: 40% in ₹100 shares at a premium of ₹20 giving 10% dividend, and 60% in ₹10 shares at a discount of 10% giving 8% dividend. (i) If she bought 40 shares of company A, how many shares of company B did she buy? (ii) Find her annual dividend from each company.",
+      "given": [
+        "Company A: F.V. = ₹100, Premium = ₹20, Rate = 10%, 40% of total, No. of shares bought = 40",
+        "Company B: F.V. = ₹10, Discount = 10% of F.V., Rate = 8%, 60% of total"
+      ],
+      "sections": [
+        {
+          "label": "Note",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "hint",
+              "text": "MB Tip: You're given the NUMBER of shares for Company A, not its investment as a %. Find Company A's Investment first from the shares, then use \"40% of Total = that Investment\" to backtrack the Total savings — only then can you find Company B's 60% share."
+            }
+          ]
+        },
+        {
+          "label": "COMPANY A",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{M.V.}_A = \\text{F.V.} + \\text{Premium} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{M.V.}_A = 100+20 = 120 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Investment}_A = \\text{No. of shares}\\times \\text{M.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Investment}_A = 40\\times 120 = 4800 \\]",
+            {
+              "type": "subhead",
+              "text": "This is 40% of the total savings — Formula"
+            },
+            "\\[ \\text{Investment}_A = 40\\%\\times \\text{Total} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ 4800 = \\dfrac{40}{100}\\times \\text{Total} \\]",
+            "\\[ \\text{Total} = \\dfrac{4800\\times 100}{40} = 12000 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Dividend}_A = \\text{No. of shares}\\times \\dfrac{\\text{Rate}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend}_A = 40\\times \\dfrac{10}{100}\\times 100 = 400 \\]"
+          ]
+        },
+        {
+          "label": "COMPANY B",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{M.V.}_B = \\text{F.V.} - \\text{Discount} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{M.V.}_B = 10-1 = 9 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Investment}_B = 60\\%\\times \\text{Total} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Investment}_B = \\dfrac{60}{100}\\times 12000 = 7200 \\]",
+            {
+              "type": "subhead",
+              "text": "(i) Number of shares — Formula"
+            },
+            "\\[ \\text{No. of shares}_B = \\dfrac{\\text{Investment}_B}{\\text{M.V.}_B} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{No. of shares}_B = \\dfrac{7200}{9} = 800 \\]",
+            {
+              "type": "subhead",
+              "text": "(ii) Annual dividend — Formula"
+            },
+            "\\[ \\text{Dividend}_B = \\text{No. of shares}\\times \\dfrac{\\text{Rate}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend}_B = 800\\times \\dfrac{8}{100}\\times 10 = 800\\times 0.8 = 640 \\]"
+          ]
+        }
+      ],
+      "answer": "(i) 800 shares of Company B  (ii) Dividend: Company A = ₹400, Company B = ₹640"
+    },
+    {
+      "qno": "18",
+      "difficulty": "Hard",
+      "question": "⭐ [Worksheet Q18] Amit owns 1500, ₹25 shares of a company which declares a dividend of 14%. He sells the shares at ₹40 each and invests the proceeds in 8%, ₹100 shares at ₹80. What is the change in his annual dividend income?",
+      "given": [
+        "Company A: F.V. = ₹25, No. of shares = 1500, Rate = 14%, S.P. = ₹40",
+        "Company B: F.V. = ₹100, M.V. = ₹80, Rate = 8%"
+      ],
+      "sections": [
+        {
+          "label": "Note",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "hint",
+              "text": "Chain: 14% ₹25 shares (sold at ₹40) → reinvested in 8% ₹100 shares at ₹80"
+            },
+            {
+              "type": "hint",
+              "text": "MBA Note: Change in Income = Greater − Smaller (not always New − Old)"
+            },
+            {
+              "type": "hint",
+              "text": "MBA Note: \"Invested proceeds\" → New Investment = Sale Proceeds (unless it says \"including dividend\")"
+            },
+            {
+              "type": "hint",
+              "text": "MB Tip: Simpler than it looks — a straight two-stage chain with no percentage step at the end. Just find both dividends fully, then subtract. No unknowns, no equations to solve."
+            }
+          ]
+        },
+        {
+          "label": "COMPANY A",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Dividend} = \\text{No. of shares}\\times \\dfrac{\\text{Rate of Dividend}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend}_A = 1500\\times \\dfrac{14}{100}\\times 25 = 1500\\times 3.5 = 5250 \\]"
+          ]
+        },
+        {
+          "label": "SALE AND REINVESTMENT",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Sale Proceeds} = \\text{No. of shares}\\times \\text{S.P.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Sale Proceeds} = 1500\\times 40 = 60000 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{No. of shares}_B = \\dfrac{\\text{Sale Proceeds}}{\\text{M.V.}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{No. of shares}_B = \\dfrac{60000}{80} = 750 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Dividend}_B = \\text{No. of shares}\\times \\dfrac{\\text{Rate}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend}_B = 750\\times \\dfrac{8}{100}\\times 100 = 750\\times 8 = 6000 \\]"
+          ]
+        },
+        {
+          "label": "CHANGE IN INCOME",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Change in Income} = \\text{Dividend}_{new} - \\text{Dividend}_{old} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Change} = 6000-5250 = 750 \\]"
+          ]
+        }
+      ],
+      "answer": "Annual dividend income increases by ₹750"
+    },
+    {
+      "qno": "19",
+      "difficulty": "Hard",
+      "question": "[Worksheet Q19] A person invests ₹28,000 in 7% ₹100 shares at ₹80 and another ₹8,200 in 18% ₹25 shares at ₹41. Compare the returns from the two investments.",
+      "given": [
+        "Company A: F.V. = ₹100, M.V. = ₹80, Rate = 7%, Investment = ₹28,000",
+        "Company B: F.V. = ₹25, M.V. = ₹41, Rate = 18%, Investment = ₹8,200"
+      ],
+      "sections": [
+        {
+          "label": "Note",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "hint",
+              "text": "MB Tip: This question has a known mismatch between our recomputed answer and the worksheet's own printed answer key — see the flag in the Answer box below. Use it to practice the Return% formula correctly rather than memorising the misprinted final figure."
+            }
+          ]
+        },
+        {
+          "label": "COMPANY A — RETURN %",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula (the shortcut, rearranged for Rate of Return)"
+            },
+            "\\[ \\text{Rate of Return} = \\dfrac{\\text{Rate of Dividend}\\times \\text{F.V.}}{\\text{M.V.}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Return \\%}_A = \\dfrac{7\\times 100}{80} = \\dfrac{700}{80} = 8.75 \\]"
+          ]
+        },
+        {
+          "label": "COMPANY B — RETURN %",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Rate of Return} = \\dfrac{\\text{Rate of Dividend}\\times \\text{F.V.}}{\\text{M.V.}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Return \\%}_B = \\dfrac{18\\times 25}{41} = \\dfrac{450}{41} \\approx 10.98 \\]"
+          ]
+        },
+        {
+          "label": "COMPARISON",
+          "type": "continuous",
+          "items": [
+            "\\[ \\text{Difference} \\approx 10.98-8.75 = 2.23 \\]",
+            {
+              "type": "hint",
+              "text": "(Company B gives the higher percentage return)"
+            }
+          ]
+        }
+      ],
+      "answer": "Return: Company A ≈ 8.75%, Company B ≈ 10.98% — Company B's return is higher by ≈2.23%. ⚠️ A note on this one: the source worksheet's own answer key states \"increase in return = ₹200, % increase = 2.5%\", which does not match recomputing with M.V. = ₹41 as printed in the question. If M.V. were ₹40 instead of ₹41, the % difference works out to exactly 2.5% — so ₹41 may be an OCR/typo error in the original worksheet for what should be ₹40. Please verify against the original source before using this in a test."
+    },
+    {
+      "qno": "20",
+      "difficulty": "Hard",
+      "question": "⭐ [Worksheet Q20] A man sold some ₹100 shares paying 10% dividend at a discount of 25% and invested the proceeds in ₹100 shares paying 16% dividend quoted at ₹80, and thus increased his income by ₹2000. Find the number of shares sold by him.",
+      "given": [
+        "Company A: F.V. = ₹100, Rate = 10%, S.P. = 100−25 = ₹75",
+        "Company B: F.V. = ₹100, M.V. = ₹80, Rate = 16%, Increase in income = ₹2000"
+      ],
+      "sections": [
+        {
+          "label": "Note",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "hint",
+              "text": "Chain: 10% ₹100 shares (sold at 25% discount) → reinvested in 16% ₹100 shares at ₹80"
+            },
+            {
+              "type": "hint",
+              "text": "MBA Note: Discount % → find ₹ discount first, then M.V."
+            },
+            {
+              "type": "hint",
+              "text": "MBA Note: Change in Income = Greater − Smaller (not always New − Old)"
+            },
+            {
+              "type": "hint",
+              "text": "MB Tip: Both companies' dividends are expressed in terms of the SAME unknown x — keep them symbolic (10x and 15x) and don't try to compute numeric values until after you've subtracted and solved for x at the very end."
+            }
+          ]
+        },
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Let the number of shares sold be \\(x\\). Formula"
+            },
+            "\\[ \\text{Dividend}_A = \\text{No. of shares}\\times \\dfrac{\\text{Rate}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend}_A = x\\times \\dfrac{10}{100}\\times 100 = 10x \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Sale Proceeds} = \\text{No. of shares}\\times \\text{S.P.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Sale Proceeds} = x\\times 75 = 75x \\]",
+            {
+              "type": "subhead",
+              "text": "Reinvestment in Company B — Formula"
+            },
+            "\\[ \\text{No. of shares}_B = \\dfrac{\\text{Sale Proceeds}}{\\text{M.V.}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{No. of shares}_B = \\dfrac{75x}{80} = \\dfrac{15x}{16} \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Dividend}_B = \\text{No. of shares}_B\\times \\dfrac{\\text{Rate}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend}_B = \\dfrac{15x}{16}\\times \\dfrac{16}{100}\\times 100 = \\dfrac{15x}{16}\\times 16 = 15x \\]",
+            {
+              "type": "subhead",
+              "text": "Set the increase equal to ₹2000 — Formula"
+            },
+            "\\[ \\text{Change in Income} = \\text{Dividend}_B - \\text{Dividend}_A \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ 15x-10x = 2000 \\]",
+            "\\[ 5x = 2000 \\]",
+            "\\[ x = 400 \\]"
+          ]
+        }
+      ],
+      "answer": "Number of shares sold = 400"
+    },
+    {
+      "qno": "21",
+      "difficulty": "Easy",
+      "question": "[Worksheet Q21] A company declares 8% dividend on ₹100 shares. Atul buys such shares and gets 10% return on his investment. At what price does he buy each share?",
+      "given": [
+        "F.V. = ₹100, Rate of Dividend = 8%, Rate of Return = 10%"
+      ],
+      "sections": [
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula (the shortcut)"
+            },
+            "\\[ \\text{Rate of Dividend}\\times \\text{F.V.} = \\text{Rate of Return}\\times \\text{M.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ 8\\times 100 = 10\\times \\text{M.V.} \\]",
+            "\\[ 800 = 10\\times \\text{M.V.} \\]",
+            "\\[ \\text{M.V.} = \\dfrac{800}{10} = 80 \\]"
+          ]
+        }
+      ],
+      "answer": "Price per share (M.V.) = ₹80"
+    },
+    {
+      "qno": "22",
+      "difficulty": "Hard",
+      "question": "⭐ [Worksheet Q22] Two brothers A and B invest ₹16,000 each in buying shares of two companies. A buys 12% hundred rupee shares at ₹80 and B buys ten-rupee shares at par. If they both receive equal dividend at the end of the year, find the rate percent of the dividend received by B.",
+      "given": [
+        "Brother A: F.V. = ₹100, M.V. = ₹80, Rate = 12%, Investment = ₹16,000",
+        "Brother B: F.V. = ₹10, M.V. = ₹10 (at par), Investment = ₹16,000, Dividend_A = Dividend_B"
+      ],
+      "sections": [
+        {
+          "label": "Note",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "hint",
+              "text": "MB Tip: Brother A's numbers are fully known — compute his dividend completely first. Only Brother B's rate is unknown, so setting Brother B's dividend equal to Brother A's gives one simple, one-step equation."
+            }
+          ]
+        },
+        {
+          "label": "BROTHER A",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{\\text{Total Investment}}{\\text{M.V.}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{No. of shares}_A = \\dfrac{16000}{80} = 200 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Dividend}_A = \\text{No. of shares}\\times \\dfrac{\\text{Rate}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend}_A = 200\\times \\dfrac{12}{100}\\times 100 = 200\\times 12 = 2400 \\]"
+          ]
+        },
+        {
+          "label": "BROTHER B",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{No. of shares} = \\dfrac{\\text{Total Investment}}{\\text{M.V.}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{No. of shares}_B = \\dfrac{16000}{10} = 1600 \\]",
+            {
+              "type": "subhead",
+              "text": "Let the rate of dividend for B be \\(d\\)%. Formula"
+            },
+            "\\[ \\text{Dividend}_B = \\text{No. of shares}\\times \\dfrac{d}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend}_B = 1600\\times \\dfrac{d}{100}\\times 10 = 160d \\]"
+          ]
+        },
+        {
+          "label": "EQUATE THE TWO DIVIDENDS",
+          "type": "continuous",
+          "items": [
+            "\\[ 160d = 2400 \\]",
+            "\\[ d = \\dfrac{2400}{160} = 15 \\]"
+          ]
+        }
+      ],
+      "answer": "Rate of dividend received by B = 15%"
+    },
+    {
+      "qno": "23",
+      "difficulty": "Hard",
+      "question": "⭐ [Worksheet Q23] Divide ₹35,400 into two parts such that if one part is invested in 9%, ₹100 shares at 4% discount, and the other in 12%, ₹50 shares at 8% premium, the annual incomes from both investments are equal. Find the amount invested in each part.",
+      "given": [
+        "Company A: F.V. = ₹100, Discount = 4% of F.V., Rate = 9%, Part = ₹x",
+        "Company B: F.V. = ₹50, Premium = 8% of F.V., Rate = 12%, Part = ₹(35400 − x)"
+      ],
+      "sections": [
+        {
+          "label": "Note",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "hint",
+              "text": "MBA Note: Discount % → find ₹ discount first, then M.V."
+            },
+            {
+              "type": "hint",
+              "text": "MB Tip: The hardest part is purely the algebra: after expressing both dividends in terms of x, cross-multiply and expand carefully. A sign error while expanding 32(35400 − x) is the single most common slip in this question."
+            }
+          ]
+        },
+        {
+          "label": "WORKING",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Step 1 — Market values — Formula"
+            },
+            "\\[ \\text{M.V.}_A = \\text{F.V.} - \\text{Rate of Discount}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ 4\\%\\times 100 = 4 \\]",
+            "\\[ \\text{M.V.}_A = 100-4 = 96 \\]",
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{M.V.}_B = \\text{F.V.} + \\text{Rate of Premium}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ 8\\%\\times 50 = 4 \\]",
+            "\\[ \\text{M.V.}_B = 50+4 = 54 \\]",
+            {
+              "type": "subhead",
+              "text": "Step 2 — Dividend from Part A (₹\\(x\\) invested) — Formula"
+            },
+            "\\[ \\text{No. of shares}_A = \\dfrac{x}{96} \\]",
+            "\\[ \\text{Dividend}_A = \\text{No. of shares}\\times \\dfrac{\\text{Rate}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend}_A = \\dfrac{x}{96}\\times \\dfrac{9}{100}\\times 100 = \\dfrac{9x}{96} = \\dfrac{3x}{32} \\]",
+            {
+              "type": "subhead",
+              "text": "Step 3 — Dividend from Part B (₹\\((35400-x)\\) invested) — Formula"
+            },
+            "\\[ \\text{No. of shares}_B = \\dfrac{35400-x}{54} \\]",
+            "\\[ \\text{Dividend}_B = \\text{No. of shares}\\times \\dfrac{\\text{Rate}}{100}\\times \\text{F.V.} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Dividend}_B = \\dfrac{35400-x}{54}\\times \\dfrac{12}{100}\\times 50 = \\dfrac{6(35400-x)}{54} = \\dfrac{35400-x}{9} \\]",
+            {
+              "type": "subhead",
+              "text": "Step 4 — Equate the two dividends and solve"
+            },
+            "\\[ \\dfrac{3x}{32} = \\dfrac{35400-x}{9} \\]",
+            {
+              "type": "hint",
+              "text": "(cross-multiply)"
+            },
+            "\\[ 27x = 32(35400-x) \\]",
+            "\\[ 27x = 1132800-32x \\]",
+            "\\[ 59x = 1132800 \\]",
+            "\\[ x = 19200 \\]",
+            "\\[ 35400-x = 16200 \\]"
+          ]
+        }
+      ],
+      "answer": "Part 1 (9% shares) = ₹19,200,  Part 2 (12% shares) = ₹16,200"
+    },
+    {
+      "qno": "24",
+      "difficulty": "Medium",
+      "question": "[Worksheet Q24] Compare the returns from the following: Company 1 — F.V. ₹100, M.V. ₹80, Dividend 9%. Company 2 — F.V. ₹50, M.V. ₹60, Dividend 9%.",
+      "given": [
+        "Company 1: F.V. = ₹100, M.V. = ₹80, Rate = 9%",
+        "Company 2: F.V. = ₹50, M.V. = ₹60, Rate = 9%"
+      ],
+      "sections": [
+        {
+          "label": "COMPANY 1 — RETURN %",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula (the shortcut, rearranged for Rate of Return)"
+            },
+            "\\[ \\text{Rate of Return} = \\dfrac{\\text{Rate of Dividend}\\times \\text{F.V.}}{\\text{M.V.}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Return \\%}_1 = \\dfrac{9\\times 100}{80} = \\dfrac{900}{80} = 11.25 \\]"
+          ]
+        },
+        {
+          "label": "COMPANY 2 — RETURN %",
+          "type": "continuous",
+          "items": [
+            {
+              "type": "subhead",
+              "text": "Formula"
+            },
+            "\\[ \\text{Rate of Return} = \\dfrac{\\text{Rate of Dividend}\\times \\text{F.V.}}{\\text{M.V.}} \\]",
+            {
+              "type": "subhead",
+              "text": "Substitute"
+            },
+            "\\[ \\text{Return \\%}_2 = \\dfrac{9\\times 50}{60} = \\dfrac{450}{60} = 7.5 \\]"
+          ]
+        },
+        {
+          "label": "COMPARISON",
+          "type": "continuous",
+          "items": [
+            "\\[ \\text{Return \\%}_1 (11.25) > \\text{Return \\%}_2 (7.5) \\]"
+          ]
+        }
+      ],
+      "answer": "Company 1 gives the better return (11.25% vs 7.5%). ⚠️ Note: the source worksheet's own answer key says \"Company 2 is better\" — recomputing directly from the numbers as given (both pay the same 9% dividend, but Company 1's shares are cheaper relative to face value) shows Company 1 is actually the better return. Please double-check the original worksheet — this looks like an error in that answer key."
+    }
+  ],
+  "mcqs": [
+    {
+      "qno": "1",
+      "difficulty": "Medium",
+      "question": "⭐ [ICSE 2025 Q1(viii)] A man invested in a company paying 12% dividend on its share. If the percentage return on his investment is 10%, then the shares are:",
+      "options": {
+        "A": "at par",
+        "B": "below par",
+        "C": "above par",
+        "D": "cannot be determined"
+      },
+      "correct": "C",
+      "solution": "WORKING<br>Formula — the shortcut linking Rate of Dividend, F.V., Rate of Return and M.V.<br>\\[ \\text{Rate of Dividend}\\times \\text{F.V.} = \\text{Rate of Return}\\times \\text{M.V.} \\]<br>Substitute the given values (assume F.V. = ₹100, the standard assumption when F.V. is not stated)<br>\\[ 12\\times 100 = 10\\times \\text{M.V.} \\]<br>\\[ 1200 = 10\\times \\text{M.V.} \\]<br>\\[ \\text{M.V.} = \\dfrac{1200}{10} = 120 \\]<br>Compare M.V. to F.V.<br>\\[ \\text{M.V.} (120) > \\text{F.V.} (100) \\]<br>(when a return of only 10% is earned on a share paying 12% dividend, the share must have been bought for MORE than its face value — that premium is exactly what pulls the return down below the dividend rate)"
+    },
+    {
+      "qno": "2",
+      "difficulty": "Easy",
+      "question": "⭐ [ICSE 2024 Q1(ix)] The sum invested to purchase 15 shares of a company of nominal value ₹75 available at a discount of 20% is:",
+      "options": {
+        "A": "₹60",
+        "B": "₹90",
+        "C": "₹1350",
+        "D": "₹900"
+      },
+      "correct": "D",
+      "solution": "MBA Note: Discount % → find ₹ discount first, then M.V.<br><br>WORKING<br>Step 1 — Market Value at a discount<br>Formula<br>\\[ \\text{Discount} = \\text{Rate of Discount}\\times \\text{F.V.} \\]<br>\\[ \\text{M.V.} = \\text{F.V.} - \\text{Discount} \\]<br>Substitute<br>\\[ \\text{Discount} = 20\\%\\times 75 = \\dfrac{20}{100}\\times 75 = 15 \\]<br>\\[ \\text{M.V.} = 75-15 = 60 \\]<br>Step 2 — Sum invested for 15 shares<br>Formula<br>\\[ \\text{Investment} = \\text{No. of shares}\\times \\text{M.V.} \\]<br>Substitute<br>\\[ \\text{Investment} = 15\\times 60 = 900 \\]"
+    }
+  ],
+  "assertionReason": [],
+  "formulaSummary": {
+    "headers": [
+      "Condition",
+      "Relation"
+    ],
+    "rows": [
+      [
+        "At Par",
+        "M.V. = F.V."
+      ],
+      [
+        "Above Par (Premium)",
+        "M.V. = F.V. + Premium"
+      ],
+      [
+        "Below Par (Discount)",
+        "M.V. = F.V. − Discount"
+      ]
+    ]
+  }
+};
+</script>
 
 <!-- ==========================================================
      JavaScript Engine (Part 1/3-7). This block is the LOCKED
@@ -1127,1248 +3130,67 @@ table{max-width:100%;display:block;overflow-x:auto}
    Leave every array empty ([]) for the blank master template; a real
    chapter build fills these in without touching anything below.
    ------------------------------------------------------------------- */
-const chapterData = {
-  "board": "ICSE",
-  "class": "X",
-  "chapterNo": "2",
-  "chapterTitle": "Banking",
-  "subtitle": "Recurring Deposit Accounts — maturity value, rate, time & instalment problems",
-  "syllabusNotice": "",
-  "version": "1.0",
-  "lastUpdated": "16 Sep 2026",
-  "concepts": [
-    {
-      "id": "c1",
-      "title": "1. Basic Terms",
-      "body": "A Recurring Deposit (R.D.) Account is an account where a fixed sum of money (the instalment) is deposited every month for a fixed number of months. At the end of the term, the account “matures” — the depositor receives back everything deposited, plus interest.<br><br>P — the monthly instalment (the fixed sum deposited each month).<br>n — the number of months (the deposit is always monthly, so time must always be converted to months).<br>r — the rate of interest, per annum (%).<br>M.V. — the Maturity Value, the total amount received when the account matures.<br><br>⚠️ MBA Note: n is always in MONTHS — convert years first (1 year = 12 months).<br><br>Converting time to months: “4 years” → n = 48. “2½ years” → n = 30. “3½ years” → n = 42. Always multiply the number of years by 12 before touching the formula."
-    },
-    {
-      "id": "c2",
-      "title": "2. The Recurring Deposit Formula",
-      "body": "The Interest formula is simple interest on the sum of an arithmetic series of monthly balances — it is given directly, never derived from scratch in an exam answer.<br><br>The Maturity Value is the money paid in (P × n) plus the interest earned (I). Every single question in this chapter is a variation on this one line.<br><br>Which piece is usually missing: most questions give you three of {P, n, r, M.V.} and ask for the fourth. Identify which one is unknown before you substitute — it decides whether you get a straight line (easy) or a quadratic (needs more care).",
-      "formula": "\\( I = \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100} \\)<br>\\( M.V. = P\\times n \\;+\\; \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100} \\)"
-    },
-    {
-      "id": "c3",
-      "title": "3. Solving for the Unknown",
-      "body": "Unknown = r (rate): P and n are known numbers, so M.V. = (known number) + (known number)×r, a straight line in r. Isolate r directly — no quadratic needed.<br><br>Unknown = P (instalment): n and r are known numbers, so M.V. = P×(known number) + P×(known number), i.e. M.V. = P×(a single combined number). Divide M.V. by that combined coefficient to get P directly.<br><br>⚠️ MBA Note: When solving for r or P, the equation is linear — resist the urge to reach for the quadratic formula.<br><br>Unknown = n (time): Both n and n(n+1) appear, giving a quadratic in n. Expand fully, bring everything to one side, and either factorise or use the quadratic formula. Since n represents months, only the positive integer root is valid.<br><br>Sanity-check n: once you solve for n, it should come out to a whole number of months (and usually a “nice” one — a multiple of 6 or 12). If it doesn't, re-check the expansion of n(n+1) before assuming the question is wrong."
-    },
-    {
-      "id": "c4",
-      "title": "4. Common Question Patterns",
-      "body": "Comparing two accounts: work out each person's Maturity Value completely and separately using the same formula, then subtract at the very end to find who gets more and by how much. Never mix the two people's numbers mid-calculation.<br><br>“Least money, in a multiple of ₹5”: solve the equation for P normally — it usually won't come out as a round number. Since P must be a multiple of ₹5 and the target M.V. must be met or exceeded, round UP to the next multiple of ₹5, not to the nearest one.<br><br>⚠️ MBA Note: “Least … to get at least ₹X” → round P UP to the next multiple, not to the nearest one.<br><br>Questions framed around “Interest” (I) instead of M.V.: some questions state the interest earned rather than the maturity value directly. Use the Interest formula on its own first to find the missing quantity, then add P×n only at the end if the maturity value itself is also asked for.<br><br>“How much more interest if deposited ₹X more per month”: find the interest at the original P first, then recompute interest at the new (larger) P using the same n and r, then subtract. Never assume the extra interest scales in a simple proportion unless you check it against the formula.",
-      "formula": "\\( I = \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100} \\)"
-    }
+const chapterData = window.CHAPTER_DATA || {
+  board: "ICSE",
+  class: "X",
+  chapterNo: "",
+  chapterTitle: "",
+  subtitle: "",
+  syllabusNotice: "",     // optional; omit/empty to hide
+  version: "1.0",         // bump this each time you re-upload this chapter file
+  lastUpdated: "",        // e.g. "3 Sep 2026" — set on each re-upload
+  concepts: [
+    // { id:"c1", title:"", body:"", formula:"",
+    //   thinkReflect: [""] } // optional — 0 or more open-ended reflective prompts
   ],
-  "exerciseWise": [
-    {
-      "section": "Board PYQs (2018–2025)",
-      "questions": [
-        {
-          "qno": "2025-1(ii)",
-          "difficulty": "Easy",
-          "question": "Mr. Anuj deposits ₹500 per month for 18 months in a recurring deposit account at a certain rate. If he earns ₹570 as interest at the time of maturity, then his matured amount is:",
-          "sections": [
-            {
-              "label": "Options",
-              "type": "bullets",
-              "items": [
-                "(A) ₹(500×18+570)",
-                "(B) ₹(500×19+570)",
-                "(C) ₹(500×18×19+570)",
-                "(D) ₹(500×9×19+570)"
-              ]
-            },
-            {
-              "label": "Working",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(M.V. = P\\times n + I\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(M.V. = 500\\times18 + 570\\)",
-                {
-                  "type": "hint",
-                  "text": "(Maturity value is always money paid in, plus interest earned — no other combination of the given numbers is needed)"
-                }
-              ]
-            },
-            {
-              "label": "Final Answer",
-              "type": "box",
-              "style": "answer",
-              "text": "(A) ₹(500×18+570)"
-            }
-          ]
-        },
-        {
-          "qno": "2025-2(ii)",
-          "difficulty": "Hard",
-          "question": "Mrs. Rao deposited ₹250 per month in a recurring deposit account for a period of 3 years. She received ₹10,110 at the time of maturity. Find: (a) the rate of interest, (b) how much more interest Mrs. Rao would receive if she had deposited ₹250 more per month at the same rate of interest and for the same time.",
-          "sections": [
-            {
-              "label": "Given",
-              "type": "bullets",
-              "items": [
-                "P = ₹250",
-                "n = 3 years = 36 months",
-                "M.V. = ₹10,110",
-                "r = ?"
-              ]
-            },
-            {
-              "label": "(a) Rate Of Interest",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "hint",
-                  "text": "For part (b), don't assume the extra interest is simply double — recompute the interest formula fresh at the new instalment (₹500) using the same n and r, then subtract the original interest."
-                },
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(M.V. = P\\times n + \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(10110 = 250\\times36 + \\dfrac{250\\times36\\times37\\times r}{2400}\\)",
-                {
-                  "type": "subhead",
-                  "text": "Reduce the coefficient of r before multiplying"
-                },
-                "\\(\\dfrac{\\overset{5}{\\cancel{250}}\\times 36\\times 37\\times r}{\\underset{48}{\\cancel{2400}}}\\)",
-                "\\(\\dfrac{5\\times \\overset{3}{\\cancel{36}}\\times 37\\times r}{\\underset{4}{\\cancel{48}}}\\)",
-                "\\(= \\dfrac{5\\times 3\\times 37\\times r}{4}\\)",
-                "\\(= 138.75r\\)",
-                "\\(10110 = 9000 + 138.75r\\)",
-                {
-                  "type": "subhead",
-                  "text": "Isolate r"
-                },
-                "\\(10110 - 9000 = 138.75r\\)",
-                "\\(r = \\dfrac{1110}{138.75} = 8\\)"
-              ]
-            },
-            {
-              "label": "(b) Extra Interest At ₹500/month",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "subhead",
-                  "text": "Interest at original P = ₹250"
-                },
-                "\\(I_1 = M.V. - P\\times n = 10110 - 9000 = 1110\\)",
-                {
-                  "type": "subhead",
-                  "text": "Interest at new P = ₹500 (same n, same r)"
-                },
-                {
-                  "type": "subhead",
-                  "text": "Reduce before multiplying (cancel, then multiply)"
-                },
-                "\\(I_2 = \\dfrac{\\overset{5}{\\cancel{500}}\\times 36\\times 37\\times 8}{\\underset{24}{\\cancel{2400}}}\\)",
-                "\\(I_2 = \\dfrac{5\\times \\overset{3}{\\cancel{36}}\\times 37\\times 8}{\\underset{2}{\\cancel{24}}}\\)",
-                "\\(I_2 = \\dfrac{5\\times 3\\times 37\\times \\overset{4}{\\cancel{8}}}{\\underset{1}{\\cancel{2}}}\\)",
-                "\\(I_2 = 5\\times 3\\times 37\\times 4\\)",
-                {
-                  "type": "subhead",
-                  "text": "Extra interest"
-                },
-                "\\(\\text{Extra} = I_2 - I_1 = 2220 - 1110\\)"
-              ]
-            },
-            {
-              "label": "Final Answer",
-              "type": "box",
-              "style": "answer",
-              "text": "(a) Rate of interest = 8% p.a.  (b) ₹1,110 more interest"
-            }
-          ]
-        },
-        {
-          "qno": "2024-4(i)",
-          "difficulty": "Medium",
-          "question": "Suresh has a recurring deposit account in a bank. He deposits ₹2000 per month and the bank pays interest at the rate of 8% per annum. If he gets ₹1040 as interest at the time of maturity, find (in years) the total time for which the account was held.",
-          "sections": [
-            {
-              "label": "Given",
-              "type": "bullets",
-              "items": [
-                "P = ₹2000",
-                "r = 8% p.a.",
-                "I = ₹1040",
-                "n = ?"
-              ]
-            },
-            {
-              "label": "Working",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(I = \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(1040 = \\dfrac{2000\\times n(n+1)\\times8}{2400}\\)",
-                "\\(1040 = \\dfrac{20}{3}\\times n(n+1)\\)",
-                {
-                  "type": "subhead",
-                  "text": "Solve for n"
-                },
-                "\\(n(n+1) = \\dfrac{1040\\times3}{20} = 156\\)",
-                "\\(n = 12\\)",
-                {
-                  "type": "hint",
-                  "text": "(checked: 12×13 = 156 ✓)"
-                }
-              ]
-            },
-            {
-              "label": "Final Answer",
-              "type": "box",
-              "style": "answer",
-              "text": "n = 12 months = 1 year"
-            }
-          ]
-        },
-        {
-          "qno": "2023-1(xiv)",
-          "difficulty": "Easy",
-          "question": "Naveen deposits ₹800 every month in a recurring deposit account for 6 months. If he receives ₹4884 at the time of maturity, then the interest he earns is:",
-          "sections": [
-            {
-              "label": "Options",
-              "type": "bullets",
-              "items": [
-                "(A) ₹84",
-                "(B) ₹42",
-                "(C) ₹24",
-                "(D) ₹284"
-              ]
-            },
-            {
-              "label": "Working",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(I = M.V. - P\\times n\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(I = 4884 - (800\\times6) = 4884 - 4800\\)"
-              ]
-            },
-            {
-              "label": "Final Answer",
-              "type": "box",
-              "style": "answer",
-              "text": "(A) ₹84"
-            }
-          ]
-        },
-        {
-          "qno": "2023-2(ii)",
-          "difficulty": "Medium",
-          "question": "Salman deposits ₹1000 every month in a recurring deposit account for 2 years. If he receives ₹26,000 on maturity, find: (a) the total interest Salman earns, (b) the rate of interest.",
-          "sections": [
-            {
-              "label": "Given",
-              "type": "bullets",
-              "items": [
-                "P = ₹1000",
-                "n = 2 years = 24 months",
-                "M.V. = ₹26,000"
-              ]
-            },
-            {
-              "label": "(a) Total Interest",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(I = M.V. - P\\times n\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(I = 26000 - (1000\\times24) = 26000 - 24000\\)"
-              ]
-            },
-            {
-              "label": "(b) Rate Of Interest",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(I = \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(2000 = \\dfrac{1000\\times24\\times25\\times r}{2400}\\)",
-                "\\(2000 = 250r\\)",
-                "\\(r = \\dfrac{2000}{250}\\)"
-              ]
-            },
-            {
-              "label": "Final Answer",
-              "type": "box",
-              "style": "answer",
-              "text": "(a) Interest = ₹2,000  (b) Rate of interest = 8% p.a."
-            }
-          ]
-        },
-        {
-          "qno": "2020-8(b)",
-          "difficulty": "Easy",
-          "question": "Mr. Sona has a recurring deposit account and deposits ₹750 per month for 2 years. If he gets ₹19,125 at the time of maturity, find the rate of interest.",
-          "sections": [
-            {
-              "label": "Given",
-              "type": "bullets",
-              "items": [
-                "P = ₹750",
-                "n = 2 years = 24 months",
-                "M.V. = ₹19,125",
-                "r = ?"
-              ]
-            },
-            {
-              "label": "Working",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(I = M.V. - P\\times n\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(I = 19125 - (750\\times24) = 19125 - 18000 = 1125\\)",
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(I = \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(1125 = \\dfrac{750\\times24\\times25\\times r}{2400}\\)",
-                "\\(1125 = 187.5r\\)",
-                "\\(r = \\dfrac{1125}{187.5}\\)"
-              ]
-            },
-            {
-              "label": "Final Answer",
-              "type": "box",
-              "style": "answer",
-              "text": "Rate of interest = 6% p.a."
-            }
-          ]
-        },
-        {
-          "qno": "2019-5(b)",
-          "difficulty": "Medium",
-          "question": "Rekha opened a recurring deposit account for 20 months. The rate of interest is 9% per annum and Rekha receives ₹441 as interest at the time of maturity. Find the amount Rekha deposited each month.",
-          "sections": [
-            {
-              "label": "Given",
-              "type": "bullets",
-              "items": [
-                "n = 20 months",
-                "r = 9% p.a.",
-                "I = ₹441",
-                "P = ?"
-              ]
-            },
-            {
-              "label": "Working",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(I = \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(441 = \\dfrac{P\\times20\\times21\\times9}{2400}\\)",
-                "\\(441 = 1.575P\\)"
-              ]
-            },
-            {
-              "label": "Final Answer",
-              "type": "box",
-              "style": "answer",
-              "text": "P = ₹280"
-            }
-          ]
-        },
-        {
-          "qno": "2018-1(b)",
-          "difficulty": "Easy",
-          "question": "Sonia had a recurring deposit account in a bank and deposited ₹600 per month for 2½ years. If the rate of interest was 10% p.a., find the maturity value of this account.",
-          "sections": [
-            {
-              "label": "Given",
-              "type": "bullets",
-              "items": [
-                "P = ₹600",
-                "n = 2½ years = 30 months",
-                "r = 10% p.a."
-              ]
-            },
-            {
-              "label": "Working",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(M.V. = P\\times n + \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(M.V. = 600\\times30 + \\dfrac{600\\times30\\times31\\times10}{2400}\\)",
-                {
-                  "type": "subhead",
-                  "text": "Reduce before multiplying (cancel, then multiply)"
-                },
-                "\\(\\dfrac{\\overset{1}{\\cancel{600}}\\times 30\\times 31\\times 10}{\\underset{4}{\\cancel{2400}}}\\)",
-                "\\(\\dfrac{1\\times \\overset{15}{\\cancel{30}}\\times 31\\times 10}{\\underset{2}{\\cancel{4}}}\\)",
-                "\\(\\dfrac{1\\times 15\\times 31\\times \\overset{5}{\\cancel{10}}}{\\underset{1}{\\cancel{2}}}\\)",
-                "\\(= 2325\\)",
-                "\\(M.V. = 18000 + 2325\\)"
-              ]
-            },
-            {
-              "label": "Final Answer",
-              "type": "box",
-              "style": "answer",
-              "text": "Maturity Value = ₹20,325"
-            }
-          ]
-        },
-        {
-          "qno": "2018-9(a)",
-          "difficulty": "Medium",
-          "question": "Priyanka has a recurring deposit account of ₹1,000 per month at 10% per annum. If she gets ₹5,550 as interest at the time of maturity, find the total time for which the account was held.",
-          "sections": [
-            {
-              "label": "Given",
-              "type": "bullets",
-              "items": [
-                "P = ₹1000",
-                "r = 10% p.a.",
-                "I = ₹5550",
-                "n = ?"
-              ]
-            },
-            {
-              "label": "Working",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(I = \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(5550 = \\dfrac{1000\\times n(n+1)\\times10}{2400}\\)",
-                "\\(5550 = \\dfrac{25}{6}\\times n(n+1)\\)",
-                {
-                  "type": "subhead",
-                  "text": "Solve for n"
-                },
-                "\\(n(n+1) = \\dfrac{5550\\times6}{25} = 1332\\)",
-                "\\(n = 36\\)",
-                {
-                  "type": "hint",
-                  "text": "(checked: 36×37 = 1332 ✓)"
-                }
-              ]
-            },
-            {
-              "label": "Final Answer",
-              "type": "box",
-              "style": "answer",
-              "text": "n = 36 months = 3 years"
-            }
-          ]
-        },
-        {
-          "qno": "2022 Sem-1-8",
-          "difficulty": "Easy",
-          "question": "Mohit opened a Recurring deposit account for 2 years. He deposits ₹1000 every month and receives ₹25,500 on maturity. The interest he earned in 2 years is:",
-          "sections": [
-            {
-              "label": "Options",
-              "type": "bullets",
-              "items": [
-                "(A) ₹13,500",
-                "(B) ₹3,000",
-                "(C) ₹24,000",
-                "(D) ₹1,500"
-              ]
-            },
-            {
-              "label": "Working",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(I = M.V. - P\\times n\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(I = 25500 - (1000\\times24) = 25500 - 24000\\)"
-              ]
-            },
-            {
-              "label": "Final Answer",
-              "type": "box",
-              "style": "answer",
-              "text": "(D) ₹1,500"
-            }
-          ]
-        },
-        {
-          "qno": "2022 Sem-1-25",
-          "difficulty": "Medium",
-          "question": "Joseph has a recurring deposit account for two years at 8% p.a. simple interest. Find: (i) the monthly instalment, if the interest received is ₹2,000. (ii) the total amount deposited. (iii) the amount received on maturity. (iv) If a monthly instalment of ₹100 is kept at the same 8% rate instead, in how many months will Joseph receive ₹52 as interest?",
-          "sections": [
-            {
-              "label": "Given",
-              "type": "bullets",
-              "items": [
-                "n = 2 years = 24 months",
-                "r = 8% p.a.",
-                "I = ₹2000 (parts i–iii)"
-              ]
-            },
-            {
-              "label": "(i) Monthly Instalment",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(I = \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(2000 = \\dfrac{P\\times24\\times25\\times8}{2400}\\)",
-                "\\(2000 = 2P\\)"
-              ]
-            },
-            {
-              "label": "(ii) Total Amount Deposited",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(\\text{Total deposited} = P\\times n\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(\\text{Total deposited} = 1000\\times24\\)"
-              ]
-            },
-            {
-              "label": "(iii) Maturity Value",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(M.V. = \\text{Total deposited} + I\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(M.V. = 24000 + 2000\\)"
-              ]
-            },
-            {
-              "label": "(iv) New Scenario — P=₹100, I=₹52, Find N",
-              "type": "continuous",
-              "items": [
-                {
-                  "type": "subhead",
-                  "text": "Formula"
-                },
-                "\\(I = \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-                {
-                  "type": "subhead",
-                  "text": "Substitute"
-                },
-                "\\(52 = \\dfrac{100\\times n(n+1)\\times8}{2400}\\)",
-                "\\(52 = \\dfrac{1}{3}\\times n(n+1)\\)",
-                "\\(n(n+1) = 156\\)",
-                "\\(n = 12\\)"
-              ]
-            },
-            {
-              "label": "Final Answer",
-              "type": "box",
-              "style": "answer",
-              "text": "(i) P = ₹1,000  (ii) ₹24,000  (iii) M.V. = ₹26,000  (iv) n = 12 months"
-            }
-          ]
-        }
-      ]
-    }
+  exerciseWise: [
+    // { section:"Solved Examples" | "Solve" | "Think, Reflect" | "Exercise 8.1" | ...,
+    //   questions: [
+    //     { qno:"1", difficulty:"Easy"|"Medium"|"Hard", question:"",
+    //       // EITHER the simple legacy shape (Given/Formula/Working/Answer):
+    //       given:[""], formula:"", working:[""], answer:"", svg:"",
+    //       // OR, when the maths needs a different shape per question
+    //       // type (geometry proof, algebra word problem, trig,
+    //       // coordinate geometry, construction, graph, ...), an
+    //       // ordered `sections` array instead — this fully replaces
+    //       // given/formula/working/answer when present:
+    //       //   { label:"Given",        type:"bullets",    items:[""] }
+    //       //   { label:"To Find",      type:"bullets",    items:[""] }
+    //       //   { label:"To Prove",     type:"bullets",    items:[""] }
+    //       //   { label:"Construction", type:"numbered",   items:[""] }
+    //       //   { label:"Steps",        type:"numbered",   items:[""] }
+    //       //   { label:"Proof",        type:"continuous", items:[""] }
+    //       //   { label:"Understand",   type:"continuous", items:[""] }
+    //       //   { label:"Equation",     type:"continuous", items:[""] }
+    //       //   { label:"Formula",      type:"formula",    text:"" }
+    //       //   { label:"Final Answer", type:"box", style:"answer", text:"" }
+    //       //   { label:"...",          type:"box", style:"long-answer", text:"" }
+    //       // `items` in a "continuous" section follow the same line
+    //       // rules as legacy `working`: a plain string, or
+    //       // {type:"subhead",text} / {type:"hint",text}. One fact per
+    //       // bullet, no combining — enforced by content, not the engine.
+    //       sections: [] }
+    //   ]
+    // }
   ],
-  "extraPractice": [
-    {
-      "qno": "1",
-      "difficulty": "Easy",
-      "question": "Manish opens a Recurring Deposit Account with the Bank of Rajasthan and deposits ₹600 per month for 20 months. Calculate the maturity value of this account, if the bank pays interest at the rate of 10% per annum.",
-      "sections": [
-        {
-          "label": "Given",
-          "type": "bullets",
-          "items": [
-            "P = ₹600",
-            "n = 20 months",
-            "r = 10% p.a."
-          ]
-        },
-        {
-          "label": "Working",
-          "type": "continuous",
-          "items": [
-            {
-              "type": "subhead",
-              "text": "Formula"
-            },
-            "\\(M.V. = P\\times n + \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Substitute"
-            },
-            "\\(M.V. = 600\\times20 + \\dfrac{600\\times20\\times21\\times10}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Reduce before multiplying (cancel, then multiply)"
-            },
-            "\\(\\dfrac{\\overset{1}{\\cancel{600}}\\times 20\\times 21\\times 10}{\\underset{4}{\\cancel{2400}}}\\)",
-            "\\(\\dfrac{1\\times \\overset{5}{\\cancel{20}}\\times 21\\times 10}{\\underset{1}{\\cancel{4}}}\\)",
-            "\\(= 1050\\)",
-            "\\(M.V. = 12000 + 1050\\)"
-          ]
-        },
-        {
-          "label": "Final Answer",
-          "type": "box",
-          "style": "answer",
-          "text": "Maturity Value = ₹13,050"
-        }
-      ]
-    },
-    {
-      "qno": "2",
-      "difficulty": "Easy",
-      "question": "Find the maturity value of a recurring deposit scheme when Mr. Rao deposits ₹300 every month at 8% p.a. for 2½ years.",
-      "sections": [
-        {
-          "label": "Given",
-          "type": "bullets",
-          "items": [
-            "P = ₹300",
-            "n = 2½ years = 30 months",
-            "r = 8% p.a."
-          ]
-        },
-        {
-          "label": "Working",
-          "type": "continuous",
-          "items": [
-            {
-              "type": "subhead",
-              "text": "Formula"
-            },
-            "\\(M.V. = P\\times n + \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Substitute"
-            },
-            "\\(M.V. = 300\\times30 + \\dfrac{300\\times30\\times31\\times8}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Reduce before multiplying (cancel, then multiply)"
-            },
-            "\\(\\dfrac{\\overset{1}{\\cancel{300}}\\times 30\\times 31\\times 8}{\\underset{8}{\\cancel{2400}}}\\)",
-            "\\(\\dfrac{1\\times \\overset{15}{\\cancel{30}}\\times 31\\times 8}{\\underset{4}{\\cancel{8}}}\\)",
-            "\\(\\dfrac{1\\times 15\\times 31\\times \\overset{2}{\\cancel{8}}}{\\underset{1}{\\cancel{4}}}\\)",
-            "\\(= 930\\)",
-            "\\(M.V. = 9000 + 930\\)"
-          ]
-        },
-        {
-          "label": "Final Answer",
-          "type": "box",
-          "style": "answer",
-          "text": "Maturity Value = ₹9,930"
-        }
-      ]
-    },
-    {
-      "qno": "3",
-      "difficulty": "Medium",
-      "question": "Each of A and B opened a recurring deposit account in a bank. A deposited ₹1,200 per month for 3 years and B deposited ₹1,500 per month for 2½ years. On maturity, who gets more, and by how much? Rate of interest = 10% p.a.",
-      "sections": [
-        {
-          "label": "Given",
-          "type": "bullets",
-          "items": [
-            "A: P = ₹1200, n = 3 years = 36 months, r = 10% p.a.",
-            "B: P = ₹1500, n = 2½ years = 30 months, r = 10% p.a."
-          ]
-        },
-        {
-          "label": "For A",
-          "type": "continuous",
-          "items": [
-            {
-              "type": "subhead",
-              "text": "Formula"
-            },
-            "\\(M.V._A = P\\times n + \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Substitute"
-            },
-            "\\(M.V._A = 1200\\times36 + \\dfrac{1200\\times36\\times37\\times10}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Reduce before multiplying (cancel, then multiply)"
-            },
-            "\\(\\dfrac{\\overset{1}{\\cancel{1200}}\\times 36\\times 37\\times 10}{\\underset{2}{\\cancel{2400}}}\\)",
-            "\\(\\dfrac{1\\times \\overset{18}{\\cancel{36}}\\times 37\\times 10}{\\underset{1}{\\cancel{2}}}\\)",
-            "\\(= 6660\\)",
-            "\\(M.V._A = 43200 + 6660 = 49860\\)"
-          ]
-        },
-        {
-          "label": "For B",
-          "type": "continuous",
-          "items": [
-            {
-              "type": "subhead",
-              "text": "Formula"
-            },
-            "\\(M.V._B = P\\times n + \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Substitute"
-            },
-            "\\(M.V._B = 1500\\times30 + \\dfrac{1500\\times30\\times31\\times10}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Reduce before multiplying (cancel, then multiply)"
-            },
-            "\\(\\dfrac{\\overset{5}{\\cancel{1500}}\\times 30\\times 31\\times 10}{\\underset{8}{\\cancel{2400}}}\\)",
-            "\\(\\dfrac{5\\times \\overset{15}{\\cancel{30}}\\times 31\\times 10}{\\underset{4}{\\cancel{8}}}\\)",
-            "\\(\\dfrac{5\\times 15\\times 31\\times \\overset{5}{\\cancel{10}}}{\\underset{2}{\\cancel{4}}}\\)",
-            "\\(= \\dfrac{5\\times 15\\times 31\\times 5}{2}\\)",
-            "\\(= \\dfrac{11625}{2} = 5812.5\\)",
-            "\\(M.V._B = 45000 + 5812.5 = 50812.5\\)"
-          ]
-        },
-        {
-          "label": "Compare",
-          "type": "continuous",
-          "items": [
-            "\\(\\text{Difference} = M.V._B - M.V._A = 50812.5 - 49860\\)"
-          ]
-        },
-        {
-          "label": "Final Answer",
-          "type": "box",
-          "style": "answer",
-          "text": "B gets more by ₹952.5 (\\(M.V._A\\) = ₹49,860, \\(M.V._B\\) = ₹50,812.5)"
-        }
-      ]
-    },
-    {
-      "qno": "4",
-      "difficulty": "Medium",
-      "question": "Puneet has a Recurring Deposit Account in the Bank of Baroda and deposits ₹140 per month for 4 years. If he gets ₹8,092 on maturity, find the rate of interest given by the bank.",
-      "sections": [
-        {
-          "label": "Given",
-          "type": "bullets",
-          "items": [
-            "P = ₹140",
-            "n = 4 years = 48 months",
-            "M.V. = ₹8092",
-            "r = ?"
-          ]
-        },
-        {
-          "label": "Working",
-          "type": "continuous",
-          "items": [
-            {
-              "type": "subhead",
-              "text": "Formula"
-            },
-            "\\(M.V. = P\\times n + \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Substitute"
-            },
-            "\\(8092 = 140\\times48 + \\dfrac{140\\times48\\times49\\times r}{2400}\\)",
-            {
-              "type": "subhead",
-              "text": "Reduce the coefficient of r before multiplying"
-            },
-            "\\(\\dfrac{\\overset{7}{\\cancel{140}}\\times 48\\times 49\\times r}{\\underset{120}{\\cancel{2400}}}\\)",
-            "\\(\\dfrac{7\\times \\overset{2}{\\cancel{48}}\\times 49\\times r}{\\underset{5}{\\cancel{120}}}\\)",
-            "\\(= \\dfrac{7\\times 2\\times 49\\times r}{5}\\)",
-            "\\(= 137.2r\\)",
-            "\\(8092 = 6720 + 137.2r\\)",
-            {
-              "type": "subhead",
-              "text": "Isolate r"
-            },
-            "\\(8092 - 6720 = 137.2r\\)",
-            "\\(r = \\dfrac{1372}{137.2} = 10\\)",
-            "\\(1372\\times2400 = 329280\\times r\\)"
-          ]
-        },
-        {
-          "label": "Final Answer",
-          "type": "box",
-          "style": "answer",
-          "text": "Rate of interest = 10% p.a."
-        }
-      ]
-    },
-    {
-      "qno": "5",
-      "difficulty": "Easy",
-      "question": "Mr. Madhav Rao gets ₹6,455 at the end of one year when he deposits ₹500 per month in a recurring deposit scheme. Find the rate of interest.",
-      "sections": [
-        {
-          "label": "Given",
-          "type": "bullets",
-          "items": [
-            "P = ₹500",
-            "n = 1 year = 12 months",
-            "M.V. = ₹6455",
-            "r = ?"
-          ]
-        },
-        {
-          "label": "Working",
-          "type": "continuous",
-          "items": [
-            {
-              "type": "subhead",
-              "text": "Formula"
-            },
-            "\\(M.V. = P\\times n + \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Substitute"
-            },
-            "\\(6455 = 500\\times12 + \\dfrac{500\\times12\\times13\\times r}{2400}\\)",
-            {
-              "type": "subhead",
-              "text": "Reduce the coefficient of r before multiplying"
-            },
-            "\\(\\dfrac{\\overset{5}{\\cancel{500}}\\times 12\\times 13\\times r}{\\underset{24}{\\cancel{2400}}}\\)",
-            "\\(\\dfrac{5\\times \\overset{1}{\\cancel{12}}\\times 13\\times r}{\\underset{2}{\\cancel{24}}}\\)",
-            "\\(= \\dfrac{5\\times 1\\times 13\\times r}{2}\\)",
-            "\\(= 32.5r\\)",
-            "\\(6455 = 6000 + 32.5r\\)",
-            {
-              "type": "subhead",
-              "text": "Isolate r"
-            },
-            "\\(6455 - 6000 = 32.5r\\)",
-            "\\(r = \\dfrac{455}{32.5} = 14\\)",
-            "\\(455\\times2400 = 78000\\times r\\)"
-          ]
-        },
-        {
-          "label": "Final Answer",
-          "type": "box",
-          "style": "answer",
-          "text": "Rate of interest = 14% p.a."
-        }
-      ]
-    },
-    {
-      "qno": "6",
-      "difficulty": "Medium",
-      "question": "Mr. Gulati has a Recurring Deposit Account of ₹300 per month. If the rate of interest is 12% and the maturity value of this account is ₹8,100, find the time (in years) of this account.",
-      "sections": [
-        {
-          "label": "Given",
-          "type": "bullets",
-          "items": [
-            "P = ₹300",
-            "r = 12% p.a.",
-            "M.V. = ₹8100",
-            "n = ?"
-          ]
-        },
-        {
-          "label": "Working",
-          "type": "continuous",
-          "items": [
-            {
-              "type": "hint",
-              "text": "This is a quadratic in n. Expand n(n+1) fully, collect everything on one side, and solve — the answer will be a clean whole number of months since real R.D. terms are always whole months."
-            },
-            {
-              "type": "subhead",
-              "text": "Formula"
-            },
-            "\\(M.V. = P\\times n + \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Substitute"
-            },
-            "\\(8100 = 300n + \\dfrac{300\\times n\\times(n+1)\\times12}{2400}\\)",
-            "\\(8100 = 300n + 1.5n(n+1)\\)",
-            {
-              "type": "subhead",
-              "text": "Expand and collect"
-            },
-            "\\(8100 = 300n + 1.5n^2 + 1.5n\\)",
-            "\\(1.5n^2 + 301.5n - 8100 = 0\\)",
-            {
-              "type": "subhead",
-              "text": "Solve for n"
-            },
-            "\\(n = 24\\)",
-            {
-              "type": "hint",
-              "text": "(checked: 300×24 + 1.5×24×25 = 7200+900 = 8100 ✓)"
-            }
-          ]
-        },
-        {
-          "label": "Final Answer",
-          "type": "box",
-          "style": "answer",
-          "text": "n = 24 months = 2 years"
-        }
-      ]
-    },
-    {
-      "qno": "7",
-      "difficulty": "Medium",
-      "question": "Mr. Motasha opens a recurring deposit account of ₹600 per month at 12% p.a. If he is paid ₹7,668 as maturity amount, how many instalments does he need to pay?",
-      "sections": [
-        {
-          "label": "Given",
-          "type": "bullets",
-          "items": [
-            "P = ₹600",
-            "r = 12% p.a.",
-            "M.V. = ₹7668",
-            "n = ?"
-          ]
-        },
-        {
-          "label": "Working",
-          "type": "continuous",
-          "items": [
-            {
-              "type": "hint",
-              "text": "Same quadratic pattern as the previous question — expand fully, bring everything to one side, then solve."
-            },
-            {
-              "type": "subhead",
-              "text": "Formula"
-            },
-            "\\(M.V. = P\\times n + \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Substitute"
-            },
-            "\\(7668 = 600n + \\dfrac{600\\times n\\times(n+1)\\times12}{2400}\\)",
-            "\\(7668 = 600n + 3n(n+1)\\)",
-            {
-              "type": "subhead",
-              "text": "Expand and collect"
-            },
-            "\\(7668 = 600n + 3n^2 + 3n\\)",
-            "\\(3n^2 + 603n - 7668 = 0\\)",
-            "\\(n^2 + 201n - 2556 = 0\\)",
-            {
-              "type": "subhead",
-              "text": "Solve using the quadratic formula"
-            },
-            "\\(n = \\dfrac{-201+\\sqrt{201^2+4\\times2556}}{2} = \\dfrac{-201+225}{2}\\)"
-          ]
-        },
-        {
-          "label": "Final Answer",
-          "type": "box",
-          "style": "answer",
-          "text": "n = 12 instalments"
-        },
-        {
-          "label": "Note",
-          "type": "box",
-          "style": "long-answer",
-          "text": "The uploaded classwork PDF does not give a boxed answer for this question — solved independently above."
-        }
-      ]
-    },
-    {
-      "qno": "8",
-      "difficulty": "Hard",
-      "question": "Mr. Bajaj needs ₹30,000 after 2 years. What is the least money (in a multiple of ₹5) he must deposit every month in a recurring deposit account to get the required money at the end of 2 years, the rate of interest being 8% p.a.?",
-      "sections": [
-        {
-          "label": "Given",
-          "type": "bullets",
-          "items": [
-            "n = 2 years = 24 months",
-            "r = 8% p.a.",
-            "Required M.V. ≥ ₹30,000",
-            "P = ?"
-          ]
-        },
-        {
-          "label": "Working",
-          "type": "continuous",
-          "items": [
-            {
-              "type": "hint",
-              "text": "The equation for P won't come out round. Round UP to the next multiple of ₹5 so the maturity value meets or exceeds the ₹30,000 target — rounding down would fall short."
-            },
-            {
-              "type": "subhead",
-              "text": "Formula"
-            },
-            "\\(M.V. = P\\times n + \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Substitute"
-            },
-            "\\(30000 = P\\times24 + \\dfrac{P\\times24\\times25\\times8}{2400}\\)",
-            "\\(30000 = 24P + 2P\\)",
-            "\\(30000 = 26P\\)",
-            "\\(P = \\dfrac{30000}{26} = 1153.8\\ (approx.)\\)",
-            {
-              "type": "subhead",
-              "text": "Round up to the next multiple of ₹5"
-            },
-            {
-              "type": "hint",
-              "text": "(check: P=₹1150 gives M.V.=26×1150=29900, short of target; P=₹1155 gives M.V.=26×1155=30030, meets target)"
-            }
-          ]
-        },
-        {
-          "label": "Final Answer",
-          "type": "box",
-          "style": "answer",
-          "text": "Least P (multiple of ₹5) = ₹1,155"
-        },
-        {
-          "label": "Note",
-          "type": "box",
-          "style": "long-answer",
-          "text": "The uploaded classwork PDF only tags \"n = 24\" for this item — the actual unknown to solve for is P. Solved and rounded up independently above."
-        }
-      ]
-    },
-    {
-      "qno": "9",
-      "difficulty": "Medium",
-      "question": "A man has a Recurring Deposit Account in a bank for 3½ years. If the rate of interest is 12% per annum and the man gets ₹10,206 on maturity, find the value of the monthly instalment.",
-      "sections": [
-        {
-          "label": "Given",
-          "type": "bullets",
-          "items": [
-            "n = 3½ years = 42 months",
-            "r = 12% p.a.",
-            "M.V. = ₹10,206",
-            "P = ?"
-          ]
-        },
-        {
-          "label": "Working",
-          "type": "continuous",
-          "items": [
-            {
-              "type": "subhead",
-              "text": "Formula"
-            },
-            "\\(M.V. = P\\times n + \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Substitute"
-            },
-            "\\(10206 = 42P + \\dfrac{P\\times42\\times43\\times12}{2400}\\)",
-            "\\(10206 = 42P + 9.03P\\)",
-            "\\(10206 = 51.03P\\)"
-          ]
-        },
-        {
-          "label": "Final Answer",
-          "type": "box",
-          "style": "answer",
-          "text": "P = ₹200"
-        },
-        {
-          "label": "Note",
-          "type": "box",
-          "style": "long-answer",
-          "text": "The uploaded classwork PDF labels this item \"n = 12\", which appears to be a mislabelling — the question itself states 3½ years (42 months), and the actual unknown being solved for is the monthly instalment P. Recomputed independently above."
-        }
-      ]
-    },
-    {
-      "qno": "10",
-      "difficulty": "Easy",
-      "question": "Mr. R.K. Nair gets ₹6,455 at the end of one year at the rate of 14% per annum in a Recurring Deposit Account. Find the monthly instalment.",
-      "sections": [
-        {
-          "label": "Given",
-          "type": "bullets",
-          "items": [
-            "n = 1 year = 12 months",
-            "r = 14% p.a.",
-            "M.V. = ₹6455",
-            "P = ?"
-          ]
-        },
-        {
-          "label": "Working",
-          "type": "continuous",
-          "items": [
-            {
-              "type": "subhead",
-              "text": "Formula"
-            },
-            "\\(M.V. = P\\times n + \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Substitute"
-            },
-            "\\(6455 = 12P + \\dfrac{P\\times12\\times13\\times14}{2400}\\)",
-            "\\(6455 = 12P + 0.91P\\)",
-            "\\(6455 = 12.91P\\)"
-          ]
-        },
-        {
-          "label": "Final Answer",
-          "type": "box",
-          "style": "answer",
-          "text": "P = ₹500"
-        }
-      ]
-    },
-    {
-      "qno": "11",
-      "difficulty": "Medium",
-      "question": "Mohan has a recurring deposit account in a bank for 2 years at 6% p.a. simple interest. If he gets ₹1,200 as interest at the time of maturity, find: (i) the monthly instalment, and (ii) the amount of maturity.",
-      "sections": [
-        {
-          "label": "Given",
-          "type": "bullets",
-          "items": [
-            "n = 2 years = 24 months",
-            "r = 6% p.a.",
-            "Interest, I = ₹1200"
-          ]
-        },
-        {
-          "label": "(i) Monthly Instalment",
-          "type": "continuous",
-          "items": [
-            {
-              "type": "subhead",
-              "text": "Formula"
-            },
-            "\\(I = \\dfrac{P\\times n\\times(n+1)\\times r}{2\\times12\\times100}\\)",
-            {
-              "type": "subhead",
-              "text": "Substitute"
-            },
-            "\\(1200 = \\dfrac{P\\times24\\times25\\times6}{2400}\\)",
-            "\\(1200 = 1.5P\\)"
-          ]
-        },
-        {
-          "label": "(ii) Maturity Value",
-          "type": "continuous",
-          "items": [
-            {
-              "type": "subhead",
-              "text": "Formula"
-            },
-            "\\(M.V. = P\\times n + I\\)",
-            {
-              "type": "subhead",
-              "text": "Substitute"
-            },
-            "\\(M.V. = 800\\times24 + 1200\\)",
-            "\\(M.V. = 19200 + 1200\\)"
-          ]
-        },
-        {
-          "label": "Final Answer",
-          "type": "box",
-          "style": "answer",
-          "text": "(i) P = ₹800  (ii) M.V. = ₹20,400"
-        }
-      ]
-    }
+  extraPractice: [
+    // same question shape as above, flat array (no section grouping)
   ],
-  "mcqs": [],
-  "assertionReason": [],
-  "formulaSummary": {}
+  mcqs: [
+    // { qno:"1", difficulty:"Easy", question:"",
+    //   options:{A:"",B:"",C:"",D:""}, correct:"A", solution:"" }
+  ],
+  assertionReason: [
+    // { qno:"1", difficulty:"Medium", assertion:"", reason:"",
+    //   correct:"A"|"B"|"C"|"D", explanation:"" }
+  ],
+  formulaSummary: {
+    // Optional. Only populate if the chapter needs a quick-reference
+    // formula sheet distinct from the Concept/Formula tab. Plain text
+    // only, no KaTeX — rendered as a real table.
+    // headers: ["Shape / Item", "Perimeter", "Area"],
+    // rows: [ ["Square", "4 \u00d7 side", "side\u00b2"], ... ]
+  }
 };
 
 /* =====================================================================
@@ -2392,7 +3214,6 @@ const LOCKED_TABS = [
   { key:"concept",  label:"Concepts" },
   { key:"exercise", label:"Board PYQs" },
   { key:"mcq",      label:"MCQ" },
-  { key:"ar",       label:"Assertion-Reason" },
   { key:"extra",    label:"Practice Worksheet" }
 ];
 const ALLOWED_DIFFICULTIES = ["Easy","Medium","Hard"];
