@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quadrilateral Constructions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Crimson+Pro:wght@400;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#F5F0E8; --card:#FFFDF8; --border:#E2D9C6;
+    --green-dk:#1A3D28; --green:#2D5A3D;
+    --gold-dk:#C9A84C; --gold:#E8C56A;
+    --purple-dk:#7B5EA7; --purple:#A07BD4;
+    --navy-dk:#1A3050; --navy:#123A6B;
+    --ink:#1A3050; --line:#1A3050;
+    --arc:#123A6B; --accent:#7B5EA7;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:'Crimson Pro',Georgia,serif; background:var(--page); color:var(--navy-dk); padding:16px;}
+  .kicker{
+    font-family:'JetBrains Mono',monospace; font-size:.72rem; font-weight:600;
+    letter-spacing:.06em; text-transform:uppercase; color:var(--green);
+    background:rgba(26,61,40,.08); border:1px solid var(--green); border-radius:999px;
+    display:inline-block; padding:4px 12px; margin-bottom:10px;
+  }
+  h1{font-family:'Playfair Display',Georgia,serif; font-weight:800; font-size:1.5rem; margin:0 0 6px; color:var(--green-dk);}
+  .sub{font-family:'Crimson Pro',serif; color:#5b6b73; font-size:1rem; margin-bottom:16px;}
+  .layout{display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; justify-content:center;}
+  .panel{
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:18px; box-shadow:0 2px 8px rgba(26,48,80,.06); flex:1 1 340px; max-width:400px;
+  }
+  select{
+    width:100%; padding:10px; border-radius:8px; border:1px solid var(--border);
+    font-family:'JetBrains Mono',monospace; font-size:.85rem; font-weight:600;
+    margin-bottom:14px; background:#fff; color:var(--navy-dk);
+  }
+  select:disabled{opacity:.5;}
+  .steps-box{
+    background:rgba(201,168,76,.08); border:1px solid var(--border); border-radius:10px;
+    padding:12px 14px; margin-bottom:16px;
+  }
+  .steps-box-title{
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.72rem; color:var(--green);
+    text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px;
+  }
+  #stepTextWrap{
+    font-family:'Crimson Pro',serif; font-size:1.08rem; line-height:1.6; color:var(--navy-dk);
+    font-weight:600; min-height:2.6em; transition:opacity .25s ease, transform .25s ease;
+  }
+  #stepTextNum{font-family:'JetBrains Mono',monospace; color:var(--gold-dk); font-weight:700;}
+  #stepTextWrap.fading{opacity:0; transform:translateY(6px);}
+  .controls{display:flex; gap:10px; margin-top:4px;}
+  button{
+    flex:1; padding:11px 14px; border-radius:8px; border:1px solid var(--border);
+    background:#fff; font-family:'JetBrains Mono',monospace; font-size:.82rem; font-weight:700;
+    letter-spacing:.02em; cursor:pointer; color:var(--navy-dk);
+  }
+  button.primary{background:linear-gradient(135deg,var(--green-dk),var(--green)); color:#fff; border-color:var(--green-dk);}
+  button:disabled{opacity:.4; cursor:not-allowed;}
+  .progress{display:flex; gap:6px; margin-top:14px;}
+  .dot{width:10px; height:10px; border-radius:50%; background:var(--border); cursor:pointer;}
+  .dot.active{background:var(--gold-dk);}
+  svg{background:var(--card); border:1px solid var(--border); border-radius:14px; box-shadow:0 2px 8px rgba(26,48,80,.06); width:100%; max-width:340px; height:auto; display:block; margin:0 auto;}
+  @media (max-width:480px){ body{padding:10px;} .panel{max-width:100%;} svg{max-width:280px;} }
+  .lbl{font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700; fill:var(--navy-dk);}
+  .measure{font-family:'JetBrains Mono',monospace; font-size:12px; fill:var(--navy-dk); font-weight:600;}
+  .final-note{
+    margin-top:14px; font-family:'Crimson Pro',serif; font-size:.95rem;
+    background:rgba(26,61,40,.08); border:1px solid var(--green); padding:10px 12px;
+    border-radius:10px; color:var(--green-dk);
+  }
+
+  /* ---------- Draggable Scratchpad ---------- */
+  #scratchToggle{
+    position:fixed; right:20px; bottom:20px; z-index:9999;
+    width:56px; height:56px; border-radius:50%;
+    background:var(--green-dk); color:#fff; border:2px solid var(--gold-dk);
+    font-size:1.35rem; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.28);
+    display:flex; align-items:center; justify-content:center;
+    transition:transform .15s ease, background .15s ease;
+  }
+  #scratchToggle:hover{ background:var(--green); transform:scale(1.06); }
+  #scratchToggle:active{ transform:scale(.96); }
+
+  #scratchPad{
+    position:fixed; right:20px; bottom:88px; z-index:9998;
+    width:340px; height:280px;
+    min-width:260px; min-height:200px; max-width:920px; max-height:720px;
+    background:var(--card); border:1px solid var(--border); border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,.22);
+    display:none; flex-direction:column; overflow:hidden;
+    resize:both; box-sizing:border-box;
+  }
+  #scratchPad.open{ display:flex; }
+
+  #scratchHeader{
+    background:var(--green-dk); color:#fff; padding:8px 10px;
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    font-family:'JetBrains Mono',monospace; font-size:.74rem; font-weight:600;
+    letter-spacing:.03em; cursor:move; flex:none; user-select:none;
+    border-bottom:2px solid var(--gold-dk);
+  }
+  #scratchTitle{ display:flex; align-items:center; gap:6px; text-transform:uppercase; }
+  #scratchTools{ display:flex; gap:4px; }
+  .stool{
+    background:transparent; border:1px solid rgba(255,255,255,.4); color:#fff;
+    border-radius:6px; padding:3px 7px; font-size:.7rem; cursor:pointer;
+    font-family:'JetBrains Mono',monospace; line-height:1.4; white-space:nowrap;
+  }
+  .stool:hover{ background:rgba(255,255,255,.18); }
+  .stool.active{ background:var(--gold-dk); color:var(--green-dk); border-color:var(--gold-dk); font-weight:700; }
+  .stool.active:hover{ background:var(--gold); }
+
+  #scratchCanvas{
+    flex:1 1 auto; width:100%; height:100%; display:block;
+    touch-action:none; cursor:crosshair; background:var(--card);
+  }
+</style>
+</head>
+<body>
+
+<div class="kicker">CBSE · Class 9 Maths · Constructions</div>
+<div id="qFullText" style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 16px; margin:10px auto 18px; max-width:560px; font-size:.95rem; line-height:1.5; color:var(--ink);"></div>
+
+<div class="layout">
+  <div class="panel">
+    <select id="qPicker">
+      <option value="0">Question 1 — AB = 7 cm</option>
+      <option value="1">Question 2 — AB = 10 cm</option>
+      <option value="2">Question 3 — Construct 60°</option>
+      <option value="3">Question 4 — Construct 120°</option>
+      <option value="4">Question 5 — Construct 30°</option>
+      <option value="5">Question 6 — Construct 15°</option>
+      <option value="6">Question 7 — Construct 105°</option>
+      <option value="7">Question 8 — Construct 135°</option>
+      <option value="8">Question 9 — Bisect 35°</option>
+      <option value="9">Question 10 — Bisect 55°</option>
+      <option value="10">Question 11 — △ABC + Circumcircle (ASA)</option>
+      <option value="11">Question 12 — △ABC + Circumcircle (SAS)</option>
+      <option value="12">Question 13 — △ABC + Circumcircle (SSS)</option>
+    </select>
+
+    <div class="steps-box">
+      <div class="steps-box-title">Steps of Construction</div>
+      <div id="stepTextWrap"><span id="stepTextNum">1.</span> <span id="stepTextBody">Draw a line segment AB.</span></div>
+    </div>
+
+    <div class="controls">
+      <button id="prevBtn">◀ Back</button>
+      <button id="nextBtn" class="primary">Next ▶</button>
+    </div>
+    <div class="progress" id="progress"></div>
+    <div class="final-note" id="finalNote" style="display:none;"></div>
+  </div>
+
+  <div class="stage-wrap">
+    <svg id="svgQ1" width="480" height="520" viewBox="0 0 480 520">
+      <g id="q1_g1" style="opacity:0">
+        <g id="q1_ruler" style="opacity:0">
+          <rect id="q1_rulerRect" x="72.500" y="314.000" width="335.000" height="26" fill="#FFF8E6" stroke="var(--gold-dk)" stroke-width="1.4" rx="3" style="opacity:0"/><rect id="q1_rulerTick0" x="82.000" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q1_rulerLab0" x="82.500" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">0</text><rect id="q1_rulerTick1" x="127.000" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q1_rulerLab1" x="127.500" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">1</text><rect id="q1_rulerTick2" x="172.000" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q1_rulerLab2" x="172.500" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">2</text><rect id="q1_rulerTick3" x="217.000" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q1_rulerLab3" x="217.500" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">3</text><rect id="q1_rulerTick4" x="262.000" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q1_rulerLab4" x="262.500" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">4</text><rect id="q1_rulerTick5" x="307.000" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q1_rulerLab5" x="307.500" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">5</text><rect id="q1_rulerTick6" x="352.000" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q1_rulerLab6" x="352.500" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">6</text><rect id="q1_rulerTick7" x="397.000" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q1_rulerLab7" x="397.500" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">7</text>
+        </g>
+        <line id="q1_ab_line" x1="82.500" y1="300.000" x2="397.500" y2="300.000" stroke="var(--line)" stroke-width="2.5" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q1_dotA" cx="82.500" cy="300.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <circle id="q1_dotB" cx="397.500" cy="300.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q1_laA" x="68.500" y="290.000" class="lbl" style="opacity:0">A</text>
+        <text id="q1_laB" x="403.500" y="290.000" class="lbl" style="opacity:0">B</text>
+        <text id="q1_meas" x="240.000" y="286.000" class="measure" text-anchor="middle" style="opacity:0">7 cm</text>
+      </g>
+      <g id="q1_g2" style="opacity:0">
+        <path id="q1_arcA" data-cx="82.500" data-cy="300.000" d="M 221.718,427.826 A 189.000,189.000 0 0 0 221.718,172.174" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <path id="q1_arcB" data-cx="397.500" data-cy="300.000" d="M 258.282,427.826 A 189.000,189.000 0 0 1 258.282,172.174" fill="none" stroke="var(--accent)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q1_dotP" cx="240.000" cy="195.526" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <circle id="q1_dotQ" cx="240.000" cy="404.474" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q1_laP" x="248.000" y="193.526" class="lbl" style="opacity:0">P</text>
+        <text id="q1_laQ" x="248.000" y="408.474" class="lbl" style="opacity:0">Q</text>
+      </g>
+      <g id="q1_g3" style="opacity:0">
+        <line id="q1_pq_line" x1="240.000" y1="195.526" x2="240.000" y2="404.474" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <rect id="q1_rightAngleSq" x="240.000" y="300.000" width="14" height="14" fill="none" stroke="var(--line)" stroke-width="1.5" style="opacity:0"/>
+        <rect id="q1_tickAM" x="160.250" y="295.000" width="2" height="10" fill="var(--line)" style="opacity:0"/>
+        <rect id="q1_tickMB" x="317.750" y="295.000" width="2" height="10" fill="var(--line)" style="opacity:0"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ2" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q2_g1" style="opacity:0">
+        <g id="q2_ruler" style="opacity:0">
+          <rect id="q2_rulerRect" x="5.000" y="314.000" width="470.000" height="26" fill="#FFF8E6" stroke="var(--gold-dk)" stroke-width="1.4" rx="3" style="opacity:0"/><rect id="q2_rulerTick0" x="14.500" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q2_rulerLab0" x="15.000" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">0</text><rect id="q2_rulerTick1" x="59.500" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q2_rulerLab1" x="60.000" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">1</text><rect id="q2_rulerTick2" x="104.500" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q2_rulerLab2" x="105.000" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">2</text><rect id="q2_rulerTick3" x="149.500" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q2_rulerLab3" x="150.000" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">3</text><rect id="q2_rulerTick4" x="194.500" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q2_rulerLab4" x="195.000" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">4</text><rect id="q2_rulerTick5" x="239.500" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q2_rulerLab5" x="240.000" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">5</text><rect id="q2_rulerTick6" x="284.500" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q2_rulerLab6" x="285.000" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">6</text><rect id="q2_rulerTick7" x="329.500" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q2_rulerLab7" x="330.000" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">7</text><rect id="q2_rulerTick8" x="374.500" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q2_rulerLab8" x="375.000" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">8</text><rect id="q2_rulerTick9" x="419.500" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q2_rulerLab9" x="420.000" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">9</text><rect id="q2_rulerTick10" x="464.500" y="319.000" width="1" height="18.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q2_rulerLab10" x="465.000" y="354.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">10</text>
+        </g>
+        <line id="q2_ab_line" x1="15.000" y1="300.000" x2="465.000" y2="300.000" stroke="var(--line)" stroke-width="2.5" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q2_dotA" cx="15.000" cy="300.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <circle id="q2_dotB" cx="465.000" cy="300.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q2_laA" x="1.000" y="290.000" class="lbl" style="opacity:0">A</text>
+        <text id="q2_laB" x="471.000" y="290.000" class="lbl" style="opacity:0">B</text>
+        <text id="q2_meas" x="240.000" y="286.000" class="measure" text-anchor="middle" style="opacity:0">10 cm</text>
+      </g>
+      <g id="q2_g2" style="opacity:0">
+        <path id="q2_arcA" data-cx="15.000" data-cy="300.000" d="M 213.882,482.608 A 270.000,270.000 0 0 0 213.882,117.392" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <path id="q2_arcB" data-cx="465.000" data-cy="300.000" d="M 266.118,482.608 A 270.000,270.000 0 0 1 266.118,117.392" fill="none" stroke="var(--accent)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q2_dotP" cx="240.000" cy="150.752" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <circle id="q2_dotQ" cx="240.000" cy="449.248" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q2_laP" x="248.000" y="148.752" class="lbl" style="opacity:0">P</text>
+        <text id="q2_laQ" x="248.000" y="453.248" class="lbl" style="opacity:0">Q</text>
+      </g>
+      <g id="q2_g3" style="opacity:0">
+        <line id="q2_pq_line" x1="240.000" y1="150.752" x2="240.000" y2="449.248" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <rect id="q2_rightAngleSq" x="240.000" y="300.000" width="14" height="14" fill="none" stroke="var(--line)" stroke-width="1.5" style="opacity:0"/>
+        <rect id="q2_tickAM" x="126.500" y="295.000" width="2" height="10" fill="var(--line)" style="opacity:0"/>
+        <rect id="q2_tickMB" x="351.500" y="295.000" width="2" height="10" fill="var(--line)" style="opacity:0"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ3" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q3_g1" style="opacity:0">
+        <line id="q3_ray_oa" x1="240.000" y1="420.000" x2="470.000" y2="420.000" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q3_arrowA" points="484.000,420.000 471.000,424.000 471.000,416.000" fill="var(--line)" style="opacity:0"/>
+        <circle id="q3_dotO" cx="240.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q3_laO" x="222.000" y="436.000" class="lbl" style="opacity:0">O</text>
+        <text id="q3_laA" x="480.000" y="425.000" class="lbl" style="opacity:0">A</text>
+      </g>
+      <g id="q3_g2" style="opacity:0">
+        <path id="q3_arcO" data-cx="240.000" data-cy="420.000" d="M 390.000,420.000 A 150.000,150.000 0 0 0 291.303,279.046" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q3_dotP" cx="390.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q3_laP" x="384.000" y="440.000" class="lbl" style="opacity:0">P</text>
+      </g>
+      <g id="q3_g3" style="opacity:0">
+        <path id="q3_arcP" data-cx="390.000" data-cy="420.000" d="M 338.697,279.046 A 150.000,150.000 0 0 0 293.582,305.093" fill="none" stroke="var(--accent)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q3_dotQ" cx="315.000" cy="290.096" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q3_laQ" x="323.000" y="286.096" class="lbl" style="opacity:0">Q</text>
+        <line id="q3_ray_oq" x1="240.000" y1="420.000" x2="315.000" y2="290.096" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q3_arrowQ" points="322.000,277.972 318.964,291.230 312.036,287.230" fill="var(--line)" style="opacity:0"/>
+        <path id="q3_angleArc" d="M 274.000,420.000 A 34.000,34.000 0 0 0 257.000,390.555" fill="none" stroke="var(--arc)" stroke-width="1.4" style="opacity:0"/>
+        <text id="q3_angleLabel" x="283.301" y="395.000" class="measure" style="opacity:0">60°</text>
+      </g>
+    </svg>
+
+    <svg id="svgQ4" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q4_g1" style="opacity:0">
+        <line id="q4_ray_oa" x1="240.000" y1="420.000" x2="470.000" y2="420.000" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q4_arrowA" points="484.000,420.000 471.000,424.000 471.000,416.000" fill="var(--line)" style="opacity:0"/>
+        <circle id="q4_dotO" cx="240.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q4_laO" x="222.000" y="436.000" class="lbl" style="opacity:0">O</text>
+        <text id="q4_laA" x="480.000" y="425.000" class="lbl" style="opacity:0">A</text>
+      </g>
+      <g id="q4_g2" style="opacity:0">
+        <path id="q4_arcO" data-cx="240.000" data-cy="420.000" d="M 390.000,420.000 A 150.000,150.000 0 0 0 143.582,305.093" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q4_dotP" cx="390.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q4_laP" x="384.000" y="440.000" class="lbl" style="opacity:0">P</text>
+      </g>
+      <g id="q4_g3" style="opacity:0">
+        <path id="q4_arcP" data-cx="390.000" data-cy="420.000" d="M 338.697,279.046 A 150.000,150.000 0 0 0 293.582,305.093" fill="none" stroke="var(--accent)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q4_dotQ" cx="315.000" cy="290.096" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q4_laQ" x="323.000" y="286.096" class="lbl" style="opacity:0">Q</text>
+      </g>
+      <g id="q4_g4" style="opacity:0">
+        <path id="q4_arcQ" data-cx="315.000" data-cy="290.096" d="M 167.279,264.049 A 150.000,150.000 0 0 0 167.279,316.143" fill="none" stroke="#2D5A3D" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q4_dotR" cx="165.000" cy="290.096" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q4_laR" x="147.000" y="286.096" class="lbl" style="opacity:0">R</text>
+        <line id="q4_ray_or" x1="240.000" y1="420.000" x2="165.000" y2="290.096" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q4_arrowR" points="158.000,277.972 167.964,287.230 161.036,291.230" fill="var(--line)" style="opacity:0"/>
+        <path id="q4_angleArc" d="M 274.000,420.000 A 34.000,34.000 0 0 0 223.000,390.555" fill="none" stroke="var(--arc)" stroke-width="1.4" style="opacity:0"/>
+        <text id="q4_angleLabel" x="266.000" y="374.967" class="measure" style="opacity:0">120°</text>
+      </g>
+    </svg>
+
+    <svg id="svgQ5" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q5_g1" style="opacity:0">
+        <line id="q5_ray_oa" x1="240.000" y1="420.000" x2="470.000" y2="420.000" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q5_arrowA" points="484.000,420.000 471.000,424.000 471.000,416.000" fill="var(--line)" style="opacity:0"/>
+        <circle id="q5_dotO" cx="240.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q5_laO" x="222.000" y="436.000" class="lbl" style="opacity:0">O</text>
+        <text id="q5_laA" x="480.000" y="425.000" class="lbl" style="opacity:0">A</text>
+      </g>
+      <g id="q5_g2" style="opacity:0">
+        <path id="q5_arcO" data-cx="240.000" data-cy="420.000" d="M 387.721,446.047 A 150.000,150.000 0 0 0 291.303,279.046" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q5_dotP" cx="390.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q5_laP" x="384.000" y="440.000" class="lbl" style="opacity:0">P</text>
+        <path id="q5_arcP" data-cx="390.000" data-cy="420.000" d="M 338.697,279.046 A 150.000,150.000 0 0 0 293.582,305.093" fill="none" stroke="var(--accent)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q5_dotQ" cx="315.000" cy="290.096" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q5_laQ" x="323.000" y="286.096" class="lbl" style="opacity:0">Q</text>
+      </g>
+      <g id="q5_g3" style="opacity:0">
+        <path id="q5_bisP" data-cx="390.000" data-cy="420.000" d="M 408.031,331.825 A 90.000,90.000 0 0 0 383.028,330.270" fill="none" stroke="#2D5A3D" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <path id="q5_bisQ" data-cx="315.000" data-cy="290.096" d="M 389.222,340.999 A 90.000,90.000 0 0 0 400.378,318.568" fill="none" stroke="#B03030" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q5_dotS" cx="395.584" cy="330.173" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q5_laS" x="403.584" y="326.173" class="lbl" style="opacity:0">S</text>
+        <line id="q5_ray_os" x1="240.000" y1="420.000" x2="395.584" y2="330.173" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q5_arrowS" points="407.709,323.173 398.450,333.138 394.450,326.209" fill="var(--line)" style="opacity:0"/>
+        <path id="q5_angleArc" d="M 274.000,420.000 A 34,34 0 0 0 269.445,403.000" fill="none" stroke="var(--arc)" stroke-width="1.4" style="opacity:0"/>
+        <text id="q5_angleLabel" x="288.296" y="407.059" class="measure" style="opacity:0">30°</text>
+      </g>
+    </svg>
+
+    <svg id="svgQ6" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q6_g1" style="opacity:0">
+        <line id="q6_ray_oa" x1="240.000" y1="420.000" x2="470.000" y2="420.000" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q6_arrowA" points="484.000,420.000 471.000,424.000 471.000,416.000" fill="var(--line)" style="opacity:0"/>
+        <circle id="q6_dotO" cx="240.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q6_laO" x="222.000" y="436.000" class="lbl" style="opacity:0">O</text>
+        <text id="q6_laA" x="480.000" y="425.000" class="lbl" style="opacity:0">A</text>
+      </g>
+      <g id="q6_g2" style="opacity:0">
+        <path id="q6_arcO" data-cx="240.000" data-cy="420.000" d="M 387.721,446.047 A 150.000,150.000 0 0 0 291.303,279.046" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q6_dotP" cx="390.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q6_laP" x="384.000" y="440.000" class="lbl" style="opacity:0">P</text>
+        <path id="q6_arcP" data-cx="390.000" data-cy="420.000" d="M 338.697,279.046 A 150.000,150.000 0 0 0 293.582,305.093" fill="none" stroke="var(--accent)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q6_dotQ" cx="315.000" cy="290.096" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q6_laQ" x="323.000" y="286.096" class="lbl" style="opacity:0">Q</text>
+      </g>
+      <g id="q6_g3" style="opacity:0">
+        <path id="q6_bisP" data-cx="390.000" data-cy="420.000" d="M 408.031,331.825 A 90.000,90.000 0 0 0 383.028,330.270" fill="none" stroke="#2D5A3D" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <path id="q6_bisQ" data-cx="315.000" data-cy="290.096" d="M 389.222,340.999 A 90.000,90.000 0 0 0 400.378,318.568" fill="none" stroke="#B03030" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q6_dotS" cx="395.584" cy="330.173" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q6_laS" x="403.584" y="326.173" class="lbl" style="opacity:0">S</text>
+        <line id="q6_ray_os" x1="240.000" y1="420.000" x2="395.584" y2="330.173" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+      </g>
+      <g id="q6_g4" style="opacity:0">
+        <circle id="q6_dotT" cx="369.904" cy="345.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q6_laT" x="349.904" y="349.000" class="lbl" style="opacity:0">T</text>
+        <path id="q6_cisP" data-cx="390.000" data-cy="420.000" d="M 443.082,374.368 A 70.000,70.000 0 0 0 428.448,361.504" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <path id="q6_cisT" data-cx="369.904" data-cy="345.000" d="M 432.449,376.435 A 70.000,70.000 0 0 0 438.690,357.977" fill="none" stroke="var(--accent)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q6_dotU" cx="436.215" cy="367.424" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q6_laU" x="444.215" y="363.424" class="lbl" style="opacity:0">U</text>
+        <line id="q6_ray_ou" x1="240.000" y1="420.000" x2="436.215" y2="367.424" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q6_arrowU" points="449.738,363.801 438.216,371.029 436.145,363.302" fill="var(--line)" style="opacity:0"/>
+        <path id="q6_angleArc" d="M 274.000,420.000 A 34,34 0 0 0 272.841,411.200" fill="none" stroke="var(--arc)" stroke-width="1.4" style="opacity:0"/>
+        <text id="q6_angleLabel" x="289.572" y="413.474" class="measure" style="opacity:0">15°</text>
+      </g>
+    </svg>
+
+    <svg id="svgQ7" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q7_g1" style="opacity:0">
+        <line id="q7_ray_oa" x1="240.000" y1="420.000" x2="470.000" y2="420.000" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q7_arrowA" points="484.000,420.000 471.000,424.000 471.000,416.000" fill="var(--line)" style="opacity:0"/>
+        <circle id="q7_dotO" cx="240.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q7_laO" x="222.000" y="436.000" class="lbl" style="opacity:0">O</text>
+        <text id="q7_laA" x="480.000" y="425.000" class="lbl" style="opacity:0">A</text>
+      </g>
+      <g id="q7_g2" style="opacity:0">
+        <path id="q7_arcO" data-cx="240.000" data-cy="420.000" d="M 387.721,446.047 A 150.000,150.000 0 0 0 143.582,305.093" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q7_dotP" cx="390.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q7_laP" x="384.000" y="440.000" class="lbl" style="opacity:0">P</text>
+        <path id="q7_arcP" data-cx="390.000" data-cy="420.000" d="M 338.697,279.046 A 150.000,150.000 0 0 0 293.582,305.093" fill="none" stroke="var(--accent)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q7_dotQ" cx="315.000" cy="290.096" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q7_laQ" x="323.000" y="286.096" class="lbl" style="opacity:0">Q</text>
+        <path id="q7_arcQ" data-cx="315.000" data-cy="290.096" d="M 167.279,264.049 A 150.000,150.000 0 0 0 167.279,316.143" fill="none" stroke="#2D5A3D" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q7_dotR" cx="165.000" cy="290.096" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q7_laR" x="147.000" y="286.096" class="lbl" style="opacity:0">R</text>
+      </g>
+      <g id="q7_g3" style="opacity:0">
+        <path id="q7_bisQ" data-cx="315.000" data-cy="290.096" d="M 244.604,252.090 A 80.000,80.000 0 0 0 236.855,272.966" fill="none" stroke="#B03030" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <path id="q7_bisR" data-cx="165.000" data-cy="290.096" d="M 243.145,272.966 A 80.000,80.000 0 0 0 235.396,252.090" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q7_dotV" cx="240.000" cy="262.257" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q7_laV" x="248.000" y="258.257" class="lbl" style="opacity:0">V</text>
+        <line id="q7_ray_ov" x1="240.000" y1="420.000" x2="240.000" y2="262.257" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+      </g>
+      <g id="q7_g4" style="opacity:0">
+        <circle id="q7_dotW" cx="240.000" cy="270.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q7_laW" x="220.000" y="274.000" class="lbl" style="opacity:0">W</text>
+        <path id="q7_cisW" data-cx="240.000" data-cy="270.000" d="M 195.891,229.325 A 60.000,60.000 0 0 0 186.389,243.059" fill="none" stroke="var(--accent)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <path id="q7_cisR" data-cx="165.000" data-cy="290.096" d="M 197.958,239.959 A 60.000,60.000 0 0 0 182.862,232.817" fill="none" stroke="#2D5A3D" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q7_dotX" cx="190.660" cy="235.860" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q7_laX" x="172.660" y="231.860" class="lbl" style="opacity:0">X</text>
+        <line id="q7_ray_ox" x1="240.000" y1="420.000" x2="190.660" y2="235.860" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q7_arrowX" points="187.036,222.337 194.265,233.859 186.537,235.929" fill="var(--line)" style="opacity:0"/>
+        <path id="q7_angleArc" d="M 274.000,420.000 A 34,34 0 0 0 231.200,387.159" fill="none" stroke="var(--arc)" stroke-width="1.4" style="opacity:0"/>
+        <text id="q7_angleLabel" x="270.438" y="380.332" class="measure" style="opacity:0">105°</text>
+      </g>
+    </svg>
+
+    <svg id="svgQ8" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q8_g1" style="opacity:0">
+        <line id="q8_line_ab" x1="10.000" y1="420.000" x2="470.000" y2="420.000" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q8_dotO" cx="240.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q8_laO" x="230.000" y="438.000" class="lbl" style="opacity:0">O</text>
+        <text id="q8_laA" x="476.000" y="425.000" class="lbl" style="opacity:0">A</text>
+        <text id="q8_laB" x="-6.000" y="425.000" class="lbl" style="opacity:0">B</text>
+      </g>
+      <g id="q8_g2" style="opacity:0">
+        <path id="q8_arcO" data-cx="240.000" data-cy="420.000" d="M 389.178,435.679 A 150.000,150.000 0 1 0 90.822,435.679" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q8_dotP" cx="390.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q8_laP" x="384.000" y="440.000" class="lbl" style="opacity:0">P</text>
+        <circle id="q8_dotPp" cx="90.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q8_laPp" x="72.000" y="440.000" class="lbl" style="opacity:0">P'</text>
+      </g>
+      <g id="q8_g3" style="opacity:0">
+        <path id="q8_bisP" data-cx="390.000" data-cy="420.000" d="M 252.594,319.903 A 170.000,170.000 0 0 0 230.326,361.655" fill="none" stroke="var(--accent)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <path id="q8_bisPp" data-cx="90.000" data-cy="420.000" d="M 249.674,361.655 A 170.000,170.000 0 0 0 227.406,319.903" fill="none" stroke="#2D5A3D" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q8_dotV" cx="240.000" cy="340.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q8_laV" x="248.000" y="336.000" class="lbl" style="opacity:0">V</text>
+        <line id="q8_ray_ov" x1="240.000" y1="420.000" x2="240.000" y2="340.000" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+      </g>
+      <g id="q8_g4" style="opacity:0">
+        <circle id="q8_dotW" cx="240.000" cy="270.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q8_laW" x="248.000" y="266.000" class="lbl" style="opacity:0">W</text>
+        <path id="q8_cisW" data-cx="240.000" data-cy="270.000" d="M 121.515,289.009 A 120.000,120.000 0 0 0 131.345,320.931" fill="none" stroke="#B03030" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <path id="q8_cisPp" data-cx="90.000" data-cy="420.000" d="M 140.931,311.345 A 120.000,120.000 0 0 0 109.009,301.515" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q8_dotX" cx="125.314" cy="305.314" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q8_laX" x="107.314" y="301.314" class="lbl" style="opacity:0">X</text>
+        <line id="q8_ray_ox" x1="240.000" y1="420.000" x2="125.314" y2="305.314" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q8_arrowX" points="115.414,295.414 127.435,301.778 121.778,307.435" fill="var(--line)" style="opacity:0"/>
+        <path id="q8_angleArc" d="M 274.000,420.000 A 34,34 0 0 0 215.958,395.958" fill="none" stroke="var(--arc)" stroke-width="1.4" style="opacity:0"/>
+        <text id="q8_angleLabel" x="259.134" y="373.806" class="measure" style="opacity:0">135°</text>
+      </g>
+    </svg>
+
+    <svg id="svgQ9" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q9_g1" style="opacity:0">
+        <line id="q9_ray_oa" x1="240.000" y1="420.000" x2="470.000" y2="420.000" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q9_arrowA" points="484.000,420.000 471.000,424.000 471.000,416.000" fill="var(--line)" style="opacity:0"/>
+        <circle id="q9_dotO" cx="240.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q9_laO" x="222.000" y="436.000" class="lbl" style="opacity:0">O</text>
+        <text id="q9_laA" x="480.000" y="425.000" class="lbl" style="opacity:0">A</text>
+      </g>
+      <g id="q9_g2" style="opacity:0">
+        <g id="q9_protractor" style="opacity:0">
+          <path id="q9_protBody" d="M 145.00 420.00 A 95 95 0 1 1 335.00 420.00" fill="rgba(123,94,167,0.10)" stroke="var(--accent)" stroke-width="1.3"/>
+          <line x1="145.0" y1="420" x2="335.0" y2="420" stroke="var(--accent)" stroke-width="1"/>
+          <path d="M 145.00 420.00 L 160.00 420.00 M 157.73 372.50 L 170.72 380.00 M 192.50 337.73 L 200.00 350.72 M 240.00 325.00 L 240.00 340.00 M 287.50 337.73 L 280.00 350.72 M 322.27 372.50 L 309.28 380.00 M 335.00 420.00 L 320.00 420.00 M 146.44 403.50 L 154.32 404.89 M 150.73 387.51 L 158.25 390.24 M 167.23 358.94 L 173.35 364.08 M 207.51 330.73 L 210.24 338.25 M 223.50 326.44 L 224.89 334.32 M 256.50 326.44 L 255.11 334.32 M 272.49 330.73 L 269.76 338.25 M 301.06 347.23 L 295.92 353.35 M 312.77 358.94 L 306.65 364.08 M 329.27 387.51 L 321.75 390.24 M 333.56 403.50 L 325.68 404.89" stroke="var(--accent)" stroke-width="0.9" opacity="0.55"/>
+        </g>
+        <path id="q9_tick35" d="M 311.266,370.099 L 320.277,363.790" stroke="var(--accent)" stroke-width="2" style="opacity:0"/>
+        <circle id="q9_mark35" cx="314.543" cy="367.805" r="3.5" fill="#f59e0b" stroke="#fff" stroke-width="1" style="opacity:0"/>
+        <line id="q9_ray_ob" x1="240.000" y1="420.000" x2="428.405" y2="288.077" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q9_arrowB" points="439.873,280.047 431.518,290.780 426.930,284.227" fill="var(--line)" style="opacity:0"/>
+        <text id="q9_laB" x="434.405" y="286.077" class="lbl" style="opacity:0">B</text>
+        <text id="q9_bLabel" x="334.008" y="335.355" class="measure" style="opacity:0">35°</text>
+      </g>
+      <g id="q9_g3" style="opacity:0">
+        <path id="q9_arcO" data-cx="240.000" data-cy="420.000" d="M 387.721,446.047 A 150.000,150.000 0 0 0 346.066,313.934" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q9_dotP" cx="390.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q9_laP" x="384.000" y="440.000" class="lbl" style="opacity:0">P</text>
+        <circle id="q9_dotQ" cx="362.873" cy="333.964" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q9_laQ" x="346.873" y="325.964" class="lbl" style="opacity:0">Q</text>
+        <path id="q9_bisP" data-cx="390.000" data-cy="420.000" d="M 459.368,362.659 A 90.000,90.000 0 0 0 440.876,345.759" fill="none" stroke="#2D5A3D" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <path id="q9_bisQ" data-cx="362.873" data-cy="333.964" d="M 447.130,365.597 A 90.000,90.000 0 0 0 452.586,341.147" fill="none" stroke="#B03030" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q9_dotS" cx="450.713" cy="353.562" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q9_laS" x="458.713" y="349.562" class="lbl" style="opacity:0">S</text>
+        <line id="q9_ray_os" x1="240.000" y1="420.000" x2="450.713" y2="353.562" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q9_arrowS" points="464.065,349.353 452.869,357.077 450.464,349.447" fill="var(--line)" style="opacity:0"/>
+        <path id="q9_angleArc" d="M 270.000,420.000 A 30,30 0 0 0 268.612,410.979" fill="none" stroke="var(--arc)" stroke-width="1.4" style="opacity:0"/>
+        <text id="q9_angleLabel" x="285.465" y="413.002" class="measure" style="opacity:0">17.5°</text>
+      </g>
+    </svg>
+
+    <svg id="svgQ10" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q10_g1" style="opacity:0">
+        <line id="q10_ray_oa" x1="240.000" y1="420.000" x2="470.000" y2="420.000" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q10_arrowA" points="484.000,420.000 471.000,424.000 471.000,416.000" fill="var(--line)" style="opacity:0"/>
+        <circle id="q10_dotO" cx="240.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q10_laO" x="222.000" y="436.000" class="lbl" style="opacity:0">O</text>
+        <text id="q10_laA" x="480.000" y="425.000" class="lbl" style="opacity:0">A</text>
+      </g>
+      <g id="q10_g2" style="opacity:0">
+        <g id="q10_protractor" style="opacity:0">
+          <path id="q10_protBody" d="M 145.00 420.00 A 95 95 0 1 1 335.00 420.00" fill="rgba(123,94,167,0.10)" stroke="var(--accent)" stroke-width="1.3"/>
+          <line x1="145.0" y1="420" x2="335.0" y2="420" stroke="var(--accent)" stroke-width="1"/>
+          <path d="M 145.00 420.00 L 160.00 420.00 M 157.73 372.50 L 170.72 380.00 M 192.50 337.73 L 200.00 350.72 M 240.00 325.00 L 240.00 340.00 M 287.50 337.73 L 280.00 350.72 M 322.27 372.50 L 309.28 380.00 M 335.00 420.00 L 320.00 420.00 M 146.44 403.50 L 154.32 404.89 M 150.73 387.51 L 158.25 390.24 M 167.23 358.94 L 173.35 364.08 M 207.51 330.73 L 210.24 338.25 M 223.50 326.44 L 224.89 334.32 M 256.50 326.44 L 255.11 334.32 M 272.49 330.73 L 269.76 338.25 M 301.06 347.23 L 295.92 353.35 M 312.77 358.94 L 306.65 364.08 M 329.27 387.51 L 321.75 390.24 M 333.56 403.50 L 325.68 404.89" stroke="var(--accent)" stroke-width="0.9" opacity="0.55"/>
+        </g>
+        <path id="q10_tick55" d="M 289.901,348.734 L 296.210,339.723" stroke="var(--accent)" stroke-width="2" style="opacity:0"/>
+        <circle id="q10_mark55" cx="292.195" cy="345.457" r="3.5" fill="#f59e0b" stroke="#fff" stroke-width="1" style="opacity:0"/>
+        <line id="q10_ray_ob" x1="240.000" y1="420.000" x2="371.923" y2="231.595" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q10_arrowB" points="379.953,220.127 375.773,233.070 369.220,228.482" fill="var(--line)" style="opacity:0"/>
+        <text id="q10_laB" x="377.923" y="229.595" class="lbl" style="opacity:0">B</text>
+        <text id="q10_bLabel" x="299.388" y="308.307" class="measure" style="opacity:0">55°</text>
+      </g>
+      <g id="q10_g3" style="opacity:0">
+        <path id="q10_arcO" data-cx="240.000" data-cy="420.000" d="M 387.721,446.047 A 150.000,150.000 0 0 0 303.393,284.054" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q10_dotP" cx="390.000" cy="420.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q10_laP" x="384.000" y="440.000" class="lbl" style="opacity:0">P</text>
+        <circle id="q10_dotQ" cx="326.036" cy="297.127" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q10_laQ" x="310.036" y="289.127" class="lbl" style="opacity:0">Q</text>
+        <path id="q10_bisP" data-cx="390.000" data-cy="420.000" d="M 421.053,335.527 A 90.000,90.000 0 0 0 396.566,330.240" fill="none" stroke="#2D5A3D" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <path id="q10_bisQ" data-cx="326.036" data-cy="297.127" d="M 403.330,343.233 A 90.000,90.000 0 0 0 413.044,320.142" fill="none" stroke="#B03030" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q10_dotS" cx="408.994" cy="332.027" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q10_laS" x="416.994" y="328.027" class="lbl" style="opacity:0">S</text>
+        <line id="q10_ray_os" x1="240.000" y1="420.000" x2="408.994" y2="332.027" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q10_arrowS" points="421.412,325.563 411.728,335.113 408.034,328.017" fill="var(--line)" style="opacity:0"/>
+        <path id="q10_angleArc" d="M 270.000,420.000 A 30,30 0 0 0 266.610,406.148" fill="none" stroke="var(--arc)" stroke-width="1.4" style="opacity:0"/>
+        <text id="q10_angleLabel" x="284.682" y="409.066" class="measure" style="opacity:0">27.5°</text>
+      </g>
+    </svg>
+
+    <svg id="svgQ11" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q11_g1" style="opacity:0">
+        <g id="q11_ruler" style="opacity:0"><rect id="q11_rulerRect" x="130.000" y="394.000" width="220.000" height="22" fill="#FFF8E6" stroke="var(--gold-dk)" stroke-width="1.4" rx="3" style="opacity:0"/><rect id="q11_rulerTick0" x="139.500" y="399.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q11_rulerLab0" x="140.000" y="430.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">0</text><rect id="q11_rulerTick1" x="179.500" y="399.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q11_rulerLab1" x="180.000" y="430.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">1</text><rect id="q11_rulerTick2" x="219.500" y="399.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q11_rulerLab2" x="220.000" y="430.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">2</text><rect id="q11_rulerTick3" x="259.500" y="399.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q11_rulerLab3" x="260.000" y="430.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">3</text><rect id="q11_rulerTick4" x="299.500" y="399.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q11_rulerLab4" x="300.000" y="430.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">4</text><rect id="q11_rulerTick5" x="339.500" y="399.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q11_rulerLab5" x="340.000" y="430.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">5</text></g>
+        <line id="q11_ab_line" x1="140.000" y1="380.000" x2="340.000" y2="380.000" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q11_dotA" cx="140.000" cy="380.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <circle id="q11_dotB" cx="340.000" cy="380.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q11_laA" x="124.000" y="398.000" class="lbl" style="opacity:0">A</text>
+        <text id="q11_laB" x="348.000" y="398.000" class="lbl" style="opacity:0">B</text>
+        <text id="q11_meas" x="240.000" y="370.000" class="measure" text-anchor="middle" style="opacity:0">5 cm</text>
+      </g>
+      <g id="q11_g2" style="opacity:0">
+        <g id="q11_protractor" style="opacity:0">
+          <path id="q11_protBody" d="M 45.00 380.00 A 95 95 0 1 1 235.00 380.00" fill="rgba(123,94,167,0.10)" stroke="var(--accent)" stroke-width="1.3"/>
+          <line x1="45.000" y1="380.000" x2="235.000" y2="380.000" stroke="var(--accent)" stroke-width="1"/>
+          <path d="M 45.00 380.00 L 60.00 380.00 M 57.73 332.50 L 70.72 340.00 M 92.50 297.73 L 100.00 310.72 M 140.00 285.00 L 140.00 300.00 M 187.50 297.73 L 180.00 310.72 M 222.27 332.50 L 209.28 340.00 M 235.00 380.00 L 220.00 380.00 M 46.44 363.50 L 54.32 364.89 M 50.73 347.51 L 58.25 350.24 M 67.23 318.94 L 73.35 324.08 M 107.51 290.73 L 110.24 298.25 M 123.50 286.44 L 124.89 294.32 M 156.50 286.44 L 155.11 294.32 M 172.49 290.73 L 169.76 298.25 M 201.06 307.23 L 195.92 313.35 M 212.77 318.94 L 206.65 324.08 M 229.27 347.51 L 221.75 350.24 M 233.56 363.50 L 225.68 364.89" stroke="var(--accent)" stroke-width="0.9" opacity="0.55"/>
+        </g>
+        <path id="q11_tickA" d="M 169.756,298.247 L 173.518,287.910" stroke="var(--accent)" stroke-width="2" style="opacity:0"/>
+        <circle id="q11_markA" cx="171.124" cy="294.488" r="3.5" fill="#f59e0b" stroke="#fff" stroke-width="1" style="opacity:0"/>
+        <line id="q11_ac_line" x1="140.000" y1="380.000" x2="232.723" y2="125.246" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q11_ac_arrow" points="237.511,112.091 236.824,125.675 229.306,122.939" fill="var(--line)" style="opacity:0"/>
+      </g>
+      <g id="q11_g3" style="opacity:0">
+        <path id="q11_arcB60" data-cx="340.000" data-cy="380.000" d="M 306.285,296.553 A 90.000,90.000 0 0 0 250.876,392.526" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1200;stroke-dashoffset:1200;"/>
+        <circle id="q11_dotP60" cx="250.000" cy="380.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <path id="q11_arcP60" data-cx="250.000" data-cy="380.000" d="M 299.675,304.950 A 90.000,90.000 0 0 0 290.158,299.456" fill="none" stroke="var(--accent)" stroke-width="1.5" style="stroke-dasharray:1200;stroke-dashoffset:1200;"/>
+        <circle id="q11_dotQ60" cx="295.000" cy="302.058" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <line id="q11_bc_line" x1="340.000" y1="380.000" x2="194.832" y2="128.561" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q11_bc_arrow" points="187.832,116.437 197.796,125.695 190.868,129.695" fill="var(--line)" style="opacity:0"/>
+        <circle id="q11_dotC" cx="217.332" cy="167.533" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q11_laC" x="209.332" y="157.533" class="lbl" style="opacity:0">C</text>
+      </g>
+      <g id="q11_g4" style="opacity:0">
+        <path id="q11_pbAB_arcA" data-cx="140.000" data-cy="380.000" d="M 228.399,495.619 A 145.541,145.541 0 0 0 228.399,264.381" fill="none" stroke="#2D5A3D" stroke-width="1.4" style="stroke-dasharray:1600;stroke-dashoffset:1600;"/>
+        <path id="q11_pbAB_arcB" data-cx="340.000" data-cy="380.000" d="M 229.494,474.713 A 145.541,145.541 0 1 0 229.494,285.287" fill="none" stroke="#B03030" stroke-width="1.4" style="stroke-dasharray:1600;stroke-dashoffset:1600;"/>
+        <line id="q11_pbAB_line" x1="240.000" y1="485.745" x2="240.000" y2="274.255" stroke="var(--line)" stroke-width="1.8" style="stroke-dasharray:1200;stroke-dashoffset:1200;"/>
+      </g>
+      <g id="q11_g5" style="opacity:0">
+        <path id="q11_pbBC_arcB" data-cx="340.000" data-cy="380.000" d="M 361.659,236.080 A 145.541,145.541 0 0 0 204.532,326.797" fill="none" stroke="#2D5A3D" stroke-width="1.4" style="stroke-dasharray:1600;stroke-dashoffset:1600;"/>
+        <path id="q11_pbBC_arcC" data-cx="217.332" data-cy="167.533" d="M 195.673,311.453 A 145.541,145.541 0 0 0 352.800,220.736" fill="none" stroke="#B03030" stroke-width="1.4" style="stroke-dasharray:1600;stroke-dashoffset:1600;"/>
+        <line id="q11_pbBC_line" x1="346.496" y1="234.604" x2="210.835" y2="312.928" stroke="var(--line)" stroke-width="1.8" style="stroke-dasharray:1200;stroke-dashoffset:1200;"/>
+        <circle id="q11_dotO" cx="240.000" cy="296.090" r="4" fill="var(--line)" style="opacity:0"/>
+        <text id="q11_laO" x="248.000" y="290.090" class="lbl" style="opacity:0">O</text>
+      </g>
+      <g id="q11_g6" style="opacity:0">
+        <path id="q11_circumcircle" data-cx="240.000" data-cy="296.090" d="M 109.459,296.090 A 130.541,130.541 0 1 1 370.541,296.090 A 130.541,130.541 0 1 1 109.459,296.090" fill="none" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:2000;stroke-dashoffset:2000;"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ12" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q12_g1" style="opacity:0">
+        <g id="q12_ruler" style="opacity:0"><rect id="q12_rulerRect" x="190.000" y="314.000" width="220.000" height="22" fill="#FFF8E6" stroke="var(--gold-dk)" stroke-width="1.4" rx="3" style="opacity:0"/><rect id="q12_rulerTick0" x="199.500" y="319.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q12_rulerLab0" x="200.000" y="350.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">0</text><rect id="q12_rulerTick1" x="239.500" y="319.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q12_rulerLab1" x="240.000" y="350.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">1</text><rect id="q12_rulerTick2" x="279.500" y="319.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q12_rulerLab2" x="280.000" y="350.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">2</text><rect id="q12_rulerTick3" x="319.500" y="319.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q12_rulerLab3" x="320.000" y="350.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">3</text><rect id="q12_rulerTick4" x="359.500" y="319.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q12_rulerLab4" x="360.000" y="350.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">4</text><rect id="q12_rulerTick5" x="399.500" y="319.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q12_rulerLab5" x="400.000" y="350.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">5</text></g>
+        <line id="q12_ab_line" x1="200.000" y1="300.000" x2="400.000" y2="300.000" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q12_dotA" cx="200.000" cy="300.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <circle id="q12_dotB" cx="400.000" cy="300.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q12_laA" x="184.000" y="318.000" class="lbl" style="opacity:0">A</text>
+        <text id="q12_laB" x="408.000" y="318.000" class="lbl" style="opacity:0">B</text>
+        <text id="q12_measAB" x="300.000" y="290.000" class="measure" text-anchor="middle" style="opacity:0">5 cm</text>
+      </g>
+      <g id="q12_g2" style="opacity:0">
+        <g id="q12_protractor" style="opacity:0">
+          <path id="q12_protBody" d="M 105.00 300.00 A 95 95 0 1 1 295.00 300.00" fill="rgba(123,94,167,0.10)" stroke="var(--accent)" stroke-width="1.3"/>
+          <line x1="105.000" y1="300.000" x2="295.000" y2="300.000" stroke="var(--accent)" stroke-width="1"/>
+          <path d="M 105.00 300.00 L 120.00 300.00 M 117.73 252.50 L 130.72 260.00 M 152.50 217.73 L 160.00 230.72 M 200.00 205.00 L 200.00 220.00 M 247.50 217.73 L 240.00 230.72 M 282.27 252.50 L 269.28 260.00 M 295.00 300.00 L 280.00 300.00 M 106.44 283.50 L 114.32 284.89 M 110.73 267.51 L 118.25 270.24 M 127.23 238.94 L 133.35 244.08 M 167.51 210.73 L 170.24 218.25 M 183.50 206.44 L 184.89 214.32 M 216.50 206.44 L 215.11 214.32 M 232.49 210.73 L 229.76 218.25 M 261.06 227.23 L 255.92 233.35 M 272.77 238.94 L 266.65 244.08 M 289.27 267.51 L 281.75 270.24 M 293.56 283.50 L 285.68 284.89" stroke="var(--accent)" stroke-width="0.9" opacity="0.55"/>
+        </g>
+        <path id="q12_tickA" d="M 184.893,214.322 L 182.982,203.489" stroke="var(--accent)" stroke-width="2" style="opacity:0"/>
+        <circle id="q12_markA" cx="184.198" cy="210.382" r="3.5" fill="#f59e0b" stroke="#fff" stroke-width="1" style="opacity:0"/>
+      </g>
+      <g id="q12_g3" style="opacity:0">
+        <line id="q12_ac_ray" x1="200.000" y1="300.000" x2="161.797" y2="83.342" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q12_ac_arrow" points="159.366,69.555 165.563,81.663 157.685,83.052" fill="var(--line)" style="opacity:0"/>
+        <path id="q12_ac_arc" data-cx="200.000" data-cy="300.000" d="M 181.887,141.029 A 160.000,160.000 0 0 0 162.649,144.421" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q12_dotC" cx="172.216" cy="142.431" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q12_laC" x="164.216" y="132.431" class="lbl" style="opacity:0">C</text>
+      </g>
+      <g id="q12_g4" style="opacity:0">
+        <line id="q12_bc_line" x1="400.000" y1="300.000" x2="172.216" y2="142.431" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+      </g>
+      <g id="q12_g5" style="opacity:0">
+        <path id="q12_pbAB_arcA" data-cx="200.000" data-cy="300.000" d="M 286.988,429.040 A 155.622,155.622 0 0 0 286.988,170.960" fill="none" stroke="#2D5A3D" stroke-width="1.4" style="stroke-dasharray:1600;stroke-dashoffset:1600;"/>
+        <path id="q12_pbAB_arcB" data-cx="400.000" data-cy="300.000" d="M 288.084,408.135 A 155.622,155.622 0 1 0 288.084,191.865" fill="none" stroke="#B03030" stroke-width="1.4" style="stroke-dasharray:1600;stroke-dashoffset:1600;"/>
+        <line id="q12_pbAB_line" x1="300.000" y1="419.241" x2="300.000" y2="180.759" stroke="var(--line)" stroke-width="1.8" style="stroke-dasharray:1200;stroke-dashoffset:1200;"/>
+      </g>
+      <g id="q12_g6" style="opacity:0">
+        <path id="q12_pbBC_arcB" data-cx="400.000" data-cy="300.000" d="M 341.237,155.899 A 155.622,155.622 0 0 0 244.433,295.839" fill="none" stroke="#2D5A3D" stroke-width="1.4" style="stroke-dasharray:1600;stroke-dashoffset:1600;"/>
+        <path id="q12_pbBC_arcC" data-cx="172.216" data-cy="142.431" d="M 230.980,286.532 A 155.622,155.622 0 0 0 327.783,146.592" fill="none" stroke="#B03030" stroke-width="1.4" style="stroke-dasharray:1600;stroke-dashoffset:1600;"/>
+        <line id="q12_pbBC_line" x1="326.496" y1="162.831" x2="245.720" y2="279.600" stroke="var(--line)" stroke-width="1.8" style="stroke-dasharray:1200;stroke-dashoffset:1200;"/>
+        <circle id="q12_dotO" cx="300.000" cy="201.133" r="4" fill="var(--line)" style="opacity:0"/>
+        <text id="q12_laO" x="308.000" y="195.133" class="lbl" style="opacity:0">O</text>
+      </g>
+      <g id="q12_g7" style="opacity:0">
+        <path id="q12_circumcircle" data-cx="300.000" data-cy="201.133" d="M 159.378,201.133 A 140.622,140.622 0 1 1 440.622,201.133 A 140.622,140.622 0 1 1 159.378,201.133" fill="none" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:2000;stroke-dashoffset:2000;"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ13" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q13_g1" style="opacity:0">
+        <g id="q13_ruler" style="opacity:0"><rect id="q13_rulerRect" x="160.000" y="394.000" width="260.000" height="22" fill="#FFF8E6" stroke="var(--gold-dk)" stroke-width="1.4" rx="3" style="opacity:0"/><rect id="q13_rulerTick0" x="169.500" y="399.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q13_rulerLab0" x="170.000" y="430.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">0</text><rect id="q13_rulerTick1" x="209.500" y="399.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q13_rulerLab1" x="210.000" y="430.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">1</text><rect id="q13_rulerTick2" x="249.500" y="399.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q13_rulerLab2" x="250.000" y="430.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">2</text><rect id="q13_rulerTick3" x="289.500" y="399.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q13_rulerLab3" x="290.000" y="430.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">3</text><rect id="q13_rulerTick4" x="329.500" y="399.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q13_rulerLab4" x="330.000" y="430.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">4</text><rect id="q13_rulerTick5" x="369.500" y="399.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q13_rulerLab5" x="370.000" y="430.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">5</text><rect id="q13_rulerTick6" x="409.500" y="399.000" width="1" height="14.000" fill="var(--navy-dk)" style="opacity:0"/><text id="q13_rulerLab6" x="410.000" y="430.000" font-family="'JetBrains Mono',monospace" font-size="11" fill="#5A5240" text-anchor="middle" style="opacity:0">6</text></g>
+        <line id="q13_ab_line" x1="170.000" y1="380.000" x2="410.000" y2="380.000" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q13_dotA" cx="170.000" cy="380.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <circle id="q13_dotB" cx="410.000" cy="380.000" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q13_laA" x="154.000" y="398.000" class="lbl" style="opacity:0">A</text>
+        <text id="q13_laB" x="418.000" y="398.000" class="lbl" style="opacity:0">B</text>
+        <text id="q13_measAB" x="290.000" y="370.000" class="measure" text-anchor="middle" style="opacity:0">6 cm</text>
+      </g>
+      <g id="q13_g2" style="opacity:0">
+        <path id="q13_arcA" data-cx="170.000" data-cy="380.000" d="M 305.220,134.815 A 280.000,280.000 0 0 0 274.332,120.164" fill="none" stroke="var(--arc)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <path id="q13_arcB" data-cx="410.000" data-cy="380.000" d="M 305.668,120.164 A 280.000,280.000 0 0 0 274.780,134.815" fill="none" stroke="var(--accent)" stroke-width="1.5" style="stroke-dasharray:1500;stroke-dashoffset:1500;"/>
+        <circle id="q13_dotC" cx="290.000" cy="127.018" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q13_laC" x="284.000" y="115.018" class="lbl" style="opacity:0">C</text>
+        <line id="q13_ac_line" x1="170.000" y1="380.000" x2="290.000" y2="127.018" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q13_bc_line" x1="410.000" y1="380.000" x2="290.000" y2="127.018" stroke="var(--line)" stroke-width="2.3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+      </g>
+      <g id="q13_g3" style="opacity:0">
+        <path id="q13_pbAB_arcA" data-cx="170.000" data-cy="380.000" d="M 276.763,512.232 A 169.952,169.952 0 0 0 276.763,247.768" fill="none" stroke="#2D5A3D" stroke-width="1.4" style="stroke-dasharray:1600;stroke-dashoffset:1600;"/>
+        <path id="q13_pbAB_arcB" data-cx="410.000" data-cy="380.000" d="M 278.078,487.145 A 169.952,169.952 0 1 0 278.078,272.855" fill="none" stroke="#B03030" stroke-width="1.4" style="stroke-dasharray:1600;stroke-dashoffset:1600;"/>
+        <line id="q13_pbAB_line" x1="290.000" y1="500.348" x2="290.000" y2="259.652" stroke="var(--line)" stroke-width="1.8" style="stroke-dasharray:1200;stroke-dashoffset:1200;"/>
+      </g>
+      <g id="q13_g4" style="opacity:0">
+        <path id="q13_pbBC_arcB" data-cx="410.000" data-cy="380.000" d="M 454.444,215.963 A 169.952,169.952 0 0 0 254.846,310.640" fill="none" stroke="#2D5A3D" stroke-width="1.4" style="stroke-dasharray:1600;stroke-dashoffset:1600;"/>
+        <path id="q13_pbBC_arcC" data-cx="290.000" data-cy="127.018" d="M 245.556,291.055 A 169.952,169.952 0 0 0 445.154,196.377" fill="none" stroke="#B03030" stroke-width="1.4" style="stroke-dasharray:1600;stroke-dashoffset:1600;"/>
+        <line id="q13_pbBC_line" x1="437.054" y1="212.216" x2="262.946" y2="294.802" stroke="var(--line)" stroke-width="1.8" style="stroke-dasharray:1200;stroke-dashoffset:1200;"/>
+        <circle id="q13_dotO" cx="290.000" cy="281.969" r="4" fill="var(--line)" style="opacity:0"/>
+        <text id="q13_laO" x="298.000" y="275.969" class="lbl" style="opacity:0">O</text>
+      </g>
+      <g id="q13_g5" style="opacity:0">
+        <path id="q13_circumcircle" data-cx="290.000" data-cy="281.969" d="M 135.048,281.969 A 154.952,154.952 0 1 1 444.952,281.969 A 154.952,154.952 0 1 1 135.048,281.969" fill="none" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:2000;stroke-dashoffset:2000;"/>
+        <line id="q13_seg_OA" x1="290.000" y1="281.969" x2="170.000" y2="380.000" stroke="#B03030" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q13_seg_OB" x1="290.000" y1="281.969" x2="410.000" y2="380.000" stroke="#2D5A3D" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q13_seg_OC" x1="290.000" y1="281.969" x2="290.000" y2="127.018" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <text id="q13_radiusLabel" x="300.000" y="303.969" class="measure" style="opacity:0">OA = OB = OC ≈ 3.87 cm</text>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<script>
+/* ---------- low-level reveal helpers (instant-trigger, no scheduled delay) ---------- */
+function revealArc(el, duration){
+  duration = duration || 650;
+  if(!el) return;
+  let len; try{ len = el.getTotalLength(); } catch(e){ len = 200; }
+  el.style.transition = 'none';
+  el.style.strokeDasharray = len;
+  el.style.strokeDashoffset = len;
+  el.getBoundingClientRect();
+  el.style.transition = 'stroke-dashoffset ' + duration + 'ms ease-in-out';
+  requestAnimationFrame(()=>{ el.style.strokeDashoffset = 0; });
+  // after the reveal finishes, drop the inline dasharray override so any native
+  // dashed pattern (e.g. the "3 3" sketch-style arcs) is restored, not left solid
+  setTimeout(()=>{ el.style.strokeDasharray=''; el.style.strokeDashoffset=''; }, duration + 40);
+}
+function revealFade(el, duration){
+  duration = duration || 350;
+  if(!el) return;
+  el.style.transition = 'none';
+  el.style.opacity = 0;
+  el.getBoundingClientRect();
+  el.style.transition = 'opacity ' + duration + 'ms ease-in';
+  requestAnimationFrame(()=>{ el.style.opacity = 1; });
+}
+function fadeOut(el, duration){
+  duration = duration || 400;
+  if(!el) return;
+  el.style.transition = 'none';
+  el.style.opacity = 1;
+  el.getBoundingClientRect();
+  el.style.transition = 'opacity ' + duration + 'ms ease-out';
+  requestAnimationFrame(()=>{ el.style.opacity = 0; });
+}
+function animateCompass(path){
+  if(!path) return;
+  const cx = parseFloat(path.dataset.cx), cy = parseFloat(path.dataset.cy);
+  const genClass = 'gen-' + path.id;
+  path.parentNode.querySelectorAll('.' + genClass).forEach(el => el.remove());
+
+  const len = path.getTotalLength();
+  const svgNS = "http://www.w3.org/2000/svg";
+  const parent = path.parentNode;
+
+  const pivot = document.createElementNS(svgNS, "circle");
+  pivot.setAttribute("cx", cx); pivot.setAttribute("cy", cy); pivot.setAttribute("r", 5.5);
+  pivot.setAttribute("fill", "#2563eb"); pivot.setAttribute("stroke", "#fff"); pivot.setAttribute("stroke-width", "1.5");
+  pivot.classList.add(genClass);
+  pivot.style.opacity = 0; pivot.style.transition = "opacity .2s";
+  parent.appendChild(pivot);
+
+  const arm = document.createElementNS(svgNS, "line");
+  arm.setAttribute("stroke", "#94a3b8"); arm.setAttribute("stroke-width", "1.5");
+  arm.classList.add(genClass);
+  arm.style.opacity = 0; arm.style.transition = "opacity .2s";
+  parent.appendChild(arm);
+
+  const pencil = document.createElementNS(svgNS, "circle");
+  pencil.setAttribute("r", 5); pencil.setAttribute("fill", "#f59e0b");
+  pencil.setAttribute("stroke", "#fff"); pencil.setAttribute("stroke-width", "1.5");
+  pencil.classList.add(genClass);
+  pencil.style.opacity = 0; pencil.style.transition = "opacity .2s";
+  parent.appendChild(pencil);
+
+  requestAnimationFrame(()=>{ pivot.style.opacity = 1; arm.style.opacity = 1; pencil.style.opacity = 1; });
+
+  const duration = 1000;
+  const start = performance.now();
+  function easeInOutQuad(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t) * t; }
+  function frame(now){
+    const raw = Math.min((now - start) / duration, 1);
+    const eased = easeInOutQuad(raw);
+    // sample the ACTUAL rendered path — guarantees the pencil dot always
+    // follows the real drawn curve, regardless of sweep direction or span
+    const pt = path.getPointAtLength(eased * len);
+    arm.setAttribute("x1", cx); arm.setAttribute("y1", cy);
+    arm.setAttribute("x2", pt.x); arm.setAttribute("y2", pt.y);
+    pencil.setAttribute("cx", pt.x); pencil.setAttribute("cy", pt.y);
+    if (raw < 1){ requestAnimationFrame(frame); }
+    else {
+      setTimeout(()=>{
+        arm.style.opacity = 0;
+        pencil.style.opacity = 0;
+        pivot.style.opacity = 0.55;
+      }, 350);
+    }
+  }
+  requestAnimationFrame(frame);
+}
+function revealArcC(el, duration){ revealArc(el, duration); animateCompass(el); }
+
+function el(id){ return document.getElementById(id); }
+
+/* ---------- generic "whole group at once" action, for simple one-shot steps ---------- */
+function drawGroupAction(gid){
+  const g = el(gid);
+  g.style.transition = 'none';
+  g.style.opacity = 1;
+  const strokes = g.querySelectorAll('line, path');
+  strokes.forEach(p=> revealArc(p, 850));
+  const others = g.querySelectorAll('circle, text, rect, polygon');
+  others.forEach(o=>{
+    o.style.transition = 'none'; o.style.opacity = 0; o.getBoundingClientRect();
+    o.style.transition = 'opacity .5s ease-in';
+  });
+  setTimeout(()=>{ others.forEach(o=> o.style.opacity = 1); }, 750);
+  g.querySelectorAll('.compass-arc').forEach(p => animateCompass(p));
+}
+
+/* ---------- instant (non-animated) state application, used for Back / dot jumps ---------- */
+function instantShowElement(node){
+  node.style.transition = 'none';
+  if(node.tagName === 'path' || node.tagName === 'line' || node.classList.contains('drawn-circle')){
+    node.style.strokeDasharray = '';
+    node.style.strokeDashoffset = '';
+  } else {
+    node.style.opacity = 1;
+  }
+}
+function instantHideGroup(gid){
+  const g = el(gid);
+  g.style.transition = 'none';
+  g.style.opacity = 0;
+}
+function instantHideElement(node){
+  node.style.transition = 'none';
+  if(node.tagName === 'path' || node.tagName === 'line' || node.classList.contains('drawn-circle')){
+    let len; try{ len = node.getTotalLength(); } catch(e){ len = 300; }
+    node.style.strokeDasharray = len;
+    node.style.strokeDashoffset = len;
+  } else {
+    node.style.opacity = 0;
+  }
+}
+
+
+/* =====================================================================
+   Per-question data
+   ===================================================================== */
+const QUESTIONS = [
+  {
+    title: "Perpendicular Bisector of a Line Segment",
+    given: "AB = 7 cm",
+    question: "Draw a line segment AB = 7 cm and construct its perpendicular bisector.",
+    svgId: "svgQ1",
+    stepLines: [
+      "Draw a line segment AB = 7 cm.",
+      "With A and B as centres, and radius more than half of AB, draw arcs on both sides of AB to intersect each other at P and Q.",
+      "Join PQ. PQ is the required perpendicular bisector of AB."
+    ],
+    groups: ["q1_g1","q1_g2","q1_g3"],
+    finalNote: "✅ PQ is the required perpendicular bisector of AB. It crosses AB at its exact midpoint, since P and Q were each located as intersections of equal-radius arcs centred at A and B.",
+    microActions: [
+      [
+        { ms:650, fn:()=>{ el('q1_g1').style.opacity=1; revealFade(el('q1_ruler'),400); revealFade(el('q1_rulerRect'),400); revealFade(el('q1_rulerTick0'),400); revealFade(el('q1_rulerLab0'),400); revealFade(el('q1_rulerTick1'),400); revealFade(el('q1_rulerLab1'),400); revealFade(el('q1_rulerTick2'),400); revealFade(el('q1_rulerLab2'),400); revealFade(el('q1_rulerTick3'),400); revealFade(el('q1_rulerLab3'),400); revealFade(el('q1_rulerTick4'),400); revealFade(el('q1_rulerLab4'),400); revealFade(el('q1_rulerTick5'),400); revealFade(el('q1_rulerLab5'),400); revealFade(el('q1_rulerTick6'),400); revealFade(el('q1_rulerLab6'),400); revealFade(el('q1_rulerTick7'),400); revealFade(el('q1_rulerLab7'),400); }, ids:['q1_ruler', 'q1_rulerRect', 'q1_rulerTick0', 'q1_rulerLab0', 'q1_rulerTick1', 'q1_rulerLab1', 'q1_rulerTick2', 'q1_rulerLab2', 'q1_rulerTick3', 'q1_rulerLab3', 'q1_rulerTick4', 'q1_rulerLab4', 'q1_rulerTick5', 'q1_rulerLab5', 'q1_rulerTick6', 'q1_rulerLab6', 'q1_rulerTick7', 'q1_rulerLab7'] },
+        { ms:900, fn:()=>{ revealArc(el('q1_ab_line'),650); revealFade(el('q1_dotA'),300); revealFade(el('q1_dotB'),300); revealFade(el('q1_laA'),300); revealFade(el('q1_laB'),300); revealFade(el('q1_meas'),300); }, ids:['q1_ab_line','q1_dotA','q1_dotB','q1_laA','q1_laB','q1_meas'] },
+        { ms:650, fn:()=>{ fadeOut(el('q1_ruler'),400); fadeOut(el('q1_rulerRect'),400); fadeOut(el('q1_rulerTick0'),400); fadeOut(el('q1_rulerLab0'),400); fadeOut(el('q1_rulerTick1'),400); fadeOut(el('q1_rulerLab1'),400); fadeOut(el('q1_rulerTick2'),400); fadeOut(el('q1_rulerLab2'),400); fadeOut(el('q1_rulerTick3'),400); fadeOut(el('q1_rulerLab3'),400); fadeOut(el('q1_rulerTick4'),400); fadeOut(el('q1_rulerLab4'),400); fadeOut(el('q1_rulerTick5'),400); fadeOut(el('q1_rulerLab5'),400); fadeOut(el('q1_rulerTick6'),400); fadeOut(el('q1_rulerLab6'),400); fadeOut(el('q1_rulerTick7'),400); fadeOut(el('q1_rulerLab7'),400); }, ids:['-q1_ruler', '-q1_rulerRect', '-q1_rulerTick0', '-q1_rulerLab0', '-q1_rulerTick1', '-q1_rulerLab1', '-q1_rulerTick2', '-q1_rulerLab2', '-q1_rulerTick3', '-q1_rulerLab3', '-q1_rulerTick4', '-q1_rulerLab4', '-q1_rulerTick5', '-q1_rulerLab5', '-q1_rulerTick6', '-q1_rulerLab6', '-q1_rulerTick7', '-q1_rulerLab7'] }
+      ],
+      [
+        { ms:1500, fn:()=>{ el('q1_g2').style.opacity=1; revealArcC(el('q1_arcA'),800); }, ids:['q1_arcA'] },
+        { ms:1500, fn:()=> revealArcC(el('q1_arcB'),800), ids:['q1_arcB'] },
+        { ms:450, fn:()=>{ revealFade(el('q1_dotP'),300); revealFade(el('q1_laP'),300); }, ids:['q1_dotP','q1_laP'] },
+        { ms:450, fn:()=>{ revealFade(el('q1_dotQ'),300); revealFade(el('q1_laQ'),300); }, ids:['q1_dotQ','q1_laQ'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q1_g3'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Perpendicular Bisector of a Line Segment",
+    given: "AB = 10 cm",
+    question: "Draw a line segment AB = 10 cm and construct its perpendicular bisector.",
+    svgId: "svgQ2",
+    stepLines: [
+      "Draw a line segment AB = 10 cm.",
+      "With A and B as centres, and radius more than half of AB, draw arcs on both sides of AB to intersect each other at P and Q.",
+      "Join PQ. PQ is the required perpendicular bisector of AB."
+    ],
+    groups: ["q2_g1","q2_g2","q2_g3"],
+    finalNote: "✅ PQ is the required perpendicular bisector of AB. It crosses AB at its exact midpoint, since P and Q were each located as intersections of equal-radius arcs centred at A and B.",
+    microActions: [
+      [
+        { ms:650, fn:()=>{ el('q2_g1').style.opacity=1; revealFade(el('q2_ruler'),400); revealFade(el('q2_rulerRect'),400); revealFade(el('q2_rulerTick0'),400); revealFade(el('q2_rulerLab0'),400); revealFade(el('q2_rulerTick1'),400); revealFade(el('q2_rulerLab1'),400); revealFade(el('q2_rulerTick2'),400); revealFade(el('q2_rulerLab2'),400); revealFade(el('q2_rulerTick3'),400); revealFade(el('q2_rulerLab3'),400); revealFade(el('q2_rulerTick4'),400); revealFade(el('q2_rulerLab4'),400); revealFade(el('q2_rulerTick5'),400); revealFade(el('q2_rulerLab5'),400); revealFade(el('q2_rulerTick6'),400); revealFade(el('q2_rulerLab6'),400); revealFade(el('q2_rulerTick7'),400); revealFade(el('q2_rulerLab7'),400); revealFade(el('q2_rulerTick8'),400); revealFade(el('q2_rulerLab8'),400); revealFade(el('q2_rulerTick9'),400); revealFade(el('q2_rulerLab9'),400); revealFade(el('q2_rulerTick10'),400); revealFade(el('q2_rulerLab10'),400); }, ids:['q2_ruler', 'q2_rulerRect', 'q2_rulerTick0', 'q2_rulerLab0', 'q2_rulerTick1', 'q2_rulerLab1', 'q2_rulerTick2', 'q2_rulerLab2', 'q2_rulerTick3', 'q2_rulerLab3', 'q2_rulerTick4', 'q2_rulerLab4', 'q2_rulerTick5', 'q2_rulerLab5', 'q2_rulerTick6', 'q2_rulerLab6', 'q2_rulerTick7', 'q2_rulerLab7', 'q2_rulerTick8', 'q2_rulerLab8', 'q2_rulerTick9', 'q2_rulerLab9', 'q2_rulerTick10', 'q2_rulerLab10'] },
+        { ms:900, fn:()=>{ revealArc(el('q2_ab_line'),650); revealFade(el('q2_dotA'),300); revealFade(el('q2_dotB'),300); revealFade(el('q2_laA'),300); revealFade(el('q2_laB'),300); revealFade(el('q2_meas'),300); }, ids:['q2_ab_line','q2_dotA','q2_dotB','q2_laA','q2_laB','q2_meas'] },
+        { ms:650, fn:()=>{ fadeOut(el('q2_ruler'),400); fadeOut(el('q2_rulerRect'),400); fadeOut(el('q2_rulerTick0'),400); fadeOut(el('q2_rulerLab0'),400); fadeOut(el('q2_rulerTick1'),400); fadeOut(el('q2_rulerLab1'),400); fadeOut(el('q2_rulerTick2'),400); fadeOut(el('q2_rulerLab2'),400); fadeOut(el('q2_rulerTick3'),400); fadeOut(el('q2_rulerLab3'),400); fadeOut(el('q2_rulerTick4'),400); fadeOut(el('q2_rulerLab4'),400); fadeOut(el('q2_rulerTick5'),400); fadeOut(el('q2_rulerLab5'),400); fadeOut(el('q2_rulerTick6'),400); fadeOut(el('q2_rulerLab6'),400); fadeOut(el('q2_rulerTick7'),400); fadeOut(el('q2_rulerLab7'),400); fadeOut(el('q2_rulerTick8'),400); fadeOut(el('q2_rulerLab8'),400); fadeOut(el('q2_rulerTick9'),400); fadeOut(el('q2_rulerLab9'),400); fadeOut(el('q2_rulerTick10'),400); fadeOut(el('q2_rulerLab10'),400); }, ids:['-q2_ruler', '-q2_rulerRect', '-q2_rulerTick0', '-q2_rulerLab0', '-q2_rulerTick1', '-q2_rulerLab1', '-q2_rulerTick2', '-q2_rulerLab2', '-q2_rulerTick3', '-q2_rulerLab3', '-q2_rulerTick4', '-q2_rulerLab4', '-q2_rulerTick5', '-q2_rulerLab5', '-q2_rulerTick6', '-q2_rulerLab6', '-q2_rulerTick7', '-q2_rulerLab7', '-q2_rulerTick8', '-q2_rulerLab8', '-q2_rulerTick9', '-q2_rulerLab9', '-q2_rulerTick10', '-q2_rulerLab10'] }
+      ],
+      [
+        { ms:1500, fn:()=>{ el('q2_g2').style.opacity=1; revealArcC(el('q2_arcA'),800); }, ids:['q2_arcA'] },
+        { ms:1500, fn:()=> revealArcC(el('q2_arcB'),800), ids:['q2_arcB'] },
+        { ms:450, fn:()=>{ revealFade(el('q2_dotP'),300); revealFade(el('q2_laP'),300); }, ids:['q2_dotP','q2_laP'] },
+        { ms:450, fn:()=>{ revealFade(el('q2_dotQ'),300); revealFade(el('q2_laQ'),300); }, ids:['q2_dotQ','q2_laQ'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q2_g3'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Construction of a 60° Angle",
+    given: "",
+    question: "Construct an angle of 60° using a compass and ruler only.",
+    svgId: "svgQ3",
+    stepLines: [
+      "Draw a ray OA.",
+      "With O as centre and a convenient radius, draw an arc cutting OA at P.",
+      "With P as centre and the same radius, draw an arc cutting the previous arc at Q. Join OQ. ∠AOQ = 60°."
+    ],
+    groups: ["q3_g1","q3_g2","q3_g3"],
+    finalNote: "✅ ∠AOQ = 60°. Triangle OPQ is equilateral (OP = OQ = PQ = the compass radius), so ∠AOQ is exactly 60° by construction — no measuring required.",
+    microActions: [
+      [
+        { ms:800, fn:()=>{ el('q3_g1').style.opacity=1; revealArc(el('q3_ray_oa'),650); revealFade(el('q3_arrowA'),250); revealFade(el('q3_dotO'),250); revealFade(el('q3_laO'),250); revealFade(el('q3_laA'),250); }, ids:['q3_ray_oa','q3_arrowA','q3_dotO','q3_laO','q3_laA'] }
+      ],
+      [
+        { ms:1400, fn:()=>{ el('q3_g2').style.opacity=1; revealArcC(el('q3_arcO'),800); }, ids:['q3_arcO'] },
+        { ms:450, fn:()=>{ revealFade(el('q3_dotP'),300); revealFade(el('q3_laP'),300); }, ids:['q3_dotP','q3_laP'] }
+      ],
+      [
+        { ms:1200, fn:()=>{ el('q3_g3').style.opacity=1; revealArcC(el('q3_arcP'),700); }, ids:['q3_arcP'] },
+        { ms:450, fn:()=>{ revealFade(el('q3_dotQ'),300); revealFade(el('q3_laQ'),300); }, ids:['q3_dotQ','q3_laQ'] },
+        { ms:900, fn:()=>{ revealArc(el('q3_ray_oq'),650); revealFade(el('q3_arrowQ'),250); revealFade(el('q3_angleArc'),300); revealFade(el('q3_angleLabel'),300); }, ids:['q3_ray_oq','q3_arrowQ','q3_angleArc','q3_angleLabel'] }
+      ]
+    ]
+  },
+  {
+    title: "Construction of a 120° Angle",
+    given: "",
+    question: "Construct an angle of 120° using a compass and ruler only.",
+    svgId: "svgQ4",
+    stepLines: [
+      "Draw a ray OA.",
+      "With O as centre and a convenient radius, draw an arc cutting OA at P.",
+      "With P as centre and the same radius, draw an arc cutting the first arc at Q.",
+      "With Q as centre and the same radius, draw an arc cutting the first arc at R. Join OR. ∠AOR = 120°."
+    ],
+    groups: ["q4_g1","q4_g2","q4_g3","q4_g4"],
+    finalNote: "✅ ∠AOR = 120°. Each step marks off the same compass radius along the original arc — OP = PQ = QR = the compass radius — so each step advances the ray by exactly 60° from the last, with no measuring required.",
+    microActions: [
+      [
+        { ms:800, fn:()=>{ el('q4_g1').style.opacity=1; revealArc(el('q4_ray_oa'),650); revealFade(el('q4_arrowA'),250); revealFade(el('q4_dotO'),250); revealFade(el('q4_laO'),250); revealFade(el('q4_laA'),250); }, ids:['q4_ray_oa','q4_arrowA','q4_dotO','q4_laO','q4_laA'] }
+      ],
+      [
+        { ms:1400, fn:()=>{ el('q4_g2').style.opacity=1; revealArcC(el('q4_arcO'),800); }, ids:['q4_arcO'] },
+        { ms:450, fn:()=>{ revealFade(el('q4_dotP'),300); revealFade(el('q4_laP'),300); }, ids:['q4_dotP','q4_laP'] }
+      ],
+      [
+        { ms:1200, fn:()=>{ el('q4_g3').style.opacity=1; revealArcC(el('q4_arcP'),700); }, ids:['q4_arcP'] },
+        { ms:450, fn:()=>{ revealFade(el('q4_dotQ'),300); revealFade(el('q4_laQ'),300); }, ids:['q4_dotQ','q4_laQ'] }
+      ],
+      [
+        { ms:1200, fn:()=>{ el('q4_g4').style.opacity=1; revealArcC(el('q4_arcQ'),700); }, ids:['q4_arcQ'] },
+        { ms:450, fn:()=>{ revealFade(el('q4_dotR'),300); revealFade(el('q4_laR'),300); }, ids:['q4_dotR','q4_laR'] },
+        { ms:900, fn:()=>{ revealArc(el('q4_ray_or'),650); revealFade(el('q4_arrowR'),250); revealFade(el('q4_angleArc'),300); revealFade(el('q4_angleLabel'),300); }, ids:['q4_ray_or','q4_arrowR','q4_angleArc','q4_angleLabel'] }
+      ]
+    ]
+  },
+  {
+    title: "Construction of a 30° Angle",
+    given: "",
+    question: "Construct an angle of 30° using a compass and ruler only.",
+    svgId: "svgQ5",
+    stepLines: [
+      "Draw a ray OA.",
+      "With O as centre and a convenient radius, draw an arc cutting OA at P. With P as centre and the same radius, draw an arc cutting the first arc at Q. Then ∠AOQ = 60°.",
+      "Bisect ∠AOQ. With P and Q as centres and equal radii (more than half of PQ), draw two arcs intersecting at S. Join OS. ∠AOS = 30°, the required angle."
+    ],
+    groups: ["q5_g1","q5_g2","q5_g3"],
+    finalNote: "✅ ∠AOS = 30°. S is equidistant from P and Q, so OS bisects the 60° angle AOQ exactly — no measuring required.",
+    microActions: [
+      [
+        { ms:800, fn:()=>{ el('q5_g1').style.opacity=1; revealArc(el('q5_ray_oa'),650); revealFade(el('q5_arrowA'),250); revealFade(el('q5_dotO'),250); revealFade(el('q5_laO'),250); revealFade(el('q5_laA'),250); }, ids:['q5_ray_oa','q5_arrowA','q5_dotO','q5_laO','q5_laA'] }
+      ],
+      [
+        { ms:1400, fn:()=>{ el('q5_g2').style.opacity=1; revealArcC(el('q5_arcO'),800); }, ids:['q5_arcO'] },
+        { ms:450, fn:()=>{ revealFade(el('q5_dotP'),300); revealFade(el('q5_laP'),300); }, ids:['q5_dotP','q5_laP'] },
+        { ms:1200, fn:()=> revealArcC(el('q5_arcP'),700), ids:['q5_arcP'] },
+        { ms:450, fn:()=>{ revealFade(el('q5_dotQ'),300); revealFade(el('q5_laQ'),300); }, ids:['q5_dotQ','q5_laQ'] }
+      ],
+      [
+        { ms:1100, fn:()=>{ el('q5_g3').style.opacity=1; revealArcC(el('q5_bisP'),650); }, ids:['q5_bisP'] },
+        { ms:1100, fn:()=> revealArcC(el('q5_bisQ'),650), ids:['q5_bisQ'] },
+        { ms:450, fn:()=>{ revealFade(el('q5_dotS'),300); revealFade(el('q5_laS'),300); }, ids:['q5_dotS','q5_laS'] },
+        { ms:900, fn:()=>{ revealArc(el('q5_ray_os'),650); revealFade(el('q5_arrowS'),250); revealFade(el('q5_angleArc'),300); revealFade(el('q5_angleLabel'),300); }, ids:['q5_ray_os','q5_arrowS','q5_angleArc','q5_angleLabel'] }
+      ]
+    ]
+  },
+  {
+    title: "Construction of a 15° Angle",
+    given: "",
+    question: "Construct an angle of 15° using a compass and ruler only.",
+    svgId: "svgQ6",
+    stepLines: [
+      "Draw a ray OA.",
+      "With O as centre and a convenient radius, draw an arc cutting OA at P. With P as centre and the same radius, draw an arc cutting the first arc at Q. Then ∠AOQ = 60°.",
+      "Bisect ∠AOQ. With P and Q as centres and equal radii, draw two arcs intersecting at S. Join OS, so that ∠AOS = 30°.",
+      "The first arc also cuts OS at T, since OT = OP = the same radius. Bisect ∠AOT similarly: with P and T as centres and equal radii, draw two arcs intersecting at U. Join OU. ∠AOU = 15°, the required angle."
+    ],
+    groups: ["q6_g1","q6_g2","q6_g3","q6_g4"],
+    finalNote: "✅ ∠AOU = 15°. Halving 30° the same way it was made from 60°, using T — already sitting on the first arc where it crosses OS — instead of drawing a fresh arc.",
+    microActions: [
+      [
+        { ms:800, fn:()=>{ el('q6_g1').style.opacity=1; revealArc(el('q6_ray_oa'),650); revealFade(el('q6_arrowA'),250); revealFade(el('q6_dotO'),250); revealFade(el('q6_laO'),250); revealFade(el('q6_laA'),250); }, ids:['q6_ray_oa','q6_arrowA','q6_dotO','q6_laO','q6_laA'] }
+      ],
+      [
+        { ms:1400, fn:()=>{ el('q6_g2').style.opacity=1; revealArcC(el('q6_arcO'),800); }, ids:['q6_arcO'] },
+        { ms:450, fn:()=>{ revealFade(el('q6_dotP'),300); revealFade(el('q6_laP'),300); }, ids:['q6_dotP','q6_laP'] },
+        { ms:1200, fn:()=> revealArcC(el('q6_arcP'),700), ids:['q6_arcP'] },
+        { ms:450, fn:()=>{ revealFade(el('q6_dotQ'),300); revealFade(el('q6_laQ'),300); }, ids:['q6_dotQ','q6_laQ'] }
+      ],
+      [
+        { ms:1100, fn:()=>{ el('q6_g3').style.opacity=1; revealArcC(el('q6_bisP'),650); }, ids:['q6_bisP'] },
+        { ms:1100, fn:()=> revealArcC(el('q6_bisQ'),650), ids:['q6_bisQ'] },
+        { ms:450, fn:()=>{ revealFade(el('q6_dotS'),300); revealFade(el('q6_laS'),300); }, ids:['q6_dotS','q6_laS'] },
+        { ms:650, fn:()=> revealArc(el('q6_ray_os'),500), ids:['q6_ray_os'] }
+      ],
+      [
+        { ms:450, fn:()=>{ el('q6_g4').style.opacity=1; revealFade(el('q6_dotT'),300); revealFade(el('q6_laT'),300); }, ids:['q6_dotT','q6_laT'] },
+        { ms:1000, fn:()=> revealArcC(el('q6_cisP'),600), ids:['q6_cisP'] },
+        { ms:1000, fn:()=> revealArcC(el('q6_cisT'),600), ids:['q6_cisT'] },
+        { ms:450, fn:()=>{ revealFade(el('q6_dotU'),300); revealFade(el('q6_laU'),300); }, ids:['q6_dotU','q6_laU'] },
+        { ms:900, fn:()=>{ revealArc(el('q6_ray_ou'),650); revealFade(el('q6_arrowU'),250); revealFade(el('q6_angleArc'),300); revealFade(el('q6_angleLabel'),300); }, ids:['q6_ray_ou','q6_arrowU','q6_angleArc','q6_angleLabel'] }
+      ]
+    ]
+  },
+  {
+    title: "Construction of a 105° Angle",
+    given: "",
+    question: "Construct an angle of 105° using a compass and ruler only.",
+    svgId: "svgQ7",
+    stepLines: [
+      "Draw a ray OA.",
+      "With O as centre and a convenient radius, draw an arc cutting OA at P. With P as centre, same radius, draw an arc cutting the first arc at Q. With Q as centre, same radius, draw an arc cutting the first arc at R, so that OP = PQ = QR = the radius, and ∠AOR = 120°.",
+      "Bisect ∠QOR. With Q and R as centres and equal radii, draw two arcs intersecting at V. Join OV, so that ∠AOV = 90°.",
+      "The first arc also cuts OV at W, since OW = OP = the same radius. Bisect ∠WOR. With W and R as centres and equal radii, draw two arcs intersecting at X. Join OX. ∠AOX = 105°, the required angle."
+    ],
+    groups: ["q7_g1","q7_g2","q7_g3","q7_g4"],
+    finalNote: "✅ ∠AOX = 105°, exactly halfway between the 90° ray OV and the 120° ray OR — built entirely from equal compass arcs, no protractor required since 105 is a multiple of 15°.",
+    microActions: [
+      [
+        { ms:800, fn:()=>{ el('q7_g1').style.opacity=1; revealArc(el('q7_ray_oa'),650); revealFade(el('q7_arrowA'),250); revealFade(el('q7_dotO'),250); revealFade(el('q7_laO'),250); revealFade(el('q7_laA'),250); }, ids:['q7_ray_oa','q7_arrowA','q7_dotO','q7_laO','q7_laA'] }
+      ],
+      [
+        { ms:1400, fn:()=>{ el('q7_g2').style.opacity=1; revealArcC(el('q7_arcO'),800); }, ids:['q7_arcO'] },
+        { ms:450, fn:()=>{ revealFade(el('q7_dotP'),300); revealFade(el('q7_laP'),300); }, ids:['q7_dotP','q7_laP'] },
+        { ms:1200, fn:()=> revealArcC(el('q7_arcP'),700), ids:['q7_arcP'] },
+        { ms:450, fn:()=>{ revealFade(el('q7_dotQ'),300); revealFade(el('q7_laQ'),300); }, ids:['q7_dotQ','q7_laQ'] },
+        { ms:1200, fn:()=> revealArcC(el('q7_arcQ'),700), ids:['q7_arcQ'] },
+        { ms:450, fn:()=>{ revealFade(el('q7_dotR'),300); revealFade(el('q7_laR'),300); }, ids:['q7_dotR','q7_laR'] }
+      ],
+      [
+        { ms:1100, fn:()=>{ el('q7_g3').style.opacity=1; revealArcC(el('q7_bisQ'),650); }, ids:['q7_bisQ'] },
+        { ms:1100, fn:()=> revealArcC(el('q7_bisR'),650), ids:['q7_bisR'] },
+        { ms:450, fn:()=>{ revealFade(el('q7_dotV'),300); revealFade(el('q7_laV'),300); }, ids:['q7_dotV','q7_laV'] },
+        { ms:650, fn:()=> revealArc(el('q7_ray_ov'),500), ids:['q7_ray_ov'] }
+      ],
+      [
+        { ms:450, fn:()=>{ el('q7_g4').style.opacity=1; revealFade(el('q7_dotW'),300); revealFade(el('q7_laW'),300); }, ids:['q7_dotW','q7_laW'] },
+        { ms:1000, fn:()=> revealArcC(el('q7_cisW'),600), ids:['q7_cisW'] },
+        { ms:1000, fn:()=> revealArcC(el('q7_cisR'),600), ids:['q7_cisR'] },
+        { ms:450, fn:()=>{ revealFade(el('q7_dotX'),300); revealFade(el('q7_laX'),300); }, ids:['q7_dotX','q7_laX'] },
+        { ms:900, fn:()=>{ revealArc(el('q7_ray_ox'),650); revealFade(el('q7_arrowX'),250); revealFade(el('q7_angleArc'),300); revealFade(el('q7_angleLabel'),300); }, ids:['q7_ray_ox','q7_arrowX','q7_angleArc','q7_angleLabel'] }
+      ]
+    ]
+  },
+  {
+    title: "Construction of a 135° Angle",
+    given: "",
+    question: "Construct an angle of 135° using a compass and ruler only.",
+    svgId: "svgQ8",
+    stepLines: [
+      "Draw a line AB and mark a point O on it.",
+      "With O as centre and a convenient radius, draw an arc cutting OA at P and OB at P'.",
+      "Bisect ∠POP'. With P and P' as centres and equal radii, draw two arcs intersecting at V. Join OV. ∠AOV = 90°.",
+      "The first arc also cuts OV at W, since OW = OP = the same radius. Bisect ∠WOP'. With W and P' as centres and equal radii, draw two arcs intersecting at X. Join OX. ∠AOX = 135°, the required angle."
+    ],
+    groups: ["q8_g1","q8_g2","q8_g3","q8_g4"],
+    finalNote: "✅ ∠AOX = 135°, exactly halfway between the 90° ray OV and the straight line OB — built with one continuous semicircular arc plus two bisections, no protractor required.",
+    microActions: [
+      [
+        { ms:800, fn:()=>{ el('q8_g1').style.opacity=1; revealArc(el('q8_line_ab'),650); revealFade(el('q8_dotO'),250); revealFade(el('q8_laO'),250); revealFade(el('q8_laA'),250); revealFade(el('q8_laB'),250); }, ids:['q8_line_ab','q8_dotO','q8_laO','q8_laA','q8_laB'] }
+      ],
+      [
+        { ms:1600, fn:()=>{ el('q8_g2').style.opacity=1; revealArcC(el('q8_arcO'),950); }, ids:['q8_arcO'] },
+        { ms:500, fn:()=>{ revealFade(el('q8_dotP'),300); revealFade(el('q8_laP'),300); revealFade(el('q8_dotPp'),300); revealFade(el('q8_laPp'),300); }, ids:['q8_dotP','q8_laP','q8_dotPp','q8_laPp'] }
+      ],
+      [
+        { ms:1100, fn:()=>{ el('q8_g3').style.opacity=1; revealArcC(el('q8_bisP'),650); }, ids:['q8_bisP'] },
+        { ms:1100, fn:()=> revealArcC(el('q8_bisPp'),650), ids:['q8_bisPp'] },
+        { ms:450, fn:()=>{ revealFade(el('q8_dotV'),300); revealFade(el('q8_laV'),300); }, ids:['q8_dotV','q8_laV'] },
+        { ms:650, fn:()=> revealArc(el('q8_ray_ov'),500), ids:['q8_ray_ov'] }
+      ],
+      [
+        { ms:450, fn:()=>{ el('q8_g4').style.opacity=1; revealFade(el('q8_dotW'),300); revealFade(el('q8_laW'),300); }, ids:['q8_dotW','q8_laW'] },
+        { ms:1000, fn:()=> revealArcC(el('q8_cisW'),600), ids:['q8_cisW'] },
+        { ms:1000, fn:()=> revealArcC(el('q8_cisPp'),600), ids:['q8_cisPp'] },
+        { ms:450, fn:()=>{ revealFade(el('q8_dotX'),300); revealFade(el('q8_laX'),300); }, ids:['q8_dotX','q8_laX'] },
+        { ms:900, fn:()=>{ revealArc(el('q8_ray_ox'),650); revealFade(el('q8_arrowX'),250); revealFade(el('q8_angleArc'),300); revealFade(el('q8_angleLabel'),300); }, ids:['q8_ray_ox','q8_arrowX','q8_angleArc','q8_angleLabel'] }
+      ]
+    ]
+  },
+  {
+    title: "Bisecting a 35° Angle",
+    given: "",
+    question: "Draw an angle of 35° and bisect it using a compass and ruler.",
+    svgId: "svgQ9",
+    stepLines: [
+      "Draw a ray OA.",
+      "Using a protractor, construct ∠AOB = 35°.",
+      "With O as centre, draw an arc cutting OA at P and OB at Q. With P and Q as centres and equal radii, draw two arcs intersecting at S. Join OS. OS bisects ∠AOB, so ∠AOS = ∠BOS = 17.5°."
+    ],
+    groups: ["q9_g1","q9_g2","q9_g3"],
+    finalNote: "✅ OS bisects ∠AOB exactly, since S is equidistant from P and Q — the protractor was only needed to mark the original 35°, because 35 is not a multiple of 15°; the bisection itself is pure compass construction.",
+    microActions: [
+      [
+        { ms:800, fn:()=>{ el('q9_g1').style.opacity=1; revealArc(el('q9_ray_oa'),650); revealFade(el('q9_arrowA'),250); revealFade(el('q9_dotO'),250); revealFade(el('q9_laO'),250); revealFade(el('q9_laA'),250); }, ids:['q9_ray_oa','q9_arrowA','q9_dotO','q9_laO','q9_laA'] }
+      ],
+      [
+        { ms:550, fn:()=>{ el('q9_g2').style.opacity=1; revealFade(el('q9_protractor'),450); }, ids:['q9_protractor'] },
+        { ms:450, fn:()=>{ revealFade(el('q9_tick35'),300); revealFade(el('q9_mark35'),300); }, ids:['q9_tick35','q9_mark35'] },
+        { ms:550, fn:()=> fadeOut(el('q9_protractor'),450), ids:['-q9_protractor'] },
+        { ms:900, fn:()=>{ revealArc(el('q9_ray_ob'),650); revealFade(el('q9_arrowB'),250); revealFade(el('q9_laB'),250); revealFade(el('q9_bLabel'),300); }, ids:['q9_ray_ob','q9_arrowB','q9_laB','q9_bLabel'] }
+      ],
+      [
+        { ms:1200, fn:()=>{ el('q9_g3').style.opacity=1; revealArcC(el('q9_arcO'),700); }, ids:['q9_arcO'] },
+        { ms:400, fn:()=>{ revealFade(el('q9_dotP'),250); revealFade(el('q9_laP'),250); }, ids:['q9_dotP','q9_laP'] },
+        { ms:400, fn:()=>{ revealFade(el('q9_dotQ'),250); revealFade(el('q9_laQ'),250); }, ids:['q9_dotQ','q9_laQ'] },
+        { ms:1000, fn:()=> revealArcC(el('q9_bisP'),600), ids:['q9_bisP'] },
+        { ms:1000, fn:()=> revealArcC(el('q9_bisQ'),600), ids:['q9_bisQ'] },
+        { ms:400, fn:()=>{ revealFade(el('q9_dotS'),250); revealFade(el('q9_laS'),250); }, ids:['q9_dotS','q9_laS'] },
+        { ms:900, fn:()=>{ revealArc(el('q9_ray_os'),650); revealFade(el('q9_arrowS'),250); revealFade(el('q9_angleArc'),300); revealFade(el('q9_angleLabel'),300); }, ids:['q9_ray_os','q9_arrowS','q9_angleArc','q9_angleLabel'] }
+      ]
+    ]
+  },
+  {
+    title: "Bisecting a 55° Angle",
+    given: "",
+    question: "Draw an angle of 55° and bisect it using a compass and ruler.",
+    svgId: "svgQ10",
+    stepLines: [
+      "Draw a ray OA.",
+      "Using a protractor, construct ∠AOB = 55°.",
+      "With O as centre, draw an arc cutting OA at P and OB at Q. With P and Q as centres and equal radii, draw two arcs intersecting at S. Join OS. OS bisects ∠AOB, so ∠AOS = ∠BOS = 27.5°."
+    ],
+    groups: ["q10_g1","q10_g2","q10_g3"],
+    finalNote: "✅ OS bisects ∠AOB exactly, since S is equidistant from P and Q — the protractor was only needed to mark the original 55°, because 55 is not a multiple of 15°; the bisection itself is pure compass construction.",
+    microActions: [
+      [
+        { ms:800, fn:()=>{ el('q10_g1').style.opacity=1; revealArc(el('q10_ray_oa'),650); revealFade(el('q10_arrowA'),250); revealFade(el('q10_dotO'),250); revealFade(el('q10_laO'),250); revealFade(el('q10_laA'),250); }, ids:['q10_ray_oa','q10_arrowA','q10_dotO','q10_laO','q10_laA'] }
+      ],
+      [
+        { ms:550, fn:()=>{ el('q10_g2').style.opacity=1; revealFade(el('q10_protractor'),450); }, ids:['q10_protractor'] },
+        { ms:450, fn:()=>{ revealFade(el('q10_tick55'),300); revealFade(el('q10_mark55'),300); }, ids:['q10_tick55','q10_mark55'] },
+        { ms:550, fn:()=> fadeOut(el('q10_protractor'),450), ids:['-q10_protractor'] },
+        { ms:900, fn:()=>{ revealArc(el('q10_ray_ob'),650); revealFade(el('q10_arrowB'),250); revealFade(el('q10_laB'),250); revealFade(el('q10_bLabel'),300); }, ids:['q10_ray_ob','q10_arrowB','q10_laB','q10_bLabel'] }
+      ],
+      [
+        { ms:1200, fn:()=>{ el('q10_g3').style.opacity=1; revealArcC(el('q10_arcO'),700); }, ids:['q10_arcO'] },
+        { ms:400, fn:()=>{ revealFade(el('q10_dotP'),250); revealFade(el('q10_laP'),250); }, ids:['q10_dotP','q10_laP'] },
+        { ms:400, fn:()=>{ revealFade(el('q10_dotQ'),250); revealFade(el('q10_laQ'),250); }, ids:['q10_dotQ','q10_laQ'] },
+        { ms:1000, fn:()=> revealArcC(el('q10_bisP'),600), ids:['q10_bisP'] },
+        { ms:1000, fn:()=> revealArcC(el('q10_bisQ'),600), ids:['q10_bisQ'] },
+        { ms:400, fn:()=>{ revealFade(el('q10_dotS'),250); revealFade(el('q10_laS'),250); }, ids:['q10_dotS','q10_laS'] },
+        { ms:900, fn:()=>{ revealArc(el('q10_ray_os'),650); revealFade(el('q10_arrowS'),250); revealFade(el('q10_angleArc'),300); revealFade(el('q10_angleLabel'),300); }, ids:['q10_ray_os','q10_arrowS','q10_angleArc','q10_angleLabel'] }
+      ]
+    ]
+  },
+  {
+    title: "△ABC with Circumcircle — ASA",
+    given: "AB = 5 cm, ∠A = 70°, ∠B = 60°",
+    question: "Draw △ABC with AB = 5 cm, ∠A = 70° and ∠B = 60°. Draw the circumcircle of △ABC. Is the centre inside or outside the triangle?",
+    svgId: "svgQ11",
+    stepLines: [
+      "Draw AB = 5 cm.",
+      "At A, using a protractor, construct ∠A = 70°, and draw the ray AX along this direction.",
+      "At B, construct ∠B = 60° using compass: with B as centre draw an arc cutting BA at P; with P as centre, same radius, draw an arc cutting the first arc at Q. Draw the ray BY through Q. AX and BY meet at C — mark this point. △ABC is now complete.",
+      "Draw the perpendicular bisector of AB: with A and B as centres and equal radii, draw arcs intersecting above and below; join them.",
+      "Draw the perpendicular bisector of BC similarly. The two bisectors meet at O, the circumcentre.",
+      "With O as centre and radius OA, draw the circumcircle. It passes through B and C as well."
+    ],
+    groups: ["q11_g1","q11_g2","q11_g3","q11_g4","q11_g5","q11_g6"],
+    finalNote: "✅ The circumcentre O lies INSIDE △ABC. All three angles (70°, 60°, 50°) are acute — for an acute triangle the circumcentre always falls inside; OA = OB = OC ≈ 3.26 cm.",
+    microActions: [
+      [
+        { ms:650, fn:()=>{ el('q11_g1').style.opacity=1; revealFade(el('q11_ruler'),400); revealFade(el('q11_rulerRect'),400); revealFade(el('q11_rulerTick0'),400); revealFade(el('q11_rulerLab0'),400); revealFade(el('q11_rulerTick1'),400); revealFade(el('q11_rulerLab1'),400); revealFade(el('q11_rulerTick2'),400); revealFade(el('q11_rulerLab2'),400); revealFade(el('q11_rulerTick3'),400); revealFade(el('q11_rulerLab3'),400); revealFade(el('q11_rulerTick4'),400); revealFade(el('q11_rulerLab4'),400); revealFade(el('q11_rulerTick5'),400); revealFade(el('q11_rulerLab5'),400); }, ids:['q11_ruler', 'q11_rulerRect', 'q11_rulerTick0', 'q11_rulerLab0', 'q11_rulerTick1', 'q11_rulerLab1', 'q11_rulerTick2', 'q11_rulerLab2', 'q11_rulerTick3', 'q11_rulerLab3', 'q11_rulerTick4', 'q11_rulerLab4', 'q11_rulerTick5', 'q11_rulerLab5'] },
+        { ms:900, fn:()=>{ revealArc(el('q11_ab_line'),650); revealFade(el('q11_dotA'),300); revealFade(el('q11_dotB'),300); revealFade(el('q11_laA'),300); revealFade(el('q11_laB'),300); revealFade(el('q11_meas'),300); }, ids:['q11_ab_line','q11_dotA','q11_dotB','q11_laA','q11_laB','q11_meas'] },
+        { ms:650, fn:()=>{ fadeOut(el('q11_ruler'),400); fadeOut(el('q11_rulerRect'),400); fadeOut(el('q11_rulerTick0'),400); fadeOut(el('q11_rulerLab0'),400); fadeOut(el('q11_rulerTick1'),400); fadeOut(el('q11_rulerLab1'),400); fadeOut(el('q11_rulerTick2'),400); fadeOut(el('q11_rulerLab2'),400); fadeOut(el('q11_rulerTick3'),400); fadeOut(el('q11_rulerLab3'),400); fadeOut(el('q11_rulerTick4'),400); fadeOut(el('q11_rulerLab4'),400); fadeOut(el('q11_rulerTick5'),400); fadeOut(el('q11_rulerLab5'),400); }, ids:['-q11_ruler', '-q11_rulerRect', '-q11_rulerTick0', '-q11_rulerLab0', '-q11_rulerTick1', '-q11_rulerLab1', '-q11_rulerTick2', '-q11_rulerLab2', '-q11_rulerTick3', '-q11_rulerLab3', '-q11_rulerTick4', '-q11_rulerLab4', '-q11_rulerTick5', '-q11_rulerLab5'] }
+      ],
+      [
+        { ms:550, fn:()=>{ el('q11_g2').style.opacity=1; revealFade(el('q11_protractor'),450); }, ids:['q11_protractor'] },
+        { ms:450, fn:()=>{ revealFade(el('q11_tickA'),300); revealFade(el('q11_markA'),300); }, ids:['q11_tickA','q11_markA'] },
+        { ms:550, fn:()=> fadeOut(el('q11_protractor'),450), ids:['-q11_protractor'] },
+        { ms:700, fn:()=>{ revealArc(el('q11_ac_line'),550); revealFade(el('q11_ac_arrow'),250); }, ids:['q11_ac_line','q11_ac_arrow'] }
+      ],
+      [
+        { ms:1100, fn:()=>{ el('q11_g3').style.opacity=1; revealArcC(el('q11_arcB60'),650); }, ids:['q11_arcB60'] },
+        { ms:350, fn:()=> revealFade(el('q11_dotP60'),250), ids:['q11_dotP60'] },
+        { ms:1000, fn:()=> revealArcC(el('q11_arcP60'),600), ids:['q11_arcP60'] },
+        { ms:350, fn:()=> revealFade(el('q11_dotQ60'),250), ids:['q11_dotQ60'] },
+        { ms:700, fn:()=>{ revealArc(el('q11_bc_line'),550); revealFade(el('q11_bc_arrow'),250); }, ids:['q11_bc_line','q11_bc_arrow'] },
+        { ms:400, fn:()=>{ revealFade(el('q11_dotC'),300); revealFade(el('q11_laC'),300); }, ids:['q11_dotC','q11_laC'] }
+      ],
+      [
+        { ms:1000, fn:()=>{ el('q11_g4').style.opacity=1; revealArcC(el('q11_pbAB_arcA'),600); }, ids:['q11_pbAB_arcA'] },
+        { ms:1000, fn:()=> revealArcC(el('q11_pbAB_arcB'),600), ids:['q11_pbAB_arcB'] },
+        { ms:700, fn:()=> revealArc(el('q11_pbAB_line'),550), ids:['q11_pbAB_line'] }
+      ],
+      [
+        { ms:1000, fn:()=>{ el('q11_g5').style.opacity=1; revealArcC(el('q11_pbBC_arcB'),600); }, ids:['q11_pbBC_arcB'] },
+        { ms:1000, fn:()=> revealArcC(el('q11_pbBC_arcC'),600), ids:['q11_pbBC_arcC'] },
+        { ms:700, fn:()=>{ revealArc(el('q11_pbBC_line'),550); revealFade(el('q11_dotO'),300); revealFade(el('q11_laO'),300); }, ids:['q11_pbBC_line','q11_dotO','q11_laO'] }
+      ],
+      [
+        { ms:1300, fn:()=>{ el('q11_g6').style.opacity=1; revealArcC(el('q11_circumcircle'),1100); }, ids:['q11_circumcircle'] }
+      ]
+    ]
+  },
+  {
+    title: "△ABC with Circumcircle — SAS",
+    given: "AB = 5 cm, ∠A = 100°, AC = 4 cm",
+    question: "Draw △ABC with AB = 5 cm, ∠A = 100°, AC = 4 cm. Draw the circumcircle of △ABC. Is the centre inside or outside the triangle?",
+    svgId: "svgQ12",
+    stepLines: [
+      "Draw AB = 5 cm.",
+      "At A, using a protractor, construct ∠A = 100°.",
+      "Draw a ray from A along this direction. With A as centre and radius 4 cm, draw an arc cutting the ray at C.",
+      "Join BC to complete the triangle.",
+      "Draw the perpendicular bisector of AB: with A and B as centres and equal radii, draw arcs intersecting above and below; join them.",
+      "Draw the perpendicular bisector of BC similarly. The two bisectors meet at O, the circumcentre.",
+      "With O as centre and radius OA, draw the circumcircle. It passes through B and C as well."
+    ],
+    groups: ["q12_g1","q12_g2","q12_g3","q12_g4","q12_g5","q12_g6","q12_g7"],
+    finalNote: "✅ The circumcentre O lies OUTSIDE △ABC. ∠A = 100° is obtuse — for an obtuse triangle the circumcentre always falls outside, on the far side of the side opposite the obtuse angle (here, BC). OA = OB = OC ≈ 3.52 cm.",
+    microActions: [
+      [
+        { ms:650, fn:()=>{ el('q12_g1').style.opacity=1; revealFade(el('q12_rulerRect'),400); revealFade(el('q12_rulerTick0'),400); revealFade(el('q12_rulerLab0'),400); revealFade(el('q12_rulerTick1'),400); revealFade(el('q12_rulerLab1'),400); revealFade(el('q12_rulerTick2'),400); revealFade(el('q12_rulerLab2'),400); revealFade(el('q12_rulerTick3'),400); revealFade(el('q12_rulerLab3'),400); revealFade(el('q12_rulerTick4'),400); revealFade(el('q12_rulerLab4'),400); revealFade(el('q12_rulerTick5'),400); revealFade(el('q12_rulerLab5'),400); revealFade(el('q12_ruler'),400); }, ids:['q12_rulerRect', 'q12_rulerTick0', 'q12_rulerLab0', 'q12_rulerTick1', 'q12_rulerLab1', 'q12_rulerTick2', 'q12_rulerLab2', 'q12_rulerTick3', 'q12_rulerLab3', 'q12_rulerTick4', 'q12_rulerLab4', 'q12_rulerTick5', 'q12_rulerLab5', 'q12_ruler'] },
+        { ms:900, fn:()=>{ revealArc(el('q12_ab_line'),650); revealFade(el('q12_dotA'),300); revealFade(el('q12_dotB'),300); revealFade(el('q12_laA'),300); revealFade(el('q12_laB'),300); revealFade(el('q12_measAB'),300); }, ids:['q12_ab_line','q12_dotA','q12_dotB','q12_laA','q12_laB','q12_measAB'] },
+        { ms:650, fn:()=>{ fadeOut(el('q12_rulerRect'),400); fadeOut(el('q12_rulerTick0'),400); fadeOut(el('q12_rulerLab0'),400); fadeOut(el('q12_rulerTick1'),400); fadeOut(el('q12_rulerLab1'),400); fadeOut(el('q12_rulerTick2'),400); fadeOut(el('q12_rulerLab2'),400); fadeOut(el('q12_rulerTick3'),400); fadeOut(el('q12_rulerLab3'),400); fadeOut(el('q12_rulerTick4'),400); fadeOut(el('q12_rulerLab4'),400); fadeOut(el('q12_rulerTick5'),400); fadeOut(el('q12_rulerLab5'),400); fadeOut(el('q12_ruler'),400); }, ids:['-q12_rulerRect', '-q12_rulerTick0', '-q12_rulerLab0', '-q12_rulerTick1', '-q12_rulerLab1', '-q12_rulerTick2', '-q12_rulerLab2', '-q12_rulerTick3', '-q12_rulerLab3', '-q12_rulerTick4', '-q12_rulerLab4', '-q12_rulerTick5', '-q12_rulerLab5', '-q12_ruler'] }
+      ],
+      [
+        { ms:550, fn:()=>{ el('q12_g2').style.opacity=1; revealFade(el('q12_protractor'),450); }, ids:['q12_protractor'] },
+        { ms:450, fn:()=>{ revealFade(el('q12_tickA'),300); revealFade(el('q12_markA'),300); }, ids:['q12_tickA','q12_markA'] },
+        { ms:550, fn:()=> fadeOut(el('q12_protractor'),450), ids:['-q12_protractor'] }
+      ],
+      [
+        { ms:700, fn:()=>{ el('q12_g3').style.opacity=1; revealArc(el('q12_ac_ray'),550); revealFade(el('q12_ac_arrow'),250); }, ids:['q12_ac_ray','q12_ac_arrow'] },
+        { ms:1100, fn:()=> revealArcC(el('q12_ac_arc'),650), ids:['q12_ac_arc'] },
+        { ms:400, fn:()=>{ revealFade(el('q12_dotC'),300); revealFade(el('q12_laC'),300); }, ids:['q12_dotC','q12_laC'] }
+      ],
+      [
+        { ms:700, fn:()=>{ el('q12_g4').style.opacity=1; revealArc(el('q12_bc_line'),550); }, ids:['q12_bc_line'] }
+      ],
+      [
+        { ms:1000, fn:()=>{ el('q12_g5').style.opacity=1; revealArcC(el('q12_pbAB_arcA'),600); }, ids:['q12_pbAB_arcA'] },
+        { ms:1000, fn:()=> revealArcC(el('q12_pbAB_arcB'),600), ids:['q12_pbAB_arcB'] },
+        { ms:700, fn:()=> revealArc(el('q12_pbAB_line'),550), ids:['q12_pbAB_line'] }
+      ],
+      [
+        { ms:1000, fn:()=>{ el('q12_g6').style.opacity=1; revealArcC(el('q12_pbBC_arcB'),600); }, ids:['q12_pbBC_arcB'] },
+        { ms:1000, fn:()=> revealArcC(el('q12_pbBC_arcC'),600), ids:['q12_pbBC_arcC'] },
+        { ms:700, fn:()=>{ revealArc(el('q12_pbBC_line'),550); revealFade(el('q12_dotO'),300); revealFade(el('q12_laO'),300); }, ids:['q12_pbBC_line','q12_dotO','q12_laO'] }
+      ],
+      [
+        { ms:1300, fn:()=>{ el('q12_g7').style.opacity=1; revealArcC(el('q12_circumcircle'),1100); }, ids:['q12_circumcircle'] }
+      ]
+    ]
+  },
+  {
+    title: "△ABC with Circumcircle — SSS",
+    given: "AB = 6 cm, BC = 7 cm, CA = 7 cm",
+    question: "Draw △ABC with AB = 6 cm, BC = 7 cm, CA = 7 cm. Draw the circumcircle of △ABC. Let the circumcentre be O. Measure OA, OB, OC.",
+    svgId: "svgQ13",
+    stepLines: [
+      "Draw AB = 6 cm.",
+      "With A as centre and radius 7 cm, draw an arc. With B as centre and radius 7 cm, draw another arc cutting the first at C. Join AC and BC. △ABC is now complete.",
+      "Draw the perpendicular bisector of AB: with A and B as centres and equal radii, draw arcs intersecting above and below; join them.",
+      "Draw the perpendicular bisector of BC similarly. The two bisectors meet at O, the circumcentre.",
+      "With O as centre and radius OA, draw the circumcircle. Join OA, OB and OC, and measure each."
+    ],
+    groups: ["q13_g1","q13_g2","q13_g3","q13_g4","q13_g5"],
+    finalNote: "✅ OA = OB = OC ≈ 3.87 cm exactly. This is guaranteed by construction — O was built as the point equidistant from all three vertices, so all three radii must match, regardless of which two perpendicular bisectors were used to locate it.",
+    microActions: [
+      [
+        { ms:650, fn:()=>{ el('q13_g1').style.opacity=1; revealFade(el('q13_rulerRect'),400); revealFade(el('q13_rulerTick0'),400); revealFade(el('q13_rulerLab0'),400); revealFade(el('q13_rulerTick1'),400); revealFade(el('q13_rulerLab1'),400); revealFade(el('q13_rulerTick2'),400); revealFade(el('q13_rulerLab2'),400); revealFade(el('q13_rulerTick3'),400); revealFade(el('q13_rulerLab3'),400); revealFade(el('q13_rulerTick4'),400); revealFade(el('q13_rulerLab4'),400); revealFade(el('q13_rulerTick5'),400); revealFade(el('q13_rulerLab5'),400); revealFade(el('q13_rulerTick6'),400); revealFade(el('q13_rulerLab6'),400); revealFade(el('q13_ruler'),400); }, ids:['q13_rulerRect', 'q13_rulerTick0', 'q13_rulerLab0', 'q13_rulerTick1', 'q13_rulerLab1', 'q13_rulerTick2', 'q13_rulerLab2', 'q13_rulerTick3', 'q13_rulerLab3', 'q13_rulerTick4', 'q13_rulerLab4', 'q13_rulerTick5', 'q13_rulerLab5', 'q13_rulerTick6', 'q13_rulerLab6', 'q13_ruler'] },
+        { ms:900, fn:()=>{ revealArc(el('q13_ab_line'),650); revealFade(el('q13_dotA'),300); revealFade(el('q13_dotB'),300); revealFade(el('q13_laA'),300); revealFade(el('q13_laB'),300); revealFade(el('q13_measAB'),300); }, ids:['q13_ab_line','q13_dotA','q13_dotB','q13_laA','q13_laB','q13_measAB'] },
+        { ms:650, fn:()=>{ fadeOut(el('q13_rulerRect'),400); fadeOut(el('q13_rulerTick0'),400); fadeOut(el('q13_rulerLab0'),400); fadeOut(el('q13_rulerTick1'),400); fadeOut(el('q13_rulerLab1'),400); fadeOut(el('q13_rulerTick2'),400); fadeOut(el('q13_rulerLab2'),400); fadeOut(el('q13_rulerTick3'),400); fadeOut(el('q13_rulerLab3'),400); fadeOut(el('q13_rulerTick4'),400); fadeOut(el('q13_rulerLab4'),400); fadeOut(el('q13_rulerTick5'),400); fadeOut(el('q13_rulerLab5'),400); fadeOut(el('q13_rulerTick6'),400); fadeOut(el('q13_rulerLab6'),400); fadeOut(el('q13_ruler'),400); }, ids:['-q13_rulerRect', '-q13_rulerTick0', '-q13_rulerLab0', '-q13_rulerTick1', '-q13_rulerLab1', '-q13_rulerTick2', '-q13_rulerLab2', '-q13_rulerTick3', '-q13_rulerLab3', '-q13_rulerTick4', '-q13_rulerLab4', '-q13_rulerTick5', '-q13_rulerLab5', '-q13_rulerTick6', '-q13_rulerLab6', '-q13_ruler'] }
+      ],
+      [
+        { ms:1100, fn:()=>{ el('q13_g2').style.opacity=1; revealArcC(el('q13_arcA'),650); }, ids:['q13_arcA'] },
+        { ms:1100, fn:()=> revealArcC(el('q13_arcB'),650), ids:['q13_arcB'] },
+        { ms:400, fn:()=>{ revealFade(el('q13_dotC'),300); revealFade(el('q13_laC'),300); }, ids:['q13_dotC','q13_laC'] },
+        { ms:600, fn:()=> revealArc(el('q13_ac_line'),500), ids:['q13_ac_line'] },
+        { ms:600, fn:()=> revealArc(el('q13_bc_line'),500), ids:['q13_bc_line'] }
+      ],
+      [
+        { ms:1000, fn:()=>{ el('q13_g3').style.opacity=1; revealArcC(el('q13_pbAB_arcA'),600); }, ids:['q13_pbAB_arcA'] },
+        { ms:1000, fn:()=> revealArcC(el('q13_pbAB_arcB'),600), ids:['q13_pbAB_arcB'] },
+        { ms:700, fn:()=> revealArc(el('q13_pbAB_line'),550), ids:['q13_pbAB_line'] }
+      ],
+      [
+        { ms:1000, fn:()=>{ el('q13_g4').style.opacity=1; revealArcC(el('q13_pbBC_arcB'),600); }, ids:['q13_pbBC_arcB'] },
+        { ms:1000, fn:()=> revealArcC(el('q13_pbBC_arcC'),600), ids:['q13_pbBC_arcC'] },
+        { ms:700, fn:()=>{ revealArc(el('q13_pbBC_line'),550); revealFade(el('q13_dotO'),300); revealFade(el('q13_laO'),300); }, ids:['q13_pbBC_line','q13_dotO','q13_laO'] }
+      ],
+      [
+        { ms:1300, fn:()=>{ el('q13_g5').style.opacity=1; revealArcC(el('q13_circumcircle'),1100); }, ids:['q13_circumcircle'] },
+        { ms:500, fn:()=> revealArc(el('q13_seg_OA'),400), ids:['q13_seg_OA'] },
+        { ms:500, fn:()=> revealArc(el('q13_seg_OB'),400), ids:['q13_seg_OB'] },
+        { ms:500, fn:()=>{ revealArc(el('q13_seg_OC'),400); revealFade(el('q13_radiusLabel'),350); }, ids:['q13_seg_OC','q13_radiusLabel'] }
+      ]
+    ]
+  }
+];
+
+/* ---------- engine state ---------- */
+let currentQ = 0;
+let flatMicro = [];   // flattened [{mainIdx, ms, fn}, ...] for the current question
+let microPos = -1;    // index into flatMicro of the last EXECUTED action
+let animating = false;
+
+function buildFlat(q){
+  const flat = [];
+  q.microActions.forEach((arr, mainIdx)=>{
+    arr.forEach(a => flat.push({ mainIdx, ms:a.ms, fn:a.fn, ids:a.ids }));
+  });
+  return flat;
+}
+
+function lockControls(ms){
+  animating = true;
+  el("nextBtn").disabled = true;
+  el("prevBtn").disabled = true;
+  el("qPicker").disabled = true;
+  document.querySelectorAll('.dot').forEach(d=> d.style.pointerEvents = 'none');
+  setTimeout(()=>{
+    animating = false;
+    el("prevBtn").disabled = microPos <= 0;
+    el("nextBtn").disabled = microPos >= flatMicro.length - 1;
+    el("qPicker").disabled = false;
+    document.querySelectorAll('.dot').forEach(d=> d.style.pointerEvents = 'auto');
+  }, ms);
+}
+
+function updateUI(textChanged){
+  const q = QUESTIONS[currentQ];
+  const mi = flatMicro[microPos].mainIdx;
+
+  if(textChanged){
+    const wrap = el("stepTextWrap");
+    wrap.classList.add("fading");
+    setTimeout(()=>{
+      el("stepTextNum").textContent = (mi+1) + ".";
+      el("stepTextBody").textContent = q.stepLines[mi];
+      wrap.classList.remove("fading");
+    }, 220);
+  }
+
+  const isFinal = microPos === flatMicro.length - 1;
+  const finalNote = el("finalNote");
+  finalNote.style.display = isFinal ? "block" : "none";
+  finalNote.textContent = q.finalNote;
+
+  const prog = el("progress");
+  prog.innerHTML = "";
+  q.stepLines.forEach((s,i)=>{
+    const d = document.createElement("div");
+    d.className = "dot" + (i === mi ? " active" : "");
+    d.onclick = ()=>{ if(animating) return; jumpToMainStep(i); };
+    prog.appendChild(d);
+  });
+
+  el("prevBtn").disabled = microPos <= 0;
+  el("nextBtn").disabled = microPos >= flatMicro.length - 1;
+}
+
+function goForward(){
+  if(animating) return;
+  if(microPos >= flatMicro.length - 1) return;
+  const prevMain = microPos >= 0 ? flatMicro[microPos].mainIdx : -1;
+  microPos++;
+  const cur = flatMicro[microPos];
+  cur.fn();
+  updateUI(cur.mainIdx !== prevMain);
+  lockControls(cur.ms || 700);
+}
+
+/* instantly apply the cumulative state up to (and including) flatMicro[targetPos],
+   with no animation — used for Back and for jumping via the progress dots */
+function applyStateInstant(targetPos){
+  const q = QUESTIONS[currentQ];
+  q.groups.forEach(gid=> instantHideGroup(gid));
+  document.querySelectorAll('[class*="gen-"]').forEach(n=> n.remove());
+
+  const neededGroups = new Set();
+  for(let i = 0; i <= targetPos; i++) neededGroups.add(q.groups[flatMicro[i].mainIdx]);
+
+  // show the needed groups, but start every child of those groups HIDDEN —
+  // we only reveal exactly what each already-clicked action actually reveals below
+  neededGroups.forEach(gid=>{
+    const g = el(gid);
+    g.style.transition = 'none';
+    g.style.opacity = 1;
+    g.querySelectorAll('path, line, circle, text, rect, polygon, g').forEach(n=>{
+      n.style.transition = 'none';
+      if(n.tagName === 'path' || n.tagName === 'line' || n.classList.contains('drawn-circle')){
+        let len; try{ len = n.getTotalLength(); } catch(e){ len = 300; }
+        n.style.strokeDasharray = len;
+        n.style.strokeDashoffset = len;
+      } else {
+        n.style.opacity = 0;
+      }
+    });
+  });
+
+  for(let i = 0; i <= targetPos; i++){
+    const action = flatMicro[i];
+    if(action.ids === 'ALL'){
+      const gid = q.groups[action.mainIdx];
+      el(gid).querySelectorAll('path, line, circle, text, rect, polygon').forEach(n=> instantShowElement(n));
+    } else {
+      (action.ids || []).forEach(id=>{
+        const hide = id.charAt(0) === '-';
+        const n = el(hide ? id.slice(1) : id);
+        if(n) (hide ? instantHideElement : instantShowElement)(n);
+      });
+    }
+  }
+  microPos = targetPos;
+}
+
+function goBack(){
+  if(animating) return;
+  if(microPos <= 0) return;
+  const prevMain = flatMicro[microPos].mainIdx;
+  applyStateInstant(microPos - 1);
+  const newMain = flatMicro[microPos].mainIdx;
+  updateUI(newMain !== prevMain);
+  lockControls(300);
+}
+
+function jumpToMainStep(targetMainIdx){
+  if(animating) return;
+  let pos = -1;
+  flatMicro.forEach((m,i)=>{ if(m.mainIdx === targetMainIdx) pos = i; });
+  if(pos === -1) return;
+  applyStateInstant(pos);
+  updateUI(true);
+  lockControls(300);
+}
+
+function initQuestion(qi){
+  currentQ = qi;
+  flatMicro = buildFlat(QUESTIONS[qi]);
+  QUESTIONS[qi].groups.forEach(gid=> instantHideGroup(gid));
+  microPos = -1;
+  el("qFullText").textContent = QUESTIONS[qi].question;
+  goForward(); // reveal the very first action (Step 1) on load
+}
+
+el("nextBtn").onclick = goForward;
+el("prevBtn").onclick = goBack;
+
+el("qPicker").onchange = (e)=>{
+  if(animating) return;
+  el(QUESTIONS[currentQ].svgId).style.display = 'none';
+  const qi = parseInt(e.target.value, 10);
+  el("qFullText").textContent = QUESTIONS[qi].question;
+  el(QUESTIONS[qi].svgId).style.display = 'block';
+  initQuestion(qi);
+};
+
+initQuestion(0);
+</script>
+
+<button id="scratchToggle" aria-label="Open scratchpad" title="Scratchpad">✏️</button>
+<div id="scratchPad">
+  <div id="scratchHeader">
+    <span id="scratchTitle">✏️ Scratchpad</span>
+    <div id="scratchTools">
+      <button class="stool active" data-tool="pen">Pen</button>
+      <button class="stool" data-tool="eraser">Eraser</button>
+      <button class="stool" id="scratchClearBtn">Clear</button>
+      <button class="stool" id="scratchCloseBtn">✕</button>
+    </div>
+  </div>
+  <canvas id="scratchCanvas"></canvas>
+</div>
+
+<script>
+(function(){
+  const toggleBtn = document.getElementById('scratchToggle');
+  const pad = document.getElementById('scratchPad');
+  const header = document.getElementById('scratchHeader');
+  const canvas = document.getElementById('scratchCanvas');
+  const ctx = canvas.getContext('2d');
+  const clearBtn = document.getElementById('scratchClearBtn');
+  const closeBtn = document.getElementById('scratchCloseBtn');
+  const toolBtns = pad.querySelectorAll('.stool[data-tool]');
+
+  function themeColor(varName, fallback){
+    const v = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+    return v || fallback;
+  }
+
+  let currentTool = 'pen';
+
+  /* ---------- open / close ---------- */
+  toggleBtn.addEventListener('click', ()=>{
+    const opening = !pad.classList.contains('open');
+    pad.classList.toggle('open');
+    if(opening) syncCanvasToElementSize();
+  });
+  closeBtn.addEventListener('click', ()=> pad.classList.remove('open'));
+
+  /* ---------- tool selection ---------- */
+  toolBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      toolBtns.forEach(b=> b.classList.remove('active'));
+      btn.classList.add('active');
+      currentTool = btn.dataset.tool;
+    });
+  });
+  clearBtn.addEventListener('click', ()=>{
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  });
+
+  /* ---------- drag (header only, clamped to viewport) ---------- */
+  let dragging = false, dragOffX = 0, dragOffY = 0;
+  header.addEventListener('pointerdown', (e)=>{
+    if(e.target.closest('.stool')) return;
+    dragging = true;
+    const rect = pad.getBoundingClientRect();
+    dragOffX = e.clientX - rect.left;
+    dragOffY = e.clientY - rect.top;
+    header.setPointerCapture(e.pointerId);
+  });
+  header.addEventListener('pointermove', (e)=>{
+    if(!dragging) return;
+    const w = pad.offsetWidth, h = pad.offsetHeight;
+    let x = e.clientX - dragOffX;
+    let y = e.clientY - dragOffY;
+    x = Math.max(0, Math.min(window.innerWidth - w, x));
+    y = Math.max(0, Math.min(window.innerHeight - h, y));
+    pad.style.left = x + 'px';
+    pad.style.top = y + 'px';
+    pad.style.right = 'auto';
+    pad.style.bottom = 'auto';
+  });
+  function stopDrag(){ dragging = false; }
+  header.addEventListener('pointerup', stopDrag);
+  header.addEventListener('pointercancel', stopDrag);
+
+  /* ---------- resize sync: preserve strokes across canvas buffer resize ---------- */
+  function syncCanvasToElementSize(){
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    const cssW = Math.max(1, Math.round(rect.width));
+    const cssH = Math.max(1, Math.round(rect.height));
+    const bufW = Math.max(1, Math.round(cssW * dpr));
+    const bufH = Math.max(1, Math.round(cssH * dpr));
+    if(canvas.width === bufW && canvas.height === bufH) return;
+
+    const temp = document.createElement('canvas');
+    temp.width = canvas.width || bufW;
+    temp.height = canvas.height || bufH;
+    temp.getContext('2d').drawImage(canvas, 0, 0);
+
+    canvas.width = bufW;
+    canvas.height = bufH;
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.drawImage(temp, 0, 0);
+    ctx.scale(dpr, dpr);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+  }
+  const resizeObserver = new ResizeObserver(()=> syncCanvasToElementSize());
+  resizeObserver.observe(canvas);
+
+  /* ---------- freehand drawing: smoothed quadratic curves, speed-based width ---------- */
+  let drawing = false;
+  let points = [];
+
+  function getPos(e){
+    const rect = canvas.getBoundingClientRect();
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top, t: e.timeStamp };
+  }
+  function widthForSpeed(dist, dt){
+    if(dt <= 0) dt = 1;
+    const speed = dist / dt; // px per ms
+    const w = 3.0 - speed * 5.5; // slower -> thicker
+    return Math.max(1.2, Math.min(4.2, w));
+  }
+
+  canvas.addEventListener('pointerdown', (e)=>{
+    drawing = true;
+    canvas.setPointerCapture(e.pointerId);
+    points = [getPos(e)];
+  });
+
+  canvas.addEventListener('pointermove', (e)=>{
+    if(!drawing) return;
+    points.push(getPos(e));
+    if(points.length < 3) return;
+
+    const p2 = points[points.length - 3];
+    const p1 = points[points.length - 2];
+    const p0 = points[points.length - 1];
+    const midPrev = { x:(p2.x + p1.x)/2, y:(p2.y + p1.y)/2 };
+    const midCur  = { x:(p1.x + p0.x)/2, y:(p1.y + p0.y)/2 };
+    const dist = Math.hypot(p0.x - p1.x, p0.y - p1.y);
+    const dt = p0.t - p1.t;
+
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    if(currentTool === 'eraser'){
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.lineWidth = 20;
+    } else {
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.strokeStyle = themeColor('--navy-dk', '#1A3050');
+      ctx.lineWidth = widthForSpeed(dist, dt);
+    }
+    ctx.beginPath();
+    ctx.moveTo(midPrev.x, midPrev.y);
+    ctx.quadraticCurveTo(p1.x, p1.y, midCur.x, midCur.y);
+    ctx.stroke();
+  });
+
+  function endStroke(){
+    if(!drawing) return;
+    drawing = false;
+    if(points.length === 1){
+      const p = points[0];
+      ctx.globalCompositeOperation = currentTool === 'eraser' ? 'destination-out' : 'source-over';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, currentTool === 'eraser' ? 9 : 2, 0, Math.PI * 2);
+      ctx.fillStyle = themeColor('--navy-dk', '#1A3050');
+      ctx.fill();
+    }
+    points = [];
+  }
+  canvas.addEventListener('pointerup', endStroke);
+  canvas.addEventListener('pointercancel', endStroke);
+  canvas.addEventListener('pointerleave', ()=>{ if(drawing) endStroke(); });
+})();
+</script>
+
+</body>
+</html>
