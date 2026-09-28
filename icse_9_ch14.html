@@ -1,0 +1,2263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quadrilateral Constructions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Crimson+Pro:wght@400;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#F5F0E8; --card:#FFFDF8; --border:#E2D9C6;
+    --green-dk:#1A3D28; --green:#2D5A3D;
+    --gold-dk:#C9A84C; --gold:#E8C56A;
+    --purple-dk:#7B5EA7; --purple:#A07BD4;
+    --navy-dk:#1A3050; --navy:#123A6B;
+    --ink:#1A3050; --line:#1A3050;
+    --arc:#123A6B; --accent:#7B5EA7;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:'Crimson Pro',Georgia,serif; background:var(--page); color:var(--navy-dk); padding:16px;}
+  .kicker{
+    font-family:'JetBrains Mono',monospace; font-size:.72rem; font-weight:600;
+    letter-spacing:.06em; text-transform:uppercase; color:var(--green);
+    background:rgba(26,61,40,.08); border:1px solid var(--green); border-radius:999px;
+    display:inline-block; padding:4px 12px; margin-bottom:10px;
+  }
+  h1{font-family:'Playfair Display',Georgia,serif; font-weight:800; font-size:1.5rem; margin:0 0 6px; color:var(--green-dk);}
+  .sub{font-family:'Crimson Pro',serif; color:#5b6b73; font-size:1rem; margin-bottom:16px;}
+  .layout{display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; justify-content:center;}
+  .panel{
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:18px; box-shadow:0 2px 8px rgba(26,48,80,.06); flex:1 1 340px; max-width:400px;
+  }
+  select{
+    width:100%; padding:10px; border-radius:8px; border:1px solid var(--border);
+    font-family:'JetBrains Mono',monospace; font-size:.85rem; font-weight:600;
+    margin-bottom:14px; background:#fff; color:var(--navy-dk);
+  }
+  select:disabled{opacity:.5;}
+  .steps-box{
+    background:rgba(201,168,76,.08); border:1px solid var(--border); border-radius:10px;
+    padding:12px 14px; margin-bottom:16px;
+  }
+  .steps-box-title{
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.72rem; color:var(--green);
+    text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px;
+  }
+  #stepTextWrap{
+    font-family:'Crimson Pro',serif; font-size:1.08rem; line-height:1.6; color:var(--navy-dk);
+    font-weight:600; min-height:2.6em; transition:opacity .25s ease, transform .25s ease;
+  }
+  #stepTextNum{font-family:'JetBrains Mono',monospace; color:var(--gold-dk); font-weight:700;}
+  #stepTextWrap.fading{opacity:0; transform:translateY(6px);}
+  .controls{display:flex; gap:10px; margin-top:4px;}
+  button{
+    flex:1; padding:11px 14px; border-radius:8px; border:1px solid var(--border);
+    background:#fff; font-family:'JetBrains Mono',monospace; font-size:.82rem; font-weight:700;
+    letter-spacing:.02em; cursor:pointer; color:var(--navy-dk);
+  }
+  button.primary{background:linear-gradient(135deg,var(--green-dk),var(--green)); color:#fff; border-color:var(--green-dk);}
+  button:disabled{opacity:.4; cursor:not-allowed;}
+  .progress{display:flex; gap:6px; margin-top:14px;}
+  .dot{width:10px; height:10px; border-radius:50%; background:var(--border); cursor:pointer;}
+  .dot.active{background:var(--gold-dk);}
+  svg{background:var(--card); border:1px solid var(--border); border-radius:14px; box-shadow:0 2px 8px rgba(26,48,80,.06); width:100%; max-width:340px; height:auto; display:block; margin:0 auto;}
+  @media (max-width:480px){ body{padding:10px;} .panel{max-width:100%;} svg{max-width:280px;} }
+  .lbl{font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700; fill:var(--navy-dk);}
+  .measure{font-family:'JetBrains Mono',monospace; font-size:12px; fill:var(--navy-dk); font-weight:600;}
+  .final-note{
+    margin-top:14px; font-family:'Crimson Pro',serif; font-size:.95rem;
+    background:rgba(26,61,40,.08); border:1px solid var(--green); padding:10px 12px;
+    border-radius:10px; color:var(--green-dk);
+  }
+
+  /* ---------- Draggable Scratchpad ---------- */
+  #scratchToggle{
+    position:fixed; right:20px; bottom:20px; z-index:9999;
+    width:56px; height:56px; border-radius:50%;
+    background:var(--green-dk); color:#fff; border:2px solid var(--gold-dk);
+    font-size:1.35rem; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.28);
+    display:flex; align-items:center; justify-content:center;
+    transition:transform .15s ease, background .15s ease;
+  }
+  #scratchToggle:hover{ background:var(--green); transform:scale(1.06); }
+  #scratchToggle:active{ transform:scale(.96); }
+
+  #scratchPad{
+    position:fixed; right:20px; bottom:88px; z-index:9998;
+    width:340px; height:280px;
+    min-width:260px; min-height:200px; max-width:920px; max-height:720px;
+    background:var(--card); border:1px solid var(--border); border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,.22);
+    display:none; flex-direction:column; overflow:hidden;
+    resize:both; box-sizing:border-box;
+  }
+  #scratchPad.open{ display:flex; }
+
+  #scratchHeader{
+    background:var(--green-dk); color:#fff; padding:8px 10px;
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    font-family:'JetBrains Mono',monospace; font-size:.74rem; font-weight:600;
+    letter-spacing:.03em; cursor:move; flex:none; user-select:none;
+    border-bottom:2px solid var(--gold-dk);
+  }
+  #scratchTitle{ display:flex; align-items:center; gap:6px; text-transform:uppercase; }
+  #scratchTools{ display:flex; gap:4px; }
+  .stool{
+    background:transparent; border:1px solid rgba(255,255,255,.4); color:#fff;
+    border-radius:6px; padding:3px 7px; font-size:.7rem; cursor:pointer;
+    font-family:'JetBrains Mono',monospace; line-height:1.4; white-space:nowrap;
+  }
+  .stool:hover{ background:rgba(255,255,255,.18); }
+  .stool.active{ background:var(--gold-dk); color:var(--green-dk); border-color:var(--gold-dk); font-weight:700; }
+  .stool.active:hover{ background:var(--gold); }
+
+  #scratchCanvas{
+    flex:1 1 auto; width:100%; height:100%; display:block;
+    touch-action:none; cursor:crosshair; background:var(--card);
+  }
+</style>
+</head>
+<body>
+
+<div class="kicker">Chapter 11 · ICSE · Class 9 Maths</div>
+<div id="qFullText" style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 16px; margin:10px auto 18px; max-width:560px; font-size:.95rem; line-height:1.5; color:var(--text);"></div>
+
+<div class="layout">
+  <div class="panel">
+    <select id="qPicker">
+      <option value="0">Question 1 — PQRS</option>
+      <option value="1">Question 2 — ABCD</option>
+      <option value="2">Question 3 — ABCD</option>
+      <option value="3">Question 4 — UVWZ</option>
+      <option value="4">Question 5 — PQRS</option>
+      <option value="5">Question 6 — ABCD</option>
+      <option value="6">Question 7 — XYZT</option>
+      <option value="7">Question 8 — ABCD (parallelogram)</option>
+      <option value="8">Question 9 — PQRS (parallelogram)</option>
+      <option value="9">Question 10 — ABCD (parallelogram)</option>
+      <option value="10">Question 11 — ABCD (parallelogram)</option>
+      <option value="11">Question 12 — ABCD (parallelogram, diagonals)</option>
+      <option value="12">Question 13 — ABCD (rectangle)</option>
+      <option value="13">Question 14 — ABCD (rectangle, diagonal)</option>
+      <option value="14">Question 15 — ABCD (rectangle, protractor angle)</option>
+      <option value="15">Question 16 — ABCD (square, diagonal)</option>
+      <option value="16">Question 17 — ABCD (rhombus, angle)</option>
+      <option value="17">Question 18 — ABCD (rhombus, diagonal)</option>
+      <option value="18">Question 19 — ABCD (rhombus, both diagonals)</option>
+      <option value="19">Question 20 — ABCD (square, diagonal)</option>
+      <option value="20">Question 21 — hexagon (side 2 cm)</option>
+      <option value="21">Question 22 — hexagon (side 3.5 cm)</option>
+    </select>
+
+    <div class="steps-box">
+      <div class="steps-box-title">Steps of Construction</div>
+      <div id="stepTextWrap"><span id="stepTextNum">1.</span> <span id="stepTextBody">Draw PQ = 4 cm.</span></div>
+    </div>
+
+    <div class="controls">
+      <button id="prevBtn">◀ Back</button>
+      <button id="nextBtn" class="primary">Next ▶</button>
+    </div>
+    <div class="progress" id="progress"></div>
+    <div class="final-note" id="finalNote" style="display:none;"></div>
+  </div>
+
+  <div class="stage-wrap">
+    <svg id="svgQ1" width="480" height="520" viewBox="0 0 480 520">
+      <g id="q1_g1" style="opacity:0">
+        <line id="q1_p1_line" x1="120" y1="460" x2="360" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q1_p1_p" cx="120" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q1_p1_q" cx="360" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q1_p1_lp" x="112" y="485" class="lbl" style="opacity:0">P</text>
+        <text id="q1_p1_lq" x="356" y="485" class="lbl" style="opacity:0">Q</text>
+        <text id="q1_p1_m" x="215" y="480" class="measure" style="opacity:0">4 cm</text>
+      </g>
+      <g id="q1_g2" style="opacity:0">
+        <path id="q1_semiArc" data-cx="120" data-cy="460" d="M 170 460 A 50 50 0 1 0 70 460" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q1_tickD" data-cx="170" data-cy="460" d="M 157.06 411.7 A 50 50 0 0 1 134.64 424.64" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q1_tickE" data-cx="145" data-cy="416.7" d="M 96.7 403.76 A 50 50 0 0 1 96.7 429.64" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q1_apexD" data-cx="145" data-cy="416.7" d="M 137.68 347.1 A 70 70 0 0 1 103.85 360.07" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q1_apexE" data-cx="95" data-cy="416.7" d="M 136.15 360.07 A 70 70 0 0 0 102.32 347.1" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q1_apexDot" cx="120" cy="351.3" r="3" fill="var(--ink)" style="opacity:0"/>
+        <line id="q1_rayPX" x1="120" y1="460" x2="120" y2="235" stroke="var(--line)" stroke-width="2.2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q1_arrowHead" points="120,225 115,238 125,238" fill="var(--line)" style="opacity:0"/>
+        <text id="q1_xLabel" x="126" y="235" class="lbl" style="opacity:0">X</text>
+        <rect id="q1_rightAngleSq" x="120" y="443" width="14" height="14" fill="none" stroke="var(--line)" stroke-width="1.5" style="opacity:0"/>
+        <text id="q1_angleLabel" x="140" y="452" class="measure" style="opacity:0">90°</text>
+      </g>
+      <g id="q1_g3" style="opacity:0">
+        <path id="q1_arcS" class="compass-arc" data-cx="120" data-cy="460" d="M 96 268 A 192 192 0 0 1 144 268" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q1_p3_s" cx="120" cy="268" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q1_p3_ls" x="90" y="264" class="lbl" style="opacity:0">S</text>
+        <text id="q1_p3_m" x="126" y="360" class="measure" style="opacity:0">3.2 cm</text>
+      </g>
+      <g id="q1_g4" style="opacity:0">
+        <path id="q1_arcQ" class="compass-arc" data-cx="360" data-cy="460" d="M 273.6 217.0 A 258 258 0 0 1 379.8 202.75" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+      </g>
+      <g id="q1_g5" style="opacity:0">
+        <path id="q1_arcR" class="compass-arc" data-cx="120" data-cy="268" d="M 304.7 156.0 A 216 216 0 0 1 335.65 255.7" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+        <circle id="q1_p5_r" cx="326" cy="204" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q1_p5_lr" x="332" y="198" class="lbl" style="opacity:0">R</text>
+      </g>
+      <g id="q1_g6" style="opacity:0">
+        <line id="q1_p6_sr" x1="120" y1="268" x2="326" y2="204" stroke="var(--line)" stroke-width="2.5"/>
+        <line id="q1_p6_rq" x1="326" y1="204" x2="360" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <text id="q1_p6_m1" x="200" y="222" class="measure" style="opacity:0">3.6 cm</text>
+        <text id="q1_p6_m2" x="358" y="330" class="measure" style="opacity:0">4.3 cm</text>
+      </g>
+    </svg>
+
+    <svg id="svgQ2" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q2_g1" style="opacity:0">
+        <line id="q2_p1_line" x1="150" y1="460" x2="375" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q2_p1_a" cx="150" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q2_p1_b" cx="375" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q2_p1_la" x="142" y="485" class="lbl" style="opacity:0">A</text>
+        <text id="q2_p1_lb" x="371" y="485" class="lbl" style="opacity:0">B</text>
+        <text id="q2_p1_m" x="245" y="480" class="measure" style="opacity:0">4.5 cm</text>
+      </g>
+      <g id="q2_g2" style="opacity:0">
+        <path id="q2_semiArc" data-cx="375" data-cy="460" d="M 325 460 A 50 50 0 1 1 425 460" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q2_tickC" data-cx="325" data-cy="460" d="M 355.78 420.60 A 50 50 0 0 0 343.73 413.64" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q2_tickD120" data-cx="350" data-cy="416.70" d="M 399.51 423.66 A 50 50 0 0 0 399.51 409.74" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q2_apexC" data-cx="350" data-cy="416.70" d="M 383.86 355.43 A 70 70 0 0 0 365.66 348.47" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q2_apexD120" data-cx="400" data-cy="416.70" d="M 384.34 348.47 A 70 70 0 0 1 366.14 355.43" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q2_e90Dot" cx="375" cy="351.3" r="3" fill="var(--ink)" style="opacity:0"/>
+        <line id="q2_ray90" x1="375" y1="460" x2="375" y2="330" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="4 3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q2_nDot" cx="375" cy="410" r="3" fill="var(--ink)" style="opacity:0"/>
+        <path id="q2_tickCF" data-cx="350" data-cy="416.70" d="M 355.08 351.90 A 65 65 0 0 0 337.02 353.01" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q2_tickNF" data-cx="375" data-cy="410" d="M 354.39 348.35 A 65 65 0 0 1 338.20 356.42" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q2_f75Dot" cx="346.0" cy="351.8" r="3" fill="var(--ink)" style="opacity:0"/>
+        <line id="q2_rayFinal" x1="375" y1="460" x2="284.4" y2="121.9" stroke="var(--line)" stroke-width="2.2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q2_arrowHead" points="284.4,111.9 279.4,124.9 289.4,124.9" fill="var(--line)" style="opacity:0"/>
+        <text id="q2_xLabel" x="290" y="118" class="lbl" style="opacity:0">X</text>
+        <path id="q2_angleArc" d="M 340 460 A 35 35 0 0 1 365.9 426.2" fill="none" stroke="var(--arc)" stroke-width="1.4" style="opacity:0"/>
+        <text id="q2_angleLabel" x="330" y="432" class="measure" style="opacity:0">75°</text>
+      </g>
+      <g id="q2_g3" style="opacity:0">
+        <path id="q2_arcC" class="compass-arc" data-cx="375" data-cy="460" d="M 343.3 201.9 A 260 260 0 0 1 273.4 220.7" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q2_p3_c" cx="307.7" cy="208.9" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q2_p3_lc" x="313" y="204" class="lbl" style="opacity:0">C</text>
+        <text id="q2_p3_m" x="335" y="330" class="measure" style="opacity:0">5.2 cm</text>
+      </g>
+      <g id="q2_g4" style="opacity:0">
+        <path id="q2_arcA" class="compass-arc" data-cx="150" data-cy="460" d="M 91.2 232.5 A 235 235 0 0 1 30.7 257.5" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+      </g>
+      <g id="q2_g5" style="opacity:0">
+        <path id="q2_arcD" class="compass-arc" data-cx="307.7" data-cy="208.9" d="M 67.3 277.6 A 250 250 0 0 1 57.7 208.15" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <circle id="q2_p5_d" cx="60" cy="242.9" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q2_p5_ld" x="30" y="238" class="lbl" style="opacity:0">D</text>
+      </g>
+      <g id="q2_g6" style="opacity:0">
+        <line id="q2_p6_dc" x1="60" y1="242.9" x2="307.7" y2="208.9" stroke="var(--line)" stroke-width="2.5"/>
+        <line id="q2_p6_da" x1="60" y1="242.9" x2="150" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <text id="q2_p6_m1" x="150" y="200" class="measure" style="opacity:0">5 cm</text>
+        <text id="q2_p6_m2" x="55" y="360" class="measure" style="opacity:0">4.7 cm</text>
+      </g>
+    </svg>
+
+    <svg id="svgQ3" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q3_g1" style="opacity:0">
+        <line id="q3_p1_line" x1="110" y1="460" x2="288.5" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q3_p1_c" cx="110" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q3_p1_d" cx="288.5" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q3_p1_lc" x="102" y="485" class="lbl" style="opacity:0">C</text>
+        <text id="q3_p1_ld" x="284.5" y="485" class="lbl" style="opacity:0">D</text>
+        <text id="q3_p1_m" x="185" y="480" class="measure" style="opacity:0">5.1 cm</text>
+      </g>
+      <g id="q3_g2" style="opacity:0">
+        <path id="q3_arcC" data-cx="110" data-cy="460" d="M 160 460 A 50 50 0 0 0 122.94 411.7" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q3_tick60" data-cx="160" data-cy="460" d="M 141.27 413.64 A 50 50 0 0 1 129.22 420.6" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q3_ray" x1="110" y1="460" x2="260" y2="200.19" stroke="var(--line)" stroke-width="2.2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q3_arrowHead" points="265,191.53 258,203 270,203" fill="var(--line)" style="opacity:0"/>
+        <text id="q3_xLabel" x="268" y="196" class="lbl" style="opacity:0">X</text>
+        <text id="q3_angleLabel" x="118" y="440" class="measure" style="opacity:0">60°</text>
+      </g>
+      <g id="q3_g3" style="opacity:0">
+        <path id="q3_arcB" class="compass-arc" data-cx="110" data-cy="460" d="M 211.28 330.37 A 211.5 211.5 0 0 1 171.62 307.48" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q3_pB" cx="192.25" cy="317.54" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q3_lB" x="198" y="313" class="lbl" style="opacity:0">B</text>
+        <text id="q3_mB" x="145" y="380" class="measure" style="opacity:0">4.7 cm</text>
+      </g>
+      <g id="q3_g4" style="opacity:0">
+        <path id="q3_arcD" class="compass-arc" data-cx="288.5" data-cy="460" d="M 385.91 349.91 A 189 189 0 0 1 351.79 327.32" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+      </g>
+      <g id="q3_g5" style="opacity:0">
+        <path id="q3_arcA" class="compass-arc" data-cx="192.25" data-cy="317.54" d="M 365.15 361.92 A 229.5 229.5 0 0 1 370.68 312.54" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+        <circle id="q3_pA" cx="369.64" cy="337.42" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q3_lA" x="375" y="332" class="lbl" style="opacity:0">A</text>
+      </g>
+      <g id="q3_g6" style="opacity:0">
+        <line id="q3_lineDA" x1="369.64" y1="337.42" x2="288.5" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <line id="q3_lineBA" x1="369.64" y1="337.42" x2="192.25" y2="317.54" stroke="var(--line)" stroke-width="2.5"/>
+        <text id="q3_mDA" x="310" y="410" class="measure" style="opacity:0">4.2 cm</text>
+        <text id="q3_mBA" x="255" y="310" class="measure" style="opacity:0">5.1 cm</text>
+      </g>
+    </svg>
+
+    <svg id="svgQ4" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q4_g1" style="opacity:0">
+        <line id="q4_p1_line" x1="130" y1="460" x2="382" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q4_p1_u" cx="130" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q4_p1_v" cx="382" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q4_p1_lu" x="122" y="485" class="lbl" style="opacity:0">U</text>
+        <text id="q4_p1_lv" x="378" y="485" class="lbl" style="opacity:0">V</text>
+        <text id="q4_p1_m" x="235" y="480" class="measure" style="opacity:0">6 cm</text>
+      </g>
+      <g id="q4_g2" style="opacity:0">
+        <path id="q4_arcU" data-cx="130" data-cy="460" d="M 180 460 A 50 50 0 0 0 142.94 411.7" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q4_tickU" data-cx="180" data-cy="460" d="M 161.27 413.64 A 50 50 0 0 1 149.22 420.6" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q4_rayU" x1="130" y1="460" x2="280" y2="200.19" stroke="var(--line)" stroke-width="2.2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q4_arrowU" points="285,191.53 278,203 290,203" fill="var(--line)" style="opacity:0"/>
+        <text id="q4_xLabelU" x="288" y="196" class="lbl" style="opacity:0">X</text>
+        <text id="q4_angleLabelU" x="138" y="440" class="measure" style="opacity:0">60°</text>
+      </g>
+      <g id="q4_g3" style="opacity:0">
+        <path id="q4_arcZ" class="compass-arc" data-cx="130" data-cy="460" d="M 259.29 294.52 A 210 210 0 0 1 208.67 265.29" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q4_pZ" cx="235" cy="278.13" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q4_lZ" x="200" y="272" class="lbl" style="opacity:0">Z</text>
+        <text id="q4_mZ" x="150" y="350" class="measure" style="opacity:0">5 cm</text>
+      </g>
+      <g id="q4_g4" style="opacity:0">
+        <path id="q4_semiV" data-cx="382" data-cy="460" d="M 325 460 A 50 50 0 0 1 425 460" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q4_tickCv" data-cx="325" data-cy="460" d="M 362.78 420.6 A 50 50 0 0 0 350.73 413.64" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q4_tickDv120" data-cx="357" data-cy="416.70" d="M 406.51 423.66 A 50 50 0 0 0 406.51 409.74" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q4_apexCv" data-cx="357" data-cy="416.70" d="M 390.86 355.43 A 70 70 0 0 0 372.66 348.47" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q4_apexDv120" data-cx="407" data-cy="416.70" d="M 391.34 348.47 A 70 70 0 0 1 373.14 355.43" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q4_e90dot" cx="382" cy="351.32" r="3" fill="var(--ink)" style="opacity:0"/>
+        <line id="q4_ray90V" x1="382" y1="460" x2="382" y2="330" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="4 3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q4_nDotV" cx="382" cy="410" r="3" fill="var(--ink)" style="opacity:0"/>
+        <path id="q4_tickCFv" data-cx="357" data-cy="416.70" d="M 362.08 351.9 A 65 65 0 0 0 344.02 353.01" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q4_tickNFv" data-cx="382" data-cy="410" d="M 361.39 348.35 A 65 65 0 0 1 345.2 356.42" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q4_f75dot" cx="353.01" cy="351.82" r="3" fill="var(--ink)" style="opacity:0"/>
+        <line id="q4_rayFinalV" x1="382" y1="460" x2="291.41" y2="121.93" stroke="var(--line)" stroke-width="2.2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q4_arrowV" points="288.83,112.27 283.83,125.27 293.83,125.27" fill="var(--line)" style="opacity:0"/>
+        <text id="q4_yLabelV" x="296" y="118" class="lbl" style="opacity:0">Y</text>
+        <path id="q4_angleArcV" d="M 340 460 A 35 35 0 0 1 365.9 426.2" fill="none" stroke="var(--arc)" stroke-width="1.4" style="opacity:0"/>
+        <text id="q4_angleLabelV" x="330" y="432" class="measure" style="opacity:0">75°</text>
+      </g>
+      <g id="q4_g5" style="opacity:0">
+        <path id="q4_arcW" class="compass-arc" data-cx="382" data-cy="460" d="M 354.87 239.06 A 222.6 222.6 0 0 1 295.02 255.1" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q4_pW" cx="324.39" cy="244.98" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q4_lW" x="330" y="240" class="lbl" style="opacity:0">W</text>
+        <text id="q4_mW" x="345" y="330" class="measure" style="opacity:0">5.3 cm</text>
+      </g>
+      <g id="q4_g6" style="opacity:0">
+        <line id="q4_lineZW" x1="324.39" y1="244.98" x2="235" y2="278.13" stroke="var(--line)" stroke-width="2.5"/>
+        <text id="q4_mZW" x="255" y="252" class="measure" style="opacity:0"></text>
+      </g>
+    </svg>
+
+    <svg id="svgQ5" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q5_g1" style="opacity:0">
+        <line id="q5_p1_line" x1="120" y1="460" x2="344" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q5_p1_q" cx="120" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q5_p1_r" cx="344" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q5_p1_lq" x="112" y="485" class="lbl" style="opacity:0">Q</text>
+        <text id="q5_p1_lr" x="340" y="485" class="lbl" style="opacity:0">R</text>
+        <text id="q5_p1_m" x="215" y="480" class="measure" style="opacity:0">5.6 cm</text>
+      </g>
+      <g id="q5_g2" style="opacity:0">
+        <path id="q5_arcQ" data-cx="120" data-cy="460" d="M 170 460 A 50 50 0 0 0 132.94 411.7" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q5_tickQ" data-cx="170" data-cy="460" d="M 152.08 413.32 A 50 50 0 0 1 138.53 421.14" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q5_rayQ" x1="120" y1="460" x2="270" y2="200.19" stroke="var(--line)" stroke-width="2.2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q5_arrowQ" points="275,191.53 268,203 280,203" fill="var(--line)" style="opacity:0"/>
+        <text id="q5_xLabel" x="278" y="196" class="lbl" style="opacity:0">X</text>
+        <text id="q5_angleLabelQ" x="128" y="440" class="measure" style="opacity:0">60°</text>
+      </g>
+      <g id="q5_g3" style="opacity:0">
+        <path id="q5_arcP" class="compass-arc" data-cx="120" data-cy="460" d="M 233.28 320.11 A 180 180 0 0 1 184.51 291.96" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q5_pP" cx="210" cy="304.12" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q5_lP" x="215" y="298" class="lbl" style="opacity:0">P</text>
+        <text id="q5_mP" x="150" y="370" class="measure" style="opacity:0">4.5 cm</text>
+      </g>
+      <g id="q5_g4" style="opacity:0">
+        <path id="q5_semiR" data-cx="344" data-cy="460" d="M 294 460 A 50 50 0 0 1 394 460" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q5_tickR60" data-cx="294" data-cy="460" d="M 325.47 421.14 A 50 50 0 0 0 311.92 413.32" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q5_tickR120" data-cx="319" data-cy="416.70" d="M 368.38 424.52 A 50 50 0 0 0 368.38 408.88" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q5_rayR" x1="344" y1="460" x2="439" y2="295.46" stroke="var(--line)" stroke-width="2.2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q5_arrowR" points="444,286.79 434,290 439,300" fill="var(--line)" style="opacity:0"/>
+        <text id="q5_yLabel" x="448" y="288" class="lbl" style="opacity:0">Y</text>
+        <text id="q5_angleLabelR" x="290" y="440" class="measure" style="opacity:0">120°</text>
+      </g>
+      <g id="q5_g5" style="opacity:0">
+        <path id="q5_arcS" class="compass-arc" data-cx="344" data-cy="460" d="M 447.21 332.55 A 164 164 0 0 0 402.77 306.89" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q5_pS" cx="426" cy="317.97" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q5_lS" x="400" y="312" class="lbl" style="opacity:0">S</text>
+        <text id="q5_mS" x="440" y="365" class="measure" style="opacity:0">4.1 cm</text>
+      </g>
+      <g id="q5_g6" style="opacity:0">
+        <line id="q5_lineSP" x1="426" y1="317.97" x2="210" y2="304.12" stroke="var(--line)" stroke-width="2.5"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ6" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q6_g1" style="opacity:0">
+        <line id="q6_p1_line" x1="140" y1="460" x2="378.5" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q6_p1_a" cx="140" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q6_p1_b" cx="378.5" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q6_p1_la" x="132" y="485" class="lbl" style="opacity:0">A</text>
+        <text id="q6_p1_lb" x="374" y="485" class="lbl" style="opacity:0">B</text>
+        <text id="q6_p1_m" x="240" y="480" class="measure" style="opacity:0">5.3 cm</text>
+      </g>
+      <g id="q6_g2" style="opacity:0">
+        <path id="q6_arcAD" class="compass-arc" data-cx="140" data-cy="460" d="M 239.73 243.35 A 238.5 238.5 0 0 0 167.9 223.14" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+        <path id="q6_arcBD" class="compass-arc" data-cx="378.5" data-cy="460" d="M 242.67 206.04 A 288 288 0 0 0 170.84 260.45" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <circle id="q6_pD" cx="204.61" cy="230.42" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q6_lD" x="180" y="222" class="lbl" style="opacity:0">D</text>
+        <text id="q6_mAD" x="150" y="330" class="measure" style="opacity:0">5.3 cm</text>
+        <text id="q6_mBD" x="270" y="330" class="measure" style="opacity:0">6.4 cm</text>
+      </g>
+      <g id="q6_g3" style="opacity:0">
+        <path id="q6_arcDC" class="compass-arc" data-cx="204.61" data-cy="230.42" d="M 424.98 275.86 A 225 225 0 0 0 428.23 205.54" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+        <path id="q6_arcBC" class="compass-arc" data-cx="378.5" data-cy="460" d="M 463.03 251.48 A 225 225 0 0 0 394.46 235.57" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <circle id="q6_pC" cx="429.37" cy="240.83" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q6_lC" x="435" y="235" class="lbl" style="opacity:0">C</text>
+      </g>
+      <g id="q6_g4" style="opacity:0">
+        <line id="q6_lineDC" x1="204.61" y1="230.42" x2="429.37" y2="240.83" stroke="var(--line)" stroke-width="2.5"/>
+        <line id="q6_lineBC" x1="378.5" y1="460" x2="429.37" y2="240.83" stroke="var(--line)" stroke-width="2.5"/>
+        <line id="q6_lineAD" x1="140" y1="460" x2="204.61" y2="230.42" stroke="var(--line)" stroke-width="2.5"/>
+        <text id="q6_mDC" x="290" y="225" class="measure" style="opacity:0">5 cm</text>
+        <text id="q6_mBC" x="415" y="360" class="measure" style="opacity:0">5 cm</text>
+      </g>
+    </svg>
+
+    <svg id="svgQ7" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q7_g1" style="opacity:0">
+        <line id="q7_p1_line" x1="140" y1="460" x2="342.5" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q7_p1_y" cx="140" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q7_p1_z" cx="342.5" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q7_p1_ly" x="132" y="485" class="lbl" style="opacity:0">Y</text>
+        <text id="q7_p1_lz" x="338" y="485" class="lbl" style="opacity:0">Z</text>
+        <text id="q7_p1_m" x="215" y="480" class="measure" style="opacity:0">4.5 cm</text>
+      </g>
+      <g id="q7_g2" style="opacity:0">
+        <path id="q7_arcY" class="compass-arc" data-cx="140" data-cy="460" d="M 276.87 243.07 A 256.5 256.5 0 0 0 203.14 211.39" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+      </g>
+      <g id="q7_g3" style="opacity:0">
+        <path id="q7_arcZ" class="compass-arc" data-cx="342.5" data-cy="460" d="M 279.36 211.39 A 256.5 256.5 0 0 0 205.63 243.07" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <circle id="q7_pX" cx="241.25" cy="224.33" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q7_lX" x="235" y="215" class="lbl" style="opacity:0">X</text>
+        <text id="q7_mXY" x="170" y="330" class="measure" style="opacity:0">5.7 cm</text>
+        <text id="q7_mXZ" x="300" y="330" class="measure" style="opacity:0">5.7 cm</text>
+      </g>
+      <g id="q7_g4" style="opacity:0">
+        <path id="q7_arcX2" class="compass-arc" data-cx="241.25" data-cy="224.33" d="M 444.59 320.65 A 225 225 0 0 0 464.4 253.1" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+      </g>
+      <g id="q7_g5" style="opacity:0">
+        <path id="q7_arcZ2" class="compass-arc" data-cx="342.5" data-cy="460" d="M 482.7 307.71 A 207 207 0 0 0 428.78 271.84" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <circle id="q7_pT" cx="457.16" cy="287.65" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q7_lT" x="463" y="282" class="lbl" style="opacity:0">T</text>
+      </g>
+      <g id="q7_g6" style="opacity:0">
+        <line id="q7_lineXT" x1="241.25" y1="224.33" x2="457.16" y2="287.65" stroke="var(--line)" stroke-width="2.5"/>
+        <line id="q7_lineZT" x1="342.5" y1="460" x2="457.16" y2="287.65" stroke="var(--line)" stroke-width="2.5"/>
+        <line id="q7_lineXY" x1="241.25" y1="224.33" x2="140" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <text id="q7_mXT" x="360" y="245" class="measure" style="opacity:0">5 cm</text>
+        <text id="q7_mZT" x="415" y="390" class="measure" style="opacity:0">4.6 cm</text>
+      </g>
+    </svg>
+
+    <svg id="svgQ8" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q8_g1" style="opacity:0">
+        <line id="q8_p1_line" x1="120" y1="460" x2="360" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q8_p1_b" cx="120" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q8_p1_c" cx="360" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q8_p1_lb" x="112" y="485" class="lbl" style="opacity:0">B</text>
+        <text id="q8_p1_lc" x="356" y="485" class="lbl" style="opacity:0">C</text>
+        <text id="q8_p1_m" x="230" y="480" class="measure" style="opacity:0">6 cm</text>
+      </g>
+      <g id="q8_g2" style="opacity:0">
+        <path id="q8_arcC" data-cx="360" data-cy="460" d="M 310 460 A 50 50 0 0 0 347.06 411.7" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q8_tickC" data-cx="310" data-cy="460" d="M 341.47 421.14 A 50 50 0 0 1 327.92 413.32" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q8_rayC" x1="360" y1="460" x2="260" y2="286.79" stroke="var(--line)" stroke-width="2.2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q8_arrowC" points="255,278.13 245,282 253,290" fill="var(--line)" style="opacity:0"/>
+        <text id="q8_xLabel" x="230" y="278" class="lbl" style="opacity:0">X</text>
+        <text id="q8_angleLabel" x="320" y="440" class="measure" style="opacity:0">60°</text>
+      </g>
+      <g id="q8_g3" style="opacity:0">
+        <path id="q8_arcD" class="compass-arc" data-cx="360" data-cy="460" d="M 302.66 310.63 A 160 160 0 0 1 259.31 335.66" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q8_pD" cx="280" cy="321.44" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q8_lD" x="286" y="316" class="lbl" style="opacity:0">D</text>
+        <text id="q8_mD" x="300" y="380" class="measure" style="opacity:0">4 cm</text>
+      </g>
+      <g id="q8_g4" style="opacity:0">
+        <path id="q8_arcDA" class="compass-arc" data-cx="280" data-cy="321.44" d="M 42.95 283.89 A 240 240 0 0 1 42.95 358.98" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+      </g>
+      <g id="q8_g5" style="opacity:0">
+        <path id="q8_arcA" class="compass-arc" data-cx="120" data-cy="460" d="M 62.66 310.63 A 160 160 0 0 0 19.31 335.66" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+        <circle id="q8_pA" cx="40" cy="321.44" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q8_lA" x="15" y="316" class="lbl" style="opacity:0">A</text>
+      </g>
+      <g id="q8_g6" style="opacity:0">
+        <line id="q8_lineAB" x1="40" y1="321.44" x2="120" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <line id="q8_lineDA" x1="40" y1="321.44" x2="280" y2="321.44" stroke="var(--line)" stroke-width="2.5"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ9" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q9_g1" style="opacity:0">
+        <line id="q9_p1_line" x1="165" y1="460" x2="376.5" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q9_p1_q" cx="165" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q9_p1_r" cx="376.5" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q9_p1_lq" x="157" y="485" class="lbl" style="opacity:0">Q</text>
+        <text id="q9_p1_lr" x="372" y="485" class="lbl" style="opacity:0">R</text>
+        <text id="q9_p1_m" x="255" y="480" class="measure" style="opacity:0">4.7 cm</text>
+      </g>
+      <g id="q9_g2" style="opacity:0">
+        <path id="q9_arcQ" data-cx="165" data-cy="460" d="M 215 460 A 50 50 0 0 0 140.62 408.88" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q9_tick60" data-cx="215" data-cy="460" d="M 197.08 413.32 A 50 50 0 0 1 183.53 421.14" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q9_tick120" data-cx="145" data-cy="416.7" d="M 140.62 408.88 A 50 50 0 0 1 140.62 424.52" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q9_rayQ" x1="165" y1="460" x2="75" y2="304.12" stroke="var(--line)" stroke-width="2.2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q9_arrowQ" points="70,295.46 62,300 72,304" fill="var(--line)" style="opacity:0"/>
+        <text id="q9_xLabel" x="45" y="298" class="lbl" style="opacity:0">X</text>
+        <text id="q9_angleLabel" x="185" y="440" class="measure" style="opacity:0">120°</text>
+      </g>
+      <g id="q9_g3" style="opacity:0">
+        <path id="q9_arcP" class="compass-arc" data-cx="165" data-cy="460" d="M 119.85 342.37 A 126 126 0 0 1 85.71 362.08" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q9_pP" cx="102" cy="350.88" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q9_lP" x="75" y="345" class="lbl" style="opacity:0">P</text>
+        <text id="q9_mP" x="110" y="400" class="measure" style="opacity:0">2.8 cm</text>
+      </g>
+      <g id="q9_g4" style="opacity:0">
+        <path id="q9_arcPS" class="compass-arc" data-cx="102" data-cy="350.88" d="M 310.9 383.97 A 211.5 211.5 0 0 0 310.9 317.79" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+      </g>
+      <g id="q9_g5" style="opacity:0">
+        <path id="q9_arcS" class="compass-arc" data-cx="376.5" data-cy="460" d="M 331.35 342.37 A 126 126 0 0 0 297.21 362.08" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <circle id="q9_pS" cx="313.5" cy="350.88" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q9_lS" x="319" y="345" class="lbl" style="opacity:0">S</text>
+      </g>
+      <g id="q9_g6" style="opacity:0">
+        <line id="q9_lineRS" x1="313.5" y1="350.88" x2="376.5" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <line id="q9_linePS" x1="313.5" y1="350.88" x2="102" y2="350.88" stroke="var(--line)" stroke-width="2.5"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ10" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q10_g1" style="opacity:0">
+        <line id="q10_p1_line" x1="120" y1="460" x2="345" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q10_p1_b" cx="120" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q10_p1_c" cx="345" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q10_p1_lb" x="112" y="485" class="lbl" style="opacity:0">B</text>
+        <text id="q10_p1_lc" x="341" y="485" class="lbl" style="opacity:0">C</text>
+        <text id="q10_p1_m" x="215" y="480" class="measure" style="opacity:0">5 cm</text>
+      </g>
+      <g id="q10_g2" style="opacity:0">
+        <path id="q10_arcB1" class="compass-arc" data-cx="120" data-cy="460" d="M 372.19 363.56 A 270 270 0 0 0 330.05 290.35" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+      </g>
+      <g id="q10_g3" style="opacity:0">
+        <path id="q10_arcC1" class="compass-arc" data-cx="345" data-cy="460" d="M 374.96 328.37 A 135 135 0 0 0 332.82 325.55" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <circle id="q10_pD" cx="354.0" cy="325.3" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q10_lD" x="360" y="320" class="lbl" style="opacity:0">D</text>
+        <text id="q10_mBD" x="380" y="400" class="measure" style="opacity:0">6 cm</text>
+        <text id="q10_mCD" x="360" y="290" class="measure" style="opacity:0">3 cm</text>
+      </g>
+      <g id="q10_g4" style="opacity:0">
+        <line id="q10_lineBD" x1="120" y1="460" x2="354.0" y2="325.3" stroke="var(--line)" stroke-width="2" stroke-dasharray="5 3"/>
+        <line id="q10_lineCD" x1="345" y1="460" x2="354.0" y2="325.3" stroke="var(--line)" stroke-width="2.5"/>
+      </g>
+      <g id="q10_g5" style="opacity:0">
+        <path id="q10_arcB2" class="compass-arc" data-cx="120" data-cy="460" d="M 149.96 328.37 A 135 135 0 0 0 107.82 325.55" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+      </g>
+      <g id="q10_g6" style="opacity:0">
+        <path id="q10_arcD2" class="compass-arc" data-cx="354.0" data-cy="325.3" d="M 131.77 290.1 A 225 225 0 0 0 131.77 360.5" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <circle id="q10_pA" cx="129.0" cy="325.3" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q10_lA" x="95" y="320" class="lbl" style="opacity:0">A</text>
+      </g>
+      <g id="q10_g7" style="opacity:0">
+        <line id="q10_lineDA" x1="129.0" y1="325.3" x2="354.0" y2="325.3" stroke="var(--line)" stroke-width="2.5"/>
+        <line id="q10_lineAB" x1="129.0" y1="325.3" x2="120" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ11" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q11_g1" style="opacity:0">
+        <line id="q11_p1_line" x1="120" y1="460" x2="336" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q11_p1_a" cx="120" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q11_p1_b" cx="336" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q11_p1_la" x="112" y="485" class="lbl" style="opacity:0">A</text>
+        <text id="q11_p1_lb" x="332" y="485" class="lbl" style="opacity:0">B</text>
+        <text id="q11_p1_m" x="215" y="480" class="measure" style="opacity:0">4.8 cm</text>
+      </g>
+      <g id="q11_g2" style="opacity:0">
+        <path id="q11_arcA1" class="compass-arc" data-cx="120" data-cy="460" d="M 329.19 336.34 A 243 243 0 0 0 280.74 277.76" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+      </g>
+      <g id="q11_g3" style="opacity:0">
+        <path id="q11_arcB1" class="compass-arc" data-cx="336" data-cy="460" d="M 331.85 302.55 A 157.5 157.5 0 0 0 283.4 311.54" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <circle id="q11_pC" cx="307.27" cy="305.14" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q11_lC" x="313" y="300" class="lbl" style="opacity:0">C</text>
+        <text id="q11_mAC" x="350" y="380" class="measure" style="opacity:0">5.4 cm</text>
+        <text id="q11_mBC" x="345" y="325" class="measure" style="opacity:0">3.5 cm</text>
+      </g>
+      <g id="q11_g4" style="opacity:0">
+        <line id="q11_lineAC" x1="120" y1="460" x2="307.27" y2="305.14" stroke="var(--line)" stroke-width="2" stroke-dasharray="5 3"/>
+        <line id="q11_lineBC" x1="336" y1="460" x2="307.27" y2="305.14" stroke="var(--line)" stroke-width="2.5"/>
+      </g>
+      <g id="q11_g5" style="opacity:0">
+        <path id="q11_arcA2" class="compass-arc" data-cx="120" data-cy="460" d="M 115.85 302.55 A 157.5 157.5 0 0 0 67.4 311.54" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+      </g>
+      <g id="q11_g6" style="opacity:0">
+        <path id="q11_arcC2" class="compass-arc" data-cx="307.27" data-cy="305.14" d="M 93.93 271.35 A 216 216 0 0 0 93.93 338.93" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <circle id="q11_pD" cx="91.27" cy="305.14" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q11_lD" x="55" y="300" class="lbl" style="opacity:0">D</text>
+      </g>
+      <g id="q11_g7" style="opacity:0">
+        <line id="q11_lineAD" x1="91.27" y1="305.14" x2="120" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <line id="q11_lineCD" x1="91.27" y1="305.14" x2="307.27" y2="305.14" stroke="var(--line)" stroke-width="2.5"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ12" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q12_g1" style="opacity:0">
+        <line id="q12_p1_line" x1="114" y1="300" x2="366" y2="300" stroke="var(--line)" stroke-width="2"/>
+        <circle id="q12_p1_a" cx="114" cy="300" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q12_p1_c" cx="366" cy="300" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q12_p1_la" x="106" y="292" class="lbl" style="opacity:0">A</text>
+        <text id="q12_p1_lc" x="372" y="292" class="lbl" style="opacity:0">C</text>
+        <text id="q12_p1_m" x="220" y="292" class="measure" style="opacity:0">5.6 cm</text>
+      </g>
+      <g id="q12_g2" style="opacity:0">
+        <path id="q12_arcAu" class="compass-arc" data-cx="114" data-cy="300" d="M 251.18 239.32 A 150 150 0 0 0 225.71 199.9" fill="none" stroke="var(--arc)" stroke-width="1.3"/>
+        <path id="q12_arcAl" class="compass-arc" data-cx="114" data-cy="300" d="M 225.71 400.1 A 150 150 0 0 0 251.18 360.68" fill="none" stroke="var(--arc)" stroke-width="1.3"/>
+        <path id="q12_arcCu" class="compass-arc" data-cx="366" data-cy="300" d="M 254.29 199.9 A 150 150 0 0 0 228.82 239.32" fill="none" stroke="var(--accent)" stroke-width="1.3"/>
+        <path id="q12_arcCl" class="compass-arc" data-cx="366" data-cy="300" d="M 228.82 360.68 A 150 150 0 0 0 254.29 400.1" fill="none" stroke="var(--accent)" stroke-width="1.3"/>
+        <line id="q12_bisLine" x1="240" y1="218.6" x2="240" y2="381.4" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q12_pO" cx="240" cy="300" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q12_lO" x="246" y="295" class="lbl" style="opacity:0">O</text>
+      </g>
+      <g id="q12_g3" style="opacity:0">
+        <path id="q12_arcAngle" data-cx="190" data-cy="300" d="M 221.47 261.14 A 50 50 0 0 0 207.92 253.32" fill="none" stroke="var(--accent)" stroke-width="1.5" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q12_lineXY" x1="150.0" y1="144.12" x2="330.0" y2="455.88" stroke="var(--line)" stroke-width="1.8" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q12_arrowX" points="145,135.46 138,144 150,148" fill="var(--line)" style="opacity:0"/>
+        <polygon id="q12_arrowY" points="335,464.54 323,461 331,452" fill="var(--line)" style="opacity:0"/>
+        <text id="q12_lX" x="128" y="140" class="lbl" style="opacity:0">X</text>
+        <text id="q12_lY" x="338" y="468" class="lbl" style="opacity:0">Y</text>
+        <text id="q12_angleLabel" x="200" y="280" class="measure" style="opacity:0">60°</text>
+      </g>
+      <g id="q12_g4" style="opacity:0">
+        <path id="q12_arcD" class="compass-arc" data-cx="240" data-cy="300" d="M 190.01 169.77 A 139.5 139.5 0 0 0 152.21 191.59" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="q12_arcB" class="compass-arc" data-cx="240" data-cy="300" d="M 289.99 430.23 A 139.5 139.5 0 0 0 327.79 408.41" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q12_pD" cx="170.25" cy="179.19" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <circle id="q12_pB" cx="309.75" cy="420.81" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q12_lD" x="145" y="175" class="lbl" style="opacity:0">D</text>
+        <text id="q12_lB" x="316" y="425" class="lbl" style="opacity:0">B</text>
+      </g>
+      <g id="q12_g5" style="opacity:0">
+        <line id="q12_lineAB" x1="114" y1="300" x2="309.75" y2="420.81" stroke="var(--line)" stroke-width="2.3"/>
+        <line id="q12_lineBC" x1="309.75" y1="420.81" x2="366" y2="300" stroke="var(--line)" stroke-width="2.3"/>
+        <line id="q12_lineCD" x1="366" y1="300" x2="170.25" y2="179.19" stroke="var(--line)" stroke-width="2.3"/>
+        <line id="q12_lineDA" x1="170.25" y1="179.19" x2="114" y2="300" stroke="var(--line)" stroke-width="2.3"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ13" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q13_g1" style="opacity:0">
+        <line id="q13_p1_line" x1="120" y1="460" x2="331.5" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q13_p1_a" cx="120" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q13_p1_b" cx="331.5" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q13_p1_la" x="112" y="485" class="lbl" style="opacity:0">A</text>
+        <text id="q13_p1_lb" x="336" y="485" class="lbl" style="opacity:0">B</text>
+        <text id="q13_p1_m" x="205" y="480" class="measure" style="opacity:0">4.7 cm</text>
+      </g>
+      <g id="q13_g2" style="opacity:0">
+        <path id="q13_semiB" data-cx="331.5" data-cy="460" d="M 281.5 460 A 50 50 0 1 1 381.5 460" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q13_tickCb" data-cx="281.5" data-cy="460" d="M 312.97 421.14 A 50 50 0 0 0 299.42 413.32" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q13_tickDb120" data-cx="306.5" data-cy="416.7" d="M 355.88 424.52 A 50 50 0 0 0 355.88 408.88" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q13_apexCb" data-cx="306.5" data-cy="416.7" d="M 341.42 356.03 A 70 70 0 0 0 320.96 348.21" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q13_apexDb120" data-cx="356.5" data-cy="416.7" d="M 342.04 348.21 A 70 70 0 0 1 321.58 356.03" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q13_apexDot" cx="331.5" cy="351.32" r="3" fill="var(--ink)" style="opacity:0"/>
+        <line id="q13_rayB" x1="331.5" y1="460" x2="331.5" y2="270.0" stroke="var(--line)" stroke-width="2.2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q13_arrowB" points="331.5,260 326.5,272 336.5,272" fill="var(--line)" style="opacity:0"/>
+        <text id="q13_xLabel" x="337" y="266" class="lbl" style="opacity:0">X</text>
+        <rect id="q13_rightAngleSq" x="317.5" y="445" width="14" height="14" fill="none" stroke="var(--line)" stroke-width="1.5" style="opacity:0"/>
+        <text id="q13_angleLabel" x="290" y="440" class="measure" style="opacity:0">90°</text>
+      </g>
+      <g id="q13_g3" style="opacity:0">
+        <path id="q13_arcC" class="compass-arc" data-cx="331.5" data-cy="460" d="M 354.03 317.77 A 144 144 0 0 1 308.97 317.77" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q13_pC" cx="331.5" cy="316.0" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q13_lC" x="336" y="312" class="lbl" style="opacity:0">C</text>
+        <text id="q13_mC" x="337" y="390" class="measure" style="opacity:0">3.2 cm</text>
+      </g>
+      <g id="q13_g4" style="opacity:0">
+        <path id="q13_arcA" class="compass-arc" data-cx="120" data-cy="460" d="M 142.53 317.77 A 144 144 0 0 0 97.47 317.77" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+      </g>
+      <g id="q13_g5" style="opacity:0">
+        <path id="q13_arcD" class="compass-arc" data-cx="331.5" data-cy="316.0" d="M 122.6 282.91 A 211.5 211.5 0 0 0 122.6 349.09" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+        <circle id="q13_pD" cx="120.0" cy="316.0" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q13_lD" x="95" y="312" class="lbl" style="opacity:0">D</text>
+      </g>
+      <g id="q13_g6" style="opacity:0">
+        <line id="q13_lineDC" x1="120.0" y1="316.0" x2="331.5" y2="316.0" stroke="var(--line)" stroke-width="2.5"/>
+        <line id="q13_lineDA" x1="120.0" y1="316.0" x2="120" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ14" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q14_g1" style="opacity:0">
+        <line id="q14_p1_line" x1="120" y1="460" x2="322.5" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q14_p1_a" cx="120" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q14_p1_b" cx="322.5" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q14_p1_la" x="112" y="485" class="lbl" style="opacity:0">A</text>
+        <text id="q14_p1_lb" x="327" y="485" class="lbl" style="opacity:0">B</text>
+        <text id="q14_p1_m" x="200" y="480" class="measure" style="opacity:0">4.5 cm</text>
+      </g>
+      <g id="q14_g2" style="opacity:0">
+        <path id="q14_semiB" data-cx="322.5" data-cy="460" d="M 272.5 460 A 50 50 0 1 1 372.5 460" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q14_tickCb" data-cx="272.5" data-cy="460" d="M 303.97 421.14 A 50 50 0 0 0 290.42 413.32" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q14_tickDb120" data-cx="297.5" data-cy="416.7" d="M 346.88 424.52 A 50 50 0 0 0 346.88 408.88" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q14_apexCb" data-cx="297.5" data-cy="416.7" d="M 332.42 356.03 A 70 70 0 0 0 311.96 348.21" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q14_apexDb120" data-cx="347.5" data-cy="416.7" d="M 333.04 348.21 A 70 70 0 0 1 312.58 356.03" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q14_apexDot" cx="322.5" cy="351.32" r="3" fill="var(--ink)" style="opacity:0"/>
+        <line id="q14_rayB" x1="322.5" y1="460" x2="322.5" y2="260" stroke="var(--line)" stroke-width="2.2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q14_arrowB" points="322.5,250 317.5,262 327.5,262" fill="var(--line)" style="opacity:0"/>
+        <text id="q14_xLabel" x="330" y="256" class="lbl" style="opacity:0">X</text>
+        <rect id="q14_rightAngleSq" x="307.5" y="445" width="15" height="15" fill="none" stroke="var(--line)" stroke-width="1.5" style="opacity:0"/>
+        <text id="q14_angleLabel" x="280" y="440" class="measure" style="opacity:0">90°</text>
+      </g>
+      <g id="q14_g3" style="opacity:0">
+        <path id="q14_arcC" class="compass-arc" data-cx="120" data-cy="460" d="M 347.94 315.29 A 270 270 0 0 0 292.07 251.93" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q14_pC" cx="322.5" cy="281.41" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q14_lC" x="328" y="276" class="lbl" style="opacity:0">C</text>
+        <text id="q14_mC" x="345" y="380" class="measure" style="opacity:0">6 cm</text>
+        <line id="q14_lineBC" x1="322.5" y1="460" x2="322.5" y2="281.41" stroke="var(--line)" stroke-width="2" style="opacity:0"/>
+      </g>
+      <g id="q14_g4" style="opacity:0">
+        <path id="q14_arcD1" class="compass-arc" data-cx="322.5" data-cy="281.41" d="M 122.49 249.73 A 202.5 202.5 0 0 0 122.49 313.09" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+      </g>
+      <g id="q14_g5" style="opacity:0">
+        <path id="q14_arcD2" class="compass-arc" data-cx="120" data-cy="460" d="M 147.94 283.61 A 178.6 178.6 0 0 0 92.06 283.61" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+        <circle id="q14_pD" cx="120.0" cy="281.41" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q14_lD" x="90" y="278" class="lbl" style="opacity:0">D</text>
+      </g>
+      <g id="q14_g6" style="opacity:0">
+        <line id="q14_lineDC" x1="120.0" y1="281.41" x2="322.5" y2="281.41" stroke="var(--line)" stroke-width="2.5"/>
+        <line id="q14_lineDA" x1="120.0" y1="281.41" x2="120" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ15" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q15_g1" style="opacity:0">
+        <line id="q15_p1_line" x1="98.25" y1="300" x2="381.75" y2="300" stroke="var(--line)" stroke-width="2"/>
+        <circle id="q15_p1_a" cx="98.25" cy="300" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q15_p1_c" cx="381.75" cy="300" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q15_p1_la" x="90" y="292" class="lbl" style="opacity:0">A</text>
+        <text id="q15_p1_lc" x="387" y="292" class="lbl" style="opacity:0">C</text>
+        <text id="q15_p1_m" x="220" y="292" class="measure" style="opacity:0">6.3 cm</text>
+      </g>
+      <g id="q15_g2" style="opacity:0">
+        <path id="q15_arcAu" class="compass-arc" data-cx="98.25" data-cy="300" d="M 260.33 182.82 A 200 200 0 0 0 216.18 138.47" fill="none" stroke="var(--arc)" stroke-width="1.3"/>
+        <path id="q15_arcAl" class="compass-arc" data-cx="98.25" data-cy="300" d="M 216.18 461.53 A 200 200 0 0 0 260.33 417.18" fill="none" stroke="var(--arc)" stroke-width="1.3"/>
+        <path id="q15_arcCu" class="compass-arc" data-cx="381.75" data-cy="300" d="M 263.82 138.47 A 200 200 0 0 0 219.67 182.82" fill="none" stroke="var(--accent)" stroke-width="1.3"/>
+        <path id="q15_arcCl" class="compass-arc" data-cx="381.75" data-cy="300" d="M 219.67 417.18 A 200 200 0 0 0 263.82 461.53" fill="none" stroke="var(--accent)" stroke-width="1.3"/>
+        <line id="q15_bisLine" x1="240" y1="158.91" x2="240" y2="441.09" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q15_pO" cx="240" cy="300" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q15_lO" x="246" y="295" class="lbl" style="opacity:0">O</text>
+      </g>
+      <g id="q15_g3" style="opacity:0">
+        <g id="q15_protractor" style="opacity:0">
+          <path id="q15_protBody" d="M 145.00 300.00 A 95 95 0 1 1 335.00 300.00" fill="rgba(123,94,167,0.10)" stroke="var(--accent)" stroke-width="1.3"/>
+          <line x1="145" y1="300" x2="335" y2="300" stroke="var(--accent)" stroke-width="1"/>
+          <path d="M 145.00 300.00 L 160.00 300.00 M 157.73 252.50 L 170.72 260.00 M 192.50 217.73 L 200.00 230.72 M 240.00 205.00 L 240.00 220.00 M 287.50 217.73 L 280.00 230.72 M 322.27 252.50 L 309.28 260.00 M 335.00 300.00 L 320.00 300.00 M 146.44 283.50 L 154.32 284.89 M 150.73 267.51 L 158.25 270.24 M 167.23 238.94 L 173.35 244.08 M 207.51 210.73 L 210.24 218.25 M 223.50 206.44 L 224.89 214.32 M 256.50 206.44 L 255.11 214.32 M 272.49 210.73 L 269.76 218.25 M 301.06 227.23 L 295.92 233.35 M 312.77 238.94 L 306.65 244.08 M 329.27 267.51 L 321.75 270.24 M 333.56 283.50 L 325.68 284.89" stroke="var(--accent)" stroke-width="0.9" opacity="0.55"/>
+        </g>
+        <path id="q15_tick50" d="M 178.94 227.23 L 191.79 242.55" stroke="var(--accent)" stroke-width="2" style="opacity:0"/>
+        <circle id="q15_mark50" cx="184.08" cy="233.35" r="3.5" fill="#f59e0b" stroke="#fff" stroke-width="1" style="opacity:0"/>
+        <line id="q15_rayOX" x1="240" y1="300" x2="124.3" y2="162.11" stroke="var(--line)" stroke-width="1.8" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q15_arrowX" points="117.87,154.45 111,162 122,167" fill="var(--line)" style="opacity:0"/>
+        <text id="q15_lX" x="95" y="158" class="lbl" style="opacity:0">X</text>
+        <text id="q15_angleLabel" x="200" y="270" class="measure" style="opacity:0">50°</text>
+      </g>
+      <g id="q15_g4" style="opacity:0">
+        <line id="q15_rayOY" x1="240" y1="300" x2="355.7" y2="437.89" stroke="var(--line)" stroke-width="1.8" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q15_arrowY" points="362.13,445.55 351,441 359,432" fill="var(--line)" style="opacity:0"/>
+        <text id="q15_lY" x="362" y="450" class="lbl" style="opacity:0">Y</text>
+      </g>
+      <g id="q15_g5" style="opacity:0">
+        <path id="q15_arcD" class="compass-arc" data-cx="240" data-cy="300" d="M 166.99 178.5 A 141.75 141.75 0 0 0 133.02 207.0" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="q15_arcB" class="compass-arc" data-cx="240" data-cy="300" d="M 313.01 421.5 A 141.75 141.75 0 0 0 346.98 393.0" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q15_pD" cx="148.88" cy="191.41" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <circle id="q15_pB" cx="331.12" cy="408.59" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q15_lD" x="115" y="188" class="lbl" style="opacity:0">D</text>
+        <text id="q15_lB" x="337" y="413" class="lbl" style="opacity:0">B</text>
+      </g>
+      <g id="q15_g6" style="opacity:0">
+        <line id="q15_lineAB" x1="98.25" y1="300" x2="331.12" y2="408.59" stroke="var(--line)" stroke-width="2.3"/>
+        <line id="q15_lineBC" x1="331.12" y1="408.59" x2="381.75" y2="300" stroke="var(--line)" stroke-width="2.3"/>
+        <line id="q15_lineCD" x1="381.75" y1="300" x2="148.88" y2="191.41" stroke="var(--line)" stroke-width="2.3"/>
+        <line id="q15_lineDA" x1="148.88" y1="191.41" x2="98.25" y2="300" stroke="var(--line)" stroke-width="2.3"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ16" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q16_g1" style="opacity:0">
+        <line id="q16_p1_line" x1="105" y1="300" x2="375" y2="300" stroke="var(--line)" stroke-width="2"/>
+        <circle id="q16_p1_a" cx="105" cy="300" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q16_p1_c" cx="375" cy="300" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q16_p1_la" x="97" y="292" class="lbl" style="opacity:0">A</text>
+        <text id="q16_p1_lc" x="381" y="292" class="lbl" style="opacity:0">C</text>
+        <text id="q16_p1_m" x="220" y="292" class="measure" style="opacity:0">6 cm</text>
+      </g>
+      <g id="q16_g2" style="opacity:0">
+        <path id="q16_arcAu" class="compass-arc" data-cx="105" data-cy="300" d="M 259.25 189.07 A 190 190 0 0 0 217.42 146.83" fill="none" stroke="var(--arc)" stroke-width="1.3"/>
+        <path id="q16_arcAl" class="compass-arc" data-cx="105" data-cy="300" d="M 217.42 453.17 A 190 190 0 0 0 259.25 410.93" fill="none" stroke="var(--arc)" stroke-width="1.3"/>
+        <path id="q16_arcCu" class="compass-arc" data-cx="375" data-cy="300" d="M 262.58 146.83 A 190 190 0 0 0 220.75 189.07" fill="none" stroke="var(--accent)" stroke-width="1.3"/>
+        <path id="q16_arcCl" class="compass-arc" data-cx="375" data-cy="300" d="M 220.75 410.93 A 190 190 0 0 0 262.58 453.17" fill="none" stroke="var(--accent)" stroke-width="1.3"/>
+        <line id="q16_lineXY" x1="240" y1="166.3" x2="240" y2="433.7" stroke="var(--line)" stroke-width="1.8" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q16_arrowX" points="240,156.3 234,168 246,168" fill="var(--line)" style="opacity:0"/>
+        <polygon id="q16_arrowY" points="240,443.7 234,432 246,432" fill="var(--line)" style="opacity:0"/>
+        <text id="q16_lX" x="246" y="160" class="lbl" style="opacity:0">X</text>
+        <text id="q16_lY" x="246" y="450" class="lbl" style="opacity:0">Y</text>
+        <circle id="q16_pO" cx="240" cy="300" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q16_lO" x="246" y="295" class="lbl" style="opacity:0">O</text>
+      </g>
+      <g id="q16_g3" style="opacity:0">
+        <path id="q16_arcD" class="compass-arc" data-cx="240" data-cy="300" d="M 261.12 166.66 A 135 135 0 0 0 218.88 166.66" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <path id="q16_arcB" class="compass-arc" data-cx="240" data-cy="300" d="M 218.88 433.34 A 135 135 0 0 0 261.12 433.34" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q16_pD" cx="240" cy="165" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <circle id="q16_pB" cx="240" cy="435" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q16_lD" x="246" y="160" class="lbl" style="opacity:0">D</text>
+        <text id="q16_lB" x="246" y="450" class="lbl" style="opacity:0">B</text>
+        <text id="q16_mOD" x="248" y="235" class="measure" style="opacity:0">3 cm</text>
+        <text id="q16_mOB" x="248" y="375" class="measure" style="opacity:0">3 cm</text>
+      </g>
+      <g id="q16_g4" style="opacity:0">
+        <line id="q16_lineAD" x1="105" y1="300" x2="240" y2="165" stroke="var(--line)" stroke-width="2.3"/>
+        <line id="q16_lineCD" x1="375" y1="300" x2="240" y2="165" stroke="var(--line)" stroke-width="2.3"/>
+        <line id="q16_lineAB" x1="105" y1="300" x2="240" y2="435" stroke="var(--line)" stroke-width="2.3"/>
+        <line id="q16_lineCB" x1="375" y1="300" x2="240" y2="435" stroke="var(--line)" stroke-width="2.3"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ17" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q17_g1" style="opacity:0">
+        <line id="q17_p1_line" x1="105" y1="460" x2="268.4" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q17_p1_a" cx="105" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q17_p1_b" cx="268.4" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q17_p1_la" x="97" y="485" class="lbl" style="opacity:0">A</text>
+        <text id="q17_p1_lb" x="272" y="485" class="lbl" style="opacity:0">B</text>
+        <text id="q17_p1_m" x="165" y="480" class="measure" style="opacity:0">4.3 cm</text>
+      </g>
+      <g id="q17_g2" style="opacity:0">
+        <path id="q17_arcA" data-cx="105" data-cy="460" d="M 155.0 460.0 A 50 50 0 0 0 118.94 411.7" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q17_tickCa" data-cx="155" data-cy="460" d="M 137.08 413.32 A 50 50 0 0 1 123.53 421.14" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q17_tickD120a" data-cx="130" data-cy="416.7" d="M 80.62 408.88 A 50 50 0 0 1 80.62 424.52" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q17_apexCa" data-cx="130" data-cy="416.7" d="M 115.54 348.21 A 70 70 0 0 1 95.08 356.03" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q17_apexD120a" data-cx="80" data-cy="416.7" d="M 114.92 356.03 A 70 70 0 0 0 94.46 348.21" fill="none" stroke="var(--arc)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q17_e90dot" cx="105" cy="351.32" r="3" fill="var(--ink)" style="opacity:0"/>
+        <line id="q17_ray90" x1="105" y1="460" x2="105" y2="330" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="4 3" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q17_nDot" cx="105" cy="410" r="3" fill="var(--ink)" style="opacity:0"/>
+        <path id="q17_tickKF" data-cx="155" data-cy="460" d="M 178.35 399.34 A 65 65 0 0 0 158.46 395.09" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q17_tickNF" data-cx="105" data-cy="410" d="M 169.91 406.54 A 65 65 0 0 0 165.66 386.65" fill="none" stroke="var(--accent)" stroke-width="1.6" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <circle id="q17_f45dot" cx="168.57" cy="396.43" r="3" fill="var(--ink)" style="opacity:0"/>
+        <line id="q17_rayFinal" x1="105" y1="460" x2="317.13" y2="247.87" stroke="var(--line)" stroke-width="2.2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q17_arrowX" points="324.2,240.8 313,242 316,254" fill="var(--line)" style="opacity:0"/>
+        <text id="q17_xLabel" x="326" y="238" class="lbl" style="opacity:0">X</text>
+        <path id="q17_angleArc" d="M 140 460 A 35 35 0 0 1 130.25 426.25" fill="none" stroke="var(--arc)" stroke-width="1.4" style="opacity:0"/>
+        <text id="q17_angleLabel" x="115" y="432" class="measure" style="opacity:0">45°</text>
+      </g>
+      <g id="q17_g3" style="opacity:0">
+        <path id="q17_arcD" class="compass-arc" data-cx="105" data-cy="460" d="M 237.19 363.96 A 163.4 163.4 0 0 0 201.04 327.81" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q17_pD" cx="220.54" cy="344.46" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q17_lD" x="226" y="339" class="lbl" style="opacity:0">D</text>
+        <text id="q17_mD" x="150" y="380" class="measure" style="opacity:0">4.3 cm</text>
+      </g>
+      <g id="q17_g4" style="opacity:0">
+        <path id="q17_arcB" class="compass-arc" data-cx="268.4" data-cy="460" d="M 400.59 363.95 A 163.4 163.4 0 0 0 364.44 327.81" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+      </g>
+      <g id="q17_g5" style="opacity:0">
+        <path id="q17_arcC" class="compass-arc" data-cx="220.54" data-cy="344.46" d="M 381.93 370.02 A 163.4 163.4 0 0 0 381.93 318.9" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+        <circle id="q17_pC" cx="383.94" cy="344.46" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q17_lC" x="389" y="339" class="lbl" style="opacity:0">C</text>
+      </g>
+      <g id="q17_g6" style="opacity:0">
+        <line id="q17_lineCB" x1="383.94" y1="344.46" x2="268.4" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <line id="q17_lineCD" x1="383.94" y1="344.46" x2="220.54" y2="344.46" stroke="var(--line)" stroke-width="2.5"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ18" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q18_g1" style="opacity:0">
+        <line id="q18_p1_line" x1="120" y1="460" x2="330" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q18_p1_a" cx="120" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q18_p1_b" cx="330" cy="460" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q18_p1_la" x="112" y="485" class="lbl" style="opacity:0">A</text>
+        <text id="q18_p1_lb" x="335" y="485" class="lbl" style="opacity:0">B</text>
+        <text id="q18_p1_m" x="205" y="480" class="measure" style="opacity:0">5 cm</text>
+      </g>
+      <g id="q18_g2" style="opacity:0">
+        <path id="q18_arcA1" class="compass-arc" data-cx="120" data-cy="460" d="M 344.57 283.55 A 285.6 285.6 0 0 0 279.06 222.79" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+      </g>
+      <g id="q18_g3" style="opacity:0">
+        <path id="q18_arcB1" class="compass-arc" data-cx="330" data-cy="460" d="M 347.16 250.7 A 210 210 0 0 0 281.65 255.64" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <circle id="q18_pC" cx="314.21" cy="250.59" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q18_lC" x="320" y="245" class="lbl" style="opacity:0">C</text>
+        <text id="q18_mAC" x="220" y="330" class="measure" style="opacity:0">6.8 cm</text>
+      </g>
+      <g id="q18_g4" style="opacity:0">
+        <line id="q18_lineBC" x1="330" y1="460" x2="314.21" y2="250.59" stroke="var(--line)" stroke-width="2" style="opacity:0"/>
+        <line id="q18_lineAC" x1="120" y1="460" x2="314.21" y2="250.59" stroke="var(--line)" stroke-width="2" stroke-dasharray="5 3" style="opacity:0"/>
+      </g>
+      <g id="q18_g5" style="opacity:0">
+        <path id="q18_arcA2" class="compass-arc" data-cx="120" data-cy="460" d="M 137.16 250.7 A 210 210 0 0 0 71.65 255.64" fill="none" stroke="var(--arc)" stroke-width="1.4"/>
+      </g>
+      <g id="q18_g6" style="opacity:0">
+        <path id="q18_arcC2" class="compass-arc" data-cx="314.21" data-cy="250.59" d="M 106.8 217.74 A 210 210 0 0 0 106.8 283.44" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <circle id="q18_pD" cx="104.21" cy="250.59" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q18_lD" x="75" y="245" class="lbl" style="opacity:0">D</text>
+      </g>
+      <g id="q18_g7" style="opacity:0">
+        <line id="q18_lineCD" x1="314.21" y1="250.59" x2="104.21" y2="250.59" stroke="var(--line)" stroke-width="2.5"/>
+        <line id="q18_lineDA" x1="104.21" y1="250.59" x2="120" y2="460" stroke="var(--line)" stroke-width="2.5"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ19" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q19_g1" style="opacity:0">
+        <line id="q19_p1_line" x1="118.2" y1="300" x2="361.8" y2="300" stroke="var(--line)" stroke-width="2"/>
+        <circle id="q19_p1_a" cx="118.2" cy="300" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q19_p1_c" cx="361.8" cy="300" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q19_p1_la" x="110" y="292" class="lbl" style="opacity:0">A</text>
+        <text id="q19_p1_lc" x="367" y="292" class="lbl" style="opacity:0">C</text>
+        <text id="q19_p1_m" x="215" y="292" class="measure" style="opacity:0">5.8 cm</text>
+      </g>
+      <g id="q19_g2" style="opacity:0">
+        <path id="q19_arcAu" class="compass-arc" data-cx="118.2" data-cy="300" d="M 261.31 175.02 A 190 190 0 0 0 215.69 136.92" fill="none" stroke="var(--arc)" stroke-width="1.3"/>
+        <path id="q19_arcAl" class="compass-arc" data-cx="118.2" data-cy="300" d="M 215.69 463.08 A 190 190 0 0 0 261.31 424.98" fill="none" stroke="var(--arc)" stroke-width="1.3"/>
+        <path id="q19_arcCu" class="compass-arc" data-cx="361.8" data-cy="300" d="M 264.31 136.92 A 190 190 0 0 0 218.69 175.02" fill="none" stroke="var(--accent)" stroke-width="1.3"/>
+        <path id="q19_arcCl" class="compass-arc" data-cx="361.8" data-cy="300" d="M 218.69 424.98 A 190 190 0 0 0 264.31 463.08" fill="none" stroke="var(--accent)" stroke-width="1.3"/>
+        <line id="q19_lineXY" x1="240" y1="154.18" x2="240" y2="445.82" stroke="var(--line)" stroke-width="1.8" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q19_arrowX" points="240,144.18 234,156 246,156" fill="var(--line)" style="opacity:0"/>
+        <polygon id="q19_arrowY" points="240,455.82 234,444 246,444" fill="var(--line)" style="opacity:0"/>
+        <text id="q19_lX" x="246" y="148" class="lbl" style="opacity:0">X</text>
+        <text id="q19_lY" x="246" y="462" class="lbl" style="opacity:0">Y</text>
+        <circle id="q19_pO" cx="240" cy="300" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q19_lO" x="246" y="295" class="lbl" style="opacity:0">O</text>
+      </g>
+      <g id="q19_g3" style="opacity:0">
+        <path id="q19_arcD" class="compass-arc" data-cx="240" data-cy="300" d="M 261.02 167.25 A 134.4 134.4 0 0 0 218.98 167.25" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q19_pD" cx="240" cy="165.6" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q19_lD" x="246" y="160" class="lbl" style="opacity:0">D</text>
+        <text id="q19_mOD" x="248" y="235" class="measure" style="opacity:0">3.2 cm</text>
+      </g>
+      <g id="q19_g4" style="opacity:0">
+        <path id="q19_arcB" class="compass-arc" data-cx="240" data-cy="300" d="M 218.98 432.75 A 134.4 134.4 0 0 0 261.02 432.75" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q19_pB" cx="240" cy="434.4" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q19_lB" x="246" y="450" class="lbl" style="opacity:0">B</text>
+        <text id="q19_mOB" x="248" y="375" class="measure" style="opacity:0">3.2 cm</text>
+      </g>
+      <g id="q19_g5" style="opacity:0">
+        <line id="q19_lineAB" x1="118.2" y1="300" x2="240" y2="434.4" stroke="var(--line)" stroke-width="2.3"/>
+        <line id="q19_lineBC" x1="361.8" y1="300" x2="240" y2="434.4" stroke="var(--line)" stroke-width="2.3"/>
+        <line id="q19_lineCD" x1="361.8" y1="300" x2="240" y2="165.6" stroke="var(--line)" stroke-width="2.3"/>
+        <line id="q19_lineDA" x1="118.2" y1="300" x2="240" y2="165.6" stroke="var(--line)" stroke-width="2.3"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ20" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q20_g1" style="opacity:0">
+        <line id="q20_p1_line" x1="122.4" y1="300" x2="357.6" y2="300" stroke="var(--line)" stroke-width="2"/>
+        <circle id="q20_p1_a" cx="122.4" cy="300" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q20_p1_c" cx="357.6" cy="300" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q20_p1_la" x="114" y="292" class="lbl" style="opacity:0">A</text>
+        <text id="q20_p1_lc" x="363" y="292" class="lbl" style="opacity:0">C</text>
+        <text id="q20_p1_m" x="215" y="292" class="measure" style="opacity:0">5.6 cm</text>
+      </g>
+      <g id="q20_g2" style="opacity:0">
+        <path id="q20_arcAu" class="compass-arc" data-cx="122.4" data-cy="300" d="M 260.89 177.34 A 185 185 0 0 0 216.21 140.55" fill="none" stroke="var(--arc)" stroke-width="1.3"/>
+        <path id="q20_arcAl" class="compass-arc" data-cx="122.4" data-cy="300" d="M 216.21 459.45 A 185 185 0 0 0 260.89 422.66" fill="none" stroke="var(--arc)" stroke-width="1.3"/>
+        <path id="q20_arcCu" class="compass-arc" data-cx="357.6" data-cy="300" d="M 263.79 140.55 A 185 185 0 0 0 219.11 177.34" fill="none" stroke="var(--accent)" stroke-width="1.3"/>
+        <path id="q20_arcCl" class="compass-arc" data-cx="357.6" data-cy="300" d="M 219.11 422.66 A 185 185 0 0 0 263.79 459.45" fill="none" stroke="var(--accent)" stroke-width="1.3"/>
+        <line id="q20_lineXY" x1="240" y1="157.19" x2="240" y2="442.81" stroke="var(--line)" stroke-width="1.8" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q20_arrowX" points="240,147.19 234,159 246,159" fill="var(--line)" style="opacity:0"/>
+        <polygon id="q20_arrowY" points="240,452.81 234,441 246,441" fill="var(--line)" style="opacity:0"/>
+        <text id="q20_lX" x="246" y="151" class="lbl" style="opacity:0">X</text>
+        <text id="q20_lY" x="246" y="459" class="lbl" style="opacity:0">Y</text>
+        <circle id="q20_pO" cx="240" cy="300" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q20_lO" x="246" y="295" class="lbl" style="opacity:0">O</text>
+      </g>
+      <g id="q20_g3" style="opacity:0">
+        <path id="q20_arcD" class="compass-arc" data-cx="240" data-cy="300" d="M 258.4 183.85 A 117.6 117.6 0 0 0 221.6 183.85" fill="none" stroke="var(--arc)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q20_pD" cx="240" cy="182.4" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q20_lD" x="246" y="177" class="lbl" style="opacity:0">D</text>
+        <text id="q20_mOD" x="248" y="245" class="measure" style="opacity:0">2.8 cm</text>
+      </g>
+      <g id="q20_g4" style="opacity:0">
+        <path id="q20_arcB" class="compass-arc" data-cx="240" data-cy="300" d="M 221.6 416.15 A 117.6 117.6 0 0 0 258.4 416.15" fill="none" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle id="q20_pB" cx="240" cy="417.6" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q20_lB" x="246" y="433" class="lbl" style="opacity:0">B</text>
+        <text id="q20_mOB" x="248" y="365" class="measure" style="opacity:0">2.8 cm</text>
+      </g>
+      <g id="q20_g5" style="opacity:0">
+        <line id="q20_lineAD" x1="122.4" y1="300" x2="240" y2="182.4" stroke="var(--line)" stroke-width="2.3"/>
+        <line id="q20_lineCD" x1="357.6" y1="300" x2="240" y2="182.4" stroke="var(--line)" stroke-width="2.3"/>
+        <line id="q20_lineAB" x1="122.4" y1="300" x2="240" y2="417.6" stroke="var(--line)" stroke-width="2.3"/>
+        <line id="q20_lineCB" x1="357.6" y1="300" x2="240" y2="417.6" stroke="var(--line)" stroke-width="2.3"/>
+      </g>
+    </svg>
+
+    <svg id="svgQ21" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q21_g1" style="opacity:0">
+        <line id="q21_p1_line" x1="140" y1="440" x2="230" y2="440" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q21_p1_a" cx="140" cy="440" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q21_p1_b" cx="230" cy="440" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q21_p1_la" x="132" y="460" class="lbl" style="opacity:0">A</text>
+        <text id="q21_p1_lb" x="234" y="460" class="lbl" style="opacity:0">B</text>
+        <text id="q21_p1_m" x="165" y="460" class="measure" style="opacity:0">2 cm</text>
+      </g>
+      <g id="q21_g2" style="opacity:0">
+        <path id="q21_a_arc" data-cx="140" data-cy="440" d="M 190.0 440.0 A 50 50 0 0 0 104.64 404.64" fill="none" stroke="var(--arc)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q21_a_tick1" data-cx="190" data-cy="440" d="M 172.08 393.32 A 50 50 0 0 1 158.53 401.14" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q21_a_tick2" data-cx="165" data-cy="396.7" d="M 115.62 388.88 A 50 50 0 0 1 115.62 404.52" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q21_a_ray" x1="140" y1="440" x2="72.5" y2="323.09" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q21_a_arrow" points="67.5,314.43 63,325 74,328" fill="var(--line)" style="opacity:0"/>
+        <circle id="q21_a_dot" cx="95.0" cy="362.06" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q21_a_lf" x="65" y="358" class="lbl" style="opacity:0">F</text>
+
+        <path id="q21_b_arc" data-cx="230" data-cy="440" d="M 180.0 440.0 A 50 50 0 0 1 265.36 404.64" fill="none" stroke="var(--arc)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q21_b_tick1" data-cx="180" data-cy="440" d="M 211.47 401.14 A 50 50 0 0 0 197.92 393.32" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q21_b_tick2" data-cx="205" data-cy="396.7" d="M 254.38 404.52 A 50 50 0 0 0 254.38 388.88" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q21_b_ray" x1="230" y1="440" x2="297.5" y2="323.09" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q21_b_arrow" points="302.5,314.43 292,317 296,328" fill="var(--line)" style="opacity:0"/>
+        <circle id="q21_b_dot" cx="275.0" cy="362.06" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q21_b_lc" x="280" y="358" class="lbl" style="opacity:0">C</text>
+      </g>
+      <g id="q21_g3" style="opacity:0">
+        <path id="q21_f_arc" data-cx="95" data-cy="362.06" d="M 120.0 405.36 A 50 50 0 0 0 107.94 313.76" fill="none" stroke="var(--arc)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q21_f_tick1" data-cx="120" data-cy="405.36" d="M 151.47 366.5 A 50 50 0 0 0 137.92 358.68" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q21_f_tick2" data-cx="145" data-cy="362.06" d="M 127.08 315.38 A 50 50 0 0 1 113.53 323.2" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q21_f_ray" x1="95" y1="362.06" x2="160.0" y2="249.48" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q21_f_arrow" points="165.0,240.82 152,242 156,254" fill="var(--line)" style="opacity:0"/>
+        <circle id="q21_f_dot" cx="140.0" cy="284.12" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q21_f_le" x="118" y="280" class="lbl" style="opacity:0">E</text>
+
+        <path id="q21_c_arc" data-cx="275" data-cy="362.06" d="M 250.0 405.36 A 50 50 0 0 1 262.06 313.76" fill="none" stroke="var(--arc)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q21_c_tick1" data-cx="250" data-cy="405.36" d="M 232.08 358.68 A 50 50 0 0 0 218.53 366.5" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q21_c_tick2" data-cx="225" data-cy="362.06" d="M 256.47 323.2 A 50 50 0 0 0 242.92 315.38" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q21_c_ray" x1="275" y1="362.06" x2="210.0" y2="249.48" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q21_c_arrow" points="205.0,240.82 198,252 209,254" fill="var(--line)" style="opacity:0"/>
+        <circle id="q21_c_dot" cx="230.0" cy="284.12" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q21_c_ld" x="234" y="280" class="lbl" style="opacity:0">D</text>
+      </g>
+      <g id="q21_g4" style="opacity:0">
+        <line id="q21_lineED" x1="140.0" y1="284.12" x2="230.0" y2="284.12" stroke="var(--line)" stroke-width="2.5"/>
+        <text id="q21_mED" x="170" y="276" class="measure" style="opacity:0">2 cm</text>
+      </g>
+    </svg>
+
+    <svg id="svgQ22" width="480" height="520" viewBox="0 0 480 520" style="display:none;">
+      <g id="q22_g1" style="opacity:0">
+        <line id="q22_p1_line" x1="140" y1="440" x2="252" y2="440" stroke="var(--line)" stroke-width="2.5"/>
+        <circle id="q22_p1_a" cx="140" cy="440" r="3" fill="var(--line)" style="opacity:0"/>
+        <circle id="q22_p1_b" cx="252" cy="440" r="3" fill="var(--line)" style="opacity:0"/>
+        <text id="q22_p1_la" x="132" y="460" class="lbl" style="opacity:0">A</text>
+        <text id="q22_p1_lb" x="256" y="460" class="lbl" style="opacity:0">B</text>
+        <text id="q22_p1_m" x="175" y="460" class="measure" style="opacity:0">3.5 cm</text>
+      </g>
+      <g id="q22_g2" style="opacity:0">
+        <path id="q22_a_arc" data-cx="140" data-cy="440" d="M 190.0 440.0 A 50 50 0 0 0 104.64 404.64" fill="none" stroke="var(--arc)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q22_a_tick1" data-cx="190" data-cy="440" d="M 172.08 393.32 A 50 50 0 0 1 158.53 401.14" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q22_a_tick2" data-cx="165" data-cy="396.7" d="M 115.62 388.88 A 50 50 0 0 1 115.62 404.52" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q22_a_ray" x1="140" y1="440" x2="66.5" y2="312.69" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q22_a_arrow" points="61.5,304.03 57,315 68,318" fill="var(--line)" style="opacity:0"/>
+        <circle id="q22_a_dot" cx="84.0" cy="343.01" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q22_a_lf" x="55" y="339" class="lbl" style="opacity:0">F</text>
+
+        <path id="q22_b_arc" data-cx="252" data-cy="440" d="M 202.0 440.0 A 50 50 0 0 1 287.36 404.64" fill="none" stroke="var(--arc)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q22_b_tick1" data-cx="202" data-cy="440" d="M 233.47 401.14 A 50 50 0 0 0 219.92 393.32" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q22_b_tick2" data-cx="227" data-cy="396.7" d="M 276.38 404.52 A 50 50 0 0 0 276.38 388.88" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q22_b_ray" x1="252" y1="440" x2="325.5" y2="312.69" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q22_b_arrow" points="330.5,304.03 319,307 324,318" fill="var(--line)" style="opacity:0"/>
+        <circle id="q22_b_dot" cx="308.0" cy="343.01" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q22_b_lc" x="313" y="339" class="lbl" style="opacity:0">C</text>
+      </g>
+      <g id="q22_g3" style="opacity:0">
+        <path id="q22_f_arc" data-cx="84" data-cy="343.01" d="M 109.0 386.31 A 50 50 0 0 0 96.94 294.71" fill="none" stroke="var(--arc)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q22_f_tick1" data-cx="109" data-cy="386.31" d="M 140.47 347.45 A 50 50 0 0 0 126.92 339.63" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q22_f_tick2" data-cx="134" data-cy="343.01" d="M 116.08 296.33 A 50 50 0 0 1 102.53 304.15" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q22_f_ray" x1="84" y1="343.01" x2="157.5" y2="215.7" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q22_f_arrow" points="162.5,207.04 149,208 153,220" fill="var(--line)" style="opacity:0"/>
+        <circle id="q22_f_dot" cx="140.0" cy="246.02" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q22_f_le" x="115" y="242" class="lbl" style="opacity:0">E</text>
+
+        <path id="q22_c_arc" data-cx="308" data-cy="343.01" d="M 283.0 386.31 A 50 50 0 0 1 295.06 294.71" fill="none" stroke="var(--arc)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q22_c_tick1" data-cx="283" data-cy="386.31" d="M 265.08 339.63 A 50 50 0 0 0 251.53 347.45" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <path id="q22_c_tick2" data-cx="258" data-cy="343.01" d="M 289.47 304.15 A 50 50 0 0 0 275.92 296.33" fill="none" stroke="var(--accent)" stroke-width="1.4" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <line id="q22_c_ray" x1="308" y1="343.01" x2="234.5" y2="215.7" stroke="var(--line)" stroke-width="2" style="stroke-dasharray:1000;stroke-dashoffset:1000;"/>
+        <polygon id="q22_c_arrow" points="229.5,207.04 221,219 232,220" fill="var(--line)" style="opacity:0"/>
+        <circle id="q22_c_dot" cx="252.0" cy="246.02" r="3.5" fill="var(--line)" style="opacity:0"/>
+        <text id="q22_c_ld" x="256" y="242" class="lbl" style="opacity:0">D</text>
+      </g>
+      <g id="q22_g4" style="opacity:0">
+        <line id="q22_lineED" x1="140.0" y1="246.02" x2="252.0" y2="246.02" stroke="var(--line)" stroke-width="2.5"/>
+        <text id="q22_mED" x="180" y="238" class="measure" style="opacity:0">3.5 cm</text>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<script>
+/* ---------- low-level reveal helpers (instant-trigger, no scheduled delay) ---------- */
+function revealArc(el, duration){
+  duration = duration || 650;
+  if(!el) return;
+  let len; try{ len = el.getTotalLength(); } catch(e){ len = 200; }
+  el.style.transition = 'none';
+  el.style.strokeDasharray = len;
+  el.style.strokeDashoffset = len;
+  el.getBoundingClientRect();
+  el.style.transition = 'stroke-dashoffset ' + duration + 'ms ease-in-out';
+  requestAnimationFrame(()=>{ el.style.strokeDashoffset = 0; });
+  // after the reveal finishes, drop the inline dasharray override so any native
+  // dashed pattern (e.g. the "3 3" sketch-style arcs) is restored, not left solid
+  setTimeout(()=>{ el.style.strokeDasharray=''; el.style.strokeDashoffset=''; }, duration + 40);
+}
+function revealFade(el, duration){
+  duration = duration || 350;
+  if(!el) return;
+  el.style.transition = 'none';
+  el.style.opacity = 0;
+  el.getBoundingClientRect();
+  el.style.transition = 'opacity ' + duration + 'ms ease-in';
+  requestAnimationFrame(()=>{ el.style.opacity = 1; });
+}
+function fadeOut(el, duration){
+  duration = duration || 400;
+  if(!el) return;
+  el.style.transition = 'none';
+  el.style.opacity = 1;
+  el.getBoundingClientRect();
+  el.style.transition = 'opacity ' + duration + 'ms ease-out';
+  requestAnimationFrame(()=>{ el.style.opacity = 0; });
+}
+function animateCompass(path){
+  if(!path) return;
+  const cx = parseFloat(path.dataset.cx), cy = parseFloat(path.dataset.cy);
+  const genClass = 'gen-' + path.id;
+  path.parentNode.querySelectorAll('.' + genClass).forEach(el => el.remove());
+
+  const len = path.getTotalLength();
+  const svgNS = "http://www.w3.org/2000/svg";
+  const parent = path.parentNode;
+
+  const pivot = document.createElementNS(svgNS, "circle");
+  pivot.setAttribute("cx", cx); pivot.setAttribute("cy", cy); pivot.setAttribute("r", 5.5);
+  pivot.setAttribute("fill", "#2563eb"); pivot.setAttribute("stroke", "#fff"); pivot.setAttribute("stroke-width", "1.5");
+  pivot.classList.add(genClass);
+  pivot.style.opacity = 0; pivot.style.transition = "opacity .2s";
+  parent.appendChild(pivot);
+
+  const arm = document.createElementNS(svgNS, "line");
+  arm.setAttribute("stroke", "#94a3b8"); arm.setAttribute("stroke-width", "1.5");
+  arm.classList.add(genClass);
+  arm.style.opacity = 0; arm.style.transition = "opacity .2s";
+  parent.appendChild(arm);
+
+  const pencil = document.createElementNS(svgNS, "circle");
+  pencil.setAttribute("r", 5); pencil.setAttribute("fill", "#f59e0b");
+  pencil.setAttribute("stroke", "#fff"); pencil.setAttribute("stroke-width", "1.5");
+  pencil.classList.add(genClass);
+  pencil.style.opacity = 0; pencil.style.transition = "opacity .2s";
+  parent.appendChild(pencil);
+
+  requestAnimationFrame(()=>{ pivot.style.opacity = 1; arm.style.opacity = 1; pencil.style.opacity = 1; });
+
+  const duration = 1000;
+  const start = performance.now();
+  function easeInOutQuad(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t) * t; }
+  function frame(now){
+    const raw = Math.min((now - start) / duration, 1);
+    const eased = easeInOutQuad(raw);
+    // sample the ACTUAL rendered path — guarantees the pencil dot always
+    // follows the real drawn curve, regardless of sweep direction or span
+    const pt = path.getPointAtLength(eased * len);
+    arm.setAttribute("x1", cx); arm.setAttribute("y1", cy);
+    arm.setAttribute("x2", pt.x); arm.setAttribute("y2", pt.y);
+    pencil.setAttribute("cx", pt.x); pencil.setAttribute("cy", pt.y);
+    if (raw < 1){ requestAnimationFrame(frame); }
+    else {
+      setTimeout(()=>{
+        arm.style.opacity = 0;
+        pencil.style.opacity = 0;
+        pivot.style.opacity = 0.55;
+      }, 350);
+    }
+  }
+  requestAnimationFrame(frame);
+}
+function revealArcC(el, duration){ revealArc(el, duration); animateCompass(el); }
+
+function el(id){ return document.getElementById(id); }
+
+/* ---------- generic "whole group at once" action, for simple one-shot steps ---------- */
+function drawGroupAction(gid){
+  const g = el(gid);
+  g.style.transition = 'none';
+  g.style.opacity = 1;
+  const strokes = g.querySelectorAll('line, path');
+  strokes.forEach(p=> revealArc(p, 850));
+  const others = g.querySelectorAll('circle, text, rect, polygon');
+  others.forEach(o=>{
+    o.style.transition = 'none'; o.style.opacity = 0; o.getBoundingClientRect();
+    o.style.transition = 'opacity .5s ease-in';
+  });
+  setTimeout(()=>{ others.forEach(o=> o.style.opacity = 1); }, 750);
+  g.querySelectorAll('.compass-arc').forEach(p => animateCompass(p));
+}
+
+/* ---------- instant (non-animated) state application, used for Back / dot jumps ---------- */
+function instantShowElement(node){
+  node.style.transition = 'none';
+  if(node.tagName === 'path' || node.tagName === 'line'){
+    node.style.strokeDasharray = '';
+    node.style.strokeDashoffset = '';
+  } else {
+    node.style.opacity = 1;
+  }
+}
+function instantHideGroup(gid){
+  const g = el(gid);
+  g.style.transition = 'none';
+  g.style.opacity = 0;
+}
+
+/* =====================================================================
+   Per-question data: each main step (matching the given verbatim wording)
+   maps to one or more MICRO actions. Simple steps have exactly one micro
+   action (draw the whole group). The angle-construction steps are broken
+   into individual physical actions the student can click through one at
+   a time — Next never skips ahead, and the main step text only changes
+   when you cross into a new main step, not between micro actions of the
+   same step.
+   ===================================================================== */
+const QUESTIONS = [
+  {
+    title: "Constructing Quadrilateral PQRS",
+    given: "PQ = 4 cm, ∠P = 90°, QR = 4.3 cm, RS = 3.6 cm, SP = 3.2 cm",
+    question: "Construct a quadrilateral PQRS in which PQ = 4 cm, ∠P = 90°, QR = 4.3 cm, RS = 3.6 cm and SP = 3.2 cm.",
+    svgId: "svgQ1",
+    stepLines: [
+      "Draw PQ = 4 cm.",
+      "Draw ∠QPX = 90°.",
+      "With P as centre and radius = 3.2 cm, draw an arc, cutting PX at S.",
+      "With Q as centre and radius = 4.3 cm, draw an arc.",
+      "With S as centre and radius = 3.6 cm, draw another arc, cutting the previous arc at R.",
+      "Join QR and RS."
+    ],
+    groups: ["q1_g1","q1_g2","q1_g3","q1_g4","q1_g5","q1_g6"],
+    finalNote: "✅ PQRS is now complete. QR = 4.3 cm and RS = 3.6 cm are guaranteed because R was located as the intersection of two arcs of exactly those radii.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q1_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=>{ el('q1_g2').style.opacity=1; revealArcC(el('q1_semiArc'), 750); }, ids:['q1_semiArc'] },
+        { ms:1400, fn:()=> revealArcC(el('q1_tickD'), 550), ids:['q1_tickD'] },
+        { ms:1400, fn:()=> revealArcC(el('q1_tickE'), 550), ids:['q1_tickE'] },
+        { ms:1400, fn:()=> revealArcC(el('q1_apexD'), 550), ids:['q1_apexD'] },
+        { ms:1400, fn:()=> revealArcC(el('q1_apexE'), 550), ids:['q1_apexE'] },
+        { ms:450,  fn:()=> revealFade(el('q1_apexDot'), 300), ids:['q1_apexDot'] },
+        { ms:700,  fn:()=> revealArc(el('q1_rayPX'), 550), ids:['q1_rayPX'] },
+        { ms:500,  fn:()=>{ revealFade(el('q1_arrowHead'),300); revealFade(el('q1_xLabel'),300); revealFade(el('q1_rightAngleSq'),300); revealFade(el('q1_angleLabel'),300); }, ids:['q1_arrowHead','q1_xLabel','q1_rightAngleSq','q1_angleLabel'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q1_g3'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q1_g4'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q1_g5'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q1_g6'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Quadrilateral ABCD",
+    given: "AB = 4.5 cm, BC = 5.2 cm, CD = 5 cm, DA = 4.7 cm, ∠ABC = 75°",
+    question: "Construct a quadrilateral ABCD in which AB = 4.5 cm, BC = 5.2 cm, CD = 5 cm, DA = 4.7 cm and ∠ABC = 75°.",
+    svgId: "svgQ2",
+    stepLines: [
+      "Draw AB = 4.5 cm.",
+      "Draw ∠ABX = 75°.",
+      "With B as centre and radius = 5.2 cm, draw an arc, cutting BX at C.",
+      "With A as centre and radius = 4.7 cm, draw an arc.",
+      "With C as centre and radius = 5 cm, draw another arc, cutting the previous arc at D.",
+      "Join DC and DA."
+    ],
+    groups: ["q2_g1","q2_g2","q2_g3","q2_g4","q2_g5","q2_g6"],
+    finalNote: "✅ ABCD is now complete. CD = 5 cm and DA = 4.7 cm are guaranteed because D was located as the intersection of two arcs of exactly those radii.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q2_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=>{ el('q2_g2').style.opacity=1; revealArcC(el('q2_semiArc'), 750); }, ids:['q2_semiArc'] },
+        { ms:1400, fn:()=> revealArcC(el('q2_tickC'), 550), ids:['q2_tickC'] },
+        { ms:1400, fn:()=> revealArcC(el('q2_tickD120'), 550), ids:['q2_tickD120'] },
+        { ms:1400, fn:()=> revealArcC(el('q2_apexC'), 550), ids:['q2_apexC'] },
+        { ms:1400, fn:()=> revealArcC(el('q2_apexD120'), 550), ids:['q2_apexD120'] },
+        { ms:450,  fn:()=> revealFade(el('q2_e90Dot'), 300), ids:['q2_e90Dot'] },
+        { ms:700,  fn:()=> revealArc(el('q2_ray90'), 550), ids:['q2_ray90'] },
+        { ms:450,  fn:()=> revealFade(el('q2_nDot'), 300), ids:['q2_nDot'] },
+        { ms:1400, fn:()=> revealArcC(el('q2_tickCF'), 550), ids:['q2_tickCF'] },
+        { ms:1400, fn:()=> revealArcC(el('q2_tickNF'), 550), ids:['q2_tickNF'] },
+        { ms:450,  fn:()=> revealFade(el('q2_f75Dot'), 300), ids:['q2_f75Dot'] },
+        { ms:700,  fn:()=> revealArc(el('q2_rayFinal'), 550), ids:['q2_rayFinal'] },
+        { ms:500,  fn:()=>{ revealFade(el('q2_arrowHead'),300); revealFade(el('q2_xLabel'),300); revealFade(el('q2_angleArc'),300); revealFade(el('q2_angleLabel'),300); }, ids:['q2_arrowHead','q2_xLabel','q2_angleArc','q2_angleLabel'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q2_g3'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q2_g4'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q2_g5'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q2_g6'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Quadrilateral ABCD",
+    given: "AB = CD = 5.1 cm, BC = 4.7 cm, DA = 4.2 cm, ∠BCD = 60°",
+    question: "Construct a quadrilateral ABCD in which AB = CD = 5.1 cm, BC = 4.7 cm, DA = 4.2 cm and ∠BCD = 60°.",
+    svgId: "svgQ3",
+    stepLines: [
+      "Draw CD = 5.1 cm.",
+      "Draw ∠DCX = 60°.",
+      "With C as centre and radius = 4.7 cm, draw an arc, cutting CX at B.",
+      "With D as centre and radius = 4.2 cm, draw an arc.",
+      "With B as centre and radius = 5.1 cm, draw another arc, cutting the previous arc at A.",
+      "Join DA and BA."
+    ],
+    groups: ["q3_g1","q3_g2","q3_g3","q3_g4","q3_g5","q3_g6"],
+    finalNote: "✅ ABCD is now complete. DA = 4.2 cm and BA = 5.1 cm are guaranteed because A was located as the intersection of two arcs of exactly those radii.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q3_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=>{ el('q3_g2').style.opacity=1; revealArcC(el('q3_arcC'), 650); }, ids:['q3_arcC'] },
+        { ms:1400, fn:()=> revealArcC(el('q3_tick60'), 550), ids:['q3_tick60'] },
+        { ms:700,  fn:()=>{ revealArc(el('q3_ray'),550); revealFade(el('q3_arrowHead'),300); revealFade(el('q3_xLabel'),300); revealFade(el('q3_angleLabel'),300); }, ids:['q3_ray','q3_arrowHead','q3_xLabel','q3_angleLabel'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q3_g3'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q3_g4'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q3_g5'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q3_g6'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Quadrilateral UVWZ",
+    given: "UV = 6 cm, VW = 5.3 cm, UZ = 5 cm, ∠U = 60°, ∠V = 75°",
+    question: "Construct a quadrilateral UVWZ in which UV = 6 cm, VW = 5.3 cm, UZ = 5 cm, ∠U = 60° and ∠V = 75°.",
+    svgId: "svgQ4",
+    stepLines: [
+      "Draw UV = 6 cm.",
+      "Construct ∠VUX = 60°.",
+      "With U as centre and radius = 5 cm, draw an arc, cutting UX at Z.",
+      "Construct ∠UVY = 75°.",
+      "With V as centre and radius = 5.3 cm, draw an arc, cutting arc VY at W.",
+      "Join VW and ZW."
+    ],
+    groups: ["q4_g1","q4_g2","q4_g3","q4_g4","q4_g5","q4_g6"],
+    finalNote: "✅ UVWZ is now complete. Z and W were each located directly by their given angle and radius — the final side ZW closes the figure.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q4_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=>{ el('q4_g2').style.opacity=1; revealArcC(el('q4_arcU'), 650); }, ids:['q4_arcU'] },
+        { ms:1400, fn:()=> revealArcC(el('q4_tickU'), 550), ids:['q4_tickU'] },
+        { ms:700,  fn:()=>{ revealArc(el('q4_rayU'),550); revealFade(el('q4_arrowU'),300); revealFade(el('q4_xLabelU'),300); revealFade(el('q4_angleLabelU'),300); }, ids:['q4_rayU','q4_arrowU','q4_xLabelU','q4_angleLabelU'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q4_g3'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=>{ el('q4_g4').style.opacity=1; revealArcC(el('q4_semiV'), 750); }, ids:['q4_semiV'] },
+        { ms:1400, fn:()=> revealArcC(el('q4_tickCv'), 550), ids:['q4_tickCv'] },
+        { ms:1400, fn:()=> revealArcC(el('q4_tickDv120'), 550), ids:['q4_tickDv120'] },
+        { ms:1400, fn:()=> revealArcC(el('q4_apexCv'), 550), ids:['q4_apexCv'] },
+        { ms:1400, fn:()=> revealArcC(el('q4_apexDv120'), 550), ids:['q4_apexDv120'] },
+        { ms:450,  fn:()=> revealFade(el('q4_e90dot'), 300), ids:['q4_e90dot'] },
+        { ms:700,  fn:()=> revealArc(el('q4_ray90V'), 550), ids:['q4_ray90V'] },
+        { ms:450,  fn:()=> revealFade(el('q4_nDotV'), 300), ids:['q4_nDotV'] },
+        { ms:1400, fn:()=> revealArcC(el('q4_tickCFv'), 550), ids:['q4_tickCFv'] },
+        { ms:1400, fn:()=> revealArcC(el('q4_tickNFv'), 550), ids:['q4_tickNFv'] },
+        { ms:450,  fn:()=> revealFade(el('q4_f75dot'), 300), ids:['q4_f75dot'] },
+        { ms:700,  fn:()=> revealArc(el('q4_rayFinalV'), 550), ids:['q4_rayFinalV'] },
+        { ms:500,  fn:()=>{ revealFade(el('q4_arrowV'),300); revealFade(el('q4_yLabelV'),300); revealFade(el('q4_angleArcV'),300); revealFade(el('q4_angleLabelV'),300); }, ids:['q4_arrowV','q4_yLabelV','q4_angleArcV','q4_angleLabelV'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q4_g5'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q4_g6'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Quadrilateral PQRS",
+    given: "PQ = 4.5 cm, QR = 5.6 cm, RS = 4.1 cm, ∠Q = 60°, ∠R = 120°",
+    question: "Construct a quadrilateral PQRS in which PQ = 4.5 cm, QR = 5.6 cm, RS = 4.1 cm, ∠Q = 60° and ∠R = 120°.",
+    svgId: "svgQ5",
+    stepLines: [
+      "Draw QR = 5.6 cm.",
+      "Construct ∠RQX = 60°.",
+      "With Q as centre and radius = 4.5 cm, draw an arc, cutting QX at P.",
+      "Construct ∠QRY = 120°.",
+      "With R as centre and radius = 4.1 cm, draw an arc, cutting arc RY at S.",
+      "Join SP."
+    ],
+    groups: ["q5_g1","q5_g2","q5_g3","q5_g4","q5_g5","q5_g6"],
+    finalNote: "✅ PQRS is now complete. P and S were each located directly by their given angle and radius from Q and R — the final side SP closes the figure.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q5_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=>{ el('q5_g2').style.opacity=1; revealArcC(el('q5_arcQ'), 650); }, ids:['q5_arcQ'] },
+        { ms:1400, fn:()=> revealArcC(el('q5_tickQ'), 550), ids:['q5_tickQ'] },
+        { ms:700,  fn:()=>{ revealArc(el('q5_rayQ'),550); revealFade(el('q5_arrowQ'),300); revealFade(el('q5_xLabel'),300); revealFade(el('q5_angleLabelQ'),300); }, ids:['q5_rayQ','q5_arrowQ','q5_xLabel','q5_angleLabelQ'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q5_g3'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=>{ el('q5_g4').style.opacity=1; revealArcC(el('q5_semiR'), 650); }, ids:['q5_semiR'] },
+        { ms:1400, fn:()=> revealArcC(el('q5_tickR60'), 550), ids:['q5_tickR60'] },
+        { ms:1400, fn:()=> revealArcC(el('q5_tickR120'), 550), ids:['q5_tickR120'] },
+        { ms:700,  fn:()=>{ revealArc(el('q5_rayR'),550); revealFade(el('q5_arrowR'),300); revealFade(el('q5_yLabel'),300); revealFade(el('q5_angleLabelR'),300); }, ids:['q5_rayR','q5_arrowR','q5_yLabel','q5_angleLabelR'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q5_g5'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q5_g6'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Quadrilateral ABCD",
+    given: "AB = AD = 5.3 cm, BC = CD = 5 cm, diagonal BD = 6.4 cm",
+    question: "Construct a quadrilateral ABCD in which AB = AD = 5.3 cm, BC = CD = 5 cm and diagonal BD = 6.4 cm.",
+    svgId: "svgQ6",
+    stepLines: [
+      "Draw AB = 5.3 cm.",
+      "Taking A as center, draw an arc of radius 5.3 cm (= AD) and taking B as center, draw one more arc of radius 6.4 cm (= diagonal BD). Let the two arcs intersect at point D.",
+      "Taking D as center, draw an arc of radius 5 cm (= CD) and taking B as center, draw one more arc of radius 5cm (= BC). Let the two arcs intersect at point C.",
+      "Join DC and BC."
+    ],
+    groups: ["q6_g1","q6_g2","q6_g3","q6_g4"],
+    finalNote: "✅ ABCD is now complete. D was located from A and B (using the diagonal BD), then C was located from D and B — no angle construction was needed anywhere.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q6_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=> revealArcC(el('q6_arcAD'), 650), ids:['q6_arcAD'] },
+        { ms:1400, fn:()=>{ revealArcC(el('q6_arcBD'), 650); revealFade(el('q6_pD'),300); revealFade(el('q6_lD'),300); revealFade(el('q6_mAD'),300); revealFade(el('q6_mBD'),300); }, ids:['q6_arcBD','q6_pD','q6_lD','q6_mAD','q6_mBD'] }
+      ],
+      [
+        { ms:1400, fn:()=> revealArcC(el('q6_arcDC'), 650), ids:['q6_arcDC'] },
+        { ms:1400, fn:()=>{ revealArcC(el('q6_arcBC'), 650); revealFade(el('q6_pC'),300); revealFade(el('q6_lC'),300); }, ids:['q6_arcBC','q6_pC','q6_lC'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q6_g4'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Quadrilateral XYZT",
+    given: "XY = XZ = 5.7 cm, YZ = 4.5 cm, ZT = 4.6 cm, XT = 5 cm",
+    question: "Construct a quadrilateral XYZT in which XY = XZ = 5.7 cm, YZ = 4.5 cm, ZT = 4.6 cm and XT = 5 cm.",
+    svgId: "svgQ7",
+    stepLines: [
+      "Draw YZ = 4.5 cm.",
+      "With Y as centre and radius 5.7 cm draw an arc.",
+      "With Z as centre and radius 5.7 cm draw another arc, cutting previous arc at X.",
+      "With X as centre and radius 5 cm, draw an arc.",
+      "With Z as centre and radius 4.6 cm draw another arc, cutting previous arc at T.",
+      "Join XT and ZT."
+    ],
+    groups: ["q7_g1","q7_g2","q7_g3","q7_g4","q7_g5","q7_g6"],
+    finalNote: "✅ XYZT is now complete. X was located as the apex of an isosceles triangle on YZ (XY=XZ=5.7 cm), then T was located from X and Z.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q7_g1'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q7_g2'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q7_g3'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q7_g4'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q7_g5'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q7_g6'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Parallelogram ABCD",
+    given: "BC = 6 cm, CD = 4 cm, ∠C = 60°",
+    question: "Construct a parallelogram ABCD in which BC = 6 cm, CD = 4 cm and ∠C = 60°.",
+    svgId: "svgQ8",
+    stepLines: [
+      "Draw BC = 6 cm.",
+      "Construct ∠BCX = 60°.",
+      "With C as centre and radius = 4 cm, draw an arc, cutting CX at D.",
+      "With D as centre and radius = 6 cm, draw an arc.",
+      "With B as centre and radius = 4 cm, draw another arc, cutting the previous arc at A.",
+      "Join AB and DA."
+    ],
+    groups: ["q8_g1","q8_g2","q8_g3","q8_g4","q8_g5","q8_g6"],
+    finalNote: "✅ ABCD is now complete. DA = 6 cm (= BC) and AB = 4 cm (= CD) hold automatically — opposite sides of a parallelogram are equal, which is exactly what the two arcs guaranteed.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q8_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=>{ el('q8_g2').style.opacity=1; revealArcC(el('q8_arcC'), 650); }, ids:['q8_arcC'] },
+        { ms:1400, fn:()=> revealArcC(el('q8_tickC'), 550), ids:['q8_tickC'] },
+        { ms:700,  fn:()=>{ revealArc(el('q8_rayC'),550); revealFade(el('q8_arrowC'),300); revealFade(el('q8_xLabel'),300); revealFade(el('q8_angleLabel'),300); }, ids:['q8_rayC','q8_arrowC','q8_xLabel','q8_angleLabel'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q8_g3'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q8_g4'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q8_g5'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q8_g6'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Parallelogram PQRS",
+    given: "QR = 4.7 cm, PQ = 2.8 cm, ∠Q = 120°",
+    question: "Construct a parallelogram PQRS in which QR = 4.7 cm, ∠Q = 120° and PQ = 2.8 cm.",
+    svgId: "svgQ9",
+    stepLines: [
+      "Draw QR = 4.7 cm.",
+      "Construct ∠RQX = 120°.",
+      "With Q as centre and radius = 2.8 cm, draw an arc, cutting QX at P.",
+      "With P as centre and radius = 4.7 cm, draw an arc.",
+      "With R as centre and radius = 2.8 cm, draw another arc, cutting the previous arc at S.",
+      "Join RS and PS."
+    ],
+    groups: ["q9_g1","q9_g2","q9_g3","q9_g4","q9_g5","q9_g6"],
+    finalNote: "✅ PQRS is now complete. PS = 4.7 cm (= QR) and RS = 2.8 cm (= PQ) hold automatically, as required for a parallelogram.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q9_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=>{ el('q9_g2').style.opacity=1; revealArcC(el('q9_arcQ'), 650); }, ids:['q9_arcQ'] },
+        { ms:1400, fn:()=> revealArcC(el('q9_tick60'), 550), ids:['q9_tick60'] },
+        { ms:1400, fn:()=> revealArcC(el('q9_tick120'), 550), ids:['q9_tick120'] },
+        { ms:700,  fn:()=>{ revealArc(el('q9_rayQ'),550); revealFade(el('q9_arrowQ'),300); revealFade(el('q9_xLabel'),300); revealFade(el('q9_angleLabel'),300); }, ids:['q9_rayQ','q9_arrowQ','q9_xLabel','q9_angleLabel'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q9_g3'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q9_g4'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q9_g5'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q9_g6'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Parallelogram ABCD",
+    given: "BC = 5 cm, CD = 3 cm, diagonal BD = 6 cm",
+    question: "Construct a parallelogram ABCD in which BC = 5 cm, CD = 3 cm and diagonal BD = 6 cm.",
+    svgId: "svgQ10",
+    stepLines: [
+      "Draw BC = 5 cm.",
+      "With B as centre and radius = 6 cm, draw an arc.",
+      "With C as centre and radius = 3 cm, draw another arc, cutting previous arc at D.",
+      "Join BD and CD.",
+      "With B as centre and radius = 3 cm draw an arc.",
+      "With D as centre and radius = 5 cm, draw another arc, cutting previous arc at A.",
+      "Join AD and AB."
+    ],
+    groups: ["q10_g1","q10_g2","q10_g3","q10_g4","q10_g5","q10_g6","q10_g7"],
+    finalNote: "✅ ABCD is now complete. AB = 3 cm (= CD) and DA = 5 cm (= BC) hold automatically — the diagonal BD split the parallelogram into two triangles, each built by SSS.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q10_g1'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q10_g2'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q10_g3'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q10_g4'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q10_g5'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q10_g6'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q10_g7'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Parallelogram ABCD",
+    given: "AB = 4.8 cm, BC = 3.5 cm, diagonal AC = 5.4 cm",
+    question: "Construct a parallelogram ABCD in which AB = 4.8 cm, BC = 3.5 cm and diagonal AC = 5.4 cm.",
+    svgId: "svgQ11",
+    stepLines: [
+      "Draw AB = 4.8 cm.",
+      "With A as centre and radius = 5.4 cm, draw an arc.",
+      "With B as centre and radius = 3.5 cm, draw another arc, cutting previous arc at C.",
+      "Join BC and AC.",
+      "With A as centre and radius = 3.5 cm draw an arc.",
+      "With C as centre and radius = 4.8 cm, draw another arc, cutting previous arc at D.",
+      "Join AD and CD."
+    ],
+    groups: ["q11_g1","q11_g2","q11_g3","q11_g4","q11_g5","q11_g6","q11_g7"],
+    finalNote: "✅ ABCD is now complete. AD = 3.5 cm (= BC) and CD = 4.8 cm (= AB) hold automatically — the diagonal AC split the parallelogram into two triangles, each built by SSS.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q11_g1'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q11_g2'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q11_g3'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q11_g4'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q11_g5'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q11_g6'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q11_g7'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Parallelogram ABCD",
+    given: "diagonal AC = 5.6 cm, diagonal BD = 6.2 cm, angle between them = 60°",
+    question: "Construct a parallelogram ABCD in which diagonal AC = 5.6 cm, diagonal BD = 6.2 cm and angle between them is 60°.",
+    svgId: "svgQ12",
+    stepLines: [
+      "Draw AC = 5.6 cm.",
+      "Find mid-point of AC.",
+      "Construct ∠AOX = 60°, produce XO to Y.",
+      "With O as centre and radii = ½(6.2) = 3.1 cm, draw arcs, cutting OX at D and OY at B.",
+      "Join AB, BC, CD and DA."
+    ],
+    groups: ["q12_g1","q12_g2","q12_g3","q12_g4","q12_g5"],
+    finalNote: "✅ ABCD is now complete. Since O is the midpoint of both diagonals and OD = OB = 3.1 cm, the diagonals bisect each other — exactly the defining property of a parallelogram.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q12_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=> revealArcC(el('q12_arcAu'), 550), ids:['q12_arcAu'] },
+        { ms:1400, fn:()=> revealArcC(el('q12_arcAl'), 550), ids:['q12_arcAl'] },
+        { ms:1400, fn:()=> revealArcC(el('q12_arcCu'), 550), ids:['q12_arcCu'] },
+        { ms:1400, fn:()=>{ revealArcC(el('q12_arcCl'), 550); revealArc(el('q12_bisLine'),500); revealFade(el('q12_pO'),300); revealFade(el('q12_lO'),300); }, ids:['q12_arcCl','q12_bisLine','q12_pO','q12_lO'] }
+      ],
+      [
+        { ms:1400, fn:()=> revealArcC(el('q12_arcAngle'), 550), ids:['q12_arcAngle'] },
+        { ms:700,  fn:()=>{ revealArc(el('q12_lineXY'),550); revealFade(el('q12_arrowX'),300); revealFade(el('q12_arrowY'),300); revealFade(el('q12_lX'),300); revealFade(el('q12_lY'),300); revealFade(el('q12_angleLabel'),300); }, ids:['q12_lineXY','q12_arrowX','q12_arrowY','q12_lX','q12_lY','q12_angleLabel'] }
+      ],
+      [
+        { ms:1400, fn:()=>{ revealArcC(el('q12_arcD'), 550); revealFade(el('q12_pD'),300); revealFade(el('q12_lD'),300); }, ids:['q12_arcD','q12_pD','q12_lD'] },
+        { ms:1400, fn:()=>{ revealArcC(el('q12_arcB'), 550); revealFade(el('q12_pB'),300); revealFade(el('q12_lB'),300); }, ids:['q12_arcB','q12_pB','q12_lB'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q12_g5'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Rectangle ABCD",
+    given: "AB = 4.7 cm, BC = 3.2 cm (adjacent sides)",
+    question: "Construct a rectangle whose adjacent sides are 4.7 cm and 3.2 cm.",
+    svgId: "svgQ13",
+    stepLines: [
+      "Draw AB = 4.7 cm.",
+      "Construct ∠ABX = 90°.",
+      "With B as centre and radius equal to 3.2 cm, draw an arc, cutting BX at C.",
+      "With A as centre and radius = 3.2 cm, draw an arc.",
+      "With C as centre and radius = 4.7 cm, draw an arc, cutting previous arc at D.",
+      "Join DC and DA."
+    ],
+    groups: ["q13_g1","q13_g2","q13_g3","q13_g4","q13_g5","q13_g6"],
+    finalNote: "✅ ABCD is now complete. AD = 3.2 cm and CD = 4.7 cm are guaranteed by the two arcs — combined with the 90° angle at B, this makes ABCD a true rectangle.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q13_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=>{ el('q13_g2').style.opacity=1; revealArcC(el('q13_semiB'), 750); }, ids:['q13_semiB'] },
+        { ms:1400, fn:()=> revealArcC(el('q13_tickCb'), 550), ids:['q13_tickCb'] },
+        { ms:1400, fn:()=> revealArcC(el('q13_tickDb120'), 550), ids:['q13_tickDb120'] },
+        { ms:1400, fn:()=> revealArcC(el('q13_apexCb'), 550), ids:['q13_apexCb'] },
+        { ms:1400, fn:()=> revealArcC(el('q13_apexDb120'), 550), ids:['q13_apexDb120'] },
+        { ms:450,  fn:()=> revealFade(el('q13_apexDot'), 300), ids:['q13_apexDot'] },
+        { ms:700,  fn:()=> revealArc(el('q13_rayB'), 550), ids:['q13_rayB'] },
+        { ms:500,  fn:()=>{ revealFade(el('q13_arrowB'),300); revealFade(el('q13_xLabel'),300); revealFade(el('q13_rightAngleSq'),300); revealFade(el('q13_angleLabel'),300); }, ids:['q13_arrowB','q13_xLabel','q13_rightAngleSq','q13_angleLabel'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q13_g3'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q13_g4'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q13_g5'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q13_g6'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Rectangle ABCD",
+    given: "AB = 4.5 cm, diagonal AC = 6 cm",
+    question: "Construct a rectangle ABCD in which AB = 4.5 cm and diagonal AC = 6 cm.",
+    svgId: "svgQ14",
+    stepLines: [
+      "Draw AB = 4.5 cm.",
+      "Construct ∠ABX = 90°.",
+      "With A as centre and radius equal to 6 cm, draw an arc, cutting BX at C. Join BC.",
+      "With C as centre and radius = 4.5 cm, draw an arc.",
+      "With A as centre and radius = BC, draw an arc, cutting previous arc at D.",
+      "Join DC and DA."
+    ],
+    groups: ["q14_g1","q14_g2","q14_g3","q14_g4","q14_g5","q14_g6"],
+    finalNote: "✅ ABCD is now complete. C was located where the 90° ray meets a circle of radius 6 cm (the diagonal) centred at A — Pythagoras guarantees BC works out correctly for the rectangle.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q14_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=>{ el('q14_g2').style.opacity=1; revealArcC(el('q14_semiB'), 750); }, ids:['q14_semiB'] },
+        { ms:1400, fn:()=> revealArcC(el('q14_tickCb'), 550), ids:['q14_tickCb'] },
+        { ms:1400, fn:()=> revealArcC(el('q14_tickDb120'), 550), ids:['q14_tickDb120'] },
+        { ms:1400, fn:()=> revealArcC(el('q14_apexCb'), 550), ids:['q14_apexCb'] },
+        { ms:1400, fn:()=> revealArcC(el('q14_apexDb120'), 550), ids:['q14_apexDb120'] },
+        { ms:450,  fn:()=> revealFade(el('q14_apexDot'), 300), ids:['q14_apexDot'] },
+        { ms:700,  fn:()=> revealArc(el('q14_rayB'), 550), ids:['q14_rayB'] },
+        { ms:500,  fn:()=>{ revealFade(el('q14_arrowB'),300); revealFade(el('q14_xLabel'),300); revealFade(el('q14_rightAngleSq'),300); revealFade(el('q14_angleLabel'),300); }, ids:['q14_arrowB','q14_xLabel','q14_rightAngleSq','q14_angleLabel'] }
+      ],
+      [
+        { ms:1400, fn:()=>{ revealArcC(el('q14_arcC'), 550); revealFade(el('q14_pC'),300); revealFade(el('q14_lC'),300); revealFade(el('q14_mC'),300); }, ids:['q14_arcC','q14_pC','q14_lC','q14_mC'] },
+        { ms:700,  fn:()=> revealArc(el('q14_lineBC'), 550), ids:['q14_lineBC'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q14_g4'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q14_g5'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q14_g6'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Rectangle ABCD",
+    given: "diagonal AC = 6.3 cm, angle between diagonals = 50°",
+    question: "Construct a rectangle ABCD in which diagonal AC = 6.3 cm and the angle between the two diagonals is 50°.",
+    svgId: "svgQ15",
+    stepLines: [
+      "Draw AC = 6.3 cm.",
+      "Find mid-point O of AC.",
+      "Construct ∠AOX = 50°.",
+      "Produce XO to Y.",
+      "Set off OB = 3.15 cm and OD = 3.15 cm.",
+      "Join AB, BC, CD and DA."
+    ],
+    groups: ["q15_g1","q15_g2","q15_g3","q15_g4","q15_g5","q15_g6"],
+    finalNote: "✅ ABCD is now complete. Since 50° is not a multiple of 15°, ∠AOX was marked with a protractor rather than compass and ruler — everything else (finding O, setting off equal radii) is still pure compass construction.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q15_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=> revealArcC(el('q15_arcAu'), 550), ids:['q15_arcAu'] },
+        { ms:1400, fn:()=> revealArcC(el('q15_arcAl'), 550), ids:['q15_arcAl'] },
+        { ms:1400, fn:()=> revealArcC(el('q15_arcCu'), 550), ids:['q15_arcCu'] },
+        { ms:1400, fn:()=>{ revealArcC(el('q15_arcCl'), 550); revealArc(el('q15_bisLine'),500); revealFade(el('q15_pO'),300); revealFade(el('q15_lO'),300); }, ids:['q15_arcCl','q15_bisLine','q15_pO','q15_lO'] }
+      ],
+      [
+        { ms:600, fn:()=> revealFade(el('q15_protractor'), 500), ids:[] },
+        { ms:600, fn:()=>{ revealFade(el('q15_tick50'),300); revealFade(el('q15_mark50'),300); }, ids:['q15_tick50','q15_mark50'] },
+        { ms:600, fn:()=> fadeOut(el('q15_protractor'), 500), ids:[] },
+        { ms:700, fn:()=>{ revealArc(el('q15_rayOX'),550); revealFade(el('q15_arrowX'),300); revealFade(el('q15_lX'),300); revealFade(el('q15_angleLabel'),300); }, ids:['q15_rayOX','q15_arrowX','q15_lX','q15_angleLabel'] }
+      ],
+      [ { ms:700, fn:()=>{ revealArc(el('q15_rayOY'),550); revealFade(el('q15_arrowY'),300); revealFade(el('q15_lY'),300); }, ids:['q15_rayOY','q15_arrowY','q15_lY'] } ],
+      [
+        { ms:1400, fn:()=>{ revealArcC(el('q15_arcD'), 550); revealFade(el('q15_pD'),300); revealFade(el('q15_lD'),300); }, ids:['q15_arcD','q15_pD','q15_lD'] },
+        { ms:1400, fn:()=>{ revealArcC(el('q15_arcB'), 550); revealFade(el('q15_pB'),300); revealFade(el('q15_lB'),300); }, ids:['q15_arcB','q15_pB','q15_lB'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q15_g6'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Square ABCD",
+    given: "diagonal AC = 6 cm",
+    question: "Construct a square one of whose diagonals measures 6 cm.",
+    svgId: "svgQ16",
+    stepLines: [
+      "Draw AC = 6 cm.",
+      "Draw a perpendicular bisector XY of AC, meeting AC at O.",
+      "On XY, setoff OD = 3 cm and OB = 3 cm.",
+      "Join AD, CD, AB and BC."
+    ],
+    groups: ["q16_g1","q16_g2","q16_g3","q16_g4"],
+    finalNote: "✅ ABCD is now complete. Since OD = OB = OA = OC = 3 cm and XY ⟂ AC, all four sides come out equal — exactly what makes this a square, not just any rhombus.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q16_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=> revealArcC(el('q16_arcAu'), 550), ids:['q16_arcAu'] },
+        { ms:1400, fn:()=> revealArcC(el('q16_arcAl'), 550), ids:['q16_arcAl'] },
+        { ms:1400, fn:()=> revealArcC(el('q16_arcCu'), 550), ids:['q16_arcCu'] },
+        { ms:1400, fn:()=> revealArcC(el('q16_arcCl'), 550), ids:['q16_arcCl'] },
+        { ms:700,  fn:()=>{ revealArc(el('q16_lineXY'),550); revealFade(el('q16_arrowX'),300); revealFade(el('q16_arrowY'),300); revealFade(el('q16_lX'),300); revealFade(el('q16_lY'),300); revealFade(el('q16_pO'),300); revealFade(el('q16_lO'),300); }, ids:['q16_lineXY','q16_arrowX','q16_arrowY','q16_lX','q16_lY','q16_pO','q16_lO'] }
+      ],
+      [
+        { ms:1400, fn:()=>{ revealArcC(el('q16_arcD'), 550); revealFade(el('q16_pD'),300); revealFade(el('q16_lD'),300); revealFade(el('q16_mOD'),300); }, ids:['q16_arcD','q16_pD','q16_lD','q16_mOD'] },
+        { ms:1400, fn:()=>{ revealArcC(el('q16_arcB'), 550); revealFade(el('q16_pB'),300); revealFade(el('q16_lB'),300); revealFade(el('q16_mOB'),300); }, ids:['q16_arcB','q16_pB','q16_lB','q16_mOB'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q16_g4'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Rhombus ABCD",
+    given: "AB = 4.3 cm, ∠A = 45°",
+    question: "Construct a rhombus ABCD in which AB = 4.3 cm and ∠A = 45°.",
+    svgId: "svgQ17",
+    stepLines: [
+      "Draw AB = 4.3 cm.",
+      "Construct ∠BAX = 45°.",
+      "On AX, cut off AD = 4.3 cm.",
+      "With B as centre and radius = 4.3 cm, draw an arc.",
+      "With D as centre and radius = 4.3 cm, draw another arc, cutting the previous arc at C.",
+      "Join CB and CD."
+    ],
+    groups: ["q17_g1","q17_g2","q17_g3","q17_g4","q17_g5","q17_g6"],
+    finalNote: "✅ ABCD is now complete. Since AB = AD = BC = DC = 4.3 cm, all four sides are equal — the defining property of a rhombus.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q17_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=>{ el('q17_g2').style.opacity=1; revealArcC(el('q17_arcA'), 650); }, ids:['q17_arcA'] },
+        { ms:1400, fn:()=> revealArcC(el('q17_tickCa'), 550), ids:['q17_tickCa'] },
+        { ms:1400, fn:()=> revealArcC(el('q17_tickD120a'), 550), ids:['q17_tickD120a'] },
+        { ms:1400, fn:()=> revealArcC(el('q17_apexCa'), 550), ids:['q17_apexCa'] },
+        { ms:1400, fn:()=> revealArcC(el('q17_apexD120a'), 550), ids:['q17_apexD120a'] },
+        { ms:450,  fn:()=> revealFade(el('q17_e90dot'), 300), ids:['q17_e90dot'] },
+        { ms:700,  fn:()=> revealArc(el('q17_ray90'), 550), ids:['q17_ray90'] },
+        { ms:450,  fn:()=> revealFade(el('q17_nDot'), 300), ids:['q17_nDot'] },
+        { ms:1400, fn:()=> revealArcC(el('q17_tickKF'), 550), ids:['q17_tickKF'] },
+        { ms:1400, fn:()=> revealArcC(el('q17_tickNF'), 550), ids:['q17_tickNF'] },
+        { ms:450,  fn:()=> revealFade(el('q17_f45dot'), 300), ids:['q17_f45dot'] },
+        { ms:700,  fn:()=> revealArc(el('q17_rayFinal'), 550), ids:['q17_rayFinal'] },
+        { ms:500,  fn:()=>{ revealFade(el('q17_arrowX'),300); revealFade(el('q17_xLabel'),300); revealFade(el('q17_angleArc'),300); revealFade(el('q17_angleLabel'),300); }, ids:['q17_arrowX','q17_xLabel','q17_angleArc','q17_angleLabel'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q17_g3'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q17_g4'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q17_g5'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q17_g6'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Rhombus ABCD",
+    given: "AB = 5 cm, diagonal AC = 6.8 cm",
+    question: "Construct a rhombus ABCD in which AB = 5 cm and diagonal AC = 6.8 cm.",
+    svgId: "svgQ18",
+    stepLines: [
+      "Draw AB = 5 cm.",
+      "With A as centre and radius = 6.8 cm, draw an arc.",
+      "With B as centre and radius = 5 cm, draw another arc, cutting the previous arc at C.",
+      "Join BC and AC.",
+      "With A as centre and radius = 5 cm draw an arc.",
+      "With C as centre and radius = 5 cm, draw another arc, cutting the previous arc at D.",
+      "Join CD and DA."
+    ],
+    groups: ["q18_g1","q18_g2","q18_g3","q18_g4","q18_g5","q18_g6","q18_g7"],
+    finalNote: "✅ ABCD is now complete. Since AB = BC = CD = DA = 5 cm, all four sides are equal — the defining property of a rhombus.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q18_g1'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q18_g2'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q18_g3'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q18_g4'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q18_g5'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q18_g6'), ids:'ALL' } ],
+      [ { ms:1400, fn:()=>drawGroupAction('q18_g7'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Rhombus ABCD",
+    given: "diagonal AC = 5.8 cm, diagonal BD = 6.4 cm",
+    question: "Construct a rhombus ABCD in which diagonal AC = 5.8 cm and diagonal BD = 6.4 cm.",
+    svgId: "svgQ19",
+    stepLines: [
+      "Draw AC = 5.8 cm.",
+      "Draw the perpendicular bisector XOY of AC.",
+      "Set off OB = 3.2 cm on OY and OD = 3.2 cm on OX.",
+      "Join AB, BC, CD and DA."
+    ],
+    groups: ["q19_g1","q19_g2","q19_g3","q19_g4","q19_g5"],
+    finalNote: "✅ ABCD is now complete. Since OA = OC = 2.9 cm and OB = OD = 3.2 cm, with the diagonals meeting at 90° (perpendicular bisector), all four sides come out equal — the defining property of a rhombus.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q19_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=> revealArcC(el('q19_arcAu'), 550), ids:['q19_arcAu'] },
+        { ms:1400, fn:()=> revealArcC(el('q19_arcAl'), 550), ids:['q19_arcAl'] },
+        { ms:1400, fn:()=> revealArcC(el('q19_arcCu'), 550), ids:['q19_arcCu'] },
+        { ms:1400, fn:()=>{ revealArcC(el('q19_arcCl'), 550); revealArc(el('q19_lineXY'),500); revealFade(el('q19_arrowX'),300); revealFade(el('q19_arrowY'),300); revealFade(el('q19_lX'),300); revealFade(el('q19_lY'),300); revealFade(el('q19_pO'),300); revealFade(el('q19_lO'),300); }, ids:['q19_arcCl','q19_lineXY','q19_arrowX','q19_arrowY','q19_lX','q19_lY','q19_pO','q19_lO'] }
+      ],
+      [
+        { ms:1400, fn:()=>{ revealArcC(el('q19_arcD'), 550); revealFade(el('q19_pD'),300); revealFade(el('q19_lD'),300); revealFade(el('q19_mOD'),300); }, ids:['q19_arcD','q19_pD','q19_lD','q19_mOD'] },
+        { ms:1400, fn:()=>{ revealArcC(el('q19_arcB'), 550); revealFade(el('q19_pB'),300); revealFade(el('q19_lB'),300); revealFade(el('q19_mOB'),300); }, ids:['q19_arcB','q19_pB','q19_lB','q19_mOB'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q19_g5'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing Square ABCD",
+    given: "diagonal AC = 5.6 cm",
+    question: "Construct a square one of whose diagonals is 5.6 cm.",
+    svgId: "svgQ20",
+    stepLines: [
+      "Draw AC = 5.6 cm.",
+      "Draw a perpendicular bisector XY of AC, meeting AC at O.",
+      "On XY, setoff OD = 2.8 cm and OB = 2.8 cm.",
+      "Join AD, CD, AB and BC."
+    ],
+    groups: ["q20_g1","q20_g2","q20_g3","q20_g4","q20_g5"],
+    finalNote: "✅ ABCD is now complete. Since OD = OB = OA = OC = 2.8 cm and XY ⟂ AC, all four sides come out equal — this is a square.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q20_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=> revealArcC(el('q20_arcAu'), 550), ids:['q20_arcAu'] },
+        { ms:1400, fn:()=> revealArcC(el('q20_arcAl'), 550), ids:['q20_arcAl'] },
+        { ms:1400, fn:()=> revealArcC(el('q20_arcCu'), 550), ids:['q20_arcCu'] },
+        { ms:1400, fn:()=>{ revealArcC(el('q20_arcCl'), 550); revealArc(el('q20_lineXY'),500); revealFade(el('q20_arrowX'),300); revealFade(el('q20_arrowY'),300); revealFade(el('q20_lX'),300); revealFade(el('q20_lY'),300); revealFade(el('q20_pO'),300); revealFade(el('q20_lO'),300); }, ids:['q20_arcCl','q20_lineXY','q20_arrowX','q20_arrowY','q20_lX','q20_lY','q20_pO','q20_lO'] }
+      ],
+      [
+        { ms:1400, fn:()=>{ revealArcC(el('q20_arcD'), 550); revealFade(el('q20_pD'),300); revealFade(el('q20_lD'),300); revealFade(el('q20_mOD'),300); }, ids:['q20_arcD','q20_pD','q20_lD','q20_mOD'] },
+        { ms:1400, fn:()=>{ revealArcC(el('q20_arcB'), 550); revealFade(el('q20_pB'),300); revealFade(el('q20_lB'),300); revealFade(el('q20_mOB'),300); }, ids:['q20_arcB','q20_pB','q20_lB','q20_mOB'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q20_g5'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing a Regular Hexagon",
+    given: "side = 2 cm, ruler and compasses only",
+    question: "Construct a regular hexagon of side 2 cm, using ruler and compasses only.",
+    svgId: "svgQ21",
+    stepLines: [
+      "Draw a line segment AB = 2 cm.",
+      "At A and B, draw ∠ABC = 120° each and cut off AF = BC = 2 cm.",
+      "At F and C, draw rays making angle of 120° each and cut off EF = CD = 2 cm.",
+      "Join ED. Hence, ABCDEF is the required hexagon."
+    ],
+    groups: ["q21_g1","q21_g2","q21_g3","q21_g4"],
+    finalNote: "✅ ABCDEF is now complete. Every side was set off at exactly 2 cm and every angle at exactly 120° — the two conditions that define a regular hexagon. ED closes the figure automatically, without needing its own measurement.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q21_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=>{ el('q21_g2').style.opacity=1; revealArcC(el('q21_a_arc'), 550); }, ids:['q21_a_arc'] },
+        { ms:1400, fn:()=> revealArcC(el('q21_a_tick1'), 500), ids:['q21_a_tick1'] },
+        { ms:1400, fn:()=> revealArcC(el('q21_a_tick2'), 500), ids:['q21_a_tick2'] },
+        { ms:700,  fn:()=>{ revealArc(el('q21_a_ray'),500); revealFade(el('q21_a_arrow'),300); revealFade(el('q21_a_dot'),250); revealFade(el('q21_a_lf'),250); }, ids:['q21_a_ray','q21_a_arrow','q21_a_dot','q21_a_lf'] },
+        { ms:1400, fn:()=> revealArcC(el('q21_b_arc'), 550), ids:['q21_b_arc'] },
+        { ms:1400, fn:()=> revealArcC(el('q21_b_tick1'), 500), ids:['q21_b_tick1'] },
+        { ms:1400, fn:()=> revealArcC(el('q21_b_tick2'), 500), ids:['q21_b_tick2'] },
+        { ms:700,  fn:()=>{ revealArc(el('q21_b_ray'),500); revealFade(el('q21_b_arrow'),300); revealFade(el('q21_b_dot'),250); revealFade(el('q21_b_lc'),250); }, ids:['q21_b_ray','q21_b_arrow','q21_b_dot','q21_b_lc'] }
+      ],
+      [
+        { ms:1400, fn:()=>{ el('q21_g3').style.opacity=1; revealArcC(el('q21_f_arc'), 550); }, ids:['q21_f_arc'] },
+        { ms:1400, fn:()=> revealArcC(el('q21_f_tick1'), 500), ids:['q21_f_tick1'] },
+        { ms:1400, fn:()=> revealArcC(el('q21_f_tick2'), 500), ids:['q21_f_tick2'] },
+        { ms:700,  fn:()=>{ revealArc(el('q21_f_ray'),500); revealFade(el('q21_f_arrow'),300); revealFade(el('q21_f_dot'),250); revealFade(el('q21_f_le'),250); }, ids:['q21_f_ray','q21_f_arrow','q21_f_dot','q21_f_le'] },
+        { ms:1400, fn:()=> revealArcC(el('q21_c_arc'), 550), ids:['q21_c_arc'] },
+        { ms:1400, fn:()=> revealArcC(el('q21_c_tick1'), 500), ids:['q21_c_tick1'] },
+        { ms:1400, fn:()=> revealArcC(el('q21_c_tick2'), 500), ids:['q21_c_tick2'] },
+        { ms:700,  fn:()=>{ revealArc(el('q21_c_ray'),500); revealFade(el('q21_c_arrow'),300); revealFade(el('q21_c_dot'),250); revealFade(el('q21_c_ld'),250); }, ids:['q21_c_ray','q21_c_arrow','q21_c_dot','q21_c_ld'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q21_g4'), ids:'ALL' } ]
+    ]
+  },
+  {
+    title: "Constructing a Regular Hexagon",
+    given: "side = 3.5 cm, ruler and compasses only",
+    question: "Construct a regular hexagon of side 3.5 cm, using ruler and compasses only.",
+    svgId: "svgQ22",
+    stepLines: [
+      "Draw a line segment AB = 3.5 cm.",
+      "At A and B, draw ∠ABC = 120° each and cut off AF = BC = 3.5 cm.",
+      "At F and C, draw rays making angle of 120° each and cut off EF = CD = 3.5 cm.",
+      "Join ED. Hence, ABCDEF is the required hexagon."
+    ],
+    groups: ["q22_g1","q22_g2","q22_g3","q22_g4"],
+    finalNote: "✅ ABCDEF is now complete. Every side was set off at exactly 3.5 cm and every angle at exactly 120° — the two conditions that define a regular hexagon. ED closes the figure automatically, without needing its own measurement.",
+    microActions: [
+      [ { ms:1400, fn:()=>drawGroupAction('q22_g1'), ids:'ALL' } ],
+      [
+        { ms:1400, fn:()=>{ el('q22_g2').style.opacity=1; revealArcC(el('q22_a_arc'), 550); }, ids:['q22_a_arc'] },
+        { ms:1400, fn:()=> revealArcC(el('q22_a_tick1'), 500), ids:['q22_a_tick1'] },
+        { ms:1400, fn:()=> revealArcC(el('q22_a_tick2'), 500), ids:['q22_a_tick2'] },
+        { ms:700,  fn:()=>{ revealArc(el('q22_a_ray'),500); revealFade(el('q22_a_arrow'),300); revealFade(el('q22_a_dot'),250); revealFade(el('q22_a_lf'),250); }, ids:['q22_a_ray','q22_a_arrow','q22_a_dot','q22_a_lf'] },
+        { ms:1400, fn:()=> revealArcC(el('q22_b_arc'), 550), ids:['q22_b_arc'] },
+        { ms:1400, fn:()=> revealArcC(el('q22_b_tick1'), 500), ids:['q22_b_tick1'] },
+        { ms:1400, fn:()=> revealArcC(el('q22_b_tick2'), 500), ids:['q22_b_tick2'] },
+        { ms:700,  fn:()=>{ revealArc(el('q22_b_ray'),500); revealFade(el('q22_b_arrow'),300); revealFade(el('q22_b_dot'),250); revealFade(el('q22_b_lc'),250); }, ids:['q22_b_ray','q22_b_arrow','q22_b_dot','q22_b_lc'] }
+      ],
+      [
+        { ms:1400, fn:()=>{ el('q22_g3').style.opacity=1; revealArcC(el('q22_f_arc'), 550); }, ids:['q22_f_arc'] },
+        { ms:1400, fn:()=> revealArcC(el('q22_f_tick1'), 500), ids:['q22_f_tick1'] },
+        { ms:1400, fn:()=> revealArcC(el('q22_f_tick2'), 500), ids:['q22_f_tick2'] },
+        { ms:700,  fn:()=>{ revealArc(el('q22_f_ray'),500); revealFade(el('q22_f_arrow'),300); revealFade(el('q22_f_dot'),250); revealFade(el('q22_f_le'),250); }, ids:['q22_f_ray','q22_f_arrow','q22_f_dot','q22_f_le'] },
+        { ms:1400, fn:()=> revealArcC(el('q22_c_arc'), 550), ids:['q22_c_arc'] },
+        { ms:1400, fn:()=> revealArcC(el('q22_c_tick1'), 500), ids:['q22_c_tick1'] },
+        { ms:1400, fn:()=> revealArcC(el('q22_c_tick2'), 500), ids:['q22_c_tick2'] },
+        { ms:700,  fn:()=>{ revealArc(el('q22_c_ray'),500); revealFade(el('q22_c_arrow'),300); revealFade(el('q22_c_dot'),250); revealFade(el('q22_c_ld'),250); }, ids:['q22_c_ray','q22_c_arrow','q22_c_dot','q22_c_ld'] }
+      ],
+      [ { ms:1400, fn:()=>drawGroupAction('q22_g4'), ids:'ALL' } ]
+    ]
+  },
+];
+
+/* ---------- engine state ---------- */
+let currentQ = 0;
+let flatMicro = [];   // flattened [{mainIdx, ms, fn}, ...] for the current question
+let microPos = -1;    // index into flatMicro of the last EXECUTED action
+let animating = false;
+
+function buildFlat(q){
+  const flat = [];
+  q.microActions.forEach((arr, mainIdx)=>{
+    arr.forEach(a => flat.push({ mainIdx, ms:a.ms, fn:a.fn, ids:a.ids }));
+  });
+  return flat;
+}
+
+function lockControls(ms){
+  animating = true;
+  el("nextBtn").disabled = true;
+  el("prevBtn").disabled = true;
+  el("qPicker").disabled = true;
+  document.querySelectorAll('.dot').forEach(d=> d.style.pointerEvents = 'none');
+  setTimeout(()=>{
+    animating = false;
+    el("prevBtn").disabled = microPos <= 0;
+    el("nextBtn").disabled = microPos >= flatMicro.length - 1;
+    el("qPicker").disabled = false;
+    document.querySelectorAll('.dot').forEach(d=> d.style.pointerEvents = 'auto');
+  }, ms);
+}
+
+function updateUI(textChanged){
+  const q = QUESTIONS[currentQ];
+  const mi = flatMicro[microPos].mainIdx;
+
+  if(textChanged){
+    const wrap = el("stepTextWrap");
+    wrap.classList.add("fading");
+    setTimeout(()=>{
+      el("stepTextNum").textContent = (mi+1) + ".";
+      el("stepTextBody").textContent = q.stepLines[mi];
+      wrap.classList.remove("fading");
+    }, 220);
+  }
+
+  const isFinal = microPos === flatMicro.length - 1;
+  const finalNote = el("finalNote");
+  finalNote.style.display = isFinal ? "block" : "none";
+  finalNote.textContent = q.finalNote;
+
+  const prog = el("progress");
+  prog.innerHTML = "";
+  q.stepLines.forEach((s,i)=>{
+    const d = document.createElement("div");
+    d.className = "dot" + (i === mi ? " active" : "");
+    d.onclick = ()=>{ if(animating) return; jumpToMainStep(i); };
+    prog.appendChild(d);
+  });
+
+  el("prevBtn").disabled = microPos <= 0;
+  el("nextBtn").disabled = microPos >= flatMicro.length - 1;
+}
+
+function goForward(){
+  if(animating) return;
+  if(microPos >= flatMicro.length - 1) return;
+  const prevMain = microPos >= 0 ? flatMicro[microPos].mainIdx : -1;
+  microPos++;
+  const cur = flatMicro[microPos];
+  cur.fn();
+  updateUI(cur.mainIdx !== prevMain);
+  lockControls(cur.ms || 700);
+}
+
+/* instantly apply the cumulative state up to (and including) flatMicro[targetPos],
+   with no animation — used for Back and for jumping via the progress dots */
+function applyStateInstant(targetPos){
+  const q = QUESTIONS[currentQ];
+  q.groups.forEach(gid=> instantHideGroup(gid));
+  document.querySelectorAll('[class*="gen-"]').forEach(n=> n.remove());
+
+  const neededGroups = new Set();
+  for(let i = 0; i <= targetPos; i++) neededGroups.add(q.groups[flatMicro[i].mainIdx]);
+
+  // show the needed groups, but start every child of those groups HIDDEN —
+  // we only reveal exactly what each already-clicked action actually reveals below
+  neededGroups.forEach(gid=>{
+    const g = el(gid);
+    g.style.transition = 'none';
+    g.style.opacity = 1;
+    g.querySelectorAll('path, line, circle, text, rect, polygon').forEach(n=>{
+      n.style.transition = 'none';
+      if(n.tagName === 'path' || n.tagName === 'line'){
+        let len; try{ len = n.getTotalLength(); } catch(e){ len = 300; }
+        n.style.strokeDasharray = len;
+        n.style.strokeDashoffset = len;
+      } else {
+        n.style.opacity = 0;
+      }
+    });
+  });
+
+  for(let i = 0; i <= targetPos; i++){
+    const action = flatMicro[i];
+    if(action.ids === 'ALL'){
+      const gid = q.groups[action.mainIdx];
+      el(gid).querySelectorAll('path, line, circle, text, rect, polygon').forEach(n=> instantShowElement(n));
+    } else {
+      (action.ids || []).forEach(id=>{ const n = el(id); if(n) instantShowElement(n); });
+    }
+  }
+  microPos = targetPos;
+}
+
+function goBack(){
+  if(animating) return;
+  if(microPos <= 0) return;
+  applyStateInstant(microPos - 1);
+  updateUI(true);
+  lockControls(300);
+}
+
+function jumpToMainStep(targetMainIdx){
+  if(animating) return;
+  let pos = -1;
+  flatMicro.forEach((m,i)=>{ if(m.mainIdx === targetMainIdx) pos = i; });
+  if(pos === -1) return;
+  applyStateInstant(pos);
+  updateUI(true);
+  lockControls(300);
+}
+
+function initQuestion(qi){
+  currentQ = qi;
+  flatMicro = buildFlat(QUESTIONS[qi]);
+  QUESTIONS[qi].groups.forEach(gid=> instantHideGroup(gid));
+  microPos = -1;
+  el("qFullText").textContent = QUESTIONS[qi].question;
+  goForward(); // reveal the very first action (Step 1) on load
+}
+
+el("nextBtn").onclick = goForward;
+el("prevBtn").onclick = goBack;
+
+el("qPicker").onchange = (e)=>{
+  if(animating) return;
+  el(QUESTIONS[currentQ].svgId).style.display = 'none';
+  const qi = parseInt(e.target.value, 10);
+  el("qFullText").textContent = QUESTIONS[qi].question;
+  el(QUESTIONS[qi].svgId).style.display = 'block';
+  initQuestion(qi);
+};
+
+initQuestion(0);
+</script>
+
+<button id="scratchToggle" aria-label="Open scratchpad" title="Scratchpad">✏️</button>
+<div id="scratchPad">
+  <div id="scratchHeader">
+    <span id="scratchTitle">✏️ Scratchpad</span>
+    <div id="scratchTools">
+      <button class="stool active" data-tool="pen">Pen</button>
+      <button class="stool" data-tool="eraser">Eraser</button>
+      <button class="stool" id="scratchClearBtn">Clear</button>
+      <button class="stool" id="scratchCloseBtn">✕</button>
+    </div>
+  </div>
+  <canvas id="scratchCanvas"></canvas>
+</div>
+
+<script>
+(function(){
+  const toggleBtn = document.getElementById('scratchToggle');
+  const pad = document.getElementById('scratchPad');
+  const header = document.getElementById('scratchHeader');
+  const canvas = document.getElementById('scratchCanvas');
+  const ctx = canvas.getContext('2d');
+  const clearBtn = document.getElementById('scratchClearBtn');
+  const closeBtn = document.getElementById('scratchCloseBtn');
+  const toolBtns = pad.querySelectorAll('.stool[data-tool]');
+
+  function themeColor(varName, fallback){
+    const v = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+    return v || fallback;
+  }
+
+  let currentTool = 'pen';
+
+  /* ---------- open / close ---------- */
+  toggleBtn.addEventListener('click', ()=>{
+    const opening = !pad.classList.contains('open');
+    pad.classList.toggle('open');
+    if(opening) syncCanvasToElementSize();
+  });
+  closeBtn.addEventListener('click', ()=> pad.classList.remove('open'));
+
+  /* ---------- tool selection ---------- */
+  toolBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      toolBtns.forEach(b=> b.classList.remove('active'));
+      btn.classList.add('active');
+      currentTool = btn.dataset.tool;
+    });
+  });
+  clearBtn.addEventListener('click', ()=>{
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  });
+
+  /* ---------- drag (header only, clamped to viewport) ---------- */
+  let dragging = false, dragOffX = 0, dragOffY = 0;
+  header.addEventListener('pointerdown', (e)=>{
+    if(e.target.closest('.stool')) return;
+    dragging = true;
+    const rect = pad.getBoundingClientRect();
+    dragOffX = e.clientX - rect.left;
+    dragOffY = e.clientY - rect.top;
+    header.setPointerCapture(e.pointerId);
+  });
+  header.addEventListener('pointermove', (e)=>{
+    if(!dragging) return;
+    const w = pad.offsetWidth, h = pad.offsetHeight;
+    let x = e.clientX - dragOffX;
+    let y = e.clientY - dragOffY;
+    x = Math.max(0, Math.min(window.innerWidth - w, x));
+    y = Math.max(0, Math.min(window.innerHeight - h, y));
+    pad.style.left = x + 'px';
+    pad.style.top = y + 'px';
+    pad.style.right = 'auto';
+    pad.style.bottom = 'auto';
+  });
+  function stopDrag(){ dragging = false; }
+  header.addEventListener('pointerup', stopDrag);
+  header.addEventListener('pointercancel', stopDrag);
+
+  /* ---------- resize sync: preserve strokes across canvas buffer resize ---------- */
+  function syncCanvasToElementSize(){
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    const cssW = Math.max(1, Math.round(rect.width));
+    const cssH = Math.max(1, Math.round(rect.height));
+    const bufW = Math.max(1, Math.round(cssW * dpr));
+    const bufH = Math.max(1, Math.round(cssH * dpr));
+    if(canvas.width === bufW && canvas.height === bufH) return;
+
+    const temp = document.createElement('canvas');
+    temp.width = canvas.width || bufW;
+    temp.height = canvas.height || bufH;
+    temp.getContext('2d').drawImage(canvas, 0, 0);
+
+    canvas.width = bufW;
+    canvas.height = bufH;
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.drawImage(temp, 0, 0);
+    ctx.scale(dpr, dpr);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+  }
+  const resizeObserver = new ResizeObserver(()=> syncCanvasToElementSize());
+  resizeObserver.observe(canvas);
+
+  /* ---------- freehand drawing: smoothed quadratic curves, speed-based width ---------- */
+  let drawing = false;
+  let points = [];
+
+  function getPos(e){
+    const rect = canvas.getBoundingClientRect();
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top, t: e.timeStamp };
+  }
+  function widthForSpeed(dist, dt){
+    if(dt <= 0) dt = 1;
+    const speed = dist / dt; // px per ms
+    const w = 3.0 - speed * 5.5; // slower -> thicker
+    return Math.max(1.2, Math.min(4.2, w));
+  }
+
+  canvas.addEventListener('pointerdown', (e)=>{
+    drawing = true;
+    canvas.setPointerCapture(e.pointerId);
+    points = [getPos(e)];
+  });
+
+  canvas.addEventListener('pointermove', (e)=>{
+    if(!drawing) return;
+    points.push(getPos(e));
+    if(points.length < 3) return;
+
+    const p2 = points[points.length - 3];
+    const p1 = points[points.length - 2];
+    const p0 = points[points.length - 1];
+    const midPrev = { x:(p2.x + p1.x)/2, y:(p2.y + p1.y)/2 };
+    const midCur  = { x:(p1.x + p0.x)/2, y:(p1.y + p0.y)/2 };
+    const dist = Math.hypot(p0.x - p1.x, p0.y - p1.y);
+    const dt = p0.t - p1.t;
+
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    if(currentTool === 'eraser'){
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.lineWidth = 20;
+    } else {
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.strokeStyle = themeColor('--navy-dk', '#1A3050');
+      ctx.lineWidth = widthForSpeed(dist, dt);
+    }
+    ctx.beginPath();
+    ctx.moveTo(midPrev.x, midPrev.y);
+    ctx.quadraticCurveTo(p1.x, p1.y, midCur.x, midCur.y);
+    ctx.stroke();
+  });
+
+  function endStroke(){
+    if(!drawing) return;
+    drawing = false;
+    if(points.length === 1){
+      const p = points[0];
+      ctx.globalCompositeOperation = currentTool === 'eraser' ? 'destination-out' : 'source-over';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, currentTool === 'eraser' ? 9 : 2, 0, Math.PI * 2);
+      ctx.fillStyle = themeColor('--navy-dk', '#1A3050');
+      ctx.fill();
+    }
+    points = [];
+  }
+  canvas.addEventListener('pointerup', endStroke);
+  canvas.addEventListener('pointercancel', endStroke);
+  canvas.addEventListener('pointerleave', ()=>{ if(drawing) endStroke(); });
+})();
+</script>
+
+</body>
+</html>
