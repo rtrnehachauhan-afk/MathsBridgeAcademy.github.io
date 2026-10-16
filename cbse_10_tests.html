@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Series — Maths Bridge Academy</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#F5F0E8;color:#1a1a1a;min-height:100vh}
+.bg-pattern{position:fixed;inset:0;z-index:0;background-image:radial-gradient(circle,rgba(45,90,61,.05) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:24px 16px 60px}
+.topbar{background:#2D5A3D;border-radius:14px;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px;flex-wrap:wrap}
+.tb-left{display:flex;align-items:center;gap:12px}
+.tb-logo{height:38px;width:auto}
+.tb-name{font-size:15px;font-weight:800;color:#fff}
+.tb-tag{font-size:11px;color:rgba(255,255,255,.6);margin-top:1px}
+.tb-right{display:flex;align-items:center;gap:8px}
+.back-btn,.logout-btn{font-size:12px;font-weight:700;padding:6px 14px;border-radius:8px;border:2px solid rgba(255,255,255,.3);background:transparent;color:rgba(255,255,255,.8);cursor:pointer;text-decoration:none;display:inline-block}
+.back-btn:hover,.logout-btn:hover{border-color:#fff;color:#fff}
+.welcome{background:#fff;border-radius:14px;padding:20px 24px;margin-bottom:20px;border-left:5px solid #C9A84C;box-shadow:0 2px 12px rgba(45,90,61,.08)}
+.welcome-name{font-size:20px;font-weight:800;color:#2D5A3D}
+.welcome-sub{font-size:13px;color:#888;margin-top:3px}
+
+.test-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.ttab{padding:9px 18px;border-radius:20px;border:2px solid rgba(45,90,61,.2);background:#fff;font-size:12px;font-weight:700;color:#2D5A3D;cursor:pointer;transition:all .15s}
+.ttab.active{background:#2D5A3D;color:#fff;border-color:#2D5A3D}
+
+.test-panel{display:none}
+.test-panel.active{display:block}
+
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.doc-card{background:#fff;border-radius:14px;padding:22px 20px;border:1px solid #E2D9C6;box-shadow:0 2px 12px rgba(45,90,61,.06);text-decoration:none;display:flex;flex-direction:column;gap:10px;transition:transform .15s,box-shadow .15s}
+.doc-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(45,90,61,.15)}
+.doc-icon{font-size:26px}
+.doc-title{font-size:14px;font-weight:700;color:#1A3D28}
+.doc-sub{font-size:11px;color:#999;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.doc-qp{border-top:4px solid #2D5A3D}
+.doc-ak{border-top:4px solid #C9A84C}
+.doc-missing{opacity:.5;cursor:default;pointer-events:none}
+.doc-missing .doc-sub::after{content:' · Coming soon'}
+</style>
+</head>
+<body>
+<div class="bg-pattern"></div>
+<div class="wrap">
+  <div class="topbar">
+    <div class="tb-left">
+      <img src="main_logo.png" class="tb-logo" alt="MBA">
+      <div>
+        <div class="tb-name">Maths Bridge Academy</div>
+        <div class="tb-tag">Mentored by Neha Ma'am</div>
+      </div>
+    </div>
+    <div class="tb-right">
+      <a class="back-btn" href="dashboard.html">← Dashboard</a>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="welcome">
+    <div class="welcome-name">Test Series</div>
+    <div class="welcome-sub">CBSE · Class X · MathsBridge Academy</div>
+  </div>
+
+  <div class="test-tabs" id="test-tabs"></div>
+  <div id="test-panels"></div>
+</div>
+
+<script>
+// Each test checks for its own PDFs via HEAD request — upload the PDF, card goes live automatically.
+const TEST_COUNT = 10;
+const FOLDER = 'tests/';
+const PREFIX = 'cbse10_';
+
+const tabsEl = document.getElementById('test-tabs');
+const panelsEl = document.getElementById('test-panels');
+
+for(let i=1;i<=TEST_COUNT;i++){
+  const tab=document.createElement('div');
+  tab.className='ttab'+(i===1?' active':'');
+  tab.textContent='Test '+i;
+  tab.onclick=()=>switchTest(i,tab);
+  tabsEl.appendChild(tab);
+
+  const panel=document.createElement('div');
+  panel.className='test-panel'+(i===1?' active':'');
+  panel.id='panel-'+i;
+  panel.innerHTML=`
+    <div class="doc-grid">
+      <a class="doc-card doc-qp" id="qp-${i}" href="${FOLDER}${PREFIX}test${i}_qp.pdf" target="_blank" rel="noopener">
+        <div class="doc-icon">📄</div>
+        <div class="doc-title">Question Paper</div>
+        <div class="doc-sub">Test ${i}</div>
+      </a>
+      <a class="doc-card doc-ak" id="ak-${i}" href="${FOLDER}${PREFIX}test${i}_ak.pdf" target="_blank" rel="noopener">
+        <div class="doc-icon">🔑</div>
+        <div class="doc-title">Answer Key</div>
+        <div class="doc-sub">Test ${i}</div>
+      </a>
+    </div>`;
+  panelsEl.appendChild(panel);
+}
+
+function switchTest(i,el){
+  document.querySelectorAll('.ttab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.test-panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('panel-'+i).classList.add('active');
+}
+
+// Check each PDF's existence; grey out + disable card if missing (mirrors dashboard.html pattern)
+for(let i=1;i<=TEST_COUNT;i++){
+  fetch(FOLDER+PREFIX+'test'+i+'_qp.pdf',{method:'HEAD'}).then(r=>{if(!r.ok) document.getElementById('qp-'+i).classList.add('doc-missing');}).catch(()=>document.getElementById('qp-'+i).classList.add('doc-missing'));
+  fetch(FOLDER+PREFIX+'test'+i+'_ak.pdf',{method:'HEAD'}).then(r=>{if(!r.ok) document.getElementById('ak-'+i).classList.add('doc-missing');}).catch(()=>document.getElementById('ak-'+i).classList.add('doc-missing'));
+}
+
+// Auth check (same pattern as dashboard.html)
+const raw=sessionStorage.getItem('mba_user');
+if(!raw){window.location.href='index.html';}
+
+function logout(){
+  sessionStorage.removeItem('mba_user');
+  window.location.href='index.html';
+}
+</script>
+</body>
+</html>
