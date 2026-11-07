@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice Papers — Maths Bridge Academy</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#F5F0E8;color:#1a1a1a;min-height:100vh}
+.bg-pattern{position:fixed;inset:0;z-index:0;background-image:radial-gradient(circle,rgba(45,90,61,.05) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:24px 16px 60px}
+.topbar{background:#2D5A3D;border-radius:14px;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px;flex-wrap:wrap}
+.tb-left{display:flex;align-items:center;gap:12px}
+.tb-logo{height:38px;width:auto}
+.tb-name{font-size:15px;font-weight:800;color:#fff}
+.tb-tag{font-size:11px;color:rgba(255,255,255,.6);margin-top:1px}
+.tb-right{display:flex;align-items:center;gap:8px}
+.back-btn,.logout-btn{font-size:12px;font-weight:700;padding:6px 14px;border-radius:8px;border:2px solid rgba(255,255,255,.3);background:transparent;color:rgba(255,255,255,.8);cursor:pointer;text-decoration:none;display:inline-block}
+.back-btn:hover,.logout-btn:hover{border-color:#fff;color:#fff}
+.welcome{background:#fff;border-radius:14px;padding:20px 24px;margin-bottom:20px;border-left:5px solid #C9A84C;box-shadow:0 2px 12px rgba(45,90,61,.08)}
+.welcome-name{font-size:20px;font-weight:800;color:#2D5A3D}
+.welcome-sub{font-size:13px;color:#888;margin-top:3px}
+
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.doc-card{background:#fff;border-radius:14px;padding:22px 20px;border:1px solid #E2D9C6;box-shadow:0 2px 12px rgba(45,90,61,.06);text-decoration:none;display:flex;flex-direction:column;gap:10px;transition:transform .15s,box-shadow .15s;border-top:4px solid #2D5A3D}
+.doc-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(45,90,61,.15)}
+.doc-icon{font-size:26px}
+.doc-title{font-size:14px;font-weight:700;color:#1A3D28}
+.doc-sub{font-size:11px;color:#999;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.doc-missing{opacity:.5;cursor:default;pointer-events:none}
+.doc-missing .doc-sub::after{content:' · Coming soon'}
+</style>
+</head>
+<body>
+<div class="bg-pattern"></div>
+<div class="wrap">
+  <div class="topbar">
+    <div class="tb-left">
+      <img src="main_logo.png" class="tb-logo" alt="MBA">
+      <div>
+        <div class="tb-name">Maths Bridge Academy</div>
+        <div class="tb-tag">Mentored by Neha Ma'am</div>
+      </div>
+    </div>
+    <div class="tb-right">
+      <a class="back-btn" href="dashboard.html">← Dashboard</a>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="welcome">
+    <div class="welcome-name">Practice Papers</div>
+    <div class="welcome-sub">ICSE · Class X · MathsBridge Academy</div>
+  </div>
+
+  <div class="doc-grid" id="doc-grid"></div>
+</div>
+
+<script>
+// Question papers only — no answer key, worked through in class.
+// Upload PDF to tests/icse10_prac1.pdf etc — card goes live automatically.
+const PAPER_COUNT = 10;
+const FOLDER = 'tests/';
+const PREFIX = 'icse10_prac';
+
+const grid = document.getElementById('doc-grid');
+
+for(let i=1;i<=PAPER_COUNT;i++){
+  const a=document.createElement('a');
+  a.className='doc-card';
+  a.id='dp-'+i;
+  a.target='_blank';
+  a.rel='noopener';
+  a.href=FOLDER+PREFIX+i+'.pdf';
+  a.innerHTML=`
+    <div class="doc-icon">📄</div>
+    <div class="doc-title">Paper ${i}</div>
+    <div class="doc-sub">Question Paper</div>`;
+  grid.appendChild(a);
+}
+
+// Check each PDF's existence; grey out + disable card if missing
+for(let i=1;i<=PAPER_COUNT;i++){
+  fetch(FOLDER+PREFIX+i+'.pdf',{method:'HEAD'}).then(r=>{if(!r.ok) document.getElementById('dp-'+i).classList.add('doc-missing');}).catch(()=>document.getElementById('dp-'+i).classList.add('doc-missing'));
+}
+
+// Auth check (same pattern as dashboard.html)
+const raw=sessionStorage.getItem('mba_user');
+if(!raw){window.location.href='index.html';}
+
+function logout(){
+  sessionStorage.removeItem('mba_user');
+  window.location.href='index.html';
+}
+</script>
+</body>
+</html>
